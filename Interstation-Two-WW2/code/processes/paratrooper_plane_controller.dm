@@ -17,7 +17,7 @@ var/process/paratrooper_plane_controller/paratrooper_plane_master = null
 
 /process/paratrooper_plane_controller/fire()
 	SCHECK
-	if (altitude == 500)
+	if (altitude == 500 || !latejoin_turfs["Fallschirm"] || !latejoin_turfs["Fallschirm"]:len)
 		return
 	try
 		if (!my_turfs.len)
