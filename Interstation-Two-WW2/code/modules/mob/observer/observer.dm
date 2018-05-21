@@ -52,3 +52,8 @@ mob/observer/check_airflow_movable()
 
 /mob/observer/gib()		//observers can't be gibbed.
 	return
+
+/mob/observer/verb/see_battle_report()
+	set category = "OOC"
+	set name = "See Battle Report"
+	show_global_battle_report(src, TRUE)

@@ -889,3 +889,7 @@
 /mob/new_player/MayRespawn()
 	return TRUE
 
+/mob/new_player/verb/see_battle_report()
+	set category = "OOC"
+	set name = "See Battle Report"
+	show_global_battle_report(src, TRUE)
