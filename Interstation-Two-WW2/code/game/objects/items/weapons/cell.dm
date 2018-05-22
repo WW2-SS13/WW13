@@ -1,3 +1,6 @@
+#define CELLRATE 0.002 // Multiplier for watts per tick <> cell storage (e.g., 0.02 means if there is a load of 1000 watts, 20 units will be taken from a cell per second)
+                       // It's a conversion constant. power_used*CELLRATE = charge_provided, or charge_used/CELLRATE = power_provided
+
 // the power cell
 // charge from FALSE to 100%
 // fits in APC to provide backup power
@@ -178,3 +181,4 @@
 			return min(rand(10,20),rand(10,20))
 		else
 			return FALSE
+#undef CELLRATE
