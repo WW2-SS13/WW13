@@ -62,7 +62,7 @@
 /obj/item/weapon/gun/projectile/semiautomatic/handle_post_fire()
 	..()
 
-	if (istype(src, /obj/item/weapon/gun/projectile/semiautomatic/akm) || istype(src, /obj/item/weapon/gun/projectile/semiautomatic/fg42))
+	if (istype(src, /obj/item/weapon/gun/projectile/semiautomatic/stg) || istype(src, /obj/item/weapon/gun/projectile/semiautomatic/fg42))
 		return
 
 	if (world.time - last_fire > 50)
@@ -155,8 +155,8 @@
 
 	firemodes = list(
 		list(name="semi automatic",	burst=1, burst_delay=0.8, move_delay=2, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6)),
-		list(name="short bursts",	burst=3, burst_delay=1.0, move_delay=3, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
-		list(name="long bursts",	burst=5, burst_delay=1.2, move_delay=4, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
+		list(name="short bursts",	burst=3, burst_delay=1.0, move_delay=3, dispersion = list(0.4, 0.8, 0.8, 0.8, 1.0)),
+		list(name="long bursts",	burst=5, burst_delay=1.2, move_delay=4, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
 		)
 
 
@@ -170,38 +170,7 @@
 		item_state = "fg42"
 	return
 
-
 /obj/item/weapon/gun/projectile/semiautomatic/stg
-	name = "STG-44"
-	desc = "German assault rifle with a 30 round magazine, chambered in 7.92x33mm Kurz. It is a devastating weapon."
-	icon_state = "stg"
-	item_state = "stg"
-	load_method = MAGAZINE
-	slot_flags = SLOT_BACK
-	w_class = 4
-	caliber = "a792x33"
-	fire_sound = 'sound/weapons/stg.ogg'
-	load_magazine_sound = 'sound/weapons/stg_reload.ogg'
-	magazine_type = /obj/item/ammo_magazine/a792x33/stgmag
-
-/obj/item/weapon/gun/projectile/semiautomatic/stg/update_icon()
-	if(ammo_magazine)
-		icon_state = "stg"
-/*		if(wielded)
-			item_state = "stg-w"
-		else
-			item_state = "stg"*/
-	else
-		icon_state = "stg0"
-/*		if(wielded)
-			item_state = "stg-w"
-		else
-			item_state = "stg0"*/
-	update_held_icon()
-	return
-
-
-/obj/item/weapon/gun/projectile/semiautomatic/akm
 	name = "MP-43/B"
 	desc = "German assault rifle chambered in 7.92x33mm Kurz, 30 round magazine. Variant of the STG-44, issued to SS, usually."
 	icon_state = "stg"
@@ -210,6 +179,8 @@
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 4
 	caliber = "a792x33"
+	fire_sound = 'sound/weapons/stg.ogg'
+	load_magazine_sound = 'sound/weapons/stg_reload.ogg'
 	magazine_type = /obj/item/ammo_magazine/a762/akm
 	weight = 4.6
 
@@ -221,7 +192,7 @@
 
 	sel_mode = 2
 
-/obj/item/weapon/gun/projectile/semiautomatic/akm/update_icon()
+/obj/item/weapon/gun/projectile/semiautomatic/stg/update_icon()
 	if(ammo_magazine)
 		icon_state = "stg"
 /*		if(wielded)
