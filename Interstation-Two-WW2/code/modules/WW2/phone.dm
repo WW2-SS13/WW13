@@ -78,7 +78,7 @@ var/list/soviet_traitors = list()
 
 					var/list/targets = (faction == SOVIET ? alive_germans : faction == GERMAN ? alive_russians : list())
 					// it takes 5 minutes for soviets to generate 300 points, not counting rewards
-					var/cost = (targets.len * 5) + battlereport.current_extra_cost_for_air_raid + 200
+					var/cost = (targets.len * 5) + processes.battlereport.current_extra_cost_for_air_raid + 200
 					var/yesno = input(H, "A Katyusha attack will cost [cost] supply points right now. You have [supply_points[faction]] supply points. [may_bombard_base_message()]. Would you like to call it in?") in list("Yes", "No")
 					if (yesno == "Yes")
 						if (supply_points[faction] < cost)

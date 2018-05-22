@@ -159,21 +159,21 @@
 	set category = "Special"
 	set name = "Show Battle Report"
 
-	if (!battlereport || !battlereport.fires_at_gamestates.Find(ticker.current_state))
+	if (!processes.battlereport || !processes.battlereport.fires_at_gamestates.Find(ticker.current_state))
 		src << "<span class = 'warning'>You can't send a battle report right now.</span>"
 		return
 
 	// to prevent showing multiple battle reports - Kachnov
-	if (battlereport)
+	if (processes.battlereport)
 		message_admins("[key_name(src)] showed everyone the battle report.")
-		battlereport.BR_ticks = battlereport.max_BR_ticks
+		processes.battlereport.BR_ticks = processes.battlereport.max_BR_ticks
 	else
 		show_global_battle_report(src)
 
 /client/proc/see_battle_report()
 	set category = "Special"
 	set name = "See Battle Report"
-	if (!battlereport || !battlereport.fires_at_gamestates.Find(ticker.current_state))
+	if (!processes.battlereport || !processes.battlereport.fires_at_gamestates.Find(ticker.current_state))
 		src << "<span class = 'warning'>You can't see the battle report right now.</span>"
 		return
 	show_global_battle_report(src, TRUE)

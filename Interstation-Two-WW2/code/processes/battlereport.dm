@@ -1,5 +1,3 @@
-var/process/battlereport/battlereport
-
 /process/battlereport
 	var/BR_ticks = 0
 	var/max_BR_ticks = 600 // 10 minutes
@@ -12,7 +10,7 @@ var/process/battlereport/battlereport
 	name = "Battle Report"
 	schedule_interval = 10 // every second
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	battlereport = src
+	processes.battlereport = src
 
 /process/battlereport/statProcess()
 	..()

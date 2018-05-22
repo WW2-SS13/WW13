@@ -872,6 +872,7 @@
 #include "code\modules\xgm\xgm_gas_data.dm"
 #include "code\modules\xgm\xgm_gas_mixture.dm"
 #include "code\processes\___defines.dm"
+#include "code\processes\__processes.dm"
 #include "code\processes\__processScheduler.dm"
 #include "code\processes\_process.dm"
 #include "code\processes\battlereport.dm"

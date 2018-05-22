@@ -51,9 +51,9 @@
 	if (original_job)
 		switch (original_job.base_type_flag())
 			if (GERMAN)
-				++battlereport.german_deaths_this_cycle
+				++processes.battlereport.german_deaths_this_cycle
 			if (SOVIET)
-				++battlereport.soviet_deaths_this_cycle
+				++processes.battlereport.soviet_deaths_this_cycle
 
 	//Handle species-specific deaths.
 	species.handle_death(src)
