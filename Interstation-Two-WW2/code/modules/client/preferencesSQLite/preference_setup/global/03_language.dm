@@ -7,7 +7,7 @@
 		pref.language_prefixes = config.language_prefixes.Copy()
 
 /datum/category_item/player_setup_item/player_global/language/content(var/mob/user)
-	. += "<b>Language Keys</b><br>"
+	. += "<b>Language Keys</b><br><br>"
 	. += " [english_list(pref.language_prefixes, and_text = " ", comma_text = " ")] <a href='?src=\ref[src];change_prefix=1'>Change</a> <a href='?src=\ref[src];reset_prefix=1'>Reset</a><br>"
 
 /datum/category_item/player_setup_item/player_global/language/OnTopic(var/href, var/list/href_list, var/mob/user)

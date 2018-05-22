@@ -26,6 +26,8 @@
 
 	new_player_panel()
 
-	spawn (10) // lets the host hear music too
+	spawn (10)
+		while(client && (!client.prefs || !client.prefs.ready))
+			sleep(1)
 		if (client)
 			client.playtitlemusic()

@@ -18,6 +18,7 @@ var/list/preferences_datums = list()
 	var/UI_useborder = FALSE
 	var/UI_style_color = "#FFFFFF"
 	var/UI_style_alpha = 255
+	var/lobby_music_volume = 30
 
 	//character preferences
 	var/real_name = "John Doe"						//our character's name
@@ -115,6 +116,8 @@ var/list/preferences_datums = list()
 
 	var/list/preferences_disabled = list()
 
+	var/ready = FALSE
+
 /datum/preferences/New(client/C)
 
 	player_setup = new(src)
@@ -165,6 +168,7 @@ var/list/preferences_datums = list()
 		spawn (1)
 			loadGlobalPreferences()
 			loadGlobalSettings()
+			ready = TRUE
 
 		// otherwise, keep using our default values
 
@@ -225,6 +229,8 @@ var/list/preferences_datums = list()
 
 	dat += "</body></html>"
 	user << browse(dat, "window=preferences;size=980x800")
+
+
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
 	if (!user)	return
@@ -298,7 +304,10 @@ var/list/preferences_datums = list()
 	else
 		return FALSE
 
-	ShowChoices(usr)
+	// after global prefs are reloaded
+	spawn (1.1)
+		ShowChoices(usr)
+
 	return TRUE
 
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, safety = FALSE)
@@ -469,10 +478,6 @@ var/list/preferences_datums = list()
 			if (val != vars[key])
 				if (vars[key])
 					vars[key] = val
-/*
-	for (var/mob/M in player_list)
-		if (M.client && M.client.ckey == client_ckey)
-			ShowChoices(M)*/
 
 /datum/preferences/proc/saveGlobalPreferences()
 	var/prefstring = ""
@@ -482,7 +487,8 @@ var/list/preferences_datums = list()
 	prefstring += "UI_style=[globalprefsanitize(UI_style)]&"
 	prefstring += "UI_useborder=[globalprefsanitize(UI_useborder)]&"
 	prefstring += "UI_style_color=[globalprefsanitize(UI_style_color)]&"
-	prefstring += "UI_style_alpha=[globalprefsanitize(UI_style_alpha)]"
+	prefstring += "UI_style_alpha=[globalprefsanitize(UI_style_alpha)]&"
+	prefstring += "lobby_music_volume=[globalprefsanitize(lobby_music_volume)]"
 
 	var/list/prefs_exist_check = database.execute("SELECT * FROM preferences WHERE ckey = '[client_ckey]' AND slot = 'glob1';")
 	if (islist(prefs_exist_check) && !isemptylist(prefs_exist_check))
@@ -611,8 +617,8 @@ var/list/preferences_datums = list()
 			var/datum/client_preference/cp = get_client_preference_by_type(/datum/client_preference/play_lobby_music)
 			if (isnewplayer(mob))
 				if (is_preference_enabled(cp.key))
-					mob << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 50, channel = 1)
+					playtitlemusic()
 				else
-					mob << sound(null, repeat = FALSE, wait = FALSE, volume = 50, channel = 1)
+					stoptitlemusic()
 	else
 		initially_loaded_preferences = TRUE

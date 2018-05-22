@@ -57,11 +57,14 @@ var/list/_client_preferences_by_type
 	key = "SOUND_LOBBY"
 
 /datum/client_preference/play_lobby_music/toggled(var/mob/new_player/preference_mob, var/enabled)
+	if (!preference_mob || !preference_mob.client)
+		return
+
 	if (enabled)
 		if (istype(preference_mob))
-			preference_mob << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 50, channel = TRUE)
+			preference_mob.client.playtitlemusic()
 	else
-		preference_mob << sound(null, repeat = FALSE, wait = FALSE, volume = 50, channel = TRUE)
+		preference_mob.client.stoptitlemusic()
 
 /*
 /datum/client_preference/play_ambiance
@@ -70,7 +73,7 @@ var/list/_client_preferences_by_type
 
 /datum/client_preference/play_ambiance/toggled(var/mob/preference_mob, var/enabled)
 	if (!enabled)
-		preference_mob << sound(null, repeat = FALSE, wait = FALSE, volume = FALSE, channel = TRUE)
+		preference_mob << sound(null, repeat = FALSE, wait = FALSE, volume = FALSE, channel = 1)
 		preference_mob << sound(null, repeat = FALSE, wait = FALSE, volume = FALSE, channel = 2)
 */
 /datum/client_preference/ghost_ears
