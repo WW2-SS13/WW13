@@ -37,6 +37,7 @@ var/datum/process_list/processes = new
 	var/process/zoom/zoom = null
 	var/process/supply/supply = null
 	var/process/supplydrop/supplydrop = null
+	var/process/python/python = null
 
 /datum/process_list/proc/get_num_processes()
 	. = 0
