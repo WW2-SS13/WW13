@@ -62,13 +62,17 @@
 	z = _loc.z
 
 /atom/movable/proc/is_on_train()
-	for (var/atom/movable/a in get_turf(src))
-		if (is_train_object(a))
+	if (!get_turf(src))
+		return FALSE
+	for (var/atom/movable/AM in get_turf(src))
+		if (is_train_object(AM))
 			return TRUE
 	return FALSE
 
 /atom/movable/proc/get_train()
-	for (var/atom_movable in loc)
+	if (!get_turf(src))
+		return null
+	for (var/atom_movable in get_turf(src))
 		if (is_train_object(atom_movable))
 			var/atom/movable/AM = atom_movable
 			if ("master" in AM.vars)
@@ -80,14 +84,14 @@
 	return null
 
 // this no longer uses istype(), so it's more efficient - Kachnov
-/proc/is_train_object(var/atom/movable/a)
-	if (!a || !istype(a))
+/proc/is_train_object(var/atom/movable/AM)
+	if (!AM || !istype(AM))
 		return FALSE
-	if (a.type == /obj/train_connector)
+	if (AM.type == /obj/train_connector)
 		return TRUE
-	if (a.type == /obj/train_pseudoturf)
+	if (AM.type == /obj/train_pseudoturf)
 		return TRUE
-	if (a.type == /obj/structure/railing/train_railing)
+	if (AM.type == /obj/structure/railing/train_railing)
 		return TRUE
 	return FALSE
 

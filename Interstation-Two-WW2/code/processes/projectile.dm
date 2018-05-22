@@ -1,5 +1,3 @@
-var/process/projectile/projectile_process = null
-
 /process/projectile
 
 /process/projectile/setup()
@@ -7,8 +5,8 @@ var/process/projectile/projectile_process = null
 	schedule_interval = 0.1
 	start_delay = 10
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	projectile_process = src
 	subsystem = TRUE
+	processes.projectile = src
 
 /process/projectile/fire()
 

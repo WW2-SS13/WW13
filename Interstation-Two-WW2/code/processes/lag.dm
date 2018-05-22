@@ -1,5 +1,3 @@
-var/process/lag/lag_process = null
-
 /process/lag
 
 /process/lag/setup()
@@ -7,7 +5,7 @@ var/process/lag/lag_process = null
 	schedule_interval = 300 // every half minute
 	start_delay = 10
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	lag_process = src
+	processes.lag = src
 
 /process/lag/fire()
 	SCHECK

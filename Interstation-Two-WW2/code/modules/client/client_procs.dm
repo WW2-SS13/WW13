@@ -130,8 +130,8 @@
 	clients += src
 	directory[ckey] = src
 
-	if (client_process && client_process.logged_next_normal_respawns[ckey])
-		next_normal_respawn = client_process.logged_next_normal_respawns[ckey]
+	if (processes.client && processes.client.logged_next_normal_respawns[ckey])
+		next_normal_respawn = processes.client.logged_next_normal_respawns[ckey]
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = preferences_datums[ckey]
@@ -276,8 +276,8 @@
 	//////////////
 /client/Del()
 
-	if (client_process)
-		client_process.logged_next_normal_respawns[ckey] = next_normal_respawn
+	if (processes.client)
+		processes.client.logged_next_normal_respawns[ckey] = next_normal_respawn
 
 	if(holder)
 		holder.owner = null
@@ -286,8 +286,8 @@
 	clients -= src
 	observer_mob_list -= mob
 	human_clients_mob_list -= mob
-	if (ping_track && ping_track.client_ckey_check[ckey])
-		ping_track.client_ckey_check -= ckey
+	if (processes.ping_track && processes.ping_track.client_ckey_check[ckey])
+		processes.ping_track.client_ckey_check -= ckey
 	return ..()
 
 

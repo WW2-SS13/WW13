@@ -1,5 +1,3 @@
-var/process/weather/weather_process = null
-
 /process/weather
 	var/mod_weather_interval = 3500
 	var/change_weather_interval = 3500
@@ -19,7 +17,7 @@ var/process/weather/weather_process = null
 	next_can_mod_weather = world.realtime + 100
 	next_can_change_weather = world.realtime + 12000
 	fires_at_gamestates = list(GAME_STATE_PLAYING)
-	weather_process = src
+	processes.weather = src
 
 /process/weather/fire()
 	SCHECK

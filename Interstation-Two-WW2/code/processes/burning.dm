@@ -1,11 +1,9 @@
-var/process/burning/burning_process = null
-
 /process/burning/setup()
 	name = "burning"
 	schedule_interval = 50 // every 5 seconds
 	start_delay = 100
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	burning_process = src
+	processes.burning = src
 
 /process/burning/fire()
 	SCHECK

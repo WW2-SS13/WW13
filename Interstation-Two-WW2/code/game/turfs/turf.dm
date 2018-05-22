@@ -440,13 +440,13 @@ var/const/enterloopsanity = 100
 				footstepsound = "erikafootsteps"
 
 			if(istype(H.shoes, /obj/item/clothing/shoes))
-				if (movement_process.ticks >= H.next_footstep_sound_at_movement_tick)
+				if (processes.movement.ticks >= H.next_footstep_sound_at_movement_tick)
 					playsound(src, footstepsound, 100, TRUE)
 					switch (H.m_intent)
 						if ("run")
-							H.next_footstep_sound_at_movement_tick = movement_process.ticks + (movement_process.schedule_interval*40)
+							H.next_footstep_sound_at_movement_tick = processes.movement.ticks + (processes.movement.schedule_interval*40)
 						if ("walk")
-							H.next_footstep_sound_at_movement_tick = movement_process.ticks + (movement_process.schedule_interval*53)
+							H.next_footstep_sound_at_movement_tick = processes.movement.ticks + (processes.movement.schedule_interval*53)
 		if(wet)
 
 			if(M.buckled || (wet == TRUE && M.m_intent == "walk"))

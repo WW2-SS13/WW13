@@ -1,4 +1,3 @@
-var/process/time_of_day/time_of_day_process = null
 var/TOD_may_automatically_change = FALSE
 
 /process/time_of_day
@@ -9,7 +8,7 @@ var/TOD_may_automatically_change = FALSE
 	schedule_interval = 100
 	start_delay = 20
 	fires_at_gamestates = list(GAME_STATE_PLAYING)
-	time_of_day_process = src
+	processes.time_of_day = src
 
 /process/time_of_day/fire()
 	SCHECK

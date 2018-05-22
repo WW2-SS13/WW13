@@ -51,7 +51,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 		if (serverswap_open_status)
 			if (!processScheduler.isRunning)
 				processScheduler.start()
-				message_admins("The process scheduler has been started.")
+				message_admins("The process scheduler has been started. There are [processes.get_num_processes()] active processes.")
 				log_admin("processScheduler.start() was called at gameticker.pregame().")
 
 		if (!lobby_music_player)
@@ -164,7 +164,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 	if (!processScheduler.isRunning)
 		processScheduler.start()
-		message_admins("The process scheduler has been started.")
+		message_admins("The process scheduler has been started. There are [processes.get_num_processes()] active processes.")
 		log_admin("processScheduler.start() was called at gameticker.setup().")
 
 	return TRUE
@@ -226,15 +226,15 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 			var/restart_after = restart_timeout
 
 			// give time for the other server to restart
-			if (mapswap_process)
-				if (mapswap_process.finished_at == -1)
+			if (processes.mapswap)
+				if (processes.mapswap.finished_at == -1)
 					restart_after = 1200 + (vote.time_remaining * 10)
 				else
-					var/n = world.time - mapswap_process.finished_at
+					var/n = world.time - processes.mapswap.finished_at
 					if (n <= 900)
 						restart_after = 1200 - n
 
-			var/next_map = mapswap_process ? mapswap_process.next_map_title : "TBD"
+			var/next_map = processes.mapswap ? processes.mapswap.next_map_title : "TBD"
 			if (vote && vote.mode == "map" && vote.time_remaining > 0)
 				next_map = "TBD"
 

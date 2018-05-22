@@ -1,5 +1,3 @@
-var/process/chemistry/chemistryProcess
-
 /process/chemistry
 	var/list/active_holders
 	var/list/chemical_reactions
@@ -8,11 +6,11 @@ var/process/chemistry/chemistryProcess
 /process/chemistry/setup()
 	name = "chemistry"
 	schedule_interval = 10 // every second
-	chemistryProcess = src
 	active_holders = list()
 	chemical_reactions = chemical_reactions_list
 	chemical_reagents = chemical_reagents_list
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
+	processes.chemistry = src
 
 /process/chemistry/fire()
 	SCHECK

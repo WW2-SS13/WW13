@@ -1,6 +1,4 @@
 // ported from /tg/station - Kachnov
-var/process/ping_track/ping_track = null
-
 /process/ping_track
 	var/list/my_clients = null
 	var/avg = 0
@@ -10,9 +8,7 @@ var/process/ping_track/ping_track = null
 	name = "Ping Tracking"
 	schedule_interval = 5
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-
-	if (!ping_track)
-		ping_track = src
+	processes.ping_track = src
 
 /process/ping_track/fire()
 	SCHECK

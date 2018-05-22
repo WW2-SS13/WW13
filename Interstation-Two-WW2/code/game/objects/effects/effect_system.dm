@@ -187,7 +187,7 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke/New()
 	..()
-	callproc_process.queue(src, /datum/proc/qdeleted, null, time_to_live)
+	processes.callproc.queue(src, /datum/proc/qdeleted, null, time_to_live)
 
 /obj/effect/effect/smoke/Crossed(mob/living/carbon/M as mob )
 	..()
@@ -235,7 +235,7 @@ steam.start() -- spawns the effect
 		for (var/v in 1 to time_to_live/10)
 			spawn (v * 5)
 				step_rand(src)
-	callproc_process.queue(src, /datum/proc/qdeleted, null, time_to_live)
+	processes.callproc.queue(src, /datum/proc/qdeleted, null, time_to_live)
 
 /obj/effect/effect/smoke/bad/Move()
 	..()

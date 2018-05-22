@@ -1,5 +1,3 @@
-var/process/time_of_day_change/time_of_day_change_process = null
-
 /process/time_of_day_change
 	var/ready = FALSE
 	var/changeto = null
@@ -11,7 +9,7 @@ var/process/time_of_day_change/time_of_day_change_process = null
 	schedule_interval = 10
 	start_delay = 0
 	fires_at_gamestates = list(GAME_STATE_PLAYING)
-	time_of_day_change_process = src
+	processes.time_of_day_change = src
 
 /process/time_of_day_change/fire()
 	SCHECK_09

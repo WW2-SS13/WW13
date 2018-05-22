@@ -8,7 +8,7 @@
 	schedule_interval = 1 // every 1/10th second
 	start_delay = 10
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	lighting_processing = src
+	processes.lighting = src
 
 /process/lighting/fire()
 	SCHECK

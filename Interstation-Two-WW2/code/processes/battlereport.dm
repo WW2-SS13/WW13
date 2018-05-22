@@ -1,6 +1,4 @@
-var/process/battlereport/battlereport
-
-/process/battlereport
+/process/battle_report
 	var/BR_ticks = 0
 	var/max_BR_ticks = 600 // 10 minutes
 	var/german_deaths_this_cycle = 0
@@ -8,20 +6,20 @@ var/process/battlereport/battlereport
 	var/current_extra_cost_for_air_raid = 0
 	var/next_can_grant_points = -1
 
-/process/battlereport/setup()
+/process/battle_report/setup()
 	name = "Battle Report"
 	schedule_interval = 10 // every second
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	battlereport = src
+	processes.battle_report = src
 
-/process/battlereport/statProcess()
+/process/battle_report/statProcess()
 	..()
 	stat(null, "Next battle report: [max_BR_ticks - BR_ticks] seconds")
 
-/process/battlereport/htmlProcess()
+/process/battle_report/htmlProcess()
 	return ..() + "Next battle report: [max_BR_ticks - BR_ticks] seconds"
 
-/process/battlereport/fire()
+/process/battle_report/fire()
 	SCHECK
 
 	++BR_ticks

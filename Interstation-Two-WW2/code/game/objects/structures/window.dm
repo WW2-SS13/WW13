@@ -411,13 +411,13 @@
 	if (prob((temperature/500) * 70))
 		shatter()
 
-/obj/structure/classic_window_frame
+/obj/structure/window_frame
 	desc = "A good old window frame."
 	icon_state = "windownew_frame"
 	layer = MOB_LAYER + 0.01
 	anchored = TRUE
 
-/obj/structure/classic_window_frame/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/window_frame/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/stack/material/glass))
 		var/obj/item/stack/S = W
 		if (S.amount >= 3)
@@ -473,7 +473,7 @@
 /obj/structure/window/classic/shatter(var/display_message = TRUE)
 	var/myturf = get_turf(src)
 	spawn (is_on_train() ? 0 : 1)
-		new/obj/structure/classic_window_frame(myturf)
+		new/obj/structure/window_frame(myturf)
 	..(display_message)
 
 /obj/structure/window/classic/update_icon()

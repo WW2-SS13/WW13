@@ -110,20 +110,18 @@
 
 	// handle nutrition stuff before we handle stomach stuff in the callback
 
-	var/nutrition_water_loss_base_multiplier = mob_process.schedule_interval/20
-
 	// hunger, thirst nerfed by 10% due to popular demand. It's still hardmode - Kachnov
 
-	#define HUNGER_THIRST_MULTIPLIER 1.00
+	#define HUNGER_THIRST_MULTIPLIER 0.80
 
 	if (has_hunger_and_thirst)
 		switch (stat)
 			if (CONSCIOUS) // takes about 1333 ticks to start starving, or ~44 minutes
-				nutrition -= (0.27/getStatCoeff("survival")) * nutrition_water_loss_base_multiplier * HUNGER_THIRST_MULTIPLIER
-				water -= (0.27/getStatCoeff("survival")) * nutrition_water_loss_base_multiplier * HUNGER_THIRST_MULTIPLIER
+				nutrition -= ((0.27/getStatCoeff("survival")) * HUNGER_THIRST_MULTIPLIER)
+				water -= ((0.27/getStatCoeff("survival")) * HUNGER_THIRST_MULTIPLIER)
 			if (UNCONSCIOUS) // takes over an hour to starve
-				nutrition -= (0.18/getStatCoeff("survival")) * nutrition_water_loss_base_multiplier * HUNGER_THIRST_MULTIPLIER
-				water -= (0.18/getStatCoeff("survival")) * nutrition_water_loss_base_multiplier * HUNGER_THIRST_MULTIPLIER
+				nutrition -= ((0.18/getStatCoeff("survival")) * HUNGER_THIRST_MULTIPLIER)
+				water -= ((0.18/getStatCoeff("survival")) * HUNGER_THIRST_MULTIPLIER)
 
 	#undef HUNGER_THIRST_MULTIPLIER
 
@@ -143,14 +141,12 @@
 	water = min(water, max_water)
 	water = max(water, -max_water)
 
-	// recover oxyloss
-	var/oxyloss = getOxyLoss()
-	if (oxyloss >= 10 && oxyloss <= 20)
-		adjustOxyLoss(-5)
-		// it's been about 15 minutes, you're fucked now
-		if (list(UNCONSCIOUS, DEAD).Find(stat))
-			if (prob(1) && prob(20))
-				adjustOxyLoss(20)
+	// make us die very slowly if we're unconscious, but recover oxyloss if we're conscious
+	switch (stat)
+		if (CONSCIOUS)
+			adjustOxyLoss(-5)
+		if (UNCONSCIOUS) // approx 22 minutes for 100 oxyloss, with a lot of randomness thrown in
+			adjustOxyLoss(pick(0.1, 0.2))
 
 	..()
 

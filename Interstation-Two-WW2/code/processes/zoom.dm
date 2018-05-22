@@ -1,11 +1,7 @@
 /* the old zoom process was too laggy, so now we have this. We don't use the
  * mob process because it doesn't update often enough and it would cause too
  * much lag to make it update 3x faster. (3x the Life() calls) - Kachnov */
-
-var/process/zoom/zoom_process = null
-
 /process/zoom
-	var/tmp/datum/updateQueue/updateQueueInstance
 	var/list/recent_scopes = list()
 
 /process/zoom/setup()
@@ -13,7 +9,7 @@ var/process/zoom/zoom_process = null
 	schedule_interval = 7 // every 0.7 seconds
 	start_delay = 100
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	zoom_process = src
+	processes.zoom = src
 
 /process/zoom/started()
 	..()

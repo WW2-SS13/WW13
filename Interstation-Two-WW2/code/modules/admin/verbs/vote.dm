@@ -3,10 +3,10 @@
 	set name = "Start Map Vote"
 	if (!check_rights(R_PERMISSIONS))
 		return
-	if (mapswap_process && mapswap_process.may_fire())
-		mapswap_process.admin_triggered = TRUE
-		mapswap_process.ready = TRUE
+	if (processes.mapswap && processes.mapswap.may_fire())
+		processes.mapswap.admin_triggered = TRUE
+		processes.mapswap.ready = TRUE
 		log_admin("[key_name(usr)] triggered a map vote.")
 		message_admins("[key_name(usr)] triggered a map vote.")
 	else
-		src << "<span class = 'notice'>There is no mapswap_process datum, or it is not ready.</span>"
+		src << "<span class = 'notice'>There is no processes.mapswap datum, or it is not ready.</span>"

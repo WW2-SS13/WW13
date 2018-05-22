@@ -1,11 +1,9 @@
-var/process/obj/obj_process = null
-
 /process/obj/setup()
 	name = "obj"
 	schedule_interval = 20 // every 2 seconds
 	start_delay = 8
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	obj_process = src
+	processes.obj = src
 
 /process/obj/fire()
 	SCHECK

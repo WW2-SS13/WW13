@@ -308,7 +308,7 @@ Proc for attack log creation, because really why not
 
 	if (user.is_on_train())
 		var/datum/train_controller/tc = user.get_train()
-		if (tc.moving)
+		if (istype(tc) && tc.moving)
 			last_train_move_time = user.last_moved_on_train
 
 	var/holding = user.get_active_hand()
@@ -369,7 +369,7 @@ Proc for attack log creation, because really why not
 	var/user_on_train = FALSE
 	if (user.is_on_train())
 		var/datum/train_controller/tc = user.get_train()
-		if (tc.moving)
+		if (istype(tc) && tc.moving)
 			last_train_move_time = user.last_moved_on_train
 			user_on_train = TRUE
 

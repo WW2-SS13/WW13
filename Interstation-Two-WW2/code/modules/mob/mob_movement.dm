@@ -383,7 +383,7 @@
 		return
 
 	if (mob_is_living)
-		for (var/obj/structure/classic_window_frame/W in mob.loc)
+		for (var/obj/structure/window_frame/W in mob.loc)
 			mob.visible_message("<span class = 'warning'>[mob] starts climbing through the window frame.</span>")
 			mob.canmove = FALSE
 			var/oloc = mob.loc
@@ -652,7 +652,7 @@
 
 		if (!mob_is_observer)
 			for (var/obj/structure/multiz/ladder/ww2/manhole/M in mob.loc)
-				callproc_process.queue(M, /obj/structure/multiz/ladder/ww2/manhole/proc/fell, list(mob), 1)
+				processes.callproc.queue(M, /obj/structure/multiz/ladder/ww2/manhole/proc/fell, list(mob), 1)
 				break
 
 		// make animals acknowledge us

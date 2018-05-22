@@ -72,7 +72,7 @@ var/global/processScheduler/processScheduler
 
 /processScheduler/proc/setup()
 	// There can be only one
-	if(processScheduler && (processScheduler != src))
+	if(processScheduler && processScheduler != src)
 		del(src)
 		return FALSE
 
@@ -108,12 +108,9 @@ var/global/processScheduler/processScheduler
 		runQueuedProcesses()
 		sleep(scheduler_sleep_interval)
 
-	// handle hung fake subsystems
+	// handle hung fake subsystems: restartProcess() only restarts subsystems if they're really dead
 	for (var/name in last_ran_subsystem)
-		var/process/P = subsystems[name]
-		var/time_since_last_run = world.time - last_ran_subsystem[name]
-		if (time_since_last_run/10 >= P.schedule_interval)
-			DO_INTERNAL_SUBSYSTEM(P)
+		restartProcess(name)
 
 /processScheduler/proc/stop()
 	isRunning = FALSE
@@ -179,9 +176,6 @@ var/global/processScheduler/processScheduler
 
 	// Subsystem? make the process run independently and recover quickly if it hangs
 	if (process.subsystem)
-		process.hang_warning_time = process.schedule_interval * 3
-		process.hang_alert_time = process.schedule_interval * 6
-		process.hang_restart_time = process.schedule_interval * 9
 		DO_INTERNAL_SUBSYSTEM(process)
 
 	// Save process in the name -> process map
@@ -340,7 +334,13 @@ var/global/processScheduler/processScheduler
 	restartProcess(processName)
 
 /processScheduler/proc/restartProcess(var/processName as text)
-	if (hasProcess(processName))
+	if (subsystems.Find(processName))
+		if (hasProcess(processName))
+			var/process/instance = nameToProcessMap[processName]
+			var/time_since_last_run = world.time - last_ran_subsystem[processName]
+			if (time_since_last_run/10 >= instance.schedule_interval)
+				DO_INTERNAL_SUBSYSTEM(instance)
+	else if (hasProcess(processName))
 		var/process/oldInstance = nameToProcessMap[processName]
 		var/process/newInstance = new oldInstance.type(src)
 		newInstance._copyStateFrom(oldInstance)

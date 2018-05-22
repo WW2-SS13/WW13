@@ -70,7 +70,7 @@ var/list/engineer_exclusive_recipe_types = list(/obj/structure/girder, /obj/stru
 	recipes += new/datum/stack_recipe("unlocked door", /obj/structure/simple_door/key_door/anyone/wood, 5, _time = 30, _one_per_turf = TRUE, _on_floor = TRUE)
 	recipes += new/datum/stack_recipe("locked door", /obj/structure/simple_door/key_door/anyone/wood, 5, _time = 30, _one_per_turf = TRUE, _on_floor = TRUE)
 	recipes += new/datum/stack_recipe("table", /obj/structure/table/wood, 4, _time = 7, _one_per_turf = TRUE, _on_floor = TRUE)
-	recipes += new/datum/stack_recipe("window frame", /obj/structure/classic_window_frame, 3, _time = 30, _one_per_turf = TRUE, _on_floor = TRUE)
+	recipes += new/datum/stack_recipe("window frame", /obj/structure/window_frame, 3, _time = 30, _one_per_turf = TRUE, _on_floor = TRUE)
 
 
 /material/barbedwire/generate_recipes()

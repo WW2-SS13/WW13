@@ -27,7 +27,7 @@ var/GRACE_PERIOD_LENGTH = 7
 				spawn (0)
 					while (!setup_lighting)
 						sleep(1)
-					world << "<br><font size=3><span class = 'notice'>It's <b>[lowertext(time_of_day_change_process.changeto)]</b>, and the season is <b>[get_season()]</b>.</span></font>"
+					world << "<br><font size=3><span class = 'notice'>It's <b>[lowertext(processes.time_of_day_change.changeto)]</b>, and the season is <b>[get_season()]</b>.</span></font>"
 
 	// spawn mice so soviets have something to eat after they start starving
 	var/mice_spawned = FALSE
@@ -202,7 +202,7 @@ var/mapcheck_train_arrived = FALSE
 	if(mission_announced)
 		return TRUE
 
-	mission_announced = tickerProcess.playtime_elapsed
+	mission_announced = processes.ticker.playtime_elapsed
 
 	var/preparation_time = world.realtime - roundstart_time
 
