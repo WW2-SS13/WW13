@@ -76,7 +76,7 @@
 	name = "14.5mm PaB 783"
 
 /obj/item/weapon/gun/projectile/heavy/ptrd/update_icon()
-	if(bolt_open)
+	if (bolt_open)
 		icon_state = "ptrd"
 	else
 		icon_state = "ptrd"
@@ -98,15 +98,15 @@
 		)
 
 /obj/item/weapon/gun/projectile/heavy/mk12/update_icon()
-	if(ammo_magazine)
+	if (ammo_magazine)
 		icon_state = "mk12_loaded"
-/*		if(wielded)
+/*		if (wielded)
 			item_state = "mk12_loaded_wielded"
 		else
 			item_state = "mk12_loaded"*/
 	else
 		icon_state = "mk12_empty"
-	/*	if(wielded)
+	/*	if (wielded)
 			item_state = "mk12_empty_wielded"
 		else
 			item_state = "mk12_empty"*/

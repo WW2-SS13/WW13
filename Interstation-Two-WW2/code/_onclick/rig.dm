@@ -13,15 +13,15 @@
 	set category = "OOC"
 
 	hardsuit_click_mode++
-	if(hardsuit_click_mode > MAX_HARDSUIT_CLICK_MODE)
+	if (hardsuit_click_mode > MAX_HARDSUIT_CLICK_MODE)
 		hardsuit_click_mode = FALSE
 
 	switch(hardsuit_click_mode)
-		if(MIDDLE_CLICK)
+		if (MIDDLE_CLICK)
 			src << "Hardsuit activation mode set to middle-click."
-		if(ALT_CLICK)
+		if (ALT_CLICK)
 			src << "Hardsuit activation mode set to alt-click."
-		if(CTRL_CLICK)
+		if (CTRL_CLICK)
 			src << "Hardsuit activation mode set to control-click."
 		else
 			// should never get here, but just in case:
@@ -30,20 +30,20 @@
 			hardsuit_click_mode = MIDDLE_CLICK
 */
 /mob/living/MiddleClickOn(atom/A)
-	if(client && client.hardsuit_click_mode == MIDDLE_CLICK)
-		if(HardsuitClickOn(A))
+	if (client && client.hardsuit_click_mode == MIDDLE_CLICK)
+		if (HardsuitClickOn(A))
 			return
 	..()
 
 /mob/living/AltClickOn(atom/A)
-	if(client && client.hardsuit_click_mode == ALT_CLICK)
-		if(HardsuitClickOn(A))
+	if (client && client.hardsuit_click_mode == ALT_CLICK)
+		if (HardsuitClickOn(A))
 			return
 	..()
 
 /mob/living/CtrlClickOn(atom/A)
-	if(client && client.hardsuit_click_mode == CTRL_CLICK)
-		if(HardsuitClickOn(A))
+	if (client && client.hardsuit_click_mode == CTRL_CLICK)
+		if (HardsuitClickOn(A))
 			return
 	..()
 

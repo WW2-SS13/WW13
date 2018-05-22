@@ -32,7 +32,7 @@
 	max_positions = 1
 
 /datum/job/german/oberstleutnant/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/general(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
@@ -80,7 +80,7 @@
 	max_positions = 1
 
 /datum/job/german/commander/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/gerofficer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
@@ -133,7 +133,7 @@
 	player_threshold = PLAYER_THRESHOLD_MEDIUM
 
 /datum/job/german/XO/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/gerofficer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
@@ -179,7 +179,7 @@
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/german/staff_officer/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/gerofficer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
@@ -227,7 +227,7 @@
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/german/MP/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/MP(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm/MP(H), slot_head)
@@ -271,7 +271,7 @@
 	max_positions = 4
 
 /datum/job/german/squad_leader/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/gerofficer(H), slot_w_uniform)
@@ -320,7 +320,7 @@
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/german/medic/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -361,7 +361,7 @@
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/german/doctor/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/color/white(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/doctor(H), slot_w_uniform)
@@ -408,7 +408,7 @@
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/german/flamethrower_man/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -450,7 +450,7 @@
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/german/sniper/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -492,7 +492,7 @@
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/german/engineer/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -536,7 +536,7 @@
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/german/heavy_weapon/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -580,7 +580,7 @@
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/german/soldier/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -620,7 +620,7 @@
 	allow_spies = TRUE
 
 /datum/job/german/dogmaster/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -678,7 +678,7 @@
 	player_threshold = PLAYER_THRESHOLD_MEDIUM
 
 /datum/job/german/tankcrew/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/gertankeruni(H), slot_w_uniform)
@@ -724,7 +724,7 @@
 	player_threshold = PLAYER_THRESHOLD_MEDIUM
 
 /datum/job/german/anti_tank_crew/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -778,7 +778,7 @@ var/first_fallschirm = TRUE
 /datum/job/german/paratrooper/equip(var/mob/living/carbon/human/H)
 //	spawn_delay = config.paratrooper_drop_time
 
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/falluni(H), slot_w_uniform)
 
@@ -798,19 +798,19 @@ var/first_fallschirm = TRUE
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/german/paratrooper(H), slot_back)
 
-	if(first_fallschirm)
+	if (first_fallschirm)
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/mp40(H), slot_r_hand)
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_r_hand)
 
-	if(first_fallschirm)
+	if (first_fallschirm)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german/fallofficer(H), slot_belt)
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german/fallsoldier(H), slot_belt)
 
 	first_fallschirm = FALSE
 
-	if(!fallschirm_spawnzone)
+	if (!fallschirm_spawnzone)
 		fallschirm_spawnzone = pick(fallschirm_landmarks)
 		fallschirm_landmarks = list()
 		for(var/turf/T in range(3, fallschirm_spawnzone))
@@ -863,7 +863,7 @@ var/first_fallschirm = TRUE
 	player_threshold = PLAYER_THRESHOLD_LOW
 
 /datum/job/german/QM/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/gerofficer(H), slot_w_uniform)
@@ -904,7 +904,7 @@ var/first_fallschirm = TRUE
 	player_threshold = PLAYER_THRESHOLD_HIGH
 
 /datum/job/german/artyman/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/gerofficer(H), slot_w_uniform)
@@ -957,7 +957,7 @@ var/first_fallschirm = TRUE
 	player_threshold = PLAYER_THRESHOLD_HIGH
 
 /datum/job/german/scout/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -1013,7 +1013,7 @@ var/first_fallschirm = TRUE
 	return WW2_train_check()
 
 /datum/job/german/conductor/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/gerofficer(H), slot_w_uniform)
@@ -1058,7 +1058,7 @@ var/first_fallschirm = TRUE
 	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
 
 /datum/job/german/squad_leader_ss/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
@@ -1113,7 +1113,7 @@ var/first_fallschirm = TRUE
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
 
 /datum/job/german/soldier_ss/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
@@ -1162,7 +1162,7 @@ var/first_fallschirm = TRUE
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
 
 /datum/job/german/medic_ss/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
@@ -1212,7 +1212,7 @@ var/first_fallschirm = TRUE
 	max_positions = 1
 
 /datum/job/german/chef/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)

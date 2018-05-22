@@ -13,17 +13,17 @@
 	set category = "Debug"
 	set name = "View Variables"
 
-	if(!check_rights(0))
+	if (!check_rights(0))
 		return
 
-	if(!D)
+	if (!D)
 		return
 
 	var/icon/sprite
 
-	if(istype(D, /atom))
+	if (istype(D, /atom))
 		var/atom/A = D
-		if(A.icon && A.icon_state)
+		if (A.icon && A.icon_state)
 			sprite = icon(A.icon, A.icon_state)
 			usr << browse_rsc(sprite, "view_vars_sprite.png")
 
@@ -110,7 +110,7 @@
 	. = ""
 	var/list/variables = list()
 	for(var/x in D.vars)
-		if(x in view_variables_hide_vars)
+		if (x in view_variables_hide_vars)
 			continue
 		variables += x
 	variables = sortList(variables)
@@ -120,31 +120,31 @@
 /proc/make_view_variables_value(value, varname = "*")
 	var/vtext = ""
 	var/extra = list()
-	if(isnull(value))
+	if (isnull(value))
 		vtext = "null"
-	else if(istext(value))
+	else if (istext(value))
 		vtext = "\"[value]\""
-	else if(isicon(value))
+	else if (isicon(value))
 		vtext = "[value]"
-	else if(isfile(value))
+	else if (isfile(value))
 		vtext = "'[value]'"
-	else if(istype(value, /datum))
+	else if (istype(value, /datum))
 		var/datum/DA = value
-		if("[DA]" == "[DA.type]" || !"[DA]")
+		if ("[DA]" == "[DA.type]" || !"[DA]")
 			vtext = "<a href='?_src_=vars;Vars=\ref[DA]'>\ref[DA]</a> - [DA.type]"
 		else
 			vtext = "<a href='?_src_=vars;Vars=\ref[DA]'>\ref[DA]</a> - [DA] ([DA.type])"
-	else if(istype(value, /client))
+	else if (istype(value, /client))
 		var/client/C = value
 		vtext = "<a href='?_src_=vars;Vars=\ref[C]'>\ref[C]</a> - [C] ([C.type])"
-	else if(islist(value))
+	else if (islist(value))
 		var/list/L = value
 		vtext = "/list ([L.len])"
-		if(!(varname in view_variables_dont_expand) && L.len > 0 && L.len < 100)
+		if (!(varname in view_variables_dont_expand) && L.len > 0 && L.len < 100)
 			extra += "<ul>"
 			for (var/index = TRUE to L.len)
 				var/entry = L[index]
-				if(!isnum(entry) && !isnull(entry) && !(varname in view_variables_no_assoc) && L[entry] != null)
+				if (!isnum(entry) && !isnull(entry) && !(varname in view_variables_no_assoc) && L[entry] != null)
 					extra += "<li>[index]: [make_view_variables_value(entry)] -> [make_view_variables_value(L[entry])]</li>"
 				else
 					extra += "<li>[index]: [make_view_variables_value(entry)]</li>"
@@ -157,7 +157,7 @@
 /proc/make_view_variables_var_entry(datum/D, varname, value, level=0)
 	var/ecm = null
 
-	if(D)
+	if (D)
 		ecm = {"
 			(<a href='?_src_=vars;datumedit=\ref[D];varnameedit=[varname]'>E</a>)
 			(<a href='?_src_=vars;datumchange=\ref[D];varnamechange=[varname]'>C</a>)

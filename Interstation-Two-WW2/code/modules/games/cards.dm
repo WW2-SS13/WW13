@@ -26,7 +26,7 @@
 	for(var/suit in list("spades","clubs","diamonds","hearts"))
 
 		var/colour
-		if(suit == "spades" || suit == "clubs")
+		if (suit == "spades" || suit == "clubs")
 			colour = "black_"
 		else
 			colour = "red_"
@@ -53,7 +53,7 @@
 		cards += P
 
 /obj/item/weapon/deck/attackby(obj/O as obj, mob/user as mob)
-	if(istype(O,/obj/item/weapon/hand))
+	if (istype(O,/obj/item/weapon/hand))
 		var/obj/item/weapon/hand/H = O
 		for(var/datum/playingcard/P in H.cards)
 			cards += P
@@ -69,27 +69,27 @@
 	set desc = "Draw a card from a deck."
 	set src in view(1)
 
-	if(usr.stat || !Adjacent(usr)) return
+	if (usr.stat || !Adjacent(usr)) return
 
-	if(!istype(usr,/mob/living/carbon))
+	if (!istype(usr,/mob/living/carbon))
 		return
 
 	var/mob/living/carbon/user = usr
 
-	if(!cards.len)
+	if (!cards.len)
 		usr << "There are no cards in the deck."
 		return
 
 	var/obj/item/weapon/hand/H
-	if(user.l_hand && istype(user.l_hand,/obj/item/weapon/hand))
+	if (user.l_hand && istype(user.l_hand,/obj/item/weapon/hand))
 		H = user.l_hand
-	else if(user.r_hand && istype(user.r_hand,/obj/item/weapon/hand))
+	else if (user.r_hand && istype(user.r_hand,/obj/item/weapon/hand))
 		H = user.r_hand
 	else
 		H = new(get_turf(src))
 		user.put_in_hands(H)
 
-	if(!H || !user) return
+	if (!H || !user) return
 
 	var/datum/playingcard/P = cards[1]
 	H.cards += P
@@ -105,20 +105,20 @@
 	set desc = "Deal a card from a deck."
 	set src in view(1)
 
-	if(usr.stat || !Adjacent(usr)) return
+	if (usr.stat || !Adjacent(usr)) return
 
-	if(!cards.len)
+	if (!cards.len)
 		usr << "There are no cards in the deck."
 		return
 
 	var/list/players = list()
 	for(var/mob/living/player in viewers(3))
-		if(!player.stat)
+		if (!player.stat)
 			players += player
 	//players -= usr
 
 	var/mob/living/M = input("Who do you wish to deal a card?") as null|anything in players
-	if(!usr || !src || !M) return
+	if (!usr || !src || !M) return
 
 	deal_at(usr, M)
 
@@ -129,14 +129,14 @@
 	cards -= cards[1]
 	H.concealed = TRUE
 	H.update_icon()
-	if(user==target)
+	if (user==target)
 		user.visible_message("\The [user] deals a card to \himself.")
 	else
 		user.visible_message("\The [user] deals a card to \the [target].")
 	H.throw_at(get_step(target,target.dir),10,1,H)
 
 /obj/item/weapon/hand/attackby(obj/O as obj, mob/user as mob)
-	if(istype(O,/obj/item/weapon/hand))
+	if (istype(O,/obj/item/weapon/hand))
 		var/obj/item/weapon/hand/H = O
 		for(var/datum/playingcard/P in cards)
 			H.cards += P
@@ -158,12 +158,12 @@
 	user.visible_message("\The [user] shuffles [src].")
 
 /obj/item/weapon/deck/MouseDrop(atom/over)
-	if(!usr || !over) return
-	if(!Adjacent(usr) || !over.Adjacent(usr)) return // should stop you from dragging through windows
+	if (!usr || !over) return
+	if (!Adjacent(usr) || !over.Adjacent(usr)) return // should stop you from dragging through windows
 
-	if(!ishuman(over) || !(over in viewers(3))) return
+	if (!ishuman(over) || !(over in viewers(3))) return
 
-	if(!cards.len)
+	if (!cards.len)
 		usr << "There are no cards in the deck."
 		return
 
@@ -212,7 +212,7 @@
 		to_discard[P.name] = P
 	var/discarding = input("Which card do you wish to put down?") as null|anything in to_discard
 
-	if(!discarding || !to_discard[discarding] || !usr || !src) return
+	if (!discarding || !to_discard[discarding] || !usr || !src) return
 
 	var/datum/playingcard/card = to_discard[discarding]
 
@@ -225,7 +225,7 @@
 	usr.visible_message("\The [usr] plays \the [discarding].")
 	H.loc = get_step(usr,usr.dir)
 
-	if(!cards.len)
+	if (!cards.len)
 		qdel(src)
 
 /obj/item/weapon/hand/attack_self(var/mob/user as mob)
@@ -235,17 +235,17 @@
 
 /obj/item/weapon/hand/examine(mob/user)
 	..(user)
-	if((!concealed || loc == user) && cards.len)
+	if ((!concealed || loc == user) && cards.len)
 		user << "It contains: "
 		for(var/datum/playingcard/P in cards)
 			user << "The [P.name]."
 
 /obj/item/weapon/hand/update_icon(var/direction = FALSE)
 
-	if(!cards.len)
+	if (!cards.len)
 		qdel(src)
 		return
-	else if(cards.len > 1)
+	else if (cards.len > 1)
 		name = "hand of cards"
 		desc = "Some playing cards."
 	else
@@ -256,7 +256,7 @@
 	overlays.Cut()
 
 
-	if(cards.len == TRUE)
+	if (cards.len == TRUE)
 		var/datum/playingcard/P = cards[1]
 		var/image/I = new(icon, (concealed ? "[P.back_icon]" : "[P.card_icon]") )
 		I.pixel_x += (-5+rand(10))
@@ -267,16 +267,16 @@
 	var/offset = Floor(20/cards.len)
 
 	var/matrix/M = matrix()
-	if(direction)
+	if (direction)
 		switch(direction)
-			if(NORTH)
+			if (NORTH)
 				M.Translate( FALSE,  FALSE)
-			if(SOUTH)
+			if (SOUTH)
 				M.Translate( FALSE,  4)
-			if(WEST)
+			if (WEST)
 				M.Turn(90)
 				M.Translate( 3,  FALSE)
-			if(EAST)
+			if (EAST)
 				M.Turn(90)
 				M.Translate(-2,  FALSE)
 	var/i = FALSE
@@ -284,11 +284,11 @@
 		var/image/I = new(icon, (concealed ? "[P.back_icon]" : "[P.card_icon]") )
 		//I.pixel_x = origin+(offset*i)
 		switch(direction)
-			if(SOUTH)
+			if (SOUTH)
 				I.pixel_x = 8-(offset*i)
-			if(WEST)
+			if (WEST)
 				I.pixel_y = -6+(offset*i)
-			if(EAST)
+			if (EAST)
 				I.pixel_y = 8-(offset*i)
 			else
 				I.pixel_x = -7+(offset*i)
@@ -297,7 +297,7 @@
 		i++
 
 /obj/item/weapon/hand/dropped(mob/user as mob)
-	if(locate(/obj/structure/table, loc))
+	if (locate(/obj/structure/table, loc))
 		update_icon(user.dir)
 	else
 		update_icon()

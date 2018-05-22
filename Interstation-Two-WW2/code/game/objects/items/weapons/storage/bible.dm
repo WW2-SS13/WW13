@@ -22,9 +22,9 @@
 //	new /obj/item/weapon/spacecash(src)
 
 /obj/item/weapon/storage/bible/afterattack(atom/A, mob/user as mob, proximity)
-	if(!proximity) return
-	if(user.mind && (user.mind.assigned_role == "Monochurch Preacher"))
-		if(A.reagents && A.reagents.has_reagent("water")) //blesses all the water in the holder
+	if (!proximity) return
+	if (user.mind && (user.mind.assigned_role == "Monochurch Preacher"))
+		if (A.reagents && A.reagents.has_reagent("water")) //blesses all the water in the holder
 			user << "<span class='notice'>You bless [A].</span>"
 			var/water2holy = A.reagents.get_reagent_amount("water")
 			A.reagents.del_reagent("water")

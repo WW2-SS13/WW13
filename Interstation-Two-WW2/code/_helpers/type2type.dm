@@ -25,14 +25,14 @@
 	while (i)
 		var/char = text2ascii(hex, i)
 		switch(char)
-			if(48)                                  // FALSE -- do nothing
-			if(49 to 57) num += (char - 48) * power // TRUE-9
-			if(97,  65)  num += power * 10          // A
-			if(98,  66)  num += power * 11          // B
-			if(99,  67)  num += power * 12          // C
-			if(100, 68)  num += power * 13          // D
-			if(101, 69)  num += power * 14          // E
-			if(102, 70)  num += power * 15          // F
+			if (48)                                  // FALSE -- do nothing
+			if (49 to 57) num += (char - 48) * power // TRUE-9
+			if (97,  65)  num += power * 10          // A
+			if (98,  66)  num += power * 11          // B
+			if (99,  67)  num += power * 12          // C
+			if (100, 68)  num += power * 13          // D
+			if (101, 69)  num += power * 14          // E
+			if (102, 70)  num += power * 15          // F
 			else
 				return
 		power *= 16
@@ -160,24 +160,24 @@
 
 /proc/heat2color_r(temp)
 	temp /= 100
-	if(temp <= 66)
+	if (temp <= 66)
 		. = 255
 	else
 		. = max(0, min(255, 329.698727446 * (temp - 60) ** -0.1332047592))
 
 /proc/heat2color_g(temp)
 	temp /= 100
-	if(temp <= 66)
+	if (temp <= 66)
 		. = max(0, min(255, 99.4708025861 * log(temp) - 161.1195681661))
 	else
 		. = max(0, min(255, 288.1221695283 * ((temp - 60) ** -0.0755148492)))
 
 /proc/heat2color_b(temp)
 	temp /= 100
-	if(temp >= 66)
+	if (temp >= 66)
 		. = 255
 	else
-		if(temp <= 16)
+		if (temp <= 16)
 			. = FALSE
 		else
 			. = max(0, min(255, 138.5177312231 * log(temp - 10) - 305.0447927307))
@@ -185,7 +185,7 @@
 // Very ugly, BYOND doesn't support unix time and rounding errors make it really hard to convert it to BYOND time.
 // returns "YYYY-MM-DD" by default
 /proc/unix2date(timestamp, seperator = "-")
-	if(timestamp < 0)
+	if (timestamp < 0)
 		return FALSE //Do not accept negative values
 
 	var/const/dayInSeconds = 86400 //60secs*60mins*24hours
@@ -200,12 +200,12 @@
 
 	while(tmpDays > daysInYear) //Start adding years to 1970
 		year++
-		if(isLeap(year))
+		if (isLeap(year))
 			tmpDays -= daysInLYear
 		else
 			tmpDays -= daysInYear
 
-	if(isLeap(year)) //The year is a leap year
+	if (isLeap(year)) //The year is a leap year
 		monthsInDays = list(-1,30,59,90,120,151,181,212,243,273,304,334)
 	else
 		monthsInDays = list(0,31,59,90,120,151,181,212,243,273,304,334)
@@ -215,7 +215,7 @@
 
 	for(var/m in monthsInDays)
 		monthIndex++
-		if(tmpDays > m)
+		if (tmpDays > m)
 			mDays = m
 			month = monthIndex
 

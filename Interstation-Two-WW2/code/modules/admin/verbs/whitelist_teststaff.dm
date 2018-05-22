@@ -4,7 +4,7 @@
 	set name = "Add To Teststaff Whitelist"
 	set category = "Server"
 
-	if(!check_rights(R_ADMIN))
+	if (!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 
@@ -31,7 +31,7 @@
 	set name = "Remove From Teststaff Whitelist"
 	set category = "Server"
 
-	if(!check_rights(R_ADMIN))
+	if (!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 
@@ -59,7 +59,7 @@
 	set name = "See Teststaff Whitelist"
 	set category = "Server"
 
-	if(!check_rights(R_ADMIN))
+	if (!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 

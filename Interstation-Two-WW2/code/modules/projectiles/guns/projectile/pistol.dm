@@ -12,9 +12,9 @@
 	magazine_type = /obj/item/ammo_magazine/mc9mm
 
 /obj/item/weapon/gun/projectile/pistol/attack_hand(mob/user as mob)
-	if(user.get_inactive_hand() == src)
-		if(silenced)
-			if(user.l_hand != src && user.r_hand != src)
+	if (user.get_inactive_hand() == src)
+		if (silenced)
+			if (user.l_hand != src && user.r_hand != src)
 				..()
 				return
 			user << "<span class='notice'>You unscrew [silenced] from [src].</span>"
@@ -29,8 +29,8 @@
 	if (..()) // handle attachments
 		return TRUE
 
-	if(istype(I, /obj/item/weapon/silencer))
-		if(user.l_hand != src && user.r_hand != src)	//if we're not in his hands
+	if (istype(I, /obj/item/weapon/silencer))
+		if (user.l_hand != src && user.r_hand != src)	//if we're not in his hands
 			user << "<span class='notice'>You'll need [src] in your hands to do that.</span>"
 			return
 		user.drop_item()
@@ -44,7 +44,7 @@
 
 /obj/item/weapon/gun/projectile/pistol/update_icon()
 	..()
-	if(silenced)
+	if (silenced)
 		icon_state = "[initial(icon_state)]-silencer"
 	else
 		icon_state = "[initial(icon_state)]"
@@ -76,14 +76,14 @@
 	set desc = "Rename your gun. If you're the detective."
 
 	var/mob/M = usr
-	if(!M.mind)	return FALSE
-	if(!M.mind.assigned_role == "Detective")
+	if (!M.mind)	return FALSE
+	if (!M.mind.assigned_role == "Detective")
 		M << "<span class='notice'>You don't feel cool enough to name this gun, chump.</span>"
 		return FALSE
 
 	var/input = sanitizeSafe(input("What do you want to name the gun?", ,""), MAX_NAME_LEN)
 
-	if(src && input && !M.stat && in_range(M,src))
+	if (src && input && !M.stat && in_range(M,src))
 		name = input
 		M << "You name the gun [input]. Say hello to your new friend."
 		return TRUE
@@ -162,7 +162,7 @@
 
 /obj/item/weapon/gun/projectile/gyropistol/update_icon()
 	..()
-	if(ammo_magazine)
+	if (ammo_magazine)
 		icon_state = "gyropistolloaded"
 	else
 		icon_state = "gyropistol"
@@ -226,7 +226,7 @@
 
 /obj/item/weapon/gun/projectile/lamia/update_icon()
 	overlays.Cut()
-	if(!ammo_magazine)
+	if (!ammo_magazine)
 		return
 	var/ratio = ammo_magazine.stored_ammo.len * 100 / ammo_magazine.max_ammo
 	ratio = round(ratio, 33)
@@ -247,7 +247,7 @@
 
 /obj/item/weapon/gun/projectile/giskard/update_icon()
 	..()
-	if(ammo_magazine && ammo_magazine.stored_ammo.len)
+	if (ammo_magazine && ammo_magazine.stored_ammo.len)
 		icon_state = "giskardcivil"
 	else
 		icon_state = "giskardcivil_empty"
@@ -271,7 +271,7 @@
 
 /obj/item/weapon/gun/projectile/olivaw/update_icon()
 	..()
-	if(ammo_magazine && ammo_magazine.stored_ammo.len)
+	if (ammo_magazine && ammo_magazine.stored_ammo.len)
 		icon_state = "olivawcivil"
 	else
 		icon_state = "olivawcivil_empty"

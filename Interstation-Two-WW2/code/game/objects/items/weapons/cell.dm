@@ -12,10 +12,10 @@
 
 /obj/item/weapon/cell/drain_power(var/drain_check, var/surge, var/power = FALSE)
 
-	if(drain_check)
+	if (drain_check)
 		return TRUE
 
-	if(charge <= 0)
+	if (charge <= 0)
 		return FALSE
 
 	var/cell_amt = power * CELLRATE
@@ -25,9 +25,9 @@
 /obj/item/weapon/cell/update_icon()
 	overlays.Cut()
 
-	if(charge < 0.01)
+	if (charge < 0.01)
 		return
-	else if(charge/maxcharge >=0.995)
+	else if (charge/maxcharge >=0.995)
 		overlays += image('icons/obj/power.dmi', "cell-o2")
 	else
 		overlays += image('icons/obj/power.dmi', "cell-o1")
@@ -44,7 +44,7 @@
 
 // use power from a cell, returns the amount actually used
 /obj/item/weapon/cell/proc/use(var/amount)
-	if(rigged && amount > 0)
+	if (rigged && amount > 0)
 		explode()
 		return FALSE
 	var/used = min(charge, amount)
@@ -54,40 +54,40 @@
 // Checks if the specified amount can be provided. If it can, it removes the amount
 // from the cell and returns 1. Otherwise does nothing and returns 0.
 /obj/item/weapon/cell/proc/checked_use(var/amount)
-	if(!check_charge(amount))
+	if (!check_charge(amount))
 		return FALSE
 	use(amount)
 	return TRUE
 
 // recharge the cell
 /obj/item/weapon/cell/proc/give(var/amount)
-	if(rigged && amount > 0)
+	if (rigged && amount > 0)
 		explode()
 		return FALSE
 
-	if(maxcharge < amount)	return FALSE
+	if (maxcharge < amount)	return FALSE
 	var/amount_used = min(maxcharge-charge,amount)
 	charge += amount_used
 	return amount_used
 
 
 /obj/item/weapon/cell/examine(mob/user)
-	if(get_dist(src, user) > 1)
+	if (get_dist(src, user) > 1)
 		return
 
-	if(maxcharge <= 2500)
+	if (maxcharge <= 2500)
 		user << "[desc]\nThe manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(percent() )]%."
 	else
 		user << "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!\nThe charge meter reads [round(percent() )]%."
 
 /obj/item/weapon/cell/attackby(obj/item/W, mob/user)
 	..()
-	if(istype(W, /obj/item/weapon/reagent_containers/syringe))
+	if (istype(W, /obj/item/weapon/reagent_containers/syringe))
 		var/obj/item/weapon/reagent_containers/syringe/S = W
 
 		user << "You inject the solution into the power cell."
 
-		if(S.reagents.has_reagent("plasma", 5))
+		if (S.reagents.has_reagent("plasma", 5))
 
 			rigged = TRUE
 
@@ -133,16 +133,16 @@
 /obj/item/weapon/cell/ex_act(severity)
 
 	switch(severity)
-		if(1.0)
+		if (1.0)
 			qdel(src)
 			return
-		if(2.0)
+		if (2.0)
 			if (prob(50))
 				qdel(src)
 				return
 			if (prob(50))
 				corrupt()
-		if(3.0)
+		if (3.0)
 			if (prob(25))
 				qdel(src)
 				return

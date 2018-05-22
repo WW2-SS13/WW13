@@ -9,21 +9,21 @@
 	var/low = FALSE
 
 /obj/structure/Destroy()
-	if(parts)
+	if (parts)
 		new parts(loc)
 	..()
 
 /obj/structure/attack_hand(mob/user)
-	if(breakable)
-		if(HULK in user.mutations)
+	if (breakable)
+		if (HULK in user.mutations)
 			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 			attack_generic(user,1,"smashes")
-		else if(istype(user,/mob/living/carbon/human))
+		else if (istype(user,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user
-			if(H.species.can_shred(user))
+			if (H.species.can_shred(user))
 				attack_generic(user,1,"slices")
 
-	if(climbers.len && !(user in climbers))
+	if (climbers.len && !(user in climbers))
 		user.visible_message("<span class='warning'>[user.name] shakes \the [src].</span>", \
 					"<span class='notice'>You shake \the [src].</span>")
 		structure_shaken()
@@ -47,20 +47,20 @@
 */
 /obj/structure/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if (1.0)
 			qdel(src)
 			return
-		if(2.0)
-			if(prob(50))
+		if (2.0)
+			if (prob(50))
 				qdel(src)
 				return
-		if(3.0)
+		if (3.0)
 			return
 
 /obj/structure/MouseDrop_T(mob/target, mob/user)
 
 	var/mob/living/H = user
-	if(istype(H) && can_climb(H) && target == user)
+	if (istype(H) && can_climb(H) && target == user)
 		user.dir = get_dir(user, src)
 		do_climb(target)
 	else
@@ -81,34 +81,34 @@
 		return FALSE
 
 	var/obj/occupied = turf_is_crowded()
-	if(occupied)
+	if (occupied)
 		user << "<span class='danger'>There's \a [occupied] in the way.</span>"
 		return FALSE
 	return TRUE
 
 /obj/structure/proc/turf_is_crowded()
 	var/turf/T = get_turf(src)
-	if(!T || !istype(T))
+	if (!T || !istype(T))
 		return FALSE
 	for(var/obj/O in T.contents)
-		if(istype(O,/obj/structure))
+		if (istype(O,/obj/structure))
 			var/obj/structure/S = O
-			if(S.climbable) continue
-		if(O && O.density && !(O.flags & ON_BORDER)) //ON_BORDER structures are handled by the Adjacent() check.
+			if (S.climbable) continue
+		if (O && O.density && !(O.flags & ON_BORDER)) //ON_BORDER structures are handled by the Adjacent() check.
 			return O
 	return FALSE
 
 /obj/structure/proc/neighbor_turf_passable()
 	var/turf/T = get_step(src, dir)
-	if(!T || !istype(T))
+	if (!T || !istype(T))
 		return FALSE
-	if(T.density == TRUE)
+	if (T.density == TRUE)
 		return FALSE
 	for(var/obj/O in T.contents)
-		if(istype(O,/obj/structure))
-			if(istype(O,/obj/structure/railing))
+		if (istype(O,/obj/structure))
+			if (istype(O,/obj/structure/railing))
 				return TRUE
-			else if(O.density == TRUE)
+			else if (O.density == TRUE)
 				return FALSE
 	return TRUE
 
@@ -135,7 +135,7 @@
 	usr.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
 	climbers |= user
 
-	if(!do_after(user,(issmall(user) ? 20 : 34)))
+	if (!do_after(user,(issmall(user) ? 20 : 34)))
 		climbers -= user
 		return
 
@@ -166,16 +166,16 @@
 		climbers.Cut(1,2)
 
 	for(var/mob/living/M in get_turf(src))
-		if(M.lying) return //No spamming this on people.
+		if (M.lying) return //No spamming this on people.
 
 		M.Weaken(3)
 		M << "<span class='danger'>You topple as \the [src] moves under you!</span>"
 
-		if(prob(25))
+		if (prob(25))
 
 			var/damage = rand(15,30)
 			var/mob/living/carbon/human/H = M
-			if(!istype(H))
+			if (!istype(H))
 				H << "<span class='danger'>You land heavily!</span>"
 				M.adjustBruteLoss(damage)
 				return
@@ -183,21 +183,21 @@
 			var/obj/item/organ/external/affecting
 
 			switch(pick(list("ankle","wrist","head","knee","elbow")))
-				if("ankle")
+				if ("ankle")
 					affecting = H.get_organ(pick("l_foot", "r_foot"))
-				if("knee")
+				if ("knee")
 					affecting = H.get_organ(pick("l_leg", "r_leg"))
-				if("wrist")
+				if ("wrist")
 					affecting = H.get_organ(pick("l_hand", "r_hand"))
-				if("elbow")
+				if ("elbow")
 					affecting = H.get_organ(pick("l_arm", "r_arm"))
-				if("head")
+				if ("head")
 					affecting = H.get_organ("head")
 
-			if(affecting)
+			if (affecting)
 				M << "<span class='danger'>You land heavily on your [affecting.name]!</span>"
 				affecting.take_damage(damage, FALSE)
-				if(affecting.parent)
+				if (affecting.parent)
 					affecting.parent.add_autopsy_data("Misadventure", damage)
 			else
 				H << "<span class='danger'>You land heavily!</span>"
@@ -210,7 +210,7 @@
 /obj/structure/proc/can_touch(var/mob/user)
 	if (!user)
 		return FALSE
-	if(!Adjacent(user))
+	if (!Adjacent(user))
 		return FALSE
 	if (user.restrained() || user.buckled)
 		user << "<span class='notice'>You need your hands and legs free for this.</span>"
@@ -223,7 +223,7 @@
 	return TRUE
 
 /obj/structure/attack_generic(var/mob/user, var/damage, var/attack_verb, var/wallbreaker)
-	if(!breakable || !damage || !wallbreaker)
+	if (!breakable || !damage || !wallbreaker)
 		return FALSE
 	visible_message("<span class='danger'>[user] [attack_verb] the [src] apart!</span>")
 	attack_animation(user)

@@ -2,7 +2,7 @@
 	set name = "End the round"
 	set category = "Server"
 
-	if(!check_rights(R_SERVER))
+	if (!check_rights(R_SERVER))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 
@@ -26,7 +26,7 @@
 	set name = "Toggle Round Ending"
 	set category = "Server"
 
-	if(!check_rights(R_SERVER))
+	if (!check_rights(R_SERVER))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 

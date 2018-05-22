@@ -43,12 +43,12 @@
 	..()
 
 /obj/item/weapon/storage/MouseDrop(obj/over_object as obj)
-	if(!canremove)
+	if (!canremove)
 		return
 
 	if ((ishuman(usr) || issmall(usr)) && !ismouse(usr)) //so monkeys can take off their backpacks -- Urist
 
-		if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
+		if (over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
 			open(usr)
 			return
 
@@ -68,25 +68,25 @@
 			return
 
 /*		switch(over_object.name)
-			if("r_hand")
+			if ("r_hand")
 				usr.u_equip(src)
 				usr.put_in_r_hand(src)
-			if("l_hand")
+			if ("l_hand")
 				usr.u_equip(src)
 				usr.put_in_l_hand(src)*/
 
 		if (istype(over_object, /obj/screen/inventory/hand))
-			if( !usr.get_active_hand() )
+			if ( !usr.get_active_hand() )
 				var/obj/screen/inventory/hand/H = over_object
 				switch(H.slot_id)
-					if(slot_r_hand)
-						if(!usr.r_hand)
+					if (slot_r_hand)
+						if (!usr.r_hand)
 							usr.u_equip(src)
 							usr.put_in_r_hand(src)
 						else
 							usr << "<span class='notice'>Your right hand is already holding the [usr.r_hand].</span>"
-					if(slot_l_hand)
-						if(!usr.l_hand)
+					if (slot_l_hand)
+						if (!usr.l_hand)
 							usr.u_equip(src)
 							usr.put_in_l_hand(src)
 						else
@@ -108,11 +108,11 @@
 	return L
 
 /obj/item/weapon/storage/proc/show_to(mob/user as mob)
-	if(user.s_active != src)
+	if (user.s_active != src)
 		for(var/obj/item/I in src)
-			if(I.on_found(user))
+			if (I.on_found(user))
 				return
-	if(user.s_active)
+	if (user.s_active)
 		user.s_active.hide_from(user)
 	user.client.screen -= boxes
 	user.client.screen -= storage_start
@@ -122,7 +122,7 @@
 	user.client.screen -= contents
 	user.client.screen += closer
 	user.client.screen += contents
-	if(storage_slots)
+	if (storage_slots)
 		user.client.screen += boxes
 	else
 		user.client.screen += storage_start
@@ -134,7 +134,7 @@
 
 /obj/item/weapon/storage/proc/hide_from(mob/user as mob)
 
-	if(!user.client)
+	if (!user.client)
 		return
 	user.client.screen -= boxes
 	user.client.screen -= storage_start
@@ -142,7 +142,7 @@
 	user.client.screen -= storage_end
 	user.client.screen -= closer
 	user.client.screen -= contents
-	if(user.s_active == src)
+	if (user.s_active == src)
 		user.s_active = null
 	is_seeing -= user
 
@@ -168,7 +168,7 @@
 /obj/item/weapon/storage/proc/can_see_contents()
 	var/list/cansee = list()
 	for(var/mob/M in is_seeing)
-		if(M.s_active == src && M.client)
+		if (M.s_active == src && M.client)
 			cansee |= M
 		else
 			is_seeing -= M
@@ -196,7 +196,7 @@
 	var/cy = Ycord+rows
 	boxes.screen_loc = "[Xcord]:16,2:16 to [Xcord+cols]:16,[Ycord+rows]:16"
 
-	if(display_contents_with_number)
+	if (display_contents_with_number)
 		for(var/datum/numbered_display/ND in display_contents)
 			ND.sample_object.screen_loc = "[cx]:16,[cy]:16"
 			ND.sample_object.maptext = "<font color='white'>[(ND.number > 1)? "[ND.number]" : ""]</font>"
@@ -267,7 +267,7 @@
 	var/number
 
 	New(obj/item/sample as obj)
-		if(!istype(sample))
+		if (!istype(sample))
 			qdel(src)
 		sample_object = sample
 		number = TRUE
@@ -283,7 +283,7 @@
 	var/Xslot = 6
 	var/Yslot = 2
 
-	if(user)
+	if (user)
 		var/datum/hud/HUDdatum = global.HUDdatums[user.defaultHUD]
 		if (HUDdatum)
 			Xcor = HUDdatum.ConteinerData["Xspace"]
@@ -294,21 +294,21 @@
 
 	//Numbered contents display
 	var/list/datum/numbered_display/numbered_contents
-	if(display_contents_with_number)
+	if (display_contents_with_number)
 		numbered_contents = list()
 		adjusted_contents = FALSE
 		for(var/obj/item/I in contents)
 			var/found = FALSE
 			for(var/datum/numbered_display/ND in numbered_contents)
-				if(ND.sample_object.type == I.type)
+				if (ND.sample_object.type == I.type)
 					ND.number++
 					found = TRUE
 					break
-			if(!found)
+			if (!found)
 				adjusted_contents++
 				numbered_contents.Add( new/datum/numbered_display(I) )
 
-	if(storage_slots == null)
+	if (storage_slots == null)
 		space_orient_objs(numbered_contents,Xcor,Ycor)
 	else
 		var/row_num = FALSE
@@ -321,40 +321,40 @@
 //This proc return TRUE if the item can be picked up and FALSE if it can't.
 //Set the stop_messages to stop it from printing messages
 /obj/item/weapon/storage/proc/can_be_inserted(obj/item/W as obj, stop_messages = FALSE)
-	if(!istype(W)) return //Not an item
+	if (!istype(W)) return //Not an item
 
-	if(usr && usr.isEquipped(W) && !usr.canUnEquip(W))
+	if (usr && usr.isEquipped(W) && !usr.canUnEquip(W))
 		return FALSE
 
-	if(loc == W)
+	if (loc == W)
 		return FALSE //Means the item is already in the storage item
 
-	if(storage_slots != null && contents.len >= storage_slots)
-		if(!stop_messages)
+	if (storage_slots != null && contents.len >= storage_slots)
+		if (!stop_messages)
 			usr << "<span class='notice'>[src] is full, make some space.</span>"
 		return FALSE //Storage item is full
 
-	if(W.anchored)
+	if (W.anchored)
 		return FALSE
 
-	if(can_hold.len)
-		if(!is_type_in_list(W, can_hold))
-			if(!stop_messages)
+	if (can_hold.len)
+		if (!is_type_in_list(W, can_hold))
+			if (!stop_messages)
 				usr << "<span class='notice'>[src] cannot hold \the [W].</span>"
 			return FALSE
 		var/max_instances = can_hold[W.type]
-		if(max_instances && instances_of_type_in_list(W, contents) >= max_instances)
-			if(!stop_messages)
+		if (max_instances && instances_of_type_in_list(W, contents) >= max_instances)
+			if (!stop_messages)
 				usr << "<span class='notice'>[src] has no more space specifically for \the [W].</span>"
 			return FALSE
 
-	if(cant_hold.len && is_type_in_list(W, cant_hold))
-		if(!stop_messages)
+	if (cant_hold.len && is_type_in_list(W, cant_hold))
+		if (!stop_messages)
 			usr << "<span class='notice'>[src] cannot hold [W].</span>"
 		return FALSE
 
 	if (max_w_class != null && W.w_class > max_w_class)
-		if(!stop_messages)
+		if (!stop_messages)
 			usr << "<span class='notice'>[W] is too long for this [src].</span>"
 		return FALSE
 
@@ -362,13 +362,13 @@
 	for(var/obj/item/I in contents)
 		total_storage_space += I.get_storage_cost() //Adds up the combined w_classes which will be in the storage item if the item is added to it.
 
-	if(total_storage_space > max_storage_space)
-		if(!stop_messages)
+	if (total_storage_space > max_storage_space)
+		if (!stop_messages)
 			usr << "<span class='notice'>[src] is too full, make some space.</span>"
 		return FALSE
 
-	if(W.w_class >= w_class && (istype(W, /obj/item/weapon/storage)))
-		if(!stop_messages)
+	if (W.w_class >= w_class && (istype(W, /obj/item/weapon/storage)))
+		if (!stop_messages)
 			usr << "<span class='notice'>[src] cannot hold [W] as it's a storage item of the same size.</span>"
 		return FALSE //To prevent the stacking of same sized storage items.
 
@@ -378,19 +378,19 @@
 //The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
 //such as when picking up all the items on a tile with one click.
 /obj/item/weapon/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = FALSE)
-	if(!istype(W)) return FALSE
-	if(usr)
+	if (!istype(W)) return FALSE
+	if (usr)
 		usr.remove_from_mob(W)
 		usr.update_icons()	//update our overlays
 	W.loc = src
 	W.on_enter_storage(src)
-	if(usr)
+	if (usr)
 		if (usr.client && usr.s_active != src)
 			usr.client.screen -= W
 		W.dropped(usr)
 		add_fingerprint(usr)
 
-		if(!prevent_warning)
+		if (!prevent_warning)
 			for(var/mob/M in viewers(usr, null))
 				if (M == usr)
 					usr << "<span class='notice'>You put \the [W] into [src].</span>"
@@ -400,14 +400,14 @@
 					M.show_message("<span class='notice'>\The [usr] puts [W] into [src].</span>")
 
 		orient2hud(usr)
-		if(usr.s_active)
+		if (usr.s_active)
 			usr.s_active.show_to(usr)
 	update_icon()
 	return TRUE
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
 /obj/item/weapon/storage/proc/remove_from_storage(obj/item/W as obj, atom/new_location)
-	if(!istype(W)) return FALSE
+	if (!istype(W)) return FALSE
 
 
 	for(var/mob/M in range(1, loc))
@@ -415,10 +415,10 @@
 			if (M.client)
 				M.client.screen -= W
 
-	if(new_location)
-		if(ismob(loc))
+	if (new_location)
+		if (ismob(loc))
 			W.dropped(usr)
-		if(ismob(new_location))
+		if (ismob(new_location))
 			W.layer = 20
 		else
 			W.layer = initial(W.layer)
@@ -426,11 +426,11 @@
 	else
 		W.loc = get_turf(src)
 
-	if(usr)
+	if (usr)
 		orient2hud(usr)
-		if(usr.s_active)
+		if (usr.s_active)
 			usr.s_active.show_to(usr)
-	if(W.maptext)
+	if (W.maptext)
 		W.maptext = ""
 	W.on_exit_storage(src)
 	update_icon()
@@ -440,16 +440,16 @@
 /obj/item/weapon/storage/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
-	if(isrobot(user))
+	if (isrobot(user))
 		return //Robots can't interact with storage items.
 
-	if(!can_be_inserted(W))
+	if (!can_be_inserted(W))
 		return
 
-	if(istype(W, /obj/item/weapon/tray))
+	if (istype(W, /obj/item/weapon/tray))
 		var/obj/item/weapon/tray/T = W
-		if(T.calc_carry() > 0)
-			if(prob(85))
+		if (T.calc_carry() > 0)
+			if (prob(85))
 				user << "<span class='warning'>The tray won't fit in [src].</span>"
 				return
 			else
@@ -466,13 +466,13 @@
 	return ..()*/
 
 /obj/item/weapon/storage/attack_hand(mob/user as mob)
-	if(ishuman(user))
+	if (ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.l_store == src && !H.get_active_hand())	//Prevents opening if it's in a pocket.
+		if (H.l_store == src && !H.get_active_hand())	//Prevents opening if it's in a pocket.
 			H.put_in_hands(src)
 			H.l_store = null
 			return
-		if(H.r_store == src && !H.get_active_hand())
+		if (H.r_store == src && !H.get_active_hand())
 			H.put_in_hands(src)
 			H.r_store = null
 			return
@@ -493,9 +493,9 @@
 
 	collection_mode = !collection_mode
 	switch (collection_mode)
-		if(1)
+		if (1)
 			usr << "[src] now picks up all items in a tile at once."
-		if(0)
+		if (0)
 			usr << "[src] now picks up one item at a time."
 
 
@@ -503,7 +503,7 @@
 	set name = "Empty Contents"
 	set category = null
 
-	if((!ishuman(usr) && (loc != usr)) || usr.stat || usr.restrained())
+	if ((!ishuman(usr) && (loc != usr)) || usr.stat || usr.restrained())
 		return
 
 	var/turf/T = get_turf(src)
@@ -513,12 +513,12 @@
 
 /obj/item/weapon/storage/New()
 	..()
-	if(allow_quick_empty)
+	if (allow_quick_empty)
 		verbs += /obj/item/weapon/storage/verb/quick_empty
 	else
 		verbs -= /obj/item/weapon/storage/verb/quick_empty
 
-	if(allow_quick_gather)
+	if (allow_quick_gather)
 		verbs += /obj/item/weapon/storage/verb/toggle_gathering_mode
 	else
 		verbs -= /obj/item/weapon/storage/verb/toggle_gathering_mode
@@ -572,15 +572,15 @@
 	orient2hud()
 
 /obj/item/weapon/storage/emp_act(severity)
-	if(!istype(loc, /mob/living))
+	if (!istype(loc, /mob/living))
 		for(var/obj/O in contents)
 			O.emp_act(severity)
 	..()
 
 /obj/item/weapon/storage/attack_self(mob/user as mob)
 	//Clicking on itself will empty it, if it has the verb to do that.
-	if(user.get_active_hand() == src)
-		if(verbs.Find(/obj/item/weapon/storage/verb/quick_empty))
+	if (user.get_active_hand() == src)
+		if (verbs.Find(/obj/item/weapon/storage/verb/quick_empty))
 			quick_empty()
 			return TRUE
 
@@ -635,15 +635,15 @@
 	if (storage_cost)
 		return storage_cost
 	else
-		if(w_class == TRUE)
+		if (w_class == TRUE)
 			return TRUE
-		if(w_class == 2)
+		if (w_class == 2)
 			return 2
-		if(w_class == 3)
+		if (w_class == 3)
 			return 4
-		if(w_class == 4)
+		if (w_class == 4)
 			return 8
-		if(w_class == 5)
+		if (w_class == 5)
 			return 16
 		else
 			return 1000

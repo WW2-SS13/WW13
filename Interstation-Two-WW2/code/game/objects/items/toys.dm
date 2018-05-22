@@ -45,7 +45,7 @@
 	return
 
 /obj/item/toy/balloon/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
-	if(!proximity) return
+	if (!proximity) return
 	if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
 		A.reagents.trans_to_obj(src, 10)
 		user << "<span class='notice'>You fill the balloon with the contents of [A].</span>"
@@ -54,12 +54,12 @@
 	return
 
 /obj/item/toy/balloon/attackby(obj/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/weapon/reagent_containers/glass))
-		if(O.reagents)
-			if(O.reagents.total_volume < 1)
+	if (istype(O, /obj/item/weapon/reagent_containers/glass))
+		if (O.reagents)
+			if (O.reagents.total_volume < 1)
 				user << "The [O] is empty."
-			else if(O.reagents.total_volume >= 1)
-				if(O.reagents.has_reagent("pacid", TRUE))
+			else if (O.reagents.total_volume >= 1)
+				if (O.reagents.has_reagent("pacid", TRUE))
 					user << "The acid chews through the balloon!"
 					O.reagents.splash(user, reagents.total_volume)
 					qdel(src)
@@ -71,19 +71,19 @@
 	return
 
 /obj/item/toy/balloon/throw_impact(atom/hit_atom)
-	if(reagents.total_volume >= 1)
+	if (reagents.total_volume >= 1)
 		visible_message("<span class='warning'>\The [src] bursts!</span>","You hear a pop and a splash.")
 		reagents.touch_turf(get_turf(hit_atom))
 		for(var/atom/A in get_turf(hit_atom))
 			reagents.touch(A)
 		icon_state = "burst"
 		spawn(5)
-			if(src)
+			if (src)
 				qdel(src)
 	return
 
 /obj/item/toy/balloon/update_icon()
-	if(reagents.total_volume >= 1)
+	if (reagents.total_volume >= 1)
 		icon_state = "waterballoon"
 		item_state = "balloon"
 	else
@@ -152,12 +152,12 @@
 	var/bullets = 5
 
 	examine(mob/user)
-		if(..(user, 2) && bullets)
+		if (..(user, 2) && bullets)
 			user << "<span class='notice'>It is loaded with [bullets] foam darts!</span>"
 
 	attackby(obj/item/I as obj, mob/user as mob)
-		if(istype(I, /obj/item/toy/ammo/crossbow))
-			if(bullets <= 4)
+		if (istype(I, /obj/item/toy/ammo/crossbow))
+			if (bullets <= 4)
 				user.drop_item()
 				qdel(I)
 				bullets++
@@ -167,8 +167,8 @@
 
 
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
-		if(!isturf(target.loc) || target == user) return
-		if(flag) return
+		if (!isturf(target.loc) || target == user) return
+		if (flag) return
 
 		if (locate (/obj/structure/table, loc))
 			return
@@ -182,12 +182,12 @@
 
 			for(var/i=0, i<6, i++)
 				if (D)
-					if(D.loc == trg) break
+					if (D.loc == trg) break
 					step_towards(D,trg)
 
 					for(var/mob/living/M in D.loc)
-						if(!istype(M,/mob/living)) continue
-						if(M == user) continue
+						if (!istype(M,/mob/living)) continue
+						if (M == user) continue
 						for(var/mob/O in viewers(world.view, D))
 							O.show_message(text("<span class='warning'>\The [] was hit by the foam dart!</span>", M), TRUE)
 						new /obj/item/toy/ammo/crossbow(M.loc)
@@ -195,15 +195,15 @@
 						return
 
 					for(var/atom/A in D.loc)
-						if(A == user) continue
-						if(A.density)
+						if (A == user) continue
+						if (A.density)
 							new /obj/item/toy/ammo/crossbow(A.loc)
 							qdel(D)
 
 				sleep(1)
 
 			spawn(10)
-				if(D)
+				if (D)
 					new /obj/item/toy/ammo/crossbow(D.loc)
 					qdel(D)
 
@@ -222,7 +222,7 @@
 		if (bullets > 0 && M.lying)
 
 			for(var/mob/O in viewers(M, null))
-				if(O.client)
+				if (O.client)
 					O.show_message(text("<span class='danger'>\The [] casually lines up a shot with []'s head and pulls the trigger!</span>", user, M), TRUE, "<span class='warning'>You hear the sound of foam against skull</span>", 2)
 					O.show_message(text("<span class='warning'>\The [] was hit in the head by the foam dart!</span>", M), TRUE)
 
@@ -280,7 +280,7 @@
 			item_state = "sword0"
 			w_class = 2
 
-		if(istype(user,/mob/living/carbon/human))
+		if (istype(user,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user
 			H.update_inv_l_hand()
 			H.update_inv_r_hand()
@@ -322,9 +322,9 @@
 		qdel(src)
 
 /obj/item/toy/snappop/Crossed(H as mob|obj)
-	if((ishuman(H))) //i guess carp and shit shouldn't set them off
+	if ((ishuman(H))) //i guess carp and shit shouldn't set them off
 		var/mob/living/carbon/M = H
-		if(M.m_intent == "run")
+		if (M.m_intent == "run")
 			M << "<span class='warning'>You step on the snap pop!</span>"
 
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -392,7 +392,7 @@
 				D.reagents.touch_turf(get_turf(D))
 				for(var/atom/T in get_turf(D))
 					D.reagents.touch(T)
-					if(ismob(T) && T:client)
+					if (ismob(T) && T:client)
 						T:client << "<span class='warning'>\The [user] has sprayed you with water!</span>"
 				sleep(4)
 			qdel(D)
@@ -400,7 +400,7 @@
 		return
 
 /obj/item/toy/waterflower/examine(mob/user)
-	if(..(user, FALSE))
+	if (..(user, FALSE))
 		user << text("\icon[] [] units of water left!", src, reagents.total_volume)
 
 /*
@@ -417,7 +417,7 @@
 	slot_flags = SLOT_EARS
 
 /obj/item/toy/bosunwhistle/attack_self(mob/user as mob)
-	if(cooldown < world.time - 35)
+	if (cooldown < world.time - 35)
 		user << "<span class='notice'>You blow on [src], creating an ear-splitting noise!</span>"
 		playsound(user, 'sound/misc/boatswain.ogg', 20, TRUE)
 		cooldown = world.time
@@ -432,14 +432,14 @@
 
 //all credit to skasi for toy mech fun ideas
 /obj/item/toy/prize/attack_self(mob/user as mob)
-	if(cooldown < world.time - 8)
+	if (cooldown < world.time - 8)
 		user << "<span class='notice'>You play with [src].</span>"
 		playsound(user, 'sound/mecha/mechstep.ogg', 20, TRUE)
 		cooldown = world.time
 
 /obj/item/toy/prize/attack_hand(mob/user as mob)
-	if(loc == user)
-		if(cooldown < world.time - 8)
+	if (loc == user)
+		if (cooldown < world.time - 8)
 			user << "<span class='notice'>You play with [src].</span>"
 			playsound(user, 'sound/mecha/mechturn.ogg', 20, TRUE)
 			cooldown = world.time
@@ -758,7 +758,7 @@
 	var/phrase = "I don't want to exist anymore!"
 
 /obj/structure/plushie/attack_hand(mob/user)
-	if(user.a_intent == I_HELP)
+	if (user.a_intent == I_HELP)
 		user.visible_message("<span class='notice'><b>\The [user]</b> hugs [src]!</span>","<span class='notice'>You hug [src]!</span>")
 	else if (user.a_intent == I_HURT)
 		user.visible_message("<span class='warning'><b>\The [user]</b> punches [src]!</span>","<span class='warning'>You punch [src]!</span>")
@@ -800,7 +800,7 @@
 	icon_state = "nymphplushie"
 
 /obj/item/toy/plushie/attack_self(mob/user as mob)
-	if(user.a_intent == I_HELP)
+	if (user.a_intent == I_HELP)
 		user.visible_message("<span class='notice'><b>\The [user]</b> hugs [src]!</span>","<span class='notice'>You hug [src]!</span>")
 	else if (user.a_intent == I_HURT)
 		user.visible_message("<span class='warning'><b>\The [user]</b> punches [src]!</span>","<span class='warning'>You punch [src]!</span>")

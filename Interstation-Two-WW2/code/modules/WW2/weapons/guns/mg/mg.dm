@@ -75,15 +75,15 @@
 	throwforce = 30
 
 /obj/item/weapon/gun/projectile/automatic/dp/update_icon()
-	if(ammo_magazine)
+	if (ammo_magazine)
 		icon_state = "dp"
-	/*	if(wielded)
+	/*	if (wielded)
 			item_state = "dp-w"
 		else
 			item_state = "dp"*/
 	else
 		icon_state = "dp0"
-	/*	if(wielded)
+	/*	if (wielded)
 			item_state = "dp-w"
 		else
 			item_state = "dp0"*/
@@ -123,7 +123,7 @@
 	var/cover_open = FALSE
 
 /obj/item/weapon/gun/projectile/automatic/mg34/special_check(mob/user)
-	if(cover_open)
+	if (cover_open)
 		user << "<span class='warning'>[src]'s cover is open! Close it before firing!</span>"
 		return FALSE
 	return ..()
@@ -134,14 +134,14 @@
 	update_icon()
 
 /obj/item/weapon/gun/projectile/automatic/mg34/attack_self(mob/user as mob)
-	if(cover_open)
+	if (cover_open)
 		toggle_cover(user) //close the cover
 		playsound(loc, 'sound/weapons/guns/interact/lmg_close.ogg', 100, TRUE)
 	else
 		return ..() //once closed, behave like normal
 
 /obj/item/weapon/gun/projectile/automatic/mg34/attack_hand(mob/user as mob)
-	if(!cover_open && user.get_inactive_hand() == src)
+	if (!cover_open && user.get_inactive_hand() == src)
 		toggle_cover(user) //open the cover
 		playsound(loc, 'sound/weapons/guns/interact/lmg_open.ogg', 100, TRUE)
 	else
@@ -151,13 +151,13 @@
 	icon_state = "l6[cover_open ? "open" : "closed"][ammo_magazine ? round(ammo_magazine.stored_ammo.len, 25) : "-empty"]"
 
 /obj/item/weapon/gun/projectile/automatic/mg34/load_ammo(var/obj/item/A, mob/user)
-	if(!cover_open)
+	if (!cover_open)
 		user << "<span class='warning'>You need to open the cover to load [src].</span>"
 		return
 	..()
 
 /obj/item/weapon/gun/projectile/automatic/mg34/unload_ammo(mob/user, var/allow_dump=1)
-	if(!cover_open)
+	if (!cover_open)
 		user << "<span class='warning'>You need to open the cover to unload [src].</span>"
 		return
 	..()

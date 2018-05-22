@@ -17,8 +17,8 @@
 
 	FORNEXT(active_holders)
 		var/datum/reagents/holder = current
-		if(!isDeleted(holder))
-			if(!holder.process_reactions())
+		if (!isDeleted(holder))
+			if (!holder.process_reactions())
 				active_holders -= holder
 		else
 			catchBadType(holder)
@@ -33,9 +33,9 @@
 	return ..() + "[active_holders.len] reagent holders"
 
 /process/chemistry/proc/mark_for_update(var/datum/reagents/holder)
-	if(holder in active_holders)
+	if (holder in active_holders)
 		return
 
 	//Process once, right away. If we still need to continue then add to the active_holders list and continue later
-	if(holder.process_reactions())
+	if (holder.process_reactions())
 		active_holders += holder

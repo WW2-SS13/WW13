@@ -12,12 +12,12 @@ var/z_levels = FALSE // Each bit represents a connection between adjacent levels
 */
 // The storage of connections between adjacent levels means some bitwise magic is needed.
 proc/HasAbove(var/z)
-	if(z >= world.maxz || z > 16 || z < 1)
+	if (z >= world.maxz || z > 16 || z < 1)
 		return FALSE
 	return z_levels & (1 << (z - 1))
 
 proc/HasBelow(var/z)
-	if(z > world.maxz || z > 17 || z < 2)
+	if (z > world.maxz || z > 17 || z < 2)
 		return FALSE
 	return z_levels & (1 << (z - 2))
 
@@ -28,7 +28,7 @@ proc/GetAbove(var/atom/atom, var/obj/lift_controller/optional_lift_master)
 	var/area_lift_master = area.lift_master()
 	if (!area_lift_master)
 		var/turf/turf = get_turf(atom)
-		if(!turf)
+		if (!turf)
 			return null
 		return HasAbove(turf.z) ? get_step(turf, UP) : null
 	else
@@ -54,7 +54,7 @@ proc/GetBelow(var/atom/atom, var/obj/lift_controller/optional_lift_master)
 	var/area_lift_master = area.lift_master()
 	if (!area_lift_master)
 		var/turf/turf = get_turf(atom)
-		if(!turf)
+		if (!turf)
 			world << "No turf"
 			return null
 		return HasBelow(turf.z) ? get_step(turf, DOWN) : null

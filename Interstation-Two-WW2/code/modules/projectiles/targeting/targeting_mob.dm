@@ -6,9 +6,9 @@
 	set desc = "Begin or stop aiming."
 	set category = "IC"
 
-	if(isliving(src))
+	if (isliving(src))
 		var/mob/living/M = src
-		if(!M.aiming)
+		if (!M.aiming)
 			M.aiming = new(src)
 		M.aiming.toggle_active()
 	else
@@ -16,19 +16,19 @@
 	return
 
 /mob/living/proc/stop_aiming(var/obj/item/thing, var/no_message = FALSE)
-	if(!aiming)
+	if (!aiming)
 		aiming = new(src)
-	if(thing && aiming.aiming_with != thing)
+	if (thing && aiming.aiming_with != thing)
 		return
 	aiming.cancel_aiming(no_message)
 
 /mob/living/death(gibbed,deathmessage="seizes up and falls limp...")
-	if(..())
+	if (..())
 		stop_aiming(no_message=1)
 
 /mob/living/update_canmove()
 	..()
-	if(lying)
+	if (lying)
 		stop_aiming(no_message=1)
 
 /mob/living/Weaken(amount)
@@ -36,7 +36,7 @@
 	..()
 
 /mob/living/Destroy()
-	if(aiming)
+	if (aiming)
 		qdel(aiming)
 		aiming = null
 	aimed.Cut()

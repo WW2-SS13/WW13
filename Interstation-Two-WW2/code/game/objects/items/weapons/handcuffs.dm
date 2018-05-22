@@ -20,7 +20,7 @@
 
 /obj/item/weapon/handcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
 
-	if(!user.IsAdvancedToolUser())
+	if (!user.IsAdvancedToolUser())
 		return
 
 	if ((CLUMSY in user.mutations) && prob(50))
@@ -28,7 +28,7 @@
 		place_handcuffs(user, user)
 		return
 
-	if(!C.handcuffed)
+	if (!C.handcuffed)
 		if (C == user)
 			place_handcuffs(user, user)
 			return
@@ -36,7 +36,7 @@
 		//check for an aggressive grab (or robutts)
 		var/can_place
 
-		if(istype(user, /mob/living/silicon/robot))
+		if (istype(user, /mob/living/silicon/robot))
 			can_place = TRUE
 		else
 			for (var/obj/item/weapon/grab/G in C.grabbed_by)
@@ -47,7 +47,7 @@
 		if (C.lying)
 			can_place = TRUE
 
-		if(can_place)
+		if (can_place)
 			place_handcuffs(C, user)
 		else
 			user << "<span class='danger'>You need to have a firm grip on [C] before you can put \the [src] on!</span>"
@@ -56,7 +56,7 @@
 	playsound(loc, cuff_sound, 30, TRUE, -2)
 
 	var/mob/living/carbon/human/H = target
-	if(!istype(H))
+	if (!istype(H))
 		return FALSE
 
 	if (!H.has_organ_for_slot(slot_handcuffed))
@@ -65,7 +65,7 @@
 
 	//user.visible_message("<span class='danger'>\The [user] is attempting to put [cuff_type] on \the [H]!</span>")
 
-	if(!do_after(user,0, target))
+	if (!do_after(user,0, target))
 		return FALSE
 
 	H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been handcuffed by [user.name] ([user.ckey])</font>")
@@ -80,7 +80,7 @@
 
 	// Apply cuffs.
 	var/obj/item/weapon/handcuffs/cuffs = src
-	if(dispenser)
+	if (dispenser)
 		cuffs = new(get_turf(user))
 	else
 		user.drop_from_inventory(cuffs)
@@ -108,7 +108,7 @@ var/last_chew = FALSE
 	H.attack_log += text("\[[time_stamp()]\] <font color='red'>[s] ([H.ckey])</font>")
 	log_attack("[s] ([H.ckey])")
 
-	if(O.take_damage(3,0,1,1,"teeth marks"))
+	if (O.take_damage(3,0,1,1,"teeth marks"))
 		H:UpdateDamageIcon()
 
 	last_chew = world.time
@@ -148,7 +148,7 @@ var/last_chew = FALSE
 /*
 /obj/item/weapon/handcuffs/cable/attackby(var/obj/item/I, mob/user as mob)
 	..()
-	if(istype(I, /obj/item/stack/rods))
+	if (istype(I, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = I
 		if (R.use(1))
 			var/obj/item/weapon/material/wirerod/W = new(get_turf(user))

@@ -1,7 +1,7 @@
 var/list/engineer_exclusive_recipe_types = list(/obj/structure/girder, /obj/structure/anti_tank)
 
 /material/proc/get_recipes()
-	if(!recipes)
+	if (!recipes)
 		generate_recipes()
 	return recipes
 
@@ -12,7 +12,7 @@ var/list/engineer_exclusive_recipe_types = list(/obj/structure/girder, /obj/stru
 	recipes += new/datum/stack_recipe("[display_name] ashtray", /obj/item/weapon/material/ashtray, 2, _one_per_turf = TRUE, _on_floor = TRUE, _supplied_material = "[name]")
 	recipes += new/datum/stack_recipe("[display_name] spoon", /obj/item/weapon/material/kitchen/utensil/spoon/plastic, TRUE, _on_floor = TRUE, _supplied_material = "[name]")
 
-	if(integrity>=50)
+	if (integrity>=50)
 	//	recipes += new/datum/stack_recipe("[display_name] door", /obj/machinery/door/unpowered/simple, 10, _time = 35, _one_per_turf = TRUE, _on_floor = TRUE, _supplied_material = "[name]")
 		recipes += new/datum/stack_recipe("[display_name] barricade", /obj/structure/barricade, 5, _time = 35, _one_per_turf = TRUE, _on_floor = TRUE, _supplied_material = "[name]")
 		recipes += new/datum/stack_recipe("[display_name] stool", /obj/item/weapon/stool, 3, _one_per_turf = TRUE, _on_floor = TRUE, _supplied_material = "[name]")
@@ -20,7 +20,7 @@ var/list/engineer_exclusive_recipe_types = list(/obj/structure/girder, /obj/stru
 			recipes += new/datum/stack_recipe("[display_name] chair", /obj/structure/bed/chair, 3, _one_per_turf = TRUE, _on_floor = TRUE, _supplied_material = "[name]")
 		recipes += new/datum/stack_recipe("[display_name] bed", /obj/structure/bed, 4, _one_per_turf = TRUE, _on_floor = TRUE, _supplied_material = "[name]")
 
-	if(hardness>50)
+	if (hardness>50)
 		recipes += new/datum/stack_recipe("[display_name] fork", /obj/item/weapon/material/kitchen/utensil/fork/plastic, TRUE, _on_floor = TRUE, _supplied_material = "[name]")
 		recipes += new/datum/stack_recipe("[display_name] knife", /obj/item/weapon/material/kitchen/utensil/knife/plastic, TRUE, _on_floor = TRUE, _supplied_material = "[name]")
 		recipes += new/datum/stack_recipe("[display_name] blade", /obj/item/weapon/material/butterflyblade, 2, _time = 15, _one_per_turf = FALSE, _on_floor = TRUE, _supplied_material = "[name]")

@@ -14,7 +14,7 @@
 /turf/New()
 	. = ..()
 
-	if(opacity)
+	if (opacity)
 		has_opaque_atom = TRUE
 
 	var/area/A = get_area(src)
@@ -25,18 +25,18 @@
 // Causes any affecting light sources to be queued for a visibility update, for example a door got opened.
 /turf/proc/reconsider_lights()
 	for(var/A in affecting_lights)
-		if(!A)
+		if (!A)
 			continue
 
 		var/datum/light_source/L = A
 		L.vis_update()
 
 /turf/proc/lighting_clear_overlay()
-	if(lighting_overlay)
+	if (lighting_overlay)
 		qdel(lighting_overlay)
 
 	for(var/A in corners)
-		if(!A)
+		if (!A)
 			continue
 
 		var/datum/lighting_corner/C = A
@@ -44,17 +44,17 @@
 
 // Builds a lighting overlay for us, but only if our area is dynamic.
 /turf/proc/lighting_build_overlay()
-	if(!lighting_overlay)
+	if (!lighting_overlay)
 		var/area/A = loc
-		if(A.dynamic_lighting)
+		if (A.dynamic_lighting)
 			PoolOrNew(/atom/movable/lighting_overlay, src)
 
 			for(var/LC in corners)
-				if(!LC)
+				if (!LC)
 					continue
 
 				var/datum/lighting_corner/C = LC
-				if(!C.active) // We would activate the corner, calculate the lighting for it.
+				if (!C.active) // We would activate the corner, calculate the lighting for it.
 					for(var/L in C.affecting)
 						var/datum/light_source/S = L
 						S.recalc_corner(C)
@@ -95,7 +95,7 @@
 /turf/proc/fix_corners_and_lighting_overlay() // workaround for broken ice corners
 	if (istype(src, /turf/floor/plating/beach/water/ice))
 		for(var/i = 1 to 4)
-			if(corners[i]) // Already have a corner on this direction.
+			if (corners[i]) // Already have a corner on this direction.
 				continue
 
 			corners[i] = new/datum/lighting_corner(src, LIGHTING_CORNER_DIAGONAL[i])
@@ -122,7 +122,7 @@
 
 // Used to get a scaled lumcount.
 /turf/proc/get_lumcount(var/minlum = FALSE, var/maxlum = TRUE)
-	if(!lighting_overlay)
+	if (!lighting_overlay)
 		return 0.5
 
 	var/totallums = FALSE
@@ -140,34 +140,34 @@
 /turf/proc/recalc_atom_opacity()
 	has_opaque_atom = FALSE
 	for(var/atom/A in contents + src) // Loop through every movable atom on our tile PLUS ourselves (we matter too...)
-		if(A.opacity)
+		if (A.opacity)
 			has_opaque_atom = TRUE
 
 // If an opaque movable atom moves around we need to potentially update visibility.
 /turf/Entered(var/atom/movable/Obj, var/atom/OldLoc)
 	. = ..()
 
-	if(Obj && Obj.opacity)
+	if (Obj && Obj.opacity)
 		has_opaque_atom = TRUE // Make sure to do this before reconsider_lights(), incase we're on instant updates. Guaranteed to be on in this case.
 		reconsider_lights()
 
 /turf/Exited(var/atom/movable/Obj, var/atom/newloc)
 	. = ..()
 
-	if(Obj && Obj.opacity)
+	if (Obj && Obj.opacity)
 		recalc_atom_opacity() // Make sure to do this before reconsider_lights(), incase we're on instant updates.
 		reconsider_lights()
 
 /turf/change_area(var/area/old_area, var/area/new_area)
-	if(new_area.dynamic_lighting != old_area.dynamic_lighting)
-		if(new_area.dynamic_lighting)
+	if (new_area.dynamic_lighting != old_area.dynamic_lighting)
+		if (new_area.dynamic_lighting)
 			lighting_build_overlay()
 
 		else
 			lighting_clear_overlay()
 
 /turf/proc/get_corners(var/dir)
-	if(has_opaque_atom)
+	if (has_opaque_atom)
 		return null // Since this proc gets used in a for loop, null won't be looped though.
 
 	return corners

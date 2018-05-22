@@ -38,22 +38,22 @@
 /mob/living/simple_animal/mouse/Life()
 	..()
 
-	if(!stat && prob(speak_chance))
+	if (!stat && prob(speak_chance))
 		for(var/mob/M in view())
 			M << 'sound/effects/mousesqueek.ogg'
 
-	if(!ckey && stat == CONSCIOUS && prob(1))
+	if (!ckey && stat == CONSCIOUS && prob(1))
 		stat = UNCONSCIOUS
 		icon_state = "mouse_[body_color]_sleep"
 		wander = FALSE
 		speak_chance = FALSE
 		//snuffles
-	else if(stat == UNCONSCIOUS)
-		if(ckey || prob(5))
+	else if (stat == UNCONSCIOUS)
+		if (ckey || prob(5))
 			stat = CONSCIOUS
 			icon_state = "mouse_[body_color]"
 			wander = TRUE
-		else if(prob(5))
+		else if (prob(5))
 			audible_emote("snuffles.")
 
 /mob/living/simple_animal/mouse/lay_down()
@@ -66,12 +66,12 @@
 //	verbs += /mob/living/proc/ventcrawl
 //	verbs += /mob/living/proc/hide
 
-	if(name == initial(name))
+	if (name == initial(name))
 		name = "[name] ([rand(1, 1000)])"
 
 	real_name = name
 
-	if(!body_color)
+	if (!body_color)
 		body_color = pick( list("brown","gray","white") )
 	icon_state = "mouse_[body_color]"
 	item_state = "mouse_[body_color]"
@@ -88,17 +88,17 @@
 /mob/living/simple_animal/mouse/MouseDrop(atom/over_object)
 
 	var/mob/living/carbon/H = over_object
-	if(!istype(H) || !Adjacent(H)) return ..()
+	if (!istype(H) || !Adjacent(H)) return ..()
 
-	if(H.a_intent == I_HELP)
+	if (H.a_intent == I_HELP)
 		get_scooped(H)
 		return
 	else
 		return ..()
 */
 /mob/living/simple_animal/mouse/Crossed(AM as mob|obj)
-	if( ishuman(AM) )
-		if(!stat)
+	if ( ishuman(AM) )
+		if (!stat)
 			var/mob/M = AM
 			M << "<span class = 'notice'>\icon[src] Squeek!</span>"
 			M << 'sound/effects/mousesqueek.ogg'

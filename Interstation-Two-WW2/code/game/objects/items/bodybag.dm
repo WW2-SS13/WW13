@@ -58,7 +58,7 @@
 			name = "body bag"
 	//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri
 		return
-	else if(istype(W, /obj/item/weapon/wirecutters))
+	else if (istype(W, /obj/item/weapon/wirecutters))
 		user << "You cut the tag off the bodybag"
 		name = "body bag"
 		overlays.Cut()
@@ -69,17 +69,17 @@
 	return contains_body
 
 /obj/structure/closet/body_bag/close()
-	if(..())
+	if (..())
 		density = FALSE
 		return TRUE
 	return FALSE
 
 /obj/structure/closet/body_bag/MouseDrop(over_object, src_location, over_location)
 	..()
-	if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
-		if(!ishuman(usr))	return
-		if(opened)	return FALSE
-		if(contents.len)	return FALSE
+	if ((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
+		if (!ishuman(usr))	return
+		if (opened)	return FALSE
+		if (contents.len)	return FALSE
 		visible_message("[usr] folds up the [name]")
 		new item_path(get_turf(src))
 		spawn(0)
@@ -87,10 +87,10 @@
 		return
 
 /obj/structure/closet/body_bag/update_icon()
-	if(opened)
+	if (opened)
 		icon_state = icon_opened
 	else
-		if(contains_body > 0)
+		if (contains_body > 0)
 			icon_state = "bodybag_closed1"
 		else
 			icon_state = icon_closed
@@ -132,7 +132,7 @@
 
 /obj/structure/closet/body_bag/cryobag/open()
 	. = ..()
-	if(used)
+	if (used)
 		var/obj/item/O = new/obj/item(loc)
 		O.name = "used stasis bag"
 		O.icon = icon
@@ -141,26 +141,26 @@
 		qdel(src)
 
 /obj/structure/closet/body_bag/cryobag/Entered(atom/movable/AM)
-	if(ishuman(AM))
+	if (ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		H.in_stasis = TRUE
 		used = TRUE
 	..()
 
 /obj/structure/closet/body_bag/cryobag/Exited(atom/movable/AM)
-	if(ishuman(AM))
+	if (ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		H.in_stasis = FALSE
 	..()
 
 /obj/structure/closet/body_bag/cryobag/return_air() //Used to make stasis bags protect from vacuum.
-	if(tank)
+	if (tank)
 		return tank.air_contents
 	..()
 
 /obj/structure/closet/body_bag/cryobag/examine(mob/user)
 	..()
-	if(Adjacent(user)) //The bag's rather thick and opaque from a distance.
+	if (Adjacent(user)) //The bag's rather thick and opaque from a distance.
 		user << "<span class='info'>You peer into \the [src].</span>"
 		for(var/mob/living/L in contents)
 			L.examine(user)

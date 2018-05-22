@@ -4,13 +4,13 @@
 	AC.ui_interact(user, state = _state)
 
 /mob/living/carbon/human/proc/change_species(var/new_species)
-	if(!new_species)
+	if (!new_species)
 		return
 
-	if(species == new_species)
+	if (species == new_species)
 		return
 
-	if(!(new_species in all_species))
+	if (!(new_species in all_species))
 		return
 
 	set_species(new_species)
@@ -18,7 +18,7 @@
 	return TRUE
 
 /mob/living/carbon/human/proc/change_gender(var/_gender)
-	if(gender == _gender)
+	if (gender == _gender)
 		return
 
 	gender = _gender
@@ -28,13 +28,13 @@
 	return TRUE
 
 /mob/living/carbon/human/proc/change_hair(var/hair_style)
-	if(!hair_style)
+	if (!hair_style)
 		return
 
-	if(h_style == hair_style)
+	if (h_style == hair_style)
 		return
 
-	if(!(hair_style in hair_styles_list))
+	if (!(hair_style in hair_styles_list))
 		return
 
 	h_style = hair_style
@@ -43,13 +43,13 @@
 	return TRUE
 
 /mob/living/carbon/human/proc/change_facial_hair(var/facial_hair_style)
-	if(!facial_hair_style)
+	if (!facial_hair_style)
 		return
 
-	if(f_style == facial_hair_style)
+	if (f_style == facial_hair_style)
 		return
 
-	if(!(facial_hair_style in facial_hair_styles_list))
+	if (!(facial_hair_style in facial_hair_styles_list))
 		return
 
 	f_style = facial_hair_style
@@ -61,13 +61,13 @@
 	var/list/valid_hairstyles = generate_valid_hairstyles()
 	var/list/valid_facial_hairstyles = generate_valid_facial_hairstyles()
 
-	if(valid_hairstyles.len)
+	if (valid_hairstyles.len)
 		h_style = pick(valid_hairstyles)
 	else
 		//this shouldn't happen
 		h_style = "Bald"
 
-	if(valid_facial_hairstyles.len)
+	if (valid_facial_hairstyles.len)
 		f_style = pick(valid_facial_hairstyles)
 	else
 		//this shouldn't happen
@@ -76,7 +76,7 @@
 	update_hair()
 
 /mob/living/carbon/human/proc/change_eye_color(var/red, var/green, var/blue)
-	if(red == r_eyes && green == g_eyes && blue == b_eyes)
+	if (red == r_eyes && green == g_eyes && blue == b_eyes)
 		return
 
 	r_eyes = red
@@ -88,7 +88,7 @@
 	return TRUE
 
 /mob/living/carbon/human/proc/change_hair_color(var/red, var/green, var/blue)
-	if(red == r_hair && green == g_hair && blue == b_hair)
+	if (red == r_hair && green == g_hair && blue == b_hair)
 		return
 
 	r_hair = red
@@ -101,7 +101,7 @@
 	return TRUE
 
 /mob/living/carbon/human/proc/change_facial_hair_color(var/red, var/green, var/blue)
-	if(red == r_facial && green == g_facial && blue == b_facial)
+	if (red == r_facial && green == g_facial && blue == b_facial)
 		return
 
 	r_facial = red
@@ -112,7 +112,7 @@
 	return TRUE
 
 /mob/living/carbon/human/proc/change_skin_color(var/red, var/green, var/blue)
-	if(red == r_skin && green == g_skin && blue == b_skin || !(species.appearance_flags & HAS_SKIN_COLOR))
+	if (red == r_skin && green == g_skin && blue == b_skin || !(species.appearance_flags & HAS_SKIN_COLOR))
 		return
 
 	r_skin = red
@@ -124,7 +124,7 @@
 	return TRUE
 
 /mob/living/carbon/human/proc/change_skin_tone(var/tone)
-	if(s_tone == tone || !(species.appearance_flags & HAS_SKIN_TONE))
+	if (s_tone == tone || !(species.appearance_flags & HAS_SKIN_TONE))
 		return
 
 	s_tone = tone
@@ -142,12 +142,12 @@
 	for(var/current_species_name in all_species)
 		var/datum/species/current_species = all_species[current_species_name]
 
-		if(check_whitelist && !check_rights(R_ADMIN, FALSE, src)) //If we're using the whitelist, make sure to check it!
-			if(!(current_species.spawn_flags & CAN_JOIN))
+		if (check_whitelist && !check_rights(R_ADMIN, FALSE, src)) //If we're using the whitelist, make sure to check it!
+			if (!(current_species.spawn_flags & CAN_JOIN))
 				continue
-			if(whitelist.len && !(current_species_name in whitelist))
+			if (whitelist.len && !(current_species_name in whitelist))
 				continue
-			if(blacklist.len && (current_species_name in blacklist))
+			if (blacklist.len && (current_species_name in blacklist))
 				continue
 
 		valid_species += current_species_name
@@ -159,11 +159,11 @@
 	for(var/hairstyle in hair_styles_list)
 		var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
 
-		if(check_gender && gender == MALE && S.gender == FEMALE)
+		if (check_gender && gender == MALE && S.gender == FEMALE)
 			continue
-		if(check_gender && gender == FEMALE && S.gender == MALE)
+		if (check_gender && gender == FEMALE && S.gender == MALE)
 			continue
-		if(!(species.get_bodytype() in S.species_allowed))
+		if (!(species.get_bodytype() in S.species_allowed))
 			continue
 		valid_hairstyles += hairstyle
 
@@ -174,11 +174,11 @@
 	for(var/facialhairstyle in facial_hair_styles_list)
 		var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
 
-		if(gender == MALE && S.gender == FEMALE)
+		if (gender == MALE && S.gender == FEMALE)
 			continue
-		if(gender == FEMALE && S.gender == MALE)
+		if (gender == FEMALE && S.gender == MALE)
 			continue
-		if(!(species.get_bodytype() in S.species_allowed))
+		if (!(species.get_bodytype() in S.species_allowed))
 			continue
 
 		valid_facial_hairstyles += facialhairstyle

@@ -20,17 +20,17 @@ client/
 	var/list/hidden_mobs = list()
 
 atom/proc/InCone(atom/center = usr, dir = NORTH)
-	if(get_dist(center, src) == FALSE || src == center) return FALSE
+	if (get_dist(center, src) == FALSE || src == center) return FALSE
 	var/d = get_dir(center, src)
 
-	if(!d || d == dir) return TRUE
-	if(dir & (dir-1))
+	if (!d || d == dir) return TRUE
+	if (dir & (dir-1))
 		return (d & ~dir) ? FALSE : TRUE
-	if(!(d & dir)) return FALSE
+	if (!(d & dir)) return FALSE
 	var/dx = abs(x - center.x)
 	var/dy = abs(y - center.y)
-	if(dx == dy) return TRUE
-	if(dy > dx)
+	if (dx == dy) return TRUE
+	if (dy > dx)
 		return (dir & (NORTH|SOUTH)) ? TRUE : FALSE
 	return (dir & (EAST|WEST)) ? TRUE : FALSE
 
@@ -40,14 +40,14 @@ mob/dead/InCone(mob/center = usr, dir = NORTH)
 mob/living/InCone(mob/center = usr, dir = NORTH)
 	. = ..()
 	for(var/obj/item/weapon/grab/G in center)//TG doesn't have the grab item. But if you're porting it and you do then uncomment this.
-		if(src == G.affecting)
+		if (src == G.affecting)
 			return FALSE
 		else
 			return .
 
 
 proc/cone(atom/center = usr, dir = NORTH, list/list = oview(center))
-    for(var/atom/O in list) if(!O.InCone(center, dir)) list -= O
+    for(var/atom/O in list) if (!O.InCone(center, dir)) list -= O
     return list
 
 /mob/proc/update_vision_cone()
@@ -55,7 +55,7 @@ proc/cone(atom/center = usr, dir = NORTH, list/list = oview(center))
 
 /mob/living/update_vision_cone()
 	var/delay = 10
-	if(client && fov)
+	if (client && fov)
 		var/image/I = null
 		for(I in client.hidden_atoms)
 			I.override = FALSE
@@ -66,7 +66,7 @@ proc/cone(atom/center = usr, dir = NORTH, list/list = oview(center))
 		client.hidden_atoms = list()
 		client.hidden_mobs = list()
 		fov.dir = dir
-		if(fov.alpha != FALSE)
+		if (fov.alpha != FALSE)
 			var/mob/living/M
 			for(M in cone(src, OPPOSITE_DIR(dir), view(10, src)))
 				I = image("split", M)
@@ -74,7 +74,7 @@ proc/cone(atom/center = usr, dir = NORTH, list/list = oview(center))
 				client.images += I
 				client.hidden_atoms += I
 				client.hidden_mobs += M
-				if(pulling == M)//If we're pulling them we don't want them to be invisible, too hard to play like that.
+				if (pulling == M)//If we're pulling them we don't want them to be invisible, too hard to play like that.
 					I.override = FALSE
 
 			//Optional items can be made invisible too. Uncomment this part if you wish to items to be invisible.
@@ -89,16 +89,16 @@ proc/cone(atom/center = usr, dir = NORTH, list/list = oview(center))
 		return
 
 mob/proc/rest_cone_act()//For showing and hiding the cone when you rest or lie down.
-	if(resting || lying)
+	if (resting || lying)
 		hide_cone()
 	else
 		show_cone()
 
 //Making these generic procs so you can call them anywhere.
 mob/proc/show_cone()
-	if(fov)
+	if (fov)
 		fov.alpha = 255
 
 mob/proc/hide_cone()
-	if(fov)
+	if (fov)
 		fov.alpha = 0

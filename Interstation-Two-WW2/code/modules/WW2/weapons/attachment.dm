@@ -24,7 +24,7 @@ Current Defines (_defines/attachment.dm)
 
 /obj/item/weapon/attachment/proc/attached(mob/user, obj/item/weapon/gun/G)
   user << "<span class = 'notice'>You start to attach [src] to the [G].</span>"
-  if(do_after(user, 15, user))
+  if (do_after(user, 15, user))
     user.unEquip(src)
     A_attached = TRUE
     G.attachment_slots -= attachment_type
@@ -38,7 +38,7 @@ Current Defines (_defines/attachment.dm)
     return
 
 /obj/item/weapon/attachment/proc/removed(mob/user, obj/item/weapon/gun/G)
-  if(do_after(user, 15, user))
+  if (do_after(user, 15, user))
     G.attachments -= src
     G.actions -= actions
     G.verbs -= verbs
@@ -56,18 +56,18 @@ Current Defines (_defines/attachment.dm)
 
 /obj/item/weapon/gun/examine(mob/user)
   ..()
-  if(attachments.len)
+  if (attachments.len)
     for(var/obj/item/weapon/attachment/A in attachments)
       user << "<span class='notice'>It has [A] attached.</span>"
 
 /obj/item/weapon/gun/dropped(mob/user)
   ..()
-  if(attachments.len)
+  if (attachments.len)
     for(var/obj/item/weapon/attachment/A in attachments)
       A.dropped(user)
 
 /obj/item/weapon/gun/pickup(mob/user)
-  if(attachments.len)
+  if (attachments.len)
     for(var/obj/item/weapon/attachment/A in attachments)
       A.pickup(user)
 
@@ -92,9 +92,9 @@ Current Defines (_defines/attachment.dm)
     action.Grant(user)
 
 /obj/item/weapon/gun/proc/try_attach(obj/item/weapon/attachment/A, mob/user)
-  if(!A || !user)
+  if (!A || !user)
     return
-  if(user.get_inactive_hand() != src)
+  if (user.get_inactive_hand() != src)
     user << "You must be holding the [src] to add attachments."
     return
   attach_A(A, user)
@@ -102,28 +102,28 @@ Current Defines (_defines/attachment.dm)
 //Do not use this; use try_attach instead
 /obj/item/weapon/gun/proc/attach_A(obj/item/weapon/attachment/A, mob/user)
   switch(A.attachment_type)
-    if(ATTACH_IRONSIGHTS)
-      if(attachment_slots & ATTACH_IRONSIGHTS)
+    if (ATTACH_IRONSIGHTS)
+      if (attachment_slots & ATTACH_IRONSIGHTS)
         A.attached(user, src)
       else
         user << "You already have iron sights."
-    if(ATTACH_SCOPE)
-      if(attachment_slots & ATTACH_SCOPE)
+    if (ATTACH_SCOPE)
+      if (attachment_slots & ATTACH_SCOPE)
         A.attached(user, src)
       else
         user << "You fumble around with the attachment."
-    if(ATTACH_STOCK)
-      if(attachment_slots & ATTACH_STOCK)
+    if (ATTACH_STOCK)
+      if (attachment_slots & ATTACH_STOCK)
         A.attached(user, src)
       else
         user << "You fumble around with the attachment."
-    if(ATTACH_BARREL)
-      if(attachment_slots & ATTACH_BARREL)
+    if (ATTACH_BARREL)
+      if (attachment_slots & ATTACH_BARREL)
         A.attached(user, src)
       else
         user << "You fumble around with the attachment."
-    if(ATTACH_UNDER)
-      if(attachment_slots & ATTACH_UNDER)
+    if (ATTACH_UNDER)
+      if (attachment_slots & ATTACH_UNDER)
         A.attached(user, src)
       else
         user << "You fumble around with the attachment."
@@ -162,12 +162,12 @@ Current Defines (_defines/attachment.dm)
 
 /obj/item/weapon/attachment/bayonet/pickup(mob/user)
 	..()
-	if(amelee)
+	if (amelee)
 		amelee.Grant(user)
 
 /obj/item/weapon/attachment/bayonet/dropped(mob/user)
 	..()
-	if(amelee)
+	if (amelee)
 		amelee.Remove(user)
 */
 /obj/item/weapon/attachment/bayonet
@@ -219,14 +219,14 @@ Current Defines (_defines/attachment.dm)
   //This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
   G.icon_state = initial(G.icon_state)
   G.item_state = initial(G.item_state)
-  if(istype(G, /obj/item/weapon/gun/projectile/boltaction))
+  if (istype(G, /obj/item/weapon/gun/projectile/boltaction))
     var/obj/item/weapon/gun/projectile/boltaction/W = G
-    if(W.bolt_open)
+    if (W.bolt_open)
       W.icon_state = addtext(W.icon_state, "_open")
 
 /obj/item/weapon/attachment/scope/adjustable/sniper_scope/attached(mob/user, obj/item/weapon/gun/G)
   ..()
-  if(istype(G, /obj/item/weapon/gun/projectile/boltaction))
+  if (istype(G, /obj/item/weapon/gun/projectile/boltaction))
     var/obj/item/weapon/gun/projectile/boltaction/W = G
     W.update_icon(1)
 

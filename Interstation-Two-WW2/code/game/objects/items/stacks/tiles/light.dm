@@ -16,21 +16,21 @@
 
 /obj/item/stack/tile/light/New(var/loc, var/amount=null)
 	..()
-	if(prob(5))
+	if (prob(5))
 		state = 3 //broken
-	else if(prob(5))
+	else if (prob(5))
 		state = 2 //breaking
-	else if(prob(10))
+	else if (prob(10))
 		state = TRUE //flickering occasionally
 	else
 		state = FALSE //fine
 
 /obj/item/stack/tile/light/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	..()
-	if(istype(O,/obj/item/weapon/crowbar))
+	if (istype(O,/obj/item/weapon/crowbar))
 		new/obj/item/stack/material/steel(user.loc)
 		amount--
 		new/obj/item/stack/light_w(user.loc)
-		if(amount <= 0)
+		if (amount <= 0)
 			user.drop_from_inventory(src)
 			qdel(src)

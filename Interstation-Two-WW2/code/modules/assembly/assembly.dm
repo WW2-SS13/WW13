@@ -50,32 +50,32 @@
 
 	process_cooldown()
 		cooldown--
-		if(cooldown <= 0)	return FALSE
+		if (cooldown <= 0)	return FALSE
 		spawn(10)
 			process_cooldown()
 		return TRUE
 
 
 	pulsed(var/radio = FALSE)
-		if(holder && (wires & WIRE_RECEIVE))
+		if (holder && (wires & WIRE_RECEIVE))
 			activate()
-		if(radio && (wires & WIRE_RADIO_RECEIVE))
+		if (radio && (wires & WIRE_RADIO_RECEIVE))
 			activate()
 		return TRUE
 
 
 	pulse(var/radio = FALSE)
-		if(holder && (wires & WIRE_PULSE))
+		if (holder && (wires & WIRE_PULSE))
 			holder.process_activation(src, TRUE, FALSE)
-		if(holder && (wires & WIRE_PULSE_SPECIAL))
+		if (holder && (wires & WIRE_PULSE_SPECIAL))
 			holder.process_activation(src, FALSE, TRUE)
-//		if(radio && (wires & WIRE_RADIO_PULSE))
+//		if (radio && (wires & WIRE_RADIO_PULSE))
 			//Not sure what goes here quite yet send signal?
 		return TRUE
 
 
 	activate()
-		if(!secured || (cooldown > 0))	return FALSE
+		if (!secured || (cooldown > 0))	return FALSE
 		cooldown = 2
 		spawn(10)
 			process_cooldown()
@@ -90,20 +90,20 @@
 
 	attach_assembly(var/obj/item/assembly/A, var/mob/user)
 		holder = new/obj/item/assembly_holder(get_turf(src))
-		if(holder.attach(A,src,user))
+		if (holder.attach(A,src,user))
 			user << "<span class = 'notice'>You attach \the [A] to \the [src]!</span>"
 			return TRUE
 		return FALSE
 
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(isassembly(W))
+		if (isassembly(W))
 			var/obj/item/assembly/A = W
-			if((!A.secured) && (!secured))
+			if ((!A.secured) && (!secured))
 				attach_assembly(A,user)
 				return
-		if(isscrewdriver(W))
-			if(toggle_secure())
+		if (isscrewdriver(W))
+			if (toggle_secure())
 				user << "<span class = 'notice'>\The [src] is ready!</span>"
 			else
 				user << "<span class = 'notice'>\The [src] can now be attached!</span>"
@@ -119,8 +119,8 @@
 
 	examine(mob/user)
 		..(user)
-		if((in_range(src, user) || loc == user))
-			if(secured)
+		if ((in_range(src, user) || loc == user))
+			if (secured)
 				user << "\The [src] is ready!"
 			else
 				user << "\The [src] can be attached!"
@@ -128,7 +128,7 @@
 
 
 	attack_self(mob/user as mob)
-		if(!user)	return FALSE
+		if (!user)	return FALSE
 		user.set_using_object(src)
 		interact(user)
 		return TRUE
@@ -138,7 +138,7 @@
 		return //HTML MENU FOR WIRES GOES HERE
 
 /obj/item/assembly/nano_host()
-    if(istype(loc, /obj/item/assembly_holder))
+    if (istype(loc, /obj/item/assembly_holder))
         return loc.nano_host()
     return ..()
 
@@ -155,7 +155,7 @@
 
 
 	Activate()
-		if(cooldown > 0)
+		if (cooldown > 0)
 			return FALSE
 		cooldown = 2
 		spawn(10)
@@ -166,15 +166,15 @@
 
 	Process_cooldown()
 		cooldown--
-		if(cooldown <= 0)	return FALSE
+		if (cooldown <= 0)	return FALSE
 		spawn(10)
 			Process_cooldown()
 		return TRUE
 
 
 	Attach_Holder(var/obj/H, var/mob/user)
-		if(!H)	return FALSE
-		if(!H.IsAssemblyHolder())	return FALSE
+		if (!H)	return FALSE
+		if (!H.IsAssemblyHolder())	return FALSE
 		//Remember to have it set its loc somewhere in here
 
 

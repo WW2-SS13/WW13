@@ -71,8 +71,8 @@
 	species_restricted = null
 
 /obj/item/clothing/shoes/clown_shoes/handle_movement(var/turf/walking, var/running)
-	if(running)
-		if(footstep >= 2)
+	if (running)
+		if (footstep >= 2)
 			footstep = FALSE
 			playsound(src, "clownstep", 50, TRUE) // this will get annoying very fast.
 		else

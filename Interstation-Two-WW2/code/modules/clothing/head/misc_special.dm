@@ -32,7 +32,7 @@
 	tint = TINT_HEAVY
 
 /obj/item/clothing/head/welding/attack_self()
-	if(!base_state)
+	if (!base_state)
 		base_state = icon_state
 	toggle()
 
@@ -42,8 +42,8 @@
 	set name = "Adjust welding mask"
 	set src in usr
 
-	if(usr.canmove && !usr.stat && !usr.restrained())
-		if(up)
+	if (usr.canmove && !usr.stat && !usr.restrained())
+		if (up)
 			up = !up
 			body_parts_covered |= (EYES|FACE)
 			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
@@ -75,14 +75,14 @@
 	body_parts_covered = HEAD
 
 /obj/item/clothing/head/cakehat/process()
-	if(!onfire)
+	if (!onfire)
 		processing_objects.Remove(src)
 		return
 
 	var/turf/location = loc
-	if(istype(location, /mob/))
+	if (istype(location, /mob/))
 		var/mob/living/carbon/human/M = location
-		if(M.l_hand == src || M.r_hand == src || M.head == src)
+		if (M.l_hand == src || M.r_hand == src || M.head == src)
 			location = M.loc
 
 	if (istype(location, /turf))
@@ -114,7 +114,7 @@
 	flags_inv = HIDEEARS
 
 /obj/item/clothing/head/ushanka/attack_self(mob/user as mob)
-	if(icon_state == "ushankadown")
+	if (icon_state == "ushankadown")
 		icon_state = "ushankaup"
 		user << "You raise the ear flaps on the ushanka."
 	else

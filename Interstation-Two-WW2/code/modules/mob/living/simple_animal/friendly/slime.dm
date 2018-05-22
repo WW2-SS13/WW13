@@ -15,7 +15,7 @@
 	var/colour = "grey"
 
 /mob/living/simple_animal/slime/can_force_feed(var/feeder, var/food, var/feedback)
-	if(feedback)
+	if (feedback)
 		feeder << "Where do you intend to put \the [food]? \The [src] doesn't have a mouth!"
 	return FALSE
 

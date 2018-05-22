@@ -24,7 +24,7 @@
 		var/mob/living/carbon/human/H = C
 		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
-		if(affecting.status & ORGAN_ROBOT)
+		if (affecting.status & ORGAN_ROBOT)
 			user << "<span class='warning'>This isn't useful at all on a robotic limb..</span>"
 			return TRUE
 
@@ -50,15 +50,15 @@
 //	origin_tech = list(TECH_BIO = TRUE)
 
 /obj/item/stack/medical/bruise_pack/attack(mob/living/M as mob, mob/user as mob)
-	if(..())
+	if (..())
 		return TRUE
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
-		if(affecting.open == FALSE)
-			if(affecting.is_bandaged())
+		if (affecting.open == FALSE)
+			if (affecting.is_bandaged())
 				user << "<span class='warning'>The wounds on [M]'s [affecting.name] have already been bandaged.</span>"
 				return TRUE
 			else
@@ -68,11 +68,11 @@
 				for (var/datum/wound/W in affecting.wounds)
 					if (W.internal)
 						continue
-					if(W.bandaged)
+					if (W.bandaged)
 						continue
-					if(used == amount)
+					if (used == amount)
 						break
-					if(!do_mob(user, M, W.damage/5))
+					if (!do_mob(user, M, W.damage/5))
 						user << "<span class='notice'>You must stand still to bandage wounds.</span>"
 						break
 
@@ -89,8 +89,8 @@
 					W.bandage()
 					used++
 				affecting.update_damages()
-				if(used == amount)
-					if(affecting.is_bandaged())
+				if (used == amount)
+					if (affecting.is_bandaged())
 						user << "<span class='warning'>\The [src] is used up.</span>"
 					else
 						user << "<span class='warning'>\The [src] is used up, but there are more wounds to treat on \the [affecting.name].</span>"
@@ -103,15 +103,15 @@
 				user << "<span class='notice'>The [affecting.name] is cut open, you'll need more than a bandage!</span>"
 /*	else if (istype(M, /mob/living/simple_animal/complex_animal))
 		var/mob/living/simple_animal/complex_animal/C = M
-		if(C.health >= C.maxHealth)
+		if (C.health >= C.maxHealth)
 			user << "<span class='warning'>The wounds on \the [C] have already been treated.</span>"
 			return TRUE
 		else
 			user.visible_message("<span class='notice'>\The [user] starts treating \the [C]'s wounds.</span>", \
 					             "<span class='notice'>You start treating \the [C]'s wounds.</span>")
 			C.adjustBruteLoss(-(C.maxHealth/3))
-			if(amount == TRUE)
-				if(C.health >= C.maxHealth)
+			if (amount == TRUE)
+				if (C.health >= C.maxHealth)
 					user << "<span class='warning'>\The [src] is used up.</span>"
 				else
 					user << "<span class='warning'>\The [src] is used up, but there are more wounds to treat on \the [C].</span>"
@@ -127,21 +127,21 @@
 //	origin_tech = list(TECH_BIO = TRUE)
 
 /obj/item/stack/medical/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
-	if(..())
+	if (..())
 		return TRUE
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
-		if(affecting.open == FALSE)
-			if(affecting.is_salved())
+		if (affecting.open == FALSE)
+			if (affecting.is_salved())
 				user << "<span class='warning'>The wounds on [M]'s [affecting.name] have already been salved.</span>"
 				return TRUE
 			else
 				user.visible_message("<span class='notice'>\The [user] starts salving wounds on [M]'s [affecting.name].</span>", \
 						             "<span class='notice'>You start salving the wounds on [M]'s [affecting.name].</span>" )
-				if(!do_mob(user, M, 10))
+				if (!do_mob(user, M, 10))
 					user << "<span class='notice'>You must stand still to salve wounds.</span>"
 					return TRUE
 				user.visible_message("<span class='notice'>[user] salved wounds on [M]'s [affecting.name].</span>", \
@@ -164,15 +164,15 @@
 //	origin_tech = list(TECH_BIO = TRUE)
 
 /obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
-	if(..())
+	if (..())
 		return TRUE
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
-		if(affecting.open == FALSE)
-			if(affecting.is_bandaged() && affecting.is_disinfected())
+		if (affecting.open == FALSE)
+			if (affecting.is_bandaged() && affecting.is_disinfected())
 				user << "<span class='warning'>The wounds on [M]'s [affecting.name] have already been treated.</span>"
 				return TRUE
 			else
@@ -184,9 +184,9 @@
 						continue
 					if (W.bandaged && W.disinfected)
 						continue
-					if(used == amount)
+					if (used == amount)
 						break
-					if(!do_mob(user, M, W.damage/5))
+					if (!do_mob(user, M, W.damage/5))
 						user << "<span class='notice'>You must stand still to bandage wounds.</span>"
 						break
 					if (W.current_stage <= W.max_bleeding_stage)
@@ -203,8 +203,8 @@
 					W.heal_damage(heal_brute)
 					used++
 				affecting.update_damages()
-				if(used == amount)
-					if(affecting.is_bandaged())
+				if (used == amount)
+					if (affecting.is_bandaged())
 						user << "<span class='warning'>\The [src] is used up.</span>"
 					else
 						user << "<span class='warning'>\The [src] is used up, but there are more wounds to treat on \the [affecting.name].</span>"
@@ -233,21 +233,21 @@
 
 
 /obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
-	if(..())
+	if (..())
 		return TRUE
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
-		if(affecting.open == FALSE)
-			if(affecting.is_salved())
+		if (affecting.open == FALSE)
+			if (affecting.is_salved())
 				user << "<span class='warning'>The wounds on [M]'s [affecting.name] have already been salved.</span>"
 				return TRUE
 			else
 				user.visible_message("<span class='notice'>\The [user] starts salving wounds on [M]'s [affecting.name].</span>", \
 						             "<span class='notice'>You start salving the wounds on [M]'s [affecting.name].</span>" )
-				if(!do_mob(user, M, 10))
+				if (!do_mob(user, M, 10))
 					user << "<span class='notice'>You must stand still to salve wounds.</span>"
 					return TRUE
 				user.visible_message( 	"<span class='notice'>[user] covers wounds on [M]'s [affecting.name] with regenerative membrane.</span>", \
@@ -270,17 +270,17 @@
 	max_amount = 5
 
 /obj/item/stack/medical/splint/attack(mob/living/carbon/M as mob, mob/user as mob)
-	if(..())
+	if (..())
 		return TRUE
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 		var/limb = affecting.name
-		if(!(affecting.limb_name in list("chest", "head", "groin", "l_arm","r_arm","l_leg","r_leg", "l_hand", "r_hand", "l_foot", "r_foot")))
+		if (!(affecting.limb_name in list("chest", "head", "groin", "l_arm","r_arm","l_leg","r_leg", "l_hand", "r_hand", "l_foot", "r_foot")))
 			user << "<span class='danger'>You can't apply a splint there!</span>"
 			return
-		else if(affecting.status & ORGAN_SPLINTED)
+		else if (affecting.status & ORGAN_SPLINTED)
 			user << "<span class='danger'>[M]'s [limb] is already splinted!</span>"
 			return
 		else if (affecting.status == 0)
@@ -289,15 +289,15 @@
 		if (M != user)
 			user.visible_message("<span class='danger'>[user] starts to apply \the [src] to [M]'s [limb].</span>", "<span class='danger'>You start to apply \the [src] to [M]'s [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")
 		else
-			if((!user.hand && affecting.limb_name == "r_arm") || (user.hand && affecting.limb_name == "l_arm"))
+			if ((!user.hand && affecting.limb_name == "r_arm") || (user.hand && affecting.limb_name == "l_arm"))
 				user << "<span class='danger'>You can't apply a splint to the arm you're using!</span>"
 				return
 			user.visible_message("<span class='danger'>[user] starts to apply \the [src] to their [limb].</span>", "<span class='danger'>You start to apply \the [src] to your [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")
-		if(do_mob(user, M, 50))
+		if (do_mob(user, M, 50))
 			if (M != user)
 				user.visible_message("<span class='danger'>[user] finishes applying \the [src] to [M]'s [limb].</span>", "<span class='danger'>You finish applying \the [src] to [M]'s [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")
 			else
-				if(prob(40 * H.getStatCoeff("medical")))
+				if (prob(40 * H.getStatCoeff("medical")))
 					user.visible_message("<span class='danger'>[user] successfully applies \the [src] to their [limb].</span>", "<span class='danger'>You successfully apply \the [src] to your [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")
 				else
 					user.visible_message("<span class='danger'>[user] fumbles \the [src].</span>", "<span class='danger'>You fumble \the [src].</span>", "<span class='danger'>You hear something being wrapped.</span>")

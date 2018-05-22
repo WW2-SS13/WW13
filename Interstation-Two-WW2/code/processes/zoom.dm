@@ -13,7 +13,7 @@
 
 /process/zoom/started()
 	..()
-	if(!zoom_processing_objects)
+	if (!zoom_processing_objects)
 		zoom_processing_objects = list()
 
 /process/zoom/fire()
@@ -23,7 +23,7 @@
 	FORNEXT(recent_scopes)
 		var/obj/item/weapon/attachment/scope/S = current
 
-		if(!isDeleted(S))
+		if (!isDeleted(S))
 			try
 				if (S.scoped_invisible)
 					S.invisibility = 0
@@ -45,7 +45,7 @@
 
 		var/mob/living/carbon/human/H = current
 
-		if(!isDeleted(H))
+		if (!isDeleted(H))
 			try
 				if (H.client)
 					if (H.using_zoom())

@@ -18,7 +18,7 @@
 
 /obj/item/clothing/head/soft/attack_self(mob/user)
 	flipped = !flipped
-	if(flipped)
+	if (flipped)
 		icon_state = "[icon_state]_flipped"
 		user << "You flip the hat backwards."
 	else

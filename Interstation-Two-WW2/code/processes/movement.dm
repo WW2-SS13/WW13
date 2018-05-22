@@ -23,7 +23,7 @@
 
 		var/mob/M = current:mob
 
-		if(!isDeleted(M))
+		if (!isDeleted(M))
 			try
 				if (M.client && (M.movement_eastwest || M.movement_northsouth))
 					var/diag = FALSE

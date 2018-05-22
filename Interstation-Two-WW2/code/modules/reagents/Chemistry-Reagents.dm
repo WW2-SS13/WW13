@@ -5,7 +5,7 @@
 	chemical_reagents_list = list()
 	for(var/path in paths)
 		var/datum/reagent/D = new path()
-		if(!D.name)
+		if (!D.name)
 			continue
 		chemical_reagents_list[D.id] = D
 
@@ -46,27 +46,27 @@
 	return
 
 /datum/reagent/proc/on_mob_life(var/mob/living/carbon/M, var/alien, var/location) // Currently, on_mob_life is called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
-	if(!istype(M))
+	if (!istype(M))
 		return
-	if(!affects_dead && M.stat == DEAD)
+	if (!affects_dead && M.stat == DEAD)
 		return
-	if(overdose && (dose > overdose) && (location != CHEM_TOUCH))
+	if (overdose && (dose > overdose) && (location != CHEM_TOUCH))
 		overdose(M, alien)
 	var/removed = metabolism
-	if(ingest_met && (location == CHEM_INGEST))
+	if (ingest_met && (location == CHEM_INGEST))
 		removed = ingest_met
-	if(touch_met && (location == CHEM_TOUCH))
+	if (touch_met && (location == CHEM_TOUCH))
 		removed = touch_met
 	removed = min(removed, volume)
 	max_dose = max(volume, max_dose)
 	dose = min(dose + removed, max_dose)
-	if(removed >= (metabolism * 0.1) || removed >= 0.1) // If there's too little chemical, don't affect the mob, just remove it
+	if (removed >= (metabolism * 0.1) || removed >= 0.1) // If there's too little chemical, don't affect the mob, just remove it
 		switch(location)
-			if(CHEM_BLOOD)
+			if (CHEM_BLOOD)
 				affect_blood(M, alien, removed)
-			if(CHEM_INGEST)
+			if (CHEM_INGEST)
 				affect_ingest(M, alien, removed)
-			if(CHEM_TOUCH)
+			if (CHEM_TOUCH)
 				affect_touch(M, alien, removed)
 	remove_self(removed)
 	return
@@ -86,7 +86,7 @@
 	return
 
 /datum/reagent/proc/initialize_data(var/newdata) // Called when the reagent is created.
-	if(!isnull(newdata))
+	if (!isnull(newdata))
 		data = newdata
 	return
 
@@ -94,9 +94,9 @@
 	return
 
 /datum/reagent/proc/get_data() // Just in case you have a reagent that handles data differently.
-	if(data && istype(data, /list))
+	if (data && istype(data, /list))
 		return data.Copy()
-	else if(data)
+	else if (data)
 		return data
 	return null
 

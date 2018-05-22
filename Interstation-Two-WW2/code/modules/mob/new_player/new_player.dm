@@ -51,7 +51,7 @@
 	log_say("New Player/[key] : [message]")
 
 	if (client)
-		if(client.prefs.muted & MUTE_DEADCHAT)
+		if (client.prefs.muted & MUTE_DEADCHAT)
 			src << "<span class = 'red'>You cannot talk in lobbychat (muted).</span>"
 			return
 
@@ -89,7 +89,7 @@
 	output +="<hr>"
 	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character & Preferences</A></p>"
 
-	if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
+	if (!ticker || ticker.current_state <= GAME_STATE_PREGAME)
 		output += "<p><a href='byond://?src=\ref[src];ready=0'>The game has not started yet.</a></p>"
 	else
 		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Join Game!</a></p>"
@@ -118,13 +118,13 @@
 
 /mob/new_player/Stat()
 
-	if(client.status_tabs && statpanel("Status") && ticker)
+	if (client.status_tabs && statpanel("Status") && ticker)
 		stat("")
 		stat(stat_header("Lobby"))
 		stat("")
 
 		// by counting observers, our playercount now looks more impressive - Kachnov
-		if(ticker.current_state == GAME_STATE_PREGAME)
+		if (ticker.current_state == GAME_STATE_PREGAME)
 			stat("Time Until Joining Allowed:", "[ticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
 
 		stat("Players in lobby:", totalPlayers)
@@ -171,30 +171,30 @@
 
 
 /mob/new_player/Topic(href, href_list[])
-	if(!client)	return FALSE
+	if (!client)	return FALSE
 
-	if(href_list["show_preferences"])
+	if (href_list["show_preferences"])
 		client.prefs.ShowChoices(src)
 		return TRUE
 
-	if(href_list["ready"])
-		if(!ticker || ticker.current_state <= GAME_STATE_PREGAME) // Make sure we don't ready up after the round has started
+	if (href_list["ready"])
+		if (!ticker || ticker.current_state <= GAME_STATE_PREGAME) // Make sure we don't ready up after the round has started
 			ready = text2num(href_list["ready"])
 		else
 			ready = FALSE
 
-	if(href_list["refresh"])
+	if (href_list["refresh"])
 		src << browse(null, "window=playersetup") //closes the player setup window
 		new_player_panel_proc()
 
-	if(href_list["observe"])
+	if (href_list["observe"])
 
 		if (client && client.quickBan_isbanned("Observe"))
 			src << "<span class = 'danger'>You're banned from observing.</span>"
 			return TRUE
 
-		if(alert(src,"Are you sure you wish to observe?","Player Setup","Yes","No") == "Yes")
-			if(!client)	return TRUE
+		if (alert(src,"Are you sure you wish to observe?","Player Setup","Yes","No") == "Yes")
+			if (!client)	return TRUE
 			var/mob/observer/ghost/observer = new(150, 317, 1)
 
 			spawning = TRUE
@@ -203,7 +203,7 @@
 			observer.started_as_observer = TRUE
 			close_spawn_windows()
 			var/obj/O = locate("landmark*Observer-Start")
-			if(istype(O))
+			if (istype(O))
 				src << "<span class='notice'>Now teleporting.</span>"
 				observer.loc = O.loc
 			else
@@ -218,12 +218,12 @@
 
 			observer.alpha = 127
 
-			if(client.prefs.be_random_name)
+			if (client.prefs.be_random_name)
 				client.prefs.real_name = random_name(client.prefs.gender)
 
 			observer.real_name = capitalize(key)
 			observer.name = observer.real_name
-		//	if(!client.holder && !config.antag_hud_allowed)           // For new ghosts we remove the verb from even showing up if it's not allowed.
+		//	if (!client.holder && !config.antag_hud_allowed)           // For new ghosts we remove the verb from even showing up if it's not allowed.
 				//observer.verbs -= /mob/observer/ghost/verb/toggle_antagHUD        // Poor guys, don't know what they are missing!
 			observer.key = key
 			observer.overlays += icon('icons/mob/uniform.dmi', "civuni[rand(1,3)]")
@@ -233,7 +233,7 @@
 
 			return TRUE
 
-	if(href_list["re_german"])
+	if (href_list["re_german"])
 
 		if (client && client.quickBan_isbanned("Playing"))
 			src << "<span class = 'danger'>You're banned from playing.</span>"
@@ -253,7 +253,7 @@
 			reinforcements_master.add(src, GERMAN)
 		else
 			src << "<span class = 'danger'>Sorry, this side already has too many reinforcements deployed!</span>"
-	if(href_list["re_russian"])
+	if (href_list["re_russian"])
 
 		if (client && client.quickBan_isbanned("Playing"))
 			src << "<span class = 'danger'>You're banned from playing.</span>"
@@ -267,12 +267,12 @@
 			reinforcements_master.add(src, SOVIET)
 		else
 			src << "<span class = 'danger'>Sorry, this side already has too many reinforcements deployed!</span>"
-	if(href_list["unre_german"])
+	if (href_list["unre_german"])
 		reinforcements_master.remove(src, GERMAN)
-	if(href_list["unre_russian"])
+	if (href_list["unre_russian"])
 		reinforcements_master.remove(src, SOVIET)
 
-	if(href_list["late_join"])
+	if (href_list["late_join"])
 
 		if (client && client.quickBan_isbanned("Playing"))
 			src << "<span class = 'danger'>You're banned from playing.</span>"
@@ -282,14 +282,14 @@
 			src << "<span class = 'danger'>You can't join the game yet.</span>"
 			return TRUE
 
-		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
+		if (!ticker || ticker.current_state != GAME_STATE_PLAYING)
 			src << "<span class = 'red'>The round is either not ready, or has already finished.</span>"
 			return
 /*
-		if(!check_rights(R_ADMIN, FALSE))
+		if (!check_rights(R_ADMIN, FALSE))
 			var/datum/species/S = all_species[client.prefs.species]
 
-			if(!(S.spawn_flags & CAN_JOIN))
+			if (!(S.spawn_flags & CAN_JOIN))
 				alert(src, "Your current species, [client.prefs.species], is not available for play on the station.")
 				return FALSE
 */
@@ -308,10 +308,10 @@
 		return TRUE
 
 /*
-	if(href_list["manifest"])
+	if (href_list["manifest"])
 		ViewManifest()*/
 
-	if(href_list["SelectedJob"])
+	if (href_list["SelectedJob"])
 
 		var/datum/job/actual_job = null
 
@@ -345,11 +345,11 @@
 				usr << "<span class='danger'>Soviet officers must be male.</span>"
 				return
 
-		if(!config.enter_allowed)
+		if (!config.enter_allowed)
 			usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
 			return
 
-/*		else if(ticker && ticker.mode && ticker.mode.explosion_in_progress)
+/*		else if (ticker && ticker.mode && ticker.mode.explosion_in_progress)
 			usr << "<span class='danger'>The station is currently exploding. Joining would go poorly.</span>"
 			return*/
 
@@ -359,7 +359,7 @@
 
 		var/datum/species/S = all_species[client.prefs.species]
 
-		if(!(S.spawn_flags & CAN_JOIN))
+		if (!(S.spawn_flags & CAN_JOIN))
 			alert(src, "Your current species, [client.prefs.species], is not available for play on the station.")
 			return FALSE
 
@@ -377,86 +377,86 @@
 		else
 			AttemptLateSpawn(href_list["SelectedJob"])
 
-	if(!ready && href_list["preference"])
-		if(client)
+	if (!ready && href_list["preference"])
+		if (client)
 			client.prefs.process_link(src, href_list)
-	else if(!href_list["late_join"])
+	else if (!href_list["late_join"])
 		new_player_panel()
 /*
-	if(href_list["showpoll"])
+	if (href_list["showpoll"])
 
 		handle_player_polling()
 		return*/
 /*
-	if(href_list["pollid"])
+	if (href_list["pollid"])
 
 		var/pollid = href_list["pollid"]
-		if(istext(pollid))
+		if (istext(pollid))
 			pollid = text2num(pollid)
-		if(isnum(pollid))
+		if (isnum(pollid))
 			poll_player(pollid)
 		return
 
-	if(href_list["votepollid"] && href_list["votetype"])
+	if (href_list["votepollid"] && href_list["votetype"])
 		var/pollid = text2num(href_list["votepollid"])
 		var/votetype = href_list["votetype"]
 		switch(votetype)
-			if("OPTION")
+			if ("OPTION")
 				var/optionid = text2num(href_list["voteoptionid"])
 				vote_on_poll(pollid, optionid)
-			if("TEXT")
+			if ("TEXT")
 				var/replytext = href_list["replytext"]
 				log_text_poll_reply(pollid, replytext)
-			if("NUMVAL")
+			if ("NUMVAL")
 				var/id_min = text2num(href_list["minid"])
 				var/id_max = text2num(href_list["maxid"])
 
-				if( (id_max - id_min) > 100 )	//Basic exploit prevention
+				if ( (id_max - id_min) > 100 )	//Basic exploit prevention
 					usr << "The option ID difference is too big. Please contact administration or the database admin."
 					return
 
 				for(var/optionid = id_min; optionid <= id_max; optionid++)
-					if(!isnull(href_list["o[optionid]"]))	//Test if this optionid was replied to
+					if (!isnull(href_list["o[optionid]"]))	//Test if this optionid was replied to
 						var/rating
-						if(href_list["o[optionid]"] == "abstain")
+						if (href_list["o[optionid]"] == "abstain")
 							rating = null
 						else
 							rating = text2num(href_list["o[optionid]"])
-							if(!isnum(rating))
+							if (!isnum(rating))
 								return
 
 						vote_on_numval_poll(pollid, optionid, rating)
-			if("MULTICHOICE")
+			if ("MULTICHOICE")
 				var/id_min = text2num(href_list["minoptionid"])
 				var/id_max = text2num(href_list["maxoptionid"])
 
-				if( (id_max - id_min) > 100 )	//Basic exploit prevention
+				if ( (id_max - id_min) > 100 )	//Basic exploit prevention
 					usr << "The option ID difference is too big. Please contact administration or the database admin."
 					return
 
 				for(var/optionid = id_min; optionid <= id_max; optionid++)
-					if(!isnull(href_list["option_[optionid]"]))	//Test if this optionid was selected
+					if (!isnull(href_list["option_[optionid]"]))	//Test if this optionid was selected
 						vote_on_poll(pollid, optionid, TRUE)
 */
 /mob/new_player/proc/IsJobAvailable(rank, var/list/restricted_choices = list())
 	var/datum/job/job = job_master.GetJob(rank)
-	if(!job)	return FALSE
-	if(!job.is_position_available(restricted_choices)) return FALSE
-//	if(!job.player_old_enough(client))	return FALSE
+	if (!job)	return FALSE
+	if (!job.is_position_available(restricted_choices)) return FALSE
+//	if (!job.player_old_enough(client))	return FALSE
 	return TRUE
 
 /mob/new_player/proc/jobBanned(title)
-	if(client && client.quickBan_isbanned("Job", title))
+	if (client && client.quickBan_isbanned("Job", title))
 		return TRUE
 	return FALSE
 
 /mob/new_player/proc/factionBanned(faction)
-	if(client && client.quickBan_isbanned("Faction", faction))
+	if (client && client.quickBan_isbanned("Faction", faction))
 		return TRUE
 	return FALSE
 
 /mob/new_player/proc/officerBanned()
-	if(client && client.quickBan_isbanned("Officer"))
+	if (client && client.quickBan_isbanned("Officer"))
 		return TRUE
 	return FALSE
 
@@ -471,11 +471,11 @@
 
 	job_master.relocate(character)
 
-	if(character.buckled && istype(character.buckled, /obj/structure/bed/chair/wheelchair))
+	if (character.buckled && istype(character.buckled, /obj/structure/bed/chair/wheelchair))
 		character.buckled.loc = character.loc
 		character.buckled.set_dir(character.dir)
 
-	if(character.mind.assigned_role != "Cyborg")
+	if (character.mind.assigned_role != "Cyborg")
 	//	data_core.manifest_inject(character)
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 
@@ -516,7 +516,7 @@
 			usr << "<span class = 'warning'>You're banned from officer positions!</span>"
 		return FALSE
 
-	if(job_master.is_side_locked(job.base_type_flag()))
+	if (job_master.is_side_locked(job.base_type_flag()))
 		if (!nomsg)
 			src << "<span class = 'red'>Currently this side is locked for joining.</span>"
 		return
@@ -536,11 +536,11 @@
 	character = job_master.EquipRank(character, rank, TRUE)					//equips the human
 	job_master.relocate(character)
 
-	if(character.buckled && istype(character.buckled, /obj/structure/bed/chair/wheelchair))
+	if (character.buckled && istype(character.buckled, /obj/structure/bed/chair/wheelchair))
 		character.buckled.loc = character.loc
 		character.buckled.set_dir(character.dir)
 
-	if(character.mind.assigned_role != "Cyborg")
+	if (character.mind.assigned_role != "Cyborg")
 	//	data_core.manifest_inject(character)
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 
@@ -612,7 +612,7 @@
 		if (job_master.side_is_hardlocked(job.base_type_flag()))
 			job_is_available = FALSE
 
-		if(job_master.is_side_locked(job.base_type_flag()))
+		if (job_master.is_side_locked(job.base_type_flag()))
 			job_is_available = FALSE
 
 		//	unavailable_message = " <span class = 'color: rgb(255,215,0);'>{DISABLED BY AUTOBALANCE}</span> "
@@ -659,15 +659,15 @@
 
 		// check if the job is autobalance-locked
 
-		if(job)
+		if (job)
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
-			for(var/mob/M in player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
+			for(var/mob/M in player_list) if (M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
 				active++
-			if(job.base_type_flag() != prev_side)
+			if (job.base_type_flag() != prev_side)
 				prev_side = job.base_type_flag()
 				var/side_name = "<b><h1><big>[job.get_side_name()]</big></h1></b>&&[job.base_type_flag()]&&"
-				if(side_name)
+				if (side_name)
 					dat += "<br><br>[side_name]<br>"
 
 			var/extra_span = ""
@@ -763,16 +763,16 @@
 
 	var/use_species_name
 	var/datum/species/chosen_species
-	if(client && client.prefs.species)
+	if (client && client.prefs.species)
 		chosen_species = all_species[client.prefs.species]
 		use_species_name = chosen_species.get_station_variant() //Only used by pariahs atm.
 
-	if(chosen_species && use_species_name)
+	if (chosen_species && use_species_name)
 		// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
-		if(is_species_whitelisted(chosen_species) || has_admin_rights())
+		if (is_species_whitelisted(chosen_species) || has_admin_rights())
 			new_character = new mobtype(loc, use_species_name)
 
-	if(!new_character)
+	if (!new_character)
 		new_character = new mobtype(loc)
 
 	new_character.stopDumbDamage = TRUE
@@ -781,12 +781,12 @@
 	if (client)
 		for(var/lang in client.prefs.alternate_languages)
 			var/datum/language/chosen_language = all_languages[lang]
-			if(chosen_language)
-				if(has_admin_rights() \
+			if (chosen_language)
+				if (has_admin_rights() \
 					|| (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 					new_character.add_language(lang)
 
-		if(ticker.random_players)
+		if (ticker.random_players)
 			new_character.gender = pick(MALE, FEMALE)
 			client.prefs.real_name = random_name(new_character.gender)
 			client.prefs.randomize_appearance_for(new_character)
@@ -812,7 +812,7 @@
 
 	src << sound(null, repeat = FALSE, wait = FALSE, volume = 85, channel = TRUE) // MAD JAMS cant last forever yo
 
-	if(mind)
+	if (mind)
 		mind.active = FALSE					//we wish to transfer the key manually
 		mind.original = new_character
 		mind.transfer_to(new_character)					//won't transfer key since the mind is not active
@@ -824,7 +824,7 @@
 		new_character.dna.b_type = client.prefs.b_type
 	new_character.sync_organ_dna()
 
-	if(client && client.prefs.disabilities)
+	if (client && client.prefs.disabilities)
 		// Set defer to TRUE if you add more crap here so it only recalculates struc_enzymes once. - N3X
 		new_character.dna.SetSEState(GLASSESBLOCK,1,0)
 		new_character.disabilities |= NEARSIGHTED
@@ -861,19 +861,19 @@
 
 /mob/new_player/get_species()
 	var/datum/species/chosen_species
-	if(client.prefs.species)
+	if (client.prefs.species)
 		chosen_species = all_species[client.prefs.species]
 
-	if(!chosen_species)
+	if (!chosen_species)
 		return "Human"
 
-	if(is_species_whitelisted(chosen_species) || has_admin_rights())
+	if (is_species_whitelisted(chosen_species) || has_admin_rights())
 		return chosen_species.name
 
 	return "Human"
 
 /mob/new_player/get_gender()
-	if(!client || !client.prefs)
+	if (!client || !client.prefs)
 		return ..()
 	return client.prefs.gender
 

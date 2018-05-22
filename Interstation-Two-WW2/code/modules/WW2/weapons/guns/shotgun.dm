@@ -71,23 +71,23 @@
 	var/recentpump = FALSE // to prevent spammage
 
 /obj/item/weapon/gun/projectile/shotgun/pump/consume_next_projectile()
-	if(chambered)
+	if (chambered)
 		return chambered.BB
 	return null
 
 /obj/item/weapon/gun/projectile/shotgun/pump/attack_self(mob/living/user as mob)
-	if(world.time >= recentpump + 10)
+	if (world.time >= recentpump + 10)
 		pump(user)
 		recentpump = world.time
 
 /obj/item/weapon/gun/projectile/shotgun/pump/proc/pump(mob/M as mob)
 	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, TRUE)
 
-	if(chambered)//We have a shell in the chamber
+	if (chambered)//We have a shell in the chamber
 		chambered.loc = get_turf(src)//Eject casing
 		chambered = null
 
-	if(loaded.len)
+	if (loaded.len)
 		var/obj/item/ammo_casing/AC = loaded[1] //load next casing.
 		loaded -= AC //Remove casing from loaded list.
 		chambered = AC

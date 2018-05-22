@@ -23,24 +23,24 @@
 
 /obj/item/weapon/material/New(var/newloc, var/material_key)
 	..(newloc)
-	if(!material_key)
+	if (!material_key)
 		material_key = default_material
 	set_material(material_key)
-	if(!material)
+	if (!material)
 		qdel(src)
 		return
 
 	matter = material.get_matter()
-	if(matter.len)
+	if (matter.len)
 		for(var/material_type in matter)
-			if(!isnull(matter[material_type]))
+			if (!isnull(matter[material_type]))
 				matter[material_type] *= force_divisor // May require a new var instead.
 
 /obj/item/weapon/material/get_material()
 	return material
 
 /obj/item/weapon/material/proc/update_force()
-	if(edge || sharp)
+	if (edge || sharp)
 		force = material.get_edge_damage()
 	else
 		force = material.get_blunt_damage()
@@ -51,14 +51,14 @@
 
 /obj/item/weapon/material/proc/set_material(var/new_material)
 	material = get_material_by_name(new_material)
-	if(!material)
+	if (!material)
 		qdel(src)
 	else
 		name = "[material.display_name] [initial(name)]"
 		health = round(material.integrity/10)
-		if(applies_material_colour)
+		if (applies_material_colour)
 			color = material.icon_colour
-		if(material.products_need_process())
+		if (material.products_need_process())
 			processing_objects |= src
 		update_force()
 
@@ -68,23 +68,23 @@
 
 /obj/item/weapon/material/apply_hit_effect()
 	..()
-	if(!unbreakable)
-		if(material.is_brittle())
+	if (!unbreakable)
+		if (material.is_brittle())
 			health = FALSE
-		else if(!prob(material.hardness))
+		else if (!prob(material.hardness))
 			health--
 		check_health()
 
 /obj/item/weapon/material/proc/check_health(var/consumed)
-	if(health<=0)
+	if (health<=0)
 		shatter(consumed)
 
 /obj/item/weapon/material/proc/shatter(var/consumed)
 	var/turf/T = get_turf(src)
 	T.visible_message("<span class='danger'>\The [src] [material.destruction_desc]!</span>")
-	if(istype(loc, /mob/living))
+	if (istype(loc, /mob/living))
 		var/mob/living/M = loc
 		M.drop_from_inventory(src)
 	playsound(src, "shatter", 70, TRUE)
-	if(!consumed && drops_debris) material.place_shard(T)
+	if (!consumed && drops_debris) material.place_shard(T)
 	qdel(src)

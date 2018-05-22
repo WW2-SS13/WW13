@@ -13,16 +13,16 @@
 
 /obj/item/stack/light_w/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	..()
-	if(istype(O,/obj/item/weapon/wirecutters))
+	if (istype(O,/obj/item/weapon/wirecutters))
 		var/obj/item/stack/cable_coil/CC = new/obj/item/stack/cable_coil(user.loc)
 		CC.amount = 5
 		amount--
 		new/obj/item/stack/material/glass(user.loc)
-		if(amount <= 0)
+		if (amount <= 0)
 			user.drop_from_inventory(src)
 			qdel(src)
 
-	if(istype(O,/obj/item/stack/material) && O.get_material_name() == DEFAULT_WALL_MATERIAL)
+	if (istype(O,/obj/item/stack/material) && O.get_material_name() == DEFAULT_WALL_MATERIAL)
 		var/obj/item/stack/M = O
 		if (M.use(1))
 			use(1)

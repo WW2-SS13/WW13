@@ -4,7 +4,7 @@
 	if (object == mob)
 		return ..(object, location, control, params)
 	var/delay = mob.CanMobAutoclick(object, location, params)
-	if(delay)
+	if (delay)
 		selected_target[1] = object
 		selected_target[2] = params
 		while(selected_target[1] && mob && !mob.lying && mob.stat == CONSCIOUS)
@@ -52,7 +52,7 @@
 	selected_target[1] = null
 
 /client/MouseDrag(src_object,atom/over_object,src_location,over_location,src_control,over_control,params)
-	if(selected_target[1] && over_object && over_object.IsAutoclickable())
+	if (selected_target[1] && over_object && over_object.IsAutoclickable())
 		selected_target[1] = over_object
 		selected_target[2] = params
 
@@ -60,10 +60,10 @@
 	return
 
 /mob/living/carbon/human/CanMobAutoclick(atom/object, location, params)
-	if(!object.IsAutoclickable())
+	if (!object.IsAutoclickable())
 		return
 	var/obj/item/H = get_active_hand()
-	if(H)
+	if (H)
 		return H.CanItemAutoclick(object, location, params)
 	else if (!H)
 		for (var/obj/item/weapon/gun/projectile/automatic/stationary/MG in get_turf(src))

@@ -2,7 +2,7 @@
 	set category = "Ghost"
 	set name = "Check Tank Users"
 
-	if(!check_rights(R_MOD))
+	if (!check_rights(R_MOD))
 		return
 
 	if (!locate(/obj/tank) in range(3, src))
@@ -33,7 +33,7 @@
 	set category = "Ghost"
 	set name = "Eject People From Tank"
 
-	if(!check_rights(R_MOD))
+	if (!check_rights(R_MOD))
 		return
 
 	if (!locate(/obj/tank) in range(3, src))

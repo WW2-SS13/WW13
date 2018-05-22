@@ -21,8 +21,8 @@
 	var/list/mutual_intelligibility = list()
 
 /datum/language/proc/get_random_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
-	if(!syllables || !syllables.len)
-		if(gender==FEMALE)
+	if (!syllables || !syllables.len)
+		if (gender==FEMALE)
 			return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
 		else
 			return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
@@ -39,8 +39,8 @@
 	return "[trim(full_name)]"
 
 /datum/language/proc/get_random_german_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
-	if(!syllables || !syllables.len)
-		if(gender==FEMALE)
+	if (!syllables || !syllables.len)
+		if (gender==FEMALE)
 			return capitalize(pick(first_names_female_german)) + " " + capitalize(pick(last_names_german))
 		else
 			return capitalize(pick(first_names_male_german)) + " " + capitalize(pick(last_names_german))
@@ -58,8 +58,8 @@
 
 
 /datum/language/proc/get_random_russian_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
-	if(!syllables || !syllables.len)
-		if(gender==FEMALE)
+	if (!syllables || !syllables.len)
+		if (gender==FEMALE)
 			return capitalize(pick(first_names_female_russian)) + " " + capitalize(pick(russify(last_names_russian, gender)))
 		else
 			return capitalize(pick(first_names_male_russian)) + " " + capitalize(pick(russify(last_names_russian, gender)))
@@ -76,8 +76,8 @@
 	return "[trim(full_name)]"
 
 /datum/language/proc/get_random_ukrainian_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
-	if(!syllables || !syllables.len)
-		if(gender==FEMALE)
+	if (!syllables || !syllables.len)
+		if (gender==FEMALE)
 			return capitalize(pick(first_names_female_ukrainian)) + " " + capitalize(pick(russify(last_names_ukrainian, gender)))
 		else
 			return capitalize(pick(first_names_male_ukrainian)) + " " + capitalize(pick(russify(last_names_ukrainian, gender)))
@@ -94,8 +94,8 @@
 	return "[trim(full_name)]"
 
 /datum/language/proc/get_random_polish_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
-	if(!syllables || !syllables.len)
-		if(gender==FEMALE)
+	if (!syllables || !syllables.len)
+		if (gender==FEMALE)
 			return capitalize(pick(first_names_female_polish)) + " " + capitalize(pick(polify(last_names_polish, gender)))
 		else
 			return capitalize(pick(first_names_male_polish)) + " " + capitalize(pick(polify(last_names_polish, gender)))
@@ -112,8 +112,8 @@
 	return "[trim(full_name)]"
 
 /datum/language/proc/get_random_italian_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
-	if(!syllables || !syllables.len)
-		if(gender==FEMALE)
+	if (!syllables || !syllables.len)
+		if (gender==FEMALE)
 			return capitalize(pick(first_names_female_italian)) + " " + capitalize(pick(last_names_italian))
 		else
 			return capitalize(pick(first_names_male_italian)) + " " + capitalize(pick(last_names_italian))
@@ -135,11 +135,11 @@
 // hearer only needs to be specified for mutual intelligibility code to work - Kachnov
 /datum/language/proc/scramble(var/input, var/mob/hearer = null)
 
-	if(!syllables || !syllables.len)
+	if (!syllables || !syllables.len)
 		return stars(input)
 
 	// If the input is cached already, move it to the end of the cache and return it
-	if(input in scramble_cache && !hearer)
+	if (input in scramble_cache && !hearer)
 		var/n = scramble_cache[input]
 		scramble_cache -= input
 		scramble_cache[input] = n
@@ -173,29 +173,29 @@
 			MI = TRUE
 		else
 			next = pick(syllables)
-		if(capitalize)
+		if (capitalize)
 			next = capitalize(next)
 			capitalize = FALSE
 		scrambled_text += next
 		if (!MI)
 			var/chance = rand(100)
-			if(chance <= 5)
+			if (chance <= 5)
 				scrambled_text += ". "
 				capitalize = TRUE
-			else if(chance > 5 && chance <= space_chance)
+			else if (chance > 5 && chance <= space_chance)
 				scrambled_text += " "
 
 	scrambled_text = trim(scrambled_text)
 	var/ending = copytext(scrambled_text, length(scrambled_text))
-	if(ending == ".")
+	if (ending == ".")
 		scrambled_text = copytext(scrambled_text,1,length(scrambled_text)-1)
 	var/input_ending = copytext(input, input_size)
-	if(input_ending in list("!","?","."))
+	if (input_ending in list("!","?","."))
 		scrambled_text += input_ending
 
 	// Add it to cache, cutting old entries if the list is too long
 	scramble_cache[input] = scrambled_text
-	if(scramble_cache.len > SCRAMBLE_CACHE_LEN)
+	if (scramble_cache.len > SCRAMBLE_CACHE_LEN)
 		scramble_cache.Cut(1, scramble_cache.len-SCRAMBLE_CACHE_LEN-1)
 
 	return scrambled_text
@@ -216,14 +216,14 @@
 /datum/language/proc/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 	log_say("[key_name(speaker)] : ([name]) [message]")
 
-	if(!speaker_mask) speaker_mask = speaker.name
+	if (!speaker_mask) speaker_mask = speaker.name
 	message = format_message(message, get_spoken_verb(message))
 
 	for(var/mob/player in player_list)
 		player.hear_broadcast(src, speaker, speaker_mask, message)
 
 /mob/proc/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
-	if((language in languages) && language.check_special_condition(src))
+	if ((language in languages) && language.check_special_condition(src))
 		var/msg = "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> [message]</span></i>"
 		src << msg
 
@@ -231,7 +231,7 @@
 	return
 
 /mob/observer/ghost/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
-	if(speaker.name == speaker_name || antagHUD)
+	if (speaker.name == speaker_name || antagHUD)
 		src << "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> ([ghost_follow_link(speaker, src)]) [message]</span></i>"
 	else
 		src << "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> [message]</span></i>"
@@ -241,9 +241,9 @@
 
 /datum/language/proc/get_spoken_verb(var/msg_end)
 	switch(msg_end)
-		if("!")
+		if ("!")
 			return pick("exclaims", "shouts", "yells")//exclaim_verb
-		if("?")
+		if ("?")
 			return ask_verb
 	return speech_verb
 
@@ -324,7 +324,7 @@
 					H.name = H.real_name
 					H.gender = H.client.prefs.italian_gender
 
-	if(!istype(new_language) || (new_language in languages))
+	if (!istype(new_language) || (new_language in languages))
 		return FALSE
 
 	languages.Add(new_language)
@@ -337,7 +337,7 @@
 
 /mob/living/remove_language(rem_language)
 	var/datum/language/L = all_languages[rem_language]
-	if(default_language == L)
+	if (default_language == L)
 		default_language = null
 	return ..()
 
@@ -346,13 +346,13 @@
 	return (universal_speak || (speaking && speaking.flags & INNATE) || speaking in languages)
 
 /mob/proc/get_language_prefix()
-	if(client && client.prefs.language_prefixes && client.prefs.language_prefixes.len)
+	if (client && client.prefs.language_prefixes && client.prefs.language_prefixes.len)
 		return client.prefs.language_prefixes[1]
 
 	return config.language_prefixes[1]
 
 /mob/proc/is_language_prefix(var/prefix)
-	if(client && client.prefs.language_prefixes && client.prefs.language_prefixes.len)
+	if (client && client.prefs.language_prefixes && client.prefs.language_prefixes.len)
 		return prefix in client.prefs.language_prefixes
 
 	return prefix in config.language_prefixes
@@ -366,7 +366,7 @@
 	var/dat = "<b><font size = 5>Known Languages</font></b><br/><br/>"
 
 	for(var/datum/language/L in languages)
-		if(!(L.flags & NONGLOBAL))
+		if (!(L.flags & NONGLOBAL))
 			dat += "<b>[L.name] ([get_language_prefix()][L.key])</b><br/>[L.desc]<br/><br/>"
 
 	src << browse(dat, "window=checklanguage")
@@ -375,12 +375,12 @@
 /mob/living/check_languages()
 	var/dat = "<b><font size = 5>Known Languages</font></b><br/><br/>"
 
-	if(default_language)
+	if (default_language)
 		dat += "Current default language: [default_language] - <a href='byond://?src=\ref[src];default_lang=reset'>reset</a><br/><br/>"
 
 	for(var/datum/language/L in languages)
-		if(!(L.flags & NONGLOBAL))
-			if(L == default_language)
+		if (!(L.flags & NONGLOBAL))
+			if (L == default_language)
 				dat += "<b>[L.name] ([get_language_prefix()][L.key])</b> - default - <a href='byond://?src=\ref[src];default_lang=reset'>reset</a><br/>[L.desc]<br/><br/>"
 			else
 				dat += "<b>[L.name] ([get_language_prefix()][L.key])</b> - <a href='byond://?src=\ref[src];default_lang=\ref[L]'>set default</a><br/>[L.desc]<br/><br/>"
@@ -388,12 +388,12 @@
 	src << browse(dat, "window=checklanguage")
 
 /mob/living/Topic(href, href_list)
-	if(href_list["default_lang"])
-		if(href_list["default_lang"] == "reset")
+	if (href_list["default_lang"])
+		if (href_list["default_lang"] == "reset")
 			set_default_language(null)
 		else
 			var/datum/language/L = locate(href_list["default_lang"])
-			if(L && (L in languages))
+			if (L && (L in languages))
 				set_default_language(L)
 		check_languages()
 		return TRUE
@@ -402,7 +402,7 @@
 
 /proc/transfer_languages(var/mob/source, var/mob/target, var/except_flags)
 	for(var/datum/language/L in source.languages)
-		if(L.flags & except_flags)
+		if (L.flags & except_flags)
 			continue
 		target.add_language(L.name)
 

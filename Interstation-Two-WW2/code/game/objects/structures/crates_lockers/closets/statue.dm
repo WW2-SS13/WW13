@@ -13,11 +13,11 @@
 	var/timer = 240 //eventually the person will be freed
 
 /obj/structure/closet/statue/New(loc, var/mob/living/L)
-	if(L && (ishuman(L) || iscorgi(L)))
-		if(L.buckled)
+	if (L && (ishuman(L) || iscorgi(L)))
+		if (L.buckled)
 			L.buckled = FALSE
 			L.anchored = FALSE
-		if(L.client)
+		if (L.client)
 			L.client.perspective = EYE_PERSPECTIVE
 			L.client.eye = src
 		L.loc = src
@@ -27,16 +27,16 @@
 		intialFire = L.getFireLoss()
 		intialBrute = L.getBruteLoss()
 		intialOxy = L.getOxyLoss()
-		if(ishuman(L))
+		if (ishuman(L))
 			name = "statue of [L.name]"
-			if(L.gender == "female")
+			if (L.gender == "female")
 				icon_state = "human_female"
-		else if(iscorgi(L))
+		else if (iscorgi(L))
 			name = "statue of a corgi"
 			icon_state = "corgi"
 			desc = "If it takes forever, I will wait for you..."
 
-	if(health == FALSE) //meaning if the statue didn't find a valid target
+	if (health == FALSE) //meaning if the statue didn't find a valid target
 		qdel(src)
 		return
 
@@ -64,7 +64,7 @@
 		M.loc = loc
 		M.sdisabilities &= ~MUTE
 		M.take_overall_damage((M.health - health - 100),0) //any new damage the statue incurred is transfered to the mob
-		if(M.client)
+		if (M.client)
 			M.client.eye = M.client.mob
 			M.client.perspective = MOB_PERSPECTIVE
 
@@ -78,7 +78,7 @@
 	return
 
 /obj/structure/closet/statue/proc/check_health()
-	if(health <= 0)
+	if (health <= 0)
 		for(var/mob/M in src)
 			shatter(M)
 
@@ -89,7 +89,7 @@
 	return
 
 /obj/structure/closet/statue/attack_generic(var/mob/user, damage, attacktext, environment_smash)
-	if(damage && environment_smash)
+	if (damage && environment_smash)
 		for(var/mob/M in src)
 			shatter(M)
 

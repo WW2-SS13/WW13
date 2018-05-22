@@ -13,7 +13,7 @@
 	mode = SYRINGE_INJECT
 
 /obj/item/weapon/reagent_containers/syringe/morphine/update_icon()
-	if(reagents.total_volume > 0)
+	if (reagents.total_volume > 0)
 		icon_state = "ww2_injector_full"
 	else
 		icon_state = "ww2_injector_empty"

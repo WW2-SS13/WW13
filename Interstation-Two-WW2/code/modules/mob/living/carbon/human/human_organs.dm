@@ -1,6 +1,6 @@
 /mob/living/carbon/human/proc/update_eyes()
 	var/obj/item/organ/eyes/eyes = internal_organs_by_name["eyes"]
-	if(eyes)
+	if (eyes)
 		eyes.update_colour()
 		regenerate_icons()
 
@@ -14,10 +14,10 @@
 
 	var/force_process = FALSE
 	var/damage_this_tick = getBruteLoss() + getFireLoss() + getToxLoss()
-	if(damage_this_tick > last_dam)
+	if (damage_this_tick > last_dam)
 		force_process = TRUE
 	last_dam = damage_this_tick
-	if(force_process)
+	if (force_process)
 		bad_external_organs.Cut()
 		for(var/obj/item/organ/external/Ex in organs)
 			bad_external_organs |= Ex
@@ -29,13 +29,13 @@
 	handle_stance()
 	handle_grasp()
 
-	if(!force_process && !bad_external_organs.len)
+	if (!force_process && !bad_external_organs.len)
 		return
 
 	for(var/obj/item/organ/external/E in bad_external_organs)
-		if(!E)
+		if (!E)
 			continue
-		if(!E.need_process())
+		if (!E.need_process())
 			bad_external_organs -= E
 			continue
 		else
@@ -56,22 +56,22 @@
 
 	var/limbs_count = 4
 	var/obj/item/organ/external/E = organs_by_name["l_foot"]
-	if(E.status & ORGAN_DESTROYED)
+	if (E.status & ORGAN_DESTROYED)
 		limbs_count--
 
 	E = organs_by_name["r_foot"]
-	if(E.status & ORGAN_DESTROYED)
+	if (E.status & ORGAN_DESTROYED)
 		limbs_count--
 
 	E = organs_by_name["r_hand"]
-	if(E.status & ORGAN_DESTROYED)
+	if (E.status & ORGAN_DESTROYED)
 		limbs_count--
 
 	E = organs_by_name["l_hand"]
-	if(E.status & ORGAN_DESTROYED)
+	if (E.status & ORGAN_DESTROYED)
 		limbs_count--
 
-	if(limbs_count == FALSE)
+	if (limbs_count == FALSE)
 		has_limbs = FALSE
 
 /mob/living/carbon/human/proc/handle_stance()
@@ -88,12 +88,12 @@
 
 	for(var/limb_tag in list("l_leg","r_leg","l_foot","r_foot"))
 		var/obj/item/organ/external/E = organs_by_name[limb_tag]
-		if(!E || (E.status & (ORGAN_MUTATED|ORGAN_DEAD)) || E.is_stump()) //should just be !E.is_usable() here but dislocation screws that up.
+		if (!E || (E.status & (ORGAN_MUTATED|ORGAN_DEAD)) || E.is_stump()) //should just be !E.is_usable() here but dislocation screws that up.
 			stance_damage += 2 // let it fail even if just foot&leg
 		else if (E.is_malfunctioning())
 			//malfunctioning only happens intermittently so treat it as a missing limb when it procs
 			stance_damage += 2
-			if(prob(10))
+			if (prob(10))
 				visible_message("\The [src]'s [E.name] [pick("twitches", "shudders")] and sparks!")
 				var/datum/effect/effect/system/spark_spread/spark_system = new ()
 				spark_system.set_up(5, FALSE, src)
@@ -114,64 +114,64 @@
 	if (r_hand && istype(r_hand, /obj/item/weapon/cane))
 		stance_damage -= 2*/
 	// standing is poor
-	if(stance_damage >= 4 || (stance_damage >= 2 && prob(5)))
-		if(!(lying || resting))
-			if(species && !(species.flags & NO_PAIN))
+	if (stance_damage >= 4 || (stance_damage >= 2 && prob(5)))
+		if (!(lying || resting))
+			if (species && !(species.flags & NO_PAIN))
 				emote("scream")
 			custom_emote(1, "collapses!")
 		Weaken(5) //can't emote while weakened, apparently.
 
 /mob/living/carbon/human/proc/handle_grasp()
-	if(!l_hand && !r_hand)
+	if (!l_hand && !r_hand)
 		return
 
 	// You should not be able to pick anything up, but stranger things have happened.
-	if(l_hand)
+	if (l_hand)
 		for(var/limb_tag in list("l_hand","l_arm"))
 			var/obj/item/organ/external/E = get_organ(limb_tag)
-			if(!E)
+			if (!E)
 				visible_message("<span class='danger'>Lacking a functioning left hand, \the [src] drops \the [l_hand].</span>")
 				drop_from_inventory(l_hand)
 				break
 
-	if(r_hand)
+	if (r_hand)
 		for(var/limb_tag in list("r_hand","r_arm"))
 			var/obj/item/organ/external/E = get_organ(limb_tag)
-			if(!E)
+			if (!E)
 				visible_message("<span class='danger'>Lacking a functioning right hand, \the [src] drops \the [r_hand].</span>")
 				drop_from_inventory(r_hand)
 				break
 
 	// Check again...
-	if(!l_hand && !r_hand)
+	if (!l_hand && !r_hand)
 		return
 
 	for (var/obj/item/organ/external/E in organs)
-		if(!E || !E.can_grasp || (E.status & ORGAN_SPLINTED))
+		if (!E || !E.can_grasp || (E.status & ORGAN_SPLINTED))
 			continue
 
-		if(E.is_broken() || E.is_dislocated())
+		if (E.is_broken() || E.is_dislocated())
 			switch(E.body_part)
-				if(HAND_LEFT, ARM_LEFT)
-					if(!l_hand)
+				if (HAND_LEFT, ARM_LEFT)
+					if (!l_hand)
 						continue
 					drop_from_inventory(l_hand)
-				if(HAND_RIGHT, ARM_RIGHT)
-					if(!r_hand)
+				if (HAND_RIGHT, ARM_RIGHT)
+					if (!r_hand)
 						continue
 					drop_from_inventory(r_hand)
 
 			var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
 			emote("me", TRUE, "[(species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
 
-		else if(E.is_malfunctioning())
+		else if (E.is_malfunctioning())
 			switch(E.body_part)
-				if(HAND_LEFT, ARM_LEFT)
-					if(!l_hand)
+				if (HAND_LEFT, ARM_LEFT)
+					if (!l_hand)
 						continue
 					drop_from_inventory(l_hand)
-				if(HAND_RIGHT, ARM_RIGHT)
-					if(!r_hand)
+				if (HAND_RIGHT, ARM_RIGHT)
+					if (!r_hand)
 						continue
 					drop_from_inventory(r_hand)
 

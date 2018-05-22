@@ -22,27 +22,27 @@
 		return
 
 	attack(var/mob/M as mob, var/mob/user as mob, var/def_zone)
-		if(standard_feed_mob(user, M))
+		if (standard_feed_mob(user, M))
 			return
 
 	afterattack(var/obj/target, var/mob/user, var/proximity)
-		if(!proximity)
+		if (!proximity)
 			return
 
 		if (istype(target, /obj/structure/pot))
 			return
 
-		if(standard_dispenser_refill(user, target))
+		if (standard_dispenser_refill(user, target))
 			return
-		if(standard_pour_into(user, target))
+		if (standard_pour_into(user, target))
 			return
 
-		if(istype(target, /obj/item/weapon/reagent_containers/food/snacks)) // These are not opencontainers but we can transfer to them
-			if(!reagents || !reagents.total_volume)
+		if (istype(target, /obj/item/weapon/reagent_containers/food/snacks)) // These are not opencontainers but we can transfer to them
+			if (!reagents || !reagents.total_volume)
 				user << "<span class='notice'>There is no condiment left in \the [src].</span>"
 				return
 
-			if(!target.reagents.get_free_space())
+			if (!target.reagents.get_free_space())
 				user << "<span class='notice'>You can't add more condiment to \the [target].</span>"
 				return
 
@@ -58,51 +58,51 @@
 		user << "<span class='notice'>You swallow some of contents of \the [src].</span>"
 
 	on_reagent_change()
-		if(icon_state == "saltshakersmall" || icon_state == "peppermillsmall" || icon_state == "flour")
+		if (icon_state == "saltshakersmall" || icon_state == "peppermillsmall" || icon_state == "flour")
 			return
-		if(reagents.reagent_list.len > 0)
+		if (reagents.reagent_list.len > 0)
 			switch(reagents.get_master_reagent_id())
-				if("ketchup")
+				if ("ketchup")
 					name = "Ketchup"
 					desc = "You feel more American already."
 					icon_state = "ketchup"
 					center_of_mass = list("x"=16, "y"=6)
-				if("capsaicin")
+				if ("capsaicin")
 					name = "Hotsauce"
 					desc = "You can almost TASTE the stomach ulcers now!"
 					icon_state = "hotsauce"
 					center_of_mass = list("x"=16, "y"=6)
-				if("enzyme")
+				if ("enzyme")
 					name = "Universal Enzyme"
 					desc = "Used in cooking various dishes."
 					icon_state = "enzyme"
 					center_of_mass = list("x"=16, "y"=6)
-				if("soysauce")
+				if ("soysauce")
 					name = "Soy Sauce"
 					desc = "A salty soy-based flavoring."
 					icon_state = "soysauce"
 					center_of_mass = list("x"=16, "y"=6)
-				if("frostoil")
+				if ("frostoil")
 					name = "Coldsauce"
 					desc = "Leaves the tongue numb in its passage."
 					icon_state = "coldsauce"
 					center_of_mass = list("x"=16, "y"=6)
-				if("sodiumchloride")
+				if ("sodiumchloride")
 					name = "Salt Shaker"
 					desc = "Salt. From space oceans, presumably."
 					icon_state = "saltshaker"
 					center_of_mass = list("x"=16, "y"=10)
-				if("blackpepper")
+				if ("blackpepper")
 					name = "Pepper Mill"
 					desc = "Often used to flavor food or make people sneeze."
 					icon_state = "peppermillsmall"
 					center_of_mass = list("x"=16, "y"=10)
-				if("cornoil")
+				if ("cornoil")
 					name = "Corn Oil"
 					desc = "A delicious oil used in cooking. Made from corn."
 					icon_state = "oliveoil"
 					center_of_mass = list("x"=16, "y"=6)
-				if("sugar")
+				if ("sugar")
 					name = "Sugar"
 					desc = "Tastey space sugar!"
 					center_of_mass = list("x"=16, "y"=6)

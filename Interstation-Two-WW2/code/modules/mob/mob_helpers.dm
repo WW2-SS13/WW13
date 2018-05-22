@@ -3,7 +3,7 @@
 	return FALSE
 
 /proc/issmall(A)
-	if(A && istype(A, /mob/living))
+	if (A && istype(A, /mob/living))
 		var/mob/living/L = A
 		return L.mob_size <= MOB_SMALL
 	return FALSE
@@ -14,12 +14,12 @@
 /mob/living/carbon/human/isSynthetic()
 	// If they are 100% robotic, they count as synthetic.
 	for(var/obj/item/organ/external/E in organs)
-		if(!(E.status & ORGAN_ROBOT))
+		if (!(E.status & ORGAN_ROBOT))
 			return FALSE
 	return TRUE
 
 proc/isdeaf(A)
-	if(isliving(A))
+	if (isliving(A))
 		var/mob/living/M = A
 		return (M.sdisabilities & DEAF) || M.ear_deaf
 	return FALSE
@@ -28,22 +28,22 @@ proc/hasorgans(A) // Fucking really??
 	return ishuman(A)
 
 proc/iscuffed(A)
-	if(istype(A, /mob/living/carbon))
+	if (istype(A, /mob/living/carbon))
 		var/mob/living/carbon/C = A
-		if(C.handcuffed)
+		if (C.handcuffed)
 			return TRUE
 	return FALSE
 /*
 proc/hassensorlevel(A, var/level)
 	var/mob/living/carbon/human/H = A
-	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
+	if (istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = H.w_uniform
 		return U.sensor_mode >= level
 	return FALSE
 
 proc/getsensorlevel(A)
 	var/mob/living/carbon/human/H = A
-	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
+	if (istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = H.w_uniform
 		return U.sensor_mode
 	return SUIT_SENSOR_OFF
@@ -73,11 +73,11 @@ var/list/global/organ_rel_size = list(
 )
 
 /proc/check_zone(zone)
-	if(!zone)	return "chest"
+	if (!zone)	return "chest"
 	switch(zone)
-		if("eyes")
+		if ("eyes")
 			zone = "head"
-		if("mouth")
+		if ("mouth")
 			zone = "head"
 	return zone
 
@@ -116,16 +116,16 @@ var/list/global/organ_rel_size = list(
 
 	zone = check_zone(zone)
 
-	if(!ranged_attack)
+	if (!ranged_attack)
 		// you cannot miss if your target is prone or restrained
-		if(target.buckled || target.lying)
+		if (target.buckled || target.lying)
 			return zone
 		// if your target is being grabbed aggressively by someone you cannot miss either
 		for(var/obj/item/weapon/grab/G in target.grabbed_by)
-			if(G.state >= GRAB_AGGRESSIVE)
+			if (G.state >= GRAB_AGGRESSIVE)
 				return zone
 
-	if(prob(miss_chance))
+	if (prob(miss_chance))
 		return null
 
 	return zone
@@ -166,18 +166,18 @@ proc/slur(phrase)
 	var/newletter=""
 	while(counter>=1)
 		newletter=copytext(phrase,(leng-counter)+1,(leng-counter)+2)
-		if(rand(1,3)==3)
-			if(lowertext(newletter)=="o")	newletter="u"
-			if(lowertext(newletter)=="s")	newletter="ch"
-			if(lowertext(newletter)=="a")	newletter="ah"
-			if(lowertext(newletter)=="c")	newletter="k"
+		if (rand(1,3)==3)
+			if (lowertext(newletter)=="o")	newletter="u"
+			if (lowertext(newletter)=="s")	newletter="ch"
+			if (lowertext(newletter)=="a")	newletter="ah"
+			if (lowertext(newletter)=="c")	newletter="k"
 		switch(rand(1,15))
-			if(1,3,5,8)	newletter="[lowertext(newletter)]"
-			if(2,4,6,15)	newletter="[uppertext(newletter)]"
-			if(7)	newletter+="'"
-			//if(9,10)	newletter="<b>[newletter]</b>"
-			//if(11,12)	newletter="<big>[newletter]</big>"
-			//if(13)	newletter="<small>[newletter]</small>"
+			if (1,3,5,8)	newletter="[lowertext(newletter)]"
+			if (2,4,6,15)	newletter="[uppertext(newletter)]"
+			if (7)	newletter+="'"
+			//if (9,10)	newletter="<b>[newletter]</b>"
+			//if (11,12)	newletter="<big>[newletter]</big>"
+			//if (13)	newletter="<small>[newletter]</small>"
 		newphrase+="[newletter]";counter-=1
 	return rhtml_encode(newphrase)
 
@@ -220,8 +220,8 @@ proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 fo
 	for(var/i = TRUE, i <= length(t), i++)
 
 		var/letter = copytext(t, i, i+1)
-		if(prob(50))
-			if(p >= 70)
+		if (prob(50))
+			if (p >= 70)
 				letter = ""
 
 			for(var/j = TRUE, j <= rand(0, 2), j++)
@@ -245,7 +245,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	while(p <= n)
 		var/n_letter
 		var/n_mod = rand(1,4)
-		if(p+n_mod>n+1)
+		if (p+n_mod>n+1)
 			n_letter = copytext(te, p, n+1)
 		else
 			n_letter = copytext(te, p, p+n_mod)
@@ -262,14 +262,14 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 
 /proc/shake_camera(mob/M, duration, strength=1)
-	if(!M || !M.client || M.shakecamera || M.stat || isEye(M) || isAI(M))
+	if (!M || !M.client || M.shakecamera || M.stat || isEye(M) || isAI(M))
 		return
 	M.shakecamera = TRUE
 	spawn(1)
-		if(isnull(M))
+		if (isnull(M))
 			return
 
-		if(!M.client)
+		if (!M.client)
 			return
 
 		var/atom/oldeye=M.client.eye
@@ -290,10 +290,10 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 
 /mob/proc/abiotic(var/full_body = FALSE)
-	if(full_body && ((l_hand && !( l_hand.abstract )) || (r_hand && !( r_hand.abstract )) || (back || wear_mask)))
+	if (full_body && ((l_hand && !( l_hand.abstract )) || (r_hand && !( r_hand.abstract )) || (back || wear_mask)))
 		return TRUE
 
-	if((l_hand && !( l_hand.abstract )) || (r_hand && !( r_hand.abstract )))
+	if ((l_hand && !( l_hand.abstract )) || (r_hand && !( r_hand.abstract )))
 		return TRUE
 
 	return FALSE
@@ -301,24 +301,24 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 //converts intent-strings into numbers and back
 var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 /proc/intent_numeric(argument)
-	if(istext(argument))
+	if (istext(argument))
 		switch(argument)
-			if(I_HELP)		return FALSE
-			if(I_DISARM)	return TRUE
-			if(I_GRAB)		return 2
+			if (I_HELP)		return FALSE
+			if (I_DISARM)	return TRUE
+			if (I_GRAB)		return 2
 			else			return 3
 	else
 		switch(argument)
-			if(0)			return I_HELP
-			if(1)			return I_DISARM
-			if(2)			return I_GRAB
+			if (0)			return I_HELP
+			if (1)			return I_DISARM
+			if (2)			return I_GRAB
 			else			return I_HURT
 
 
 proc/is_blind(A)
-	if(istype(A, /mob/living/carbon))
+	if (istype(A, /mob/living/carbon))
 		var/mob/living/carbon/C = A
-		if(C.sdisabilities & BLIND || C.blinded)
+		if (C.sdisabilities & BLIND || C.blinded)
 			return TRUE
 	return FALSE
 /*
@@ -332,13 +332,13 @@ proc/is_blind(A)
 	var/turf/sourceturf = get_turf(broadcast_source)
 	for(var/mob/M in targets)
 		var/turf/targetturf = get_turf(M)
-		if((targetturf.z == sourceturf.z))
+		if ((targetturf.z == sourceturf.z))
 			M.show_message("<span class='info'>\icon[icon] [message]</span>", TRUE)
 */
 /proc/mobs_in_area(var/area/A)
 	var/list/mobs = new
 	for(var/mob/living/M in mob_list)
-		if(get_area(M) == A)
+		if (get_area(M) == A)
 			mobs += M
 	return mobs
 
@@ -348,17 +348,17 @@ proc/is_blind(A)
 /proc/say_dead_direct(var/message, var/mob/subject = null)
 	var/name
 	var/keyname
-	if(subject && subject.client)
+	if (subject && subject.client)
 		var/client/C = subject.client
 		keyname = (C.holder && C.holder.fakekey) ? C.holder.fakekey : C.key
-		if(C.mob) //Most of the time this is the dead/observer mob; we can totally use him if there is no better name
+		if (C.mob) //Most of the time this is the dead/observer mob; we can totally use him if there is no better name
 		/*	var/mindname
 			var/realname = C.mob.real_name
-			if(C.mob.mind)
+			if (C.mob.mind)
 				mindname = C.mob.mind.name
-				if(C.mob.mind.original && C.mob.mind.original.real_name)
+				if (C.mob.mind.original && C.mob.mind.original.real_name)
 					realname = C.mob.mind.original.real_name
-			if(mindname && mindname != realname)
+			if (mindname && mindname != realname)
 				name = "[realname] died as [mindname]"
 			else
 				name = realname*/
@@ -367,23 +367,23 @@ proc/is_blind(A)
 
 
 	for(var/mob/M in player_list)
-		if(M.client && ((!istype(M, /mob/new_player) && M.stat == DEAD) || (M.client.holder && !is_mentor(M.client))) && M.is_preference_enabled(/datum/client_preference/show_dsay))
+		if (M.client && ((!istype(M, /mob/new_player) && M.stat == DEAD) || (M.client.holder && !is_mentor(M.client))) && M.is_preference_enabled(/datum/client_preference/show_dsay))
 			var/follow
 			var/lname
-			if(subject)
-				if(subject != M)
+			if (subject)
+				if (subject != M)
 					follow = "([ghost_follow_link(subject, M)]) "
-				if(M.stat != DEAD && M.client.holder)
+				if (M.stat != DEAD && M.client.holder)
 					follow = "([admin_jump_link(subject, M.client.holder)]) "
 				var/mob/observer/ghost/DM
-				if(isghost(subject))
+				if (isghost(subject))
 					DM = subject
-				if(M.client.holder) 							// What admins see
+				if (M.client.holder) 							// What admins see
 					lname = "[keyname][(DM && DM.anonsay) ? "*" : (DM ? "" : "^")] ([name])"
 				else
-					if(DM && DM.anonsay)						// If the person is actually observer they have the option to be anonymous
+					if (DM && DM.anonsay)						// If the person is actually observer they have the option to be anonymous
 						lname = "Ghost of [name]"
-					else if(DM)									// Non-anons
+					else if (DM)									// Non-anons
 						lname = "[keyname] ([name])"
 					else										// Everyone else (dead people who didn't ghost yet, etc.)
 						lname = name
@@ -394,33 +394,33 @@ proc/is_blind(A)
 /proc/announce_ghost_joinleave(O, var/joined_ghosts = TRUE, var/message = "")
 	var/client/C
 	//Accept any type, sort what we want here
-	if(istype(O, /mob))
+	if (istype(O, /mob))
 		var/mob/M = O
-		if(M.client)
+		if (M.client)
 			C = M.client
-	else if(istype(O, /client))
+	else if (istype(O, /client))
 		C = O
-	else if(istype(O, /datum/mind))
+	else if (istype(O, /datum/mind))
 		var/datum/mind/M = O
-		if(M.current && M.current.client)
+		if (M.current && M.current.client)
 			C = M.current.client
-		else if(M.original && M.original.client)
+		else if (M.original && M.original.client)
 			C = M.original.client
 
-	if(C)
+	if (C)
 		var/name
-		if(C.mob)
+		if (C.mob)
 			var/mob/M = C.mob
-			if(M.mind && M.mind.name)
+			if (M.mind && M.mind.name)
 				name = M.mind.name
-			if(M.real_name && M.real_name != name)
-				if(name)
+			if (M.real_name && M.real_name != name)
+				if (name)
 					name += " ([M.real_name])"
 				else
 					name = M.real_name
-		if(!name)
+		if (!name)
 			name = (C.holder && C.holder.fakekey) ? C.holder.fakekey : C.key
-		if(joined_ghosts)
+		if (joined_ghosts)
 			say_dead_direct("The ghost of <span class='name'>[name]</span> now [pick("skulks","lurks","prowls","creeps","stalks")] among the dead. [message]")
 		else
 			say_dead_direct("<span class='name'>[name]</span> no longer [pick("skulks","lurks","prowls","creeps","stalks")] in the realm of the dead. [message]")
@@ -437,66 +437,66 @@ proc/is_blind(A)
 
 #define SAFE_PERP -50
 /mob/living/proc/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
-	if(stat == DEAD)
+	if (stat == DEAD)
 		return SAFE_PERP
 
 	return FALSE
 
 /mob/living/carbon/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
-	if(handcuffed)
+	if (handcuffed)
 		return SAFE_PERP
 
 	return ..()
 
 /mob/living/carbon/human/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
 	var/threatcount = ..()
-	if(. == SAFE_PERP)
+	if (. == SAFE_PERP)
 		return SAFE_PERP
 /*
 	//Agent cards lower threatlevel.
 	var/obj/item/weapon/card/id/id = GetIdCard()
 
-/*	if(id && istype(id, /obj/item/weapon/card/id/syndicate))
+/*	if (id && istype(id, /obj/item/weapon/card/id/syndicate))
 		threatcount -= 2*/
 	// A proper	CentCom id is hard currency.
-	else if(id && istype(id, /obj/item/weapon/card/id/centcom))
+	else if (id && istype(id, /obj/item/weapon/card/id/centcom))
 		return SAFE_PERP
 */
 /*
-	if(check_access && !access_obj.allowed(src))
+	if (check_access && !access_obj.allowed(src))
 		threatcount += 4
 */
 /*
-	if(auth_weapons && !access_obj.allowed(src))
-		if(istype(l_hand, /obj/item/weapon/gun) || istype(l_hand, /obj/item/weapon/melee))
+	if (auth_weapons && !access_obj.allowed(src))
+		if (istype(l_hand, /obj/item/weapon/gun) || istype(l_hand, /obj/item/weapon/melee))
 			threatcount += 4
 
-		if(istype(r_hand, /obj/item/weapon/gun) || istype(r_hand, /obj/item/weapon/melee))
+		if (istype(r_hand, /obj/item/weapon/gun) || istype(r_hand, /obj/item/weapon/melee))
 			threatcount += 4
 
-		if(istype(belt, /obj/item/weapon/gun) || istype(belt, /obj/item/weapon/melee))
+		if (istype(belt, /obj/item/weapon/gun) || istype(belt, /obj/item/weapon/melee))
 			threatcount += 2
 
-		if(species.name != "Human")
+		if (species.name != "Human")
 			threatcount += 2*/
 /*
-	if(check_records || check_arrest)
+	if (check_records || check_arrest)
 		var/perpname = name
-		if(id)
+		if (id)
 			perpname = id.registered_name
 
 		var/datum/data/record/R = find_security_record("name", perpname)
-		if(check_records && !R)
+		if (check_records && !R)
 			threatcount += 4
 
-		if(check_arrest && R && (R.fields["criminal"] == "*Arrest*"))
+		if (check_arrest && R && (R.fields["criminal"] == "*Arrest*"))
 			threatcount += 4
 */
 	return threatcount
 
 /mob/living/simple_animal/hostile/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
 	var/threatcount = ..()
-	if(. == SAFE_PERP)
+	if (. == SAFE_PERP)
 		return SAFE_PERP
 
 	return threatcount
@@ -504,7 +504,7 @@ proc/is_blind(A)
 #undef SAFE_PERP
 /*
 /mob/proc/get_multitool(var/obj/item/multitool/P)
-	if(istype(P))
+	if (istype(P))
 		return P
 
 /mob/observer/ghost/get_multitool()

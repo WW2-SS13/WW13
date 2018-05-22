@@ -72,7 +72,7 @@ var/global/processScheduler/processScheduler
 
 /processScheduler/proc/setup()
 	// There can be only one
-	if(processScheduler && processScheduler != src)
+	if (processScheduler && processScheduler != src)
 		del(src)
 		return FALSE
 
@@ -126,12 +126,12 @@ var/global/processScheduler/processScheduler
 		var/previousStatus = p.getPreviousStatus()
 
 		// Check status changes
-		if(status != previousStatus)
+		if (status != previousStatus)
 			//Status changed.
 			switch(status)
-				if(PROCESS_STATUS_PROBABLY_HUNG)
+				if (PROCESS_STATUS_PROBABLY_HUNG)
 					message_admins("Process '[p.name]' may be hung.")
-				if(PROCESS_STATUS_HUNG)
+				if (PROCESS_STATUS_HUNG)
 					message_admins("Process '[p.name]' is hung and will be restarted.")
 
 /processScheduler/proc/queueProcesses()
@@ -214,7 +214,7 @@ var/global/processScheduler/processScheduler
 
 /processScheduler/proc/updateStartDelays()
 	for(var/process/p in processes)
-		if(p.start_delay)
+		if (p.start_delay)
 			last_queued[p] = world.time - p.start_delay
 
 /processScheduler/proc/runProcess(var/process/process)
@@ -271,7 +271,7 @@ var/global/processScheduler/processScheduler
 
 	var/lastRunTime = time - last_start[process]
 
-	if(lastRunTime < 0)
+	if (lastRunTime < 0)
 		lastRunTime = 0
 
 	recordRunTime(process, lastRunTime)
@@ -282,7 +282,7 @@ var/global/processScheduler/processScheduler
  */
 /processScheduler/proc/recordRunTime(var/process/process, time)
 	last_run_time[process] = time
-	if(time > highest_run_time[process])
+	if (time > highest_run_time[process])
 		highest_run_time[process] = time
 
 	var/list/lastTwenty = last_twenty_run_times[process]
@@ -304,7 +304,7 @@ var/global/processScheduler/processScheduler
 		t += time
 		c++
 
-	if(c > 0)
+	if (c > 0)
 		return t / c
 	return c
 
@@ -380,7 +380,7 @@ var/global/processScheduler/processScheduler
 	timeAllowance = min(timeAllowanceMax, max(0, timeAllowance + timeAllowanceDelta))
 
 /processScheduler/proc/statProcesses()
-	if(!isRunning)
+	if (!isRunning)
 		stat("Processes", "Scheduler not running")
 		return
 	stat("Processes", "[processes.len] (R [running.len] / Q [queued.len] / I [idle.len])")
@@ -390,7 +390,7 @@ var/global/processScheduler/processScheduler
 
 /processScheduler/proc/htmlProcesses()
 	. = "<html><body>"
-	if(!isRunning)
+	if (!isRunning)
 		. += "<p><big>Processes: Scheduler not running</big></p>"
 		return
 	. += "<p><big>Processes: [processes.len] (R [running.len] / Q [queued.len] / I [idle.len])</big></p>"

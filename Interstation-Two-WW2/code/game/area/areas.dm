@@ -73,7 +73,7 @@ var/list/teleportlocs = list()
 /hook/startup/proc/setupTeleportLocs()
 	for(var/area in area_list)
 		var/area/AR = area
-		if(teleportlocs.Find(AR.name)) continue
+		if (teleportlocs.Find(AR.name)) continue
 		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))
 		if (picked)
 			teleportlocs += AR.name
@@ -88,8 +88,8 @@ var/list/ghostteleportlocs = list()
 /hook/startup/proc/setupGhostTeleportLocs()
 	for(var/area in area_list)
 		var/area/AR = area
-		if(ghostteleportlocs.Find(AR.name)) continue
-		if(!istype(AR, /area/prishtina)) continue
+		if (ghostteleportlocs.Find(AR.name)) continue
+		if (!istype(AR, /area/prishtina)) continue
 		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))
 		if (picked)
 			ghostteleportlocs += AR.name
@@ -112,7 +112,7 @@ var/list/ghostteleportlocs = list()
 	layer = 10
 	uid = ++global_uid
 
-	if(!requires_power || config.machinery_does_not_use_power)
+	if (!requires_power || config.machinery_does_not_use_power)
 		power_light = FALSE
 		power_equip = FALSE
 		power_environ = FALSE
@@ -128,9 +128,9 @@ var/list/ghostteleportlocs = list()
 	area_list |= src
 
 /area/proc/initialize()
-	if(config.machinery_does_not_use_power)
+	if (config.machinery_does_not_use_power)
 		requires_power = FALSE
-	if(!requires_power/* || !apc*/)
+	if (!requires_power/* || !apc*/)
 		power_light = FALSE
 		power_equip = FALSE
 		power_environ = FALSE
@@ -178,13 +178,13 @@ var/list/ghostteleportlocs = list()
 	return
 
 /area/proc/readyalert()
-	if(!eject)
+	if (!eject)
 		eject = TRUE
 		updateicon()
 	return
 
 /area/proc/readyreset()
-	if(eject)
+	if (eject)
 		eject = FALSE
 		updateicon()
 	return
@@ -201,20 +201,20 @@ var/list/ghostteleportlocs = list()
 */
 /area/proc/updateicon()
 	if ((fire || eject) && (!requires_power||power_environ))//If it doesn't require power, can still activate this proc.
-		if(fire)
+		if (fire)
 			//icon_state = "blue"
 			for(var/obj/structure/light/L in src)
-				if(istype(L, /obj/structure/light/small))
+				if (istype(L, /obj/structure/light/small))
 					continue
 				L.set_red()
 	/*	else if (atmosalm == 2)
 			for(var/obj/machinery/light/L in src)
-				if(istype(L, /obj/machinery/light/small))
+				if (istype(L, /obj/machinery/light/small))
 					continue
 				L.set_blue()
-		else if(!fire && eject && !party && !(atmosalm == 2))
+		else if (!fire && eject && !party && !(atmosalm == 2))
 			icon_state = "red"
-		else if(party && !fire && !eject && !(atmosalm == 2))
+		else if (party && !fire && !eject && !(atmosalm == 2))
 			icon_state = "party"*/
 		//else
 			//icon_state = "blue-red"
@@ -222,7 +222,7 @@ var/list/ghostteleportlocs = list()
 	//	new lighting behaviour with obj lights
 		icon_state = null
 		for(var/obj/structure/light/L in src)
-			if(istype(L, /obj/structure/light/small))
+			if (istype(L, /obj/structure/light/small))
 				continue
 			L.reset_color()
 
@@ -235,16 +235,16 @@ var/list/ghostteleportlocs = list()
 
 /area/proc/powered(var/chan)		// return true if the area has power to given channel
 
-	if(!requires_power)
+	if (!requires_power)
 		return TRUE
-	if(always_unpowered)
+	if (always_unpowered)
 		return FALSE
 	switch(chan)
-		if(EQUIP)
+		if (EQUIP)
 			return power_equip
-		if(LIGHT)
+		if (LIGHT)
 			return power_light
-		if(ENVIRON)
+		if (ENVIRON)
 			return power_environ
 
 	return FALSE
@@ -260,13 +260,13 @@ var/list/ghostteleportlocs = list()
 /area/proc/usage(var/chan)
 	var/used = FALSE
 	switch(chan)
-		if(LIGHT)
+		if (LIGHT)
 			used += used_light
-		if(EQUIP)
+		if (EQUIP)
 			used += used_equip
-		if(ENVIRON)
+		if (ENVIRON)
 			used += used_environ
-		if(TOTAL)
+		if (TOTAL)
 			used += used_light + used_equip + used_environ
 	return used
 
@@ -277,28 +277,28 @@ var/list/ghostteleportlocs = list()
 
 /area/proc/use_power(var/amount, var/chan)
 	switch(chan)
-		if(EQUIP)
+		if (EQUIP)
 			used_equip += amount
-		if(LIGHT)
+		if (LIGHT)
 			used_light += amount
-		if(ENVIRON)
+		if (ENVIRON)
 			used_environ += amount
 
 
 var/list/mob/living/forced_ambiance_list = new
 
 /area/Entered(A)
-	if(!istype(A,/mob/living))	return
+	if (!istype(A,/mob/living))	return
 
 	var/mob/living/L = A
-	if(!L.ckey)	return
+	if (!L.ckey)	return
 
-	if(!L.lastarea)
+	if (!L.lastarea)
 		L.lastarea = get_area(L.loc)
 
 	var/area/newarea = get_area(L.loc)
 	var/area/oldarea = L.lastarea
-	if((oldarea.has_gravity == FALSE) && (newarea.has_gravity == TRUE) && (L.m_intent == "run")) // Being ready when you change areas gives you a chance to avoid falling all together.
+	if ((oldarea.has_gravity == FALSE) && (newarea.has_gravity == TRUE) && (L.m_intent == "run")) // Being ready when you change areas gives you a chance to avoid falling all together.
 		thunk(L)
 		L.update_floating( L.Check_Dense_Object() )
 
@@ -321,26 +321,26 @@ var/list/mob/living/forced_ambiance_list = new
 /area/proc/play_ambience(var/mob/living/L, var/override = FALSE)
 
     // Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
-//	if(!(L && L.is_preference_enabled(/datum/client_preference/play_ambiance)))    return
-	if(!L || !istype(L) || !L.loc)
+//	if (!(L && L.is_preference_enabled(/datum/client_preference/play_ambiance)))    return
+	if (!L || !istype(L) || !L.loc)
 		return
 
 	var/client/CL = L.client
 /*
-	if(CL.ambience_playing && !override) // If any ambience already playing
-		if(forced_ambience && forced_ambience.len)
-			if(CL.ambience_playing in forced_ambience)
+	if (CL.ambience_playing && !override) // If any ambience already playing
+		if (forced_ambience && forced_ambience.len)
+			if (CL.ambience_playing in forced_ambience)
 				return TRUE
 			else
 				var/new_ambience = pick(pick(forced_ambience))
 				CL.ambience_playing = new_ambience
 				L << sound(new_ambience, repeat = TRUE, wait = FALSE, volume = 30, channel = SOUND_CHANNEL_AMBIENCE)
 				return TRUE
-		if(CL.ambience_playing in ambience)
+		if (CL.ambience_playing in ambience)
 			return TRUE
 
-	if(ambience.len && prob(35))
-		if(world.time >= L.client.played + 600)
+	if (ambience.len && prob(35))
+		if (world.time >= L.client.played + 600)
 			var/sound = pick(ambience)
 			CL.ambience_playing = sound
 			L << sound(sound, repeat = FALSE, wait = FALSE, volume = 10, channel = SOUND_CHANNEL_AMBIENCE)
@@ -392,20 +392,20 @@ var/list/mob/living/forced_ambiance_list = new
 	A.has_gravity = gravitystate
 
 	for(var/mob/M in A)
-		if(has_gravity)
+		if (has_gravity)
 			thunk(M)
 		M.update_floating( M.Check_Dense_Object() )
 
 /area/proc/thunk(mob)
-	if(istype(get_turf(mob), /turf/space)) // Can't fall onto nothing.
+	if (istype(get_turf(mob), /turf/space)) // Can't fall onto nothing.
 		return
 
-	if(istype(mob,/mob/living/carbon/human/))
+	if (istype(mob,/mob/living/carbon/human/))
 		var/mob/living/carbon/human/H = mob
-		if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.item_flags & NOSLIP))
+		if (istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.item_flags & NOSLIP))
 			return
 
-		if(H.m_intent == "run")
+		if (H.m_intent == "run")
 			H.AdjustStunned(2)
 			H.AdjustWeakened(2)
 		else

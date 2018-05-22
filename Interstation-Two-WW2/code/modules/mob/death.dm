@@ -25,11 +25,11 @@
 		animation.master = src
 
 		flick(anim, animation)
-		if(do_gibs) gibs(loc)
+		if (do_gibs) gibs(loc)
 
 		spawn(15)
-			if(animation)	qdel(animation)
-			if(src)			qdel(src)
+			if (animation)	qdel(animation)
+			if (src)			qdel(src)
 
 // gibbing, but without organ or item dropping
 /mob/proc/crush(anim="gibbed-m",do_gibs)
@@ -54,15 +54,15 @@
 		animation.master = src
 
 		flick(anim, animation)
-		if(do_gibs) gibs(loc)
+		if (do_gibs) gibs(loc)
 
 		// I couldn't find the gib sound, so I'm using this instead
 		// - Kachnov
 		playsound(loc, 'sound/effects/splat.ogg', 100)
 
 		spawn(15)
-			if(animation)	qdel(animation)
-			if(src)			qdel(src)
+			if (animation)	qdel(animation)
+			if (src)			qdel(src)
 
 /mob/proc/maim()
 	crush()
@@ -87,13 +87,13 @@
 
 	dead_mob_list -= src
 	spawn(15)
-		if(animation)	qdel(animation)
-		if(src)			qdel(src)
+		if (animation)	qdel(animation)
+		if (src)			qdel(src)
 
 
 /mob/proc/death(gibbed,deathmessage="seizes up and falls limp...")
 
-	if(stat == DEAD)
+	if (stat == DEAD)
 		return FALSE
 
 	facing_dir = null
@@ -114,20 +114,20 @@
 	drop_r_hand()
 	drop_l_hand()
 
-	if(istype(src,/mob/living))
+	if (istype(src,/mob/living))
 		var/mob/living/L = src
-		if(L.HUDneed.Find("health"))
+		if (L.HUDneed.Find("health"))
 			var/obj/screen/health/H = L.HUDneed["health"]
 			H.icon_state = "health7"
 
 	timeofdeath = world.time
-	if(mind) mind.store_memory("Time of death: [stationtime2text()]", FALSE)
+	if (mind) mind.store_memory("Time of death: [stationtime2text()]", FALSE)
 	living_mob_list -= src
 	dead_mob_list |= src
 
 	updateicon()
 /*
-	if(ticker && ticker.mode)
+	if (ticker && ticker.mode)
 		ticker.mode.check_win()*/
 
 	if (client)

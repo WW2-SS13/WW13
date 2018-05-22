@@ -10,7 +10,7 @@
 
 	FORNEXT(burning_objs)
 		var/obj/O = current
-		if(!isDeleted(O))
+		if (!isDeleted(O))
 			try
 				if (prob(5))
 					for (var/v in 2 to 3)
@@ -28,7 +28,7 @@
 
 	FORNEXT(burning_turfs)
 		var/turf/T = current
-		if(!isDeleted(T) && T.density)
+		if (!isDeleted(T) && T.density)
 			try
 				if (prob(3))
 					for (var/v in 4 to 5)

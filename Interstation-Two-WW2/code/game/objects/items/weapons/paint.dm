@@ -18,20 +18,20 @@ var/global/list/cached_icons = list()
 	var/paint_type = "red"
 
 	afterattack(turf/target, mob/user, proximity)
-		if(!proximity) return
-		if(istype(target) && reagents.total_volume > 5)
+		if (!proximity) return
+		if (istype(target) && reagents.total_volume > 5)
 			user.visible_message("<span class='warning'>\The [target] has been splashed with something by [user]!</span>")
 			reagents.trans_to_turf(target, 5)
 		else
 			return ..()
 
 	New()
-		if(paint_type && lentext(paint_type) > 0)
+		if (paint_type && lentext(paint_type) > 0)
 			name = paint_type + " " + name
 		..()
 		reagents.add_reagent("water", volume*3/5)
 		reagents.add_reagent("plasticide", volume/5)
-		if(paint_type == "white") //why don't white crayons exist
+		if (paint_type == "white") //why don't white crayons exist
 			reagents.add_reagent("aluminum", volume/5)
 		else if (paint_type == "black")
 			reagents.add_reagent("carbon", volume/5)

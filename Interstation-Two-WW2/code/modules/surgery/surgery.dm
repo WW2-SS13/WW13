@@ -29,17 +29,17 @@
 
 	// Checks if this step applies to the user mob at all
 	proc/is_valid_target(mob/living/carbon/human/target)
-		if(!hasorgans(target))
+		if (!hasorgans(target))
 			return FALSE
 
-		if(allowed_species)
+		if (allowed_species)
 			for(var/species in allowed_species)
-				if(target.species.get_bodytype() == species)
+				if (target.species.get_bodytype() == species)
 					return TRUE
 
-		if(disallowed_species)
+		if (disallowed_species)
 			for(var/species in disallowed_species)
-				if(target.species.get_bodytype() == species)
+				if (target.species.get_bodytype() == species)
 					return FALSE
 
 		return TRUE
@@ -71,35 +71,35 @@
 		return null
 
 proc/spread_germs_to_organ(var/obj/item/organ/external/E, var/mob/living/carbon/human/user)
-	if(!istype(user) || !istype(E)) return
+	if (!istype(user) || !istype(E)) return
 
 	var/germ_level = user.germ_level
-	if(user.gloves)
+	if (user.gloves)
 		germ_level = user.gloves.germ_level
 
 	E.germ_level = max(germ_level,E.germ_level) //as funny as scrubbing microbes out with clean gloves is - no.
 
 proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
-	if(!istype(M))
+	if (!istype(M))
 		return FALSE
 	if (user.a_intent == I_HURT)	//check for Hippocratic Oath
 		return FALSE
 	var/zone = user.targeted_organ
-	if(zone in M.op_stage.in_progress) //Can't operate on someone repeatedly.
+	if (zone in M.op_stage.in_progress) //Can't operate on someone repeatedly.
 		user << "<span class='warning'>You can't operate on this area while surgery is already in progress.</span>"
 		return TRUE
 	for(var/datum/surgery_step/S in surgery_steps)
 		//check if tool is right or close enough and if this step is possible
-		if(S.tool_quality(tool, user))
+		if (S.tool_quality(tool, user))
 			var/step_is_valid = S.can_use(user, M, zone, tool)
-			if(step_is_valid && S.is_valid_target(M))
+			if (step_is_valid && S.is_valid_target(M))
 				var/starttime = world.time
-				if(step_is_valid == SURGERY_FAILURE) // This is a failure that already has a message for failing.
+				if (step_is_valid == SURGERY_FAILURE) // This is a failure that already has a message for failing.
 					return TRUE
 				M.op_stage.in_progress += zone
 				S.begin_step(user, M, zone, tool)		//start on it
 				//We had proper tools! (or RNG smiled.) and user did not move or change hands.
-				if(prob(S.tool_quality(tool, user)) && do_mob(user, M, rand(S.min_duration, S.max_duration)))
+				if (prob(S.tool_quality(tool, user)) && do_mob(user, M, rand(S.min_duration, S.max_duration)))
 					S.end_step(user, M, zone, tool)		//finish successfully
 					if (ishuman(user))
 						var/mob/living/carbon/human/H = user
@@ -127,14 +127,14 @@ proc/sort_surgeries()
 	var/swapped = TRUE
 	while (gap > 1 || swapped)
 		swapped = FALSE
-		if(gap > 1)
+		if (gap > 1)
 			gap = round(gap / 1.247330950103979)
-		if(gap < 1)
+		if (gap < 1)
 			gap = TRUE
 		for(var/i = TRUE; gap + i <= surgery_steps.len; i++)
 			var/datum/surgery_step/l = surgery_steps[i]		//Fucking hate
 			var/datum/surgery_step/r = surgery_steps[gap+i]	//how lists work here
-			if(l.priority < r.priority)
+			if (l.priority < r.priority)
 				surgery_steps.Swap(i, gap + i)
 				swapped = TRUE
 

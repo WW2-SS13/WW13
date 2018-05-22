@@ -10,9 +10,9 @@
 	return STATUS_CLOSE // By default no mob can do anything with NanoUI
 
 /mob/observer/ghost/default_can_use_topic(var/src_object)
-	if(can_admin_interact())
+	if (can_admin_interact())
 		return STATUS_INTERACTIVE							// Admins are more equal
-	if(!client || get_dist(src_object, src)	> client.view)	// Preventing ghosts from having a million windows open by limiting to objects in range
+	if (!client || get_dist(src_object, src)	> client.view)	// Preventing ghosts from having a million windows open by limiting to objects in range
 		return STATUS_CLOSE
 	return STATUS_UPDATE									// Ghosts can view updates
 
@@ -35,15 +35,15 @@
 
 /mob/living/default_can_use_topic(var/src_object)
 	. = shared_nano_interaction(src_object)
-	if(. != STATUS_CLOSE)
-		if(loc)
+	if (. != STATUS_CLOSE)
+		if (loc)
 			. = min(., loc.contents_nano_distance(src_object, src))
-	if(STATUS_INTERACTIVE)
+	if (STATUS_INTERACTIVE)
 		return STATUS_UPDATE
 
 /mob/living/carbon/human/default_can_use_topic(var/src_object)
 	. = shared_nano_interaction(src_object)
-	if(. != STATUS_CLOSE)
+	if (. != STATUS_CLOSE)
 		. = min(., shared_living_nano_distance(src_object))
-		if(. == STATUS_UPDATE && (TK in mutations))	// If we have telekinesis and remain close enough, allow interaction.
+		if (. == STATUS_UPDATE && (TK in mutations))	// If we have telekinesis and remain close enough, allow interaction.
 			return STATUS_INTERACTIVE

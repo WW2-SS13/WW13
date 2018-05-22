@@ -47,18 +47,18 @@
 		base_name = name
 
 	examine(var/mob/user)
-		if(!..(user, 2))
+		if (!..(user, 2))
 			return
-		if(reagents && reagents.reagent_list.len)
+		if (reagents && reagents.reagent_list.len)
 			user << "<span class='notice'>It contains [reagents.total_volume] units of liquid.</span>"
 		else
 			user << "<span class='notice'>It is empty.</span>"
-		if(!is_open_container())
+		if (!is_open_container())
 			user << "<span class='notice'>Airtight lid seals it completely.</span>"
 
 	attack_self()
 		..()
-		if(is_open_container())
+		if (is_open_container())
 			playsound(src,'sound/effects/Lid_Removal_Bottle_mono.wav',50,1)
 			usr << "<span class = 'notice'>You put the lid on \the [src].</span>"
 			flags ^= OPENCONTAINER
@@ -72,30 +72,30 @@
 		if (istype(target, /obj/structure/pot))
 			return
 
-		if(!is_open_container() || !flag)
+		if (!is_open_container() || !flag)
 			return
 
 		for(var/type in can_be_placed_into)
-			if(istype(target, type))
+			if (istype(target, type))
 				return
 
-		if(standard_splash_mob(user, target))
+		if (standard_splash_mob(user, target))
 			return
-		if(standard_dispenser_refill(user, target))
+		if (standard_dispenser_refill(user, target))
 			return
-		if(standard_pour_into(user, target))
+		if (standard_pour_into(user, target))
 			return
 
-		if(reagents.total_volume)
+		if (reagents.total_volume)
 			playsound(src,'sound/effects/Splash_Small_01_mono.wav',50,1)
 			user << "<span class='notice'>You splash the solution onto [target].</span>"
 			reagents.splash(target, reagents.total_volume)
 			return
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/flashlight/pen))
+		if (istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/flashlight/pen))
 			var/tmp_label = sanitizeSafe(input(user, "Enter a label for [name]", "Label", label_text), MAX_NAME_LEN)
-			if(length(tmp_label) > 10)
+			if (length(tmp_label) > 10)
 				user << "<span class='notice'>The label can be at most 10 characters long.</span>"
 			else
 				user << "<span class='notice'>You set the label to \"[tmp_label]\".</span>"
@@ -104,7 +104,7 @@
 
 	proc/update_name_label()
 		playsound(src,'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.wav',40,1)
-		if(label_text == "")
+		if (label_text == "")
 			name = base_name
 		else
 			name = "[base_name] ([label_text])"
@@ -141,18 +141,18 @@
 	update_icon()
 		overlays.Cut()
 
-		if(reagents.total_volume)
+		if (reagents.total_volume)
 			var/image/filling = image('icons/obj/reagentfillings.dmi', src, "[icon_state]10")
 
 			var/percent = round((reagents.total_volume / volume) * 100)
 			switch(percent)
-				if(0 to 9)		filling.icon_state = "[icon_state]-10"
-				if(10 to 24) 	filling.icon_state = "[icon_state]10"
-				if(25 to 49)	filling.icon_state = "[icon_state]25"
-				if(50 to 74)	filling.icon_state = "[icon_state]50"
-				if(75 to 79)	filling.icon_state = "[icon_state]75"
-				if(80 to 90)	filling.icon_state = "[icon_state]80"
-				if(91 to INFINITY)	filling.icon_state = "[icon_state]100"
+				if (0 to 9)		filling.icon_state = "[icon_state]-10"
+				if (10 to 24) 	filling.icon_state = "[icon_state]10"
+				if (25 to 49)	filling.icon_state = "[icon_state]25"
+				if (50 to 74)	filling.icon_state = "[icon_state]50"
+				if (75 to 79)	filling.icon_state = "[icon_state]75"
+				if (80 to 90)	filling.icon_state = "[icon_state]80"
+				if (91 to INFINITY)	filling.icon_state = "[icon_state]100"
 
 			filling.color = reagents.get_color()
 			overlays += filling
@@ -227,8 +227,8 @@
 
 /obj/item/weapon/reagent_containers/glass/bucket/attackby(var/obj/D, mob/user as mob)
 
-	if(istype(D, /obj/item/weapon/mop))
-		if(reagents.total_volume < 1)
+	if (istype(D, /obj/item/weapon/mop))
+		if (reagents.total_volume < 1)
 			user << "<span class='warning'>\The [src] is empty!</span>"
 		else
 			reagents.trans_to_obj(D, 5)
@@ -240,7 +240,7 @@
 
 /obj/item/weapon/reagent_containers/glass/bucket/update_icon()
 	overlays.Cut()
-	if(reagents.total_volume >= 1)
+	if (reagents.total_volume >= 1)
 		overlays += "water_bucket"
 	if (!is_open_container())
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
@@ -256,11 +256,11 @@
 
 	on_reagent_change()
 		switch(reagents.total_volume)
-			if(0)
+			if (0)
 				icon_state = "blender_jug_e"
-			if(1 to 75)
+			if (1 to 75)
 				icon_state = "blender_jug_h"
-			if(76 to 100)
+			if (76 to 100)
 				icon_state = "blender_jug_f"
 
 /obj/item/weapon/reagent_containers/glass/canister		//not used apparantly

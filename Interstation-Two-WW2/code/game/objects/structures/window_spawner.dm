@@ -27,13 +27,13 @@
 
 /obj/effect/wingrille_spawn/initialize()
 	..()
-	if(!win_path)
+	if (!win_path)
 		return
-	if(ticker && ticker.current_state < GAME_STATE_PLAYING)
+	if (ticker && ticker.current_state < GAME_STATE_PLAYING)
 		activate()
 
 /obj/effect/wingrille_spawn/proc/activate()
-	if(activated) return
+	if (activated) return
 	if (!locate(/obj/structure/grille) in get_turf(src))
 		var/obj/structure/grille/G = PoolOrNew(/obj/structure/grille, loc)
 		handle_grille_spawn(G)
@@ -41,14 +41,14 @@
 	for (var/dir in cardinal)
 		var/turf/T = get_step(src, dir)
 		var/obj/effect/wingrille_spawn/other = locate(/obj/effect/wingrille_spawn) in T
-		if(!other)
+		if (!other)
 			var/found_connection
-			if(locate(/obj/structure/grille) in T)
+			if (locate(/obj/structure/grille) in T)
 				for(var/obj/structure/window/W in T)
-					if(W.type == win_path && W.dir == get_dir(T,src))
+					if (W.type == win_path && W.dir == get_dir(T,src))
 						found_connection = TRUE
 						qdel(W)
-			if(!found_connection)
+			if (!found_connection)
 				var/obj/structure/window/new_win = PoolOrNew(win_path, loc)
 				new_win.set_dir(dir)
 				handle_window_spawn(new_win)
@@ -56,7 +56,7 @@
 			neighbours |= other
 	activated = TRUE
 	for(var/obj/effect/wingrille_spawn/other in neighbours)
-		if(!other.activated) other.activate()
+		if (!other.activated) other.activate()
 	qdel(src)
 
 /obj/effect/wingrille_spawn/proc/handle_window_spawn(var/obj/structure/window/W)
@@ -92,5 +92,5 @@
 	var/id
 
 /obj/effect/wingrille_spawn/reinforced/polarized/handle_window_spawn(var/obj/structure/window/reinforced/polarized/P)
-	if(id)
+	if (id)
 		P.id = id

@@ -23,19 +23,19 @@
 /obj/structure/window/examine(mob/user)
 	. = ..(user)
 
-	if(health == maxhealth)
+	if (health == maxhealth)
 		user << "<span class='notice'>It looks fully intact.</span>"
 	else
 		var/perc = health / maxhealth
-		if(perc > 0.75)
+		if (perc > 0.75)
 			user << "<span class='notice'>It has a few cracks.</span>"
-		else if(perc > 0.5)
+		else if (perc > 0.5)
 			user << "<span class='warning'>It looks slightly damaged.</span>"
-		else if(perc > 0.25)
+		else if (perc > 0.25)
 			user << "<span class='warning'>It looks moderately damaged.</span>"
 		else
 			user << "<span class='danger'>It looks heavily damaged.</span>"
-	if(silicate)
+	if (silicate)
 		if (silicate < 30)
 			user << "<span class='notice'>It has a thin layer of silicate.</span>"
 		else if (silicate < 70)
@@ -46,28 +46,28 @@
 /obj/structure/window/proc/take_damage(var/damage = 0,  var/sound_effect = TRUE)
 	var/initialhealth = health
 
-	if(silicate)
+	if (silicate)
 		damage = damage * (1 - silicate / 200)
 
 	health = max(0, health - damage)
 
-	if(health <= 0)
+	if (health <= 0)
 		shatter()
 	else
-		if(sound_effect)
+		if (sound_effect)
 			playsound(loc, 'sound/effects/Glasshit.ogg', 100, TRUE)
-		if(health < maxhealth / 4 && initialhealth >= maxhealth / 4)
+		if (health < maxhealth / 4 && initialhealth >= maxhealth / 4)
 			visible_message("[src] looks like it's about to shatter!" )
-		else if(health < maxhealth / 2 && initialhealth >= maxhealth / 2)
+		else if (health < maxhealth / 2 && initialhealth >= maxhealth / 2)
 			visible_message("[src] looks seriously damaged!" )
-		else if(health < maxhealth * 3/4 && initialhealth >= maxhealth * 3/4)
+		else if (health < maxhealth * 3/4 && initialhealth >= maxhealth * 3/4)
 			visible_message("Cracks begin to appear in [src]!" )
 	return
 
 /obj/structure/window/proc/apply_silicate(var/amount)
-	if(health < maxhealth) // Mend the damage
+	if (health < maxhealth) // Mend the damage
 		health = min(health + amount * 3, maxhealth)
-		if(health == maxhealth)
+		if (health == maxhealth)
 			visible_message("[src] looks fully repaired." )
 	else // Reinforce
 		silicate = min(silicate + amount, 100)
@@ -84,18 +84,18 @@
 
 /obj/structure/window/proc/shatter(var/display_message = TRUE)
 	playsound(get_turf(src), "shatter", 70, TRUE)
-	if(display_message)
+	if (display_message)
 		visible_message("<span class = 'warning'>[src] shatters!</span>")
-	if(dir == SOUTHWEST)
+	if (dir == SOUTHWEST)
 		var/index = null
 		index = FALSE
 		while(index < 2)
 			new shardtype(loc) //todo pooling?
-			if(reinf) PoolOrNew(/obj/item/stack/rods, loc)
+			if (reinf) PoolOrNew(/obj/item/stack/rods, loc)
 			index++
 	else
 		new shardtype(loc) //todo pooling?
-		if(reinf) PoolOrNew(/obj/item/stack/rods, loc)
+		if (reinf) PoolOrNew(/obj/item/stack/rods, loc)
 	qdel(src)
 	return
 
@@ -103,7 +103,7 @@
 /obj/structure/window/bullet_act(var/obj/item/projectile/Proj)
 
 	var/proj_damage = Proj.get_structure_damage()
-	if(!proj_damage) return
+	if (!proj_damage) return
 
 	..()
 	take_damage(proj_damage)
@@ -112,14 +112,14 @@
 
 /obj/structure/window/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if (1.0)
 			qdel(src)
 			return
-		if(2.0)
+		if (2.0)
 			shatter(0)
 			return
-		if(3.0)
-			if(prob(50))
+		if (3.0)
+			if (prob(50))
 				shatter(0)
 				return
 
@@ -130,19 +130,19 @@
 	return (dir == SOUTHWEST || dir == SOUTHEAST || dir == NORTHWEST || dir == NORTHEAST)
 
 /obj/structure/window/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(istype(mover) && mover.checkpass(PASSGLASS))
+	if (istype(mover) && mover.checkpass(PASSGLASS))
 		return TRUE
-	if(is_full_window())
+	if (is_full_window())
 		return FALSE	//full tile window, you can't move into it!
-	if(get_dir(loc, target) & dir)
+	if (get_dir(loc, target) & dir)
 		return !density
 	else
 		return TRUE
 
 /obj/structure/window/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if(istype(O) && O.checkpass(PASSGLASS))
+	if (istype(O) && O.checkpass(PASSGLASS))
 		return TRUE
-	if(get_dir(O.loc, target) == dir)
+	if (get_dir(O.loc, target) == dir)
 		return FALSE
 	return TRUE
 
@@ -150,13 +150,13 @@
 	..()
 	visible_message("<span class='danger'>[src] was hit by [AM].</span>")
 	var/tforce = FALSE
-	if(ismob(AM))
+	if (ismob(AM))
 		tforce = 40
-	else if(isobj(AM))
+	else if (isobj(AM))
 		var/obj/item/I = AM
 		tforce = I.throwforce
-	if(reinf) tforce *= 0.25
-	if(health - tforce <= 7 && !reinf)
+	if (reinf) tforce *= 0.25
+	if (health - tforce <= 7 && !reinf)
 		set_anchored(FALSE)
 		step(src, get_dir(AM, src))
 	take_damage(tforce)
@@ -167,7 +167,7 @@
 */
 /obj/structure/window/attack_hand(mob/user as mob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if(HULK in user.mutations)
+	if (HULK in user.mutations)
 		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
 		user.visible_message("<span class='danger'>[user] smashes through [src]!</span>")
 		user.do_attack_animation(src)
@@ -177,7 +177,7 @@
 
 		if (istype(usr,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = usr
-			if(H.species.can_shred(H))
+			if (H.species.can_shred(H))
 				attack_generic(H,25)
 				return
 
@@ -194,12 +194,12 @@
 	return
 
 /obj/structure/window/attack_generic(var/mob/user, var/damage)
-	if(istype(user))
+	if (istype(user))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.do_attack_animation(src)
-	if(!damage)
+	if (!damage)
 		return
-	if(damage >= 10)
+	if (damage >= 10)
 		visible_message("<span class='danger'>[user] smashes into [src]!</span>")
 		take_damage(damage)
 	else
@@ -207,58 +207,58 @@
 	return TRUE
 
 /obj/structure/window/attackby(obj/item/W as obj, mob/user as mob)
-	if(!istype(W)) return//I really wish I did not need this
+	if (!istype(W)) return//I really wish I did not need this
 	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
 		var/obj/item/weapon/grab/G = W
-		if(istype(G.affecting,/mob/living))
+		if (istype(G.affecting,/mob/living))
 			var/mob/living/M = G.affecting
 			var/state = G.state
 			qdel(W)	//gotta delete it here because if window breaks, it won't get deleted
 			switch (state)
-				if(1)
+				if (1)
 					M.visible_message("<span class='warning'>[user] slams [M] against \the [src]!</span>")
 					M.apply_damage(7)
 					hit(10)
-				if(2)
+				if (2)
 					M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
 					if (prob(50))
 						M.Weaken(1)
 					M.apply_damage(10)
 					hit(25)
-				if(3)
+				if (3)
 					M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
 					M.Weaken(5)
 					M.apply_damage(20)
 					hit(50)
 			return
 
-	if(W.flags & NOBLUDGEON) return
+	if (W.flags & NOBLUDGEON) return
 
-	if(istype(W, /obj/item/weapon/screwdriver))
-		if(reinf && state >= 1)
+	if (istype(W, /obj/item/weapon/screwdriver))
+		if (reinf && state >= 1)
 			state = 3 - state
 			update_nearby_icons()
 			playsound(loc, 'sound/items/Screwdriver.ogg', 75, TRUE)
 			user << (state == TRUE ? "<span class='notice'>You have unfastened the window from the frame.</span>" : "<span class='notice'>You have fastened the window to the frame.</span>")
-		else if(reinf && state == FALSE)
+		else if (reinf && state == FALSE)
 			set_anchored(!anchored)
 			playsound(loc, 'sound/items/Screwdriver.ogg', 75, TRUE)
 			user << (anchored ? "<span class='notice'>You have fastened the frame to the floor.</span>" : "<span class='notice'>You have unfastened the frame from the floor.</span>")
-		else if(!reinf)
+		else if (!reinf)
 			set_anchored(!anchored)
 			playsound(loc, 'sound/items/Screwdriver.ogg', 75, TRUE)
 			user << (anchored ? "<span class='notice'>You have fastened the window to the floor.</span>" : "<span class='notice'>You have unfastened the window.</span>")
-	else if(istype(W, /obj/item/weapon/crowbar) && reinf && state <= 1)
+	else if (istype(W, /obj/item/weapon/crowbar) && reinf && state <= 1)
 		state = TRUE - state
 		playsound(loc, 'sound/items/Crowbar.ogg', 75, TRUE)
 		user << (state ? "<span class='notice'>You have pried the window into the frame.</span>" : "<span class='notice'>You have pried the window out of the frame.</span>")
-	else if(istype(W, /obj/item/weapon/wrench) && !anchored && (!state || !reinf))
-		if(!glasstype)
+	else if (istype(W, /obj/item/weapon/wrench) && !anchored && (!state || !reinf))
+		if (!glasstype)
 			user << "<span class='notice'>You're not sure how to dismantle \the [src] properly.</span>"
 		else
 			playsound(loc, 'sound/items/Ratchet.ogg', 75, TRUE)
 			visible_message("<span class='notice'>[user] dismantles \the [src].</span>")
-			if(dir == SOUTHWEST)
+			if (dir == SOUTHWEST)
 				var/obj/item/stack/material/mats = new glasstype(loc)
 				mats.amount = is_fulltile() ? 4 : 2
 			else
@@ -266,10 +266,10 @@
 			qdel(src)
 	else
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		if(W.damtype == BRUTE || W.damtype == BURN)
+		if (W.damtype == BRUTE || W.damtype == BURN)
 			user.do_attack_animation(src)
 			hit(W.force)
-			if(health <= 7)
+			if (health <= 7)
 				set_anchored(FALSE)
 				step(src, get_dir(user, src))
 		else
@@ -278,7 +278,7 @@
 	return
 
 /obj/structure/window/proc/hit(var/damage, var/sound_effect = TRUE)
-	if(reinf) damage *= 0.5
+	if (reinf) damage *= 0.5
 	take_damage(damage)
 	return
 
@@ -288,10 +288,10 @@
 	set category = null
 	set src in oview(1)
 
-	if(usr.incapacitated())
+	if (usr.incapacitated())
 		return FALSE
 
-	if(anchored)
+	if (anchored)
 		usr << "It is fastened to the floor therefore you can't rotate it!"
 		return FALSE
 
@@ -307,10 +307,10 @@
 	set category = null
 	set src in oview(1)
 
-	if(usr.incapacitated())
+	if (usr.incapacitated())
 		return FALSE
 
-	if(anchored)
+	if (anchored)
 		usr << "It is fastened to the floor therefore you can't rotate it!"
 		return FALSE
 
@@ -358,12 +358,12 @@
 
 //checks if this window is a full-tile one
 /obj/structure/window/proc/is_fulltile()
-	if(dir & (dir - 1))
+	if (dir & (dir - 1))
 		return TRUE
 	return FALSE
 
 /obj/structure/window/proc/set_anchored(var/new_anchored)
-	if(anchored == new_anchored)
+	if (anchored == new_anchored)
 		return
 	anchored = new_anchored
 	update_verbs()
@@ -377,7 +377,7 @@
 
 //Updates the availabiliy of the rotation verbs
 /obj/structure/window/proc/update_verbs()
-	if(anchored)
+	if (anchored)
 		verbs -= /obj/structure/window/proc/rotate
 		verbs -= /obj/structure/window/proc/revrotate
 	else
@@ -389,13 +389,13 @@
 	//A little cludge here, since I don't know how it will work with slim windows. Most likely VERY wrong.
 	//this way it will only update full-tile ones
 	overlays.Cut()
-	if(!is_fulltile())
+	if (!is_fulltile())
 		icon_state = "[basestate]"
 		return
 	var/list/dirs = list()
-	if(anchored)
+	if (anchored)
 		for(var/obj/structure/window/W in orange(src,1))
-			if(W.anchored && W.density && W.type == type && W.is_fulltile()) //Only counts anchored, not-destroyed fill-tile windows.
+			if (W.anchored && W.density && W.type == type && W.is_fulltile()) //Only counts anchored, not-destroyed fill-tile windows.
 				dirs += get_dir(src, W)
 
 /*	var/list/connections = dirs_to_corner_states(dirs)
@@ -457,12 +457,12 @@
 	..()
 	visible_message("<span class='danger'>[src] was hit by [AM].</span>")
 	var/tforce = FALSE
-	if(ismob(AM))
+	if (ismob(AM))
 		tforce = 40
-	else if(isobj(AM))
+	else if (isobj(AM))
 		var/obj/item/I = AM
 		tforce = I.throwforce
-	if(reinf) tforce *= 0.25
+	if (reinf) tforce *= 0.25
 	take_damage(tforce)
 
 /obj/structure/window/classic/bullet_act(var/obj/item/projectile/P)
@@ -569,7 +569,7 @@
 	var/id
 
 /obj/structure/window/reinforced/polarized/proc/toggle()
-	if(opacity)
+	if (opacity)
 		animate(src, color="#FFFFFF", time=5)
 		set_opacity(0)
 	else

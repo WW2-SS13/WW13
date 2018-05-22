@@ -26,11 +26,11 @@
 /obj/structure/dispenser/update_icon()
 	overlays.Cut()
 	switch(oxygentanks)
-		if(1 to 3)	overlays += "oxygen-[oxygentanks]"
-		if(4 to INFINITY) overlays += "oxygen-4"
+		if (1 to 3)	overlays += "oxygen-[oxygentanks]"
+		if (4 to INFINITY) overlays += "oxygen-4"
 	switch(plasmatanks)
-		if(1 to 4)	overlays += "plasma-[plasmatanks]"
-		if(5 to INFINITY) overlays += "plasma-5"
+		if (1 to 4)	overlays += "plasma-[plasmatanks]"
+		if (5 to INFINITY) overlays += "plasma-5"
 
 /obj/structure/dispenser/attack_hand(mob/user as mob)
 	user.set_using_object(src)
@@ -43,34 +43,34 @@
 
 
 /obj/structure/dispenser/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/weapon/tank/oxygen) || istype(I, /obj/item/weapon/tank/air) || istype(I, /obj/item/weapon/tank/anesthetic))
-		if(oxygentanks < 10)
+	if (istype(I, /obj/item/weapon/tank/oxygen) || istype(I, /obj/item/weapon/tank/air) || istype(I, /obj/item/weapon/tank/anesthetic))
+		if (oxygentanks < 10)
 			user.drop_item()
 			I.loc = src
 			oxytanks.Add(I)
 			oxygentanks++
 			user << "<span class='notice'>You put [I] in [src].</span>"
-			if(oxygentanks < 5)
+			if (oxygentanks < 5)
 				update_icon()
 		else
 			user << "<span class='notice'>[src] is full.</span>"
 		updateUsrDialog()
 		return
-	if(istype(I, /obj/item/weapon/tank/plasma))
-		if(plasmatanks < 10)
+	if (istype(I, /obj/item/weapon/tank/plasma))
+		if (plasmatanks < 10)
 			user.drop_item()
 			I.loc = src
 			platanks.Add(I)
 			plasmatanks++
 			user << "<span class='notice'>You put [I] in [src].</span>"
-			if(oxygentanks < 6)
+			if (oxygentanks < 6)
 				update_icon()
 		else
 			user << "<span class='notice'>[src] is full.</span>"
 		updateUsrDialog()
 		return
-	if(istype(I, /obj/item/weapon/wrench))
-		if(anchored)
+	if (istype(I, /obj/item/weapon/wrench))
+		if (anchored)
 			user << "<span class='notice'>You lean down and unwrench [src].</span>"
 			anchored = FALSE
 		else
@@ -79,14 +79,14 @@
 		return
 
 /obj/structure/dispenser/Topic(href, href_list)
-	if(usr.stat || usr.restrained())
+	if (usr.stat || usr.restrained())
 		return
-	if(Adjacent(usr))
+	if (Adjacent(usr))
 		usr.set_using_object(src)
-		if(href_list["oxygen"])
-			if(oxygentanks > 0)
+		if (href_list["oxygen"])
+			if (oxygentanks > 0)
 				var/obj/item/weapon/tank/oxygen/O
-				if(oxytanks.len == oxygentanks)
+				if (oxytanks.len == oxygentanks)
 					O = oxytanks[1]
 					oxytanks.Remove(O)
 				else
@@ -95,10 +95,10 @@
 				usr << "<span class='notice'>You take [O] out of [src].</span>"
 				oxygentanks--
 				update_icon()
-		if(href_list["plasma"])
-			if(plasmatanks > 0)
+		if (href_list["plasma"])
+			if (plasmatanks > 0)
 				var/obj/item/weapon/tank/plasma/P
-				if(platanks.len == plasmatanks)
+				if (platanks.len == plasmatanks)
 					P = platanks[1]
 					platanks.Remove(P)
 				else

@@ -9,14 +9,14 @@
 	wires = WIRE_RECEIVE
 
 	activate()
-		if(!..())	return FALSE//Cooldown check
+		if (!..())	return FALSE//Cooldown check
 
-		if(holder && istype(holder.loc,/obj/item/weapon/grenade/chem_grenade))
+		if (holder && istype(holder.loc,/obj/item/weapon/grenade/chem_grenade))
 			var/obj/item/weapon/grenade/chem_grenade/grenade = holder.loc
 			grenade.prime()
 		else
 			var/turf/location = get_turf(loc)
-			if(location)
+			if (location)
 				location.hotspot_expose(1000,1000)
 			if (istype(loc,/obj/item/assembly_holder))
 				if (istype(loc.loc, /obj/structure/reagent_dispensers/fueltank/))

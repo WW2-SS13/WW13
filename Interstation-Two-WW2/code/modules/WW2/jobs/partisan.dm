@@ -17,7 +17,7 @@
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
 
 /datum/job/partisan/soldier/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	equip_random_civilian_clothing(H)
 	if (prob(40))
@@ -56,7 +56,7 @@
 	player_threshold = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/partisan/commander/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	equip_random_civilian_clothing(H)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)

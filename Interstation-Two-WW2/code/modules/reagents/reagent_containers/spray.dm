@@ -21,14 +21,14 @@
 	verbs -= /obj/item/weapon/reagent_containers/verb/set_APTFT
 
 /obj/item/weapon/reagent_containers/spray/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
-	if(istype(A, /obj/item/weapon/storage) || istype(A, /obj/structure/table) || istype(A, /obj/structure/closet) || istype(A, /obj/item/weapon/reagent_containers) || istype(A, /obj/structure/sink) /*|| istype(A, /obj/structure/janitorialcart)*/)
+	if (istype(A, /obj/item/weapon/storage) || istype(A, /obj/structure/table) || istype(A, /obj/structure/closet) || istype(A, /obj/item/weapon/reagent_containers) || istype(A, /obj/structure/sink) /*|| istype(A, /obj/structure/janitorialcart)*/)
 		return
 
-	if(proximity)
-		if(standard_dispenser_refill(user, A))
+	if (proximity)
+		if (standard_dispenser_refill(user, A))
 			return
 
-	if(reagents.total_volume < amount_per_transfer_from_this)
+	if (reagents.total_volume < amount_per_transfer_from_this)
 		user << "<span class='notice'>\The [src] is empty!</span>"
 		return
 
@@ -38,13 +38,13 @@
 
 	user.setClickCooldown(4)
 
-	if(reagents.has_reagent("sacid"))
+	if (reagents.has_reagent("sacid"))
 		message_admins("[key_name_admin(user)] fired sulphuric acid from \a [src].")
 		log_game("[key_name(user)] fired sulphuric acid from \a [src].")
-	if(reagents.has_reagent("pacid"))
+	if (reagents.has_reagent("pacid"))
 		message_admins("[key_name_admin(user)] fired Polyacid from \a [src].")
 		log_game("[key_name(user)] fired Polyacid from \a [src].")
-	if(reagents.has_reagent("lube"))
+	if (reagents.has_reagent("lube"))
 		message_admins("[key_name_admin(user)] fired Space lube from \a [src].")
 		log_game("[key_name(user)] fired Space lube from \a [src].")
 	return
@@ -58,7 +58,7 @@
 			var/obj/effect/effect/water/chempuff/D = new/obj/effect/effect/water/chempuff(get_turf(src))
 			var/turf/my_target = get_turf(A)
 			D.create_reagents(amount_per_transfer_from_this)
-			if(!src)
+			if (!src)
 				return
 			reagents.trans_to_obj(D, amount_per_transfer_from_this)
 			D.set_color()
@@ -66,14 +66,14 @@
 	return
 
 /obj/item/weapon/reagent_containers/spray/attack_self(var/mob/user)
-	if(!possible_transfer_amounts)
+	if (!possible_transfer_amounts)
 		return
 	amount_per_transfer_from_this = next_in_list(amount_per_transfer_from_this, possible_transfer_amounts)
 	spray_size = next_in_list(spray_size, spray_sizes)
 	user << "<span class='notice'>You adjusted the pressure nozzle. You'll now use [amount_per_transfer_from_this] units per spray.</span>"
 
 /obj/item/weapon/reagent_containers/spray/examine(mob/user)
-	if(..(user, FALSE) && loc == user)
+	if (..(user, FALSE) && loc == user)
 		user << "[round(reagents.total_volume)] units left."
 	return
 
@@ -85,7 +85,7 @@
 
 	if (alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", "Yes", "No") != "Yes")
 		return
-	if(isturf(usr.loc))
+	if (isturf(usr.loc))
 		usr << "<span class='notice'>You empty \the [src] onto the floor.</span>"
 		reagents.splash(usr.loc, reagents.total_volume)
 
@@ -128,7 +128,7 @@
 	reagents.add_reagent("condensedcapsaicin", 40)
 
 /obj/item/weapon/reagent_containers/spray/pepper/examine(mob/user)
-	if(..(user, TRUE))
+	if (..(user, TRUE))
 		user << "The safety is [safety ? "on" : "off"]."
 
 /obj/item/weapon/reagent_containers/spray/pepper/attack_self(var/mob/user)
@@ -136,7 +136,7 @@
 	usr << "<span class = 'notice'>You switch the safety [safety ? "on" : "off"].</span>"
 
 /obj/item/weapon/reagent_containers/spray/pepper/Spray_at(atom/A as mob|obj)
-	if(safety)
+	if (safety)
 		usr << "<span class = 'warning'>The safety is on!</span>"
 		return
 	..()
@@ -176,11 +176,11 @@
 
 	for(var/a = TRUE to 3)
 		spawn(0)
-			if(reagents.total_volume < 1) break
+			if (reagents.total_volume < 1) break
 			var/obj/effect/effect/water/chempuff/D = new/obj/effect/effect/water/chempuff(get_turf(src))
 			var/turf/my_target = the_targets[a]
 			D.create_reagents(amount_per_transfer_from_this)
-			if(!src)
+			if (!src)
 				return
 			reagents.trans_to_obj(D, amount_per_transfer_from_this)
 			D.set_color()
@@ -200,6 +200,6 @@
 	reagents.add_reagent("plantbgone", 100)
 
 /obj/item/weapon/reagent_containers/spray/plantbgone/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
-	if(!proximity) return
+	if (!proximity) return
 
 	..()

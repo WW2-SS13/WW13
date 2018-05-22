@@ -18,22 +18,22 @@
 	pixel_x = rand(0,4)-4
 	pixel_y = rand(0,4)-4
 
-	if(!default_type)
+	if (!default_type)
 		default_type = DEFAULT_WALL_MATERIAL
 	material = get_material_by_name("[default_type]")
-	if(!material)
+	if (!material)
 		qdel(src)
 		return FALSE
 
 	recipes = material.get_recipes()
 	stacktype = material.stack_type
-/*	if(islist(material.stack_origin_tech))
+/*	if (islist(material.stack_origin_tech))
 		origin_tech = material.stack_origin_tech.Copy()*/
 
-	if(apply_colour)
+	if (apply_colour)
 		color = material.icon_colour
 
-	if(material.conductive)
+	if (material.conductive)
 		flags |= CONDUCT
 
 	matter = material.get_matter()
@@ -47,7 +47,7 @@
 	// Update from material datum.
 	singular_name = material.sheet_singular_name
 
-	if(amount>1)
+	if (amount>1)
 		name = "[material.use_name] [material.sheet_plural_name]"
 		desc = "A stack of [material.use_name] [material.sheet_plural_name]."
 		gender = PLURAL
@@ -63,22 +63,22 @@
 
 /obj/item/stack/material/transfer_to(obj/item/stack/S, var/tamount=null, var/type_verified)
 	var/obj/item/stack/material/M = S
-	if(!istype(M) || material.name != M.material.name)
+	if (!istype(M) || material.name != M.material.name)
 		return FALSE
 	var/transfer = ..(S,tamount,1)
-	if(src) update_strings()
-	if(M) M.update_strings()
+	if (src) update_strings()
+	if (M) M.update_strings()
 	return transfer
 
 /obj/item/stack/material/attack_self(var/mob/user)
-//	if(!material.build_windows(user, src))
+//	if (!material.build_windows(user, src))
 	..()
 
 /obj/item/stack/material/attackby(var/obj/item/W, var/mob/user)
-	if(istype(W,/obj/item/stack/cable_coil))
+	if (istype(W,/obj/item/stack/cable_coil))
 		material.build_wired_product(user, W, src)
 		return
-	else if(istype(W, /obj/item/stack/rods))
+	else if (istype(W, /obj/item/stack/rods))
 		material.build_rod_product(user, W, src)
 		return
 	return ..()

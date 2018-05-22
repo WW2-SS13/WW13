@@ -24,13 +24,13 @@
 /obj/structure/bed/New(var/newloc, var/new_material, var/new_padding_material)
 	..(newloc)
 	color = null
-	if(!new_material)
+	if (!new_material)
 		new_material = DEFAULT_WALL_MATERIAL
 	material = get_material_by_name(new_material)
-	if(!istype(material))
+	if (!istype(material))
 		qdel(src)
 		return
-	if(new_padding_material)
+	if (new_padding_material)
 		padding_material = get_material_by_name(new_padding_material)
 	update_icon()
 
@@ -44,16 +44,16 @@
 	overlays.Cut()
 	// Base icon.
 	var/cache_key = "[base_icon]-[material.name]"
-	if(isnull(stool_cache[cache_key]))
+	if (isnull(stool_cache[cache_key]))
 		var/image/I = image('icons/obj/bed_chair.dmi', base_icon)
-		if(applies_material_colour)
+		if (applies_material_colour)
 			I.color = material.icon_colour
 		stool_cache[cache_key] = I
 	overlays |= stool_cache[cache_key]
 	// Padding overlay.
-	if(padding_material)
+	if (padding_material)
 		var/padding_cache_key = "[base_icon]-padding-[padding_material.name]"
-		if(isnull(stool_cache[padding_cache_key]))
+		if (isnull(stool_cache[padding_cache_key]))
 			var/image/I =  image(icon, "[base_icon]_padding")
 			I.color = padding_material.icon_colour
 			stool_cache[padding_cache_key] = I
@@ -61,7 +61,7 @@
 
 	// Strings.
 	desc = initial(desc)
-	if(padding_material)
+	if (padding_material)
 		name = "[padding_material.display_name] [initial(name)]" //this is not perfect but it will do for now.
 		desc += " It's made of [material.use_name] and covered with [padding_material.use_name]."
 	else
@@ -69,51 +69,51 @@
 		desc += " It's made of [material.use_name]."
 
 /obj/structure/bed/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(istype(mover) && mover.checkpass(PASSTABLE))
+	if (istype(mover) && mover.checkpass(PASSTABLE))
 		return TRUE
 	else
 		return ..()
 
 /obj/structure/bed/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if (1.0)
 			qdel(src)
 			return
-		if(2.0)
+		if (2.0)
 			if (prob(50))
 				qdel(src)
 				return
-		if(3.0)
+		if (3.0)
 			if (prob(5))
 				qdel(src)
 				return
 
 /obj/structure/bed/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
+	if (istype(W, /obj/item/weapon/wrench))
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, TRUE)
 		dismantle()
 		qdel(src)
-	else if(istype(W,/obj/item/stack))
-		if(padding_material)
+	else if (istype(W,/obj/item/stack))
+		if (padding_material)
 			user << "\The [src] is already padded."
 			return
 		var/obj/item/stack/C = W
-		if(C.get_amount() < 1) // How??
+		if (C.get_amount() < 1) // How??
 			user.drop_from_inventory(C)
 			qdel(C)
 			return
 		var/padding_type //This is awful but it needs to be like this until tiles are given a material var.
-		if(istype(W,/obj/item/stack/tile/carpet))
+		if (istype(W,/obj/item/stack/tile/carpet))
 			padding_type = "carpet"
-		else if(istype(W,/obj/item/stack/material))
+		else if (istype(W,/obj/item/stack/material))
 			var/obj/item/stack/material/M = W
-			if(M.material && (M.material.flags & MATERIAL_PADDING))
+			if (M.material && (M.material.flags & MATERIAL_PADDING))
 				padding_type = "[M.material.name]"
-		if(!padding_type)
+		if (!padding_type)
 			user << "You cannot pad \the [src] with that."
 			return
 		C.use(1)
-		if(!istype(loc, /turf))
+		if (!istype(loc, /turf))
 			user.drop_from_inventory(src)
 			loc = get_turf(src)
 		user << "You add padding to \the [src]."
@@ -121,21 +121,21 @@
 		return
 
 	else if (istype(W, /obj/item/weapon/wirecutters))
-		if(!padding_material)
+		if (!padding_material)
 			user << "\The [src] has no padding to remove."
 			return
 		user << "You remove the padding from \the [src]."
 		playsound(src, 'sound/items/Wirecutter.ogg', 100, TRUE)
 		remove_padding()
 
-	else if(istype(W, /obj/item/weapon/grab))
+	else if (istype(W, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = W
 		var/mob/living/affecting = G.affecting
 		user.visible_message("<span class='notice'>[user] attempts to buckle [affecting] into \the [src]!</span>")
-		if(do_after(user, 20, src))
+		if (do_after(user, 20, src))
 			affecting.loc = loc
 			spawn(0)
-				if(buckle_mob(affecting))
+				if (buckle_mob(affecting))
 					affecting.visible_message(\
 						"<span class='danger'>[affecting.name] is buckled to [src] by [user.name]!</span>",\
 						"<span class='danger'>You are buckled to [src] by [user.name]!</span>",\
@@ -145,7 +145,7 @@
 		..()
 
 /obj/structure/bed/proc/remove_padding()
-	if(padding_material)
+	if (padding_material)
 		padding_material.place_sheet(get_turf(src))
 		padding_material = null
 	update_icon()
@@ -156,7 +156,7 @@
 
 /obj/structure/bed/proc/dismantle()
 	material.place_sheet(get_turf(src))
-	if(padding_material)
+	if (padding_material)
 		padding_material.place_sheet(get_turf(src))
 
 /obj/structure/bed/psych
@@ -192,10 +192,10 @@
 	return // Doesn't care about material or anything else.
 
 /obj/structure/bed/roller/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench) || istype(W,/obj/item/stack) || istype(W, /obj/item/weapon/wirecutters))
+	if (istype(W, /obj/item/weapon/wrench) || istype(W,/obj/item/stack) || istype(W, /obj/item/weapon/wirecutters))
 		return
-	else if(istype(W,/obj/item/roller_holder))
-		if(buckled_mob)
+	else if (istype(W,/obj/item/roller_holder))
+		if (buckled_mob)
 			user_unbuckle_mob(user)
 		else
 			visible_message("[user] collapses \the [name].")
@@ -219,8 +219,8 @@
 			playsound(get_turf(src), 'sound/effects/rollermove.ogg', 75, TRUE)
 			next_sound = world.time + 10
 
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)
+	if (buckled_mob)
+		if (buckled_mob.buckled == src)
 			buckled_mob.loc = loc
 		else
 			buckled_mob = null
@@ -231,7 +231,7 @@
 	return TRUE
 
 /obj/structure/bed/roller/post_buckle_mob(mob/living/M as mob)
-	if(M == buckled_mob)
+	if (M == buckled_mob)
 		M.pixel_y = 6
 		M.old_y = 6
 		density = TRUE
@@ -246,9 +246,9 @@
 
 /obj/structure/bed/roller/MouseDrop(over_object, src_location, over_location)
 	..()
-	if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
-		if(!ishuman(usr))	return
-		if(buckled_mob)	return FALSE
+	if ((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
+		if (!ishuman(usr))	return
+		if (buckled_mob)	return FALSE
 		visible_message("[usr] collapses \the [name].")
 		new/obj/item/roller(get_turf(src))
 		spawn(0)
@@ -269,9 +269,9 @@
 
 /obj/item/roller/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
-	if(istype(W,/obj/item/roller_holder))
+	if (istype(W,/obj/item/roller_holder))
 		var/obj/item/roller_holder/RH = W
-		if(!RH.held)
+		if (!RH.held)
 			user << "<span class='notice'>You collect the roller bed.</span>"
 			loc = RH
 			RH.held = src
@@ -292,7 +292,7 @@
 
 /obj/item/roller_holder/attack_self(mob/user as mob)
 
-	if(!held)
+	if (!held)
 		user << "<span class='notice'>The rack is empty.</span>"
 		return
 

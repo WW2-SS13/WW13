@@ -13,16 +13,16 @@
 /obj/item/weapon/pill_pack/New()
 	..()
 
-	if(ispath(pill_type))
+	if (ispath(pill_type))
 		for(var/i = TRUE to 6)
 			new pill_type(src)
 
 	update_icon()
 
 /obj/item/weapon/pill_pack/attack_hand(mob/user as mob)
-	if(user.get_inactive_hand() == src)
-		if(contents.len > 0)
-			if(pop_sound)
+	if (user.get_inactive_hand() == src)
+		if (contents.len > 0)
+			if (pop_sound)
 				playsound(loc, pop_sound, 50, TRUE)
 			var/obj/item/weapon/reagent_containers/pill/pill = contents[1]
 			user << "<span class='notice'>You take one [pill.name] from [name].</span>"
@@ -34,10 +34,10 @@
 		..()
 
 /obj/item/weapon/pill_pack/attack_self(mob/user as mob)
-	if(contents.len > 0)
+	if (contents.len > 0)
 		var/obj/item/weapon/reagent_containers/pill/pill = contents[1]
-		if(prob(70))
-			if(pop_sound)
+		if (prob(70))
+			if (pop_sound)
 				playsound(loc, pop_sound, 50, TRUE)
 			user << "<span class='notice'>You take one [pill.name] from [name].</span>"
 			pill.loc = user.loc
@@ -104,17 +104,17 @@
 /obj/item/weapon/gauze_pack/New()
 	..()
 
-	if(ispath(content_type))
+	if (ispath(content_type))
 		new content_type(src)
 
 	update_icon()
 
 /obj/item/weapon/gauze_pack/attack_hand(mob/user as mob)
-	if(user.get_inactive_hand() == src && packed)
+	if (user.get_inactive_hand() == src && packed)
 		packed = FALSE
-		if(rip_sound)
+		if (rip_sound)
 			playsound(loc, rip_sound, 50, TRUE)
-		if(contents.len)
+		if (contents.len)
 			var/obj/O = contents[1]
 			user.put_in_active_hand(O)
 			user << "<span class='notice'>You ripped the [name] and took out an [O.name].</span>"
@@ -126,12 +126,12 @@
 	update_icon()
 
 /obj/item/weapon/gauze_pack/attack_self(mob/user as mob)
-	if(packed)
-		if(prob(50))
+	if (packed)
+		if (prob(50))
 			packed = FALSE
-			if(rip_sound)
+			if (rip_sound)
 				playsound(loc, rip_sound, 50, TRUE)
-			if(contents.len)
+			if (contents.len)
 				var/obj/O = contents[1]
 				O.loc = user.loc
 				user << "<span class='notice'>You ripped the [name] by one hand and [O] falls out.</span>"

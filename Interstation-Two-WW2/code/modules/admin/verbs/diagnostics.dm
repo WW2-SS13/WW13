@@ -2,7 +2,7 @@
 	set category = "Debug"
 	set name = "Show Air Report"
 
-	if(!master_controller || !air_master)
+	if (!master_controller || !air_master)
 		alert(usr,"Master_controller or air_master not found.","Air Report")
 		return
 
@@ -17,8 +17,8 @@
 	var/inactive_on_main_station = FALSE
 	for(var/zone/zone in air_master.zones)
 		var/turf/simulated/turf = locate() in zone.contents
-		if(turf && turf.z in config.station_levels)
-			if(zone.needs_update)
+		if (turf && turf.z in config.station_levels)
+			if (zone.needs_update)
 				active_on_main_station++
 			else
 				inactive_on_main_station++
@@ -50,17 +50,17 @@
 	var/mob/largest_move_mob = null
 	var/mob/largest_click_mob = null
 	for(var/mob/M in world)
-		if(!M.client)
+		if (!M.client)
 			continue
-		if(M.next_move >= largest_move_time)
+		if (M.next_move >= largest_move_time)
 			largest_move_mob = M
-			if(M.next_move > world.time)
+			if (M.next_move > world.time)
 				largest_move_time = M.next_move - world.time
 			else
 				largest_move_time = TRUE
-		if(M.next_click >= largest_click_time)
+		if (M.next_click >= largest_click_time)
 			largest_click_mob = M
-			if(M.next_click > world.time)
+			if (M.next_click > world.time)
 				largest_click_time = M.next_click - world.time
 			else
 				largest_click_time = FALSE
@@ -84,7 +84,7 @@
 	set name = "Reload Admins"
 	set category = "Debug"
 
-	if(!check_rights(R_SERVER))	return
+	if (!check_rights(R_SERVER))	return
 
 	message_admins("[key_name(usr)] manually reloaded admins")
 	load_admins(1)
@@ -94,7 +94,7 @@
 	set name = "Reload Mentors"
 	set category = "Debug"
 
-	if(!check_rights(R_SERVER)) return
+	if (!check_rights(R_SERVER)) return
 
 	message_admins("[key_name(usr)] manually reloaded Mentors")
 	world.load_mods()*/
@@ -105,11 +105,11 @@
 	set name = "Jump to dead group"
 	set category = "Debug"
 		/*
-	if(!holder)
+	if (!holder)
 		src << "Only administrators may use this command."
 		return
 
-	if(!air_master)
+	if (!air_master)
 		usr << "Cannot find air_system"
 		return
 	var/datum/air_group/dead_groups = list()
@@ -127,16 +127,16 @@
 	set desc = "Use this to allow manual manupliation of atmospherics."
 	set category = "Debug"*/
 	/*
-	if(!holder)
+	if (!holder)
 		src << "Only administrators may use this command."
 		return
 
-	if(!air_master)
+	if (!air_master)
 		usr << "Cannot find air_system"
 		return
 
 	var/turf/T = get_turf(usr)
-	if(istype(T, /turf/simulated))
+	if (istype(T, /turf/simulated))
 		var/datum/air_group/AG = T:parent
 		AG.next_check = 30
 		AG.group_processing = FALSE
@@ -160,11 +160,11 @@
 	set category = "Debug"
 
 	var/filter = input("Contains what?","Filter") as text|null
-	if(!filter)
+	if (!filter)
 		return
 
 	usr << "<b>Jobbans active in this round.</b>"
 	for(var/t in jobban_keylist)
-		if(findtext(t, filter))
+		if (findtext(t, filter))
 			usr << "[t]"
 */

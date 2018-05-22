@@ -17,7 +17,7 @@
 	bar.pixel_y = 32
 	bar.layer = 1000
 	user = _user
-	if(user)
+	if (user)
 		client = user.client
 
 /datum/progressbar/Destroy()

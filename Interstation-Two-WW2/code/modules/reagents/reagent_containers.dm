@@ -13,12 +13,12 @@
 	set category = null
 	set src in range(0)
 	var/N = input("Amount per transfer from this:","[src]") as null|anything in possible_transfer_amounts
-	if(N)
+	if (N)
 		amount_per_transfer_from_this = N
 
 /obj/item/weapon/reagent_containers/New()
 	..()
-	if(!possible_transfer_amounts)
+	if (!possible_transfer_amounts)
 		verbs -= /obj/item/weapon/reagent_containers/verb/set_APTFT
 	create_reagents(volume)
 
@@ -29,19 +29,19 @@
 	return
 
 /obj/item/weapon/reagent_containers/proc/reagentlist() // For attack logs
-	if(reagents)
+	if (reagents)
 		return reagents.get_reagents()
 	return "No reagent holder"
 
 /obj/item/weapon/reagent_containers/proc/standard_dispenser_refill(var/mob/user, var/obj/structure/reagent_dispensers/target) // This goes into afterattack
-	if(!istype(target))
+	if (!istype(target))
 		return FALSE
 
-	if(!target.reagents || !target.reagents.total_volume)
+	if (!target.reagents || !target.reagents.total_volume)
 		user << "<span class='notice'>[target] is empty.</span>"
 		return TRUE
 
-	if(reagents && !reagents.get_free_space())
+	if (reagents && !reagents.get_free_space())
 		user << "<span class='notice'>[src] is full.</span>"
 		return TRUE
 
@@ -51,14 +51,14 @@
 	return TRUE
 
 /obj/item/weapon/reagent_containers/proc/standard_splash_mob(var/mob/user, var/mob/target) // This goes into afterattack
-	if(!istype(target))
+	if (!istype(target))
 		return
 
-	if(!reagents || !reagents.total_volume)
+	if (!reagents || !reagents.total_volume)
 		user << "<span class='notice'>[src] is empty.</span>"
 		return TRUE
 
-	if(target.reagents && !target.reagents.get_free_space())
+	if (target.reagents && !target.reagents.get_free_space())
 		user << "<span class='notice'>[target] is full.</span>"
 		return TRUE
 
@@ -84,21 +84,21 @@
 	return
 
 /obj/item/weapon/reagent_containers/proc/standard_feed_mob(var/mob/user, var/mob/target) // This goes into attack
-	if(!istype(target))
+	if (!istype(target))
 		return FALSE
 
-	if(!reagents || !reagents.total_volume)
+	if (!reagents || !reagents.total_volume)
 		user << "<span class='notice'>\The [src] is empty.</span>"
 		return TRUE
 
-	if(target == user)
-		if(istype(user, /mob/living/carbon/human))
+	if (target == user)
+		if (istype(user, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user
-			if(!H.check_has_mouth())
+			if (!H.check_has_mouth())
 				user << "Where do you intend to put \the [src]? You don't have a mouth!"
 				return
 			var/obj/item/blocked = H.check_mouth_coverage()
-			if(blocked)
+			if (blocked)
 				user << "<span class='warning'>\The [blocked] is in the way!</span>"
 				return
 
@@ -109,13 +109,13 @@
 		feed_sound(user)
 		return TRUE
 	else
-		if(istype(user, /mob/living/carbon/human))
+		if (istype(user, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = target
-			if(!H.check_has_mouth())
+			if (!H.check_has_mouth())
 				user << "Where do you intend to put \the [src]? \The [H] doesn't have a mouth!"
 				return
 			var/obj/item/blocked = H.check_mouth_coverage()
-			if(blocked)
+			if (blocked)
 				user << "<span class='warning'>\The [blocked] is in the way!</span>"
 				return
 			 //For pissing
@@ -141,22 +141,22 @@
 		return TRUE
 
 /obj/item/weapon/reagent_containers/proc/standard_pour_into(var/mob/user, var/atom/target) // This goes into afterattack and yes, it's atom-level
-	if(!target.reagents)
+	if (!target.reagents)
 		return FALSE
 
 	// Ensure we don't splash beakers and similar containers.
-	if(!target.is_open_container() && istype(target, /obj/item/weapon/reagent_containers))
+	if (!target.is_open_container() && istype(target, /obj/item/weapon/reagent_containers))
 		user << "<span class='notice'>\The [target] is closed.</span>"
 		return TRUE
 	// Otherwise don't care about splashing.
-	else if(!target.is_open_container())
+	else if (!target.is_open_container())
 		return FALSE
 
-	if(!reagents || !reagents.total_volume)
+	if (!reagents || !reagents.total_volume)
 		user << "<span class='notice'>[src] is empty.</span>"
 		return TRUE
 
-	if(!target.reagents.get_free_space())
+	if (!target.reagents.get_free_space())
 		user << "<span class='notice'>[target] is full.</span>"
 		return TRUE
 

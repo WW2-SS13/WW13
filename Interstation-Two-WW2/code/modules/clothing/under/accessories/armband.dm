@@ -5,10 +5,10 @@
 	slot = "armband"
 
 /obj/item/clothing/accessory/armband/get_mob_overlay()
-	if(!mob_overlay)
+	if (!mob_overlay)
 		var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
-		if(icon_override)
-			if("[tmp_icon_state]_mob" in icon_states(icon_override))
+		if (icon_override)
+			if ("[tmp_icon_state]_mob" in icon_states(icon_override))
 				tmp_icon_state = "[tmp_icon_state]_mob"
 			mob_overlay = image("icon" = icon_override, "icon_state" = "[tmp_icon_state]", layer = 5)
 		else

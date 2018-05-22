@@ -44,7 +44,7 @@
 	if (istype(I, /obj/item/weapon/wrench))
 		visible_message("<span class='warning'>[H] starts to [anchored ? "unsecure" : "secure"] the pot [anchored ? "from" : "to"] the ground.</span>")
 		playsound(src, 'sound/items/Ratchet.ogg', 100, TRUE)
-		if(do_after(H,50,src))
+		if (do_after(H,50,src))
 			visible_message("<span class='warning'>[H] [anchored ? "unsecures" : "secures"] the pot [anchored ? "from" : "to"] the ground.</span>")
 			anchored = !anchored
 		return

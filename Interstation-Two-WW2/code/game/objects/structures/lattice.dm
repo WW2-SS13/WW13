@@ -12,38 +12,38 @@
 /obj/structure/lattice/initialize()
 	..()
 ///// Z-Level Stuff
-	if(!(istype(loc, /turf/space) || istype(loc, /turf/open) || istype(loc, /turf/floor/hull))) // || istype(loc, /turf/floor/open)
+	if (!(istype(loc, /turf/space) || istype(loc, /turf/open) || istype(loc, /turf/floor/hull))) // || istype(loc, /turf/floor/open)
 ///// Z-Level Stuff
 		qdel(src)
 	for(var/obj/structure/lattice/LAT in loc)
-		if(LAT != src)
+		if (LAT != src)
 			qdel(LAT)
 	icon = 'icons/obj/smoothlattice.dmi'
 	icon_state = "latticeblank"
 	updateOverlays()
 	for (var/dir in cardinal)
 		var/obj/structure/lattice/L
-		if(locate(/obj/structure/lattice, get_step(src, dir)))
+		if (locate(/obj/structure/lattice, get_step(src, dir)))
 			L = locate(/obj/structure/lattice, get_step(src, dir))
 			L.updateOverlays()
 
 /obj/structure/lattice/Destroy()
 	for (var/dir in cardinal)
 		var/obj/structure/lattice/L
-		if(locate(/obj/structure/lattice, get_step(src, dir)))
+		if (locate(/obj/structure/lattice, get_step(src, dir)))
 			L = locate(/obj/structure/lattice, get_step(src, dir))
 			L.updateOverlays(loc)
 	..()
 
 /obj/structure/lattice/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if (1.0)
 			qdel(src)
 			return
-		if(2.0)
+		if (2.0)
 			qdel(src)
 			return
-		if(3.0)
+		if (3.0)
 			return
 		else
 	return
@@ -56,18 +56,18 @@
 		return
 	if (istype(C, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = C
-		if(WT.remove_fuel(0, user))
+		if (WT.remove_fuel(0, user))
 			user << "<span class='notice'>Slicing lattice joints ...</span>"
 		PoolOrNew(/obj/item/stack/rods, loc)
 		qdel(src)
 	if (istype(C, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = C
-		if(R.amount <= 2)
+		if (R.amount <= 2)
 			return
 		else
 			R.use(2)
 			user << "<span class='notice'>You start connecting [R.name] to [name] ...</span>"
-			if(do_after(user,50))
+			if (do_after(user,50))
 				alpha = FALSE
 				new /obj/structure/catwalk(loc)
 				qdel(src)
@@ -75,7 +75,7 @@
 	return
 
 /obj/structure/lattice/proc/updateOverlays()
-	//if(!(istype(loc, /turf/space)))
+	//if (!(istype(loc, /turf/space)))
 	//	qdel(src)
 	spawn(1)
 		overlays = list()
@@ -85,9 +85,9 @@
 		var/turf/T
 		for (var/direction in cardinal)
 			T = get_step(src, direction)
-			if(locate(/obj/structure/lattice, T) || locate(/obj/structure/catwalk, T))
+			if (locate(/obj/structure/lattice, T) || locate(/obj/structure/catwalk, T))
 				dir_sum += direction
-			else if(!istype(T, /turf/space) && !istype(T, /turf/open))
+			else if (!istype(T, /turf/space) && !istype(T, /turf/open))
 				dir_sum += direction
 
 		icon_state = "lattice[dir_sum]"

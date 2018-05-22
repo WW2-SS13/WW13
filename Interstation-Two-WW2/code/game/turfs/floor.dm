@@ -45,9 +45,9 @@
 
 /turf/floor/New(var/newloc, var/floortype)
 	..(newloc)
-	if(!floortype && initial_flooring)
+	if (!floortype && initial_flooring)
 		floortype = initial_flooring
-	if(floortype)
+	if (floortype)
 		set_flooring(get_flooring_data(floortype))
 
 /turf/floor/proc/set_flooring(var/decl/flooring/newflooring)
@@ -63,7 +63,7 @@
 /turf/floor/proc/make_plating(var/place_product, var/defer_icon_update)
 
 	overlays.Cut()
-	if(islist(decals))
+	if (islist(decals))
 		decals.Cut()
 		decals = null
 
@@ -72,8 +72,8 @@
 	icon = base_icon
 	icon_state = base_icon_state
 
-	if(flooring)
-		if(flooring.build_type && place_product)
+	if (flooring)
+		if (flooring.build_type && place_product)
 			new flooring.build_type(src)
 		flooring = null
 
@@ -83,13 +83,13 @@
 	flooring_override = null
 	levelupdate()
 
-	if(!defer_icon_update)
+	if (!defer_icon_update)
 		update_icon(1)
 
 /turf/floor/proc/make_grass()
 
 	overlays.Cut()
-	if(islist(decals))
+	if (islist(decals))
 		decals.Cut()
 		decals = null
 

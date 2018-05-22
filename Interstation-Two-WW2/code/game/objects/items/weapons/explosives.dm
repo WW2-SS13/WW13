@@ -25,17 +25,17 @@
 	return ..()
 
 /obj/item/weapon/plastique/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/weapon/screwdriver))
+	if (istype(I, /obj/item/weapon/screwdriver))
 		open_panel = !open_panel
 		user << "<span class='notice'>You [open_panel ? "open" : "close"] the wire panel.</span>"
-/*	else if(istype(I, /obj/item/weapon/wirecutters) /*|| istype(I, /obj/item/multitool)*/)
+/*	else if (istype(I, /obj/item/weapon/wirecutters) /*|| istype(I, /obj/item/multitool)*/)
 		wires.Interact(user)*/
 	else
 		..()
 
 /obj/item/weapon/plastique/attack_self(mob/user as mob)
 	var/newtime = input(usr, "Please set the timer.", "Timer", 5) as num
-	if(user.get_active_hand() == src)
+	if (user.get_active_hand() == src)
 		newtime = Clamp(newtime, 3, 60000)
 		timer = newtime
 		user << "Timer set for [timer] seconds."
@@ -50,7 +50,7 @@
 	user << "Planting explosives..."
 	user.do_attack_animation(target)
 
-	if(do_after(user, 50, target) && in_range(user, target))
+	if (do_after(user, 50, target) && in_range(user, target))
 		user.drop_item()
 		target = target
 		loc = null
@@ -71,7 +71,7 @@
 			explode(get_turf(target))
 
 /obj/item/weapon/plastique/proc/explode(var/location)
-	if(location)
+	if (location)
 		for (var/mob/living/L in location)
 			if (L.client)
 				L.client.canmove = FALSE

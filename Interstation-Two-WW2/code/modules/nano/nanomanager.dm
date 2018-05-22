@@ -30,8 +30,8 @@
 	for (var/path in nano_asset_dirs)
 		filenames = flist(path)
 		for(var/filename in filenames)
-			if(copytext(filename, length(filename)) != "/") // filenames which end in "/" are actually directories, which we want to ignore
-				if(fexists(path + filename))
+			if (copytext(filename, length(filename)) != "/") // filenames which end in "/" are actually directories, which we want to ignore
+				if (fexists(path + filename))
 					asset_files.Add(fcopy_rsc(path + filename)) // add this file to asset_files for sending to clients when they connect
 
 	return
@@ -104,7 +104,7 @@
 	var/update_count = FALSE
 	for (var/ui_key in open_uis[src_object_key])
 		for (var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
-			if(ui && ui.src_object && ui.user && ui.src_object.nano_host())
+			if (ui && ui.src_object && ui.user && ui.src_object.nano_host())
 				ui.process(1)
 				update_count++
 	return update_count
@@ -124,7 +124,7 @@
 	var/close_count = FALSE
 	for (var/ui_key in open_uis[src_object_key])
 		for (var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
-			if(ui && ui.src_object && ui.user && ui.src_object.nano_host())
+			if (ui && ui.src_object && ui.user && ui.src_object.nano_host())
 				ui.close()
 				close_count++
 	return close_count
@@ -211,7 +211,7 @@
 		return FALSE // wasn't open
 
 	processing_uis.Remove(ui)
-	if(ui.user)	// Sanity check in case a user has been deleted (say a blown up borg watching the alarm interface)
+	if (ui.user)	// Sanity check in case a user has been deleted (say a blown up borg watching the alarm interface)
 		ui.user.open_uis.Remove(ui)
 	var/list/uis = open_uis[src_object_key][ui.ui_key]
 	uis.Remove(ui)

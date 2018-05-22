@@ -43,10 +43,10 @@
 	pixel_x = rand(-9, 9)
 	stamps = ""
 
-	if(name != "paper")
+	if (name != "paper")
 		desc = "This is a paper titled '" + name + "'."
 
-	if(info != initial(info))
+	if (info != initial(info))
 		info = rhtml_encode(info)
 		info = replacetext(info, "\n", "<BR>")
 		info = parsepencode(info)
@@ -63,29 +63,29 @@
 	..()
 
 /obj/item/weapon/paper/update_icon()
-	if(icon_state == "paper_talisman")
+	if (icon_state == "paper_talisman")
 		return
-	if(info)
+	if (info)
 		icon_state = "paper_words"
 		return
 	icon_state = "paper"
 
 /obj/item/weapon/paper/proc/update_space(var/new_text)
-	if(!new_text)
+	if (!new_text)
 		return
 
 	free_space -= length(strip_html_properly(new_text))
 
 /obj/item/weapon/paper/examine(mob/user)
 	..()
-	if(in_range(user, src) || isghost(user))
+	if (in_range(user, src) || isghost(user))
 		show_content(usr)
 	else
 		user << "<span class='notice'>You have to go closer if you want to read it.</span>"
 	return
 
 /obj/item/weapon/paper/proc/show_content(var/mob/user, var/forceshow=0)
-	if(!(istype(user, /mob/living/carbon/human) || isghost(user) || istype(user, /mob/living/silicon)) && !forceshow)
+	if (!(istype(user, /mob/living/carbon/human) || isghost(user) || istype(user, /mob/living/silicon)) && !forceshow)
 		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
 		onclose(user, "[name]")
 	else
@@ -98,23 +98,23 @@
 	set src in usr
 	playsound(src,'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.wav',40,1)
 
-	if((CLUMSY in usr.mutations) && prob(50))
+	if ((CLUMSY in usr.mutations) && prob(50))
 		usr << "<span class='warning'>You cut yourself on the paper.</span>"
 		return
 	var/n_name = sanitizeSafe(input(usr, "What would you like to label the paper?", "Paper Labelling", null)  as text, MAX_NAME_LEN)
 
 	// We check loc one level up, so we can rename in clipboards and such. See also: /obj/item/weapon/photo/rename()
-	if((loc == usr || loc.loc && loc.loc == usr) && usr.stat == FALSE && n_name)
+	if ((loc == usr || loc.loc && loc.loc == usr) && usr.stat == FALSE && n_name)
 		name = n_name
-		if(n_name != "paper")
+		if (n_name != "paper")
 			desc = "This is a paper titled '" + name + "'."
 
 		add_fingerprint(usr)
 	return
 
 /obj/item/weapon/paper/attack_self(mob/living/user as mob)
-	if(user.a_intent == I_HURT)
-		if(icon_state == "scrap")
+	if (user.a_intent == I_HURT)
+		if (icon_state == "scrap")
 			user.show_message("<span class='warning'>\The [src] is already crumpled.</span>")
 			return
 		//crumple dat paper
@@ -127,22 +127,22 @@
 
 
 /obj/item/weapon/paper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(user.targeted_organ == "eyes")
+	if (user.targeted_organ == "eyes")
 		user.visible_message("<span class='notice'>You show the paper to [M]. </span>", \
 			"<span class='notice'> [user] holds up a paper and shows it to [M]. </span>")
 		M.examinate(src)
 
-	else if(user.targeted_organ == "mouth") // lipstick wiping
-		if(ishuman(M))
+	else if (user.targeted_organ == "mouth") // lipstick wiping
+		if (ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H == user)
+			if (H == user)
 				user << "<span class='notice'>You wipe off the lipstick with [src].</span>"
 				H.lip_style = null
 				H.update_body()
 			else
 				user.visible_message("<span class='warning'>[user] begins to wipe [H]'s lipstick off with \the [src].</span>", \
 								 	 "<span class='notice'>You begin to wipe off [H]'s lipstick.</span>")
-				if(do_after(user, 10, H) && do_after(H, 10, needhand = FALSE))	//user needs to keep their active hand, H does not.
+				if (do_after(user, 10, H) && do_after(H, 10, needhand = FALSE))	//user needs to keep their active hand, H does not.
 					user.visible_message("<span class='notice'>[user] wipes [H]'s lipstick off with \the [src].</span>", \
 										 "<span class='notice'>You wipe off [H]'s lipstick.</span>")
 					H.lip_style = null
@@ -152,21 +152,21 @@
 	var/locid = FALSE
 	var/laststart = TRUE
 	var/textindex = TRUE
-	while(1) // I know this can cause infinite loops and fuck up the whole server, but the if(istart==0) should be safe as fuck
+	while(1) // I know this can cause infinite loops and fuck up the whole server, but the if (istart==0) should be safe as fuck
 		var/istart = FALSE
-		if(links)
+		if (links)
 			istart = findtext(info_links, "<span class=\"paper_field\">", laststart)
 		else
 			istart = findtext(info, "<span class=\"paper_field\">", laststart)
 
-		if(istart==0)
+		if (istart==0)
 			return // No field found with matching id
 
 		laststart = istart+1
 		locid++
-		if(locid == id)
+		if (locid == id)
 			var/iend = TRUE
-			if(links)
+			if (links)
 				iend = findtext(info_links, "</span>", istart)
 			else
 				iend = findtext(info, "</span>", istart)
@@ -175,7 +175,7 @@
 			textindex = iend
 			break
 
-	if(links)
+	if (links)
 		var/before = copytext(info_links, TRUE, textindex)
 		var/after = copytext(info_links, textindex)
 		info_links = before + text + after
@@ -203,7 +203,7 @@
 	update_icon()
 
 /obj/item/weapon/paper/proc/get_signature(var/obj/item/weapon/pen/P, mob/user as mob)
-	if(P && istype(P, /obj/item/weapon/pen))
+	if (P && istype(P, /obj/item/weapon/pen))
 		return P.get_signature(user)
 	return (user && user.real_name) ? user.real_name : "Anonymous"
 
@@ -233,7 +233,7 @@
 	t = replacetext(t, "\[h3\]", "<H3>")
 	t = replacetext(t, "\[/h3\]", "</H3>")
 
-	if(!iscrayon)
+	if (!iscrayon)
 		t = replacetext(t, "\[*\]", "<li>")
 		t = replacetext(t, "\[hr\]", "<HR>")
 		t = replacetext(t, "\[small\]", "<font size = \"1\">")
@@ -271,7 +271,7 @@
 	var/laststart = TRUE
 	while(1)
 		var/i = findtext(t, "<span class=\"paper_field\">", laststart)	//</span>
-		if(i==0)
+		if (i==0)
 			break
 		laststart = i+1
 		fields++
@@ -281,19 +281,19 @@
 /obj/item/weapon/paper/proc/burnpaper(obj/item/weapon/flame/P, mob/user)
 	var/class = "warning"
 
-	if(P.lit && !user.restrained())
-		if(istype(P, /obj/item/weapon/flame/lighter/zippo))
+	if (P.lit && !user.restrained())
+		if (istype(P, /obj/item/weapon/flame/lighter/zippo))
 			class = "rose"
 
 		user.visible_message("<span class='[class]'>[user] holds \the [P] up to \the [src], it looks like \he's trying to burn it!</span>", \
 		"<span class='[class]'>You hold \the [P] up to \the [src], burning it slowly.</span>")
 
 		spawn(20)
-			if(get_dist(src, user) < 2 && user.get_active_hand() == P && P.lit)
+			if (get_dist(src, user) < 2 && user.get_active_hand() == P && P.lit)
 				user.visible_message("<span class='[class]'>[user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
 				"<span class='[class]'>You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
 
-				if(user.get_inactive_hand() == src)
+				if (user.get_inactive_hand() == src)
 					user.drop_from_inventory(src)
 
 				new /obj/effect/decal/cleanable/ash(loc)
@@ -305,42 +305,42 @@
 
 /obj/item/weapon/paper/Topic(href, href_list)
 	..()
-	if(!usr || (usr.stat || usr.restrained()))
+	if (!usr || (usr.stat || usr.restrained()))
 		return
 
-	if(href_list["write"])
+	if (href_list["write"])
 		if (istype(src, /obj/item/weapon/paper/supply_train_requisitions_sheet))
 			return
 		var/id = href_list["write"]
 		//var/t = strip_html_simple(input(usr, "What text do you wish to add to " + (id=="end" ? "the end of the paper" : "field "+id) + "?", "[name]", null),8192) as message
 
-		if(free_space <= 0)
+		if (free_space <= 0)
 			usr << "<span class='info'>There isn't enough space left on \the [src] to write anything.</span>"
 			return
 
 		var/t =  sanitize(input("Enter what you want to write:", "Write", null, null) as message, free_space, extra = FALSE)
 
-		if(!t)
+		if (!t)
 			return
 
 		var/obj/item/i = usr.get_active_hand() // Check to see if he still got that darn pen, also check if he's using a crayon or pen.
 		var/iscrayon = FALSE
-		if(!istype(i, /obj/item/weapon/pen))
+		if (!istype(i, /obj/item/weapon/pen))
 			return
 
-		if(istype(i, /obj/item/weapon/pen/crayon))
+		if (istype(i, /obj/item/weapon/pen/crayon))
 			iscrayon = TRUE
 
 
 		// if paper is not in usr, then it must be near them, or in a clipboard or folder, which must be in or near usr
-		if(loc != usr && !Adjacent(usr) && !((istype(loc, /obj/item/weapon/clipboard) || istype(loc, /obj/item/weapon/folder)) && (loc.loc == usr || loc.Adjacent(usr)) ) )
+		if (loc != usr && !Adjacent(usr) && !((istype(loc, /obj/item/weapon/clipboard) || istype(loc, /obj/item/weapon/folder)) && (loc.loc == usr || loc.Adjacent(usr)) ) )
 			return
 /*
 		t = checkhtml(t)
 
 		// check for exploits
 		for(var/bad in paper_blacklist)
-			if(findtext(t,bad))
+			if (findtext(t,bad))
 				usr << "<span class = 'notice'>You think to yourself, \"Hm.. this is only paper...\"</span>"
 				log_admin("PAPER: [usr] ([usr.ckey]) tried to use forbidden word in [src]: [bad].")
 				message_admins("PAPER: [usr] ([usr.ckey]) tried to use forbidden word in [src]: [bad].")
@@ -354,12 +354,12 @@
 		t = parsepencode(t, i, usr, iscrayon) // Encode everything from pencode to html
 
 
-		if(fields > 50)//large amount of fields creates a heavy load on the server, see updateinfolinks() and addtofield()
+		if (fields > 50)//large amount of fields creates a heavy load on the server, see updateinfolinks() and addtofield()
 			usr << "<span class='warning'>Too many fields. Sorry, you can't do this.</span>"
 			fields = last_fields_value
 			return
 
-		if(id!="end")
+		if (id!="end")
 			addtofield(text2num(id), t) // He wants to edit a field, let him.
 		else
 			info += t // Oh, he wants to edit to the end of the file, let him.
@@ -375,15 +375,15 @@
 /obj/item/weapon/paper/attackby(obj/item/weapon/P as obj, mob/user as mob)
 	..()
 	var/clown = FALSE
-	if(user.mind && (user.mind.assigned_role == "Clown"))
+	if (user.mind && (user.mind.assigned_role == "Clown"))
 		clown = TRUE
 
-	if(istype(P, /obj/item/weapon/tape_roll))
+	if (istype(P, /obj/item/weapon/tape_roll))
 		var/obj/item/weapon/tape_roll/tape = P
 		tape.stick(src, user)
 		return
 
-	if(istype(P, /obj/item/weapon/paper) || istype(P, /obj/item/weapon/photo))
+	if (istype(P, /obj/item/weapon/paper) || istype(P, /obj/item/weapon/photo))
 		if (istype(P, /obj/item/weapon/paper/carbon))
 			var/obj/item/weapon/paper/carbon/C = P
 			if (!C.iscopy && !C.copied)
@@ -421,7 +421,7 @@
 				h_user.put_in_hands(B)
 			else if (!istype(loc, /turf))
 				loc = get_turf(h_user)
-				if(h_user.client)	h_user.client.screen -= src
+				if (h_user.client)	h_user.client.screen -= src
 				h_user.put_in_hands(B)
 		user << "<span class='notice'>You clip the [P.name] to [(name == "paper") ? "the paper" : name].</span>"
 		loc = B
@@ -431,8 +431,8 @@
 		B.pages.Add(P)
 		B.update_icon()
 
-	else if(istype(P, /obj/item/weapon/pen))
-		if(icon_state == "scrap")
+	else if (istype(P, /obj/item/weapon/pen))
+		if (icon_state == "scrap")
 			usr << "<span class='warning'>\The [src] is too crumpled to write on.</span>"
 			return
 /*
@@ -443,15 +443,15 @@
 		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]")
 		return
 
-	else if(istype(P, /obj/item/weapon/stamp))
-		if((!in_range(src, usr) && loc != user && !( istype(loc, /obj/item/weapon/clipboard) ) && loc.loc != user && user.get_active_hand() != P))
+	else if (istype(P, /obj/item/weapon/stamp))
+		if ((!in_range(src, usr) && loc != user && !( istype(loc, /obj/item/weapon/clipboard) ) && loc.loc != user && user.get_active_hand() != P))
 			return
 		playsound(src,'sound/effects/Stamp.wav',40,1)
 		stamps += (stamps=="" ? "<HR>" : "<BR>") + "<i>This paper has been stamped with the [P.name].</i>"
 
 		var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
 		var/{x; y;}
-		if(istype(P, /obj/item/weapon/stamp/captain) || istype(P, /obj/item/weapon/stamp/centcomm))
+		if (istype(P, /obj/item/weapon/stamp/captain) || istype(P, /obj/item/weapon/stamp/centcomm))
 			x = rand(-2, FALSE)
 			y = rand(-1, 2)
 		else
@@ -462,24 +462,24 @@
 		stampoverlay.pixel_x = x
 		stampoverlay.pixel_y = y
 
-		if(istype(P, /obj/item/weapon/stamp/clown))
-			if(!clown)
+		if (istype(P, /obj/item/weapon/stamp/clown))
+			if (!clown)
 				user << "<span class='notice'>You are totally unable to use the stamp. HONK!</span>"
 				return
 
-		if(!ico)
+		if (!ico)
 			ico = new
 		ico += "paper_[P.icon_state]"
 		stampoverlay.icon_state = "paper_[P.icon_state]"
 
-		if(!stamped)
+		if (!stamped)
 			stamped = new
 		stamped += P.type
 		overlays += stampoverlay
 
 		user << "<span class='notice'>You stamp the paper with your rubber stamp.</span>"
 
-	else if(istype(P, /obj/item/weapon/flame))
+	else if (istype(P, /obj/item/weapon/flame))
 		burnpaper(P, user)
 
 	add_fingerprint(user)

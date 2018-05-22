@@ -9,19 +9,19 @@
 /mob/verb/say_verb(message as text)
 	set name = "Say"
 	set category = "IC"
-	if(say_disabled)	//This is here to try to identify lag problems
+	if (say_disabled)	//This is here to try to identify lag problems
 		usr << "<span class = 'red'>Speech is currently admin-disabled.</span>"
 		return
 	//Let's try to make users fix their errors - we try to detect single, out-of-place letters and 'unintended' words
 	/*
 	var/first_letter = copytext(message,1,2)
-	if((copytext(message,2,3) == " " && first_letter != "I" && first_letter != "A" && first_letter != ";") || cmptext(copytext(message,1,5), "say ") || cmptext(copytext(message,1,4), "me ") || cmptext(copytext(message,1,6), "looc ") || cmptext(copytext(message,1,5), "ooc ") || cmptext(copytext(message,2,6), "say "))
+	if ((copytext(message,2,3) == " " && first_letter != "I" && first_letter != "A" && first_letter != ";") || cmptext(copytext(message,1,5), "say ") || cmptext(copytext(message,1,4), "me ") || cmptext(copytext(message,1,6), "looc ") || cmptext(copytext(message,1,5), "ooc ") || cmptext(copytext(message,2,6), "say "))
 		var/response = alert(usr, "Do you really want to say this using the *say* verb?\n\n[message]\n", "Confirm your message", "Yes", "Edit message", "No")
-		if(response == "Edit message")
+		if (response == "Edit message")
 			message = input(usr, "Please edit your message carefully:", "Edit message", message)
-			if(!message)
+			if (!message)
 				return
-		else if(response == "No")
+		else if (response == "No")
 			return
 	*/
 
@@ -35,29 +35,29 @@
 	set name = "Me"
 	set category = "IC"
 
-	if(say_disabled)	//This is here to try to identify lag problems
+	if (say_disabled)	//This is here to try to identify lag problems
 		usr << "<span class = 'red'>Speech is currently admin-disabled.</span>"
 		return
 
 	message = sanitize(message)
 
 	set_typing_indicator(0)
-	if(use_me)
+	if (use_me)
 		usr.emote("me",usr.emote_type,message)
 	else
 		usr.emote(message)
 
 /mob/proc/say_dead(var/message)
-	if(say_disabled)	//This is here to try to identify lag problems
+	if (say_disabled)	//This is here to try to identify lag problems
 		usr << "<span class='danger'>Speech is currently admin-disabled.</span>"
 		return
 
-	if(!client.holder)
-		if(!config.dsay_allowed)
+	if (!client.holder)
+		if (!config.dsay_allowed)
 			src << "<span class='danger'>Deadchat is globally muted.</span>"
 			return
 
-	if(!is_preference_enabled(/datum/client_preference/show_dsay))
+	if (!is_preference_enabled(/datum/client_preference/show_dsay))
 		usr << "<span class='danger'>You have deadchat muted.</span>"
 		return
 
@@ -69,27 +69,27 @@
 		return TRUE
 
 	//Universal speak makes everything understandable, for obvious reasons.
-	else if(universal_speak || universal_understand)
+	else if (universal_speak || universal_understand)
 		return TRUE
 
 	//Languages are handled after.
 	if (!speaking)
-		if(!other)
+		if (!other)
 			return TRUE
-		if(other.universal_speak)
+		if (other.universal_speak)
 			return TRUE
-		if(isAI(src) && ispAI(other))
+		if (isAI(src) && ispAI(other))
 			return TRUE
 		if (istype(other, type) || istype(src, other.type))
 			return TRUE
 		return FALSE
 
-	if(speaking.flags & INNATE)
+	if (speaking.flags & INNATE)
 		return TRUE
 
 	//Language check.
 	for(var/datum/language/L in languages)
-		if(speaking.name == L.name)
+		if (speaking.name == L.name)
 			return TRUE
 
 	return FALSE
@@ -106,16 +106,16 @@
 /mob/proc/say_quote(var/message, var/datum/language/speaking = null)
         var/verb = "says"
         var/ending = copytext(message, length(message))
-        if(ending=="!")
+        if (ending=="!")
                 verb=pick("exclaims","shouts","yells")
-        else if(ending=="?")
+        else if (ending=="?")
                 verb="asks"
 
         return verb
 
 
 /mob/proc/emote(var/act, var/type, var/message)
-	if(act == "me")
+	if (act == "me")
 		return custom_emote(type, message)
 
 /mob/proc/get_ear()
@@ -138,10 +138,10 @@
 //returns the message mode string or null for no message mode.
 //standard mode is the mode returned for the special ';' radio code.
 /mob/proc/parse_message_mode(var/message, var/standard_mode="headset")
-	if(length(message) >= 1 && copytext(message,1,2) == ";")
+	if (length(message) >= 1 && copytext(message,1,2) == ";")
 		return standard_mode
 
-	if(length(message) >= 2)
+	if (length(message) >= 2)
 		var/channel_prefix = copytext(message, TRUE ,3)
 		return department_radio_keys[channel_prefix]
 
@@ -151,10 +151,10 @@
 //returns the language object only if the code corresponds to a language that src can speak, otherwise null.
 /mob/proc/parse_language(var/message)
 	var/prefix = copytext(message,1,2)
-	if(length(message) >= 1 && prefix == "!")
+	if (length(message) >= 1 && prefix == "!")
 		return all_languages["Noise"]
 
-	if(length(message) >= 2 && is_language_prefix(prefix))
+	if (length(message) >= 2 && is_language_prefix(prefix))
 		var/language_prefix = lowertext(copytext(message, 2 ,3))
 		var/datum/language/L = language_keys[rkey2key(language_prefix)]
 		if (can_speak(L))

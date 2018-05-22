@@ -28,7 +28,7 @@
 
 // BubbleWrap - A box can be folded up to make card
 /obj/item/weapon/storage/box/attack_self(mob/user as mob)
-	if(..()) return
+	if (..()) return
 
 	//try to fold it.
 	if ( contents.len )
@@ -442,7 +442,7 @@
 	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube)
 	New()
 		..()
-		if(type == /obj/item/weapon/storage/box/monkeycubes)
+		if (type == /obj/item/weapon/storage/box/monkeycubes)
 			for(var/i = TRUE; i <= 5; i++)
 				new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped(src)
 */
@@ -519,8 +519,8 @@
 			new /obj/item/weapon/flame/match(src)
 
 	attackby(obj/item/weapon/flame/match/W as obj, mob/user as mob)
-		if(istype(W) && !W.lit && !W.burnt)
-			if(prob(50))
+		if (istype(W) && !W.lit && !W.burnt)
+			if (prob(50))
 				playsound(loc, 'sound/items/matchstick_lit.ogg', 25, FALSE, -1)
 				W.lit = TRUE
 				W.damtype = "burn"

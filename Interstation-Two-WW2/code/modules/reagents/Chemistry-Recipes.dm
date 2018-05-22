@@ -11,9 +11,9 @@
 
 	for(var/path in paths)
 		var/datum/chemical_reaction/D = new path()
-		if(D.required_reagents && D.required_reagents.len)
+		if (D.required_reagents && D.required_reagents.len)
 			var/reagent_id = D.required_reagents[1]
-			if(!chemical_reactions_list[reagent_id])
+			if (!chemical_reactions_list[reagent_id])
 				chemical_reactions_list[reagent_id] = list()
 			chemical_reactions_list[reagent_id] += D
 
@@ -55,15 +55,15 @@
 	var/log_is_important = FALSE // If this reaction should be considered important for logging. Important recipes message admins when mixed, non-important ones just log to file.
 /datum/chemical_reaction/proc/can_happen(var/datum/reagents/holder)
 	//check that all the required reagents are present
-	if(!holder.has_all_reagents(required_reagents))
+	if (!holder.has_all_reagents(required_reagents))
 		return FALSE
 
 	//check that all the required catalysts are present in the required amount
-	if(!holder.has_all_reagents(catalysts))
+	if (!holder.has_all_reagents(catalysts))
 		return FALSE
 
 	//check that none of the inhibitors are present in the required amount
-	if(holder.has_any_reagent(inhibitors))
+	if (holder.has_any_reagent(inhibitors))
 		return FALSE
 
 	return TRUE
@@ -72,7 +72,7 @@
 	var/progress = reaction_limit * reaction_rate //simple exponential progression
 
 	//calculate yield
-	if(1-yield > 0.001) //if yield ratio is big enough just assume it goes to completion
+	if (1-yield > 0.001) //if yield ratio is big enough just assume it goes to completion
 		/*
 			Determine the max amount of product by applying the yield condition:
 			(max_product/result_amount) / reaction_limit == yield/(1-yield)
@@ -90,7 +90,7 @@
 	//I guess people can just have their miniscule reactions go to completion regardless of yield.
 	for(var/reactant in required_reagents)
 		var/remainder = holder.get_reagent_amount(reactant) - progress*required_reagents[reactant]
-		if(remainder <= min_reaction*required_reagents[reactant])
+		if (remainder <= min_reaction*required_reagents[reactant])
 			progress = reaction_limit
 			break
 
@@ -118,7 +118,7 @@
 
 	//add the product
 	var/amt_produced = result_amount * reaction_progress
-	if(result)
+	if (result)
 		holder.add_reagent(result, amt_produced, data, safety = TRUE)
 
 	on_reaction(holder, amt_produced)
@@ -132,7 +132,7 @@
 //called after processing reactions, if they occurred
 /datum/chemical_reaction/proc/post_reaction(var/datum/reagents/holder)
 	var/atom/container = holder.my_atom
-	if(mix_message && container && !ismob(container))
+	if (mix_message && container && !ismob(container))
 		var/turf/T = get_turf(container)
 		var/list/seen = viewers(4, T)
 		for(var/mob/M in seen)
@@ -572,8 +572,8 @@
 	e.set_up(round (created_volume/10, TRUE), exloc, FALSE, FALSE)
 	for (var/mob/living/L in exloc)
 		e.amount *= 0.5
-		if(L.stat != DEAD)
-			if(e.amount >= 6)
+		if (L.stat != DEAD)
+			if (e.amount >= 6)
 				L.crush()
 			e.amount *= 1.5
 	e.start()
@@ -593,18 +593,18 @@
 	s.start()
 	for(var/mob/living/carbon/M in viewers(world.view, location))
 		switch(get_dist(M, location))
-			if(0 to 3)
-				if(hasvar(M, "glasses"))
-					if(istype(M:glasses, /obj/item/clothing/glasses/sunglasses))
+			if (0 to 3)
+				if (hasvar(M, "glasses"))
+					if (istype(M:glasses, /obj/item/clothing/glasses/sunglasses))
 						continue
 
 				if (M.HUDtech.Find("flash"))
 					flick("e_flash", M.HUDtech["flash"])
 				M.Weaken(15)
 
-			if(4 to 5)
-				if(hasvar(M, "glasses"))
-					if(istype(M:glasses, /obj/item/clothing/glasses/sunglasses))
+			if (4 to 5)
+				if (hasvar(M, "glasses"))
+					if (istype(M:glasses, /obj/item/clothing/glasses/sunglasses))
 						continue
 
 				if (M.HUDtech.Find("flash"))
@@ -640,8 +640,8 @@
 	e.set_up(round (created_volume/2, TRUE), exloc, FALSE, FALSE)
 	for (var/mob/living/L in exloc)
 		e.amount *= 0.5
-		if(L.stat != DEAD)
-			if(e.amount >= 6)
+		if (L.stat != DEAD)
+			if (e.amount >= 6)
 				L.crush()
 			e.amount *= 1.5
 	e.start()
@@ -827,7 +827,7 @@
 
 /datum/chemical_reaction/blood_paint/send_data(var/datum/reagents/T)
 	var/t = T.get_data("blood")
-	if(t && t["blood_colour"])
+	if (t && t["blood_colour"])
 		return t["blood_colour"]
 	return "#FE191A" // Probably red
 

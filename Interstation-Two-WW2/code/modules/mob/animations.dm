@@ -12,12 +12,12 @@ below 100 is not dizzy
 /mob/var/is_dizzy = FALSE
 
 /mob/proc/make_dizzy(var/amount)
-	if(!istype(src, /mob/living/carbon/human)) // for the moment, only humans get dizzy
+	if (!istype(src, /mob/living/carbon/human)) // for the moment, only humans get dizzy
 		return
 
 	dizziness = min(1000, dizziness + amount)	// store what will be new value
 													// clamped to max 1000
-	if(dizziness > 100 && !is_dizzy)
+	if (dizziness > 100 && !is_dizzy)
 		spawn(0)
 			if (isliving(src))
 				var/mob/living/L = src
@@ -32,14 +32,14 @@ note dizziness decrements automatically in the mob's Life() proc.
 /mob/living/proc/dizzy_process()
 	is_dizzy = TRUE
 	while(dizziness > 100)
-		if(client && !dizzycheck)
+		if (client && !dizzycheck)
 			var/amplitude = dizziness*(sin(dizziness * 0.044 * world.time) + 1) / 70
 			client.pixel_x = amplitude * sin(0.008 * dizziness * world.time)
 			client.pixel_y = amplitude * cos(0.008 * dizziness * world.time)
 		sleep(1)
 	//endwhile - reset the pixel offsets to zero
 	is_dizzy = FALSE
-	if(client)
+	if (client)
 		client.pixel_x = 0
 		client.pixel_y = 0
 
@@ -47,12 +47,12 @@ note dizziness decrements automatically in the mob's Life() proc.
 /mob/var/is_jittery = FALSE
 /mob/var/jitteriness = FALSE//Carbon
 /mob/proc/make_jittery(var/amount)
-	if(!istype(src, /mob/living/carbon/human)) // for the moment, only humans get dizzy
+	if (!istype(src, /mob/living/carbon/human)) // for the moment, only humans get dizzy
 		return
 
 	jitteriness = min(1000, jitteriness + amount)	// store what will be new value
 													// clamped to max 1000
-	if(jitteriness > 100 && !is_jittery)
+	if (jitteriness > 100 && !is_jittery)
 		spawn(0)
 			jittery_process()
 
@@ -84,14 +84,14 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 /mob/proc/update_floating(var/dense_object=0)
 
-	if(anchored||buckled)
+	if (anchored||buckled)
 		make_floating(0)
 		return
 
 	var/turf/turf = get_turf(src)
-	if(!istype(turf,/turf/space))
+	if (!istype(turf,/turf/space))
 		var/area/A = turf.loc
-		if(istype(A) && A.has_gravity)
+		if (istype(A) && A.has_gravity)
 			make_floating(0)
 			return
 		else if (Check_Shoegrip())
@@ -101,7 +101,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 			make_floating(1)
 			return
 
-	if(dense_object && Check_Shoegrip())
+	if (dense_object && Check_Shoegrip())
 		make_floating(0)
 		return
 
@@ -109,15 +109,15 @@ note dizziness decrements automatically in the mob's Life() proc.
 	return
 
 /mob/proc/make_floating(var/n)
-	if(buckled)
-		if(is_floating)
+	if (buckled)
+		if (is_floating)
 			stop_floating()
 		return
 	floatiness = n
 
-	if(floatiness && !is_floating)
+	if (floatiness && !is_floating)
 		start_floating()
-	else if(!floatiness && is_floating)
+	else if (!floatiness && is_floating)
 		stop_floating()
 
 /mob/proc/start_floating()
@@ -147,24 +147,24 @@ note dizziness decrements automatically in the mob's Life() proc.
 	var/pixel_y_diff = FALSE
 	var/direction = get_dir(src, A)
 	switch(direction)
-		if(NORTH)
+		if (NORTH)
 			pixel_y_diff = 8
-		if(SOUTH)
+		if (SOUTH)
 			pixel_y_diff = -8
-		if(EAST)
+		if (EAST)
 			pixel_x_diff = 8
-		if(WEST)
+		if (WEST)
 			pixel_x_diff = -8
-		if(NORTHEAST)
+		if (NORTHEAST)
 			pixel_x_diff = 8
 			pixel_y_diff = 8
-		if(NORTHWEST)
+		if (NORTHWEST)
 			pixel_x_diff = -8
 			pixel_y_diff = 8
-		if(SOUTHEAST)
+		if (SOUTHEAST)
 			pixel_x_diff = 8
 			pixel_y_diff = -8
-		if(SOUTHWEST)
+		if (SOUTHWEST)
 			pixel_x_diff = -8
 			pixel_y_diff = -8
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2)
@@ -176,7 +176,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	// What icon do we use for the attack?
 	var/image/I
-	if(hand && l_hand) // Attacked with item in left hand.
+	if (hand && l_hand) // Attacked with item in left hand.
 		I = image(l_hand.icon, A, l_hand.icon_state, A.layer + 1)
 	else if (!hand && r_hand) // Attacked with item in right hand.
 		I = image(r_hand.icon, A, r_hand.icon_state, A.layer + 1)
@@ -194,17 +194,17 @@ note dizziness decrements automatically in the mob's Life() proc.
 	I.transform *= 0.75
 	// Set the direction of the icon animation.
 	var/direction = get_dir(src, A)
-	if(direction & NORTH)
+	if (direction & NORTH)
 		I.pixel_y = -16
-	else if(direction & SOUTH)
+	else if (direction & SOUTH)
 		I.pixel_y = 16
 
-	if(direction & EAST)
+	if (direction & EAST)
 		I.pixel_x = -16
-	else if(direction & WEST)
+	else if (direction & WEST)
 		I.pixel_x = 16
 
-	if(!direction) // Attacked self?!
+	if (!direction) // Attacked self?!
 		I.pixel_z = 16
 
 	// And animate the attack!
@@ -216,13 +216,13 @@ note dizziness decrements automatically in the mob's Life() proc.
 		while(spintime >= speed)
 			sleep(speed)
 			switch(D)
-				if(NORTH)
+				if (NORTH)
 					D = EAST
-				if(SOUTH)
+				if (SOUTH)
 					D = WEST
-				if(EAST)
+				if (EAST)
 					D = SOUTH
-				if(WEST)
+				if (WEST)
 					D = NORTH
 			set_dir(D)
 			spintime -= speed

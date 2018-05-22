@@ -18,7 +18,7 @@
 
 /obj/item/weapon/material/shard/set_material(var/new_material)
 	..(new_material)
-	if(!istype(material))
+	if (!istype(material))
 		return
 
 	icon_state = "[material.shard_icon][pick("large", "medium", "small")]"
@@ -26,11 +26,11 @@
 	pixel_y = rand(-8, 8)
 	update_icon()
 
-	if(material.shard_type)
+	if (material.shard_type)
 		name = "[material.display_name] [material.shard_type]"
 		desc = "A small piece of [material.display_name]. It looks sharp, you wouldn't want to step on it barefoot. Could probably be used as ... a throwing weapon?"
 		switch(material.shard_type)
-			if(SHARD_SPLINTER, SHARD_SHRAPNEL)
+			if (SHARD_SPLINTER, SHARD_SHRAPNEL)
 				gender = PLURAL
 			else
 				gender = NEUTER
@@ -38,7 +38,7 @@
 		qdel(src)
 
 /obj/item/weapon/material/shard/update_icon()
-	if(material)
+	if (material)
 		color = material.icon_colour
 		// TRUE-(1-x)^2, so that glass shards with 0.3 opacity end up somewhat visible at 0.51 opacity
 		alpha = 255 * (1 - (1 - material.opacity)*(1 - material.opacity))
@@ -47,9 +47,9 @@
 		alpha = 255
 
 /obj/item/weapon/material/shard/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/weldingtool) && material.shard_can_repair)
+	if (istype(W, /obj/item/weapon/weldingtool) && material.shard_can_repair)
 		var/obj/item/weapon/weldingtool/WT = W
-		if(WT.remove_fuel(0, user))
+		if (WT.remove_fuel(0, user))
 			material.place_sheet(loc)
 			qdel(src)
 			return
@@ -57,20 +57,20 @@
 
 /obj/item/weapon/material/shard/Crossed(AM as mob|obj)
 	..()
-	if(isliving(AM))
+	if (isliving(AM))
 		var/mob/M = AM
 
-		if(M.buckled) //wheelchairs, office chairs, rollerbeds
+		if (M.buckled) //wheelchairs, office chairs, rollerbeds
 			return
 
 		playsound(loc, 'sound/effects/glass_step.ogg', 50, TRUE) // not sure how to handle metal shards with sounds
-		if(ishuman(M))
+		if (ishuman(M))
 			var/mob/living/carbon/human/H = M
 
-			if(H.species.siemens_coefficient<0.5) //Thick skin.
+			if (H.species.siemens_coefficient<0.5) //Thick skin.
 				return
 
-			if( H.shoes || ( H.wear_suit && (H.wear_suit.body_parts_covered & FEET) ) )
+			if ( H.shoes || ( H.wear_suit && (H.wear_suit.body_parts_covered & FEET) ) )
 				return
 
 			M << "<span class='danger'>You step on \the [src]!</span>"
@@ -79,13 +79,13 @@
 			while(check.len)
 				var/picked = pick(check)
 				var/obj/item/organ/external/affecting = H.get_organ(picked)
-				if(affecting)
-					if(affecting.status & ORGAN_ROBOT)
+				if (affecting)
+					if (affecting.status & ORGAN_ROBOT)
 						return
-					if(affecting.take_damage(5, FALSE))
+					if (affecting.take_damage(5, FALSE))
 						H.UpdateDamageIcon()
 					H.updatehealth()
-					if(!(H.species.flags & NO_PAIN))
+					if (!(H.species.flags & NO_PAIN))
 						H.Weaken(3)
 					return
 				check -= picked

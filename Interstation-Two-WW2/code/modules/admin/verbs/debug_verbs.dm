@@ -35,7 +35,7 @@ var/list/debug_verbs = list (
 	set category = "Debug"
 	set name = "Debug verbs"
 
-	if(!check_rights(R_DEBUG)) return
+	if (!check_rights(R_DEBUG)) return
 
 	verbs += debug_verbs
 
@@ -45,7 +45,7 @@ var/list/debug_verbs = list (
 	set category = "Debug"
 	set name = "Hide Debug verbs"
 
-	if(!check_rights(R_DEBUG)) return
+	if (!check_rights(R_DEBUG)) return
 
 	verbs -= debug_verbs
 
@@ -58,7 +58,7 @@ var/global/say_disabled = FALSE
 	usr << "<span class = 'red'>This proc is code-disabled.</span>"
 
 	/*say_disabled = !say_disabled
-	if(say_disabled)
+	if (say_disabled)
 		message_admins("[ckey] used 'Disable all communication verbs', killing all communication methods.")
 	else
 		message_admins("[ckey] used 'Disable all communication verbs', restoring all communication methods.")*/
@@ -73,7 +73,7 @@ var/global/movement_disabled_exception //This is the client that calls the proc,
 	usr << "<span class = 'red'>This proc is code-disabled.</span>"
 
 	/*movement_disabled = !movement_disabled
-	if(movement_disabled)
+	if (movement_disabled)
 		message_admins("[ckey] used 'Disable all movement', killing all movement.")
 		movement_disabled_exception = usr.ckey
 	else

@@ -17,17 +17,17 @@
 
 	..()
 
-	if(!owner)
+	if (!owner)
 		return
 
 	// Coffee is really bad for you with busted kidneys.
 	// This should probably be expanded in some way, but fucked if I know
 	// what else kidneys can process in our reagent list.
 	var/datum/reagent/coffee = locate(/datum/reagent/drink/coffee) in owner.reagents.reagent_list
-	if(coffee)
-		if(is_bruised())
+	if (coffee)
+		if (is_bruised())
 			owner.adjustToxLoss(0.1 * PROCESS_ACCURACY)
-		else if(is_broken())
+		else if (is_broken())
 			owner.adjustToxLoss(0.3 * PROCESS_ACCURACY)
 
 /obj/item/organ/eyes
@@ -39,7 +39,7 @@
 	var/list/eye_colour = list(0,0,0)
 
 /obj/item/organ/eyes/proc/update_colour()
-	if(!owner)
+	if (!owner)
 		return
 	eye_colour = list(
 		owner.r_eyes ? owner.r_eyes : FALSE,
@@ -50,16 +50,16 @@
 /obj/item/organ/eyes/take_damage(amount, var/silent=0)
 	var/oldbroken = is_broken()
 	..()
-	if(is_broken() && !oldbroken && owner && !owner.stat)
+	if (is_broken() && !oldbroken && owner && !owner.stat)
 		owner << "<span class='danger'>You go blind!</span>"
 
 /obj/item/organ/eyes/process() //Eye damage replaces the old eye_stat var.
 	..()
-	if(!owner)
+	if (!owner)
 		return
-	if(is_bruised())
+	if (is_bruised())
 		owner.eye_blurry = 20
-	if(is_broken())
+	if (is_broken())
 		owner.eye_blind = 20
 
 /obj/item/organ/liver
@@ -72,46 +72,46 @@
 
 	..()
 
-	if(!owner)
+	if (!owner)
 		return
 
 	if (germ_level > INFECTION_LEVEL_ONE)
-		if(prob(1))
+		if (prob(1))
 			owner << "<span class = 'red'>Your skin itches.</span>"
 	if (germ_level > INFECTION_LEVEL_TWO)
-		if(prob(1))
+		if (prob(1))
 			spawn owner.vomit()
 
-	if(owner.life_tick % PROCESS_ACCURACY == FALSE)
+	if (owner.life_tick % PROCESS_ACCURACY == FALSE)
 
 		//High toxins levels are dangerous
-		if(owner.getToxLoss() >= 60 && !owner.reagents.has_reagent("anti_toxin"))
+		if (owner.getToxLoss() >= 60 && !owner.reagents.has_reagent("anti_toxin"))
 			//Healthy liver suffers on its own
 			if (damage < min_broken_damage)
 				damage += 0.2 * PROCESS_ACCURACY
 			//Damaged one shares the fun
 			else
 				var/obj/item/organ/O = pick(owner.internal_organs)
-				if(O)
+				if (O)
 					O.damage += 0.2  * PROCESS_ACCURACY
 
 		//Detox can heal small amounts of damage
 		if (damage && damage < min_bruised_damage && owner.reagents.has_reagent("anti_toxin"))
 			damage -= 0.2 * PROCESS_ACCURACY
 
-		if(damage < 0)
+		if (damage < 0)
 			damage = FALSE
 
 		// Get the effectiveness of the liver.
 		var/filter_effect = 3
-		if(is_bruised())
+		if (is_bruised())
 			filter_effect -= 1
-		if(is_broken())
+		if (is_broken())
 			filter_effect -= 2
 
 		// Do some reagent processing.
-		if(owner.chem_effects[CE_ALCOHOL_TOXIC])
-			if(filter_effect < 3)
+		if (owner.chem_effects[CE_ALCOHOL_TOXIC])
+			if (filter_effect < 3)
 				owner.adjustToxLoss(owner.chem_effects[CE_ALCOHOL_TOXIC] * 0.1 * PROCESS_ACCURACY)
 			else
 				take_damage(owner.chem_effects[CE_ALCOHOL_TOXIC] * 0.1 * PROCESS_ACCURACY, prob(1)) // Chance to warn them
@@ -125,32 +125,32 @@
 
 /obj/item/organ/appendix/update_icon()
 	..()
-	if(inflamed)
+	if (inflamed)
 		icon_state = "appendixinflamed"
 		name = "inflamed appendix"
 
 /obj/item/organ/appendix/process()
 	..()
-	if(inflamed && owner)
+	if (inflamed && owner)
 		inflamed++
-		if(prob(5))
+		if (prob(5))
 			owner << "<span class='warning'>You feel a stinging pain in your abdomen!</span>"
 			owner.emote("me",1,"winces slightly.")
-		if(inflamed > 200)
-			if(prob(3))
+		if (inflamed > 200)
+			if (prob(3))
 				take_damage(0.1)
 				owner.emote("me",1,"winces painfully.")
 				owner.adjustToxLoss(1)
-		if(inflamed > 400)
-			if(prob(1))
+		if (inflamed > 400)
+			if (prob(1))
 				germ_level += rand(2,6)
 				if (owner.nutrition > 100)
 					owner.vomit()
 				else
 					owner << "<span class='danger'>You gag as you want to throw up, but there's nothing in your stomach!</span>"
 					owner.Weaken(10)
-		if(inflamed > 600)
-			if(prob(1))
+		if (inflamed > 600)
+			if (prob(1))
 				owner << "<span class='danger'>Your abdomen is a world of pain!</span>"
 				owner.Weaken(10)
 

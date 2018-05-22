@@ -8,7 +8,7 @@
 
 /obj/effect/damagedfloor/fire/New(loc)
 	var/turf/floor/F = loc
-	if(istype(F))
+	if (istype(F))
 		F.burn_tile()
 	qdel(src)
 
@@ -17,6 +17,6 @@
 
 /obj/effect/damagedfloor/New(loc)
 	var/turf/floor/F = loc
-	if(istype(F))
+	if (istype(F))
 		F.break_tile(1)
 	qdel(src)

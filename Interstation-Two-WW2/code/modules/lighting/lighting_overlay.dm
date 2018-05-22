@@ -31,7 +31,7 @@
 	T.lighting_overlay = src
 	T.luminosity       = FALSE
 
-	if(no_update)
+	if (no_update)
 		return
 
 	update_overlay()
@@ -44,7 +44,7 @@
 
 /atom/movable/lighting_overlay/Destroy()
 	var/turf/T   = loc
-	if(istype(T))
+	if (istype(T))
 		T.lighting_overlay = null
 
 		T.luminosity = TRUE
@@ -59,8 +59,8 @@
 
 /atom/movable/lighting_overlay/proc/update_overlay(var/force_window_coeff_updates = FALSE)
 	var/turf/T = loc
-	if(!T || !istype(T)) // Erm...
-		if(loc)
+	if (!T || !istype(T)) // Erm...
+		if (loc)
 			warning("A lighting overlay realised its loc was NOT a turf (actual loc: [loc], [loc.type]) in update_overlay() and got pooled!")
 
 		else
@@ -81,22 +81,22 @@
 
 		// Huge switch to determine i based on D.
 		switch(turn(C.masters[T], 180))
-			if(NORTHEAST)
+			if (NORTHEAST)
 				i = AR
 
-			if(SOUTHEAST)
+			if (SOUTHEAST)
 				i = GR
 
-			if(SOUTHWEST)
+			if (SOUTHWEST)
 				i = RR
 
-			if(NORTHWEST)
+			if (NORTHWEST)
 				i = BR
 
 		var/mx = max(C.getLumR(T), C.getLumG(T), C.getLumB(T)) // Scale it so 1 is the strongest lum, if it is above 1.
 		anylums += mx
 		. = 1.0 // factor
-		if(mx > 1)
+		if (mx > 1)
 			. = 1.0 / mx
 
 		L[i + 0]   = C.getLumR(T) * .

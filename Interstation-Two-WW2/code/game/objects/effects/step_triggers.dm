@@ -11,9 +11,9 @@
 
 /obj/effect/step_trigger/Crossed(H as mob|obj)
 	..()
-	if(!H)
+	if (!H)
 		return
-	if(isobserver(H) && !(isghost(H) && affect_ghosts))
+	if (isobserver(H) && !(isghost(H) && affect_ghosts))
 		return
 	Trigger(H)
 
@@ -31,26 +31,26 @@
 	var/list/affecting = list()
 
 	Trigger(var/atom/A)
-		if(!A || !istype(A, /atom/movable))
+		if (!A || !istype(A, /atom/movable))
 			return
 		var/atom/movable/AM = A
 		var/curtiles = FALSE
 		var/stopthrow = FALSE
 		for(var/obj/effect/step_trigger/thrower/T in orange(2, src))
-			if(AM in T.affecting)
+			if (AM in T.affecting)
 				return
 
-		if(ismob(AM))
+		if (ismob(AM))
 			var/mob/M = AM
-			if(immobilize)
+			if (immobilize)
 				M.canmove = FALSE
 
 		affecting.Add(AM)
 		while(AM && !stopthrow)
-			if(tiles)
-				if(curtiles >= tiles)
+			if (tiles)
+				if (curtiles >= tiles)
 					break
-			if(AM.z != z)
+			if (AM.z != z)
 				break
 
 			curtiles++
@@ -58,28 +58,28 @@
 			sleep(speed)
 
 			// Calculate if we should stop the process
-			if(!nostop)
+			if (!nostop)
 				for(var/obj/effect/step_trigger/T in get_step(AM, direction))
-					if(T.stopper && T != src)
+					if (T.stopper && T != src)
 						stopthrow = TRUE
 			else
 				for(var/obj/effect/step_trigger/teleporter/T in get_step(AM, direction))
-					if(T.stopper)
+					if (T.stopper)
 						stopthrow = TRUE
 
-			if(AM)
+			if (AM)
 				var/predir = AM.dir
 				step(AM, direction)
-				if(!facedir)
+				if (!facedir)
 					AM.set_dir(predir)
 
 
 
 		affecting.Remove(AM)
 
-		if(ismob(AM))
+		if (ismob(AM))
 			var/mob/M = AM
-			if(immobilize)
+			if (immobilize)
 				M.canmove = TRUE
 
 /* Stops things thrown by a thrower, doesn't do anything */
@@ -94,7 +94,7 @@
 	var/teleport_z = FALSE
 
 	Trigger(var/atom/movable/A)
-		if(teleport_x && teleport_y && teleport_z)
+		if (teleport_x && teleport_y && teleport_z)
 
 			A.x = teleport_x
 			A.y = teleport_y
@@ -108,8 +108,8 @@
 	var/teleport_z_offset = FALSE
 
 	Trigger(var/atom/movable/A)
-		if(teleport_x && teleport_y && teleport_z)
-			if(teleport_x_offset && teleport_y_offset && teleport_z_offset)
+		if (teleport_x && teleport_y && teleport_z)
+			if (teleport_x_offset && teleport_y_offset && teleport_z_offset)
 
 				A.x = rand(teleport_x, teleport_x_offset)
 				A.y = rand(teleport_y, teleport_y_offset)
@@ -121,7 +121,7 @@
 	var/once = TRUE
 
 /obj/effect/step_trigger/message/Trigger(mob/M as mob)
-	if(M.client)
+	if (M.client)
 		M << "<span class='info'>[message]</span>"
-		if(once)
+		if (once)
 			qdel(src)

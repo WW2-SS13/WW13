@@ -14,13 +14,13 @@
 	var/list/allowed_targets = list() //WHO CAN I KILL D:
 
 /mob/living/simple_animal/hostile/commanded/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "", var/italics = FALSE, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
-	if((speaker in friends) || speaker == master)
+	if ((speaker in friends) || speaker == master)
 		command_buffer.Add(speaker)
 		command_buffer.Add(lowertext(html_decode(message)))
 	return FALSE
 
 /mob/living/simple_animal/hostile/commanded/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = FALSE)
-	if((speaker in friends) || speaker == master)
+	if ((speaker in friends) || speaker == master)
 		command_buffer.Add(speaker)
 		command_buffer.Add(lowertext(html_decode(message)))
 	return FALSE
@@ -30,41 +30,41 @@
 		var/mob/speaker = command_buffer[1]
 		var/text = command_buffer[2]
 		var/filtered_name = lowertext(html_decode(name))
-		if(dd_hasprefix(text,filtered_name))
+		if (dd_hasprefix(text,filtered_name))
 			var/substring = copytext(text,length(filtered_name)+1) //get rid of the name.
 			listen(speaker,substring)
 		command_buffer.Remove(command_buffer[1],command_buffer[2])
 	. = ..()
-	if(.)
+	if (.)
 		switch(stance)
-			if(COMMANDED_FOLLOW)
+			if (COMMANDED_FOLLOW)
 				follow_target()
-			if(COMMANDED_STOP)
+			if (COMMANDED_STOP)
 				commanded_stop()
 
 
 
 /mob/living/simple_animal/hostile/commanded/FindTarget(var/new_stance = HOSTILE_STANCE_ATTACK)
-	if(!allowed_targets.len)
+	if (!allowed_targets.len)
 		return null
 	var/mode = "specific"
-	if(allowed_targets[1] == "everyone") //we have been given the golden gift of murdering everything. Except our master, of course. And our friends. So just mostly everyone.
+	if (allowed_targets[1] == "everyone") //we have been given the golden gift of murdering everything. Except our master, of course. And our friends. So just mostly everyone.
 		mode = "everyone"
 	for(var/atom/A in ListTargets(10))
 		var/mob/M = null
-		if(A == src)
+		if (A == src)
 			continue
-		if(isliving(A))
+		if (isliving(A))
 			M = A
-		if(M && M.stat)
+		if (M && M.stat)
 			continue
-		if(mode == "specific")
-			if(!(A in allowed_targets))
+		if (mode == "specific")
+			if (!(A in allowed_targets))
 				continue
 			stance = new_stance
 			return A
 		else
-			if(M == master || (M in friends))
+			if (M == master || (M in friends))
 				continue
 			stance = new_stance
 			return A
@@ -72,9 +72,9 @@
 
 /mob/living/simple_animal/hostile/commanded/proc/follow_target()
 	stop_automated_movement = TRUE
-	if(!target_mob)
+	if (!target_mob)
 		return
-	if(target_mob in ListTargets(10))
+	if (target_mob in ListTargets(10))
 		walk_to(src,target_mob,1,move_to_delay)
 
 /mob/living/simple_animal/hostile/commanded/proc/commanded_stop() //basically a proc that runs whenever we are asked to stay put. Probably going to remain unused.
@@ -82,19 +82,19 @@
 
 /mob/living/simple_animal/hostile/commanded/proc/listen(var/mob/speaker, var/text)
 	for(var/command in known_commands)
-		if(findtext(text,command))
+		if (findtext(text,command))
 			switch(command)
-				if("stay")
-					if(stay_command(speaker,text)) //find a valid command? Stop. Dont try and find more.
+				if ("stay")
+					if (stay_command(speaker,text)) //find a valid command? Stop. Dont try and find more.
 						break
-				if("stop")
-					if(stop_command(speaker,text))
+				if ("stop")
+					if (stop_command(speaker,text))
 						break
-				if("attack")
-					if(attack_command(speaker,text))
+				if ("attack")
+					if (attack_command(speaker,text))
 						break
-				if("follow")
-					if(follow_command(speaker,text))
+				if ("follow")
+					if (follow_command(speaker,text))
 						break
 				else
 					misc_command(speaker,text) //for specific commands
@@ -106,20 +106,20 @@
 	var/list/possible_targets = hearers(src,10)
 	. = list()
 	for(var/mob/M in possible_targets)
-		if(filter_friendlies && ((M in friends) || M.faction == faction || M == master))
+		if (filter_friendlies && ((M in friends) || M.faction == faction || M == master))
 			continue
 		var/found = FALSE
-		if(findtext(text, "[M]"))
+		if (findtext(text, "[M]"))
 			found = TRUE
 		else
 			var/list/parsed_name = splittext(replace_characters(lowertext(html_decode("[M]")),list("-"=" ", "."=" ", "," = " ", "'" = " ")), " ") //this big MESS is basically 'turn this into words, no punctuation, lowercase so we can check first name/last name/etc'
 			for(var/a in parsed_name)
-				if(a == "the" || length(a) < 2) //get rid of shit words.
+				if (a == "the" || length(a) < 2) //get rid of shit words.
 					continue
-				if(findtext(text,"[a]"))
+				if (findtext(text,"[a]"))
 					found = TRUE
 					break
-		if(found)
+		if (found)
 			. += M
 
 
@@ -127,7 +127,7 @@
 	target_mob = null //want me to attack something? Well I better forget my old target.
 	walk_to(src,0)
 	stance = HOSTILE_STANCE_IDLE
-	if(text == "attack" || findtext(text,"everyone") || findtext(text,"anybody") || findtext(text, "somebody") || findtext(text, "someone")) //if its just 'attack' then just attack anybody, same for if they say 'everyone', somebody, anybody. Assuming non-pickiness.
+	if (text == "attack" || findtext(text,"everyone") || findtext(text,"anybody") || findtext(text, "somebody") || findtext(text, "someone")) //if its just 'attack' then just attack anybody, same for if they say 'everyone', somebody, anybody. Assuming non-pickiness.
 		allowed_targets = list("everyone")//everyone? EVERYONE
 		return TRUE
 
@@ -151,12 +151,12 @@
 
 /mob/living/simple_animal/hostile/commanded/proc/follow_command(var/mob/speaker,var/text)
 	//we can assume 'stop following' is handled by stop_command
-	if(findtext(text,"me"))
+	if (findtext(text,"me"))
 		stance = COMMANDED_FOLLOW
 		target_mob = speaker //this wont bite me in the ass later.
 		return TRUE
 	var/list/targets = get_targets_by_name(text)
-	if(targets.len > 1 || !targets.len) //CONFUSED. WHO DO I FOLLOW?
+	if (targets.len > 1 || !targets.len) //CONFUSED. WHO DO I FOLLOW?
 		return FALSE
 
 	stance = COMMANDED_FOLLOW //GOT SOMEBODY. BETTER FOLLOW EM.
@@ -171,19 +171,19 @@
 /mob/living/simple_animal/hostile/commanded/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
 	//if they attack us, we want to kill them. None of that "you weren't given a command so free kill" bullshit.
 	. = ..()
-	if(!.)
+	if (!.)
 		stance = HOSTILE_STANCE_ATTACK
 		target_mob = user
 		allowed_targets += user //fuck this guy in particular.
-		if(user in friends) //We were buds :'(
+		if (user in friends) //We were buds :'(
 			friends -= user
 
 
 /mob/living/simple_animal/hostile/commanded/attack_hand(mob/living/carbon/human/M as mob)
 	..()
-	if(M.a_intent == I_HURT) //assume he wants to hurt us.
+	if (M.a_intent == I_HURT) //assume he wants to hurt us.
 		target_mob = M
 		allowed_targets += M
 		stance = HOSTILE_STANCE_ATTACK
-		if(M in friends)
+		if (M in friends)
 			friends -= M

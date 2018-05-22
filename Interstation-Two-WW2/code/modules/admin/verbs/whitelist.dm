@@ -4,7 +4,7 @@
 	set name = "Add To Server Whitelist"
 	set category = "Server"
 
-	if(!check_rights(R_ADMIN))
+	if (!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 
@@ -31,7 +31,7 @@
 	set name = "Remove From Server Whitelist"
 	set category = "Server"
 
-	if(!check_rights(R_ADMIN))
+	if (!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 
@@ -59,7 +59,7 @@
 	set name = "See Server Whitelist"
 	set category = "Server"
 
-	if(!check_rights(R_ADMIN))
+	if (!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 
@@ -70,7 +70,7 @@
 	set name = "Enable/Disable Server Whitelist"
 	set category = "Server"
 
-	if(!check_rights(R_ADMIN))
+	if (!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 

@@ -17,10 +17,10 @@
 	data.len = 10
 
 /datum/reagent/nutriment/mix_data(var/list/newdata, var/newamount)
-	if(!islist(newdata) || !newdata.len)
+	if (!islist(newdata) || !newdata.len)
 		return
 	for(var/i in 1 to newdata.len)
-		if(!(newdata[i] in data))
+		if (!(newdata[i] in data))
 			data.Add(newdata[i])
 			data[newdata[i]] = FALSE
 		data[newdata[i]] += newdata[newdata[i]]
@@ -30,19 +30,19 @@
 			totalFlavor += data[data[i]]
 	for(var/i in 1 to data.len) //cull the tasteless
 		if (data[i])
-			if(data[data[i]]/totalFlavor * 100 < 10)
+			if (data[data[i]]/totalFlavor * 100 < 10)
 				data[data[i]] = null
 				data -= data[i]
 				data -= null
 
 /datum/reagent/nutriment/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(!injectable)
+	if (!injectable)
 		M.adjustToxLoss(0.1 * removed)
 		return
 	affect_ingest(M, alien, removed)
 
 /datum/reagent/nutriment/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
+	if (issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
 	M.heal_organ_damage(0.5 * removed, FALSE)
 	M.nutrition += nutriment_factor * removed // For hunger and fatness
 //	M.bowels += nutriment_factor * removed	//For pooping
@@ -86,7 +86,7 @@
 	color = "#FFFFFF"
 
 /datum/reagent/nutriment/flour/touch_turf(var/turf/T)
-	if(!istype(T, /turf/space))
+	if (!istype(T, /turf/space))
 		new /obj/effect/decal/cleanable/flour(T)
 
 /datum/reagent/nutriment/coco
@@ -149,18 +149,18 @@
 	color = "#302000"
 
 /datum/reagent/nutriment/cornoil/touch_turf(var/turf/T)
-	if(!istype(T))
+	if (!istype(T))
 		return
 
 	var/hotspot = (locate(/obj/fire) in T)
-	if(hotspot && !istype(T, /turf/space))
+	if (hotspot && !istype(T, /turf/space))
 	//	var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
 	//	lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), FALSE)
 	//	lowertemp.react()
 	//	T.assume_air(lowertemp)
 		qdel(hotspot)
 
-	if(volume >= 3)
+	if (volume >= 3)
 		T.wet_floor()
 
 /datum/reagent/nutriment/virus_food
@@ -241,9 +241,9 @@
 
 /datum/reagent/frostoil/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, FALSE)
-	if(prob(1))
+	if (prob(1))
 		M.emote("shiver")
-	if(istype(M, /mob/living/carbon/slime))
+	if (istype(M, /mob/living/carbon/slime))
 		M.bodytemperature = max(M.bodytemperature - rand(10,20), FALSE)
 	holder.remove_reagent("capsaicin", 5)
 
@@ -264,19 +264,19 @@
 	M.adjustToxLoss(0.5 * removed)
 
 /datum/reagent/capsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(ishuman(M))
+	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species && (H.species.flags & (NO_PAIN)))
+		if (H.species && (H.species.flags & (NO_PAIN)))
 			return
-	if(dose < agony_dose)
-		if(prob(5) || dose == metabolism) //dose == metabolism is a very hacky way of forcing the message the first time this procs
+	if (dose < agony_dose)
+		if (prob(5) || dose == metabolism) //dose == metabolism is a very hacky way of forcing the message the first time this procs
 			M << discomfort_message
 	else
 		M.apply_effect(agony_amount, AGONY, FALSE)
-		if(prob(5))
+		if (prob(5))
 			M.custom_emote(2, "[pick("dry heaves!","coughs!","splutters!")]")
 			M << "<span class='danger'>You feel like your insides are burning!</span>"
-	if(istype(M, /mob/living/carbon/slime))
+	if (istype(M, /mob/living/carbon/slime))
 		M.bodytemperature += rand(0, 15) + slime_temp_adj
 	holder.remove_reagent("frostoil", 5)
 
@@ -302,58 +302,58 @@
 	var/obj/item/face_protection = null
 
 	var/list/protection
-	if(istype(M, /mob/living/carbon/human))
+	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 		protection = list(H.head, H.glasses, H.wear_mask)
-		if(H.species && (H.species.flags & NO_PAIN))
+		if (H.species && (H.species.flags & NO_PAIN))
 			no_pain = TRUE //TODO: living-level can_feel_pain() proc
 	else
 		protection = list(M.wear_mask)
 
 	for(var/obj/item/I in protection)
-		if(I)
-			if(I.body_parts_covered & EYES)
+		if (I)
+			if (I.body_parts_covered & EYES)
 				eyes_covered = TRUE
 				eye_protection = I.name
-			if((I.body_parts_covered & FACE) && !(I.item_flags & FLEXIBLEMATERIAL))
+			if ((I.body_parts_covered & FACE) && !(I.item_flags & FLEXIBLEMATERIAL))
 				mouth_covered = TRUE
 				face_protection = I.name
 
 	var/message = null
-	if(eyes_covered)
-		if(!mouth_covered)
+	if (eyes_covered)
+		if (!mouth_covered)
 			message = "<span class='warning'>Your [eye_protection] protects your eyes from the pepperspray!</span>"
 	else
 		message = "<span class='warning'>The pepperspray gets in your eyes!</span>"
-		if(mouth_covered)
+		if (mouth_covered)
 			M.eye_blurry = max(M.eye_blurry, 15)
 			M.eye_blind = max(M.eye_blind, 5)
 		else
 			M.eye_blurry = max(M.eye_blurry, 25)
 			M.eye_blind = max(M.eye_blind, 10)
 
-	if(mouth_covered)
-		if(!message)
+	if (mouth_covered)
+		if (!message)
 			message = "<span class='warning'>Your [face_protection] protects you from the pepperspray!</span>"
-	else if(!no_pain)
+	else if (!no_pain)
 		message = "<span class='danger'>Your face and throat burn!</span>"
-		if(prob(25))
+		if (prob(25))
 			M.custom_emote(2, "[pick("coughs!","coughs hysterically!","splutters!")]")
 		M.Stun(5)
 		M.Weaken(5)
 
 /datum/reagent/condensedcapsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(ishuman(M))
+	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species && (H.species.flags & NO_PAIN))
+		if (H.species && (H.species.flags & NO_PAIN))
 			return
-	if(dose == metabolism)
+	if (dose == metabolism)
 		M << "<span class='danger'>You feel like your insides are burning!</span>"
 	else
 		M.apply_effect(4, AGONY, FALSE)
-		if(prob(5))
+		if (prob(5))
 			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", "<span class='danger'>You feel like your insides are burning!</span>")
-	if(istype(M, /mob/living/carbon/slime))
+	if (istype(M, /mob/living/carbon/slime))
 		M.bodytemperature += rand(15, 30)
 	holder.remove_reagent("frostoil", 5)
 
@@ -382,9 +382,9 @@
 	M.dizziness = max(0, M.dizziness + adj_dizzy)
 	M.drowsyness = max(0, M.drowsyness + adj_drowsy)
 	M.sleeping = max(0, M.sleeping + adj_sleepy)
-	if(adj_temp > 0 && M.bodytemperature < 310) // 310 is the normal bodytemp. 310.055
+	if (adj_temp > 0 && M.bodytemperature < 310) // 310 is the normal bodytemp. 310.055
 		M.bodytemperature = min(310, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
-	if(adj_temp < 0 && M.bodytemperature > 310)
+	if (adj_temp < 0 && M.bodytemperature > 310)
 		M.bodytemperature = min(310, M.bodytemperature - (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
 
 	if (M.water < 0)
@@ -576,7 +576,7 @@
 
 /datum/reagent/drink/coffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(adj_temp > 0)
+	if (adj_temp > 0)
 		holder.remove_reagent("frostoil", 10 * removed)
 	M.add_chemical_effect(CE_PULSE, TRUE)
 
@@ -782,9 +782,9 @@
 	M.adjustOxyLoss(-4 * removed)
 	M.heal_organ_damage(2 * removed, 2 * removed)
 	M.adjustToxLoss(-2 * removed)
-	if(M.dizziness)
+	if (M.dizziness)
 		M.dizziness = max(0, M.dizziness - 15)
-	if(M.confused)
+	if (M.confused)
 		M.confused = max(0, M.confused - 5)
 
 /datum/reagent/drink/dry_ramen
@@ -919,7 +919,7 @@
 	M.dizziness = max(0, M.dizziness - 5)
 	M.drowsyness = max(0, M.drowsyness - 3)
 	M.sleeping = max(0, M.sleeping - 2)
-	if(M.bodytemperature > 310)
+	if (M.bodytemperature > 310)
 		M.bodytemperature = max(310, M.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
 
 /datum/reagent/ethanol/coffee/overdose(var/mob/living/carbon/M, var/alien)
@@ -1425,13 +1425,13 @@
 
 /datum/reagent/ethanol/pwine/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(dose > 30)
+	if (dose > 30)
 		M.adjustToxLoss(2 * removed)
-	if(dose > 60 && ishuman(M) && prob(5))
+	if (dose > 60 && ishuman(M) && prob(5))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/heart/L = H.internal_organs_by_name["heart"]
 		if (L && istype(L))
-			if(dose < 120)
+			if (dose < 120)
 				L.take_damage(10 * removed, FALSE)
 			else
 				L.take_damage(100, FALSE)

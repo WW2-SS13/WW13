@@ -180,7 +180,7 @@
 /process/proc/handleHung()
 	var/datum/lastObj = current
 	var/lastObjType = "null"
-	if(istype(lastObj))
+	if (istype(lastObj))
 		lastObjType = lastObj.type
 
 	var/msg = "PROCESS SCHEDULER: [name] process hung at tick #[ticks]. Process was unresponsive for [(TimeOfGame - run_start) / 10] seconds and was restarted. Last task: [last_task]. Last Object Type: [lastObjType]"
@@ -230,7 +230,7 @@
 
 /process/proc/update()
 	// Clear delta
-	if(previousStatus != status)
+	if (previousStatus != status)
 		setStatus(status)
 
 	var/elapsedTime = getElapsedTime()
@@ -270,20 +270,20 @@
 	return status
 
 /process/proc/getStatusText(var/s = FALSE)
-	if(!s)
+	if (!s)
 		s = status
 	switch(s)
-		if(PROCESS_STATUS_IDLE)
+		if (PROCESS_STATUS_IDLE)
 			return "idle"
-		if(PROCESS_STATUS_QUEUED)
+		if (PROCESS_STATUS_QUEUED)
 			return "queued"
-		if(PROCESS_STATUS_RUNNING)
+		if (PROCESS_STATUS_RUNNING)
 			return "running"
-		if(PROCESS_STATUS_MAYBE_HUNG)
+		if (PROCESS_STATUS_MAYBE_HUNG)
 			return "maybe hung"
-		if(PROCESS_STATUS_PROBABLY_HUNG)
+		if (PROCESS_STATUS_PROBABLY_HUNG)
 			return "probably hung"
-		if(PROCESS_STATUS_HUNG)
+		if (PROCESS_STATUS_HUNG)
 			return "HUNG"
 		else
 			return "UNKNOWN"
@@ -358,13 +358,13 @@
 	return "T#[getTicks()] | AR [averageRunTime] | LR [lastRunTime] | HR [highestRunTime] | D [cpu_defer_count]<br>"
 
 /process/proc/catchException(var/exception/e, var/thrower)
-	if(ispath(thrower) || istext(thrower))
+	if (ispath(thrower) || istext(thrower))
 		log_to_dd("PROCESS SCHEDULER: [src].catchException() was given a path or text type, [thrower], which was set to null.")
 		log_debug("PROCESS SCHEDULER: [src].catchException() was given a path or text type, [thrower], which was set to null.")
 		thrower = null // I think this prevents crashes - Kachnov
 		return
 
-	if(istype(e)) // Real runtimes go to the real error handler
+	if (istype(e)) // Real runtimes go to the real error handler
 		// There are two newlines here, because handling desc sucks
 		e.desc = "  Caught by process: [name]\n\n" + e.desc
 		if (thrower)
@@ -376,27 +376,27 @@
 	var/etext = "[e]"
 	var/eid = "[e]" // Exception ID, for tracking repeated exceptions
 	var/ptext = "" // "processing..." text, for what was being processed (if known)
-	if(istype(e))
+	if (istype(e))
 		etext += " in [e.file], line [e.line]"
 		eid = "[e.file]:[e.line]"
-	if(eid in exceptions)
-		if(exceptions[eid]++ >= 10)
+	if (eid in exceptions)
+		if (exceptions[eid]++ >= 10)
 			return
 	else
 		exceptions[eid] = TRUE
-	if(istype(thrower, /datum))
+	if (istype(thrower, /datum))
 		var/datum/D = thrower
 		ptext = " processing [D.type]"
-		if(istype(thrower, /atom))
+		if (istype(thrower, /atom))
 			var/atom/A = thrower
 			ptext += " ([A]) ([A.x],[A.y],[A.z])"
 	log_to_dd("\[[time_stamp()]\] Process [name] caught exception[ptext]: [etext]")
-	if(exceptions[eid] >= 10)
+	if (exceptions[eid] >= 10)
 		log_to_dd("This exception will now be ignored for ten minutes.")
 		spawn(6000)
 			exceptions[eid] = 0
 
 /process/proc/catchBadType(var/datum/caught)
-	if(isnull(caught) || !istype(caught) || caught.gcDestroyed)
+	if (isnull(caught) || !istype(caught) || caught.gcDestroyed)
 		return // Only bother with types we can identify and that don't belong
 	catchException("Type [caught.type] does not belong in process' queue")

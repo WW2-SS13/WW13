@@ -31,15 +31,15 @@
 	return
 
 /obj/item/stack/Destroy()
-	if(uses_charge)
+	if (uses_charge)
 		return TRUE
 	if (src && usr && usr.using_object == src)
 		usr << browse(null, "window=stack")
 	return ..()
 
 /obj/item/stack/examine(mob/user)
-	if(..(user, TRUE))
-		if(!uses_charge)
+	if (..(user, TRUE))
+		if (!uses_charge)
 			user << "There [amount == TRUE ? "is" : "are"] [amount] [singular_name]\s in the stack."
 		else
 			user << "There is enough charge for [get_amount()]."
@@ -235,7 +235,7 @@
 
 	if (use(required))
 		var/atom/O
-		if(recipe.use_material)
+		if (recipe.use_material)
 			O = new recipe.result_type(user.loc, recipe.use_material)
 		else
 			O = new recipe.result_type(user.loc)
@@ -306,15 +306,15 @@
 /obj/item/stack/proc/use(var/used)
 	if (!can_use(used))
 		return FALSE
-	if(!uses_charge)
+	if (!uses_charge)
 		amount -= used
 		if (amount <= 0)
-			if(usr)
+			if (usr)
 				usr.remove_from_mob(src)
 			qdel(src) //should be safe to qdel immediately since if someone is still using this stack it will persist for a little while longer
 		return TRUE
 	else
-		if(get_amount() < used)
+		if (get_amount() < used)
 			return FALSE
 		for(var/i = TRUE to charge_costs.len)
 			var/datum/matter_synth/S = synths[i]
@@ -323,13 +323,13 @@
 	return FALSE
 
 /obj/item/stack/proc/add(var/extra)
-	if(!uses_charge)
-		if(amount + extra > get_max_amount())
+	if (!uses_charge)
+		if (amount + extra > get_max_amount())
 			return FALSE
 		else
 			amount += extra
 		return TRUE
-	else if(!synths || synths.len < uses_charge)
+	else if (!synths || synths.len < uses_charge)
 		return FALSE
 	else
 		for(var/i = TRUE to uses_charge)
@@ -358,7 +358,7 @@
 		S.add(transfer)
 		if (prob(transfer/orig_amount * 100))
 			transfer_fingerprints_to(S)
-			if(blood_DNA)
+			if (blood_DNA)
 				S.blood_DNA |= blood_DNA
 		return transfer
 	return FALSE
@@ -367,7 +367,7 @@
 /obj/item/stack/proc/split(var/tamount)
 	if (!amount)
 		return null
-	if(uses_charge)
+	if (uses_charge)
 		return null
 
 	var/transfer = max(min(tamount, amount, initial(max_amount)), FALSE)
@@ -378,18 +378,18 @@
 		newstack.color = color
 		if (prob(transfer/orig_amount * 100))
 			transfer_fingerprints_to(newstack)
-			if(blood_DNA)
+			if (blood_DNA)
 				newstack.blood_DNA |= blood_DNA
 		return newstack
 	return null
 
 /obj/item/stack/proc/get_amount()
-	if(uses_charge)
-		if(!synths || synths.len < uses_charge)
+	if (uses_charge)
+		if (!synths || synths.len < uses_charge)
 			return FALSE
 		var/datum/matter_synth/S = synths[1]
 		. = round(S.get_charge() / charge_costs[1])
-		if(charge_costs.len > 1)
+		if (charge_costs.len > 1)
 			for(var/i = 2 to charge_costs.len)
 				S = synths[i]
 				. = min(., round(S.get_charge() / charge_costs[i]))
@@ -397,12 +397,12 @@
 	return amount
 
 /obj/item/stack/proc/get_max_amount()
-	if(uses_charge)
-		if(!synths || synths.len < uses_charge)
+	if (uses_charge)
+		if (!synths || synths.len < uses_charge)
 			return FALSE
 		var/datum/matter_synth/S = synths[1]
 		. = round(S.max_energy / charge_costs[1])
-		if(uses_charge > 1)
+		if (uses_charge > 1)
 			for(var/i = 2 to uses_charge)
 				S = synths[i]
 				. = min(., round(S.max_energy / charge_costs[i]))
@@ -416,7 +416,7 @@
 		var/transfer = transfer_to(item)
 		if (transfer)
 			user << "<span class='notice'>You add a new [item.singular_name] to the stack. It now contains [item.amount] [item.singular_name]\s.</span>"
-		if(!amount)
+		if (!amount)
 			break
 
 /obj/item/stack/attack_hand(mob/user as mob)

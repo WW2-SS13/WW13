@@ -23,12 +23,12 @@
 	set desc = "Give somebody access to any session logfiles saved to the /log/runtime/ folder."
 	set category = null
 
-	if(!holder)
+	if (!holder)
 		src << "<font color='red'>Only Admins may use this command.</font>"
 		return
 
 	var/client/target = input(src,"Choose somebody to grant access to the server's runtime logs (permissions expire at the end of each round):","Grant Permissions",null) as null|anything in clients
-	if(!istype(target,/client))
+	if (!istype(target,/client))
 		src << "<font color='red'>Error: giveruntimelog(): Client not found.</font>"
 		return
 
@@ -44,15 +44,15 @@
 	set desc = "Retrieve any session logfiles saved by dreamdeamon."
 	set category = null
 
-	if(!holder)
+	if (!holder)
 		src << "<font color='red'>Only Admins may use this command.</font>"
 		return
 
 	var/path = browse_files(serverswap["runtime_log_dir"])
-	if(!path)
+	if (!path)
 		return
 
-	if(file_spam_check())
+	if (file_spam_check())
 		return
 
 	message_admins("[key_name_admin(src)] accessed file: [path]")
@@ -69,10 +69,10 @@
 	set category = null
 
 	var/path = browse_files(serverswap["master_log_dir"])
-	if(!path)
+	if (!path)
 		return
 
-	if(file_spam_check())
+	if (file_spam_check())
 		return
 
 	message_admins("[key_name_admin(src)] accessed file: [path]")
@@ -90,7 +90,7 @@
 	set desc = "Shows today's server log."
 
 	var/path = "[serverswap["master_log_dir"]][time2text(world.realtime,"YYYY/MM-Month/DD-Day")].log"
-	if( fexists(path) )
+	if ( fexists(path) )
 		src << run( file(path) )
 	else
 		src << "<font color='red'>Error: view_txt_log(): File not found/Invalid path([path]).</font>"
@@ -105,7 +105,7 @@
 	set desc = "Shows today's server attack log."
 
 	var/path = "[serverswap["master_log_dir"]][time2text(world.realtime,"YYYY/MM-Month/DD-Day")] Attack.log"
-	if( fexists(path) )
+	if ( fexists(path) )
 		src << run( file(path) )
 	else
 		src << "<font color='red'>Error: view_atk_log(): File not found/Invalid path([path]).</font>"

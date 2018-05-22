@@ -2,7 +2,7 @@
 /mob/living/carbon/human/whisper(message as text)
 	var/alt_name = ""
 
-	if(say_disabled)	//This is here to try to identify lag problems
+	if (say_disabled)	//This is here to try to identify lag problems
 		usr << "<span class = 'red'>Speech is currently admin-disabled.</span>"
 		return
 
@@ -23,7 +23,7 @@
 	if (stat)
 		return
 
-	if(name != GetVoice())
+	if (name != GetVoice())
 		alt_name = "(as [get_id_name("Unknown")])"
 
 	//parse the language code and consume it
@@ -60,11 +60,11 @@
 
 	message = capitalize_cp1251(trim(message))
 
-	if(speech_problem_flag)
+	if (speech_problem_flag)
 		var/list/handle_r = handle_speech_problems(message)
 		message = handle_r[1]
 		verb = handle_r[2]
-		if(verb == "yells loudly")
+		if (verb == "yells loudly")
 			verb = "slurs emphatically"
 		else
 			var/adverb = pick("quietly", "softly")
@@ -72,28 +72,28 @@
 
 		speech_problem_flag = handle_r[3]
 
-	if(!message || message=="")
+	if (!message || message=="")
 		return
 
 	//looks like this only appears in whisper. Should it be elsewhere as well? Maybe handle_speech_problems?
 	var/voice_sub
 
 	for(var/obj/item/gear in list(wear_mask,wear_suit,head))
-		if(!gear)
+		if (!gear)
 			continue
 		var/obj/item/voice_changer/changer = locate() in gear
-		if(changer && changer.active && changer.voice)
+		if (changer && changer.active && changer.voice)
 			voice_sub = changer.voice
 
-	if(voice_sub == "Unknown")
-		if(copytext(message, TRUE, 2) != "*")
+	if (voice_sub == "Unknown")
+		if (copytext(message, TRUE, 2) != "*")
 			var/list/temp_message = splittext(message, " ")
 			var/list/pick_list = list()
 			for(var/i = TRUE, i <= temp_message.len, i++)
 				pick_list += i
 			for(var/i=1, i <= abs(temp_message.len/3), i++)
 				var/H = pick(pick_list)
-				if(findtext(temp_message[H], "*") || findtext(temp_message[H], ";") || findtext(temp_message[H], ":")) continue
+				if (findtext(temp_message[H], "*") || findtext(temp_message[H], ";") || findtext(temp_message[H], ":")) continue
 				temp_message[H] = ninjaspeak(temp_message[H])
 				pick_list -= H
 			message = jointext(temp_message, " ")
@@ -111,13 +111,13 @@
 	for (var/mob/M in dead_mob_list)	//does this include players who joined as observers as well?
 		if (!(M.client))
 			continue
-		if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
+		if (M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
 			listening |= M
 
 	//Pass whispers on to anything inside the immediate listeners.
 	for(var/mob/L in listening)
 		for(var/mob/C in L.contents)
-			if(istype(C,/mob/living))
+			if (istype(C,/mob/living))
 				listening += C
 
 	//pass on the message to objects that can hear us.

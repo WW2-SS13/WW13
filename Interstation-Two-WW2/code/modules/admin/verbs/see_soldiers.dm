@@ -2,7 +2,7 @@
 	set name = "See Soldiers"
 	set category = "Special"
 
-	if(!check_rights(R_MOD))
+	if (!check_rights(R_MOD))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 

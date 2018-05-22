@@ -22,7 +22,7 @@
 	var/bolt_open = FALSE
 
 /obj/item/weapon/gun/projectile/heavy/update_icon()
-	if(bolt_open)
+	if (bolt_open)
 		icon_state = "heavysniper-open"
 	else
 		icon_state = "heavysniper"
@@ -30,8 +30,8 @@
 /obj/item/weapon/gun/projectile/heavy/attack_self(mob/user as mob)
 	playsound(loc, 'sound/weapons/guns/interact/rifle_boltback.ogg', 75, TRUE)
 	bolt_open = !bolt_open
-	if(bolt_open)
-		if(chambered)
+	if (bolt_open)
+		if (chambered)
 			user << "<span class='notice'>You work the bolt open, ejecting [chambered]!</span>"
 			chambered.loc = get_turf(src)
 			loaded -= chambered
@@ -46,17 +46,17 @@
 	update_icon()
 
 /obj/item/weapon/gun/projectile/heavy/special_check(mob/user)
-	if(bolt_open)
+	if (bolt_open)
 		user << "<span class='warning'>You can't fire [src] while the bolt is open!</span>"
 		return FALSE
 	return ..()
 
 /obj/item/weapon/gun/projectile/heavy/load_ammo(var/obj/item/A, mob/user)
-	if(!bolt_open)
+	if (!bolt_open)
 		return
 	..()
 
 /obj/item/weapon/gun/projectile/heavy/unload_ammo(mob/user, var/allow_dump=1)
-	if(!bolt_open)
+	if (!bolt_open)
 		return
 	..()

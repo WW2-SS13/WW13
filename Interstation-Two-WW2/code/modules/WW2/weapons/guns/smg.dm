@@ -75,15 +75,15 @@
 	effectiveness_mod = 1.05
 
 /obj/item/weapon/gun/projectile/submachinegun/mp40/update_icon()
-	if(ammo_magazine)
+	if (ammo_magazine)
 		icon_state = "mp40"
-/*		if(wielded)
+/*		if (wielded)
 			item_state = "mp40-w"
 		else
 			item_state = "mp40"*/
 	else
 		icon_state = "mp400"
-/*		if(wielded)
+/*		if (wielded)
 			item_state = "mp40-w"
 		else
 			item_state = "mp400"*/
@@ -113,15 +113,15 @@
 	sel_mode = 2
 
 /obj/item/weapon/gun/projectile/submachinegun/ppsh/update_icon()
-	if(ammo_magazine)
+	if (ammo_magazine)
 		icon_state = "ppsh"
-/*		if(wielded)
+/*		if (wielded)
 			item_state = "ppsh"
 		else
 			item_state = "ppsh"*/
 	else
 		icon_state = "ppsh_empty"
-/*		if(wielded)
+/*		if (wielded)
 			item_state = "ppsh_empty"
 		else
 			item_state = "ppsh_empty"*/
@@ -150,7 +150,7 @@
 	sel_mode = 1
 
 /obj/item/weapon/gun/projectile/submachinegun/pps/update_icon()
-	if(ammo_magazine)
+	if (ammo_magazine)
 		icon_state = "pps"
 	else
 		icon_state = "pps0"
@@ -179,7 +179,7 @@
 	sel_mode = 1
 
 /obj/item/weapon/gun/projectile/submachinegun/stenmk2/update_icon()
-	if(ammo_magazine)
+	if (ammo_magazine)
 		icon_state = "sten"
 	else
 		icon_state = "sten0"
@@ -204,7 +204,7 @@
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
 
 /obj/item/weapon/gun/projectile/submachinegun/modello38/update_icon()
-	if(ammo_magazine)
+	if (ammo_magazine)
 		icon_state = "model38"
 		item_state = "model38"
 	else

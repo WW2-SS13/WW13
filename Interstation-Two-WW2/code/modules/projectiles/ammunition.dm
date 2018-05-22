@@ -16,7 +16,7 @@
 
 /obj/item/ammo_casing/New()
 	..()
-	if(ispath(projectile_type))
+	if (ispath(projectile_type))
 		BB = new projectile_type(src)
 	pixel_x = rand(-10, 10)
 	pixel_y = rand(-10, 10)
@@ -34,16 +34,16 @@
 	update_icon()
 
 /obj/item/ammo_casing/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/screwdriver))
-		if(!BB)
+	if (istype(W, /obj/item/weapon/screwdriver))
+		if (!BB)
 			user << "<span class = 'notice'>There is no bullet in the casing to inscribe anything into.</span>"
 			return
 
 		var/tmp_label = ""
 		var/label_text = sanitizeSafe(input(user, "Inscribe some text into \the [initial(BB.name)]","Inscription",tmp_label), MAX_NAME_LEN)
-		if(length(label_text) > 20)
+		if (length(label_text) > 20)
 			user << "<span class = 'red'>The inscription can be at most 20 characters long.</span>"
-		else if(!label_text)
+		else if (!label_text)
 			user << "<span class = 'notice'>You scratch the inscription off of [initial(BB)].</span>"
 			BB.name = initial(BB.name)
 		else
@@ -51,7 +51,7 @@
 			BB.name = "[initial(BB.name)] (\"[label_text]\")"
 
 /obj/item/ammo_casing/update_icon()
-	if(spent_icon && !BB)
+	if (spent_icon && !BB)
 		icon_state = spent_icon
 
 /obj/item/ammo_casing/examine(mob/user)
@@ -98,13 +98,13 @@
 
 /obj/item/ammo_magazine/New()
 	..()
-	if(multiple_sprites)
+	if (multiple_sprites)
 		initialize_magazine_icondata(src)
 
-	if(isnull(initial_ammo))
+	if (isnull(initial_ammo))
 		initial_ammo = max_ammo
 
-	if(initial_ammo)
+	if (initial_ammo)
 		for(var/i in TRUE to initial_ammo)
 			stored_ammo += new ammo_type(src)
 	update_icon()
@@ -112,12 +112,12 @@
 /obj/item/ammo_magazine/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (W == src)
 		return
-	if(istype(W, /obj/item/ammo_casing))
+	if (istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
-		if(C.caliber != caliber)
+		if (C.caliber != caliber)
 			user << "<span class='warning'>[C] does not fit into [src].</span>"
 			return
-		if(stored_ammo.len >= max_ammo)
+		if (stored_ammo.len >= max_ammo)
 			user << "<span class='warning'>[src] is full!</span>"
 			return
 		user.remove_from_mob(C)
@@ -126,10 +126,10 @@
 		update_icon()
 	else if (istype(W, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/M = W
-		if(M.caliber != caliber)
+		if (M.caliber != caliber)
 			user << "<span class='warning'>[M]'s ammo type does not fit into [src].</span>"
 			return
-		if(stored_ammo.len >= max_ammo)
+		if (stored_ammo.len >= max_ammo)
 			user << "<span class='warning'>[src] is full!</span>"
 			return
 		if (M.stored_ammo.len == FALSE)
@@ -171,7 +171,7 @@
 
 
 /obj/item/ammo_magazine/update_icon()
-	if(multiple_sprites && icon_keys.len)
+	if (multiple_sprites && icon_keys.len)
 		//find the lowest key greater than or equal to stored_ammo.len
 		var/new_state = null
 		for(var/idx in TRUE to icon_keys.len)
@@ -191,7 +191,7 @@
 
 /proc/initialize_magazine_icondata(var/obj/item/ammo_magazine/M)
 	var/typestr = "[M.type]"
-	if(!(typestr in magazine_icondata_keys) || !(typestr in magazine_icondata_states))
+	if (!(typestr in magazine_icondata_keys) || !(typestr in magazine_icondata_states))
 		magazine_icondata_cache_add(M)
 
 	M.icon_keys = magazine_icondata_keys[typestr]
@@ -205,7 +205,7 @@
 	var/list/states = icon_states(M.icon)
 	for(var/i = FALSE, i <= M.max_ammo, i++)
 		var/ammo_state = "[M.icon_state]-[i]"
-		if(ammo_state in states)
+		if (ammo_state in states)
 			icon_keys += i
 			ammo_states += ammo_state
 

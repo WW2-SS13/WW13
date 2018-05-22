@@ -43,7 +43,7 @@ datum/category_group/underwear/dd_SortValue()
 	var/icon_state                   // And the particular item state
 
 /datum/category_item/underwear/dd_SortValue()
-	if(always_last)
+	if (always_last)
 		return "~"+name
 	return name
 

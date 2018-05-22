@@ -14,14 +14,14 @@ var/global/floorIsLava = FALSE
 	log_attack(text)
 	var/rendered = "<span class=\"log_message\"><span class=\"prefix\">ATTACK:</span> <span class=\"message\">[text]</span></span>"
 	for(var/client/C in admins)
-		if(R_ADMIN & C.holder.rights)
-			if(C.is_preference_enabled(/datum/client_preference/admin/show_attack_logs))
+		if (R_ADMIN & C.holder.rights)
+			if (C.is_preference_enabled(/datum/client_preference/admin/show_attack_logs))
 				var/msg = rendered
 				C << msg
 
 proc/admin_notice(var/message, var/rights)
 	for(var/mob/M in mob_list)
-		if(check_rights(rights, FALSE, M))
+		if (check_rights(rights, FALSE, M))
 			M << message
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
@@ -31,7 +31,7 @@ proc/admin_notice(var/message, var/rights)
 	set name = "Show Player Panel"
 	set desc="Edit player (respawn, ban, heal, etc)"
 
-	if(!M)
+	if (!M)
 		usr << "You seem to be selecting a mob that doesn't exist anymore."
 		return
 
@@ -43,11 +43,11 @@ proc/admin_notice(var/message, var/rights)
 
 	var/body = "<html><head><title>Options for [M.key]</title></head>"
 	body += "<body>Options panel for <b>[M]</b>"
-	if(M.client)
+	if (M.client)
 		body += " played by <b>[M.client]</b> "
 		body += "\[<A href='?src=\ref[src];editrights=show'>[M.client.holder ? M.client.holder.rank : "Player"]</A>\]"
 
-	if(istype(M, /mob/new_player))
+	if (istype(M, /mob/new_player))
 		body += " <b>Hasn't Entered Game</b> "
 	else
 		body += " \[<A href='?src=\ref[src];revive=\ref[M]'>Heal</A>\] "
@@ -68,7 +68,7 @@ proc/admin_notice(var/message, var/rights)
 // <A href='?src=\ref[src];newban=\ref[M]'>Ban</A> |
 // <A href='?src=\ref[src];jobban2=\ref[M]'>Jobban</A> |
 
-	if(M.client)
+	if (M.client)
 	//	body += "| <A HREF='?src=\ref[src];sendtoprison=\ref[M]'>Prison</A> | "
 		var/muted = M.client.prefs.muted
 		body += {"<br><b>Mute: </b>
@@ -91,27 +91,27 @@ proc/admin_notice(var/message, var/rights)
 	"}
 
 	if (M.client)
-		if(!istype(M, /mob/new_player))
+		if (!istype(M, /mob/new_player))
 			body += "<br><br>"
 			body += "<b>Transformation:</b>"
 			body += "<br>"
 
 			//Monkey
-			if(issmall(M))
+			if (issmall(M))
 				body += "<b>Monkeyized</b> | "
 			else
 				body += "<A href='?src=\ref[src];monkeyone=\ref[M]'>Monkeyize</A> | "
 
 			//Corgi
-			if(iscorgi(M))
+			if (iscorgi(M))
 				body += "<b>Corgized</b> | "
 			else
 				body += "<A href='?src=\ref[src];corgione=\ref[M]'>Corgize</A> | "
 
 			//AI / Cyborg
-	/*		if(isAI(M))
+	/*		if (isAI(M))
 				body += "<b>Is an AI</b> "
-			else if(ishuman(M))
+			else if (ishuman(M))
 				body += {"<A href='?src=\ref[src];makeai=\ref[M]'>Make AI</A> |
 					<A href='?src=\ref[src];makerobot=\ref[M]'>Make Robot</A> |
 					<A href='?src=\ref[src];makealien=\ref[M]'>Make Alien</A> |
@@ -119,22 +119,22 @@ proc/admin_notice(var/message, var/rights)
 				"}*/
 
 			//Simple Animals
-			if(isanimal(M))
+			if (isanimal(M))
 				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Re-Animalize</A> | "
 			else
 				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Animalize</A> | "
 /*
 			// DNA2 - Admin Hax
-			if(M.dna && iscarbon(M))
+			if (M.dna && iscarbon(M))
 				body += "<br><br>"
 				body += "<b>DNA Blocks:</b><br><table border='0'><tr><th>&nbsp;</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>"
 				var/bname
 				for(var/block=1;block<=DNA_SE_LENGTH;block++)
-					if(((block-1)%5)==0)
+					if (((block-1)%5)==0)
 						body += "</tr><tr><th>[block-1]</th>"
 					bname = assigned_blocks[block]
 					body += "<td>"
-					if(bname)
+					if (bname)
 						var/bstate=M.dna.GetSEState(block)
 						var/bcolor="[(bstate)?"#006600":"#ff0000"]"
 						body += "<A href='?src=\ref[src];togmutate=\ref[M];block=[block]' style='color:[bcolor];'>[bname]</A><sub>[block]</sub>"
@@ -203,10 +203,10 @@ proc/admin_notice(var/message, var/rights)
 	var/f = TRUE
 	for(var/k in all_languages)
 		var/datum/language/L = all_languages[k]
-		if(!(L.flags & INNATE))
-			if(!f) body += " | "
+		if (!(L.flags & INNATE))
+			if (!f) body += " | "
 			else f = FALSE
-			if(L in M.languages)
+			if (L in M.languages)
 				body += "<a href='?src=\ref[src];toglang=\ref[M];lang=[rhtml_encode(k)]' style='color:#006600'>[k]</a>"
 			else
 				body += "<a href='?src=\ref[src];toglang=\ref[M];lang=[rhtml_encode(k)]' style='color:#ff0000'>[k]</a>"
@@ -240,7 +240,7 @@ proc/admin_notice(var/message, var/rights)
 	var/savefile/S=new("[(serverswap && serverswap.Find("master_data_dir")) ? serverswap["master_data_dir"] : "data/"]player_notes.sav")
 	var/list/note_keys
 	S >> note_keys
-	if(!note_keys)
+	if (!note_keys)
 		dat += "No notes found."
 	else
 		dat += "<table>"
@@ -249,10 +249,10 @@ proc/admin_notice(var/message, var/rights)
 		// Display the notes on the current page
 		var/number_pages = note_keys.len / PLAYER_NOTES_ENTRIES_PER_PAGE
 		// Emulate ceil(why does BYOND not have ceil)
-		if(number_pages != round(number_pages))
+		if (number_pages != round(number_pages))
 			number_pages = round(number_pages) + 1
 		var/page_index = page - 1
-		if(page_index < 0 || page_index >= number_pages)
+		if (page_index < 0 || page_index >= number_pages)
 			return
 
 		var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + 1
@@ -266,10 +266,10 @@ proc/admin_notice(var/message, var/rights)
 
 		// Display a footer to select different pages
 		for(var/index = TRUE, index <= number_pages, index++)
-			if(index == page)
+			if (index == page)
 				dat += "<b>"
 			dat += "<a href='?src=\ref[src];notes=list;index=[index]'>[index]</a> "
-			if(index == page)
+			if (index == page)
 				dat += "</b>"
 
 	usr << browse(dat, "window=player_notes;size=400x400")
@@ -283,7 +283,7 @@ proc/admin_notice(var/message, var/rights)
 	var/savefile/info = new("[get_player_notes_file_dir()][copytext(key, TRUE, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || !infos.len) return FALSE
+	if (!infos || !infos.len) return FALSE
 	else return TRUE
 
 /datum/admins/proc/show_player_info(var/key as text)
@@ -299,7 +299,7 @@ proc/admin_notice(var/message, var/rights)
 
 	var/p_age = "unknown"
 	for(var/client/C in clients)
-		if(C.ckey == key)
+		if (C.ckey == key)
 			p_age = C.player_age
 			break
 	dat +="<span style='color:#000000; font-weight: bold'>Player age: [p_age]</span><br>"
@@ -307,24 +307,24 @@ proc/admin_notice(var/message, var/rights)
 	var/savefile/info = new("[get_player_notes_file_dir()][copytext(key, TRUE, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos)
+	if (!infos)
 		dat += "No information found on the given key.<br>"
 	else
 		var/update_file = FALSE
 		var/i = FALSE
 		for(var/datum/player_info/I in infos)
 			i += 1
-			if(!I.timestamp)
+			if (!I.timestamp)
 				I.timestamp = "Pre-4/3/2012"
 				update_file = TRUE
-			if(!I.rank)
+			if (!I.rank)
 				I.rank = "N/A"
 				update_file = TRUE
 			dat += "<font color=#008800>[I.content]</font> <i>by [I.author] ([I.rank])</i> on <i><font color=blue>[I.timestamp]</i></font> "
-			if(I.author == usr.key || I.author == "Adminbot" || ishost(usr))
+			if (I.author == usr.key || I.author == "Adminbot" || ishost(usr))
 				dat += "<A href='?src=\ref[src];remove_player_info=[key];remove_index=[i]'>Remove</A>"
 			dat += "<br><br>"
-		if(update_file) info << infos
+		if (update_file) info << infos
 
 	dat += "<br>"
 	dat += "<A href='?src=\ref[src];add_player_info=[key]'>Add Comment</A><br>"
@@ -333,19 +333,19 @@ proc/admin_notice(var/message, var/rights)
 	usr << browse(dat, "window=adminplayerinfo;size=480x480")
 /*
 /datum/admins/proc/Jobbans()
-	if(!check_rights(R_BAN))	return
+	if (!check_rights(R_BAN))	return
 
 	var/dat = "<b>Job Bans!</b><HR><table>"
 	for(var/t in jobban_keylist)
 		var/r = t
-		if( findtext(r,"##") )
+		if ( findtext(r,"##") )
 			r = copytext( r, TRUE, findtext(r,"##") )//removes the description
 		dat += text("<tr><td>[t] (<A href='?src=\ref[src];removejobban=[r]'>unban</A>)</td></tr>")
 	dat += "</table>"
 	usr << browse(dat, "window=ban;size=400x400")*/
 
 /datum/admins/proc/game_panel()
-	if(!check_rights(R_ADMIN))	return
+	if (!check_rights(R_ADMIN))	return
 
 	var/dat = {"
 		<style>
@@ -355,7 +355,7 @@ proc/admin_notice(var/message, var/rights)
 		<center><b><big>Game Panel</big></b></center><hr>\n
 		"}
 		//		<A href='?src=\ref[src];c_mode=1'>Change Game Mode</A><br>
-/*	if(master_mode == "secret")
+/*	if (master_mode == "secret")
 		dat += "<A href='?src=\ref[src];f_secret=1'>(Force Secret Mode)</A><br>"*/
 
 	dat += {"
@@ -377,17 +377,17 @@ proc/admin_notice(var/message, var/rights)
 	return
 
 /datum/admins/proc/Secrets()
-	if(!check_rights(0))	return
+	if (!check_rights(0))	return
 
 	var/dat = "<b>The first rule of adminbuse is: you don't talk about the adminbuse.</b><HR>"
 	for(var/datum/admin_secret_category/category in admin_secrets.categories)
-		if(!category.can_view(usr))
+		if (!category.can_view(usr))
 			continue
 		dat += "<b>[category.name]</b><br>"
-		if(category.desc)
+		if (category.desc)
 			dat += "<I>[category.desc]</I><BR>"
 		for(var/datum/admin_secret_item/item in category.items)
-			if(!item.can_view(usr))
+			if (!item.can_view(usr))
 				continue
 			dat += "<A href='?src=\ref[src];admin_secrets=\ref[item]'>[item.name()]</A><BR>"
 		dat += "<BR>"
@@ -407,9 +407,9 @@ proc/admin_notice(var/message, var/rights)
 	if (!usr.client.holder)
 		return
 	var/confirm = alert("Restart the game world?", "Restart", "Yes", "Cancel")
-	if(confirm == "Cancel")
+	if (confirm == "Cancel")
 		return
-	if(confirm == "Yes")
+	if (confirm == "Yes")
 		world << "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by <b>[usr.client.holder.fakekey ? "Admin" : usr.key]</b>!</span>"
 		log_admin("[key_name(usr)] initiated a reboot.")
 		sleep(50)
@@ -422,9 +422,9 @@ proc/admin_notice(var/message, var/rights)
 	if (!usr.client.holder)
 		return
 	var/confirm = alert("Restart the game world?", "Restart", "Yes", "Cancel")
-	if(confirm == "Cancel")
+	if (confirm == "Cancel")
 		return
-	if(confirm == "Yes")
+	if (confirm == "Yes")
 		config.jojoreference = TRUE
 		world << "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by <b>[usr.client.holder.fakekey ? "Admin" : usr.key]</b>!</span>"
 		log_admin("[key_name(usr)] initiated a reboot.")
@@ -436,11 +436,11 @@ proc/admin_notice(var/message, var/rights)
 	set category = "Special"
 	set name = "Announce"
 	set desc="Announce your desires to the world"
-	if(!check_rights(0))	return
+	if (!check_rights(0))	return
 
 	var/message = russian_to_cp1251(input("Global message to send:", "Admin Announce", null, null))  as message
-	if(message)
-		if(!check_rights(R_SERVER,0))
+	if (message)
+		if (!check_rights(R_SERVER,0))
 			message = sanitize(message, 500, extra = FALSE)
 		message = replacetext(message, "\n", "<br>") // required since we're putting it in a <p> tag
 		world << "<big><span class=notice><b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b></big><p style='text-indent: 50px'>[message]</p></span>"
@@ -452,7 +452,7 @@ proc/admin_notice(var/message, var/rights)
 	set desc="Globally Toggles OOC"
 	set name="Toggle OOC"
 
-	if(!check_rights(R_ADMIN))
+	if (!check_rights(R_ADMIN))
 		return
 
 	config.ooc_allowed = !(config.ooc_allowed)
@@ -468,7 +468,7 @@ proc/admin_notice(var/message, var/rights)
 	set desc="Globally Toggles LOOC"
 	set name="Toggle LOOC"
 
-	if(!check_rights(R_ADMIN))
+	if (!check_rights(R_ADMIN))
 		return
 
 	config.looc_allowed = !(config.looc_allowed)
@@ -485,7 +485,7 @@ proc/admin_notice(var/message, var/rights)
 	set desc="Globally Toggles DSAY"
 	set name="Toggle DSAY"
 
-	if(!check_rights(R_ADMIN))
+	if (!check_rights(R_ADMIN))
 		return
 
 	config.dsay_allowed = !(config.dsay_allowed)
@@ -502,7 +502,7 @@ proc/admin_notice(var/message, var/rights)
 	set desc="Toggle Dead OOC."
 	set name="Toggle Dead OOC"
 
-	if(!check_rights(R_ADMIN))
+	if (!check_rights(R_ADMIN))
 		return
 
 	config.dooc_allowed = !( config.dooc_allowed )
@@ -524,10 +524,10 @@ proc/admin_notice(var/message, var/rights)
 	set category = "Server"
 	set desc="Start the round immediately"
 	set name="Start Now"
-	if(!ticker)
+	if (!ticker)
 		alert("Unable to start the game as it is not set up.")
 		return
-	if(ticker.current_state == GAME_STATE_PREGAME)
+	if (ticker.current_state == GAME_STATE_PREGAME)
 		if (!round_progressing)
 			round_progressing = TRUE
 		ticker.pregame_timeleft = 1
@@ -571,7 +571,7 @@ proc/admin_notice(var/message, var/rights)
 	set desc="Respawn basically"
 	set name="Toggle Respawn"
 	config.abandon_allowed = !(config.abandon_allowed)
-	if(config.abandon_allowed)
+	if (config.abandon_allowed)
 		world << "<b>You may now respawn.</b>"
 	else
 		world << "<b>You may no longer respawn :(</b>"
@@ -594,7 +594,7 @@ proc/admin_notice(var/message, var/rights)
 	set desc="Delay the game start/end"
 	set name="Delay"
 
-	if(!check_rights(R_SERVER))	return
+	if (!check_rights(R_SERVER))	return
 	if (!ticker || ticker.current_state != GAME_STATE_PREGAME)
 		ticker.delay_end = !ticker.delay_end
 		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
@@ -643,8 +643,8 @@ proc/admin_notice(var/message, var/rights)
 	set category = "Server"
 	set desc="Reboots the server post haste"
 	set name="Immediate Reboot"
-	if(!usr.client.holder)	return
-	if( alert("Reboot server?",,"Yes","No") == "No")
+	if (!usr.client.holder)	return
+	if ( alert("Reboot server?",,"Yes","No") == "No")
 		return
 	world << "<span class = 'red'><b>Rebooting world!</b> <span class = 'notice'>Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!</span></span>"
 	log_admin("[key_name(usr)] initiated an immediate reboot.")
@@ -673,18 +673,18 @@ proc/admin_notice(var/message, var/rights)
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
 /proc/is_special_character(mob/M as mob) // returns TRUE for specail characters and 2 for heroes of gamemode
-/*	if(!ticker || !ticker.mode)
+/*	if (!ticker || !ticker.mode)
 		return FALSE*/
 	if (!istype(M))
 		return FALSE
 
-	if(M.mind)
-/*		if(ticker.mode.antag_templates && ticker.mode.antag_templates.len)
+	if (M.mind)
+/*		if (ticker.mode.antag_templates && ticker.mode.antag_templates.len)
 			for(var/datum/antagonist/antag in ticker.mode.antag_templates)
-				if(antag.is_antagonist(M.mind))
+				if (antag.is_antagonist(M.mind))
 					return 2
 		else */
-		if(M.mind.special_role)
+		if (M.mind.special_role)
 			return TRUE
 
 	return FALSE
@@ -695,15 +695,15 @@ proc/admin_notice(var/message, var/rights)
 	set desc = "Spawn a custom item."
 	set name = "Spawn Custom Item"
 
-	if(!check_rights(R_SPAWN))	return
+	if (!check_rights(R_SPAWN))	return
 
 	var/owner = input("Select a ckey.", "Spawn Custom Item") as null|anything in custom_items
-	if(!owner|| !custom_items[owner])
+	if (!owner|| !custom_items[owner])
 		return
 
 	var/list/possible_items = custom_items[owner]
 	var/datum/custom_item/item_to_spawn = input("Select an item to spawn.", "Spawn Custom Item") as null|anything in possible_items
-	if(!item_to_spawn)
+	if (!item_to_spawn)
 		return
 
 	item_to_spawn.spawn_item(get_turf(usr))
@@ -714,13 +714,13 @@ proc/admin_notice(var/message, var/rights)
 	set desc = "Check the custom item list."
 	set name = "Check Custom Items"
 
-	if(!check_rights(R_SPAWN))	return
+	if (!check_rights(R_SPAWN))	return
 
-	if(!custom_items)
+	if (!custom_items)
 		usr << "Custom item list is null."
 		return
 
-	if(!custom_items.len)
+	if (!custom_items.len)
 		usr << "Custom item list not populated."
 		return
 
@@ -737,7 +737,7 @@ var/list/atom_types = null
 	set desc = "(atom path) Spawn an atom"
 	set name = "Spawn"
 
-	if(!check_rights(R_SPAWN))	return
+	if (!check_rights(R_SPAWN))	return
 
 	if (!atom_types)
 		atom_types = typesof(/atom)
@@ -745,21 +745,21 @@ var/list/atom_types = null
 	var/list/matches = list()
 
 	for(var/path in atom_types)
-		if(findtext("[path]", object))
+		if (findtext("[path]", object))
 			matches += path
 
-	if(matches.len==0)
+	if (matches.len==0)
 		return
 
 	var/chosen
-	if(matches.len==1)
+	if (matches.len==1)
 		chosen = matches[1]
 	else
 		chosen = input("Select an atom type", "Spawn Atom", matches[1]) as null|anything in matches
-		if(!chosen)
+		if (!chosen)
 			return
 
-	if(ispath(chosen,/turf))
+	if (ispath(chosen,/turf))
 		var/turf/T = get_turf(usr.loc)
 		T.ChangeTurf(chosen)
 	else
@@ -771,7 +771,7 @@ var/list/atom_types = null
 	set category = "Admin"
 	set desc = "Spawn a player in as a job"
 	set name = "Spawn Player"
-	if(!check_rights(R_SPAWN))	return
+	if (!check_rights(R_SPAWN))	return
 
 	var/mob/observer/ghost/G = input(usr, "Which observer? Please note that unlike the Player Panel spawn, this will always send the observer to their spawnpoint.") in observer_mob_list + "Cancel"
 	if (G == "Cancel")
@@ -802,10 +802,10 @@ var/list/atom_types = null
 	set desc = "Edit mobs's memory and role"
 	set name = "Show Traitor Panel"
 
-	if(!istype(M))
+	if (!istype(M))
 		usr << "This can only be used on instances of type /mob"
 		return
-	if(!M.mind)
+	if (!M.mind)
 		usr << "This mob has no mind!"
 		return
 
@@ -817,14 +817,14 @@ var/list/atom_types = null
 	set desc = "Show the current round configuration."
 	set name = "Show Game Mode"
 
-	if(!ticker || !ticker.mode)
+	if (!ticker || !ticker.mode)
 		alert("Not before roundstart!", "Alert")
 		return
 
 	var/out = "<font size=3><b>Current mode: [ticker.mode.name] (<a href='?src=\ref[ticker.mode];debug_antag=self'>[ticker.mode.config_tag]</a>)</b></font><br/>"
 	out += "<hr>"
 
-	if(ticker.mode.deny_respawn)
+	if (ticker.mode.deny_respawn)
 		out += "<b>Respawning:</b> <a href='?src=\ref[ticker.mode];toggle=respawn'>disallowed</a>"
 	else
 		out += "<b>Respawning:</b> <a href='?src=\ref[ticker.mode];toggle=respawn'>allowed</a>"
@@ -832,32 +832,32 @@ var/list/atom_types = null
 
 	out += "<b>Shuttle delay multiplier:</b> <a href='?src=\ref[ticker.mode];set=shuttle_delay'>[ticker.mode.shuttle_delay]</a><br/>"
 
-	if(ticker.mode.auto_recall_shuttle)
+	if (ticker.mode.auto_recall_shuttle)
 		out += "<b>Shuttle auto-recall:</b> <a href='?src=\ref[ticker.mode];toggle=shuttle_recall'>enabled</a>"
 	else
 		out += "<b>Shuttle auto-recall:</b> <a href='?src=\ref[ticker.mode];toggle=shuttle_recall'>disabled</a>"
 	out += "<br/><br/>"
 
-	if(ticker.mode.event_delay_mod_moderate)
+	if (ticker.mode.event_delay_mod_moderate)
 		out += "<b>Moderate event time modifier:</b> <a href='?src=\ref[ticker.mode];set=event_modifier_moderate'>[ticker.mode.event_delay_mod_moderate]</a><br/>"
 	else
 		out += "<b>Moderate event time modifier:</b> <a href='?src=\ref[ticker.mode];set=event_modifier_moderate'>unset</a><br/>"
 
-	if(ticker.mode.event_delay_mod_major)
+	if (ticker.mode.event_delay_mod_major)
 		out += "<b>Major event time modifier:</b> <a href='?src=\ref[ticker.mode];set=event_modifier_severe'>[ticker.mode.event_delay_mod_major]</a><br/>"
 	else
 		out += "<b>Major event time modifier:</b> <a href='?src=\ref[ticker.mode];set=event_modifier_severe'>unset</a><br/>"
 
 	out += "<hr>"
 
-	if(ticker.mode.antag_tags && ticker.mode.antag_tags.len)
+	if (ticker.mode.antag_tags && ticker.mode.antag_tags.len)
 		out += "<b>Core antag templates:</b></br>"
 		for(var/antag_tag in ticker.mode.antag_tags)
 			out += "<a href='?src=\ref[ticker.mode];debug_antag=[antag_tag]'>[antag_tag]</a>.</br>"
 
-	if(ticker.mode.round_autoantag)
+	if (ticker.mode.round_autoantag)
 		out += "<b>Autotraitor <a href='?src=\ref[ticker.mode];toggle=autotraitor'>enabled</a></b>."
-		if(ticker.mode.antag_scaling_coeff > 0)
+		if (ticker.mode.antag_scaling_coeff > 0)
 			out += " (scaling with <a href='?src=\ref[ticker.mode];set=antag_scaling'>[ticker.mode.antag_scaling_coeff]</a>)"
 		else
 			out += " (not currently scaling, <a href='?src=\ref[ticker.mode];set=antag_scaling'>set a coefficient</a>)"
@@ -866,7 +866,7 @@ var/list/atom_types = null
 		out += "<b>Autotraitor <a href='?src=\ref[ticker.mode];toggle=autotraitor'>disabled</a></b>.<br/>"
 
 	out += "<b>All antag ids:</b>"
-	if(ticker.mode.antag_templates && ticker.mode.antag_templates.len).
+	if (ticker.mode.antag_templates && ticker.mode.antag_templates.len).
 		for(var/datum/antagonist/antag in ticker.mode.antag_templates)
 			antag.update_current_antag_max()
 			out += " <a href='?src=\ref[ticker.mode];debug_antag=[antag.id]'>[antag.id]</a>"
@@ -918,7 +918,7 @@ var/list/atom_types = null
 		src << "Only administrators may use this command."
 		return
 
-	if(istype(H))
+	if (istype(H))
 		H.regenerate_icons()
 
 
@@ -927,59 +927,59 @@ var/list/atom_types = null
 */
 /proc/is_mentor(client/C)
 
-	if(!istype(C))
+	if (!istype(C))
 		return FALSE
-	if(!C.holder)
+	if (!C.holder)
 		return FALSE
 
-	if(C.holder.rights == R_MENTOR)
+	if (C.holder.rights == R_MENTOR)
 		return TRUE
 	return FALSE
 
 /proc/get_options_bar(whom, detail = 2, name = FALSE, link = TRUE, highlight_special = TRUE)
-	if(!whom)
+	if (!whom)
 		return "<b>(*null*)</b>"
 	var/mob/M
 	var/client/C
-	if(istype(whom, /client))
+	if (istype(whom, /client))
 		C = whom
 		M = C.mob
-	else if(istype(whom, /mob))
+	else if (istype(whom, /mob))
 		M = whom
 		C = M.client
 	else
 		return "<b>(*not an mob*)</b>"
 	switch(detail)
-		if(0)
+		if (0)
 			return "<b>[key_name(C, link, name, highlight_special)]</b>"
 
-		if(1)	//Private Messages
+		if (1)	//Private Messages
 			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>)</b>"
 
-		if(2)	//Admins
+		if (2)	//Admins
 			var/ref_mob = "\ref[M]"
 			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>) (<A HREF='?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M, src)]) (<A HREF='?_src_=holder;check_antagonist=1'>CA</A>)</b>"
 
-		if(3)	//Devs
+		if (3)	//Devs
 			var/ref_mob = "\ref[M]"
 			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>)([admin_jump_link(M, src)])</b>"
 
-		if(4)	//Mentors
+		if (4)	//Mentors
 			var/ref_mob = "\ref[M]"
 			return "<b>[key_name(C, link, name, highlight_special)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=[ref_mob]'>SM</A>)</b>"
 
 
 /proc/ishost(whom)
-	if(!whom)
+	if (!whom)
 		return FALSE
 	var/client/C
 	var/mob/M
-	if(istype(whom, /client))
+	if (istype(whom, /client))
 		C = whom
-	if(istype(whom, /mob))
+	if (istype(whom, /mob))
 		M = whom
 		C = M.client
-	if(R_HOST & C.holder.rights)
+	if (R_HOST & C.holder.rights)
 		return TRUE
 	else
 		return FALSE
@@ -992,7 +992,7 @@ var/list/atom_types = null
 //Returns TRUE to let the dragdrop code know we are trapping this event
 //Returns FALSE if we don't plan to trap the event
 /datum/admins/proc/cmd_ghost_drag(var/mob/observer/ghost/frommob, var/mob/living/tomob)
-	if(!istype(frommob))
+	if (!istype(frommob))
 		return //Extra sanity check to make sure only observers are shoved into things
 
 	//Same as assume-direct-control perm requirements.
@@ -1009,7 +1009,7 @@ var/list/atom_types = null
 		return TRUE
 	if (!frommob || !tomob) //make sure the mobs don't go away while we waited for a response
 		return TRUE
-	if(tomob.client) //No need to ghostize if there is no client
+	if (tomob.client) //No need to ghostize if there is no client
 		tomob.ghostize(0)
 	message_admins("<span class='adminnotice'>[key_name_admin(usr)] has put [frommob.ckey] in control of [tomob.name].</span>")
 	log_admin("[key_name(usr)] stuffed [frommob.ckey] into [tomob.name].")
@@ -1029,12 +1029,12 @@ var/list/atom_types = null
 		usr << "Error: you are not an admin!"
 		return
 
-	if(!ticker || !ticker.mode)
+	if (!ticker || !ticker.mode)
 		usr << "Mode has not started."
 		return
 
 	var/antag_type = input("Choose a template.","Force Latespawn") as null|anything in all_antag_types
-	if(!antag_type || !all_antag_types[antag_type])
+	if (!antag_type || !all_antag_types[antag_type])
 		usr << "Aborting."
 		return
 
@@ -1053,7 +1053,7 @@ var/list/atom_types = null
 		usr << "Error: you are not an admin!"
 		return
 
-	if(!ticker || !ticker.mode)
+	if (!ticker || !ticker.mode)
 		usr << "Mode has not started."
 		return
 
@@ -1067,7 +1067,7 @@ var/list/atom_types = null
 
 	var/msg
 
-	if(check_rights(R_ADMIN))
+	if (check_rights(R_ADMIN))
 		if (H.paralysis == FALSE)
 			H.paralysis = 8000
 			msg = "has paralyzed [key_name(H)]."

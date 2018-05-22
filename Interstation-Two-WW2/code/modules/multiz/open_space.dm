@@ -18,11 +18,11 @@ var/process/open_space/OS_controller = null
 
 /turf/open/New()
 	..()
-	if(OS_controller)
+	if (OS_controller)
 		OS_controller.open_spaces += src
 
 /turf/open/Del()
-	if(OS_controller)
+	if (OS_controller)
 		OS_controller.open_spaces -= src
 	..()
 
@@ -31,7 +31,7 @@ var/process/open_space/OS_controller = null
 	var/turf/below = GetBelow(src)
 	if (!isturf(below))
 		below = get_turf(below)
-	if(below)
+	if (below)
 		icon = below.icon
 		icon_state = below.icon_state
 		dir = below.dir
@@ -39,12 +39,12 @@ var/process/open_space/OS_controller = null
 	//	overlays += below.overlays // for some reason this turns an open
 	// space into plating.
 
-		if(!istype(below,/turf/open))
+		if (!istype(below,/turf/open))
 			// get objects
 			var/image/o_img = list()
 			for(var/obj/o in below)
 				// ingore objects that have any form of invisibility
-				if(o.invisibility) continue
+				if (o.invisibility) continue
 				var/image/temp2 = image(o, dir=o.dir, layer = o.layer)
 				temp2.plane = plane
 				temp2.color = o.color//rgb(127,127,127)

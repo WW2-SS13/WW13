@@ -8,29 +8,29 @@
 
 /datum/admin_secret_item/fun_secret/ghost_mode/execute(var/mob/user)
 	. = ..()
-	if(!.)
+	if (!.)
 		return
 
 	var/list/affected_areas = list()
 	for(var/mob/M in living_mob_list)
-		if(M.stat == CONSCIOUS && !(M in affected_mobs))
+		if (M.stat == CONSCIOUS && !(M in affected_mobs))
 			affected_mobs |= M
 			switch(rand(1,4))
-				if(1)
+				if (1)
 					M.show_message(text("<span class='notice'>You shudder as if cold...</span>"), TRUE)
-				if(2)
+				if (2)
 					M.show_message(text("<span class='notice'>You feel something gliding across your back...</span>"), TRUE)
-				if(3)
+				if (3)
 					M.show_message(text("<span class='notice'>Your eyes twitch, you feel like something you can't see is here...</span>"), TRUE)
-				if(4)
+				if (4)
 					M.show_message(text("<span class='notice'>You notice something moving out of the corner of your eye, but nothing is there...</span>"), TRUE)
 
 			for(var/obj/W in orange(5,M))
-				if(prob(25) && !W.anchored)
+				if (prob(25) && !W.anchored)
 					step_rand(W)
 
 			var/area/A = get_area(M)
-			if(A.requires_power && !A.always_unpowered && A.power_light && (A.z in config.player_levels))
+			if (A.requires_power && !A.always_unpowered && A.power_light && (A.z in config.player_levels))
 				affected_areas |= get_area(M)
 
 	affected_mobs |= user

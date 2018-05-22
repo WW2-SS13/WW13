@@ -14,7 +14,7 @@
 	var/loadable = TRUE
 
 /obj/item/weapon/grenade/proc/clown_check(var/mob/living/user)
-	if((CLUMSY in user.mutations) && prob(50))
+	if ((CLUMSY in user.mutations) && prob(50))
 		user << "<span class='warning'>Huh? How does this thing work?</span>"
 
 		activate(user)
@@ -28,7 +28,7 @@
 /*/obj/item/weapon/grenade/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
 	if (istype(target, /obj/item/weapon/storage)) return ..() // Trying to put it in a full container
 	if (istype(target, /obj/item/weapon/gun/grenadelauncher)) return ..()
-	if((user.get_active_hand() == src) && (!active) && (clown_check(user)) && target.loc != loc)
+	if ((user.get_active_hand() == src) && (!active) && (clown_check(user)) && target.loc != loc)
 		user << "<span class='warning'>You prime the [name]! [det_time/10] seconds!</span>"
 		active = TRUE
 		icon_state = initial(icon_state) + "_active"
@@ -44,33 +44,33 @@
 
 
 /obj/item/weapon/grenade/examine(mob/user)
-	if(..(user, FALSE))
-		if(det_time > 1)
+	if (..(user, FALSE))
+		if (det_time > 1)
 			user << "The timer is set to [det_time/10] seconds."
 			return
-		if(det_time == null)
+		if (det_time == null)
 			return
 		user << "\The [src] is set for instant detonation."
 
 
 /obj/item/weapon/grenade/attack_self(mob/user as mob)
-	if(!active)
-		if(clown_check(user))
+	if (!active)
+		if (clown_check(user))
 			user << "<span class='warning'>You prime \the [name]! [det_time/10] seconds!</span>"
 
 			activate(user)
 			add_fingerprint(user)
-			if(iscarbon(user))
+			if (iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.throw_mode_on()
 	return
 
 
 /obj/item/weapon/grenade/proc/activate(mob/user as mob)
-	if(active)
+	if (active)
 		return
 
-	if(user)
+	if (user)
 		msg_admin_attack("[user.name] ([user.ckey]) primed \a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 	icon_state = initial(icon_state) + "_active"
@@ -90,11 +90,11 @@
 	if (active)
 	//	playsound(loc, 'sound/items/Welder2.ogg', 25, TRUE)
 		var/turf/T = get_turf(src)
-		if(T)
+		if (T)
 			T.hotspot_expose(700,125)
 
 /obj/item/weapon/grenade/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(isscrewdriver(W))
+	if (isscrewdriver(W))
 		switch(det_time)
 			if (1)
 				det_time = 10

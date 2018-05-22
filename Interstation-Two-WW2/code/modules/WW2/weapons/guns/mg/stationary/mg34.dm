@@ -19,15 +19,15 @@
 	fire_delay = 3
 
 /obj/item/weapon/gun/projectile/automatic/stationary/kord/mg34/update_icon()
-	if(ammo_magazine)
+	if (ammo_magazine)
 		icon_state = "mg34movable"
-/*		if(wielded)
+/*		if (wielded)
 			item_state = "mg34movable"
 		else
 			item_state = "mg34movable"*/
 	else
 		icon_state = "mg34movable0"
-/*		if(wielded)
+/*		if (wielded)
 			item_state = "mg34movable0"
 		else
 			item_state = "mg34movable0"*/
@@ -58,15 +58,15 @@
 		)
 
 /obj/item/weapon/gun/projectile/automatic/stationary/mg34stat/update_icon()
-	if(ammo_magazine)
+	if (ammo_magazine)
 		icon_state = "mg34stat"
-/*		if(wielded)
+/*		if (wielded)
 			item_state = "mg34stat"
 		else
 			item_state = "mg34stat"*/
 	else
 		icon_state = "mg34stat0"
-/*		if(wielded)
+/*		if (wielded)
 			item_state = "mg34stat0"
 		else
 			item_state = "mg34stat0"*/

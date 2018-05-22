@@ -36,9 +36,9 @@
 		..()
 
 		var/turf/T = get_turf(src)
-		if(!T) return
+		if (!T) return
 
-		if(explosion_size)
+		if (explosion_size)
 			spawn (2)
 				on_explosion(T)
 
@@ -59,7 +59,7 @@
 				for(var/mob/living/L in TT)
 					//lying on a frag grenade while the grenade is on the ground causes you to absorb most of the shrapnel.
 					//you will most likely be dead, but others nearby will be spared the fragments that hit you instead.
-					if(L.lying)
+					if (L.lying)
 						P.attack_mob(L, FALSE, FALSE)
 					else
 						if (prob(66))
@@ -69,7 +69,7 @@
 			qdel(src)
 
 /obj/item/weapon/grenade/explosive/proc/on_explosion(var/turf/T)
-	if(explosion_size)
+	if (explosion_size)
 		explosion(T, 1, 1, 2, round(explosion_size/2), FALSE)
 
 /obj/item/weapon/grenade/explosive/frag
@@ -81,5 +81,5 @@
 	num_fragments = 200  //total number of fragments produced by the grenade
 
 /obj/item/weapon/grenade/explosive/frag/on_explosion(var/turf/O)
-	if(explosion_size)
+	if (explosion_size)
 		explosion(O, TRUE, round(explosion_size/2), explosion_size, round(explosion_size/2), FALSE)

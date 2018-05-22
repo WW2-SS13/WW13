@@ -4,7 +4,7 @@ json_writer
 
 	proc
 		WriteObject(list/L)
-			if(use_cache && L["__json_cache"])
+			if (use_cache && L["__json_cache"])
 				return L["__json_cache"]
 
 			. = "{"
@@ -12,17 +12,17 @@ json_writer
 			for(var/k in L)
 				var/val = L[k]
 				. += {"\"[k]\":[write(val)]"}
-				if(i++ < L.len)
+				if (i++ < L.len)
 					. += ","
 			. += "}"
 
 		write(val)
-			if(isnum(val))
+			if (isnum(val))
 				return num2text(val)
-			else if(isnull(val))
+			else if (isnull(val))
 				return "null"
-			else if(istype(val, /list))
-				if(is_associative(val))
+			else if (istype(val, /list))
+				if (is_associative(val))
 					return WriteObject(val)
 				else
 					return write_array(val)
@@ -33,7 +33,7 @@ json_writer
 			. = "\["
 			for(var/i = 1 to L.len)
 				. += write(L[i])
-				if(i < L.len)
+				if (i < L.len)
 					. += ","
 			. += "]"
 
@@ -43,16 +43,16 @@ json_writer
 				var/start = 1
 				while(start <= lentext(txt))
 					var/i = findtext(txt, targ, start)
-					if(!i)
+					if (!i)
 						break
 					var/lrep = length(json_escape[targ])
 					txt = copytext(txt, 1, i) + json_escape[targ] + copytext(txt, i + length(targ))
 					start = i + lrep
-					
+
 			return {""[txt]""}
 
 		is_associative(list/L)
 			for(var/key in L)
 				// if the key is a list that means it's actually an array of lists (stupid Byond...)
-				if(!isnum(key) && !isnull(L[key]) && !istype(key, /list))
+				if (!isnum(key) && !isnull(L[key]) && !istype(key, /list))
 					return TRUE

@@ -9,14 +9,14 @@
 
 	lastTickerTime = world.timeofday
 
-	if(!ticker)
+	if (!ticker)
 		ticker = new
 
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 
 	// what happens as soon as the server starts up
 	spawn(0)
-		if(ticker)
+		if (ticker)
 			ticker.pregame()
 		start_serverswap_loop()
 		start_serverdata_loop()
@@ -27,7 +27,7 @@
 	SCHECK
 	var/currentTime = world.timeofday
 
-	if(currentTime < lastTickerTime) // check for midnight rollover
+	if (currentTime < lastTickerTime) // check for midnight rollover
 		lastTickerTimeDuration = (currentTime - (lastTickerTime - TICKS_IN_DAY)) / TICKS_IN_SECOND
 	else
 		lastTickerTimeDuration = (currentTime - lastTickerTime) / TICKS_IN_SECOND

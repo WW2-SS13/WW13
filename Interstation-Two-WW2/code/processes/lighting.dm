@@ -14,16 +14,16 @@
 	SCHECK
 
 	FORNEXT(lighting_update_lights)
-		if(!isDeleted(current))
+		if (!isDeleted(current))
 
 			var/datum/light_source/L = current
 			. = L.check()
-			if(L.destroyed || . || L.force_update)
+			if (L.destroyed || . || L.force_update)
 				L.remove_lum()
-				if(!L.destroyed)
+				if (!L.destroyed)
 					L.apply_lum()
 
-			else if(L.vis_update)	// We smartly update only tiles that became (in) visible to use.
+			else if (L.vis_update)	// We smartly update only tiles that became (in) visible to use.
 				L.smart_vis_update()
 
 			L.vis_update   = FALSE
@@ -37,7 +37,7 @@
 		SCHECK
 
 	FORNEXT(lighting_update_overlays)
-		if(!isDeleted(current))
+		if (!isDeleted(current))
 			var/atom/movable/lighting_overlay/L = current // Typecasting this later so BYOND doesn't istype each entry.
 			L.update_overlay()
 			L.needs_update = FALSE

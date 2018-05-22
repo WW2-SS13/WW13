@@ -16,13 +16,13 @@ var/list/registered_macros_by_ckey_
 
 /proc/log_macro(var/ckey, var/macro)
 	usr << "The [macro] macro is disabled due to potential exploits."
-	if(is_macro_use_registered(ckey, macro))
+	if (is_macro_use_registered(ckey, macro))
 		return
 	register_macro_use(ckey, macro)
 	log_and_message_admins("attempted to use the disabled [macro] macro.")
 
 /proc/get_registered_macros()
-	if(!registered_macros_by_ckey_)
+	if (!registered_macros_by_ckey_)
 		registered_macros_by_ckey_ = list()
 	return registered_macros_by_ckey_
 
@@ -33,7 +33,7 @@ var/list/registered_macros_by_ckey_
 /proc/register_macro_use(var/ckey, var/macro)
 	var/list/registered_macros_by_ckey = get_registered_macros()
 	var/list/registered_macros = registered_macros_by_ckey[ckey]
-	if(!registered_macros)
+	if (!registered_macros)
 		registered_macros = list()
 		registered_macros_by_ckey[ckey] = registered_macros
 	registered_macros |= macro

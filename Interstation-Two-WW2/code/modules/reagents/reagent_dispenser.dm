@@ -23,10 +23,10 @@
 		..()
 
 	examine(mob/user)
-		if(!..(user, 2))
+		if (!..(user, 2))
 			return
 		user << "<span class = 'notice'>It contains:</span>"
-		if(reagents && reagents.reagent_list.len)
+		if (reagents && reagents.reagent_list.len)
 			for(var/datum/reagent/R in reagents.reagent_list)
 				user << "<span class = 'notice'>[R.volume] units of [R.name]</span>"
 		else
@@ -42,15 +42,15 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if (1.0)
 				qdel(src)
 				return
-			if(2.0)
+			if (2.0)
 				if (prob(50))
 					new /obj/effect/effect/water(loc)
 					qdel(src)
 					return
-			if(3.0)
+			if (3.0)
 				if (prob(5))
 					new /obj/effect/effect/water(loc)
 					qdel(src)
@@ -104,17 +104,17 @@
 		reagents.add_reagent("fuel",500)		//Adds 500 units to the amount, that already is inside. It'll be 1000.
 
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
-	if(!..(user, 2))
+	if (!..(user, 2))
 		return
 	if (modded)
 		user << "<span class = 'red'>The fuel faucet is wrenched open, leaking the fuel!</span>"
-	if(rig)
+	if (rig)
 		user << "<span class='notice'>There is some kind of device rigged to the tank.</span>"
 
 /obj/structure/reagent_dispensers/fueltank/attack_hand()
 	if (rig)
 		usr.visible_message("<span class='notice'>\The [usr] begins to detach [rig] from \the [src].</span>", "<span class='notice'>You begin to detach [rig] from \the [src].</span>")
-		if(do_after(usr, 20, src))
+		if (do_after(usr, 20, src))
 			usr.visible_message("<span class='notice'>\The [usr] detaches \the [rig] from \the [src].</span>", "<span class='notice'>You detach [rig] from \the [src]</span>")
 			rig.loc = get_turf(usr)
 			rig = null
@@ -135,7 +135,7 @@
 			user << "<span class='warning'>There is another device in the way.</span>"
 			return ..()
 		user.visible_message("\The [user] begins rigging [W] to \the [src].", "You begin rigging [W] to \the [src]")
-		if(do_after(user, 20, src))
+		if (do_after(user, 20, src))
 			user.visible_message("<span class='notice'>The [user] rigs [W] to \the [src].", "<span class = 'notice'> You rig [W] to \the [src].</span>")
 
 			var/obj/item/assembly_holder/H = W
@@ -156,12 +156,12 @@
 
 
 /obj/structure/reagent_dispensers/fueltank/bullet_act(var/obj/item/projectile/Proj)
-	if(Proj.get_structure_damage())
-		if(Proj.firer)
+	if (Proj.get_structure_damage())
+		if (Proj.firer)
 			message_admins("[key_name_admin(Proj.firer)] shot fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>).")
 			log_game("[key_name(Proj.firer)] shot fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]).")
 
-		//if(!istype(Proj ,/obj/item/projectile/beam/practice) )
+		//if (!istype(Proj ,/obj/item/projectile/beam/practice) )
 		explode()
 
 /obj/structure/reagent_dispensers/fueltank/ex_act()
@@ -223,13 +223,13 @@
 /obj/structure/reagent_dispensers/water_cooler/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W,/obj/item/weapon/wrench))
 		add_fingerprint(user)
-		if(anchored)
+		if (anchored)
 			user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
 		else
 			user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
 
-		if(do_after(user, 20, src))
-			if(!src) return
+		if (do_after(user, 20, src))
+			if (!src) return
 			user << "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>"
 			anchored = !anchored
 		return

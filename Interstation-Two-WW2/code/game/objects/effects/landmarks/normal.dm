@@ -16,105 +16,105 @@ var/area/partisan_stockpile = null
 	tag = text("landmark*[]", name)
 
 	switch(name)			//some of these are probably obsolete
-	/*	if("monkey")
+	/*	if ("monkey")
 			monkeystart += loc
 			delete_me = TRUE
 			return*/
-		if("start")
+		if ("start")
 			newplayer_start += loc
 			delete_me = TRUE
 			return
-		if("JoinLate")
+		if ("JoinLate")
 			latejoin += loc
 			delete_me = TRUE
 			return
-		if("JoinLateGhost")
-			if(!latejoin_turfs["Ghost"])
+		if ("JoinLateGhost")
+			if (!latejoin_turfs["Ghost"])
 				latejoin_turfs["Ghost"] = list()
 			latejoin_turfs["Ghost"] += loc
 			qdel(src)
 			return
 			/*
-		if("JoinLateGateway")
+		if ("JoinLateGateway")
 			latejoin_gateway += loc
 			delete_me = TRUE
 			return
-		if("JoinLateCryo")
+		if ("JoinLateCryo")
 			latejoin_cryo += loc
 			delete_me = TRUE
 			return
-		if("JoinLateCyborg")
+		if ("JoinLateCyborg")
 			latejoin_cyborg += loc
 			delete_me = TRUE
 			return
-		if("prisonwarp")
+		if ("prisonwarp")
 			prisonwarp += loc
 			delete_me = TRUE
 			return
-		if("Holding Facility")
+		if ("Holding Facility")
 			holdingfacility += loc
-		if("tdome1")
+		if ("tdome1")
 			tdome1 += loc
-		if("tdome2")
+		if ("tdome2")
 			tdome2 += loc
-		if("tdomeadmin")
+		if ("tdomeadmin")
 			tdomeadmin += loc
-		if("tdomeobserve")
+		if ("tdomeobserve")
 			tdomeobserve += loc
-		if("prisonsecuritywarp")
+		if ("prisonsecuritywarp")
 			prisonsecuritywarp += loc
 			delete_me = TRUE
 			return
-		if("xeno_spawn")
+		if ("xeno_spawn")
 			xeno_spawn += loc
 			delete_me = TRUE
 			return*/
-		if("endgame_exit")
+		if ("endgame_exit")
 			endgame_safespawns += loc
 			delete_me = TRUE
 			return
-		if("bluespacerift")
+		if ("bluespacerift")
 			endgame_exits += loc
 			delete_me = TRUE
 			return
-/*		if("monkey")
+/*		if ("monkey")
 			monkeystart += loc
 			qdel(src)
 			return*/
-		if("start")
+		if ("start")
 			newplayer_start += loc
 			qdel(src)
 
-		if("JoinLate")
-			if(!latejoin_turfs[name])
+		if ("JoinLate")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateRussia")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRussia")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateNATO")
-			if(!latejoin_turfs[name])
+		if ("JoinLateNATO")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateNATO-commander")
-			if(!latejoin_turfs[name])
+		if ("JoinLateNATO-commander")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateNATO-officer")
-			if(!latejoin_turfs[name])
+		if ("JoinLateNATO-officer")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
@@ -130,29 +130,29 @@ var/area/partisan_stockpile = null
 			qdel(src)
 			return
 
-		if("JoinLateRussia-commander")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRussia-commander")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateRussia-officer")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRussia-officer")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateSS")
-			if(!latejoin_turfs[name])
+		if ("JoinLateSS")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateSS-Officer")
-			if(!latejoin_turfs[name])
+		if ("JoinLateSS-Officer")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
@@ -160,275 +160,275 @@ var/area/partisan_stockpile = null
 
 		// NEW GERMAN LANDMARKS
 
-		if("JoinLateHeer")
-			if(!latejoin_turfs[name])
+		if ("JoinLateHeer")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateHeerChef")
-			if(!latejoin_turfs[name])
+		if ("JoinLateHeerChef")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateHeerCO")
-			if(!latejoin_turfs[name])
+		if ("JoinLateHeerCO")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateHeerSO")
-			if(!latejoin_turfs[name])
+		if ("JoinLateHeerSO")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateHeerXO")
-			if(!latejoin_turfs[name])
+		if ("JoinLateHeerXO")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateHeerMP")
-			if(!latejoin_turfs[name])
+		if ("JoinLateHeerMP")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateHeerDr")
-			if(!latejoin_turfs[name])
+		if ("JoinLateHeerDr")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateHeerQM")
-			if(!latejoin_turfs[name])
+		if ("JoinLateHeerQM")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateHeerSL")
-			if(!latejoin_turfs[name])
+		if ("JoinLateHeerSL")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateHeer-S1")
-			if(!latejoin_turfs[name])
+		if ("JoinLateHeer-S1")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateHeer-S2")
-			if(!latejoin_turfs[name])
+		if ("JoinLateHeer-S2")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateHeer-S3")
-			if(!latejoin_turfs[name])
+		if ("JoinLateHeer-S3")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateHeer-S4")
-			if(!latejoin_turfs[name])
+		if ("JoinLateHeer-S4")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateHeer-S1-Leader")
-			if(!latejoin_turfs[name])
+		if ("JoinLateHeer-S1-Leader")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateHeer-S2-Leader")
-			if(!latejoin_turfs[name])
+		if ("JoinLateHeer-S2-Leader")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateHeer-S3-Leader")
-			if(!latejoin_turfs[name])
+		if ("JoinLateHeer-S3-Leader")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateHeer-S4-Leader")
-			if(!latejoin_turfs[name])
+		if ("JoinLateHeer-S4-Leader")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 		// NEW SOVIET LANDMARKS
 
-		if("JoinLateRA")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRA")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateRAChef")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRAChef")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateRAEng")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRAEng")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateRACO")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRACO")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateRASO")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRASO")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateRAXO")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRAXO")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateRAMP")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRAMP")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateRADr")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRADr")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateRAMedic")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRAMedic")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateRAQM")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRAQM")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateRASL")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRASL")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateRA-S1")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRA-S1")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateRA-S2")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRA-S2")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateRA-S3")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRA-S3")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateRA-S4")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRA-S4")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateRA-S1-Leader")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRA-S1-Leader")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateRA-S2-Leader")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRA-S2-Leader")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateRA-S3-Leader")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRA-S3-Leader")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateRA-S4-Leader")
-			if(!latejoin_turfs[name])
+		if ("JoinLateRA-S4-Leader")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateIT")
-			if(!latejoin_turfs[name])
+		if ("JoinLateIT")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateIT-Medic")
-			if(!latejoin_turfs[name])
+		if ("JoinLateIT-Medic")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("JoinLateIT-Officer")
-			if(!latejoin_turfs[name])
+		if ("JoinLateIT-Officer")
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
@@ -437,14 +437,14 @@ var/area/partisan_stockpile = null
 		// PARTISAN LANDMARKS
 
 		if ("JoinLatePartisan")
-			if(!latejoin_turfs[name])
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
 		if ("JoinLatePartisanLeader")
-			if(!latejoin_turfs[name])
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
@@ -515,7 +515,7 @@ var/area/partisan_stockpile = null
 			return
 
 		if ("JoinLateCivilian")
-			if(!latejoin_turfs[name])
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
@@ -594,56 +594,56 @@ var/area/partisan_stockpile = null
 			return
 
 		if ("JoinLateGRU")
-			if(!latejoin_turfs[name])
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
 		if ("JoinLatePillarMan")
-			if(!latejoin_turfs[name])
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
 		if ("JoinLateVampire")
-			if(!latejoin_turfs[name])
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
-		if("Fallschirm")
+		if ("Fallschirm")
 			fallschirm_landmarks += loc
-			if(!latejoin_turfs[name])
+			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return/*
-		if("prisonwarp")
+		if ("prisonwarp")
 			prisonwarp += loc
 			qdel(src)
 			return
-		if("Holding Facility")
+		if ("Holding Facility")
 			holdingfacility += loc
-		if("tdome1")
+		if ("tdome1")
 			tdome1 += loc
-		if("tdome2")
+		if ("tdome2")
 			tdome2 += loc
-		if("tdomeadmin")
+		if ("tdomeadmin")
 			tdomeadmin += loc
-		if("tdomeobserve")
+		if ("tdomeobserve")
 			tdomeobserve += loc
-		if("prisonsecuritywarp")
+		if ("prisonsecuritywarp")
 			prisonsecuritywarp += loc
 			qdel(src)
 			return
-		if("xeno_spawn")
+		if ("xeno_spawn")
 			xeno_spawn += loc
 			qdel(src)
 			return*/
-		if("endgame_exit")
+		if ("endgame_exit")
 			endgame_safespawns += loc
 			qdel(src)
 			return
@@ -655,7 +655,7 @@ var/area/partisan_stockpile = null
 			new/obj/structure/artillery/nebel(loc, null, SOUTH)
 			qdel(src)
 			return
-		if("bluespacerift")
+		if ("bluespacerift")
 			endgame_exits += loc
 			qdel(src)
 			return
@@ -679,7 +679,7 @@ var/area/partisan_stockpile = null
 
 /obj/effect/landmark/initialize()
 	..()
-	if(delete_me)
+	if (delete_me)
 		qdel(src)
 
 /obj/effect/landmark/Destroy()

@@ -70,16 +70,16 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 				for(var/i=0, i<10, i++)
 					sleep(1)
 					vote.process()
-				if(round_progressing)
+				if (round_progressing)
 					pregame_timeleft--
-				if(pregame_timeleft == config.vote_autogamemode_timeleft)
-					if(!vote.time_remaining)
+				if (pregame_timeleft == config.vote_autogamemode_timeleft)
+					if (!vote.time_remaining)
 						vote.autogamemode()	//Quit calling this over and over and over and over.
 						while(vote.time_remaining)
 							for(var/i=0, i<10, i++)
 								sleep(1)
 								vote.process()
-				if(pregame_timeleft == 20)
+				if (pregame_timeleft == 20)
 					if (tip)
 						world << "<span class = 'notice'><b>Tip of the round:</b> [tip]</span>"
 					else
@@ -89,7 +89,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 								world << "<span class = 'notice'><b>Tip of the round:</b> [pick(tips)]</span>"
 								qdel_list(tips)
 					maytip = FALSE
-				if(pregame_timeleft <= 0)
+				if (pregame_timeleft <= 0)
 					current_state = GAME_STATE_SETTING_UP
 					/* if we were force started, still show the tip */
 					if (maytip)
@@ -111,7 +111,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 	job_master.ResetOccupations()
 
-	if(!map || !map.can_start() && !admin_started)
+	if (!map || !map.can_start() && !admin_started)
 		if (serverswap_open_status)
 			world << "<b>Unable to start the game.</b> Not enough players, [map.required_players] active players needed. Reverting to the pre-game lobby."
 		current_state = GAME_STATE_PREGAME
@@ -156,10 +156,10 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	/* TODO: discord bot - Kachnov
 	var/admins_number = 0
 	for(var/client/C)
-		if(C.holder)
+		if (C.holder)
 			admins_number++
 
-	if(admins_number == 0)
+	if (admins_number == 0)
 		send2adminirc("Round has started with no admins online.")*/
 
 	if (!processScheduler.isRunning)
@@ -171,13 +171,13 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 /datum/controller/gameticker/proc/close_jobs()
 	for(var/datum/job/job in job_master.occupations)
-		if(job.title == "Captain")
+		if (job.title == "Captain")
 			job.total_positions = FALSE
 
 /datum/controller/gameticker/proc/create_characters()
 	for(var/mob/new_player/player in player_list)
-		if(player && player.ready && player.mind)
-			if(!player.mind.assigned_role)
+		if (player && player.ready && player.mind)
+			if (!player.mind.assigned_role)
 				continue
 			else
 				player.create_character()
@@ -186,18 +186,18 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 /datum/controller/gameticker/proc/collect_minds()
 	for(var/mob/living/player in player_list)
-		if(player.mind)
+		if (player.mind)
 			ticker.minds += player.mind
 
 /datum/controller/gameticker/proc/equip_characters()
 	for(var/mob/living/carbon/human/player in player_list)
-		if(player && player.mind && player.mind.assigned_role)
-		//	if(!player_is_antag(player.mind, only_offstation_roles = TRUE))
+		if (player && player.mind && player.mind.assigned_role)
+		//	if (!player_is_antag(player.mind, only_offstation_roles = TRUE))
 			job_master.EquipRank(player, player.mind.assigned_role, FALSE)
 		//		equip_custom_items(player)
 
 /datum/controller/gameticker/proc/process()
-	if(current_state != GAME_STATE_PLAYING)
+	if (current_state != GAME_STATE_PLAYING)
 		return FALSE
 
 //		mode.process()
@@ -239,12 +239,12 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 				next_map = "TBD"
 
 
-			if(!delay_end)
+			if (!delay_end)
 				world << "<span class='notice'><big>Restarting in [round(restart_after/10)] seconds. Next map: <b>[next_map]</b></big></span>"
 
-			if(!delay_end)
+			if (!delay_end)
 				sleep(restart_after)
-				if(!delay_end)
+				if (!delay_end)
 					world.Reboot()
 				else
 					world << "<span class='notice'><b>An admin has delayed the round end</b></span>"

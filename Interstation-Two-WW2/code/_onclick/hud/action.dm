@@ -30,31 +30,31 @@
 	button.name = name
 
 /datum/action/Destroy()
-	if(owner)
+	if (owner)
 		Remove(owner)
-	if(target)
+	if (target)
 		target = null
-	if(button)
+	if (button)
 		qdel(button)
 	else
 		button = null
 	return ..()
 
 /datum/action/proc/Grant(mob/living/T)
-	if(owner)
-		if(owner == T)
+	if (owner)
+		if (owner == T)
 			return
 		Remove(owner)
 	owner = T
 	button.owner = src
 	T.actions |= src // scope HUDs can somehow be granted twice
-	if(T.client)
+	if (T.client)
 		T.client.screen |= button // scope HUDs can somehow be granted twice
 	T.update_action_buttons()
 
 /datum/action/proc/Remove(mob/living/T)
 	if (T)
-		if(T.client)
+		if (T.client)
 			T.client.screen -= button
 		button.moved = FALSE //so the button appears in its normal position when given to another owner.
 		T.actions -= src
@@ -62,7 +62,7 @@
 		owner = null
 
 /datum/action/proc/Trigger()
-	if(!IsAvailable())
+	if (!IsAvailable())
 		return FALSE
 	return TRUE
 
@@ -79,22 +79,22 @@
 	return FALSE
 
 /datum/action/proc/IsAvailable()
-	if(!owner)
+	if (!owner)
 		return FALSE
-	if(check_flags & AB_CHECK_RESTRAINED)
-		if(owner.restrained())
+	if (check_flags & AB_CHECK_RESTRAINED)
+		if (owner.restrained())
 			return FALSE
-	if(check_flags & AB_CHECK_STUNNED)
-		if(owner.stunned)
+	if (check_flags & AB_CHECK_STUNNED)
+		if (owner.stunned)
 			return FALSE
-	if(check_flags & AB_CHECK_LYING)
-		if(owner.lying)
+	if (check_flags & AB_CHECK_LYING)
+		if (owner.lying)
 			return FALSE
-	if(check_flags & AB_CHECK_ALIVE)
-		if(owner.stat)
+	if (check_flags & AB_CHECK_ALIVE)
+		if (owner.stat)
 			return FALSE
-	if(check_flags & AB_CHECK_INSIDE)
-		if(!(target in owner))
+	if (check_flags & AB_CHECK_INSIDE)
+		if (!(target in owner))
 			return FALSE
 
 /datum/action/proc/UpdateName()
@@ -106,32 +106,32 @@
 
 /obj/screen/movable/action_button/Click(location,control,params)
 	var/list/modifiers = params2list(params)
-	if(modifiers["shift"])
+	if (modifiers["shift"])
 		moved = FALSE
 		return TRUE
-	if(usr.next_move >= world.time) // Is this needed ?
+	if (usr.next_move >= world.time) // Is this needed ?
 		return
 	owner.Trigger()
 	return TRUE
 
 /obj/screen/movable/action_button/proc/UpdateIcon()
-	if(!owner)
+	if (!owner)
 		return
 	icon = owner.button_icon
 	icon_state = owner.background_icon_state
 
 	overlays.Cut()
 	var/image/img
-	if(owner.action_type == AB_ITEM && owner.target)
+	if (owner.action_type == AB_ITEM && owner.target)
 		var/obj/item/I = owner.target
 		img = image(I.icon, src , I.icon_state)
-	else if(owner.button_icon && owner.button_icon_state)
+	else if (owner.button_icon && owner.button_icon_state)
 		img = image(owner.button_icon,src,owner.button_icon_state)
 	img.pixel_x = pixel_x
 	img.pixel_y = pixel_y
 	overlays += img
 
-	if(!owner.IsAvailable())
+	if (!owner.IsAvailable())
 		color = rgb(128,0,0,128)
 	else
 		color = rgb(255,255,255,255)
@@ -147,7 +147,7 @@
 	//usr.hud_used.action_buttons_hidden = !usr.hud_used.action_buttons_hidden
 
 	//hidden = usr.hud_used.action_buttons_hidden
-	if(hidden)
+	if (hidden)
 		name = "Show Buttons"
 	else
 		name = "Hide Buttons"
@@ -156,7 +156,7 @@
 
 
 /obj/screen/movable/action_button/hide_toggle/proc/InitialiseIcon(var/mob/living/user)
-	if(isalien(user))
+	if (isalien(user))
 		icon_state = "bg_alien"
 	else
 		icon_state = "bg_default"

@@ -124,7 +124,7 @@
 	scannable = TRUE
 
 /datum/reagent/cryoxadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.bodytemperature < 170)
+	if (M.bodytemperature < 170)
 		M.adjustCloneLoss(-10 * removed)
 		M.adjustOxyLoss(-10 * removed)
 		M.heal_organ_damage(10 * removed, 10 * removed)
@@ -142,7 +142,7 @@
 	scannable = TRUE
 
 /datum/reagent/clonexadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.bodytemperature < 170)
+	if (M.bodytemperature < 170)
 		M.adjustCloneLoss(-30 * removed)
 		M.adjustOxyLoss(-30 * removed)
 		M.heal_organ_damage(30 * removed, 30 * removed)
@@ -256,11 +256,11 @@
 /datum/reagent/imidazoline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.eye_blurry = max(M.eye_blurry - 5, FALSE)
 	M.eye_blind = max(M.eye_blind - 5, FALSE)
-	if(ishuman(M))
+	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/eyes/E = H.internal_organs_by_name["eyes"]
-		if(E && istype(E))
-			if(E.damage > 0)
+		if (E && istype(E))
+			if (E.damage > 0)
 				E.damage = max(E.damage - 5 * removed, FALSE)
 
 /datum/reagent/peridaxon
@@ -274,11 +274,11 @@
 	scannable = TRUE
 
 /datum/reagent/peridaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(ishuman(M))
+	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 
 		for(var/obj/item/organ/I in H.internal_organs)
-			if((I.damage > 0) && (I.robotic != 2)) //Peridaxon heals only non-robotic organs
+			if ((I.damage > 0) && (I.robotic != 2)) //Peridaxon heals only non-robotic organs
 				I.damage = max(I.damage - removed, FALSE)
 
 /datum/reagent/ryetalyn
@@ -298,7 +298,7 @@
 	M.sdisabilities = FALSE
 
 	// Might need to update appearance for hulk etc.
-	if(needs_update && ishuman(M))
+	if (needs_update && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.update_mutations()
 
@@ -313,7 +313,7 @@
 	overdose = REAGENTS_OVERDOSE * 0.5
 
 /datum/reagent/hyperzine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(prob(5))
+	if (prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
 	M.add_chemical_effect(CE_SPEEDBOOST, TRUE)
 	M.add_chemical_effect(CE_PULSE, 2)
@@ -331,9 +331,9 @@
 	M.drowsyness = FALSE
 	M.stuttering = FALSE
 	M.confused = FALSE
-	if(M.ingested)
+	if (M.ingested)
 		for(var/datum/reagent/R in M.ingested.reagent_list)
-			if(istype(R, /datum/reagent/ethanol))
+			if (istype(R, /datum/reagent/ethanol))
 				R.dose = max(R.dose - removed * 5, FALSE)
 
 /datum/reagent/hyronalin
@@ -363,7 +363,7 @@
 /datum/reagent/arithrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.radiation = max(M.radiation - 70 * removed, FALSE)
 	M.adjustToxLoss(-10 * removed)
-	if(prob(60))
+	if (prob(60))
 		M.take_organ_damage(4 * removed, FALSE)
 
 /datum/reagent/penicillin
@@ -414,9 +414,9 @@
 	scannable = TRUE
 
 /datum/reagent/leporazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.bodytemperature > 310)
+	if (M.bodytemperature > 310)
 		M.bodytemperature = max(310, M.bodytemperature - (40 * TEMPERATURE_DAMAGE_COEFFICIENT))
-	else if(M.bodytemperature < 311)
+	else if (M.bodytemperature < 311)
 		M.bodytemperature = min(310, M.bodytemperature + (40 * TEMPERATURE_DAMAGE_COEFFICIENT))
 
 /* Antidepressants */
@@ -434,11 +434,11 @@
 	data = FALSE
 
 /datum/reagent/methylphenidate/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(volume <= 0.1 && data != -1)
+	if (volume <= 0.1 && data != -1)
 		data = -1
 		M << "<span class='warning'>You lose focus...</span>"
 	else
-		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
+		if (world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
 			M << "<span class='notice'>Your mind feels focused and undivided.</span>"
 
@@ -453,11 +453,11 @@
 	data = FALSE
 
 /datum/reagent/citalopram/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(volume <= 0.1 && data != -1)
+	if (volume <= 0.1 && data != -1)
 		data = -1
 		M << "<span class='warning'>Your mind feels a little less stable...</span>"
 	else
-		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
+		if (world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
 			M << "<span class='notice'>Your mind feels stable... a little stable.</span>"
 
@@ -471,13 +471,13 @@
 	data = FALSE
 
 /datum/reagent/paroxetine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(volume <= 0.1 && data != -1)
+	if (volume <= 0.1 && data != -1)
 		data = -1
 		M << "<span class='warning'>Your mind feels much less stable...</span>"
 	else
-		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
+		if (world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
-			if(prob(90))
+			if (prob(90))
 				M << "<span class='notice'>Your mind feels much more stable.</span>"
 			else
 				M << "<span class='warning'>Your mind breaks apart...</span>"
@@ -498,9 +498,9 @@
 	M.adjustOxyLoss(-2 * removed)
 	M.heal_organ_damage(20 * removed, 20 * removed)
 	M.adjustToxLoss(-20 * removed)
-	if(dose > 3)
+	if (dose > 3)
 		M.status_flags &= ~DISFIGURED
-	if(dose > 10)
+	if (dose > 10)
 		M.make_dizzy(5)
 		M.make_jittery(5)
 
@@ -533,7 +533,7 @@
 	overdose = REAGENTS_OVERDOSE * 0.5
 
 /datum/reagent/pervitin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(prob(5))
+	if (prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
 	M.add_chemical_effect(CE_SPEEDBOOST, TRUE)
 	M.add_chemical_effect(CE_PULSE, 2)

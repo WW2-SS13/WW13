@@ -13,43 +13,43 @@
 	volume = 5
 
 	afterattack(var/obj/target, var/mob/user, var/flag)
-		if(!target.reagents || !flag) return
+		if (!target.reagents || !flag) return
 
-		if(reagents.total_volume)
+		if (reagents.total_volume)
 
-			if(!target.reagents.get_free_space())
+			if (!target.reagents.get_free_space())
 				user << "<span class='notice'>[target] is full.</span>"
 				return
 
-			if(!target.is_open_container() && !ismob(target) && !istype(target, /obj/item/weapon/reagent_containers/food) && !istype(target, /obj/item/clothing/mask/smokable/cigarette)) //You can inject humans and food but you cant remove the shit.
+			if (!target.is_open_container() && !ismob(target) && !istype(target, /obj/item/weapon/reagent_containers/food) && !istype(target, /obj/item/clothing/mask/smokable/cigarette)) //You can inject humans and food but you cant remove the shit.
 				user << "<span class='notice'>You cannot directly fill this object.</span>"
 				return
 
 			var/trans = FALSE
 
-			if(ismob(target))
+			if (ismob(target))
 
 				var/time = 20 //2/3rds the time of a syringe
 				user.visible_message("<span class='warning'>[user] is trying to squirt something into [target]'s eyes!</span>")
 
-				if(!do_mob(user, target, time))
+				if (!do_mob(user, target, time))
 					return
 
-				if(istype(target, /mob/living/carbon/human))
+				if (istype(target, /mob/living/carbon/human))
 					var/mob/living/carbon/human/victim = target
 
 					var/obj/item/safe_thing = null
-					if(victim.wear_mask)
+					if (victim.wear_mask)
 						if (victim.wear_mask.body_parts_covered & EYES)
 							safe_thing = victim.wear_mask
-					if(victim.head)
+					if (victim.head)
 						if (victim.head.body_parts_covered & EYES)
 							safe_thing = victim.head
-					if(victim.glasses)
+					if (victim.glasses)
 						if (!safe_thing)
 							safe_thing = victim.glasses
 
-					if(safe_thing)
+					if (safe_thing)
 						trans = reagents.trans_to_obj(safe_thing, amount_per_transfer_from_this)
 						user.visible_message("<span class='warning'>[user] tries to squirt something into [target]'s eyes, but fails!</span>", "<span class='notice'>You transfer [trans] units of the solution.</span>")
 						return
@@ -72,11 +72,11 @@
 
 		else // Taking from something
 
-			if(!target.is_open_container() && !istype(target,/obj/structure/reagent_dispensers))
+			if (!target.is_open_container() && !istype(target,/obj/structure/reagent_dispensers))
 				user << "<span class='notice'>You cannot directly remove reagents from [target].</span>"
 				return
 
-			if(!target.reagents || !target.reagents.total_volume)
+			if (!target.reagents || !target.reagents.total_volume)
 				user << "<span class='notice'>[target] is empty.</span>"
 				return
 
@@ -90,7 +90,7 @@
 		update_icon()
 
 	update_icon()
-		if(reagents.total_volume)
+		if (reagents.total_volume)
 			icon_state = "dropper1"
 		else
 			icon_state = "dropper0"

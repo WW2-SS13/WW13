@@ -18,7 +18,7 @@
 	FORNEXT(scheduled_tasks)
 		var/datum/scheduled_task/scheduled_task = current
 		try
-			if(world.time > scheduled_task.trigger_time)
+			if (world.time > scheduled_task.trigger_time)
 				unschedule(scheduled_task)
 				scheduled_task.pre_process()
 				scheduled_task.process()
@@ -39,7 +39,7 @@
 	destroyed_event.register(st, src, /process/scheduler/proc/unschedule)
 
 /process/scheduler/proc/unschedule(var/datum/scheduled_task/st)
-	if(st in scheduled_tasks)
+	if (st in scheduled_tasks)
 		scheduled_tasks -= st
 		destroyed_event.unregister(st, src)
 
@@ -102,7 +102,7 @@
 	task_triggered_event.raise_event(src)
 
 /datum/scheduled_task/proc/process()
-	if(procedure)
+	if (procedure)
 		call(procedure)(arglist(arguments))
 
 /datum/scheduled_task/proc/post_process()

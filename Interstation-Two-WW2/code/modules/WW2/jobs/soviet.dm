@@ -32,7 +32,7 @@
 	max_positions = 1
 
 /datum/job/soviet/commander/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/officer(H), slot_w_uniform)
@@ -86,7 +86,7 @@
 	player_threshold = PLAYER_THRESHOLD_MEDIUM
 
 /datum/job/soviet/XO/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/officer(H), slot_w_uniform)
@@ -133,7 +133,7 @@
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/soviet/staff_officer/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/officer(H), slot_w_uniform)
@@ -178,7 +178,7 @@
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/soviet/MP/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/MP(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm/MP(H), slot_head)
@@ -223,7 +223,7 @@
 	max_positions = 4
 
 /datum/job/soviet/squad_leader/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovofficercap(H), slot_head)
@@ -268,7 +268,7 @@
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/soviet/medic/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm/medic(H), slot_head)
@@ -309,7 +309,7 @@
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/soviet/doctor/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/color/white(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/doctor(H), slot_w_uniform)
@@ -356,7 +356,7 @@
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/soviet/sniper/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm(H), slot_head)
@@ -399,7 +399,7 @@
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/soviet/engineer/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm(H), slot_head)
@@ -443,7 +443,7 @@
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/soviet/heavy_weapon/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm(H), slot_head)
@@ -489,7 +489,7 @@
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/soviet/soldier/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm(H), slot_head)
@@ -532,7 +532,7 @@
 	allow_spies = TRUE
 
 /datum/job/soviet/dogmaster/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm(H), slot_head)
@@ -590,7 +590,7 @@
 	player_threshold = PLAYER_THRESHOLD_MEDIUM
 
 /datum/job/soviet/tankcrew/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovtankerhat(H), slot_head)
@@ -636,7 +636,7 @@
 	player_threshold = PLAYER_THRESHOLD_MEDIUM
 
 /datum/job/soviet/anti_tank_crew/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
@@ -688,12 +688,12 @@
 
 var/first_guard = FALSE
 /datum/job/soviet/guard/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
-	if(first_guard)
+	if (first_guard)
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/heavy/ptrd(H), slot_back)
 		var/obj/item/weapon/storage/belt/security/tactical/belt = new(H)
 		for (var/v in 1 to 8)
@@ -747,7 +747,7 @@ var/first_guard = FALSE
 	player_threshold = PLAYER_THRESHOLD_LOW
 
 /datum/job/soviet/QM/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/officer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
@@ -790,7 +790,7 @@ var/first_guard = FALSE
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/soviet/sturmovik/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm(H), slot_head)
@@ -836,7 +836,7 @@ var/first_guard = FALSE
 	max_positions = 1
 
 /datum/job/soviet/chef/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm(H), slot_head)

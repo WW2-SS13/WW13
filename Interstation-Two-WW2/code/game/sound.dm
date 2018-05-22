@@ -149,7 +149,7 @@ var/list/sneeze_sounds_female = list(
 
 	soundin = get_sfx(soundin) // same sound for everyone
 
-	if(isarea(source))
+	if (isarea(source))
 		error("[source] is an area and is trying to make the sound: [soundin]")
 		return
 
@@ -164,16 +164,16 @@ var/list/sneeze_sounds_female = list(
 		if (istype(source) && isnewplayer(M))
 			continue
 
-		if(!M || !M.client)
+		if (!M || !M.client)
 			continue
 
 		if (excluded.Find(M))
 			continue
 
 		var/distance = get_dist(M, turf_source)
-		if(distance <= ((world.view * 3) + extrarange))
+		if (distance <= ((world.view * 3) + extrarange))
 			var/turf/T = get_turf(M)
-			if(T && T.z == turf_source.z)
+			if (T && T.z == turf_source.z)
 				M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global)
 				players_who_heard += M
 
@@ -182,7 +182,7 @@ var/list/sneeze_sounds_female = list(
 var/const/FALLOFF_SOUNDS = 0.5
 
 /mob/proc/playsound_local(var/turf/turf_source, soundin, vol as num, vary, frequency, falloff, is_global)
-	if(!client || ear_deaf > 0)	return
+	if (!client || ear_deaf > 0)	return
 	soundin = get_sfx(soundin)
 
 	var/distance = -1
@@ -193,12 +193,12 @@ var/const/FALLOFF_SOUNDS = 0.5
 	S.volume = vol
 	S.environment = -1
 	if (vary)
-		if(frequency)
+		if (frequency)
 			S.frequency = frequency
 		else
 			S.frequency = get_rand_frequency()
 
-	if(isturf(turf_source))
+	if (isturf(turf_source))
 		// 3D sounds, the technology is here!
 		var/turf/T = get_turf(src)
 
@@ -227,9 +227,9 @@ var/const/FALLOFF_SOUNDS = 0.5
 		S.y = TRUE
 		S.falloff = (falloff ? falloff : FALLOFF_SOUNDS)
 
-	if(!is_global)
+	if (!is_global)
 
-		if(istype(src,/mob/living/))
+		if (istype(src,/mob/living/))
 			var/mob/living/M = src
 			if (M.hallucination)
 				S.environment = PSYCHOTIC
@@ -257,7 +257,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 	return rand(32000, 55000) //Frequency stuff only works with 45kbps oggs.
 
 /proc/get_sfx(soundin)
-	if(istext(soundin))
+	if (istext(soundin))
 		switch(soundin)
 			if ("shatter") soundin = pick(shatter_sound)
 			if ("explosion") soundin = pick(explosion_sound)

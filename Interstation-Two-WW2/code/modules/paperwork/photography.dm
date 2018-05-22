@@ -42,14 +42,14 @@ var/global/photo_count = FALSE
 	user.examinate(src)
 
 /obj/item/weapon/photo/attackby(obj/item/weapon/P as obj, mob/user as mob)
-	if(istype(P, /obj/item/weapon/pen))
+	if (istype(P, /obj/item/weapon/pen))
 		var/txt = sanitize(input(user, "What would you like to write on the back?", "Photo Writing", null)  as text, 128)
-		if(loc == user && user.stat == FALSE)
+		if (loc == user && user.stat == FALSE)
 			scribble = txt
 	..()
 
 /obj/item/weapon/photo/examine(mob/user)
-	if(in_range(user, src))
+	if (in_range(user, src))
 		show(user)
 		user << desc
 	else
@@ -72,7 +72,7 @@ var/global/photo_count = FALSE
 
 	var/n_name = sanitizeSafe(input(usr, "What would you like to label the photo?", "Photo Labelling", null)  as text, MAX_NAME_LEN)
 	//loc.loc check is for making possible renaming photos in clipboards
-	if(( (loc == usr || (loc.loc && loc.loc == usr)) && usr.stat == FALSE))
+	if (( (loc == usr || (loc.loc && loc.loc == usr)) && usr.stat == FALSE))
 		name = "[(n_name ? text("[n_name]") : "photo")]"
 	add_fingerprint(usr)
 	return
@@ -90,23 +90,23 @@ var/global/photo_count = FALSE
 
 /obj/item/weapon/storage/photo_album/MouseDrop(obj/over_object as obj)
 
-	if((istype(usr, /mob/living/carbon/human)))
+	if ((istype(usr, /mob/living/carbon/human)))
 		var/mob/M = usr
-		if(!( istype(over_object, /obj/screen) ))
+		if (!( istype(over_object, /obj/screen) ))
 			return ..()
 		playsound(loc, "rustle", 50, TRUE, -5)
-		if((!( M.restrained() ) && !( M.stat ) && M.back == src))
+		if ((!( M.restrained() ) && !( M.stat ) && M.back == src))
 			switch(over_object.name)
-				if("r_hand")
+				if ("r_hand")
 					M.u_equip(src)
 					M.put_in_r_hand(src)
-				if("l_hand")
+				if ("l_hand")
 					M.u_equip(src)
 					M.put_in_l_hand(src)
 			add_fingerprint(usr)
 			return
-		if(over_object == usr && in_range(src, usr) || usr.contents.Find(src))
-			if(usr.s_active)
+		if (over_object == usr && in_range(src, usr) || usr.contents.Find(src))
+			if (usr.s_active)
 				usr.s_active.close(usr)
 			show_to(usr)
 			return
@@ -136,7 +136,7 @@ var/global/photo_count = FALSE
 	set name = "Set Photo Focus"
 	set category = null
 	var/nsize = input("Photo Size","Pick a size of resulting photo.") as null|anything in list(1,3,5,7)
-	if(nsize)
+	if (nsize)
 		size = nsize
 		usr << "<span class='notice'>Camera will now take [size]x[size] photos.</span>"
 
@@ -145,7 +145,7 @@ var/global/photo_count = FALSE
 
 /obj/item/camera/attack_self(mob/user as mob)
 	on = !on
-	if(on)
+	if (on)
 		icon_state = icon_on
 	else
 		icon_state = icon_off
@@ -153,8 +153,8 @@ var/global/photo_count = FALSE
 	return
 
 /obj/item/camera/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/camera_film))
-		if(pictures_left)
+	if (istype(I, /obj/item/camera_film))
+		if (pictures_left)
 			user << "<span class='notice'>[src] still has some film in it!</span>"
 			return
 		user << "<span class='notice'>You insert [I] into [src].</span>"
@@ -168,24 +168,24 @@ var/global/photo_count = FALSE
 /obj/item/camera/proc/get_mobs(turf/the_turf as turf)
 	var/mob_detail
 	for(var/mob/living/carbon/A in the_turf)
-		if(A.invisibility) continue
+		if (A.invisibility) continue
 		var/holding = null
-		if(A.l_hand || A.r_hand)
-			if(A.l_hand) holding = "They are holding \a [A.l_hand]"
-			if(A.r_hand)
-				if(holding)
+		if (A.l_hand || A.r_hand)
+			if (A.l_hand) holding = "They are holding \a [A.l_hand]"
+			if (A.r_hand)
+				if (holding)
 					holding += " and \a [A.r_hand]"
 				else
 					holding = "They are holding \a [A.r_hand]"
 
-		if(!mob_detail)
+		if (!mob_detail)
 			mob_detail = "You can see [A] on the photo[A:health < 75 ? " - [A] looks hurt":""].[holding ? " [holding]":"."]. "
 		else
 			mob_detail += "You can also see [A] on the photo[A:health < 75 ? " - [A] looks hurt":""].[holding ? " [holding]":"."]."
 	return mob_detail
 
 /obj/item/camera/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
-	if(!on || !pictures_left || ismob(target.loc)) return
+	if (!on || !pictures_left || ismob(target.loc)) return
 	captureimage(target, user, flag)
 
 	playsound(loc, pick('sound/items/polaroid1.ogg', 'sound/items/polaroid2.ogg'), 75, TRUE, -3)
@@ -203,7 +203,7 @@ var/global/photo_count = FALSE
 /mob/living/proc/can_capture_turf(turf/T)
 	var/mob/dummy = new(T)	//Go go visibility check dummy
 	var/viewer = src
-	if(client)		//To make shooting through security cameras possible
+	if (client)		//To make shooting through security cameras possible
 		viewer = client.eye
 	var/can_see = (dummy in viewers(world.view, viewer))
 
@@ -218,7 +218,7 @@ var/global/photo_count = FALSE
 	for(var/i = TRUE; i <= size; i++)
 		for(var/j = TRUE; j <= size; j++)
 			var/turf/T = locate(x_c, y_c, z_c)
-			if(user.can_capture_turf(T))
+			if (user.can_capture_turf(T))
 				mobs += get_mobs(T)
 			x_c++
 		y_c--
@@ -256,7 +256,7 @@ var/global/photo_count = FALSE
 
 /obj/item/camera/proc/printpicture(mob/user, obj/item/weapon/photo/p)
 	p.loc = user.loc
-	if(!user.get_inactive_hand())
+	if (!user.get_inactive_hand())
 		user.put_in_inactive_hand(p)
 
 /obj/item/weapon/photo/proc/copy(var/copy_id = FALSE)
@@ -272,7 +272,7 @@ var/global/photo_count = FALSE
 	p.photo_size = photo_size
 	p.scribble = scribble
 
-	if(copy_id)
+	if (copy_id)
 		p.id = id
 
 	return p

@@ -13,27 +13,27 @@
 	var/overlay_state = null
 
 /obj/item/clothing/accessory/Destroy()
-	if(has_suit)
+	if (has_suit)
 		on_removed()
 	return ..()
 
 /obj/item/clothing/accessory/proc/get_inv_overlay()
-	if(!inv_overlay)
-		if(!mob_overlay)
+	if (!inv_overlay)
+		if (!mob_overlay)
 			get_mob_overlay()
 
 		var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
-		if(icon_override)
-			if("[tmp_icon_state]_tie" in icon_states(icon_override))
+		if (icon_override)
+			if ("[tmp_icon_state]_tie" in icon_states(icon_override))
 				tmp_icon_state = "[tmp_icon_state]_tie"
 		inv_overlay = image(icon = mob_overlay.icon, icon_state = tmp_icon_state, dir = SOUTH)
 	return inv_overlay
 
 /obj/item/clothing/accessory/proc/get_mob_overlay()
-	if(!mob_overlay)
+	if (!mob_overlay)
 		var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
-		if(icon_override)
-			if("[tmp_icon_state]_mob" in icon_states(icon_override))
+		if (icon_override)
+			if ("[tmp_icon_state]_mob" in icon_states(icon_override))
 				tmp_icon_state = "[tmp_icon_state]_mob"
 			mob_overlay = image("icon" = icon_override, "icon_state" = "[tmp_icon_state]")
 		else
@@ -42,7 +42,7 @@
 
 //when user attached an accessory to S
 /obj/item/clothing/accessory/proc/on_attached(var/obj/item/clothing/S, var/mob/user)
-	if(!istype(S))
+	if (!istype(S))
 		return
 	has_suit = S
 	loc = has_suit
@@ -52,11 +52,11 @@
 	add_fingerprint(user)
 
 /obj/item/clothing/accessory/proc/on_removed(var/mob/user)
-	if(!has_suit)
+	if (!has_suit)
 		return
 	has_suit.overlays -= get_inv_overlay()
 	has_suit = null
-	if(user)
+	if (user)
 		usr.put_in_hands(src)
 		add_fingerprint(user)
 	else
@@ -68,7 +68,7 @@
 
 //default attack_hand behaviour
 /obj/item/clothing/accessory/attack_hand(mob/user as mob)
-	if(has_suit)
+	if (has_suit)
 		return	//we aren't an object on the ground so don't call parent
 	..()
 	/*
@@ -92,49 +92,49 @@
 	icon_state = "stethoscope"
 
 /obj/item/clothing/accessory/stethoscope/attack(mob/living/carbon/human/M, mob/living/user)
-	if(ishuman(M) && isliving(user))
-		if(user.a_intent == I_HELP)
+	if (ishuman(M) && isliving(user))
+		if (user.a_intent == I_HELP)
 			var/body_part = parse_zone(user.targeted_organ)
-			if(body_part)
+			if (body_part)
 				var/their = "their"
 				switch(M.gender)
-					if(MALE)	their = "his"
-					if(FEMALE)	their = "her"
+					if (MALE)	their = "his"
+					if (FEMALE)	their = "her"
 
 				var/sound = "heartbeat"
 				var/sound_strength = "cannot hear"
 				var/heartbeat = FALSE
-				if(M.species && M.species.has_organ["heart"])
+				if (M.species && M.species.has_organ["heart"])
 					var/obj/item/organ/heart/heart = M.internal_organs_by_name["heart"]
-					if(heart && !heart.robotic)
+					if (heart && !heart.robotic)
 						heartbeat = TRUE
-				if(M.stat == DEAD || (M.status_flags&FAKEDEATH))
+				if (M.stat == DEAD || (M.status_flags&FAKEDEATH))
 					sound_strength = "cannot hear"
 					sound = "anything"
 				else
 					switch(body_part)
-						if("chest")
+						if ("chest")
 							sound_strength = "hear"
 							sound = "no heartbeat"
-							if(heartbeat)
+							if (heartbeat)
 								var/obj/item/organ/heart/heart = M.internal_organs_by_name["heart"]
-								if(heart.is_bruised() || M.getOxyLoss() > 50)
+								if (heart.is_bruised() || M.getOxyLoss() > 50)
 									sound = "[pick("odd noises in","weak")] heartbeat"
 								else
 									sound = "healthy heartbeat"
 
 							var/obj/item/organ/heart/L = M.internal_organs_by_name["lungs"]
-							if(!L || M.losebreath)
+							if (!L || M.losebreath)
 								sound += " and no respiration"
-							else if(M.is_lung_ruptured() || M.getOxyLoss() > 50)
+							else if (M.is_lung_ruptured() || M.getOxyLoss() > 50)
 								sound += " and [pick("wheezing","gurgling")] sounds"
 							else
 								sound += " and healthy respiration"
-						if("eyes","mouth")
+						if ("eyes","mouth")
 							sound_strength = "cannot hear"
 							sound = "anything"
 						else
-							if(heartbeat)
+							if (heartbeat)
 								sound_strength = "hear a weak"
 								sound = "pulse"
 

@@ -74,21 +74,21 @@
 
 	// Diagonal one is easy.
 	T = get_step(new_turf, diagonal)
-	if(T) // In case we're on the map's border.
+	if (T) // In case we're on the map's border.
 		masters[T]   = diagonal
 		i            = LIGHTING_CORNER_DIAGONAL.Find(turn(diagonal, 180))
 		T.corners[i] = src
 
 	// Now the horizontal one.
 	T = get_step(new_turf, horizontal)
-	if(T) // Ditto.
+	if (T) // Ditto.
 		masters[T]   = ((T.x > x) ? EAST : WEST) | ((T.y > y) ? NORTH : SOUTH) // Get the dir based on coordinates.
 		i            = LIGHTING_CORNER_DIAGONAL.Find(turn(masters[T], 180))
 		T.corners[i] = src
 
 	// And finally the vertical one.
 	T = get_step(new_turf, vertical)
-	if(T)
+	if (T)
 		masters[T]   = ((T.x > x) ? EAST : WEST) | ((T.y > y) ? NORTH : SOUTH) // Get the dir based on coordinates.
 		i            = LIGHTING_CORNER_DIAGONAL.Find(turn(masters[T], 180))
 		T.corners[i] = src
@@ -100,7 +100,7 @@
 	active = FALSE
 	for(var/TT in masters)
 		var/turf/T = TT
-		if(T.lighting_overlay)
+		if (T.lighting_overlay)
 			active = TRUE
 
 // God that was a mess, now to do the rest of the corner code! Hooray!
@@ -112,11 +112,11 @@
 
 	for(var/TT in masters)
 		var/turf/T = TT
-		if(T.lighting_overlay)
+		if (T.lighting_overlay)
 			#ifdef LIGHTING_INSTANT_UPDATES
 			T.lighting_overlay.update_overlay()
 			#else
-			if(!T.lighting_overlay.needs_update)
+			if (!T.lighting_overlay.needs_update)
 				T.lighting_overlay.needs_update = TRUE
 				lighting_update_overlays += T.lighting_overlay
 			#endif

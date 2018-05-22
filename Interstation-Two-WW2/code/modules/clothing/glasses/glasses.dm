@@ -14,8 +14,8 @@
 	var/obj/item/clothing/glasses/hud/hud = null	// Hud glasses, if any
 
 /obj/item/clothing/glasses/attack_self(mob/user)
-	if(toggleable)
-		if(active)
+	if (toggleable)
+		if (active)
 			active = FALSE
 			icon_state = off_state
 			user.update_inv_glasses()
@@ -26,7 +26,7 @@
 			active = TRUE
 			icon_state = initial(icon_state)
 			user.update_inv_glasses()
-			if(activation_sound)
+			if (activation_sound)
 				usr << activation_sound
 			flash_protection = initial(flash_protection)
 			tint = initial(tint)
@@ -116,8 +116,8 @@
 	set name = "Adjust welding goggles"
 	set src in usr
 
-	if(usr.canmove && !usr.stat && !usr.restrained())
-		if(up)
+	if (usr.canmove && !usr.stat && !usr.restrained())
+		if (up)
 			up = !up
 			flags_inv |= HIDEEYES
 			body_parts_covered |= EYES

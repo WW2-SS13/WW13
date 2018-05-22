@@ -11,7 +11,7 @@
 	var/hanging = FALSE
 
 /obj/item/clothing/mask/breath/proc/adjust_mask(mob/user)
-	if(user.canmove && !user.stat)
+	if (user.canmove && !user.stat)
 		hanging = !hanging
 		if (hanging)
 			gas_transfer_coefficient = TRUE

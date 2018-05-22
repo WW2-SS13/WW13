@@ -236,8 +236,8 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 		var/datum/sprite_accessory/hair/H = new path()
 		hair_styles_list[H.name] = H
 		switch(H.gender)
-			if(MALE)	hair_styles_male_list += H.name
-			if(FEMALE)	hair_styles_female_list += H.name
+			if (MALE)	hair_styles_male_list += H.name
+			if (FEMALE)	hair_styles_female_list += H.name
 			else
 				hair_styles_male_list += H.name
 				hair_styles_female_list += H.name
@@ -248,8 +248,8 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 		var/datum/sprite_accessory/facial_hair/H = new path()
 		facial_hair_styles_list[H.name] = H
 		switch(H.gender)
-			if(MALE)	facial_hair_styles_male_list += H.name
-			if(FEMALE)	facial_hair_styles_female_list += H.name
+			if (MALE)	facial_hair_styles_male_list += H.name
+			if (FEMALE)	facial_hair_styles_female_list += H.name
 			else
 				facial_hair_styles_male_list += H.name
 				facial_hair_styles_female_list += H.name
@@ -276,7 +276,7 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 
 	for (var/language_name in all_languages)
 		var/datum/language/L = all_languages[language_name]
-		if(!(L.flags & NONGLOBAL))
+		if (!(L.flags & NONGLOBAL))
 			language_keys[lowertext(L.key)] = L
 
 	var/rkey = FALSE
@@ -287,9 +287,9 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 		S.race_key = rkey //Used in mob icon caching.
 		all_species[S.name] = S
 
-		if(!(S.spawn_flags & IS_RESTRICTED))
+		if (!(S.spawn_flags & IS_RESTRICTED))
 			playable_species += S.name
-		if(S.spawn_flags & IS_WHITELISTED)
+		if (S.spawn_flags & IS_WHITELISTED)
 			whitelisted_species += S.name
 
 	//Posters
@@ -316,7 +316,7 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 
 	for (var/reaction in chemical_reactions_list)
 		. += "chemical_reactions_list\[\"[reaction]\"\] = \"[chemical_reactions_list[reaction]]\"\n"
-		if(islist(chemical_reactions_list[reaction]))
+		if (islist(chemical_reactions_list[reaction]))
 			var/list/L = chemical_reactions_list[reaction]
 			for(var/t in L)
 				. += "    has: [t]\n"

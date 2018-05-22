@@ -21,7 +21,7 @@
 	anchored = 1.0
 
 /obj/structure/morgue/Destroy()
-	if(connected)
+	if (connected)
 		qdel(connected)
 		connected = null
 	return ..()
@@ -38,20 +38,20 @@
 
 /obj/structure/morgue/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if (1.0)
 			for(var/atom/movable/A as mob|obj in src)
 				A.forceMove(loc)
 				ex_act(severity)
 			qdel(src)
 			return
-		if(2.0)
+		if (2.0)
 			if (prob(50))
 				for(var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
 					ex_act(severity)
 				qdel(src)
 				return
-		if(3.0)
+		if (3.0)
 			if (prob(5))
 				for(var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
@@ -137,7 +137,7 @@
 	throwpass = TRUE
 
 /obj/structure/m_tray/Destroy()
-	if(connected && connected.connected == src)
+	if (connected && connected.connected == src)
 		connected.connected = null
 	connected = null
 	return ..()
@@ -191,14 +191,14 @@
 
 /obj/structure/crematorium/initialize()
 	..()
-	if(_wifi_id)
+	if (_wifi_id)
 		wifi_receiver = new(_wifi_id, src)
 
 /obj/structure/crematorium/Destroy()
-	if(connected)
+	if (connected)
 		qdel(connected)
 		connected = null
-	if(wifi_receiver)
+	if (wifi_receiver)
 		qdel(wifi_receiver)
 		wifi_receiver = null
 	return ..()
@@ -215,20 +215,20 @@
 
 /obj/structure/crematorium/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if (1.0)
 			for(var/atom/movable/A as mob|obj in src)
 				A.forceMove(loc)
 				ex_act(severity)
 			qdel(src)
 			return
-		if(2.0)
+		if (2.0)
 			if (prob(50))
 				for(var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
 					ex_act(severity)
 				qdel(src)
 				return
-		if(3.0)
+		if (3.0)
 			if (prob(5))
 				for(var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
@@ -307,18 +307,18 @@
 
 /obj/structure/crematorium/proc/cremate(atom/A, mob/user as mob)
 //	for(var/obj/machinery/crema_switch/O in src) //trying to figure a way to call the switch, too drunk to sort it out atm
-//		if(var/on == TRUE)
+//		if (var/on == TRUE)
 //		return
-	if(cremating)
+	if (cremating)
 		return //don't let you cremate something twice or w/e
 
-	if(contents.len <= 0)
+	if (contents.len <= 0)
 		for (var/mob/M in viewers(src))
 			M.show_message("<span class='warning'>You hear a hollow crackle.</span>", TRUE)
 			return
 
 	else
-		if(!isemptylist(search_contents_for(/obj/item/weapon/disk/nuclear)))
+		if (!isemptylist(search_contents_for(/obj/item/weapon/disk/nuclear)))
 			usr << "You get the feeling that you shouldn't cremate one of the items in the cremator."
 			return
 
@@ -371,7 +371,7 @@
 	throwpass = TRUE
 
 /obj/structure/c_tray/Destroy()
-	if(connected && connected.connected == src)
+	if (connected && connected.connected == src)
 		connected.connected = null
 	connected = null
 	return ..()
@@ -417,9 +417,9 @@
 	return
 
 /obj/machinery/button/crematorium/attack_hand(mob/user as mob)
-	if(..())
+	if (..())
 		return
-	if(allowed(user))
+	if (allowed(user))
 		for (var/obj/structure/crematorium/C in world)
 			if (C.id == id)
 				if (!C.cremating)

@@ -61,9 +61,9 @@
 /obj/item/weapon/dice/attack_self(mob/user as mob)
 	var/result = rand(1, sides)
 	var/comment = ""
-	if(sides == 20 && result == 20)
+	if (sides == 20 && result == 20)
 		comment = "Nat 20!"
-	else if(sides == 20 && result == TRUE)
+	else if (sides == 20 && result == TRUE)
 		comment = "Ouch, bad luck."
 	icon_state = "[name][result]"
 	user.visible_message("<span class='notice'>[user] has thrown [src]. It lands on [result]. [comment]</span>", \

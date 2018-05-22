@@ -17,7 +17,7 @@
 
 /obj/item/weapon/paper/supply_train_requisitions_sheet/show_content(var/mob/user, var/forceshow=0)
 	regenerate_info()
-	if(!(istype(user, /mob/living/carbon/human) || isghost(user) || istype(user, /mob/living/silicon)) && !forceshow)
+	if (!(istype(user, /mob/living/carbon/human) || isghost(user) || istype(user, /mob/living/silicon)) && !forceshow)
 		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)]</BODY></HTML>", "window=[name]")
 		onclose(user, "[name]")
 	else
@@ -25,8 +25,8 @@
 		onclose(user, "[name]")
 
 /obj/item/weapon/paper/supply_train_requisitions_sheet/attackby(obj/item/weapon/P as obj, var/mob/user as mob)
-	if(istype(P, /obj/item/weapon/pen))
-		if(icon_state == "scrap")
+	if (istype(P, /obj/item/weapon/pen))
+		if (icon_state == "scrap")
 			user << "<span class='warning'>\The [src] is too crumpled to write on.</span>"
 		else
 			var/mob/living/carbon/human/H = user
@@ -85,7 +85,7 @@
 /obj/item/weapon/paper/supply_train_requisitions_sheet/Topic(href, href_list)
 	..()
 
-	if(!usr || (usr.stat || usr.restrained()))
+	if (!usr || (usr.stat || usr.restrained()))
 		return
 
 	var/mob/living/carbon/human/H = usr

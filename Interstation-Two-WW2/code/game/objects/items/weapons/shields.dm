@@ -5,26 +5,26 @@
 /proc/check_shield_arc(mob/user, var/bad_arc, atom/damage_source = null, mob/attacker = null)
 	//check attack direction
 	var/attack_dir = FALSE //direction from the user to the source of the attack
-	if(istype(damage_source, /obj/item/projectile))
+	if (istype(damage_source, /obj/item/projectile))
 		var/obj/item/projectile/P = damage_source
 		attack_dir = get_dir(get_turf(user), P.starting)
-	else if(attacker)
+	else if (attacker)
 		attack_dir = get_dir(get_turf(user), get_turf(attacker))
-	else if(damage_source)
+	else if (damage_source)
 		attack_dir = get_dir(get_turf(user), get_turf(damage_source))
 
-	if(!(attack_dir && (attack_dir & bad_arc)))
+	if (!(attack_dir && (attack_dir & bad_arc)))
 		return TRUE
 	return FALSE
 
 /proc/default_parry_check(mob/user, mob/attacker, atom/damage_source)
 	//parry only melee attacks
-	if(istype(damage_source, /obj/item/projectile) || (attacker && get_dist(user, attacker) > 1) || user.incapacitated())
+	if (istype(damage_source, /obj/item/projectile) || (attacker && get_dist(user, attacker) > 1) || user.incapacitated())
 		return FALSE
 
 	//block as long as they are not directly behind us
 	var/bad_arc = reverse_direction(user.dir) //arc of directions from which we cannot block
-	if(!check_shield_arc(user, bad_arc, damage_source, attacker))
+	if (!check_shield_arc(user, bad_arc, damage_source, attacker))
 		return FALSE
 
 	return TRUE
@@ -34,13 +34,13 @@
 	var/base_block_chance = 50
 
 /obj/item/weapon/shield/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
-	if(user.incapacitated())
+	if (user.incapacitated())
 		return FALSE
 
 	//block as long as they are not directly behind us
 	var/bad_arc = reverse_direction(user.dir) //arc of directions from which we cannot block
-	if(check_shield_arc(user, bad_arc, damage_source, attacker))
-		if(prob(get_block_chance(user, damage, damage_source, attacker)))
+	if (check_shield_arc(user, bad_arc, damage_source, attacker))
+		if (prob(get_block_chance(user, damage, damage_source, attacker)))
 			user.visible_message("<span class='danger'>\The [user] blocks [attack_text] with \the [src]!</span>")
 			return TRUE
 	return FALSE
@@ -67,19 +67,19 @@
 
 /obj/item/weapon/shield/riot/handle_shield(mob/user)
 	. = ..()
-	if(.) playsound(user.loc, 'sound/weapons/Genhit.ogg', 50, TRUE)
+	if (.) playsound(user.loc, 'sound/weapons/Genhit.ogg', 50, TRUE)
 
 /obj/item/weapon/shield/riot/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
-	if(istype(damage_source, /obj/item/projectile))
+	if (istype(damage_source, /obj/item/projectile))
 		var/obj/item/projectile/P = damage_source
 		//plastic shields do not stop bullets or lasers, even in space. Will block beanbags, rubber bullets, and stunshots just fine though.
-		if((is_sharp(P) && damage > 10) || istype(P, /obj/item/projectile/beam))
+		if ((is_sharp(P) && damage > 10) || istype(P, /obj/item/projectile/beam))
 			return FALSE
 	return base_block_chance
 
 /obj/item/weapon/shield/riot/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/melee/baton))
-		if(cooldown < world.time - 25)
+	if (istype(W, /obj/item/weapon/melee/baton))
+		if (cooldown < world.time - 25)
 			user.visible_message("<span class='warning'>[user] bashes [src] with [W]!</span>")
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, TRUE)
 			cooldown = world.time
@@ -106,20 +106,20 @@
 	var/active = FALSE
 
 /obj/item/weapon/shield/energy/handle_shield(mob/user)
-	if(!active)
+	if (!active)
 		return FALSE //turn it on first!
 	. = ..()
 
-	if(.)
+	if (.)
 		var/datum/effect/effect/system/spark_spread/spark_system = PoolOrNew(/datum/effect/effect/system/spark_spread)
 		spark_system.set_up(5, FALSE, user.loc)
 		spark_system.start()
 		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, TRUE)
 
 /obj/item/weapon/shield/energy/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
-	if(istype(damage_source, /obj/item/projectile))
+	if (istype(damage_source, /obj/item/projectile))
 		var/obj/item/projectile/P = damage_source
-		if((is_sharp(P) && damage > 10) || istype(P, /obj/item/projectile/beam))
+		if ((is_sharp(P) && damage > 10) || istype(P, /obj/item/projectile/beam))
 			return (base_block_chance - round(damage / 3)) //block bullets and beams using the old block chance
 	return base_block_chance
 
@@ -142,7 +142,7 @@
 		playsound(user, 'sound/weapons/saberoff.ogg', 50, TRUE)
 		user << "<span class='notice'>\The [src] can now be concealed.</span>"
 
-	if(istype(user,/mob/living/carbon/human))
+	if (istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
 		H.update_inv_l_hand()
 		H.update_inv_r_hand()
@@ -152,7 +152,7 @@
 
 /obj/item/weapon/shield/energy/update_icon()
 	icon_state = "eshield[active]"
-	if(active)
+	if (active)
 		set_light(1.5, 1.5, "#006AFF")
 	else
 		set_light(0)

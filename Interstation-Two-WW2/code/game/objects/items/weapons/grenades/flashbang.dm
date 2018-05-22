@@ -8,7 +8,7 @@
 	prime()
 		..()
 		for(var/obj/structure/closet/L in hear(7, get_turf(src)))
-			if(locate(/mob/living/carbon/, L))
+			if (locate(/mob/living/carbon/, L))
 				for(var/mob/living/carbon/M in L)
 					bang(get_turf(src), M)
 
@@ -29,18 +29,18 @@
 //Checking for protections
 		var/eye_safety = FALSE
 		var/ear_safety = FALSE
-		if(iscarbon(M))
+		if (iscarbon(M))
 			eye_safety = M.eyecheck()
-			if(ishuman(M))
-				if(istype(M:l_ear, /obj/item/clothing/ears/earmuffs) || istype(M:r_ear, /obj/item/clothing/ears/earmuffs))
+			if (ishuman(M))
+				if (istype(M:l_ear, /obj/item/clothing/ears/earmuffs) || istype(M:r_ear, /obj/item/clothing/ears/earmuffs))
 					ear_safety += 2
-				if(HULK in M.mutations)
+				if (HULK in M.mutations)
 					ear_safety += 1
-				if(istype(M:head, /obj/item/clothing/head/helmet))
+				if (istype(M:head, /obj/item/clothing/head/helmet))
 					ear_safety += 1
 
 //Flashing everyone
-		if(eye_safety < FLASH_PROTECTION_MODERATE)
+		if (eye_safety < FLASH_PROTECTION_MODERATE)
 			if (M.HUDtech.Find("flash"))
 				flick("e_flash", M.HUDtech["flash"])
 			M.Stun(2)
@@ -49,8 +49,8 @@
 
 
 //Now applying sound
-		if((get_dist(M, T) <= 2 || loc == M.loc || loc == M))
-			if(ear_safety > 0)
+		if ((get_dist(M, T) <= 2 || loc == M.loc || loc == M))
+			if (ear_safety > 0)
 				M.Stun(2)
 				M.Weaken(1)
 			else
@@ -62,29 +62,29 @@
 					M.ear_damage += rand(0, 5)
 					M.ear_deaf = max(M.ear_deaf,15)
 
-		else if(get_dist(M, T) <= 5)
-			if(!ear_safety)
+		else if (get_dist(M, T) <= 5)
+			if (!ear_safety)
 				M.Stun(8)
 				M.ear_damage += rand(0, 3)
 				M.ear_deaf = max(M.ear_deaf,10)
 
-		else if(!ear_safety)
+		else if (!ear_safety)
 			M.Stun(4)
 			M.ear_damage += rand(0, TRUE)
 			M.ear_deaf = max(M.ear_deaf,5)
 
 //This really should be in mob not every check
-		if(ishuman(M))
+		if (ishuman(M))
 			var/mob/living/carbon/human/H = M
 			var/obj/item/organ/eyes/E = H.internal_organs_by_name["eyes"]
 			if (E && E.damage >= E.min_bruised_damage)
 				M << "<span class='danger'>Your eyes start to burn badly!</span>"
-				if(!banglet && !(istype(src , /obj/item/weapon/grenade/flashbang/clusterbang)))
+				if (!banglet && !(istype(src , /obj/item/weapon/grenade/flashbang/clusterbang)))
 					if (E.damage >= E.min_broken_damage)
 						M << "<span class='danger'>You can't see anything!</span>"
 		if (M.ear_damage >= 15)
 			M << "<span class='danger'>Your ears start to ring badly!</span>"
-			if(!banglet && !(istype(src , /obj/item/weapon/grenade/flashbang/clusterbang)))
+			if (!banglet && !(istype(src , /obj/item/weapon/grenade/flashbang/clusterbang)))
 				if (prob(M.ear_damage - 10 + 5))
 					M << "<span class='danger'>You can't hear anything!</span>"
 					M.sdisabilities |= DEAF
@@ -103,7 +103,7 @@
 	var/numspawned = rand(4,8)
 	var/again = FALSE
 	for(var/more = numspawned,more > 0,more--)
-		if(prob(35))
+		if (prob(35))
 			again++
 			numspawned --
 
@@ -140,7 +140,7 @@
 /obj/item/weapon/grenade/flashbang/clusterbang/segment/prime()
 	var/numspawned = rand(4,8)
 	for(var/more = numspawned,more > 0,more--)
-		if(prob(35))
+		if (prob(35))
 			numspawned --
 
 	for(,numspawned > 0, numspawned--)

@@ -3,16 +3,16 @@ var/list/_client_preferences_by_key
 var/list/_client_preferences_by_type
 
 /proc/get_client_preferences()
-	if(!_client_preferences)
+	if (!_client_preferences)
 		_client_preferences = list()
 		for(var/ct in subtypesof(/datum/client_preference))
 			var/datum/client_preference/client_type = ct
-			if(initial(client_type.description))
+			if (initial(client_type.description))
 				_client_preferences += new client_type()
 	return _client_preferences
 
 /proc/get_client_preference_by_key(var/preference)
-	if(!_client_preferences_by_key)
+	if (!_client_preferences_by_key)
 		_client_preferences_by_key = list()
 		for(var/ct in get_client_preferences())
 			var/datum/client_preference/client_pref = ct
@@ -20,7 +20,7 @@ var/list/_client_preferences_by_type
 	return _client_preferences_by_key[preference]
 
 /proc/get_client_preference_by_type(var/preference)
-	if(!_client_preferences_by_type)
+	if (!_client_preferences_by_type)
 		_client_preferences_by_type = list()
 		for(var/ct in get_client_preferences())
 			var/datum/client_preference/client_pref = ct
@@ -57,7 +57,7 @@ var/list/_client_preferences_by_type
 	key = "SOUND_LOBBY"
 
 /datum/client_preference/play_lobby_music/toggled(var/mob/new_player/preference_mob, var/enabled)
-	if(enabled)
+	if (enabled)
 		if (istype(preference_mob))
 			preference_mob << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 50, channel = TRUE)
 	else
@@ -69,7 +69,7 @@ var/list/_client_preferences_by_type
 	key = "SOUND_AMBIENCE"
 
 /datum/client_preference/play_ambiance/toggled(var/mob/preference_mob, var/enabled)
-	if(!enabled)
+	if (!enabled)
 		preference_mob << sound(null, repeat = FALSE, wait = FALSE, volume = FALSE, channel = TRUE)
 		preference_mob << sound(null, repeat = FALSE, wait = FALSE, volume = FALSE, channel = 2)
 */
@@ -104,7 +104,7 @@ var/list/_client_preferences_by_type
 	disabled_description = "Hide"
 
 /datum/client_preference/show_typing_indicator/toggled(var/mob/preference_mob, var/enabled)
-	if(!enabled)
+	if (!enabled)
 		preference_mob.set_typing_indicator(0)
 
 /datum/client_preference/show_ooc

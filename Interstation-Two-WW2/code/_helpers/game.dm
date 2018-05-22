@@ -10,9 +10,9 @@
 	return null
 
 /proc/is_on_same_plane_or_station(var/z1, var/z2)
-	if(z1 == z2)
+	if (z1 == z2)
 		return TRUE
-	if((z1 in config.station_levels) &&	(z2 in config.station_levels))
+	if ((z1 in config.station_levels) &&	(z2 in config.station_levels))
 		return TRUE
 	return FALSE
 
@@ -28,13 +28,13 @@
 
 /proc/get_area(O)
 	var/turf/loc = get_turf(O)
-	if(loc)
+	if (loc)
 		var/area/res = loc.loc
 		. = res
 
 /proc/get_area_name(N) //get area by its name
 	for(var/area/A in area_list)
-		if(A.name == N)
+		if (A.name == N)
 			return A
 	return FALSE
 
@@ -44,7 +44,7 @@
 		return A
 
 /proc/in_range(source, user)
-	if(get_dist(source, user) <= 1)
+	if (get_dist(source, user) <= 1)
 		return TRUE
 
 	return FALSE //not in range and not telekinetic
@@ -52,13 +52,13 @@
 /proc/get_carginal_dir(atom/start, atom/finish)
 	var/dx = finish.x - start.x
 	var/dy = finish.y - start.y
-	if(abs(dy) > abs(dx))
-		if(dy > 0)
+	if (abs(dy) > abs(dx))
+		if (dy > 0)
 			return NORTH
 		else
 			return SOUTH
 	else
-		if(dx > 0)
+		if (dx > 0)
 			return EAST
 		else
 			return WEST
@@ -99,7 +99,7 @@
 	for(var/atom/T in range(radius, centerturf))
 		var/dx = T.x - centerturf.x
 		var/dy = T.y - centerturf.y
-		if(dx*dx + dy*dy <= rsq)
+		if (dx*dx + dy*dy <= rsq)
 			turfs += T
 
 	//turfs += centerturf
@@ -114,14 +114,14 @@
 	for(var/atom/A in view(radius, centerturf))
 		var/dx = A.x - centerturf.x
 		var/dy = A.y - centerturf.y
-		if(dx*dx + dy*dy <= rsq)
+		if (dx*dx + dy*dy <= rsq)
 			atoms += A
 
 	//turfs += centerturf
 	return atoms
 
 /proc/trange(rad = FALSE, turf/centre = null) //alternative to range (ONLY processes turfs and thus less intensive)
-	if(!centre)
+	if (!centre)
 		return
 
 	var/turf/x1y1 = locate(((centre.x-rad)<1 ? TRUE : centre.x-rad),((centre.y-rad)<1 ? TRUE : centre.y-rad),centre.z)
@@ -145,7 +145,7 @@
 	for(var/turf/T in range(radius, centerturf))
 		var/dx = T.x - centerturf.x
 		var/dy = T.y - centerturf.y
-		if(dx*dx + dy*dy <= rsq)
+		if (dx*dx + dy*dy <= rsq)
 			turfs += T
 	return turfs
 
@@ -158,7 +158,7 @@
 	for(var/turf/T in view(radius, centerturf))
 		var/dx = T.x - centerturf.x
 		var/dy = T.y - centerturf.y
-		if(dx*dx + dy*dy <= rsq)
+		if (dx*dx + dy*dy <= rsq)
 			turfs += T
 	return turfs
 
@@ -169,19 +169,19 @@
 	var/turf/T = get_turf(source)
 	var/list/hear = list()
 
-	if(!T)
+	if (!T)
 		return hear
 
 	var/list/range = hear(R, T)
 
 	for(var/I in range)
-		if(ismob(I))
-			if(include_mobs)
+		if (ismob(I))
+			if (include_mobs)
 				var/mob/M = I
-				if(M.client)
+				if (M.client)
 					hear += M
-		else if(istype(I,/obj/))
-			if(include_objects)
+		else if (istype(I,/obj/))
+			if (include_objects)
 				hear += I
 
 	return hear
@@ -195,22 +195,22 @@
 	// Returns a list of mobs who can hear any of the radios given in @radios
 	var/list/speaker_coverage = list()
 	for(var/obj/item/radio/R in radios)
-		if(R)
+		if (R)
 		/*
 			//Cyborg checks. Receiving message uses a bit of cyborg's charge.
 			var/obj/item/radio/borg/BR = R
-			if(istype(BR) && BR.myborg)
+			if (istype(BR) && BR.myborg)
 				var/mob/living/silicon/robot/borg = BR.myborg
 				var/datum/robot_component/CO = borg.get_component("radio")
-				if(!CO)
+				if (!CO)
 					continue //No radio component (Shouldn't happen)
-				if(!borg.is_component_functioning("radio") || !borg.cell_use_power(CO.active_usage))
+				if (!borg.is_component_functioning("radio") || !borg.cell_use_power(CO.active_usage))
 					continue //No power.
 
 					*/
 
 			var/turf/speaker = get_turf(R)
-			if(speaker)
+			if (speaker)
 				for(var/turf/T in hear(R.canhear_range,speaker))
 					speaker_coverage[T] = T
 
@@ -218,11 +218,11 @@
 	// Try to find all the players who can hear the message
 	for(var/i = TRUE; i <= player_list.len; i++)
 		var/mob/M = player_list[i]
-		if(M)
+		if (M)
 			var/turf/ear = get_turf(M)
-			if(ear)
+			if (ear)
 				// Ghostship is magic: Ghosts can hear radio chatter from anywhere
-				if(speaker_coverage[ear] || (isghost(M) && M.is_preference_enabled(/datum/client_preference/ghost_radio)))
+				if (speaker_coverage[ear] || (isghost(M) && M.is_preference_enabled(/datum/client_preference/ghost_radio)))
 					. |= M		// Since we're already looping through mobs, why bother using |= ? This only slows things down.
 	return .
 
@@ -231,15 +231,15 @@
 proc
 	inLineOfSight(X1,Y1,X2,Y2,Z=1,PX1=16.5,PY1=16.5,PX2=16.5,PY2=16.5)
 		var/turf/T
-		if(X1==X2)
-			if(Y1==Y2)
+		if (X1==X2)
+			if (Y1==Y2)
 				return TRUE //Light cannot be blocked on same tile
 			else
 				var/s = SIGN(Y2-Y1)
 				Y1+=s
 				while(Y1!=Y2)
 					T=locate(X1,Y1,Z)
-					if(T.opacity)
+					if (T.opacity)
 						return FALSE
 					Y1+=s
 		else
@@ -247,15 +247,15 @@ proc
 			var/b=(Y1+PY1/32-0.015625)-m*(X1+PX1/32-0.015625) //In tiles
 			var/signX = SIGN(X2-X1)
 			var/signY = SIGN(Y2-Y1)
-			if(X1<X2)
+			if (X1<X2)
 				b+=m
 			while(X1!=X2 || Y1!=Y2)
-				if(round(m*X1+b-Y1))
+				if (round(m*X1+b-Y1))
 					Y1+=signY //Line exits tile vertically
 				else
 					X1+=signX //Line exits tile horizontally
 				T=locate(X1,Y1,Z)
-				if(T.opacity)
+				if (T.opacity)
 					return FALSE
 		return TRUE
 #undef SIGN
@@ -264,10 +264,10 @@ proc/isInSight(var/atom/A, var/atom/B)
 	var/turf/Aturf = get_turf(A)
 	var/turf/Bturf = get_turf(B)
 
-	if(!Aturf || !Bturf)
+	if (!Aturf || !Bturf)
 		return FALSE
 
-	if(inLineOfSight(Aturf.x,Aturf.y, Bturf.x,Bturf.y,Aturf.z))
+	if (inLineOfSight(Aturf.x,Aturf.y, Bturf.x,Bturf.y,Aturf.z))
 		return TRUE
 
 	else
@@ -277,20 +277,20 @@ proc/isInSight(var/atom/A, var/atom/B)
 	//returns only NORTH, SOUTH, EAST, or WEST
 	var/dx = finish.x - start.x
 	var/dy = finish.y - start.y
-	if(abs(dy) > abs (dx)) //slope is above TRUE:1 (move horizontally in a tie)
-		if(dy > 0)
+	if (abs(dy) > abs (dx)) //slope is above TRUE:1 (move horizontally in a tie)
+		if (dy > 0)
 			return get_step(start, SOUTH)
 		else
 			return get_step(start, NORTH)
 	else
-		if(dx > 0)
+		if (dx > 0)
 			return get_step(start, WEST)
 		else
 			return get_step(start, EAST)
 
 /proc/get_mob_by_key(var/key)
 	for(var/mob/M in mob_list)
-		if(M.ckey == lowertext(key))
+		if (M.ckey == lowertext(key))
 			return M
 	return null
 
@@ -302,8 +302,8 @@ proc/isInSight(var/atom/A, var/atom/B)
 	var/i = FALSE
 	while(candidates.len <= 0 && i < 5)
 		for(var/mob/observer/ghost/G in player_list)
-			if(((G.client.inactivity/10)/60) <= buffer + i) // the most active players are more likely to become an alien
-				if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
+			if (((G.client.inactivity/10)/60) <= buffer + i) // the most active players are more likely to become an alien
+				if (!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
 					candidates += G.key
 		i++
 	return candidates
@@ -315,15 +315,15 @@ proc/isInSight(var/atom/A, var/atom/B)
 	var/i = FALSE
 	while(candidates.len <= 0 && i < 5)
 		for(var/mob/observer/ghost/G in player_list)
-			if(MODE_XENOMORPH in G.client.prefs.be_special_role)
-				if(((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + i) // the most active players are more likely to become an alien
-					if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
+			if (MODE_XENOMORPH in G.client.prefs.be_special_role)
+				if (((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + i) // the most active players are more likely to become an alien
+					if (!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
 						candidates += G.key
 		i++
 	return candidates
 
 /proc/ScreenText(obj/O, maptext="", screen_loc="CENTER-7,CENTER-7", maptext_height=480, maptext_width=480)
-	if(!isobj(O))	O = new /obj/screen/text()
+	if (!isobj(O))	O = new /obj/screen/text()
 	O.maptext = maptext
 	O.maptext_height = maptext_height
 	O.maptext_width = maptext_width
@@ -331,11 +331,11 @@ proc/isInSight(var/atom/A, var/atom/B)
 	return O
 
 /proc/Show2Group4Delay(obj/O, list/group, delay=0)
-	if(!isobj(O))	return
-	if(!group)	group = clients
+	if (!isobj(O))	return
+	if (!group)	group = clients
 	for(var/client/C in group)
 		C.screen += O
-	if(delay)
+	if (delay)
 		spawn(delay)
 			for(var/client/C in group)
 				C.screen -= O
@@ -439,7 +439,7 @@ datum/projectile_data
 	mixedcolor = round(mixedcolor)
 
 	//until someone writes a formal proof for this algorithm, let's keep this in
-//	if(mixedcolor<0x00 || mixedcolor>0xFF)
+//	if (mixedcolor<0x00 || mixedcolor>0xFF)
 //		return FALSE
 	//that's not the kind of operation we are running here, nerd
 	mixedcolor=min(max(mixedcolor,0),255)
@@ -457,14 +457,14 @@ datum/projectile_data
 	for(var/dir in cardinal)
 		var/turf/T=get_turf(get_step(loc,dir))
 		var/cp=0
-		if(T && istype(T) && T.zone)
+		if (T && istype(T) && T.zone)
 			var/datum/gas_mixture/environment = T.return_air()
 			cp = environment.return_pressure()
 		else
-			if(istype(T,/turf))
+			if (istype(T,/turf))
 				continue
-		if(cp<minp)minp=cp
-		if(cp>maxp)maxp=cp
+		if (cp<minp)minp=cp
+		if (cp>maxp)maxp=cp
 	return abs(minp-maxp)
 */
 /proc/convert_k2c(var/temp)
@@ -478,30 +478,30 @@ datum/projectile_data
 	for(var/dir in cardinal)
 		var/direction
 		switch(dir)
-			if(NORTH)
+			if (NORTH)
 				direction = TRUE
-			if(SOUTH)
+			if (SOUTH)
 				direction = 2
-			if(EAST)
+			if (EAST)
 				direction = 3
-			if(WEST)
+			if (WEST)
 				direction = 4
 		var/turf/T=get_turf(get_step(loc,dir))
 		var/list/rstats = new /list(stats.len)
-		if(T && istype(T)/* && T.zone*/)
+		if (T && istype(T)/* && T.zone*/)
 			var/datum/gas_mixture/environment = T.return_air()
 			for(var/i=1;i<=stats.len;i++)
-				if(stats[i] == "pressure")
+				if (stats[i] == "pressure")
 					rstats[i] = environment.return_pressure()
 				else
 					rstats[i] = environment.vars[stats[i]]
-		else if(istype(T, /turf))
+		else if (istype(T, /turf))
 			rstats = null // Exclude zone (wall, door, etc).
-		else if(istype(T, /turf))
+		else if (istype(T, /turf))
 			// Should still work.  (/turf/return_air())
 			var/datum/gas_mixture/environment = T.return_air()
 			for(var/i=1;i<=stats.len;i++)
-				if(stats[i] == "pressure")
+				if (stats[i] == "pressure")
 					rstats[i] = environment.return_pressure()
 				else
 					rstats[i] = environment.vars[stats[i]]

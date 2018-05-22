@@ -25,7 +25,7 @@
 
 
 	examine(mob/user)
-		if(..(user, FALSE) && air_contents.gas["oxygen"] < 10)
+		if (..(user, FALSE) && air_contents.gas["oxygen"] < 10)
 			user << text("<span class='warning'>The meter on \the [src] indicates you are almost out of oxygen!</span>")
 			//playsound(usr, 'sound/effects/alert.ogg', 50, TRUE)
 
@@ -68,7 +68,7 @@
 
 
 	examine(mob/user)
-		if(..(user, FALSE) && air_contents.gas["oxygen"] < 1 && loc==user)
+		if (..(user, FALSE) && air_contents.gas["oxygen"] < 1 && loc==user)
 			user << "<span class='danger'>The meter on the [name] indicates you are almost out of air!</span>"
 			user << sound('sound/effects/alert.ogg')
 
@@ -147,7 +147,7 @@
 
 
 	examine(mob/user)
-		if(..(user, FALSE) && air_contents.gas["oxygen"] < 0.2 && loc==user)
+		if (..(user, FALSE) && air_contents.gas["oxygen"] < 0.2 && loc==user)
 			user << text("<span class='danger'>The meter on the [name] indicates you are almost out of air!</span>")
 			user << sound('sound/effects/alert.ogg')
 
@@ -180,6 +180,6 @@
 	return
 
 /obj/item/weapon/tank/nitrogen/examine(mob/user)
-	if(..(user, FALSE) && air_contents.gas["nitrogen"] < 10)
+	if (..(user, FALSE) && air_contents.gas["nitrogen"] < 10)
 		user << text("<span class='danger'>The meter on \the [src] indicates you are almost out of nitrogen!</span>")
 		//playsound(user, 'sound/effects/alert.ogg', 50, TRUE)

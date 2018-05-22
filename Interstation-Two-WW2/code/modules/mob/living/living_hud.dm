@@ -21,7 +21,7 @@
 	H.HUDfrippery.Cut()
 
 /mob/living/proc/show_HUD()
-	if(client)
+	if (client)
 		client.screen.Cut()
 		for (var/i=1,i<=HUDneed.len,i++)
 			var/p = HUDneed[i]
@@ -81,7 +81,7 @@
 		log_debug("[src] try check HUDdatum, but default or target arg is empty")
 		return FALSE
 
-	if((client.prefs.UI_style != null) && (defaultHUD == null || defaultHUD == ""))
+	if ((client.prefs.UI_style != null) && (defaultHUD == null || defaultHUD == ""))
 		if (!(global.HUDdatums.Find(client.prefs.UI_style))) // Проверка наличии данных
 			log_debug("[H] try update a HUD, but HUDdatums not have [client.prefs.UI_style]!")
 			src << "Some problem hase accure, use default HUD type"
@@ -95,7 +95,7 @@
 	var/datum/hud/HUDdatum = global.HUDdatums[H.defaultHUD]
 	if ((HUDneed.len) && (HUDneed.len == HUDdatums.HUDneed.len)) //Если у моба есть ХУД и кол-во эл. худа соотвсетсвует заявленному
 		for (var/i=1,i<=HUDneed.len,i++)
-			if(!(HUDdatum.HUDneed.Find(HUDneed[i])) //Если данного худа нет в датуме худа.
+			if (!(HUDdatum.HUDneed.Find(HUDneed[i])) //Если данного худа нет в датуме худа.
 				return FALSE
 				break //то нахуй это дерьмо
 	else
@@ -106,7 +106,7 @@
 	var/datum/hud/HUDdatum = global.HUDdatums[H.defaultHUD]
 	if ((H.HUDinventory.len != FALSE) && (H.HUDinventory.len == species.hud.gear.len) && !(recreate_flag))
 		for (var/obj/screen/inventory/HUDinv in H.HUDinventory)
-			if(!(HUDdatum.slot_data.Find(HUDinv.slot_id) && species.hud.gear.Find(HUDinv.slot_id))) //Если данного slot_id нет в датуме худа и в датуме расы.
+			if (!(HUDdatum.slot_data.Find(HUDinv.slot_id) && species.hud.gear.Find(HUDinv.slot_id))) //Если данного slot_id нет в датуме худа и в датуме расы.
 				recreate_flag = TRUE
 				break //то нахуй это дерьмо
 	else
@@ -114,9 +114,9 @@
 
 /*/mob/living/carbon/human/HUD_check()
 	var/mob/living/carbon/human/H = src
-	if(!H.client)
+	if (!H.client)
 		return
-	if(istype(H, /mob/living/carbon/human) && (H.client.prefs.UI_style != null) && (H.defaultHUD == null || H.defaultHUD == ""))
+	if (istype(H, /mob/living/carbon/human) && (H.client.prefs.UI_style != null) && (H.defaultHUD == null || H.defaultHUD == ""))
 		if (!(global.HUDdatums.Find(H.client.prefs.UI_style))) // Проверка наличии данных
 			log_debug("[H] try update a HUD, but HUDdatums not have [H.client.prefs.UI_style]!")
 			H << "Some problem hase accure, use default HUD type"
@@ -129,7 +129,7 @@
 	var/recreate_flag = FALSE
 	if ((H.HUDneed.len != FALSE) && (H.HUDneed.len == species.hud.ProcessHUD.len)) //Если у моба есть ХУД и кол-во эл. худа соотвсетсвует заявленному
 		for (var/i=1,i<=HUDneed.len,i++)
-			if(!(HUDdatum.HUDneed.Find(HUDneed[i]) && species.hud.ProcessHUD.Find(HUDneed[i]))) //Если данного худа нет в датуме худа и в датуме расы.
+			if (!(HUDdatum.HUDneed.Find(HUDneed[i]) && species.hud.ProcessHUD.Find(HUDneed[i]))) //Если данного худа нет в датуме худа и в датуме расы.
 				recreate_flag = TRUE
 				break //то нахуй это дерьмо
 	else
@@ -137,7 +137,7 @@
 
 	if ((H.HUDinventory.len != FALSE) && (H.HUDinventory.len == species.hud.gear.len) && !(recreate_flag))
 		for (var/obj/screen/inventory/HUDinv in H.HUDinventory)
-			if(!(HUDdatum.slot_data.Find(HUDinv.slot_id) && species.hud.gear.Find(HUDinv.slot_id))) //Если данного slot_id нет в датуме худа и в датуме расы.
+			if (!(HUDdatum.slot_data.Find(HUDinv.slot_id) && species.hud.gear.Find(HUDinv.slot_id))) //Если данного slot_id нет в датуме худа и в датуме расы.
 				recreate_flag = TRUE
 				break //то нахуй это дерьмо
 	else

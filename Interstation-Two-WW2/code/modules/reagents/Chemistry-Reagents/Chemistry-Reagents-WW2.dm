@@ -91,7 +91,7 @@ var/mob/living/carbon/human/next_gas_flesh_message = -1
 //	meltdose = 4
 
 /datum/reagent/toxin/xylyl_bromide/touch_mob(var/mob/living/L, var/amount)
-	if(istype(L))
+	if (istype(L))
 		eye_damage(L, get_severity(amount)*2)
 		external_damage(L, get_severity(amount)*2)
 
@@ -107,7 +107,7 @@ var/mob/living/carbon/human/next_gas_flesh_message = -1
 //	meltdose = 4
 
 /datum/reagent/toxin/mustard_gas/touch_mob(var/mob/living/L, var/amount)
-	if(istype(L))
+	if (istype(L))
 		eye_damage(L, get_severity(amount)*3)
 		external_damage(L, get_severity(amount)*3)
 		internal_damage(L, get_severity(amount)*3)
@@ -123,7 +123,7 @@ var/mob/living/carbon/human/next_gas_flesh_message = -1
 //	meltdose = 4
 
 /datum/reagent/toxin/white_phosphorus/touch_mob(var/mob/living/L, var/amount)
-	if(istype(L))
+	if (istype(L))
 		eye_damage(L, get_severity(amount)*3)
 		external_damage(L, get_severity(amount)*3)
 		internal_damage(L, get_severity(amount)*3)
@@ -142,7 +142,7 @@ var/mob/living/carbon/human/next_gas_flesh_message = -1
 
 
 /datum/reagent/toxin/chlorine_gas/touch_mob(var/mob/living/L, var/amount)
-	if(istype(L))
+	if (istype(L))
 		eye_damage(L, get_severity(amount))
 		external_damage(L, get_severity(amount)*3)
 		open_wound_damage(L, get_severity(amount)*3)
@@ -171,7 +171,7 @@ var/mob/living/carbon/human/next_gas_flesh_message = -1
 		if (!istype(l_area, /area/prishtina/german/gas_chamber))
 			return // ditto
 
-	if(istype(L))
+	if (istype(L))
 		internal_damage(L, get_severity(amount)*4)
 
 /datum/reagent/toxin/zyklon_b/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)

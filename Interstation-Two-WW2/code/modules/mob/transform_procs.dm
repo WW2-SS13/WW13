@@ -26,7 +26,7 @@
 	update_canmove()
 	invisibility = initial(invisibility)
 
-	if(!species.primitive_form) //If the creature in question has no primitive set, this is going to be messy.
+	if (!species.primitive_form) //If the creature in question has no primitive set, this is going to be messy.
 		gib()
 		return
 
@@ -55,7 +55,7 @@
 		qdel(t)
 
 	var/mob/living/carbon/slime/new_slime
-	if(reproduce)
+	if (reproduce)
 		var/number = pick(14;2,3,4)	//reproduce (has a small chance of producing 3 or 4 offspring)
 		var/list/babies = list()
 		for(var/i=1,i<=number,i++)
@@ -66,7 +66,7 @@
 		new_slime = pick(babies)
 	else
 		new_slime = new /mob/living/carbon/slime(loc)
-		if(adult)
+		if (adult)
 			new_slime.is_adult = TRUE
 		else
 	new_slime.key = key
@@ -101,11 +101,11 @@
 	var/list/mobtypes = typesof(/mob/living/simple_animal)
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
-	if(!safe_animal(mobpath))
+	if (!safe_animal(mobpath))
 		usr << "<span class = 'red'>Sorry, but this mob type is currently unavailable.</span>"
 		return
 
-	if(transforming)
+	if (transforming)
 		return
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
@@ -135,7 +135,7 @@
 	var/list/mobtypes = typesof(/mob/living/simple_animal)
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
-	if(!safe_animal(mobpath))
+	if (!safe_animal(mobpath))
 		usr << "<span class = 'red'>Sorry, but this mob type is currently unavailable.</span>"
 		return
 
@@ -155,37 +155,37 @@
 /mob/proc/safe_animal(var/MP)
 
 //Bad mobs! - Remember to add a comment explaining what's wrong with the mob
-	if(!MP)
+	if (!MP)
 		return FALSE	//Sanity, this should never happen.
 /*
-	if(ispath(MP, /mob/living/simple_animal/space_worm))
+	if (ispath(MP, /mob/living/simple_animal/space_worm))
 		return FALSE //Unfinished. Very buggy, they seem to just spawn additional space worms everywhere and eating your own tail results in new worms spawning.
 */
-	if(ispath(MP, /mob/living/simple_animal/construct/armoured))
+	if (ispath(MP, /mob/living/simple_animal/construct/armoured))
 		return FALSE //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
 
-	if(ispath(MP, /mob/living/simple_animal/construct/wraith))
+	if (ispath(MP, /mob/living/simple_animal/construct/wraith))
 		return FALSE //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
 
-	if(ispath(MP, /mob/living/simple_animal/construct/builder))
+	if (ispath(MP, /mob/living/simple_animal/construct/builder))
 		return FALSE //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
 
 //Good mobs!
-	if(ispath(MP, /mob/living/simple_animal/cat))
+	if (ispath(MP, /mob/living/simple_animal/cat))
 		return TRUE
-	if(ispath(MP, /mob/living/simple_animal/corgi))
+	if (ispath(MP, /mob/living/simple_animal/corgi))
 		return TRUE
-	if(ispath(MP, /mob/living/simple_animal/crab))
+	if (ispath(MP, /mob/living/simple_animal/crab))
 		return TRUE
-	if(ispath(MP, /mob/living/simple_animal/hostile/carp))
+	if (ispath(MP, /mob/living/simple_animal/hostile/carp))
 		return TRUE
-	if(ispath(MP, /mob/living/simple_animal/shade))
+	if (ispath(MP, /mob/living/simple_animal/shade))
 		return TRUE
-	if(ispath(MP, /mob/living/simple_animal/tomato))
+	if (ispath(MP, /mob/living/simple_animal/tomato))
 		return TRUE
-	if(ispath(MP, /mob/living/simple_animal/mouse))
+	if (ispath(MP, /mob/living/simple_animal/mouse))
 		return TRUE //It is impossible to pull up the player panel for mice (Fixed! - Nodrak)
-	if(ispath(MP, /mob/living/simple_animal/hostile/bear))
+	if (ispath(MP, /mob/living/simple_animal/hostile/bear))
 		return TRUE //Bears will auto-attack mobs, even if they're player controlled (Fixed! - Nodrak)
 
 	//Not in here? Must be untested!

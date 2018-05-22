@@ -11,13 +11,13 @@
 	M.adjustToxLoss(removed * 3)
 
 /datum/reagent/acetone/touch_obj(var/obj/O)	//I copied this wholesale from ethanol and could likely be converted into a shared proc. ~Techhead
-	if(istype(O, /obj/item/weapon/paper))
+	if (istype(O, /obj/item/weapon/paper))
 		var/obj/item/weapon/paper/paperaffected = O
 		paperaffected.clearpaper()
 		usr << "The solution dissolves the ink on the paper."
 		return
-	if(istype(O, /obj/item/weapon/book))
-		if(volume < 5)
+	if (istype(O, /obj/item/weapon/book))
+		if (volume < 5)
 			return
 		var/obj/item/weapon/book/affectedbook = O
 		affectedbook.dat = null
@@ -57,15 +57,15 @@
 	ingest_met = REM * 5
 
 /datum/reagent/carbon/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.ingested && M.ingested.reagent_list.len > 1) // Need to have at least 2 reagents - cabon and something to remove
+	if (M.ingested && M.ingested.reagent_list.len > 1) // Need to have at least 2 reagents - cabon and something to remove
 		var/effect = TRUE / (M.ingested.reagent_list.len - 1)
 		for(var/datum/reagent/R in M.ingested.reagent_list)
-			if(R == src)
+			if (R == src)
 				continue
 			M.ingested.remove_reagent(R.id, removed * effect)
 
 /datum/reagent/carbon/touch_turf(var/turf/T)
-	if(!istype(T, /turf/space))
+	if (!istype(T, /turf/space))
 		var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, T)
 		if (!dirtoverlay)
 			dirtoverlay = new/obj/effect/decal/cleanable/dirt(T)
@@ -98,17 +98,17 @@
 	var/halluci = FALSE
 
 /datum/reagent/ethanol/touch_mob(var/mob/living/L, var/amount)
-	if(istype(L))
+	if (istype(L))
 		L.adjust_fire_stacks(amount / 15)
 
 /datum/reagent/ethanol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(issmall(M)) removed *= 2
+	if (issmall(M)) removed *= 2
 	M.adjustToxLoss(removed * 2 * toxicity)
 	// apparently this doesn't get called, so moving thirstcode to affect_ingest()
 	return
 
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(issmall(M)) removed *= 2
+	if (issmall(M)) removed *= 2
 	M.nutrition += nutriment_factor * removed
 	var/strength_mod = 0.5
 
@@ -118,41 +118,41 @@
 
 	M.add_chemical_effect(CE_ALCOHOL, TRUE)
 
-	if(dose * strength_mod >= strength) // Early warning
+	if (dose * strength_mod >= strength) // Early warning
 		M.make_dizzy(6) // It is decreased at the speed of 3 per tick
-	if(dose * strength_mod >= strength * 2) // Slurring
+	if (dose * strength_mod >= strength * 2) // Slurring
 		M.slurring = max(M.slurring, 30)
-	if(dose * strength_mod >= strength * 3) // Confusion - walking in random directions
+	if (dose * strength_mod >= strength * 3) // Confusion - walking in random directions
 		M.confused = max(M.confused, 20)
-	if(dose * strength_mod >= strength * 4) // Blurry vision
+	if (dose * strength_mod >= strength * 4) // Blurry vision
 		M.eye_blurry = max(M.eye_blurry, 10)
-	if(dose * strength_mod >= strength * 5) // Drowsyness - periodically falling asleep
+	if (dose * strength_mod >= strength * 5) // Drowsyness - periodically falling asleep
 		M.drowsyness = max(M.drowsyness, 20)
-	if(dose * strength_mod >= strength * 6) // Toxic dose
+	if (dose * strength_mod >= strength * 6) // Toxic dose
 		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity)
-	if(dose * strength_mod >= strength * 7) // Pass out
+	if (dose * strength_mod >= strength * 7) // Pass out
 		M.paralysis = max(M.paralysis, 20)
 		M.sleeping  = max(M.sleeping, 30)
 /*
-	if(druggy != 0)
+	if (druggy != 0)
 		M.druggy = max(M.druggy, druggy)*/
 
-	if(adj_temp > 0 && M.bodytemperature < targ_temp) // 310 is the normal bodytemp. 310.055
+	if (adj_temp > 0 && M.bodytemperature < targ_temp) // 310 is the normal bodytemp. 310.055
 		M.bodytemperature = min(targ_temp, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
-	if(adj_temp < 0 && M.bodytemperature > targ_temp)
+	if (adj_temp < 0 && M.bodytemperature > targ_temp)
 		M.bodytemperature = min(targ_temp, M.bodytemperature - (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
 
-	if(halluci)
+	if (halluci)
 		M.hallucination = max(M.hallucination, halluci)
 
 /datum/reagent/ethanol/touch_obj(var/obj/O)
-	if(istype(O, /obj/item/weapon/paper))
+	if (istype(O, /obj/item/weapon/paper))
 		var/obj/item/weapon/paper/paperaffected = O
 		paperaffected.clearpaper()
 		usr << "The solution dissolves the ink on the paper."
 		return
-	if(istype(O, /obj/item/weapon/book))
-		if(volume < 5)
+	if (istype(O, /obj/item/weapon/book))
+		if (volume < 5)
 			return
 		var/obj/item/weapon/book/affectedbook = O
 		affectedbook.dat = null
@@ -201,9 +201,9 @@
 	color = "#808080"
 
 /datum/reagent/lithium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
+	if (M.canmove && !M.restrained() && istype(M.loc, /turf/space))
 		step(M, pick(cardinal))
-	if(prob(5))
+	if (prob(5))
 		M.emote(pick("twitch", "drool", "moan"))
 
 /datum/reagent/mercury
@@ -215,9 +215,9 @@
 	color = "#484848"
 
 /datum/reagent/mercury/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
+	if (M.canmove && !M.restrained() && istype(M.loc, /turf/space))
 		step(M, pick(cardinal))
-	if(prob(5))
+	if (prob(5))
 		M.emote(pick("twitch", "drool", "moan"))
 	M.adjustBrainLoss(0.1)
 
@@ -250,64 +250,64 @@
 	var/meltdose = 10 // How much is needed to melt
 
 /datum/reagent/acid/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(issmall(M)) removed *= 2
+	if (issmall(M)) removed *= 2
 	M.take_organ_damage(0, removed * power * 2)
 
 /datum/reagent/acid/affect_touch(var/mob/living/carbon/M, var/alien, var/removed) // This is the most interesting
-	if(ishuman(M))
+	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.head)
-		/*	if(H.head.unacidable)
+		if (H.head)
+		/*	if (H.head.unacidable)
 				H << "<span class='danger'>Your [H.head] protects you from the acid.</span>"
 				remove_self(volume)
 				return*/
-			if(removed > meltdose)
+			if (removed > meltdose)
 				H << "<span class='danger'>Your [H.head] melts away!</span>"
 				qdel(H.head)
 				H.update_inv_head(1)
 				H.update_hair(1)
 				removed -= meltdose
-		if(removed <= 0)
+		if (removed <= 0)
 			return
 
-		if(H.wear_mask)
-		/*	if(H.wear_mask.unacidable)
+		if (H.wear_mask)
+		/*	if (H.wear_mask.unacidable)
 				H << "<span class='danger'>Your [H.wear_mask] protects you from the acid.</span>"
 				remove_self(volume)
 				return*/
-			if(removed > meltdose)
+			if (removed > meltdose)
 				H << "<span class='danger'>Your [H.wear_mask] melts away!</span>"
 				qdel(H.wear_mask)
 				H.update_inv_wear_mask(1)
 				H.update_hair(1)
 				removed -= meltdose
-		if(removed <= 0)
+		if (removed <= 0)
 			return
 
-		if(H.glasses)
-		/*	if(H.glasses.unacidable)
+		if (H.glasses)
+		/*	if (H.glasses.unacidable)
 				H << "<span class='danger'>Your [H.glasses] partially protect you from the acid!</span>"
 				removed /= 2
 			else */
-			if(removed > meltdose)
+			if (removed > meltdose)
 				H << "<span class='danger'>Your [H.glasses] melt away!</span>"
 				qdel(H.glasses)
 				H.update_inv_glasses(1)
 				removed -= meltdose / 2
-		if(removed <= 0)
+		if (removed <= 0)
 			return
 
-	if(volume < meltdose) // Not enough to melt anything
+	if (volume < meltdose) // Not enough to melt anything
 		M.take_organ_damage(0, removed * power * 0.2) //burn damage, since it causes chemical burns. Acid doesn't make bones shatter, like brute trauma would.
 		return
-	if(!M.unacidable && removed > 0)
-		if(istype(M, /mob/living/carbon/human) && volume >= meltdose)
+	if (!M.unacidable && removed > 0)
+		if (istype(M, /mob/living/carbon/human) && volume >= meltdose)
 			var/mob/living/carbon/human/H = M
 			var/obj/item/organ/external/affecting = H.get_organ("head")
-			if(affecting)
-				if(affecting.take_damage(0, removed * power * 0.1))
+			if (affecting)
+				if (affecting.take_damage(0, removed * power * 0.1))
 					H.UpdateDamageIcon()
-				if(prob(100 * removed / meltdose)) // Applies disfigurement
+				if (prob(100 * removed / meltdose)) // Applies disfigurement
 					if (!(H.species && (H.species.flags & NO_PAIN)))
 						H.emote("scream")
 					H.status_flags |= DISFIGURED
@@ -315,9 +315,9 @@
 			M.take_organ_damage(0, removed * power * 0.1) // Balance. The damage is instant, so it's weaker. 10 units -> 5 damage, double for pacid. 120 units beaker could deal 60, but a) it's burn, which is not as dangerous, b) it's a one-use weapon, c) missing with it will splash it over the ground and d) clothes give some protection, so not everything will hit
 
 /datum/reagent/acid/touch_obj(var/obj/O)
-//	if(O.unacidable)
+//	if (O.unacidable)
 	//	return
-	if(istype(O, /obj/item))
+	if (istype(O, /obj/item))
 		var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 		I.desc = "Looks like this was \an [O] some time ago."
 		for(var/mob/M in viewers(5, O))

@@ -21,14 +21,14 @@
 		pixel_y = rand(-6.0, 6)
 
 /obj/item/weapon/reagent_containers/food/afterattack(atom/A, mob/user, proximity, params)
-	if(center_of_mass.len && proximity && params && istype(A, /obj/structure/table))
+	if (center_of_mass.len && proximity && params && istype(A, /obj/structure/table))
 		//Places the item on a grid
 		var/list/mouse_control = params2list(params)
 
 		var/mouse_x = text2num(mouse_control["icon-x"])
 		var/mouse_y = text2num(mouse_control["icon-y"])
 
-		if(!isnum(mouse_x) || !isnum(mouse_y))
+		if (!isnum(mouse_x) || !isnum(mouse_y))
 			return
 
 		var/cell_x = max(0, min(CELLS-1, round(mouse_x/CELLSIZE)))

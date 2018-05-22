@@ -18,7 +18,7 @@ var/decl/observ/moved/moved_event = new()
 	. = ..()
 
 	// Listen to the parent if possible.
-	if(. && istype(mover.loc, expected_type))
+	if (. && istype(mover.loc, expected_type))
 		register(mover.loc, mover, /atom/movable/proc/recursive_move)
 
 /********************
@@ -27,12 +27,12 @@ var/decl/observ/moved/moved_event = new()
 
 /atom/Entered(var/atom/movable/am, var/atom/old_loc)
 	. = ..()
-	if(. != CANCEL_MOVE_EVENT && !isarea(src))
+	if (. != CANCEL_MOVE_EVENT && !isarea(src))
 		moved_event.raise_event(am, old_loc, am.loc)
 
 /atom/movable/Entered(var/atom/movable/am, atom/old_loc)
 	. = ..()
-	if(. != CANCEL_MOVE_EVENT && moved_event.has_listeners(am))
+	if (. != CANCEL_MOVE_EVENT && moved_event.has_listeners(am))
 		moved_event.register(src, am, /atom/movable/proc/recursive_move)
 
 /atom/movable/Exited(var/atom/movable/am, atom/old_loc)
@@ -43,11 +43,11 @@ var/decl/observ/moved/moved_event = new()
 /atom/movable/Move()
 	var/old_loc = loc
 	. = ..()
-	if(. && !loc)
+	if (. && !loc)
 		moved_event.raise_event(src, old_loc, null)
 
 /atom/movable/forceMove(atom/destination, var/special_event)
 	var/old_loc = loc
 	. = ..()
-	if(. && !loc && !special_event)
+	if (. && !loc && !special_event)
 		moved_event.raise_event(src, old_loc, null)

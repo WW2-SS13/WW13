@@ -407,18 +407,18 @@
 
 // todo: loading artillery. This will regenerate the shrapnel and affect our explosion
 /obj/structure/artillery/base/attackby(obj/item/W as obj, mob/M as mob)
-	if(istype(W, /obj/item/weapon/wrench))
+	if (istype(W, /obj/item/weapon/wrench))
 		if (anchored)
 			playsound(loc, 'sound/items/Ratchet.ogg', 100, TRUE)
 			M << "<span class='notice'>Now unsecuring the artillery piece...</span>"
-			if(do_after(M, 20, src))
-				if(!src) return
+			if (do_after(M, 20, src))
+				if (!src) return
 				M << "<span class='notice'>You unsecured the artillery piece.</span>"
 				anchored = FALSE
-		else if(!anchored)
+		else if (!anchored)
 			playsound(loc, 'sound/items/Ratchet.ogg', 100, TRUE)
 			M << "<span class='notice'>Now securing the artillery piece...</span>"
-			if(do_after(M, 20, src))
+			if (do_after(M, 20, src))
 				if (!src) return
 				M << "<span class='notice'>You secured the artillery piece.</span>"
 				anchored = TRUE
@@ -609,7 +609,7 @@
 						for(var/mob/living/L in T)
 							//lying on a frag grenade while the grenade is on the ground causes you to absorb most of the shrapnel.
 							//you will most likely be dead, but others nearby will be spared the fragments that hit you instead.
-							if(L.lying)
+							if (L.lying)
 								P.attack_mob(L, FALSE, FALSE)
 							else
 								P.attack_mob(L, FALSE, 100) //otherwise, allow a decent amount of fragments to pass
@@ -651,14 +651,14 @@
 
 /obj/structure/artillery/base/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if (1.0)
 			qdel(src)
 			qdel(other)
 			return
-		if(2.0)
-			if(prob(10))
+		if (2.0)
+			if (prob(10))
 				qdel(src)
 				qdel(other)
 				return
-		if(3.0)
+		if (3.0)
 			return

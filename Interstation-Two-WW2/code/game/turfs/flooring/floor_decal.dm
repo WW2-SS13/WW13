@@ -14,21 +14,21 @@ var/list/floor_decals = list()
 
 /obj/effect/floor_decal/New(var/newloc, var/newdir, var/newcolour)
 	supplied_dir = newdir
-	if(newcolour) color = newcolour
+	if (newcolour) color = newcolour
 	..(newloc)
 
 /obj/effect/floor_decal/initialize()
-	if(supplied_dir) set_dir(supplied_dir)
+	if (supplied_dir) set_dir(supplied_dir)
 	var/turf/T = get_turf(src)
-	if(istype(T, /turf/floor))
+	if (istype(T, /turf/floor))
 		var/cache_key = "[alpha]-[color]-[dir]-[icon_state]-[layer]"
-		if(!floor_decals[cache_key])
+		if (!floor_decals[cache_key])
 			var/image/I = image(icon = icon, icon_state = icon_state, dir = dir)
 			I.layer = T.layer
 			I.color = color
 			I.alpha = alpha
 			floor_decals[cache_key] = I
-		if(!T.decals) T.decals = list()
+		if (!T.decals) T.decals = list()
 		T.decals |= floor_decals[cache_key]
 		T.overlays |= floor_decals[cache_key]
 		T.floor_decal_cache_keys |= cache_key
@@ -40,7 +40,7 @@ var/list/floor_decals = list()
 
 /obj/effect/floor_decal/reset/initialize()
 	var/turf/T = get_turf(src)
-	if(T.decals && T.decals.len)
+	if (T.decals && T.decals.len)
 		T.decals.Cut()
 		T.update_icon()
 	qdel(src)

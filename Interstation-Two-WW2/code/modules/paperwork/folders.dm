@@ -23,20 +23,20 @@
 
 /obj/item/weapon/folder/update_icon()
 	overlays.Cut()
-	if(contents.len)
+	if (contents.len)
 		overlays += "folder_paper"
 	return
 
 /obj/item/weapon/folder/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/weapon/photo) || istype(W, /obj/item/weapon/paper_bundle))
+	if (istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/weapon/photo) || istype(W, /obj/item/weapon/paper_bundle))
 		user.drop_item()
 		W.loc = src
 		playsound(src,'sound/effects/Paper_Shake.wav',40,1)
 		user << "<span class='notice'>You put the [W] into \the [src].</span>"
 		update_icon()
-	else if(istype(W, /obj/item/weapon/pen))
+	else if (istype(W, /obj/item/weapon/pen))
 		var/n_name = sanitizeSafe(input(usr, "What would you like to label the folder?", "Folder Labelling", null)  as text, MAX_NAME_LEN)
-		if((loc == usr && usr.stat == FALSE))
+		if ((loc == usr && usr.stat == FALSE))
 			name = "folder[(n_name ? text("- '[n_name]'") : null)]"
 	return
 
@@ -56,50 +56,50 @@
 
 /obj/item/weapon/folder/Topic(href, href_list)
 	..()
-	if((usr.stat || usr.restrained()))
+	if ((usr.stat || usr.restrained()))
 		return
 
-	if(loc == usr)
+	if (loc == usr)
 
-		if(href_list["remove"])
+		if (href_list["remove"])
 			var/obj/item/P = locate(href_list["remove"])
-			if(P && (P.loc == src) && istype(P))
+			if (P && (P.loc == src) && istype(P))
 				P.loc = usr.loc
 				playsound(src,'sound/effects/Paper_Remove.wav',40,1)
 				usr.put_in_hands(P)
 
-		else if(href_list["read"])
+		else if (href_list["read"])
 			var/obj/item/weapon/paper/P = locate(href_list["read"])
 			playsound(src,'sound/effects/Paper_Shake.wav',40,1)
-			if(P && (P.loc == src) && istype(P))
-				if(!(istype(usr, /mob/living/carbon/human) || isghost(usr) || istype(usr, /mob/living/silicon)))
+			if (P && (P.loc == src) && istype(P))
+				if (!(istype(usr, /mob/living/carbon/human) || isghost(usr) || istype(usr, /mob/living/silicon)))
 					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", "window=[P.name]")
 					onclose(usr, "[P.name]")
 				else
 					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>", "window=[P.name]")
 					onclose(usr, "[P.name]")
-		else if(href_list["look"])
+		else if (href_list["look"])
 			var/obj/item/weapon/photo/P = locate(href_list["look"])
-			if(P && (P.loc == src) && istype(P))
+			if (P && (P.loc == src) && istype(P))
 				P.show(usr)
-		else if(href_list["browse"])
+		else if (href_list["browse"])
 			var/obj/item/weapon/paper_bundle/P = locate(href_list["browse"])
-			if(P && (P.loc == src) && istype(P))
+			if (P && (P.loc == src) && istype(P))
 				P.attack_self(usr)
 				onclose(usr, "[P.name]")
-		else if(href_list["rename"])
+		else if (href_list["rename"])
 			var/obj/item/weapon/O = locate(href_list["rename"])
 
-			if(O && (O.loc == src))
-				if(istype(O, /obj/item/weapon/paper))
+			if (O && (O.loc == src))
+				if (istype(O, /obj/item/weapon/paper))
 					var/obj/item/weapon/paper/to_rename = O
 					to_rename.rename()
 
-				else if(istype(O, /obj/item/weapon/photo))
+				else if (istype(O, /obj/item/weapon/photo))
 					var/obj/item/weapon/photo/to_rename = O
 					to_rename.rename()
 
-				else if(istype(O, /obj/item/weapon/paper_bundle))
+				else if (istype(O, /obj/item/weapon/paper_bundle))
 					var/obj/item/weapon/paper_bundle/to_rename = O
 					to_rename.rename()
 

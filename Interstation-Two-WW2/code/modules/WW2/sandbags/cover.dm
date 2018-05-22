@@ -6,7 +6,7 @@
 // how much do we cover mobs behind full sandbags?
 /obj/structure/window/sandbag/proc/check_cover(obj/item/projectile/P, turf/from)
 	var/turf/cover = get_turf(src)
-	if(!cover)
+	if (!cover)
 		return FALSE
 	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
 		return FALSE
@@ -30,7 +30,7 @@
 
 	chance = min(chance, 98)
 
-	if(prob(chance))
+	if (prob(chance))
 		return TRUE
 	else
 		return FALSE
@@ -49,7 +49,7 @@
 		return TRUE
 
 	else if (!istype(mover, /obj/item))
-		if(get_dir(loc, target) & dir)
+		if (get_dir(loc, target) & dir)
 			return FALSE
 		else
 			return TRUE
@@ -61,7 +61,7 @@
 				return TRUE*/
 
 		if (!mover.throw_source)
-			if(get_dir(loc, target) & dir)
+			if (get_dir(loc, target) & dir)
 				return FALSE
 			else
 				return TRUE
@@ -94,10 +94,10 @@
 /*
 /obj/structure/window/sandbag/CheckExit(atom/movable/O as mob|obj, target as turf)
 
-	if(get_dir(O.loc, target) == dir)
-		if(istype(O, /obj/item/projectile))
+	if (get_dir(O.loc, target) == dir)
+		if (istype(O, /obj/item/projectile))
 			var/obj/item/projectile/P = O
-			if(get_turf(src) == P.starting)
+			if (get_turf(src) == P.starting)
 				return TRUE
 			else
 				if (prob(bullet_deflection_chance(P)))

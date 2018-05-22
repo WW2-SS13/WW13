@@ -28,11 +28,11 @@
 	max_storage_space = 14
 
 	examine(mob/user)
-		if(..(user, TRUE))
+		if (..(user, TRUE))
 			user << text("The service panel is [open ? "open" : "closed"].")
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(locked)
+		if (locked)
 
 			if (istype(W, /obj/item/weapon/screwdriver))
 				if (do_after(user, 20, src))

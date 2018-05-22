@@ -7,7 +7,7 @@
 	log_say("Ghost/[key] : [message]")
 
 	if (client)
-		if(client.prefs.muted & MUTE_DEADCHAT)
+		if (client.prefs.muted & MUTE_DEADCHAT)
 			src << "<span class = 'red'>You cannot talk in deadchat (muted).</span>"
 			return
 
@@ -20,20 +20,20 @@
 /mob/observer/ghost/emote(var/act, var/type, var/message)
 	//message = sanitize(message) - already sanitized in verb/me_verb()
 
-	if(!message)
+	if (!message)
 		return
 
-	if(act != "me")
+	if (act != "me")
 		return
 
 	log_emote("Ghost/[key] : [message]")
 
-	if(client)
-		if(client.prefs.muted & MUTE_DEADCHAT)
+	if (client)
+		if (client.prefs.muted & MUTE_DEADCHAT)
 			src << "<span class = 'red'>You cannot emote in deadchat (muted).</span>"
 			return
 
-		if(client.handle_spam_prevention(message, MUTE_DEADCHAT))
+		if (client.handle_spam_prevention(message, MUTE_DEADCHAT))
 			return
 
 	. = emote_dead(message)
@@ -41,22 +41,22 @@
 /*
 	for (var/mob/M in hearers(null, null))
 		if (!M.stat)
-			if(M.job == "Monochurch Preacher")
+			if (M.job == "Monochurch Preacher")
 				if (prob (49))
 					M.show_message("<span class='game'><i>You hear muffled speech... but nothing is there...</i></span>", 2)
-					if(prob(20))
+					if (prob(20))
 						playsound(loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, TRUE)
 				else
 					M.show_message("<span class='game'><i>You hear muffled speech... you can almost make out some words...</i></span>", 2)
 //				M.show_message("<span class='game'><i>[stutter(message)]</i></span>", 2)
-					if(prob(30))
+					if (prob(30))
 						playsound(loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, TRUE)
 			else
 				if (prob(50))
 					return
 				else if (prob (95))
 					M.show_message("<span class='game'><i>You hear muffled speech... but nothing is there...</i></span>", 2)
-					if(prob(20))
+					if (prob(20))
 						playsound(loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, TRUE)
 				else
 					M.show_message("<span class='game'><i>You hear muffled speech... you can almost make out some words...</i></span>", 2)

@@ -77,7 +77,7 @@
 	initial_flooring = /decl/flooring/hull
 
 /turf/floor/hull/New()
-	if(icon_state != "hullcenter0")
+	if (icon_state != "hullcenter0")
 		overrided_icon_state = icon_state
 	..()
 
@@ -234,7 +234,7 @@
 /turf/floor/reinforced/n20/New()
 	..()
 	sleep(-1)
-	//if(!air) make_air()
+	//if (!air) make_air()
 //	air.adjust_gas("sleeping_agent", ATMOSTANK_NITROUSOXIDE)
 /*
 /turf/floor/cult

@@ -269,11 +269,11 @@
 /proc/get_side_name(var/side, var/datum/job/j)
 	if (j && (istype(j, /datum/job/german/squad_leader_ss) || istype(j, /datum/job/german/soldier_ss)))
 		return "Waffen-S.S."
-	if(side == PARTISAN)
+	if (side == PARTISAN)
 		return CIVILIAN
-	if(side == SOVIET)
+	if (side == SOVIET)
 		return "Red Army"
-	if(side == GERMAN)
+	if (side == GERMAN)
 		return "German Wehrmacht"
 	if (side == PILLARMEN)
 		return "PILLARMEN"

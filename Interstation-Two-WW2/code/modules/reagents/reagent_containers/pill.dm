@@ -14,31 +14,31 @@
 
 	New()
 		..()
-		if(!icon_state)
+		if (!icon_state)
 			icon_state = "pill[rand(1, 20)]"
 
 	attack(mob/M as mob, mob/user as mob, def_zone)
 		//TODO: replace with standard_feed_mob() call.
 
-		if(M == user)
-			if(!M.can_eat(src))
+		if (M == user)
+			if (!M.can_eat(src))
 				return
 
 			M << "<span class='notice'>You swallow \the [src].</span>"
 			M.drop_from_inventory(src) //icon update
-			if(reagents.total_volume)
+			if (reagents.total_volume)
 				reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 			qdel(src)
 			return TRUE
 
-		else if(istype(M, /mob/living/carbon/human))
-			if(!M.can_force_feed(user, src))
+		else if (istype(M, /mob/living/carbon/human))
+			if (!M.can_force_feed(user, src))
 				return
 
 			user.visible_message("<span class='warning'>[user] attempts to force [M] to swallow \the [src].</span>")
 
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-			if(!do_mob(user, M))
+			if (!do_mob(user, M))
 				return
 
 			user.drop_from_inventory(src) //icon update
@@ -49,7 +49,7 @@
 			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [name] to [key_name(M)] Reagents: [contained]</font>")
 			msg_admin_attack("[key_name_admin(user)] fed [key_name_admin(M)] with [name] Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-			if(reagents.total_volume)
+			if (reagents.total_volume)
 				reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 			qdel(src)
 
@@ -58,10 +58,10 @@
 		return FALSE
 
 	afterattack(obj/target, mob/user, proximity)
-		if(!proximity) return
+		if (!proximity) return
 
-		if(target.is_open_container() && target.reagents)
-			if(!target.reagents.total_volume)
+		if (target.is_open_container() && target.reagents)
+			if (!target.reagents.total_volume)
 				user << "<span class='notice'>[target] is empty. Can't dissolve \the [src].</span>"
 				return
 			user << "<span class='notice'>You dissolve \the [src] in [target].</span>"

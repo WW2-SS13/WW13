@@ -19,11 +19,11 @@
 	..()
 	health = config.default_brain_health
 	spawn(5)
-		if(brainmob && brainmob.client)
+		if (brainmob && brainmob.client)
 			brainmob.client.screen.len = null //clear the hud
 
 /obj/item/organ/brain/Destroy()
-	if(brainmob)
+	if (brainmob)
 		qdel(brainmob)
 		brainmob = null
 	..()
@@ -35,7 +35,7 @@
 	brainmob.real_name = H.real_name
 	brainmob.dna = H.dna.Clone()
 //	brainmob.timeofhostdeath = H.timeofdeath
-	if(H.mind)
+	if (H.mind)
 		H.mind.transfer_to(brainmob)
 
 	brainmob << "<span class='notice'>You feel slightly disoriented. That's normal when you're just a [initial(name)].</span>"
@@ -46,7 +46,7 @@
 
 /obj/item/organ/brain/examine(mob/user) // -- TLE
 	..(user)
-	if(brainmob && brainmob.client)//if thar be a brain inside... the brain.
+	if (brainmob && brainmob.client)//if thar be a brain inside... the brain.
 		user << "You can feel the small spark of life still left in this one."
 	else
 		user << "This one seems particularly lifeless. Perhaps it will regain some of its luster later.."
@@ -56,18 +56,18 @@
 	name = "[owner.real_name]'s brain"
 
 	var/obj/item/organ/brain/B = src
-	if(istype(B) && istype(owner))
+	if (istype(B) && istype(owner))
 		B.transfer_identity(owner)
 
 	..()
 
 /obj/item/organ/brain/replaced(var/mob/living/target)
 
-	if(target.key)
+	if (target.key)
 		target.ghostize()
 
-	if(brainmob)
-		if(brainmob.mind)
+	if (brainmob)
+		if (brainmob.mind)
 			brainmob.mind.transfer_to(target)
 		else
 			target.key = brainmob.key

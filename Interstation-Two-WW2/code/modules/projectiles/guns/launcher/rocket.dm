@@ -18,7 +18,7 @@
 	var/list/rockets = new/list()
 
 /obj/item/weapon/gun/launcher/rocket/examine(mob/user)
-	if(!..(user, 2))
+	if (!..(user, 2))
 		return
 	user << "<span class = 'notice'>[rockets.len] / [max_rockets] rockets.</span>"
 
@@ -26,8 +26,8 @@
 	if (..()) // handle attachments
 		return TRUE
 
-	if(istype(I, /obj/item/ammo_casing/rocket))
-		if(rockets.len < max_rockets)
+	if (istype(I, /obj/item/ammo_casing/rocket))
+		if (rockets.len < max_rockets)
 			user.drop_item()
 			I.loc = src
 			rockets += I
@@ -37,7 +37,7 @@
 			usr << "<span class = 'red'>[src] cannot hold more rockets.</span>"
 
 /obj/item/weapon/gun/launcher/rocket/consume_next_projectile()
-	if(rockets.len)
+	if (rockets.len)
 		var/obj/item/ammo_casing/rocket/I = rockets[1]
 		var/obj/item/projectile/bullet/rifle/missile/M = new I.projectile_type (src)
 	//	M.primed = TRUE

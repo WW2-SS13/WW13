@@ -15,7 +15,7 @@
 /obj/structure/closet/crate/MouseDrop_T(mob/target, mob/user)
 	if (!opened)
 		var/mob/living/H = user
-		if(istype(H) && can_climb(H) && target == user)
+		if (istype(H) && can_climb(H) && target == user)
 			do_climb(target)
 		else
 			return ..(target, user)
@@ -29,9 +29,9 @@
 	return TRUE
 
 /obj/structure/closet/crate/open()
-	if(opened)
+	if (opened)
 		return FALSE
-	if(!can_open())
+	if (!can_open())
 		return FALSE
 
 	playsound(loc, 'sound/machines/click.ogg', 15, TRUE, -3)
@@ -40,14 +40,14 @@
 	icon_state = icon_opened
 	opened = TRUE
 
-	if(climbable)
+	if (climbable)
 		structure_shaken()
 	return TRUE
 
 /obj/structure/closet/crate/close()
-	if(!opened)
+	if (!opened)
 		return FALSE
-	if(!can_close())
+	if (!can_close())
 		return FALSE
 
 	playsound(loc, 'sound/machines/click.ogg', 15, TRUE, -3)
@@ -67,19 +67,19 @@
 	return TRUE
 
 /obj/structure/closet/crate/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(opened)
+	if (opened)
 		return ..()
-	else if(istype(W, /obj/item/stack/cable_coil))
+	else if (istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = W
-		if(rigged)
+		if (rigged)
 			user << "<span class='notice'>[src] is already rigged!</span>"
 			return
 		if (C.use(1))
 			user  << "<span class='notice'>You rig [src].</span>"
 			rigged = TRUE
 			return
-	else if(istype(W, /obj/item/weapon/wirecutters))
-		if(rigged)
+	else if (istype(W, /obj/item/weapon/wirecutters))
+		if (rigged)
 			user  << "<span class='notice'>You cut away the wiring.</span>"
 			playsound(loc, 'sound/items/Wirecutter.ogg', 100, TRUE)
 			rigged = FALSE
@@ -88,18 +88,18 @@
 
 /obj/structure/closet/crate/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if (1.0)
 			for(var/obj/O in contents)
 				qdel(O)
 			qdel(src)
 			return
-		if(2.0)
+		if (2.0)
 			for(var/obj/O in contents)
-				if(prob(50))
+				if (prob(50))
 					qdel(O)
 			qdel(src)
 			return
-		if(3.0)
+		if (3.0)
 			if (prob(50))
 				qdel(src)
 			return
@@ -121,7 +121,7 @@
 
 /obj/structure/closet/crate/secure/New()
 	..()
-	if(locked)
+	if (locked)
 		overlays.Cut()
 		overlays += redlight
 	else
@@ -132,22 +132,22 @@
 	return !locked
 
 /obj/structure/closet/crate/secure/proc/togglelock(mob/user as mob)
-	if(opened)
+	if (opened)
 		user << "<span class='notice'>Close the crate first.</span>"
 		return
-	if(broken)
+	if (broken)
 		user << "<span class='warning'>The crate appears to be broken.</span>"
 		return
-	if(allowed(user))
+	if (allowed(user))
 		set_locked(!locked, user)
 	else
 		user << "<span class='notice'>Access Denied</span>"
 
 /obj/structure/closet/crate/secure/proc/set_locked(var/newlocked, mob/user = null)
-	if(locked == newlocked) return
+	if (locked == newlocked) return
 
 	locked = newlocked
-	if(user)
+	if (user)
 		for(var/mob/O in viewers(user, 3))
 			O.show_message( "<span class='notice'>The crate has been [locked ? null : "un"]locked by [user].</span>", TRUE)
 	overlays.Cut()
@@ -158,10 +158,10 @@
 	set category = null
 	set name = "Toggle Lock"
 
-	if(!usr.canmove || usr.stat || usr.restrained()) // Don't use it if you're not able to! Checks for stuns, ghost and restrain
+	if (!usr.canmove || usr.stat || usr.restrained()) // Don't use it if you're not able to! Checks for stuns, ghost and restrain
 		return
 
-	if(ishuman(usr))
+	if (ishuman(usr))
 		add_fingerprint(usr)
 		togglelock(usr)
 	else
@@ -169,15 +169,15 @@
 
 /obj/structure/closet/crate/secure/attack_hand(mob/user as mob)
 	add_fingerprint(user)
-	if(locked)
+	if (locked)
 		togglelock(user)
 	else
 		toggle(user)
 
 /obj/structure/closet/crate/secure/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(is_type_in_list(W, list(/obj/item/stack/cable_coil, /obj/item/weapon/wirecutters)))
+	if (is_type_in_list(W, list(/obj/item/stack/cable_coil, /obj/item/weapon/wirecutters)))
 		return ..()
-	if(!opened)
+	if (!opened)
 		togglelock(user)
 		return
 	return ..()
@@ -185,8 +185,8 @@
 /obj/structure/closet/crate/secure/emp_act(severity)
 	for(var/obj/O in src)
 		O.emp_act(severity)
-	if(!broken && !opened  && prob(50/severity))
-		if(!locked)
+	if (!broken && !opened  && prob(50/severity))
+		if (!locked)
 			locked = TRUE
 			overlays.Cut()
 			overlays += redlight
@@ -197,8 +197,8 @@
 			spawn(6) overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
 			playsound(loc, 'sound/effects/sparks4.ogg', 75, TRUE)
 			locked = FALSE
-	if(!opened && prob(20/severity))
-		if(!locked)
+	if (!opened && prob(20/severity))
+		if (!locked)
 			open()
 		else
 			req_access = list()
@@ -274,12 +274,12 @@
 
 	return_air()
 		var/datum/gas_mixture/gas = (..())
-		if(!gas)	return null
+		if (!gas)	return null
 		var/datum/gas_mixture/newgas = new/datum/gas_mixture()
 		newgas.copy_from(gas)
-		if(newgas.temperature <= target_temp)	return
+		if (newgas.temperature <= target_temp)	return
 
-		if((newgas.temperature - cooling_power) > target_temp)
+		if ((newgas.temperature - cooling_power) > target_temp)
 			newgas.temperature -= cooling_power
 		else
 			newgas.temperature = target_temp
@@ -373,9 +373,9 @@
 	. = ..()
 	if (.)//we can hold up to one large item
 		for(var/obj/structure/S in loc)
-			if(S == src)
+			if (S == src)
 				continue
-			if(!S.anchored)
+			if (!S.anchored)
 				S.forceMove(src)
 				break
 	return
@@ -395,15 +395,15 @@
 	if (.)//we can hold up to one large item
 		var/found = FALSE
 		for(var/obj/structure/S in loc)
-			if(S == src)
+			if (S == src)
 				continue
-			if(!S.anchored)
+			if (!S.anchored)
 				found = TRUE
 				S.forceMove(src)
 				break
-		if(!found)
+		if (!found)
 			for(var/obj/machinery/M in loc)
-				if(!M.anchored)
+				if (!M.anchored)
 					M.forceMove(src)
 					break
 	return

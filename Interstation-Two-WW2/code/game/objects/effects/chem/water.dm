@@ -8,44 +8,44 @@
 /obj/effect/effect/water/New(loc)
 	..()
 	spawn(150) // In case whatever made it forgets to delete it
-		if(src)
+		if (src)
 			qdel(src)
 
 /obj/effect/effect/water/proc/set_color() // Call it after you move reagents to it
 	icon += reagents.get_color()
 
 /obj/effect/effect/water/proc/set_up(var/turf/target, var/step_count = 5, var/delay = 5)
-	if(!target)
+	if (!target)
 		return
 	for(var/i = TRUE to step_count)
-		if(!loc)
+		if (!loc)
 			return
 		step_towards(src, target)
 		var/turf/T = get_turf(src)
-		if(T && reagents)
+		if (T && reagents)
 			reagents.touch_turf(T)
 			var/mob/M
 			for(var/atom/A in T)
-				if(!ismob(A) && A.simulated) // Mobs are handled differently
+				if (!ismob(A) && A.simulated) // Mobs are handled differently
 					reagents.touch(A)
-				else if(ismob(A) && !M)
+				else if (ismob(A) && !M)
 					M = A
-			if(M)
+			if (M)
 				reagents.splash(M, reagents.total_volume)
 				break
-			if(T == get_turf(target))
+			if (T == get_turf(target))
 				break
 		sleep(delay)
 	sleep(10)
 	qdel(src)
 
 /obj/effect/effect/water/Move(turf/newloc)
-	if(newloc.density)
+	if (newloc.density)
 		return FALSE
 	. = ..()
 
 /obj/effect/effect/water/Bump(atom/A)
-	if(reagents)
+	if (reagents)
 		reagents.touch(A)
 	return ..()
 

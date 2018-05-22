@@ -8,26 +8,26 @@
 
 // The proc you should always use to set the light of this atom.
 /atom/proc/set_light(l_range, l_power, l_color)
-	if(l_power != null) light_power = l_power
-	if(l_range != null) light_range = l_range
-	if(l_color != null) light_color = l_color
+	if (l_power != null) light_power = l_power
+	if (l_range != null) light_range = l_range
+	if (l_color != null) light_color = l_color
 
 	update_light()
 
 // Will update the light (duh).
 // Creates or destroys it if needed, makes it update values, makes sure it's got the correct source turf...
 /atom/proc/update_light()
-	if(!light_power || !light_range) // We won't emit light anyways, destroy the light source.
-		if(light)
+	if (!light_power || !light_range) // We won't emit light anyways, destroy the light source.
+		if (light)
 			light.destroy()
 			light = null
 	else
-		if(!istype(loc, /atom/movable)) // We choose what atom should be the top atom of the light here.
+		if (!istype(loc, /atom/movable)) // We choose what atom should be the top atom of the light here.
 			. = src
 		else
 			. = loc
 
-		if(light) // Update the light or create it if it does not exist.
+		if (light) // Update the light or create it if it does not exist.
 			light.update(.)
 		else
 			light = new/datum/light_source(src, .)
@@ -35,16 +35,16 @@
 // Incase any lighting vars are on in the typepath we turn the light on in New().
 /atom/New()
 	. = ..()
-	if(light_power && light_range)
+	if (light_power && light_range)
 		update_light()
 
-	if(opacity && isturf(loc))
+	if (opacity && isturf(loc))
 		var/turf/T = loc
 		T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
 
 // Destroy our light source so we GC correctly.
 /atom/Destroy()
-	if(light)
+	if (light)
 		light.destroy()
 		light = null
 	return ..()
@@ -52,14 +52,14 @@
 /atom/movable/New()
 	. = ..()
 
-	if(opacity && isturf(loc))
+	if (opacity && isturf(loc))
 		var/turf/T = loc
 		T.reconsider_lights()
 
 // If we have opacity, make sure to tell (potentially) affected light sources.
 /atom/movable/Destroy()
 	var/turf/T = loc
-	if(opacity && istype(T))
+	if (opacity && istype(T))
 		opacity = FALSE
 		T.recalc_atom_opacity()
 		T.reconsider_lights()
@@ -71,7 +71,7 @@
 	var/old_opacity = opacity
 	opacity = new_opacity
 	var/turf/T = loc
-	if(old_opacity != new_opacity && istype(T))
+	if (old_opacity != new_opacity && istype(T))
 		T.reconsider_lights()
 
 // This code makes the light be queued for update when it is moved.
@@ -79,9 +79,9 @@
 /atom/Entered(atom/movable/Obj, atom/OldLoc) //Implemented here because forceMove() doesn't call Move()
 	. = ..()
 
-	if(Obj && OldLoc != src)
+	if (Obj && OldLoc != src)
 		for(var/A in Obj.light_sources) // Cycle through the light sources on this atom and tell them to update.
-			if(!A)
+			if (!A)
 				continue
 
 			var/datum/light_source/L = A
@@ -90,9 +90,9 @@
 /atom/Exited(var/atom/movable/Obj, var/atom/newloc)
 	. = ..()
 
-	if(!newloc && Obj && newloc != src) // Incase the atom is being moved to nullspace, we handle queuing for a lighting update here.
+	if (!newloc && Obj && newloc != src) // Incase the atom is being moved to nullspace, we handle queuing for a lighting update here.
 		for(var/A in Obj.light_sources) // Cycle through the light sources on this atom and tell them to update.
-			if(!A)
+			if (!A)
 				continue
 
 			var/datum/light_source/L = A

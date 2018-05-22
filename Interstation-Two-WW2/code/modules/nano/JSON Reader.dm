@@ -28,14 +28,14 @@ json_reader
 			src.i = 1
 			while(src.i <= lentext(json))
 				var/char = get_char()
-				if(is_whitespace(char))
+				if (is_whitespace(char))
 					i++
 					continue
-				if(string.Find(char))
+				if (string.Find(char))
 					. += read_string(char)
-				else if(symbols.Find(char))
+				else if (symbols.Find(char))
 					. += new/json_token/symbol(char)
-				else if(is_digit(char))
+				else if (is_digit(char))
 					. += read_number()
 				else
 					. += read_word()
@@ -46,7 +46,7 @@ json_reader
 			var/val = ""
 			while(i <= lentext(json))
 				var/char = get_char()
-				if(is_whitespace(char) || symbols.Find(char))
+				if (is_whitespace(char) || symbols.Find(char))
 					i-- // let scanner handle this character
 					return new/json_token/word(val)
 				val += char
@@ -58,18 +58,18 @@ json_reader
 				val		= ""
 			while(++i <= lentext(json))
 				var/char = get_char()
-				if(escape)
+				if (escape)
 					switch(char)
-						if("\\", "'", "\"", "/", "u")
+						if ("\\", "'", "\"", "/", "u")
 							val += char
 						else
 							// TODO: support octal, hex, unicode sequences
 							ASSERT(sequences.Find(char))
 							val += ascii2text(sequences[char])
 				else
-					if(char == delim)
+					if (char == delim)
 						return new/json_token/text(val)
-					else if(char == "\\")
+					else if (char == "\\")
 						escape = TRUE
 					else
 						val += char
@@ -116,10 +116,10 @@ json_reader
 				var/json_token/S = get_token()
 				check_type(/json_token/symbol)
 				switch(S.value)
-					if(",")
+					if (",")
 						next_token()
 						continue
-					if("}")
+					if ("}")
 						next_token()
 						return
 					else
@@ -133,7 +133,7 @@ json_reader
 
 		read_token(val, type)
 			var/json_token/T = get_token()
-			if(!(T.value == val && istype(T, type)))
+			if (!(T.value == val && istype(T, type)))
 				CRASH("Expected '[val]', found '[T.value]'.")
 			next_token()
 			return T
@@ -141,7 +141,7 @@ json_reader
 		check_type(...)
 			var/json_token/T = get_token()
 			for(var/type in args)
-				if(istype(T, type))
+				if (istype(T, type))
 					return
 			CRASH("Bad token type: [T.type].")
 
@@ -151,29 +151,29 @@ json_reader
 
 		read_key()
 			var/char = get_char()
-			if(char == "\"" || char == "'")
+			if (char == "\"" || char == "'")
 				return read_string(char)
 
 		read_value()
 			var/json_token/T = get_token()
 			switch(T.type)
-				if(/json_token/text, /json_token/number)
+				if (/json_token/text, /json_token/number)
 					next_token()
 					return T.value
-				if(/json_token/word)
+				if (/json_token/word)
 					next_token()
 					switch(T.value)
-						if("true")
+						if ("true")
 							return TRUE
-						if("false")
+						if ("false")
 							return FALSE
-						if("null")
+						if ("null")
 							return null
-				if(/json_token/symbol)
+				if (/json_token/symbol)
 					switch(T.value)
-						if("\[")
+						if ("\[")
 							return read_array()
-						if("{")
+						if ("{")
 							return ReadObject(tokens.Copy(i))
 			die()
 
@@ -188,10 +188,10 @@ json_reader
 				var/json_token/T = get_token()
 				check_type(/json_token/symbol)
 				switch(T.value)
-					if(",")
+					if (",")
 						next_token()
 						continue
-					if("]")
+					if ("]")
 						next_token()
 						return
 					else
@@ -201,5 +201,5 @@ json_reader
 
 
 		die(json_token/T)
-			if(!T) T = get_token()
+			if (!T) T = get_token()
 			CRASH("Unexpected token: [T.value].")

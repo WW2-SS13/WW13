@@ -35,7 +35,7 @@
 	max_duration = 110
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		if(..())
+		if (..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
 			return affected && affected.open == FALSE && target_zone != "mouth"
 
@@ -53,7 +53,7 @@
 		//Could be cleaner ...
 		affected.open = TRUE
 
-		if(istype(target) && !(target.species.flags & NO_BLOOD))
+		if (istype(target) && !(target.species.flags & NO_BLOOD))
 			affected.status |= ORGAN_BLEEDING
 
 		affected.createwound(CUT, TRUE)
@@ -76,7 +76,7 @@
 	max_duration = 120
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		if(..())
+		if (..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
 			return affected && affected.open == FALSE && target_zone != "mouth"
 
@@ -93,7 +93,7 @@
 		"<span class = 'notice'>You have constructed a prepared incision on and within [target]'s [affected.name] with \the [tool].</span>",)
 		affected.open = TRUE
 
-		if(istype(target) && !(target.species.flags & NO_BLOOD))
+		if (istype(target) && !(target.species.flags & NO_BLOOD))
 			affected.status |= ORGAN_BLEEDING
 
 		affected.createwound(CUT, TRUE)
@@ -118,7 +118,7 @@
 	max_duration = 110
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		if(..())
+		if (..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
 			return affected && affected.open == FALSE && target_zone != "mouth"
 
@@ -135,7 +135,7 @@
 		"<span class = 'notice'>You have made an incision on [target]'s [affected.name] with \the [tool].</span>",)
 		affected.open = TRUE
 
-		if(istype(target) && !(target.species.flags & NO_BLOOD))
+		if (istype(target) && !(target.species.flags & NO_BLOOD))
 			affected.status |= ORGAN_BLEEDING
 		playsound(target.loc, 'sound/weapons/bladeslice.ogg', 50, TRUE)
 
@@ -158,7 +158,7 @@
 	max_duration = 60
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		if(..())
+		if (..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
 			return affected && affected.open && (affected.status & ORGAN_BLEEDING)
 
@@ -194,7 +194,7 @@
 	max_duration = 40
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		if(..())
+		if (..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
 			return affected && affected.open == TRUE //&& !(affected.status & ORGAN_BLEEDING)
 
@@ -250,7 +250,7 @@
 	max_duration = 100
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		if(..())
+		if (..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
 			return affected && affected.open && target_zone != "mouth"
 

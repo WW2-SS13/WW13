@@ -14,7 +14,7 @@ var/datum/admin_secrets/admin_secrets = new()
 
 	for(var/item_type in (typesof(/datum/admin_secret_item) - /datum/admin_secret_item))
 		var/datum/admin_secret_item/secret_item = item_type
-		if(!initial(secret_item.name))
+		if (!initial(secret_item.name))
 			continue
 
 		var/datum/admin_secret_item/item = new item_type()
@@ -33,7 +33,7 @@ var/datum/admin_secrets/admin_secrets = new()
 
 /datum/admin_secret_category/proc/can_view(var/mob/user)
 	for(var/datum/admin_secret_item/item in items)
-		if(item.can_view(user))
+		if (item.can_view(user))
 			return TRUE
 	return FALSE
 
@@ -55,16 +55,16 @@ var/datum/admin_secrets/admin_secrets = new()
 	return check_rights(permissions, FALSE, user)
 
 /datum/admin_secret_item/proc/can_execute(var/mob/user)
-	if(can_view(user))
-		if(!warn_before_use || alert("Execute the command '[name]'?", name, "No","Yes") == "Yes")
+	if (can_view(user))
+		if (!warn_before_use || alert("Execute the command '[name]'?", name, "No","Yes") == "Yes")
 			return TRUE
 	return FALSE
 
 /datum/admin_secret_item/proc/execute(var/mob/user)
-	if(!can_execute(user))
+	if (!can_execute(user))
 		return FALSE
 
-	if(log)
+	if (log)
 		log_and_message_admins("used secret '[name]'", user)
 
 	return TRUE

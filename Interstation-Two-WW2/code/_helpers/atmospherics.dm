@@ -1,10 +1,10 @@
 /obj/proc/analyze_gases(var/obj/A, var/mob/user)
-	if(src != A)
+	if (src != A)
 		user.visible_message("<span class='notice'>\The [user] has used \an [src] on \the [A]</span>")
 
 	A.add_fingerprint(user)
 	var/list/result = A.atmosanalyze(user)
-	if(result && result.len)
+	if (result && result.len)
 		user << "<span class='notice'>Results of the analysis[src == A ? "" : " of \the [A]"]</span>"
 		for(var/line in result)
 			user << "<span class='notice'>[line]</span>"
@@ -41,7 +41,7 @@
 	return atmosanalyzer_scan(src, parent.air, user)*/
 /*
 /obj/machinery/power/rad_collector/atmosanalyze(var/mob/user)
-	if(P)	return atmosanalyzer_scan(src, P.air_contents, user)
+	if (P)	return atmosanalyzer_scan(src, P.air_contents, user)
 */
 /obj/item/weapon/flamethrower/atmosanalyze(var/mob/user)
-	if(ptank)	return atmosanalyzer_scan(src, ptank.air_contents, user)
+	if (ptank)	return atmosanalyzer_scan(src, ptank.air_contents, user)

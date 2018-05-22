@@ -72,13 +72,13 @@
 		block=COLDBLOCK
 
 	can_activate(var/mob/M,var/flags)
-		if(flags & MUTCHK_FORCED)
+		if (flags & MUTCHK_FORCED)
 			return !(/datum/dna/gene/basic/cold_resist in M.active_genes)
 		// Probability check
 		var/_prob = 15
-		if(COLD_RESISTANCE in M.mutations)
+		if (COLD_RESISTANCE in M.mutations)
 			_prob=5
-		if(probinj(_prob,(flags&MUTCHK_FORCED)))
+		if (probinj(_prob,(flags&MUTCHK_FORCED)))
 			return TRUE
 
 	OnDrawUnderlays(var/mob/M,var/g,var/fat)
@@ -94,14 +94,14 @@
 		block=FIREBLOCK
 
 	can_activate(var/mob/M,var/flags)
-		if(flags & MUTCHK_FORCED)
+		if (flags & MUTCHK_FORCED)
 			return TRUE
 		//	return !(/datum/dna/gene/basic/heat_resist in M.active_genes)
 		// Probability check
 		var/_prob=30
-		//if(mHeatres in M.mutations)
+		//if (mHeatres in M.mutations)
 		//	_prob=5
-		if(probinj(_prob,(flags&MUTCHK_FORCED)))
+		if (probinj(_prob,(flags&MUTCHK_FORCED)))
 			return TRUE
 
 	OnDrawUnderlays(var/mob/M,var/g,var/fat)
@@ -133,7 +133,7 @@
 
 	can_activate(var/mob/M,var/flags)
 		// Can't be big and small.
-		if(HULK in M.mutations)
+		if (HULK in M.mutations)
 			return FALSE
 		return ..(M,flags)
 
@@ -155,20 +155,20 @@
 
 	can_activate(var/mob/M,var/flags)
 		// Can't be big and small.
-		if(mSmallsize in M.mutations)
+		if (mSmallsize in M.mutations)
 			return FALSE
 		return ..(M,flags)
 
 	OnDrawUnderlays(var/mob/M,var/g,var/fat)
-		if(fat)
+		if (fat)
 			return "hulk_[fat]_s"
 		else
 			return "hulk_[g]_s"
 		return FALSE
 
 	OnMobLife(var/mob/living/carbon/human/M)
-		if(!istype(M)) return
-		if(M.health <= 25)
+		if (!istype(M)) return
+		if (M.health <= 25)
 			M.mutations.Remove(HULK)
 			M.update_mutations()		//update our mutation overlays
 			M << "<span class='warning'>You suddenly feel very weak.</span>"

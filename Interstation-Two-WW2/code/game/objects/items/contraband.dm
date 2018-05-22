@@ -42,7 +42,7 @@
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/random/New()
 	..()
-	if(is_open_container())
+	if (is_open_container())
 		flags ^= OPENCONTAINER
 
 	var/list/picked_reagents = pickweight(random_reagent_list)

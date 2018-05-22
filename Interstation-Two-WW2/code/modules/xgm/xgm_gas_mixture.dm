@@ -20,7 +20,7 @@
 
 //Takes a gas string and the amount of moles to adjust by.  Calls update_values() if update isn't 0.
 /datum/gas_mixture/proc/adjust_gas(gasid, moles, update = TRUE)
-	if(moles == FALSE)
+	if (moles == FALSE)
 		return
 
 	if (group_multiplier != TRUE)
@@ -28,20 +28,20 @@
 	else
 		gas[gasid] += moles
 
-	if(update)
+	if (update)
 		update_values()
 
 
 //Same as adjust_gas(), but takes a temperature which is mixed in with the gas.
 /datum/gas_mixture/proc/adjust_gas_temp(gasid, moles, temp, update = TRUE)
-	if(moles == FALSE)
+	if (moles == FALSE)
 		return
 
-	if(moles > 0 && abs(temperature - temp) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+	if (moles > 0 && abs(temperature - temp) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
 		var/self_heat_capacity = heat_capacity()
 		var/giver_heat_capacity = gas_data.specific_heat[gasid] * moles
 		var/combined_heat_capacity = giver_heat_capacity + self_heat_capacity
-		if(combined_heat_capacity != FALSE)
+		if (combined_heat_capacity != FALSE)
 			temperature = (temp * giver_heat_capacity + temperature * self_heat_capacity) / combined_heat_capacity
 
 	if (group_multiplier != TRUE)
@@ -49,7 +49,7 @@
 	else
 		gas[gasid] += moles
 
-	if(update)
+	if (update)
 		update_values()
 
 
@@ -76,17 +76,17 @@
 //Merges all the gas from another mixture into this one.  Respects group_multipliers and adjusts temperature correctly.
 //Does not modify giver in any way.
 /datum/gas_mixture/proc/merge(const/datum/gas_mixture/giver)
-	if(!giver)
+	if (!giver)
 		return
 
-	if(abs(temperature-giver.temperature)>MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+	if (abs(temperature-giver.temperature)>MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
 		var/self_heat_capacity = heat_capacity()
 		var/giver_heat_capacity = giver.heat_capacity()
 		var/combined_heat_capacity = giver_heat_capacity + self_heat_capacity
-		if(combined_heat_capacity != FALSE)
+		if (combined_heat_capacity != FALSE)
 			temperature = (giver.temperature*giver_heat_capacity + temperature*self_heat_capacity)/combined_heat_capacity
 
-	if((group_multiplier != TRUE)||(giver.group_multiplier != TRUE))
+	if ((group_multiplier != TRUE)||(giver.group_multiplier != TRUE))
 		for(var/g in giver.gas)
 			gas[g] += giver.gas[g] * giver.group_multiplier / group_multiplier
 	else
@@ -106,7 +106,7 @@
 		gas[g] = comb * volume
 		sharer.gas[g] = comb * sharer.volume
 
-	if(our_heatcap + share_heatcap)
+	if (our_heatcap + share_heatcap)
 		temperature = ((temperature * our_heatcap) + (sharer.temperature * share_heatcap)) / (our_heatcap + share_heatcap)
 	sharer.temperature = temperature
 
@@ -184,7 +184,7 @@
 /datum/gas_mixture/proc/update_values()
 	total_moles = FALSE
 	for(var/g in gas)
-		if(gas[g] <= 0)
+		if (gas[g] <= 0)
 			gas -= g
 		else
 			total_moles += gas[g]
@@ -192,7 +192,7 @@
 
 //Returns the pressure of the gas mix.  Only accurate if there have been no gas modifications since update_values() has been called.
 /datum/gas_mixture/proc/return_pressure()
-	if(volume)
+	if (volume)
 		return total_moles * R_IDEAL_GAS_EQUATION * temperature / volume
 	return FALSE
 
@@ -200,7 +200,7 @@
 //Removes moles from the gas mixture and returns a gas_mixture containing the removed air.
 /datum/gas_mixture/proc/remove(amount)
 	amount = min(amount, total_moles * group_multiplier) //Can not take more air than the gas mixture has!
-	if(amount <= 0)
+	if (amount <= 0)
 		return null
 
 	var/datum/gas_mixture/removed = new
@@ -218,7 +218,7 @@
 
 //Removes a ratio of gas from the mixture and returns a gas_mixture containing the removed air.
 /datum/gas_mixture/proc/remove_ratio(ratio, out_group_multiplier = TRUE)
-	if(ratio <= 0)
+	if (ratio <= 0)
 		return null
 	out_group_multiplier = between(1, out_group_multiplier, group_multiplier)
 
@@ -246,18 +246,18 @@
 
 //Removes moles from the gas mixture, limited by a given flag.  Returns a gax_mixture containing the removed air.
 /datum/gas_mixture/proc/remove_by_flag(flag, amount)
-	if(!flag || amount <= 0)
+	if (!flag || amount <= 0)
 		return
 
 	var/sum = FALSE
 	for(var/g in gas)
-		if(gas_data.flags[g] & flag)
+		if (gas_data.flags[g] & flag)
 			sum += gas[g]
 
 	var/datum/gas_mixture/removed = new
 
 	for(var/g in gas)
-		if(gas_data.flags[g] & flag)
+		if (gas_data.flags[g] & flag)
 			removed.gas[g] = QUANTIZE((gas[g] / sum) * amount)
 			gas[g] -= removed.gas[g] / group_multiplier
 
@@ -280,25 +280,25 @@
 
 //Checks if we are within acceptable range of another gas_mixture to suspend processing or merge.
 /datum/gas_mixture/proc/compare(const/datum/gas_mixture/sample)
-	if(!sample) return FALSE
+	if (!sample) return FALSE
 
 	var/list/marked = list()
 	for(var/g in gas)
-		if((abs(gas[g] - sample.gas[g]) > MINIMUM_AIR_TO_SUSPEND) && \
+		if ((abs(gas[g] - sample.gas[g]) > MINIMUM_AIR_TO_SUSPEND) && \
 		((gas[g] < (1 - MINIMUM_AIR_RATIO_TO_SUSPEND) * sample.gas[g]) || \
 		(gas[g] > (1 + MINIMUM_AIR_RATIO_TO_SUSPEND) * sample.gas[g])))
 			return FALSE
 		marked[g] = TRUE
 
 	for(var/g in sample.gas)
-		if(!marked[g])
-			if((abs(gas[g] - sample.gas[g]) > MINIMUM_AIR_TO_SUSPEND) && \
+		if (!marked[g])
+			if ((abs(gas[g] - sample.gas[g]) > MINIMUM_AIR_TO_SUSPEND) && \
 			((gas[g] < (1 - MINIMUM_AIR_RATIO_TO_SUSPEND) * sample.gas[g]) || \
 			(gas[g] > (1 + MINIMUM_AIR_RATIO_TO_SUSPEND) * sample.gas[g])))
 				return FALSE
 
-	if(total_moles > MINIMUM_AIR_TO_SUSPEND)
-		if((abs(temperature - sample.temperature) > MINIMUM_TEMPERATURE_DELTA_TO_SUSPEND) && \
+	if (total_moles > MINIMUM_AIR_TO_SUSPEND)
+		if ((abs(temperature - sample.temperature) > MINIMUM_TEMPERATURE_DELTA_TO_SUSPEND) && \
 		((temperature < (1 - MINIMUM_TEMPERATURE_RATIO_TO_SUSPEND)*sample.temperature) || \
 		(temperature > (1 + MINIMUM_TEMPERATURE_RATIO_TO_SUSPEND)*sample.temperature)))
 			return FALSE
@@ -314,25 +314,25 @@
 //Two lists can be passed by reference if you need know specifically which graphics were added and removed.
 /datum/gas_mixture/proc/check_tile_graphic(list/graphic_add = null, list/graphic_remove = null)
 	for(var/g in gas_data.overlay_limit)
-		if(graphic.Find(gas_data.tile_overlay[g]))
+		if (graphic.Find(gas_data.tile_overlay[g]))
 			//Overlay is already applied for this gas, check if it's still valid.
-			if(gas[g] <= gas_data.overlay_limit[g])
-				if(!graphic_remove)
+			if (gas[g] <= gas_data.overlay_limit[g])
+				if (!graphic_remove)
 					graphic_remove = list()
 				graphic_remove += gas_data.tile_overlay[g]
 		else
 			//Overlay isn't applied for this gas, check if it's valid and needs to be added.
-			if(gas[g] > gas_data.overlay_limit[g])
-				if(!graphic_add)
+			if (gas[g] > gas_data.overlay_limit[g])
+				if (!graphic_add)
 					graphic_add = list()
 				graphic_add += gas_data.tile_overlay[g]
 
 	. = FALSE
 	//Apply changes
-	if(graphic_add && graphic_add.len)
+	if (graphic_add && graphic_add.len)
 		graphic += graphic_add
 		. = TRUE
-	if(graphic_remove && graphic_remove.len)
+	if (graphic_remove && graphic_remove.len)
 		graphic -= graphic_remove
 		. = TRUE
 
@@ -380,7 +380,7 @@
 	var/ratio = sharing_lookup_table[6]
 
 	var/size = max(1, group_multiplier)
-	if(isnull(share_size)) share_size = max(1, other.group_multiplier)
+	if (isnull(share_size)) share_size = max(1, other.group_multiplier)
 
 	var/full_heat_capacity = heat_capacity()
 	var/s_full_heat_capacity = other.heat_capacity()
@@ -397,21 +397,21 @@
 		avg_gas[g] /= (size + share_size)
 
 	var/temp_avg = FALSE
-	if(full_heat_capacity + s_full_heat_capacity)
+	if (full_heat_capacity + s_full_heat_capacity)
 		temp_avg = (temperature * full_heat_capacity + other.temperature * s_full_heat_capacity) / (full_heat_capacity + s_full_heat_capacity)
 
 	//WOOT WOOT TOUCH THIS AND YOU ARE A RETARD.
-	if(sharing_lookup_table.len >= connecting_tiles) //6 or more interconnecting tiles will max at 42% of air moved per tick.
+	if (sharing_lookup_table.len >= connecting_tiles) //6 or more interconnecting tiles will max at 42% of air moved per tick.
 		ratio = sharing_lookup_table[connecting_tiles]
 	//WOOT WOOT TOUCH THIS AND YOU ARE A RETARD
 
 	for(var/g in avg_gas)
 		gas[g] = max(0, (gas[g] - avg_gas[g]) * (1 - ratio) + avg_gas[g])
-		if(!one_way)
+		if (!one_way)
 			other.gas[g] = max(0, (other.gas[g] - avg_gas[g]) * (1 - ratio) + avg_gas[g])
 
 	temperature = max(0, (temperature - temp_avg) * (1-ratio) + temp_avg)
-	if(!one_way)
+	if (!one_way)
 		other.temperature = max(0, (other.temperature - temp_avg) * (1-ratio) + temp_avg)
 
 	update_values()
@@ -441,12 +441,12 @@
 		for(var/g in gasmix.gas)
 			total_gas[g] += gasmix.gas[g]
 
-	if(total_volume > 0)
+	if (total_volume > 0)
 		var/datum/gas_mixture/combined = new(total_volume)
 		combined.gas = total_gas
 
 		//Calculate temperature
-		if(total_heat_capacity > 0)
+		if (total_heat_capacity > 0)
 			combined.temperature = total_thermal_energy / total_heat_capacity
 		combined.update_values()
 

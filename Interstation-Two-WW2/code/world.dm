@@ -34,7 +34,7 @@ var/global/datum/global_init/init = new ()
 
 /var/game_id = null
 /proc/generate_gameid()
-	if(game_id != null)
+	if (game_id != null)
 		return
 	game_id = ""
 
@@ -65,7 +65,7 @@ var/world_is_open = TRUE
 
 	config.post_load()
 
-	if(config && config.server_name != null && config.server_suffix && world.port > 0)
+	if (config && config.server_name != null && config.server_suffix && world.port > 0)
 		// dumb and hardcoded but I don't care~
 		config.server_name += " #[(world.port % 1000) / 100]"
 
@@ -124,11 +124,11 @@ var/world_is_open = TRUE
 		diary << "[log_end]\n[log_end]\nStarting up. (ID: [game_id]) [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
 		changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 
-		if(byond_version < RECOMMENDED_VERSION)
+		if (byond_version < RECOMMENDED_VERSION)
 			diary << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND."
 
 	spawn(3000)		//so we aren't adding to the round-start lag
-		if(config.ToRban)
+		if (config.ToRban)
 			ToRban_autoupdate()
 
 #undef RECOMMENDED_VERSION
@@ -203,7 +203,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	else if (T == "ping")
 		return clients.len + 1
 
-	else if(T == "players")
+	else if (T == "players")
 		return clients.len
 
 	else if (copytext(T,1,7) == "status")
@@ -222,13 +222,13 @@ var/world_topic_spam_protect_time = world.timeofday
 		s["stationtime"] = stationtime2text()
 		s["roundduration"] = roundduration2text()
 
-		if(input["status"] == "2")
+		if (input["status"] == "2")
 			var/list/players = list()
 			var/list/admins = list()
 
 			for(var/client/C in clients)
-				if(C.holder)
-					if(C.holder.fakekey)
+				if (C.holder)
+					if (C.holder.fakekey)
 						continue
 					admins[C.key] = C.holder.rank
 				players += C.key
@@ -242,8 +242,8 @@ var/world_topic_spam_protect_time = world.timeofday
 			var/admins = FALSE
 
 			for(var/client/C in clients)
-				if(C.holder)
-					if(C.holder.fakekey)
+				if (C.holder)
+					if (C.holder.fakekey)
 						continue	//so stealthmins aren't revealed by the hub
 					admins++
 				s["player[n]"] = C.key
@@ -304,8 +304,8 @@ var/world_topic_spam_protect_time = world.timeofday
 
 /world/proc/load_mode()
 	var/list/Lines = file2list("data/mode.txt")
-	if(Lines.len)
-		if(Lines[1])
+	if (Lines.len)
+		if (Lines[1])
 			master_mode = Lines[1]
 			log_misc("Saved mode is '[master_mode]'")
 
@@ -372,7 +372,7 @@ var/failed_old_db_connections = FALSE
 var/setting_up_db_connection = FALSE
 
 /hook/startup/proc/connectDB()
-	if(!setup_database_connection())
+	if (!setup_database_connection())
 		world.log << "Your server failed to establish a connection with the feedback database."
 	else
 		world.log << "Feedback database connection established."
@@ -381,10 +381,10 @@ var/setting_up_db_connection = FALSE
 //This proc ensures that the connection to the feedback database (global variable dbcon) is established
 /proc/establish_db_connection()
 
-	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
+	if (failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
 		return FALSE
 
-	if(!database)
+	if (!database)
 		return setup_database_connection()
 	else
 		return TRUE
@@ -403,11 +403,11 @@ var/setting_up_db_connection = FALSE
 
 	setting_up_db_connection = TRUE
 
-	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
+	if (failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
 		setting_up_db_connection = FALSE
 		return FALSE
 
-	if(!database)
+	if (!database)
 		if (fexists("config/serverswap.txt"))
 			DEBUG_SERVERSWAP(3)
 			var/list/lines = file2list("config/serverswap.txt")

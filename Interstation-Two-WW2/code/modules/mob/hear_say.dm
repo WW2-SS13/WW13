@@ -1,17 +1,17 @@
 // At minimum every mob has a hear_say proc.
 
 /mob/proc/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = FALSE, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
-	if(!client)
+	if (!client)
 		return
 
-	if(speaker && !speaker.client && isghost(src) && is_preference_enabled(/datum/client_preference/ghost_ears) && !(speaker in view(src)))
+	if (speaker && !speaker.client && isghost(src) && is_preference_enabled(/datum/client_preference/ghost_ears) && !(speaker in view(src)))
 			//Does the speaker have a client?  It's either random stuff that observers won't care about (Experiment 97B says, 'EHEHEHEHEHEHEHE')
 			//Or someone snoring.  So we make it where they won't hear it.
 		return
 
 	//make sure the air can transmit speech - hearer's side
 
-	if(sleeping || stat == TRUE)
+	if (sleeping || stat == TRUE)
 		hear_sleep(message)
 		return
 
@@ -20,46 +20,46 @@
 		if (!speaker || (sdisabilities & BLIND || blinded) || !(speaker in view(src)))
 			message = stars(message)
 
-	if(!(language && (language.flags & INNATE))) // skip understanding checks for INNATE languages
-		if(!say_understands(speaker,language))
-			if(istype(speaker,/mob/living/simple_animal))
+	if (!(language && (language.flags & INNATE))) // skip understanding checks for INNATE languages
+		if (!say_understands(speaker,language))
+			if (istype(speaker,/mob/living/simple_animal))
 				var/mob/living/simple_animal/S = speaker
 				message = pick(S.speak)
 			else
-				if(language)
+				if (language)
 					message = language.scramble(message, src)
 				else
 					message = stars(message)
 
 	var/speaker_name = speaker.name
-	if(istype(speaker, /mob/living/carbon/human))
+	if (istype(speaker, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = speaker
 		if (H.special_job_title != null)
 			speaker_name = H.rank_prefix_name(H.GetVoice())
 		else
 			speaker_name = "[H.GetVoice()] (N/A)"
 
-	if(italics)
+	if (italics)
 		message = "<i>[message]</i>"
 
 	var/track = null
-	if(isghost(src))
-		if(italics && is_preference_enabled(/datum/client_preference/ghost_radio))
+	if (isghost(src))
+		if (italics && is_preference_enabled(/datum/client_preference/ghost_radio))
 			return
-		if(speaker_name != speaker.real_name && speaker.real_name)
+		if (speaker_name != speaker.real_name && speaker.real_name)
 			speaker_name = "[speaker.real_name] ([speaker_name])"
 		track = "([ghost_follow_link(speaker, src)]) "
-		if(is_preference_enabled(/datum/client_preference/ghost_ears) && (speaker in view(src)))
+		if (is_preference_enabled(/datum/client_preference/ghost_ears) && (speaker in view(src)))
 			message = "<b>[message]</b>"
 
-	if(sdisabilities & DEAF || ear_deaf)
-		if(!language || !(language.flags & INNATE)) // INNATE is the flag for audible-emote-language, so we don't want to show an "x talks but you cannot hear them" message if it's set
-			if(speaker == src)
+	if (sdisabilities & DEAF || ear_deaf)
+		if (!language || !(language.flags & INNATE)) // INNATE is the flag for audible-emote-language, so we don't want to show an "x talks but you cannot hear them" message if it's set
+			if (speaker == src)
 				src << "<span class='warning'>You cannot hear yourself speak!</span>"
 			else
 				src << "<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him."
 	else
-		if(language)
+		if (language)
 			on_hear_say("<span class='name'>[speaker_name] <span class = 'small_message'>([language.name])</span> </span>[alt_name] [track][language.format_message(message, verb)]")
 		else
 			on_hear_say("<span class='name'>[speaker_name]</span>[alt_name] [track][verb], \"[message]\"")
@@ -81,14 +81,14 @@
 
 /mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/mob/speaker = null, var/obj/item/radio/source, var/hard_to_hear = FALSE)
 
-	if(!client || !message)
+	if (!client || !message)
 		return
 
 	message = capitalize(message)
 
 	playsound(loc, 'sound/effects/radio_chatter.ogg', 25, FALSE, -1)//They won't always be able to read the message, but the sound will play regardless.
 
-	if(sleeping || stat==1) //If unconscious or sleeping
+	if (sleeping || stat==1) //If unconscious or sleeping
 		hear_sleep(message)
 		return
 
@@ -100,31 +100,31 @@
 		if (!speaker || (sdisabilities & BLIND || blinded) || !(speaker in view(src)))
 			message = stars(message)
 
-	if(!(language && (language.flags & INNATE))) // skip understanding checks for INNATE languages
-		if(!say_understands(speaker,language))
-			if(istype(speaker,/mob/living/simple_animal))
+	if (!(language && (language.flags & INNATE))) // skip understanding checks for INNATE languages
+		if (!say_understands(speaker,language))
+			if (istype(speaker,/mob/living/simple_animal))
 				var/mob/living/simple_animal/S = speaker
-				if(S.speak && S.speak.len)
+				if (S.speak && S.speak.len)
 					message = pick(S.speak)
 				else
 					return
 			else
-				if(language)
+				if (language)
 					message = language.scramble(message, src)
 				else
 					message = stars(message)
 
-		if(hard_to_hear)
+		if (hard_to_hear)
 			message = stars(message)
 
 	var/speaker_name = speaker.name
 
-	if(istype(speaker, /mob/living/carbon/human))
+	if (istype(speaker, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = speaker
-		if(H.voice)
+		if (H.voice)
 			speaker_name = H.rank_prefix_name(H.GetVoice()) // H.voice
 
-		if(H.age && H.gender)//If they have an age and gender
+		if (H.age && H.gender)//If they have an age and gender
 			var/ageAndGender
 			jobname = H.get_assignment_noid()
 			if (jobname != "N/A")
@@ -136,11 +136,11 @@
 
 			speaker_name += " \[" + "[jobname]" + "[ageAndGender]" + "]"//Print it out.
 
-	if(hard_to_hear)
+	if (hard_to_hear)
 		speaker_name = "unknown"
 
-	if(isghost(src))
-		if(speaker_name != speaker.real_name) //Announce computer and various stuff that broadcasts doesn't use it's real name but AI's can't pretend to be other mobs.
+	if (isghost(src))
+		if (speaker_name != speaker.real_name) //Announce computer and various stuff that broadcasts doesn't use it's real name but AI's can't pretend to be other mobs.
 			speaker_name = "[speaker.real_name] ([speaker_name])"
 		track = /*"[speaker_name] */"([ghost_follow_link(speaker, src)])"
 
@@ -149,8 +149,8 @@
 
 	message = "<span class = [source.span_class()]>[verb],</b> \"[message]\"</span>"
 
-	if(sdisabilities & DEAF || ear_deaf)
-		if(prob(20))
+	if (sdisabilities & DEAF || ear_deaf)
+		if (prob(20))
 			src << "<span class='warning'>You feel your radio vibrate but can hear nothing from it!</span>"
 	else
 		var/fontsize = 2
@@ -173,15 +173,15 @@
 	src << "\icon[getFlatIcon(source)] [fullmessage]"
 
 /mob/proc/hear_signlang(var/message, var/verb = "gestures", var/datum/language/language, var/mob/speaker = null)
-	if(!client)
+	if (!client)
 		return
 
-	if(say_understands(speaker, language))
+	if (say_understands(speaker, language))
 		message = "<b>[src]</b> [verb], \"[message]\""
 	else
 		message = "<b>[src]</b> [verb]."
 
-	if(status_flags & PASSEMOTES)
+	if (status_flags & PASSEMOTES)
 		for(var/obj/item/weapon/holder/H in contents)
 			H.show_message(message)
 		for(var/mob/living/M in contents)
@@ -190,14 +190,14 @@
 
 /mob/proc/hear_sleep(var/message)
 	var/heard = ""
-	if(prob(15))
+	if (prob(15))
 		var/list/punctuation = list(",", "!", ".", ";", "?")
 		var/list/messages = splittext(message, " ")
 		var/R = rand(1, messages.len)
 		var/heardword = messages[R]
-		if(copytext(heardword,1, TRUE) in punctuation)
+		if (copytext(heardword,1, TRUE) in punctuation)
 			heardword = copytext(heardword,2)
-		if(copytext(heardword,-1) in punctuation)
+		if (copytext(heardword,-1) in punctuation)
 			heardword = copytext(heardword,1,lentext(heardword))
 		heard = "<span class = 'game_say'>...You hear something about...[heardword]</span>"
 

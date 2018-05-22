@@ -49,19 +49,19 @@
 	var/z_transfer = data.z_transfer
 	var/power = data.rec_pow
 
-	if(config.use_recursive_explosions)
+	if (config.use_recursive_explosions)
 		explosion_rec(epicenter, power)
 		return
 
 	var/start = world.timeofday
 	epicenter = get_turf(epicenter)
-	if(!epicenter) return
+	if (!epicenter) return
 
 	// Handles recursive propagation of explosions.
-	if(devastation_range > 2 || heavy_impact_range > 2)
-		if(HasAbove(epicenter.z) && z_transfer & UP)
+	if (devastation_range > 2 || heavy_impact_range > 2)
+		if (HasAbove(epicenter.z) && z_transfer & UP)
 			explosion(GetAbove(epicenter), max(0, devastation_range - 2), max(0, heavy_impact_range - 2), max(0, light_impact_range - 2), max(0, flash_range - 2), FALSE, UP)
-		if(HasBelow(epicenter.z) && z_transfer & DOWN)
+		if (HasBelow(epicenter.z) && z_transfer & DOWN)
 			explosion(GetAbove(epicenter), max(0, devastation_range - 2), max(0, heavy_impact_range - 2), max(0, light_impact_range - 2), max(0, flash_range - 2), FALSE, DOWN)
 
 	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flash_range)
@@ -104,10 +104,10 @@
 			//2 = BOTH
 			//1 = shockwaves only
 			//0 = no effect
-			if(M && M.client)
+			if (M && M.client)
 				var/turf/M_turf = get_turf(M)
 
-				if(M_turf && M_turf.z == epicenter.z)
+				if (M_turf && M_turf.z == epicenter.z)
 					if (istype(M_turf,/turf/space))
 					//If the person is standing in space, they wont hear
 						//But they may still feel the shaking
@@ -124,7 +124,7 @@
 					var/dist = get_dist(M_turf, epicenter)
 					if (reception == 2 && (M.ear_deaf <= 0 || !M.ear_deaf))//Dont play sounds to deaf people
 						// If inside the blast radius + world.view - 2
-						if(dist <= closedist)
+						if (dist <= closedist)
 							M.playsound_local(epicenter, get_sfx("explosion"), min(100, volume), TRUE, frequency, falloff = 5) // get_sfx() is so that everyone gets the same sound
 							//You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
 
@@ -140,11 +140,11 @@
 						//Maximum duration is 6 seconds, and max strength is 3.5
 						//Becuse values higher than those just get really silly
 
-	if(adminlog)
+	if (adminlog)
 		message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
 		log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ")
 
-	if(heavy_impact_range > 0)
+	if (heavy_impact_range > 0)
 		var/datum/effect/system/explosion/E = new/datum/effect/system/explosion()
 		E.set_up(epicenter)
 		E.start()
@@ -156,29 +156,29 @@
 	for(var/turf/T in trange(max_range, epicenter))
 		var/dist = sqrt((T.x - x0)**2 + (T.y - y0)**2)
 
-		if(dist < devastation_range)		dist = 1
-		else if(dist < heavy_impact_range)	dist = 2
-		else if(dist < light_impact_range)	dist = 3
+		if (dist < devastation_range)		dist = 1
+		else if (dist < heavy_impact_range)	dist = 2
+		else if (dist < light_impact_range)	dist = 3
 		else								continue
 
 		T.ex_act(dist)
 		SCHECK
-		if(T && !data.objects_with_immunity.Find(T))
+		if (T && !data.objects_with_immunity.Find(T))
 			FORNEXT(T.contents)	//bypass type checking since only atom/movable can be contained by turfs anyway
 				var/atom/movable/AM = current
 				if (data.objects_with_immunity.Find(AM))
 					continue
-				if(AM && AM.simulated)	AM.ex_act(dist)
+				if (AM && AM.simulated)	AM.ex_act(dist)
 				SCHECK
 
 	var/took = (world.timeofday-start)/10
 	//You need to press the DebugGame verb to see these now....they were getting annoying and we've collected a fair bit of data. Just -test- changes  to explosion code using this please so we can compare
-	if(Debug2)	world.log << "## DEBUG: Explosion([x0],[y0],[z0])(d[devastation_range],h[heavy_impact_range],l[light_impact_range]): Took [took] seconds."
+	if (Debug2)	world.log << "## DEBUG: Explosion([x0],[y0],[z0])(d[devastation_range],h[heavy_impact_range],l[light_impact_range]): Took [took] seconds."
 
 /process/explosion/proc/explosion_rec(turf/epicenter, power)
-	if(power <= 0) return
+	if (power <= 0) return
 	epicenter = get_turf(epicenter)
-	if(!epicenter) return
+	if (!epicenter) return
 
 	message_admins("Explosion with size ([power]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z])")
 	log_game("Explosion with size ([power]) in area [epicenter.loc.name] ")
@@ -200,8 +200,8 @@
 	//This step applies the ex_act effects for the explosion, as planned in the previous step.
 	FORNEXT(explosion_turfs)
 		var/turf/T = current
-		if(explosion_turfs[T] <= 0) continue
-		if(!T) continue
+		if (explosion_turfs[T] <= 0) continue
+		if (!T) continue
 
 		//Wow severity looks confusing to calculate... Fret not, I didn't leave you with any additional instructions or help. (just kidding, see the line under the calculation)
 		var/severity = 4 - round(max(min( 3, ((explosion_turfs[T] - T.explosion_resistance) / (max(3,(power/3)))) ) ,1), TRUE)								//sanity			effective power on tile				divided by either 3 or one third the total explosion power
@@ -211,7 +211,7 @@
 		var/y = T.y
 		var/z = T.z
 		T.ex_act(severity)
-		if(!T)
+		if (!T)
 			T = locate(x,y,z)
 		FORNEXT(T.contents)
 			var/atom/movable/AM = current
@@ -222,17 +222,17 @@
 
 /process/explosion/proc/explosion_spread(turf/s, power, direction)
 	SCHECK
-	if(power <= 0)
+	if (power <= 0)
 		return
 
-	if(explosion_turfs[s] >= power)
+	if (explosion_turfs[s] >= power)
 		return //The turf already sustained and spread a power greated than what we are dealing with. No point spreading again.
 	explosion_turfs[s] = power
 
 	var/spread_power = power - s.explosion_resistance //This is the amount of power that will be spread to the tile in the direction of the blast
 
 	for(var/obj/O in s)
-		if(O.explosion_resistance)
+		if (O.explosion_resistance)
 			spread_power -= O.explosion_resistance
 
 	var/turf/T = get_step(s, direction)

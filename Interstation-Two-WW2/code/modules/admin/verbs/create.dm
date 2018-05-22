@@ -2,10 +2,10 @@
 	set name = "Create Custom Crate"
 	set category = "Admin"
 
-	if(!check_rights(R_MOD))
+	if (!check_rights(R_MOD))
 		return
 
-	if(!mob || !mob.loc)
+	if (!mob || !mob.loc)
 		src << "<span class = 'red'>You can't create a crate here.</span>"
 		return
 

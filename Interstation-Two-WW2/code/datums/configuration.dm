@@ -238,7 +238,7 @@ var/list/gamemode_cache = list()
 		var/datum/game_mode/M = new T()
 		if (M.config_tag)
 			gamemode_cache[M.config_tag] = M // So we don't instantiate them repeatedly.
-			if(!(M.config_tag in modes))		// ensure each mode is added only once
+			if (!(M.config_tag in modes))		// ensure each mode is added only once
 				log_misc("Adding game mode [M.name] ([M.config_tag]) to configuration.")
 				modes += M.config_tag
 				mode_names[M.config_tag] = M.name
@@ -252,7 +252,7 @@ var/list/gamemode_cache = list()
 	var/list/Lines = file2list(filename)
 
 	for(var/t in Lines)
-		if(!t)	continue
+		if (!t)	continue
 
 		t = trim(t)
 		if (length(t) == 0)
@@ -273,7 +273,7 @@ var/list/gamemode_cache = list()
 		if (!name)
 			continue
 
-		if(type == "config")
+		if (type == "config")
 			switch (name)
 
 				if ("no_respawn_delays")
@@ -407,7 +407,7 @@ var/list/gamemode_cache = list()
 				if ("no_click_cooldown")
 					config.no_click_cooldown = TRUE
 
-				if("allow_admin_ooccolor")
+				if ("allow_admin_ooccolor")
 					config.allow_admin_ooccolor = TRUE
 
 				if ("allow_vote_restart")
@@ -419,7 +419,7 @@ var/list/gamemode_cache = list()
 				if ("allow_admin_jump")
 					config.allow_admin_jump = TRUE
 
-				if("allow_admin_rev")
+				if ("allow_admin_rev")
 					config.allow_admin_rev = TRUE
 
 				if ("allow_admin_spawning")
@@ -440,7 +440,7 @@ var/list/gamemode_cache = list()
 				if ("vote_autogamemode_timeleft")
 					config.vote_autogamemode_timeleft = text2num(value)
 
-				if("ert_admin_only")
+				if ("ert_admin_only")
 					config.ert_admin_call_only = TRUE
 
 				if ("allow_ai")
@@ -535,7 +535,7 @@ var/list/gamemode_cache = list()
 				if ("objectives_disabled")
 					config.objectives_disabled = TRUE
 
-				if("protect_roles_from_antagonist")
+				if ("protect_roles_from_antagonist")
 					config.protect_roles_from_antagonist = TRUE
 
 				if ("probability")
@@ -553,84 +553,84 @@ var/list/gamemode_cache = list()
 					else
 						log_misc("Incorrect probability configuration definition: [prob_name]  [prob_value].")
 
-				if("kick_inactive")
+				if ("kick_inactive")
 					config.kick_inactive = text2num(value)
 
-				if("show_mods")
+				if ("show_mods")
 					config.show_mods = TRUE
 
-				if("show_mentors")
+				if ("show_mentors")
 					config.show_mentors = TRUE
 
-				if("mods_can_tempban")
+				if ("mods_can_tempban")
 					config.mods_can_tempban = TRUE
 
-				if("mods_can_job_tempban")
+				if ("mods_can_job_tempban")
 					config.mods_can_job_tempban = TRUE
 
-				if("mod_tempban_max")
+				if ("mod_tempban_max")
 					config.mod_tempban_max = text2num(value)
 
-				if("mod_job_tempban_max")
+				if ("mod_job_tempban_max")
 					config.mod_job_tempban_max = text2num(value)
 
-				if("popup_admin_pm")
+				if ("popup_admin_pm")
 					config.popup_admin_pm = TRUE
 
-				if("ticklag")
+				if ("ticklag")
 					Ticklag = text2num(value)
 
-				if("allow_antag_hud")
+				if ("allow_antag_hud")
 					config.antag_hud_allowed = TRUE
 
-				if("antag_hud_restricted")
+				if ("antag_hud_restricted")
 					config.antag_hud_restricted = TRUE
 
-				if("tickcomp")
+				if ("tickcomp")
 					Tickcomp = TRUE
 
-				if("humans_need_surnames")
+				if ("humans_need_surnames")
 					humans_need_surnames = TRUE
 
-				if("tor_ban")
+				if ("tor_ban")
 					ToRban = TRUE
 
-				if("automute_on")
+				if ("automute_on")
 					automute_on = TRUE
 
-				if("continuous_rounds")
+				if ("continuous_rounds")
 					config.continous_rounds = TRUE
 
-				if("ghost_interaction")
+				if ("ghost_interaction")
 					config.ghost_interaction = TRUE
 
-				if("disable_player_mice")
+				if ("disable_player_mice")
 					config.disable_player_mice = TRUE
 
-				if("uneducated_mice")
+				if ("uneducated_mice")
 					config.uneducated_mice = TRUE
 
-				if("character_slots")
+				if ("character_slots")
 					config.character_slots = text2num(value)
 
-				if("station_levels")
+				if ("station_levels")
 					config.station_levels = text2numlist(value, ";")
 
-				if("admin_levels")
+				if ("admin_levels")
 					config.admin_levels = text2numlist(value, ";")
 
-				if("contact_levels")
+				if ("contact_levels")
 					config.contact_levels = text2numlist(value, ";")
 
-				if("player_levels")
+				if ("player_levels")
 					config.player_levels = text2numlist(value, ";")
 
-				if("allow_extra_antags")
+				if ("allow_extra_antags")
 					config.allow_extra_antags = TRUE
 
-				if("default_language_prefixes")
+				if ("default_language_prefixes")
 					var/list/values = splittext(value, " ")
-					if(values.len > 0)
+					if (values.len > 0)
 						language_prefixes = values
 
 				if ("lobby_screens")
@@ -690,59 +690,59 @@ var/list/gamemode_cache = list()
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
 
-		else if(type == "game_options")
-			if(!value)
+		else if (type == "game_options")
+			if (!value)
 				log_misc("Unknown value for setting [name] in [filename].")
 			value = text2num(value)
 
 			switch(name)
-				if("health_threshold_crit")
+				if ("health_threshold_crit")
 					config.health_threshold_crit = value
-				if("health_threshold_softcrit")
+				if ("health_threshold_softcrit")
 					config.health_threshold_softcrit = value
-				if("health_threshold_dead")
+				if ("health_threshold_dead")
 					config.health_threshold_dead = value
-				if("organ_health_multiplier")
+				if ("organ_health_multiplier")
 					config.organ_health_multiplier = value / 100
-				if("organ_regeneration_multiplier")
+				if ("organ_regeneration_multiplier")
 					config.organ_regeneration_multiplier = value / 100
-				if("organ_damage_spillover_multiplier")
+				if ("organ_damage_spillover_multiplier")
 					config.organ_damage_spillover_multiplier = value / 100
-				if("organs_can_decay")
+				if ("organs_can_decay")
 					config.organs_decay = TRUE
-				if("default_brain_health")
+				if ("default_brain_health")
 					config.default_brain_health = text2num(value)
-					if(!config.default_brain_health || config.default_brain_health < 1.0)
+					if (!config.default_brain_health || config.default_brain_health < 1.0)
 						config.default_brain_health = initial(config.default_brain_health)
-				if("bones_can_break")
+				if ("bones_can_break")
 					config.bones_can_break = value
-				if("limbs_can_break")
+				if ("limbs_can_break")
 					config.limbs_can_break = value
 
-				if("run_speed")
+				if ("run_speed")
 					config.run_speed = text2num(value)
 
-				if("walk_speed")
+				if ("walk_speed")
 					config.walk_speed = text2num(value)
 
-				if("human_delay")
+				if ("human_delay")
 					config.human_delay = value
-				if("robot_delay")
+				if ("robot_delay")
 					config.robot_delay = value
-				if("monkey_delay")
+				if ("monkey_delay")
 					config.monkey_delay = value
-				if("alien_delay")
+				if ("alien_delay")
 					config.alien_delay = value
-				if("slime_delay")
+				if ("slime_delay")
 					config.slime_delay = value
-				if("animal_delay")
+				if ("animal_delay")
 					config.animal_delay = value
 				else
 					log_misc("Unknown setting in game_options configuration: '[name]'")
 
 		else if (type == "hub")
 
-			if(!value)
+			if (!value)
 				log_misc("Unknown value for setting [name] in [filename].")
 
 			switch (name)
@@ -763,7 +763,7 @@ var/list/gamemode_cache = list()
 
 		else if (type == "game_schedule")
 
-			if(!value)
+			if (!value)
 				log_misc("Unknown value for setting [name] in [filename].")
 			value = text2num(value)
 
@@ -802,7 +802,7 @@ var/list/gamemode_cache = list()
 /datum/configuration/proc/loadsql(filename)  // -- TLE
 	var/list/Lines = file2list(filename)
 	for(var/t in Lines)
-		if(!t)	continue
+		if (!t)	continue
 
 		t = trim(t)
 		if (length(t) == 0)
@@ -848,7 +848,7 @@ var/list/gamemode_cache = list()
 /datum/configuration/proc/loadforumsql(filename)  // -- TLE
 	var/list/Lines = file2list(filename)
 	for(var/t in Lines)
-		if(!t)	continue
+		if (!t)	continue
 
 		t = trim(t)
 		if (length(t) == 0)
@@ -900,7 +900,7 @@ var/list/gamemode_cache = list()
 	var/list/runnable_modes = list()
 	for(var/game_mode in gamemode_cache)
 		var/datum/game_mode/M = gamemode_cache[game_mode]
-		if(M && M.can_start() && !isnull(config.probabilities[M.config_tag]) && config.probabilities[M.config_tag] > 0)
+		if (M && M.can_start() && !isnull(config.probabilities[M.config_tag]) && config.probabilities[M.config_tag] > 0)
 			runnable_modes |= M
 	return runnable_modes
 */
@@ -909,7 +909,7 @@ var/list/gamemode_cache = list()
 	//apply a default value to config.python_path, if needed
 	/*
 	if (!config.python_path)
-		if(world.system_type == UNIX)
+		if (world.system_type == UNIX)
 			config.python_path = "/usr/bin/env python2"
 		else //probably windows, if not this should work anyway
 			config.python_path = "python"

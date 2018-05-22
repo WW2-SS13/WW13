@@ -18,7 +18,7 @@ LINEN BINS
 
 /obj/item/weapon/bedsheet/attack_self(mob/user as mob)
 	user.drop_item()
-	if(layer == initial(layer))
+	if (layer == initial(layer))
 		layer = MOB_LAYER + 0.1
 	else
 		layer = initial(layer)
@@ -26,9 +26,9 @@ LINEN BINS
 	return
 
 /obj/item/weapon/bedsheet/attackby(obj/item/I, mob/user)
-	if(is_sharp(I))
+	if (is_sharp(I))
 		user.visible_message("<span class='notice'>\The [user] begins cutting up \the [src] with \a [I].</span>", "<span class='notice'>You begin cutting up \the [src] with \the [I].</span>")
-		if(do_after(user, 50, src))
+		if (do_after(user, 50, src))
 			user << "<span class='notice'>You cut \the [src] into pieces!</span>"
 			for(var/i in TRUE to rand(2,5))
 				new /obj/item/weapon/reagent_containers/glass/rag(get_turf(src))
@@ -99,10 +99,10 @@ LINEN BINS
 /obj/structure/bedsheetbin/examine(mob/user)
 	..(user)
 
-	if(amount < 1)
+	if (amount < 1)
 		user << "There are no bed sheets in the bin."
 		return
-	if(amount == TRUE)
+	if (amount == TRUE)
 		user << "There is one bed sheet in the bin."
 		return
 	user << "There are [amount] bed sheets in the bin."
@@ -110,30 +110,30 @@ LINEN BINS
 
 /obj/structure/bedsheetbin/update_icon()
 	switch(amount)
-		if(0)				icon_state = "linenbin-empty"
-		if(1 to amount / 2)	icon_state = "linenbin-half"
+		if (0)				icon_state = "linenbin-empty"
+		if (1 to amount / 2)	icon_state = "linenbin-half"
 		else				icon_state = "linenbin-full"
 
 
 /obj/structure/bedsheetbin/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/weapon/bedsheet))
+	if (istype(I, /obj/item/weapon/bedsheet))
 		user.drop_item()
 		I.loc = src
 		sheets.Add(I)
 		amount++
 		user << "<span class='notice'>You put [I] in [src].</span>"
-	else if(amount && !hidden && I.w_class < 4)	//make sure there's sheets to hide it among, make sure nothing else is hidden in there.
+	else if (amount && !hidden && I.w_class < 4)	//make sure there's sheets to hide it among, make sure nothing else is hidden in there.
 		user.drop_item()
 		I.loc = src
 		hidden = I
 		user << "<span class='notice'>You hide [I] among the sheets.</span>"
 
 /obj/structure/bedsheetbin/attack_hand(mob/user as mob)
-	if(amount >= 1)
+	if (amount >= 1)
 		amount--
 
 		var/obj/item/weapon/bedsheet/B
-		if(sheets.len > 0)
+		if (sheets.len > 0)
 			B = sheets[sheets.len]
 			sheets.Remove(B)
 
@@ -144,7 +144,7 @@ LINEN BINS
 		user.put_in_hands(B)
 		user << "<span class='notice'>You take [B] out of [src].</span>"
 
-		if(hidden)
+		if (hidden)
 			hidden.loc = user.loc
 			user << "<span class='notice'>[hidden] falls out of [B]!</span>"
 			hidden = null
@@ -153,11 +153,11 @@ LINEN BINS
 	add_fingerprint(user)
 /*
 /obj/structure/bedsheetbin/attack_tk(mob/user as mob)
-	if(amount >= 1)
+	if (amount >= 1)
 		amount--
 
 		var/obj/item/weapon/bedsheet/B
-		if(sheets.len > 0)
+		if (sheets.len > 0)
 			B = sheets[sheets.len]
 			sheets.Remove(B)
 
@@ -168,7 +168,7 @@ LINEN BINS
 		user << "<span class='notice'>You telekinetically remove [B] from [src].</span>"
 		update_icon()
 
-		if(hidden)
+		if (hidden)
 			hidden.loc = loc
 			hidden = null
 

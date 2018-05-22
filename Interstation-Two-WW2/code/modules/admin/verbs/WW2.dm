@@ -125,7 +125,7 @@
 	set category = "Special"
 	set name = "Reset Roundstart Autobalance"
 
-	if(!check_rights(R_HOST))
+	if (!check_rights(R_HOST))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 
@@ -246,7 +246,7 @@
 	else if (private)
 		public = "No"
 
-	if(public == "Yes")
+	if (public == "Yes")
 		if (!shower || (input(shower, "Are you sure you want to show the battle report? Unless the Battle Controller Process died, it will happen automatically!", "Battle Report") in list ("Yes", "No")) == "Yes")
 			world << "<font size=4>Battle status report:</font>"
 
@@ -470,7 +470,7 @@ var/soviets_toggled = TRUE
 	set name = "Toggle Factions"
 	set category = "Special"
 
-	if(!check_rights(R_ADMIN))
+	if (!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 
@@ -525,7 +525,7 @@ var/paratroopers_forceEnabled = FALSE
 	set name = "Forcibly Enable Faction"
 	set category = "Special"
 
-	if(!check_rights(R_ADMIN))
+	if (!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 

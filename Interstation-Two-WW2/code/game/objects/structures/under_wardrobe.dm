@@ -6,7 +6,7 @@
 	density = TRUE
 
 /obj/structure/undies_wardrobe/attack_hand(var/mob/user)
-	if(!human_who_can_use_underwear(user))
+	if (!human_who_can_use_underwear(user))
 		user << "<span class='warning'>Sadly there's nothing in here for you to wear.</span>"
 		return
 	interact(user)
@@ -22,33 +22,33 @@
 	H << browse(jointext(dat, ""), "window=wardrobe;size=400x200")
 
 /obj/structure/undies_wardrobe/proc/human_who_can_use_underwear(var/mob/living/carbon/human/H)
-	if(!istype(H) || !H.species || !(H.species.appearance_flags & HAS_UNDERWEAR))
+	if (!istype(H) || !H.species || !(H.species.appearance_flags & HAS_UNDERWEAR))
 		return FALSE
 	return TRUE
 
 /obj/structure/undies_wardrobe/CanUseTopic(var/user)
-	if(!human_who_can_use_underwear(user))
+	if (!human_who_can_use_underwear(user))
 		return STATUS_CLOSE
 
 	return ..()
 
 /obj/structure/undies_wardrobe/Topic(href, href_list, state)
-	if(..())
+	if (..())
 		return TRUE
 
 	var/mob/living/carbon/human/H = usr
-	if(href_list["remove_underwear"])
-		if(href_list["remove_underwear"] in H.all_underwear)
+	if (href_list["remove_underwear"])
+		if (href_list["remove_underwear"] in H.all_underwear)
 			H.all_underwear -= href_list["remove_underwear"]
 			. = TRUE
-	else if(href_list["change_underwear"])
+	else if (href_list["change_underwear"])
 		var/datum/category_group/underwear/UWC = global_underwear.categories_by_name[href_list["change_underwear"]]
-		if(!UWC)
+		if (!UWC)
 			return
 		var/datum/category_item/underwear/selected_underwear = input(H, "Choose underwear:", "Choose underwear", H.all_underwear[UWC.name]) as null|anything in UWC.items
-		if(selected_underwear && CanUseTopic(H, default_state))
+		if (selected_underwear && CanUseTopic(H, default_state))
 			H.all_underwear[UWC.name] = selected_underwear
 			. = TRUE
-	if(.)
+	if (.)
 		H.update_body(1)
 		interact(H)

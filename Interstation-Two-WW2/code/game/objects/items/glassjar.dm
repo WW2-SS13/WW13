@@ -14,14 +14,14 @@
 	update_icon()
 
 /obj/item/glass_jar/afterattack(var/atom/A, var/mob/user, var/proximity)
-	if(!proximity || contains)
+	if (!proximity || contains)
 		return
-	if(istype(A, /mob))
+	if (istype(A, /mob))
 		var/accept = FALSE
 		for(var/D in accept_mobs)
-			if(istype(A, D))
+			if (istype(A, D))
 				accept = TRUE
-		if(!accept)
+		if (!accept)
 			user << "[A] doesn't fit into \the [src]."
 			return
 		var/mob/L = A
@@ -33,14 +33,14 @@
 
 /obj/item/glass_jar/attack_self(var/mob/user)
 	switch(contains)
-		if(1)
+		if (1)
 			for(var/obj/O in src)
 				O.loc = user.loc
 			user << "<span class='notice'>You take money out of \the [src].</span>"
 			contains = FALSE
 			update_icon()
 			return
-		if(2)
+		if (2)
 			for(var/mob/M in src)
 				M.loc = user.loc
 				user.visible_message("<span class='notice'>[user] releases [M] from \the [src].</span>", "<span class='notice'>You release [M] from \the [src].</span>")
@@ -50,10 +50,10 @@
 
 /obj/item/glass_jar/attackby(var/obj/item/W, var/mob/user)
 	/*
-	if(istype(W, /obj/item/weapon/spacecash))
-		if(contains == FALSE)
+	if (istype(W, /obj/item/weapon/spacecash))
+		if (contains == FALSE)
 			contains = TRUE
-		if(contains != TRUE)
+		if (contains != TRUE)
 			return
 		var/obj/item/weapon/spacecash/S = W
 		user.visible_message("<span class='notice'>[user] puts [S.worth] [S.worth > 1 ? "thalers" : "thaler"] into \the [src].</span>")
@@ -66,10 +66,10 @@
 	underlays.Cut()
 	overlays.Cut()
 	switch(contains)
-		if(0)
+		if (0)
 			name = initial(name)
 			desc = initial(desc)
-		if(1)
+		if (1)
 			name = "tip jar"
 			desc = "A small jar with money inside."
 		/*	for(var/obj/item/weapon/spacecash/S in src)
@@ -78,7 +78,7 @@
 				money.pixel_y = rand(-6, 6)
 				money.transform *= 0.6
 				underlays += money*/
-		if(2)
+		if (2)
 			for(var/mob/M in src)
 				var/image/victim = image(M.icon, M.icon_state)
 				victim.pixel_y = 6

@@ -32,27 +32,27 @@
 		if (H.stopDumbDamage)
 			return
 #ifdef USE_OPENSPACE
-	if(istype(mover, /mob/shadow))
+	if (istype(mover, /mob/shadow))
 		return
 #endif USE_OPENSPACE
 	// only fall down in defined areas (read: areas with artificial gravitiy)
-	if(!istype(below)) //make sure that there is actually something below
+	if (!istype(below)) //make sure that there is actually something below
 		below = GetBelow(src)
-		if(!below)
+		if (!below)
 			return
 /*
-	if(istype(mover, /mob/living/bot/floorbot) && locate(/obj/structure/lattice) in src)
+	if (istype(mover, /mob/living/bot/floorbot) && locate(/obj/structure/lattice) in src)
 		return  // This will prevent floorbot from falling on open space turfs with support
 */
 	// No gravit, No fall.
-	if(!has_gravity(src))
+	if (!has_gravity(src))
 		return
 
-	if(locate(/obj/structure/catwalk) in src)
+	if (locate(/obj/structure/catwalk) in src)
 		return
 
 	// Prevent pipes from falling into the void... if there is a pipe to support it.
-	/*if(mover.anchored || istype(mover, /obj/item/pipe) && \
+	/*if (mover.anchored || istype(mover, /obj/item/pipe) && \
 		(locate(/obj/structure/disposalpipe/up) in below) || \
 		 locate(/obj/machinery/atmospherics/pipe/zpipe/up in below))
 		return
@@ -60,30 +60,30 @@
 	// See if something prevents us from falling.
 	var/soft = FALSE
 	for(var/atom/A in below)
-		if(A.density)
-			if(!istype(A, /obj/structure/window))
+		if (A.density)
+			if (!istype(A, /obj/structure/window))
 				return
 			else
 				var/obj/structure/window/W = A
-				if(W.is_fulltile())
+				if (W.is_fulltile())
 					return
 		// Dont break here, since we still need to be sure that it isnt blocked
-		if(istype(A, /obj/structure/stairs))
+		if (istype(A, /obj/structure/stairs))
 			soft = TRUE
 
 	// We've made sure we can move, now.
 	mover.Move(below)
 
-	if(!soft)
+	if (!soft)
 
-		if(!isliving(mover))
-			if(istype(below, /turf/open))
+		if (!isliving(mover))
+			if (istype(below, /turf/open))
 				mover.visible_message("\The [mover] falls from the deck above through \the [below]!", "You hear a whoosh of displaced air.")
 			else
 				mover.visible_message("\The [mover] falls from the deck above and slams into \the [below]!", "You hear something slam into the deck.")
 		else
 			var/mob/M = mover
-			if(istype(below, /turf/open))
+			if (istype(below, /turf/open))
 				below.visible_message("\The [mover] falls from the deck above through \the [below]!", "You hear a soft whoosh.[M.stat ? "" : ".. and some screaming."]")
 			else
 				M.visible_message("\The [mover] falls from the deck above and slams into \the [below]!", "You land on \the [below].", "You hear a soft whoosh and a crunch")
@@ -111,7 +111,7 @@
 /turf/open/attackby(obj/item/C as obj, mob/user as mob)
 	if (istype(C, /obj/item/stack/rods))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-		if(L)
+		if (L)
 			return
 		var/obj/item/stack/rods/R = C
 		if (R.use(1))
@@ -122,7 +122,7 @@
 
 	if (istype(C, /obj/item/stack/tile/floor))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-		if(L)
+		if (L)
 			var/obj/item/stack/tile/floor/S = C
 			if (S.get_amount() < 1)
 				return
@@ -136,11 +136,11 @@
 	return
 
 /turf/open/attack_hand(mob/user)//Climbing down.
-	if(!istype(below)) //make sure that there is actually something below
+	if (!istype(below)) //make sure that there is actually something below
 		below = GetBelow(src)
-		if(!below)
+		if (!below)
 			return
-	if(user.resting)//Can't climb down if you're lying down.
+	if (user.resting)//Can't climb down if you're lying down.
 		return
 
 	playsound(user.loc, 'sound/effects/climb.ogg', 50, TRUE)

@@ -22,7 +22,7 @@
 	update_icon()
 
 /obj/item/flashlight/update_icon()
-	if(on)
+	if (on)
 		icon_state = on_state
 		set_light(brightness_on)
 	else
@@ -30,7 +30,7 @@
 		set_light(0)
 
 /obj/item/flashlight/attack_self(mob/user)
-	if(!isturf(user.loc))
+	if (!isturf(user.loc))
 		user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
 		return FALSE
 	on = !on
@@ -42,44 +42,44 @@
 
 /obj/item/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	add_fingerprint(user)
-	if(on && user.targeted_organ == "eyes")
+	if (on && user.targeted_organ == "eyes")
 
-		if((CLUMSY in user.mutations) && prob(50))	//too dumb to use flashlight properly
+		if ((CLUMSY in user.mutations) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
-		if(istype(H))
+		if (istype(H))
 			for(var/obj/item/clothing/C in list(H.head,H.wear_mask,H.glasses))
-				if(istype(C) && (C.body_parts_covered & EYES))
+				if (istype(C) && (C.body_parts_covered & EYES))
 					user << "<span class='warning'>You're going to need to remove [C.name] first.</span>"
 					return
 
 			var/obj/item/organ/vision
-			if(H.species.vision_organ)
+			if (H.species.vision_organ)
 				vision = H.internal_organs_by_name[H.species.vision_organ]
-			if(!vision)
+			if (!vision)
 				user << "<span class='warning'>You can't find any [H.species.vision_organ ? H.species.vision_organ : "eyes"] on [H]!</span>"
 
 			user.visible_message("<span class='notice'>\The [user] directs [src] to [M]'s eyes.</span>", \
 							 	 "<span class='notice'>You direct [src] to [M]'s eyes.</span>")
-			if(H == user)	//can't look into your own eyes buster
-				if(M.stat == DEAD || M.blinded)	//mob is dead or fully blind
+			if (H == user)	//can't look into your own eyes buster
+				if (M.stat == DEAD || M.blinded)	//mob is dead or fully blind
 					user << "<span class='warning'>\The [M]'s pupils do not react to the light!</span>"
 					return
-				if(XRAY in M.mutations)
+				if (XRAY in M.mutations)
 					user << "<span class='notice'>\The [M] pupils give an eerie glow!</span>"
-				if(vision.damage)
+				if (vision.damage)
 					user << "<span class='warning'>There's visible damage to [M]'s [vision.name]!</span>"
-				else if(M.eye_blurry)
+				else if (M.eye_blurry)
 					user << "<span class='notice'>\The [M]'s pupils react slower than normally.</span>"
-				if(M.getBrainLoss() > 15)
+				if (M.getBrainLoss() > 15)
 					user << "<span class='notice'>There's visible lag between left and right pupils' reactions.</span>"
 
 				var/list/pinpoint = list("oxycodone"=1,"tramadol"=5)
 				var/list/dilating = list("space_drugs"=5,"mindbreaker"=1)
-				if(M.reagents.has_any_reagent(pinpoint) || H.ingested.has_any_reagent(pinpoint))
+				if (M.reagents.has_any_reagent(pinpoint) || H.ingested.has_any_reagent(pinpoint))
 					user << "<span class='notice'>\The [M]'s pupils are already pinpoint and cannot narrow any more.</span>"
-				else if(M.reagents.has_any_reagent(dilating) || H.ingested.has_any_reagent(dilating))
+				else if (M.reagents.has_any_reagent(dilating) || H.ingested.has_any_reagent(dilating))
 					user << "<span class='notice'>\The [M]'s pupils narrow slightly, but are still very dilated.</span>"
 				else
 					user << "<span class='notice'>\The [M]'s pupils narrow.</span>"
@@ -126,7 +126,7 @@
 	set category = null
 	set src in oview(1)
 
-	if(!usr.stat)
+	if (!usr.stat)
 		attack_self(usr)
 
 // FLARES
@@ -160,12 +160,12 @@
 
 /obj/item/flashlight/flare/process()
 	var/turf/pos = get_turf(src)
-	if(pos)
+	if (pos)
 		pos.hotspot_expose(produce_heat, 5)
 	fuel = max(fuel - 1, FALSE)
-	if(!fuel || !on)
+	if (!fuel || !on)
 		turn_off()
-		if(!fuel)
+		if (!fuel)
 			icon_state = "[initial(icon_state)]-empty"
 		processing_objects -= src
 
@@ -176,15 +176,15 @@
 	update_icon()
 
 /obj/item/flashlight/flare/attack_self(mob/user)
-	if(turn_on(user))
+	if (turn_on(user))
 		playsound(loc, turn_on_sound, 75, TRUE)
 		user.visible_message("<span class='notice'>\The [user] activates \the [src].</span>", "<span class='notice'>You pull the cord on the flare, activating it!</span>")
 
 /obj/item/flashlight/flare/proc/turn_on(var/mob/user)
-	if(on)
+	if (on)
 		return FALSE
-	if(!fuel)
-		if(user)
+	if (!fuel)
+		if (user)
 			user << "<span class='notice'>It's out of fuel.</span>"
 		return FALSE
 	on = TRUE
@@ -213,7 +213,7 @@
 
 /obj/item/flashlight/glowstick/process()
 	fuel = max(fuel - 1, FALSE)
-	if(!fuel)
+	if (!fuel)
 		turn_off()
 		processing_objects -= src
 		update_icon()
@@ -225,7 +225,7 @@
 /obj/item/flashlight/glowstick/update_icon()
 	item_state = "glowstick"
 	overlays.Cut()
-	if(!fuel)
+	if (!fuel)
 		icon_state = "glowstick-empty"
 		set_light(0)
 	else if (on)
@@ -237,23 +237,23 @@
 	else
 		icon_state = "glowstick"
 	var/mob/M = loc
-	if(istype(M))
-		if(M.l_hand == src)
+	if (istype(M))
+		if (M.l_hand == src)
 			M.update_inv_l_hand()
-		if(M.r_hand == src)
+		if (M.r_hand == src)
 			M.update_inv_r_hand()
 
 /obj/item/flashlight/glowstick/attack_self(mob/user)
 
-	if(!fuel)
+	if (!fuel)
 		user << "<span class='notice'>The [src] is spent.</span>"
 		return
-	if(on)
+	if (on)
 		user << "<span class='notice'>The [src] is already lit.</span>"
 		return
 
 	. = ..()
-	if(.)
+	if (.)
 		user.visible_message("<span class='notice'>[user] cracks and shakes the glowstick.</span>", "<span class='notice'>You crack and shake the glowstick, turning it on!</span>")
 		processing_objects += src
 

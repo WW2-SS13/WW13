@@ -1,27 +1,27 @@
 /obj/item/clothing/proc/can_attach_accessory(obj/item/clothing/accessory/A)
-	if(valid_accessory_slots && istype(A) && (A.slot in valid_accessory_slots))
+	if (valid_accessory_slots && istype(A) && (A.slot in valid_accessory_slots))
 		.=1
 	else
 		return FALSE
-	if(accessories.len && restricted_accessory_slots && (A.slot in restricted_accessory_slots))
+	if (accessories.len && restricted_accessory_slots && (A.slot in restricted_accessory_slots))
 		for(var/obj/item/clothing/accessory/AC in accessories)
 			if (AC.slot == A.slot)
 				return FALSE
 
 /obj/item/clothing/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/clothing/accessory))
+	if (istype(I, /obj/item/clothing/accessory))
 
-		if(!valid_accessory_slots || !valid_accessory_slots.len)
+		if (!valid_accessory_slots || !valid_accessory_slots.len)
 			usr << "<span class='warning'>You cannot attach accessories of any kind to \the [src].</span>"
 			return
 
 		var/obj/item/clothing/accessory/A = I
-		if(can_attach_accessory(A))
+		if (can_attach_accessory(A))
 			user.drop_item()
 			accessories += A
 			A.on_attached(src, user)
 			verbs |= /obj/item/clothing/proc/removetie_verb
-			if(istype(loc, /mob/living/carbon/human))
+			if (istype(loc, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = loc
 				H.update_inv_w_uniform()
 			return
@@ -29,7 +29,7 @@
 			user << "<span class='warning'>You cannot attach more accessories of this type to [src].</span>"
 		return
 
-	if(accessories.len)
+	if (accessories.len)
 		for(var/obj/item/clothing/accessory/A in accessories)
 			A.attackby(I, user)
 		return
@@ -38,7 +38,7 @@
 
 /obj/item/clothing/attack_hand(var/mob/user)
 	//only forward to the attached accessory if the clothing is equipped (not in a storage)
-	if(accessories.len && loc == user)
+	if (accessories.len && loc == user)
 		for(var/obj/item/clothing/accessory/A in accessories)
 			A.attack_hand(user)
 		return
@@ -58,20 +58,20 @@
 		if (istype(over_object, /obj/screen/inventory/hand))
 			var/obj/screen/inventory/hand/H = over_object
 			switch(H.slot_id)
-				if(slot_r_hand)
+				if (slot_r_hand)
 					usr.put_in_r_hand(src)
-				if(slot_l_hand)
+				if (slot_l_hand)
 					usr.put_in_l_hand(src)
 		add_fingerprint(usr)
 
 /obj/item/clothing/examine(var/mob/user)
 	..(user)
-	if(accessories.len)
+	if (accessories.len)
 		for(var/obj/item/clothing/accessory/A in accessories)
 			user << "\A [A] is attached to it."
 
 /obj/item/clothing/proc/remove_accessory(mob/user, obj/item/clothing/accessory/A)
-	if(!(A in accessories))
+	if (!(A in accessories))
 		return
 
 	A.on_removed(user)
@@ -82,20 +82,20 @@
 	set name = "Remove Accessory"
 	set category = null
 	set src in usr
-	if(!istype(usr, /mob/living)) return
-	if(usr.stat) return
-	if(!accessories.len) return
+	if (!istype(usr, /mob/living)) return
+	if (usr.stat) return
+	if (!accessories.len) return
 	var/obj/item/clothing/accessory/A
-	if(accessories.len > 1)
+	if (accessories.len > 1)
 		A = input("Select an accessory to remove from [src]") as null|anything in accessories
 	else
 		A = accessories[1]
 	remove_accessory(usr,A)
-	if(!accessories.len)
+	if (!accessories.len)
 		verbs -= /obj/item/clothing/proc/removetie_verb
 
 /obj/item/clothing/emp_act(severity)
-	if(accessories.len)
+	if (accessories.len)
 		for(var/obj/item/clothing/accessory/A in accessories)
 			A.emp_act(severity)
 	..()

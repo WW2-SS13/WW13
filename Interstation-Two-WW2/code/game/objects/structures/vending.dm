@@ -21,7 +21,7 @@
 
 	product_path = path
 
-	if(!name)
+	if (!name)
 		var/atom/tmp = path
 		product_name = initial(tmp.name)
 	else
@@ -35,7 +35,7 @@
 
 /datum/data/vending_product/Destroy()
 	vending_machine = null
-	if(instances)
+	if (instances)
 		for(var/product in instances)
 			qdel(product)
 		instances.Cut()
@@ -45,14 +45,14 @@
 	return instances ? instances.len : amount
 
 /datum/data/vending_product/proc/add_product(var/atom/movable/product)
-	if(product.type != product_path)
+	if (product.type != product_path)
 		return FALSE
 	init_products()
 	product.forceMove(vending_machine)
 	instances += product
 
 /datum/data/vending_product/proc/get_product(var/product_location)
-	if(!get_amount() || !product_location)
+	if (!get_amount() || !product_location)
 		return
 	init_products()
 
@@ -62,7 +62,7 @@
 	return product
 
 /datum/data/vending_product/proc/init_products()
-	if(instances)
+	if (instances)
 		return
 	instances = list()
 	for(var/i = TRUE to amount)
@@ -142,7 +142,7 @@
 	vending_machine_list += src
 //	wires = new(src)
 	spawn(4)
-		if(product_slogans)
+		if (product_slogans)
 			slogan_list += splittext(product_slogans, ";")
 
 			// So not all machines speak at the exact same time.
@@ -150,7 +150,7 @@
 			// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
 			last_slogan = world.time + rand(0, slogan_delay)
 
-		if(product_ads)
+		if (product_ads)
 			ads_list += splittext(product_ads, ";")
 
 		build_inventory()
@@ -201,14 +201,14 @@
 
 /obj/structure/vending/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if (1.0)
 			qdel(src)
 			return
-		if(2.0)
+		if (2.0)
 			if (prob(50))
 				qdel(src)
 				return
-		if(3.0)
+		if (3.0)
 			if (prob(25))
 				spawn(0)
 			//		malfunction()
@@ -240,10 +240,10 @@
 			paid = pay_with_cash(C)
 			handled = TRUE
 
-		if(paid)
+		if (paid)
 			vend(currently_vending, usr)
 			return
-		else if(handled)
+		else if (handled)
 			nanomanager.update_uis(src)
 			return // don't smack that machine with your 2 thalers
 
@@ -251,13 +251,13 @@
 		attack_hand(user)
 		return*/
 /*
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if (istype(W, /obj/item/weapon/screwdriver))
 		if (panel_open)
 			playsound(loc, 'sound/machines/Custom_screwdriverclose.ogg', 50, TRUE)
 			panel_open = !panel_open
 			user << "You [panel_open ? "open" : "close"] the maintenance panel."
 			overlays.Cut()
-			if(panel_open)
+			if (panel_open)
 				overlays += image(icon, "[initial(icon_state)]-panel")
 			nanomanager.update_uis(src)  // Speaker switch is on the main UI, not wires UI
 			return
@@ -266,16 +266,16 @@
 			panel_open = !panel_open
 			user << "You [panel_open ? "open" : "close"] the maintenance panel."
 			overlays.Cut()
-			if(panel_open)
+			if (panel_open)
 				overlays += image(icon, "[initial(icon_state)]-panel")
 			nanomanager.update_uis(src)  // Speaker switch is on the main UI, not wires UI
 			return
 			*/
-	/*else if(istype(W, /obj/item/multitool)||istype(W, /obj/item/weapon/wirecutters))
-		if(panel_open)
+	/*else if (istype(W, /obj/item/multitool)||istype(W, /obj/item/weapon/wirecutters))
+		if (panel_open)
 			attack_hand(user)
 		return*/
-/*	else if(istype(W, /obj/item/weapon/coin) && premium.len > 0)
+/*	else if (istype(W, /obj/item/weapon/coin) && premium.len > 0)
 		user.drop_item()
 		W.loc = src
 		coin = W
@@ -283,15 +283,15 @@
 		user << "<span class='notice'>You insert \the [W] into \the [src].</span>"
 		nanomanager.update_uis(src)
 		return*/
-	if(istype(W, /obj/item/weapon/wrench))
+	if (istype(W, /obj/item/weapon/wrench))
 		playsound(loc, 'sound/items/Ratchet.ogg', 100, TRUE)
-		if(anchored)
+		if (anchored)
 			user.visible_message("[user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
 		else
 			user.visible_message("[user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
 
-		if(do_after(user, 20, src))
-			if(!src) return
+		if (do_after(user, 20, src))
+			if (!src) return
 			user << "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>"
 			anchored = !anchored
 		return
@@ -299,7 +299,7 @@
 	else
 
 		for(var/datum/data/vending_product/R in product_records)
-			if(istype(W, R.product_path))
+			if (istype(W, R.product_path))
 				stock(W, R, user)
 				return TRUE
 		..()
@@ -310,7 +310,7 @@
 /obj/structure/vending/proc/pay_with_cash(var/obj/item/weapon/spacecash/bundle/cashmoney)
 	return
 	/*
-	if(currently_vending.price > cashmoney.worth)
+	if (currently_vending.price > cashmoney.worth)
 		// This is not a status display message, since it's something the character
 		// themselves is meant to see BEFORE putting the money in
 		usr << "\icon[cashmoney] <span class='warning'>That is not enough money.</span>"
@@ -319,7 +319,7 @@
 	visible_message("<span class='info'>\The [usr] inserts some cash into \the [src].</span>")
 	cashmoney.worth -= currently_vending.price
 
-	if(cashmoney.worth <= 0)
+	if (cashmoney.worth <= 0)
 		usr.drop_from_inventory(cashmoney)
 		qdel(cashmoney)
 	else
@@ -338,7 +338,7 @@
 /obj/structure/vending/proc/pay_with_ewallet(var/obj/item/weapon/spacecash/ewallet/wallet)
 	return FALSE
 /*	visible_message("<span class='info'>\The [usr] swipes \the [wallet] through \the [src].</span>")
-	if(currently_vending.price > wallet.worth)
+	if (currently_vending.price > wallet.worth)
 		status_message = "Insufficient funds on chargecard."
 		status_error = TRUE
 		return FALSE
@@ -355,7 +355,7 @@
  */
 /obj/structure/vending/proc/pay_with_card(var/obj/item/weapon/card/id/I, var/obj/item/ID_container)
 	return
-/*	if(I==ID_container || ID_container == null)
+/*	if (I==ID_container || ID_container == null)
 		visible_message("<span class='info'>\The [usr] swipes \the [I] through \the [src].</span>")
 	else
 		visible_message("<span class='info'>\The [usr] swipes \the [ID_container] through \the [src].</span>")
@@ -365,23 +365,23 @@
 		status_error = TRUE
 		return FALSE
 
-	if(customer_account.suspended)
+	if (customer_account.suspended)
 		status_message = "Unable to access account: account suspended."
 		status_error = TRUE
 		return FALSE
 
 	// Have the customer punch in the PIN before checking if there's enough money. Prevents people from figuring out acct is
 	// empty at high security levels
-	if(customer_account.security_level != FALSE) //If card requires pin authentication (ie seclevel TRUE or 2)
+	if (customer_account.security_level != FALSE) //If card requires pin authentication (ie seclevel TRUE or 2)
 		var/attempt_pin = input("Enter pin code", "Vendor transaction") as num
 		customer_account = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
-		if(!customer_account)
+		if (!customer_account)
 			status_message = "Unable to access account: incorrect credentials."
 			status_error = TRUE
 			return FALSE
 
-	if(currently_vending.price > customer_account.money)
+	if (currently_vending.price > customer_account.money)
 		status_message = "Insufficient funds in account."
 		status_error = TRUE
 		return FALSE
@@ -395,7 +395,7 @@
 		var/datum/transaction/T = new()
 		T.target_name = "[vendor_account.owner_name] (via [name])"
 		T.purpose = "Purchase of [currently_vending.product_name]"
-		if(currently_vending.price > 0)
+		if (currently_vending.price > 0)
 			T.amount = "([currently_vending.price])"
 		else
 			T.amount = "[currently_vending.price]"
@@ -429,11 +429,11 @@
 	return FALSE
 
 /obj/structure/vending/attack_hand(mob/user as mob)
-	if(stat & BROKEN)
+	if (stat & BROKEN)
 		return
 /*
-	if(seconds_electrified != FALSE)
-		if(shock(user, 100))
+	if (seconds_electrified != FALSE)
+		if (shock(user, 100))
 			return*/
 
 //	wires.Interact(user)
@@ -448,7 +448,7 @@
 	user.set_using_object(src)
 
 	var/list/data = list()
-	if(currently_vending)
+	if (currently_vending)
 		data["mode"] = TRUE
 		data["product"] = currently_vending.product_name
 		data["price"] = currently_vending.price
@@ -462,7 +462,7 @@
 		for(var/key = TRUE to product_records.len)
 			var/datum/data/vending_product/I = product_records[key]
 
-			if(!(I.category & categories))
+			if (!(I.category & categories))
 				continue
 
 			listed_products.Add(list(list(
@@ -474,10 +474,10 @@
 
 		data["products"] = listed_products
 
-/*	if(coin)
+/*	if (coin)
 		data["coin"] = coin.name
 */
-/*	if(panel_open)
+/*	if (panel_open)
 		data["panel"] = TRUE
 		data["speaker"] = shut_up ? FALSE : TRUE
 	else
@@ -490,7 +490,7 @@
 		ui.open()
 
 /obj/structure/vending/Topic(href, href_list)
-	if(stat & BROKEN)
+	if (stat & BROKEN)
 		return
 
 	if (isliving(usr))
@@ -500,13 +500,13 @@
 		if (!check_rights(R_MOD))
 			return
 /*
-	if(href_list["remove_coin"] && !istype(usr,/mob/living/silicon))
-		if(!coin)
+	if (href_list["remove_coin"] && !istype(usr,/mob/living/silicon))
+		if (!coin)
 			usr << "There is no coin in this machine."
 			return
 
 		coin.loc = loc
-		if(!usr.get_active_hand())
+		if (!usr.get_active_hand())
 			usr.put_in_hands(coin)
 		usr << "<span class='notice'>You remove the [coin] from the [src]</span>"
 		coin = null
@@ -514,7 +514,7 @@
 */
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf))))
 		if ((href_list["vend"]) && (vend_ready) && (!currently_vending))
-		/*	if(!emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
+		/*	if (!emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
 				usr << "<span class='warning'>Access denied.</span>"	//Unless emagged of course
 				flick(icon_deny,src)
 				return*/
@@ -523,13 +523,13 @@
 			var/datum/data/vending_product/R = product_records[key]
 
 			// This should not happen unless the request from NanoUI was bad
-			if(!(R.category & categories))
+			if (!(R.category & categories))
 				return
 
-			if(R.price <= 0)
+			if (R.price <= 0)
 				vend(R, usr)
 
-			else if(istype(usr,/mob/living/silicon)) //If the item is not free, provide feedback if a synth is trying to buy something.
+			else if (istype(usr,/mob/living/silicon)) //If the item is not free, provide feedback if a synth is trying to buy something.
 				usr << "<span class='danger'>Artificial unit recognized.  Artificial units cannot complete this transaction.  Purchase canceled.</span>"
 				return
 			else
@@ -548,7 +548,7 @@
 		nanomanager.update_uis(src)
 
 /obj/structure/vending/proc/vend(datum/data/vending_product/R, mob/user)
-/*	if(!emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
+/*	if (!emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
 		usr << "<span class='warning'>Access denied.</span>"	//Unless emagged of course
 		flick(icon_deny,src)
 		return*/
@@ -558,11 +558,11 @@
 	nanomanager.update_uis(src)
 /*
 	if (R.category & CAT_COIN)
-		if(!coin)
+		if (!coin)
 			user << "<span class='notice'>You need to insert a coin to get this item.</span>"
 			return
-		if(coin.string_attached)
-			if(prob(50))
+		if (coin.string_attached)
+			if (prob(50))
 				user << "<span class='notice'>You successfully pull the coin out before \the [src] could swallow it.</span>"
 			else
 				user << "<span class='notice'>You weren't able to pull the coin out fast enough, the machine ate it, string and all.</span>"
@@ -573,7 +573,7 @@
 			categories &= ~CAT_COIN
 */
 /*
-	if(((last_reply + (vend_delay + 200)) <= world.time) && vend_reply)
+	if (((last_reply + (vend_delay + 200)) <= world.time) && vend_reply)
 		spawn(0)
 			speak(vend_reply)
 			last_reply = world.time
@@ -597,7 +597,7 @@
  * calling. W is the item being inserted, R is the associated vending_product entry.
  */
 /obj/structure/vending/proc/stock(obj/item/weapon/W, var/datum/data/vending_product/R, var/mob/user)
-	if(!user.unEquip(W))
+	if (!user.unEquip(W))
 		return
 
 	user << "<span class='notice'>You insert \the [W] in the rack.</span>"
@@ -606,29 +606,29 @@
 	nanomanager.update_uis(src)
 
 /obj/structure/vending/process()
-	if(stat & (BROKEN|NOPOWER))
+	if (stat & (BROKEN|NOPOWER))
 		return
 
-	if(!active)
+	if (!active)
 		return
 
-	if(seconds_electrified > 0)
+	if (seconds_electrified > 0)
 		seconds_electrified--
 
 	/*//Pitch to the people!  Really sell it!
-	if(((last_slogan + slogan_delay) <= world.time) && (slogan_list.len > 0) && (!shut_up) && prob(5))
+	if (((last_slogan + slogan_delay) <= world.time) && (slogan_list.len > 0) && (!shut_up) && prob(5))
 		var/slogan = pick(slogan_list)
 		speak(slogan)
 		last_slogan = world.time
 */
 /*
-	if(shoot_inventory && prob(2))
+	if (shoot_inventory && prob(2))
 		throw_item()*/
 
 	return
 /*
 /obj/structure/vending/proc/speak(var/message)
-	if(stat & NOPOWER)
+	if (stat & NOPOWER)
 		return
 
 	if (!message)
@@ -641,10 +641,10 @@
 /*
 /obj/structure/vending/power_change()
 	..()
-	if(stat & BROKEN)
+	if (stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
 	else
-		if( !(stat & NOPOWER) )
+		if ( !(stat & NOPOWER) )
 			icon_state = initial(icon_state)
 		else
 			spawn(rand(0, 15))
@@ -667,7 +667,7 @@
 /obj/structure/vending/proc/throw_item()
 	var/obj/throw_item = null
 	var/mob/living/target = locate() in view(7,src)
-	if(!target)
+	if (!target)
 		return FALSE
 
 	for(var/datum/data/vending_product/R in product_records)

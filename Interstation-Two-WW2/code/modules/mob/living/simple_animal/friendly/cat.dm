@@ -29,10 +29,10 @@
 
 /mob/living/simple_animal/cat/Life()
 	//MICE!
-	if((loc) && isturf(loc))
-		if(!stat && !resting && !buckled)
+	if ((loc) && isturf(loc))
+		if (!stat && !resting && !buckled)
 			for(var/mob/living/simple_animal/mouse/M in loc)
-				if(!M.stat)
+				if (!M.stat)
 					M.splat()
 					visible_emote(pick("bites \the [M]!","toys with \the [M].","chomps on \the [M]!"))
 					movement_target = null
@@ -42,11 +42,11 @@
 	..()
 
 	for(var/mob/living/simple_animal/mouse/snack in oview(src,5))
-		if(snack.stat < DEAD && prob(15))
+		if (snack.stat < DEAD && prob(15))
 			audible_emote(pick("hisses and spits!","mrowls fiercely!","eyes [snack] hungrily."))
 		break
 
-	if(incapacitated())
+	if (incapacitated())
 		return
 
 	turns_since_scan++
@@ -59,33 +59,33 @@
 		else
 			handle_movement_target()
 
-	if(prob(2)) //spooky
+	if (prob(2)) //spooky
 		var/mob/observer/ghost/spook = locate() in range(src,5)
-		if(spook)
+		if (spook)
 			var/turf/T = spook.loc
 			var/list/visible = list()
 			for(var/obj/O in T.contents)
-				if(!O.invisibility && O.name)
+				if (!O.invisibility && O.name)
 					visible += O
-			if(visible.len)
+			if (visible.len)
 				var/atom/A = pick(visible)
 				visible_emote("suddenly stops and stares at something unseen[istype(A) ? " near [A]":""].")
 
 /mob/living/simple_animal/cat/proc/handle_movement_target()
 	//if our target is neither inside a turf or inside a human(???), stop
-	if((movement_target) && !(isturf(movement_target.loc) || ishuman(movement_target.loc) ))
+	if ((movement_target) && !(isturf(movement_target.loc) || ishuman(movement_target.loc) ))
 		movement_target = null
 		stop_automated_movement = FALSE
 	//if we have no target or our current one is out of sight/too far away
-	if( !movement_target || !(movement_target.loc in oview(src, 4)) )
+	if ( !movement_target || !(movement_target.loc in oview(src, 4)) )
 		movement_target = null
 		stop_automated_movement = FALSE
 		for(var/mob/living/simple_animal/mouse/snack in oview(src)) //search for a new target
-			if(isturf(snack.loc) && !snack.stat)
+			if (isturf(snack.loc) && !snack.stat)
 				movement_target = snack
 				break
 
-	if(movement_target)
+	if (movement_target)
 		stop_automated_movement = TRUE
 		walk_to(src,movement_target,0,3)
 
@@ -96,23 +96,23 @@
 		stop_automated_movement = FALSE
 
 	if (flee_target)
-		if(prob(25)) say("HSSSSS")
+		if (prob(25)) say("HSSSSS")
 		stop_automated_movement = TRUE
 		walk_away(src, flee_target, 7, 2)
 
 /mob/living/simple_animal/cat/proc/set_flee_target(atom/A)
-	if(A)
+	if (A)
 		flee_target = A
 		turns_since_scan = 5
 
 /mob/living/simple_animal/cat/attackby(var/obj/item/O, var/mob/user)
 	. = ..()
-	if(O.force)
+	if (O.force)
 		set_flee_target(user? user : loc)
 
 /mob/living/simple_animal/cat/attack_hand(mob/living/carbon/human/M as mob)
 	. = ..()
-	if(M.a_intent == I_HURT)
+	if (M.a_intent == I_HURT)
 		set_flee_target(M)
 
 /mob/living/simple_animal/cat/ex_act()
@@ -130,9 +130,9 @@
 /mob/living/simple_animal/cat/MouseDrop(atom/over_object)
 
 	var/mob/living/carbon/H = over_object
-	if(!istype(H) || !Adjacent(H)) return ..()
+	if (!istype(H) || !Adjacent(H)) return ..()
 
-	if(H.a_intent == I_HELP)
+	if (H.a_intent == I_HELP)
 		get_scooped(H)
 		return
 	else
@@ -200,14 +200,14 @@
 	set category = "IC"
 	set src in view(1)
 
-	if(friend && usr == friend)
+	if (friend && usr == friend)
 		set_dir(get_dir(src, friend))
 		say("Meow!")
 		return
 
 	if (ishuman(usr))
 		var/mob/living/carbon/human/H = usr
-		if(H.original_job == befriend_job)
+		if (H.original_job == befriend_job)
 			friend = usr
 			set_dir(get_dir(src, friend))
 			say("Meow!")

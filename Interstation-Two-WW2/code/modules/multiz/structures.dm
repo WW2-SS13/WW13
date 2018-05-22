@@ -35,7 +35,7 @@
 	New()
 		. = ..()
 		for(var/obj/structure/multiz/M in loc)
-			if(M != src)
+			if (M != src)
 				spawn(1)
 					world.log << "##MAP_ERROR: Multiple [initial(name)] at ([x],[y],[z])"
 					qdel(src)
@@ -89,7 +89,7 @@
 	istop = FALSE
 
 /obj/structure/multiz/ladder/Destroy()
-	if(target && istop)
+	if (target && istop)
 		qdel(target)
 	return ..()
 
@@ -99,14 +99,14 @@
 		M << "<span class='warning'>You can't use the ladder while you're restrained.</span>"
 		return
 
-	if(!target || !istype(target.loc, /turf))
+	if (!target || !istype(target.loc, /turf))
 		M << "<span class='notice'>\The [src] is incomplete and can't be climbed.</span>"
 		return
 
 	var/turf/T = target.loc
 	if (!istop)
 		for(var/atom/movable/AM in T)
-			if(AM.density)
+			if (AM.density)
 				M << "<span class='notice'>\A [AM] is blocking \the [src].</span>"
 				return
 
@@ -121,7 +121,7 @@
 		"You hear the grunting and clanging of a metal ladder being used."
 	)
 
-	if(do_after(M, 10, src))
+	if (do_after(M, 10, src))
 		if (target.loc && locate(/obj/train_pseudoturf) in target.loc)
 			T = target.loc // this is to prevent the train teleporting error
 		playsound(loc, 'sound/effects/ladder.ogg', 50, TRUE, -1)
@@ -247,7 +247,7 @@
 	istop = FALSE
 
 /obj/structure/multiz/ladder/ww2/Destroy()
-	if(target && istop)
+	if (target && istop)
 		qdel(target)
 	return ..()
 
@@ -323,10 +323,10 @@
 	density = TRUE
 
 /obj/structure/stairs/active/Bumped(var/atom/movable/M)
-	if(istype(src, /obj/structure/stairs/active/bottom) && !locate(/obj/structure/stairs/enter) in M.loc)
+	if (istype(src, /obj/structure/stairs/active/bottom) && !locate(/obj/structure/stairs/enter) in M.loc)
 		return //If on bottom, only let them go up stairs if they've moved to the entry tile first.
 	//If it's the top, they can fall down just fine.
-	if(ismob(M) && M:client)
+	if (ismob(M) && M:client)
 		M:client.moving = TRUE
 	M.Move(locate(x, y, targetZ()))
 	if (ismob(M) && M:client)
@@ -334,7 +334,7 @@
 
 /obj/structure/stairs/active/attack_hand(mob/user)
 	. = ..()
-	if(Adjacent(user))
+	if (Adjacent(user))
 		Bumped(user)
 
 
@@ -370,10 +370,10 @@
 	target = locate(/obj/structure/multiz/stairs/enter) in targetTurf
 
 /obj/structure/multiz/stairs/active/Bumped(var/atom/movable/M)
-	if(isnull(M))
+	if (isnull(M))
 		return
 
-	if(ismob(M) && usr.client)
+	if (ismob(M) && usr.client)
 		usr.client.moving = TRUE
 		usr.Move(get_turf(target))
 		usr.client.moving = FALSE
@@ -383,7 +383,7 @@
 
 /obj/structure/stairs/active/attack_hand(mob/user)
 	. = ..()
-	if(Adjacent(user))
+	if (Adjacent(user))
 		Bumped(user)
 
 /obj/structure/multiz/stairs/active/bottom
@@ -392,6 +392,6 @@
 
 /obj/structure/multiz/stairs/active/bottom/Bumped(var/atom/movable/M)
 	//If on bottom, only let them go up stairs if they've moved to the entry tile first.
-	if(!locate(/obj/structure/multiz/stairs/enter) in M.loc)
+	if (!locate(/obj/structure/multiz/stairs/enter) in M.loc)
 		return
 	return ..()

@@ -67,7 +67,7 @@
 		user.visible_message("<span class='notice'>[user] has connected tendons and muscles in [target]'s [E.amputation_point] with [tool].</span>",	\
 		"<span class='notice'>You have connected tendons and muscles in [target]'s [E.amputation_point] with [tool].</span>")
 		E.status &= ~ORGAN_DESTROYED
-		if(E.children)
+		if (E.children)
 			for(var/obj/item/organ/external/C in E.children)
 				C.status &= ~ORGAN_DESTROYED
 		target.update_body()

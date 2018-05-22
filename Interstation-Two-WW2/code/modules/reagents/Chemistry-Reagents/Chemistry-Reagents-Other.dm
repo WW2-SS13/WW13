@@ -60,15 +60,15 @@
 	color_weight = 20
 
 /datum/reagent/paint/touch_turf(var/turf/T)
-	if(istype(T) && !istype(T, /turf/space))
+	if (istype(T) && !istype(T, /turf/space))
 		T.color = color
 
 /datum/reagent/paint/touch_obj(var/obj/O)
-	if(istype(O))
+	if (istype(O))
 		O.color = color
 
 /datum/reagent/paint/touch_mob(var/mob/M)
-	if(istype(M) && !isobserver(M)) //painting observers: not allowed
+	if (istype(M) && !isobserver(M)) //painting observers: not allowed
 		M.color = color //maybe someday change this to paint only clothes and exposed body parts for human mobs.
 
 /datum/reagent/paint/get_data()
@@ -84,11 +84,11 @@
 
 	var/hex1 = uppertext(color)
 	var/hex2 = uppertext(newdata)
-	if(length(hex1) == 7)
+	if (length(hex1) == 7)
 		hex1 += "FF"
-	if(length(hex2) == 7)
+	if (length(hex2) == 7)
 		hex2 += "FF"
-	if(length(hex1) != 9 || length(hex2) != 9)
+	if (length(hex1) != 9 || length(hex2) != 9)
 		return
 	colors[1] += hex2num(copytext(hex1, 2, 4)) * volume
 	colors[2] += hex2num(copytext(hex1, 4, 6)) * volume
@@ -172,10 +172,10 @@
 	M.apply_effect(5 * removed, IRRADIATE, FALSE)
 
 /datum/reagent/uranium/touch_turf(var/turf/T)
-	if(volume >= 3)
-		if(!istype(T, /turf/space))
+	if (volume >= 3)
+		if (!istype(T, /turf/space))
 			var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
-			if(!glow)
+			if (!glow)
 				new /obj/effect/decal/cleanable/greenglow(T)
 			return
 
@@ -238,8 +238,8 @@
 	touch_met = 50
 
 /datum/reagent/thermite/touch_turf(var/turf/T)
-	if(volume >= 5)
-		if(istype(T, /turf/wall))
+	if (volume >= 5)
+		if (istype(T, /turf/wall))
 			var/turf/wall/W = T
 			W.thermite = TRUE
 			W.overlays += image('icons/effects/effects.dmi',icon_state = "#673910")
@@ -247,7 +247,7 @@
 	return
 
 /datum/reagent/thermite/touch_mob(var/mob/living/L, var/amount)
-	if(istype(L))
+	if (istype(L))
 		L.adjust_fire_stacks(amount / 5)
 
 /datum/reagent/thermite/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -266,8 +266,8 @@
 	O.clean_blood()
 
 /datum/reagent/space_cleaner/touch_turf(var/turf/T)
-	if(volume >= 1)
-		if(istype(T, /turf))
+	if (volume >= 1)
+		if (istype(T, /turf))
 			var/turf/S = T
 			S.dirt = FALSE
 		T.clean_blood()
@@ -276,26 +276,26 @@
 			M.adjustToxLoss(rand(5, 10))
 
 /datum/reagent/space_cleaner/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.r_hand)
+	if (M.r_hand)
 		M.r_hand.clean_blood()
-	if(M.l_hand)
+	if (M.l_hand)
 		M.l_hand.clean_blood()
-	if(M.wear_mask)
-		if(M.wear_mask.clean_blood())
+	if (M.wear_mask)
+		if (M.wear_mask.clean_blood())
 			M.update_inv_wear_mask(0)
-	if(ishuman(M))
+	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.head)
-			if(H.head.clean_blood())
+		if (H.head)
+			if (H.head.clean_blood())
 				H.update_inv_head(0)
-		if(H.wear_suit)
-			if(H.wear_suit.clean_blood())
+		if (H.wear_suit)
+			if (H.wear_suit.clean_blood())
 				H.update_inv_wear_suit(0)
-		else if(H.w_uniform)
-			if(H.w_uniform.clean_blood())
+		else if (H.w_uniform)
+			if (H.w_uniform.clean_blood())
 				H.update_inv_w_uniform(0)
-		if(H.shoes)
-			if(H.shoes.clean_blood())
+		if (H.shoes)
+			if (H.shoes.clean_blood())
 				H.update_inv_shoes(0)
 		else
 			H.clean_blood(1)
@@ -311,9 +311,9 @@
 	color = "#009CA8"
 
 /datum/reagent/lube/touch_turf(var/turf/T)
-	if(!istype(T))
+	if (!istype(T))
 		return
-	if(volume >= 1)
+	if (volume >= 1)
 		T.wet_floor(2)
 
 /datum/reagent/silicate
@@ -325,7 +325,7 @@
 	color = "#C7FFFF"
 
 /datum/reagent/silicate/touch_obj(var/obj/O)
-	if(istype(O, /obj/structure/window))
+	if (istype(O, /obj/structure/window))
 		var/obj/structure/window/W = O
 		W.apply_silicate(volume)
 		remove_self(volume)

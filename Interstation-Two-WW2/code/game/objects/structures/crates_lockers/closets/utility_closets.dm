@@ -38,7 +38,7 @@
 	new /obj/item/clothing/head/hardhat/red(src)
 
 /obj/structure/closet/firecloset/update_icon()
-	if(!opened)
+	if (!opened)
 		icon_state = icon_closed
 	else
 		icon_state = icon_opened
@@ -79,7 +79,7 @@
 	wall_mounted = TRUE
 
 /obj/structure/closet/medical_wall/update_icon()
-	if(!opened)
+	if (!opened)
 		icon_state = icon_closed
 	else
 		icon_state = icon_opened

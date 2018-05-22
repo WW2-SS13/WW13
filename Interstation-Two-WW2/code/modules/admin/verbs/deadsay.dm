@@ -2,16 +2,16 @@
 	set category = "Special"
 	set name = "Dsay" //Gave this shit a shorter name so you only have to time out "dsay" rather than "dead say" to use it --NeoFite
 	set hidden = TRUE
-	if(!holder)
+	if (!holder)
 		src << "Only administrators may use this command."
 		return
-	if(!mob)
+	if (!mob)
 		return
-	if(prefs.muted & MUTE_DEADCHAT)
+	if (prefs.muted & MUTE_DEADCHAT)
 		src << "<span class='warning'>You cannot send DSAY messages (muted).</span>"
 		return
 
-	if(!is_preference_enabled(/datum/client_preference/show_dsay))
+	if (!is_preference_enabled(/datum/client_preference/show_dsay))
 		src << "<span class='warning'>You have deadchat muted.</span>"
 		return
 

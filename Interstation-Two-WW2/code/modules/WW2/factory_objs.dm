@@ -24,47 +24,47 @@
 	// create a conveyor
 /obj/structure/conveyor/New(loc, newdir, on = FALSE)
 	..(loc)
-	if(newdir)
+	if (newdir)
 		set_dir(newdir)
 
-	if(dir & (dir-1)) // Diagonal. Forwards is *away* from dir, curving to the right.
+	if (dir & (dir-1)) // Diagonal. Forwards is *away* from dir, curving to the right.
 		forwards = turn(dir, 135)
 		backwards = turn(dir, 45)
 	else
 		forwards = dir
 		backwards = turn(dir, 180)
 
-	if(on)
+	if (on)
 		operating = TRUE
 		setmove()
 
 
 
 /obj/structure/conveyor/proc/setmove()
-	if(operating == TRUE)
+	if (operating == TRUE)
 		movedir = forwards
-	else if(operating == -1)
+	else if (operating == -1)
 		movedir = backwards
 	else operating = FALSE
 	update()
 
 /obj/structure/conveyor/proc/update()
-	if(stat & BROKEN)
+	if (stat & BROKEN)
 		icon_state = "conveyor-broken"
 		operating = FALSE
 		return
-	if(!operable)
+	if (!operable)
 		operating = FALSE
-	if(stat & NOPOWER)
+	if (stat & NOPOWER)
 		operating = FALSE
 	icon_state = "conveyor[operating]"
 
 	// machine process
 	// move items to the target location
 /obj/structure/conveyor/process()
-	if(stat & (BROKEN | NOPOWER))
+	if (stat & (BROKEN | NOPOWER))
 		return
-	if(!operating)
+	if (!operating)
 		return
 //	use_power(100)
 
@@ -72,25 +72,25 @@
 	spawn(1)	// slight delay to prevent infinite propagation due to map order	//TODO: please no spawn() in process(). It's a very bad idea
 		var/items_moved = FALSE
 		for(var/atom/movable/A in affecting)
-			if(!A.anchored)
-				if(A.loc == loc) // prevents the object from being affected if it's not currently here.
+			if (!A.anchored)
+				if (A.loc == loc) // prevents the object from being affected if it's not currently here.
 					step(A,movedir)
 					items_moved++
-			if(items_moved >= 10)
+			if (items_moved >= 10)
 				break
 
 // attack with item, place item on conveyor
 /obj/structure/conveyor/attackby(var/obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/crowbar))
-		if(!(stat & BROKEN))
+	if (istype(I, /obj/item/weapon/crowbar))
+		if (!(stat & BROKEN))
 			var/obj/item/conveyor_construct/C = new/obj/item/conveyor_construct(loc)
 			C.id = id
 			transfer_fingerprints_to(C)
 		user << "<span class='notice'>You remove the conveyor belt.</span>"
 		qdel(src)
 		return
-	if(isrobot(user))	return //Carn: fix for borgs dropping their modules on conveyor belts
-	if(I.loc != user)	return // This should stop mounted modules ending up outside the module.
+	if (isrobot(user))	return //Carn: fix for borgs dropping their modules on conveyor belts
+	if (I.loc != user)	return // This should stop mounted modules ending up outside the module.
 
 	user.drop_item(get_turf(src))
 	return
@@ -121,11 +121,11 @@
 	update()
 
 	var/obj/structure/conveyor/C = locate() in get_step(src, dir)
-	if(C)
+	if (C)
 		C.set_operable(dir, id, FALSE)
 
 	C = locate() in get_step(src, turn(dir,180))
-	if(C)
+	if (C)
 		C.set_operable(turn(dir,180), id, FALSE)
 
 
@@ -133,13 +133,13 @@
 
 /obj/structure/conveyor/proc/set_operable(stepdir, match_id, op)
 
-	if(id != match_id)
+	if (id != match_id)
 		return
 	operable = op
 
 	update()
 	var/obj/structure/conveyor/C = locate() in get_step(src, stepdir)
-	if(C)
+	if (C)
 		C.set_operable(stepdir, id, op)
 
 // the conveyor control switch
@@ -165,23 +165,23 @@
 
 /obj/structure/conveyor_switch/New(loc, newid)
 	..(loc)
-	if(!id)
+	if (!id)
 		id = newid
 	update()
 /*
 	spawn(5)		// allow map load
 		conveyors = list()
 		for(var/obj/structure/conveyor/C in world)
-			if(C.id == id)
+			if (C.id == id)
 				conveyors += C*/
 
 // update the icon depending on the position
 
 /obj/structure/conveyor_switch/proc/update()
 
-	if(position<0)
+	if (position<0)
 		icon_state = "switch-rev"
-	else if(position>0)
+	else if (position>0)
 		icon_state = "switch-fwd"
 	else
 		icon_state = "switch-off"
@@ -191,7 +191,7 @@
 // if the switch changed, update the linked conveyors
 
 /obj/structure/conveyor_switch/process()
-	if(!operated)
+	if (!operated)
 		return
 	operated = FALSE
 
@@ -203,8 +203,8 @@
 /obj/structure/conveyor_switch/attack_hand(mob/user)
 
 	playsound(user,'sound/machines/Conveyor_switch.wav',100,1)
-	if(position == FALSE)
-		if(last_pos < 0)
+	if (position == FALSE)
+		if (last_pos < 0)
 			position = TRUE
 			last_pos = FALSE
 		else
@@ -221,13 +221,13 @@
 /*
 	// find any switches with same id as this one, and set their positions to match us
 	for(var/obj/structure/conveyor_switch/S in world)
-		if(S.id == id)
+		if (S.id == id)
 			S.position = position
 			S.update()*/
 
 
 /obj/structure/conveyor_switch/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/weapon/crowbar))
+	if (istype(I, /obj/item/weapon/crowbar))
 		var/obj/item/conveyor_switch_construct/C = new/obj/item/conveyor_switch_construct(loc)
 		C.id = id
 		transfer_fingerprints_to(C)
@@ -241,7 +241,7 @@
 // attack with hand, switch position
 /obj/structure/conveyor_switch/oneway/attack_hand(mob/user)
 	playsound(user,'sound/machines/Conveyor_switch.wav',100,1)
-	if(position == FALSE)
+	if (position == FALSE)
 		position = convdir
 	else
 		position = FALSE
@@ -251,7 +251,7 @@
 
 	// find any switches with same id as this one, and set their positions to match us
 	for(var/obj/structure/conveyor_switch/S in world)
-		if(S.id == id)
+		if (S.id == id)
 			S.position = position
 			S.update()
 
@@ -271,19 +271,19 @@
 
 /obj/item/conveyor_construct/attackby(obj/item/I, mob/user, params)
 	..()
-	if(istype(I, /obj/item/conveyor_switch_construct))
+	if (istype(I, /obj/item/conveyor_switch_construct))
 		user << "<span class='notice'>You link the switch to the conveyor belt assembly.</span>"
 		var/obj/item/conveyor_switch_construct/C = I
 		id = C.id
 
 /obj/item/conveyor_construct/afterattack(atom/A, mob/user, proximity)
-	if(!proximity || !istype(A, /turf/floor) || user.incapacitated())
+	if (!proximity || !istype(A, /turf/floor) || user.incapacitated())
 		return
 	var/cdir = get_dir(A, user)
-	if(!(cdir in cardinal) || A == user.loc)
+	if (!(cdir in cardinal) || A == user.loc)
 		return
 	for(var/obj/structure/conveyor/CB in A)
-		if(CB.dir == cdir || CB.dir == turn(cdir,180))
+		if (CB.dir == cdir || CB.dir == turn(cdir,180))
 			return
 		cdir |= CB.dir
 		qdel(CB)
@@ -305,14 +305,14 @@
 	id = rand() //this couldn't possibly go wrong
 
 /obj/item/conveyor_switch_construct/afterattack(atom/A, mob/user, proximity)
-	if(!proximity || !istype(A, /turf/floor) || user.incapacitated())
+	if (!proximity || !istype(A, /turf/floor) || user.incapacitated())
 		return
 	var/found = FALSE
 	for(var/obj/structure/conveyor/C in view())
-		if(C.id == id)
+		if (C.id == id)
 			found = TRUE
 			break
-	if(!found)
+	if (!found)
 		user << "\icon[src]<span class=notice>The conveyor switch did not detect any linked conveyor belts in range.</span>"
 		return
 	var/obj/structure/conveyor_switch/NC = new/obj/structure/conveyor_switch(A, id)
@@ -336,22 +336,22 @@
 		)
 
 /obj/structure/plasticflaps/CanPass(atom/A, turf/T)
-	if(istype(A) && A.checkpass(PASSGLASS))
+	if (istype(A) && A.checkpass(PASSGLASS))
 		return prob(60)
 
 	var/obj/structure/bed/B = A
 	if (istype(A, /obj/structure/bed) && B.buckled_mob)//if it's a bed/chair and someone is buckled, it will not pass
 		return FALSE
 
-	if(istype(A, /obj/vehicle))	//no vehicles
+	if (istype(A, /obj/vehicle))	//no vehicles
 		return FALSE
 
 	var/mob/living/M = A
-	if(istype(M))
-		if(M.lying)
+	if (istype(M))
+		if (M.lying)
 			return ..()
 		for(var/mob_type in mobs_can_pass)
-			if(istype(A, mob_type))
+			if (istype(A, mob_type))
 				return ..()
 		return issmall(M)
 

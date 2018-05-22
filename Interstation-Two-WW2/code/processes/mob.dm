@@ -9,7 +9,7 @@
 
 /process/mob/started()
 	..()
-	if(!mob_list)
+	if (!mob_list)
 		mob_list = list()
 
 /process/mob/fire()
@@ -19,7 +19,7 @@
 
 		var/mob/M = current
 
-		if(isnull(M))
+		if (isnull(M))
 			continue
 
 		else if (istype(M, /mob/new_player))
@@ -56,7 +56,7 @@
 
 		skip1
 
-		if(!isDeleted(M))
+		if (!isDeleted(M))
 			try
 				M.Life()
 				if (world.time - M.last_movement > 7)

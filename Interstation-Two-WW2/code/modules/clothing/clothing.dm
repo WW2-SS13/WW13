@@ -38,18 +38,18 @@
 		return
 
 	var/mob/living/carbon/human/H = user
-	if(H.l_ear != src && H.r_ear != src)
+	if (H.l_ear != src && H.r_ear != src)
 		..()
 		return
 
-	if(!canremove)
+	if (!canremove)
 		return
 
 	var/obj/item/clothing/ears/O
-	if(slot_flags & SLOT_TWOEARS )
+	if (slot_flags & SLOT_TWOEARS )
 		O = (H.l_ear == src ? H.r_ear : H.l_ear)
 		user.u_equip(O)
-		if(!istype(src,/obj/item/clothing/ears/offear))
+		if (!istype(src,/obj/item/clothing/ears/offear))
 			qdel(O)
 			O = src
 	else
@@ -61,7 +61,7 @@
 		user.put_in_hands(O)
 		O.add_fingerprint(user)
 
-	if(istype(src,/obj/item/clothing/ears/offear))
+	if (istype(src,/obj/item/clothing/ears/offear))
 		qdel(src)
 
 /obj/item/clothing/ears/update_clothing_icon()
@@ -137,7 +137,7 @@ BLIND     // can't see anything
 		M.update_inv_gloves()
 
 /obj/item/clothing/gloves/emp_act(severity)
-	if(cell)
+	if (cell)
 		//why is this not part of the powercell code?
 		cell.charge -= 1000 / severity
 		if (cell.charge < 0)
@@ -149,7 +149,7 @@ BLIND     // can't see anything
 	return FALSE // return TRUE to cancel attack_hand()
 
 /obj/item/clothing/gloves/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/weapon/scalpel))
+	if (istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/weapon/scalpel))
 		if (clipped)
 			user << "<span class='notice'>The [src] have already been clipped!</span>"
 			update_icon()
@@ -182,8 +182,8 @@ BLIND     // can't see anything
 	var/on = FALSE
 
 /obj/item/clothing/head/attack_self(mob/user)
-	if(brightness_on)
-		if(!isturf(user.loc))
+	if (brightness_on)
+		if (!isturf(user.loc))
 			user << "You cannot turn the light on while in this [user.loc]"
 			return
 		on = !on
@@ -193,17 +193,17 @@ BLIND     // can't see anything
 		return ..(user)
 
 /obj/item/clothing/head/proc/update_flashlight(var/mob/user = null)
-	if(on && !light_applied)
+	if (on && !light_applied)
 		set_light(brightness_on)
 		light_applied = TRUE
-	else if(!on && light_applied)
+	else if (!on && light_applied)
 		set_light(0)
 		light_applied = FALSE
 	update_icon(user)
 	user.update_action_buttons()
 
 /obj/item/clothing/head/attack_generic(var/mob/user)
-	if(!istype(user) || !mob_wear_hat(user))
+	if (!istype(user) || !mob_wear_hat(user))
 		return ..()
 
 /obj/item/clothing/head/proc/mob_wear_hat(var/mob/user)
@@ -213,22 +213,22 @@ BLIND     // can't see anything
 
 	overlays.Cut()
 	var/mob/living/carbon/human/H
-	if(istype(user,/mob/living/carbon/human))
+	if (istype(user,/mob/living/carbon/human))
 		H = user
 
-	if(on)
+	if (on)
 
 		// Generate object icon.
-		if(!light_overlay_cache["[light_overlay]_icon"])
+		if (!light_overlay_cache["[light_overlay]_icon"])
 			light_overlay_cache["[light_overlay]_icon"] = image('icons/obj/light_overlays.dmi', light_overlay)
 		overlays |= light_overlay_cache["[light_overlay]_icon"]
 
 		// Generate and cache the on-mob icon, which is used in update_inv_head().
 		var/cache_key = "[light_overlay][H ? "_[H.species.get_bodytype()]" : ""]"
-		if(!light_overlay_cache[cache_key])
+		if (!light_overlay_cache[cache_key])
 			light_overlay_cache[cache_key] = image('icons/mob/light_overlays.dmi', light_overlay)
 
-	if(H)
+	if (H)
 		H.update_inv_head()
 
 /obj/item/clothing/head/update_clothing_icon()
@@ -290,19 +290,19 @@ BLIND     // can't see anything
 	if (!holding)
 		return FALSE
 
-	if(usr.stat || usr.restrained() || usr.incapacitated())
+	if (usr.stat || usr.restrained() || usr.incapacitated())
 		return FALSE
 
 	holding.forceMove(get_turf(usr))
 
-	if(usr.put_in_hands(holding))
+	if (usr.put_in_hands(holding))
 		usr.visible_message("<span class='danger'>\The [usr] pulls a knife out of their boot!</span>")
 		holding = null
 	else
 		usr << "<span class='warning'>Your need an empty, unbroken hand to do that.</span>"
 		holding.forceMove(src)
 
-	if(!holding)
+	if (!holding)
 		verbs -= /obj/item/clothing/shoes/proc/draw_knife
 
 	update_icon()
@@ -310,13 +310,13 @@ BLIND     // can't see anything
 
 
 /obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
-	if(can_hold_knife && istype(I, /obj/item/weapon/material/shard) || \
+	if (can_hold_knife && istype(I, /obj/item/weapon/material/shard) || \
 	 istype(I, /obj/item/weapon/material/butterfly) || \
 	 istype(I, /obj/item/weapon/material/kitchen/utensil) || \
 	 istype(I, /obj/item/weapon/material/hatchet/tacknife) || \
 	 istype(I, /obj/item/weapon/material/knife) || \
 	 istype(I, /obj/item/weapon/attachment/bayonet))
-		if(holding)
+		if (holding)
 			user << "<span class='warning'>\The [src] is already holding \a [holding].</span>"
 			return
 		user.unEquip(I)
@@ -330,7 +330,7 @@ BLIND     // can't see anything
 
 /obj/item/clothing/shoes/update_icon()
 	overlays.Cut()
-	if(holding)
+	if (holding)
 		overlays += image(icon, "[icon_state]_knife")
 	return ..()
 
@@ -391,7 +391,7 @@ BLIND     // can't see anything
 
 
 /obj/item/clothing/under/attack_hand(var/mob/user)
-	if(accessories && accessories.len && (src == user.r_hand || src == user.l_hand))
+	if (accessories && accessories.len && (src == user.r_hand || src == user.l_hand))
 		if (istype(accessories[1], /obj/item/clothing/accessory/storage/webbing))
 			var/obj/item/clothing/accessory/storage/webbing/webbing = accessories[1]
 			user << "<span class = 'warning'>You start to remove the webbing from [src].</span>"
@@ -424,51 +424,51 @@ BLIND     // can't see anything
 /obj/item/clothing/under/examine(mob/user)
 	..(user)
 /*	switch(sensor_mode)
-		if(0)
+		if (0)
 			user << "Its sensors appear to be disabled."
-		if(1)
+		if (1)
 			user << "Its binary life sensors appear to be enabled."
-		if(2)
+		if (2)
 			user << "Its vital tracker appears to be enabled."
-		if(3)
+		if (3)
 			user << "Its vital tracker and tracking beacon appear to be enabled."
 */
 /*
 /obj/item/clothing/under/proc/set_sensors(var/mob/M)
-	if(has_sensor >= 2)
+	if (has_sensor >= 2)
 		usr << "The controls are locked."
 		return FALSE
-	if(has_sensor <= 0)
+	if (has_sensor <= 0)
 		usr << "This suit does not have any sensors."
 		return FALSE
 
-	if(sensor_mode == 3)
+	if (sensor_mode == 3)
 		sensor_mode = FALSE
 	else
 		sensor_mode++
 
 	if (loc == usr)
 		switch(sensor_mode)
-			if(0)
+			if (0)
 				usr << "You disable your suit's remote sensing equipment."
-			if(1)
+			if (1)
 				usr << "Your suit will now report whether you are live or dead."
-			if(2)
+			if (2)
 				usr << "Your suit will now report your vital lifesigns."
-			if(3)
+			if (3)
 				usr << "Your suit will now report your vital lifesigns as well as your coordinate position."
 	else if (istype(loc, /mob))
 		switch(sensor_mode)
-			if(0)
+			if (0)
 				for(var/mob/V in viewers(usr, TRUE))
 					V.show_message("<span class = 'red'>[usr] disables [loc]'s remote sensing equipment.</span>", TRUE)
-			if(1)
+			if (1)
 				for(var/mob/V in viewers(usr, TRUE))
 					V.show_message("[usr] turns [loc]'s remote sensors to binary.", TRUE)
-			if(2)
+			if (2)
 				for(var/mob/V in viewers(usr, TRUE))
 					V.show_message("[usr] sets [loc]'s sensors to track vitals.", TRUE)
-			if(3)
+			if (3)
 				for(var/mob/V in viewers(usr, TRUE))
 					V.show_message("[usr] sets [loc]'s sensors to maximum.", TRUE)
 */
@@ -478,7 +478,7 @@ BLIND     // can't see anything
 	..()
 /*
 /obj/item/clothing/under/rank/attackby(var/obj/item/I, var/mob/U)
-	if(istype(I, /obj/item/weapon/screwdriver) && istype(U, /mob/living/carbon/human))
+	if (istype(I, /obj/item/weapon/screwdriver) && istype(U, /mob/living/carbon/human))
 		set_sensors(U)
 	else
 		return ..()*/

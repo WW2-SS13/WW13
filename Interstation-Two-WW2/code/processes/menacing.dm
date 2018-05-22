@@ -10,7 +10,7 @@
 
 	FORNEXT(menacing_atoms)
 		var/atom/A = current
-		if(!isDeleted(A))
+		if (!isDeleted(A))
 			try
 				var/list/turfs = list(get_turf(A))
 				for (var/turf/T in range(1, turfs[1]))

@@ -23,16 +23,16 @@
 
 /obj/structure/closet/initialize()
 	..()
-	if(!opened)		// if closed, any item at the crate's loc is put in the contents
+	if (!opened)		// if closed, any item at the crate's loc is put in the contents
 		var/obj/item/I
 		for(I in loc)
-			if(I.density || I.anchored || I == src) continue
+			if (I.density || I.anchored || I == src) continue
 			I.forceMove(src)
 		// adjust locker size to hold all items with 5 units of free store room
 		var/content_size = FALSE
 		for(I in contents)
 			content_size += ceil(I.w_class/2)
-		if(content_size > storage_capacity-5)
+		if (content_size > storage_capacity-5)
 			storage_capacity = content_size + 5
 
 // max w_class/2 * items = enough to fit items amount of items no matter the size
@@ -40,25 +40,25 @@
 	storage_capacity = ((4/2) * items) + 5
 
 /obj/structure/closet/examine(mob/user)
-	if(..(user, TRUE) && !opened)
+	if (..(user, TRUE) && !opened)
 		var/content_size = FALSE
 		for(var/obj/item/I in contents)
-			if(!I.anchored)
+			if (!I.anchored)
 				content_size += Ceiling(I.w_class/2)
-		if(!content_size)
+		if (!content_size)
 			user << "It is empty."
-		else if(storage_capacity > content_size*4)
+		else if (storage_capacity > content_size*4)
 			user << "It is barely filled."
-		else if(storage_capacity > content_size*2)
+		else if (storage_capacity > content_size*2)
 			user << "It is less than half full."
-		else if(storage_capacity > content_size)
+		else if (storage_capacity > content_size)
 			user << "There is still some free space."
 		else
 			user << "It is full."
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if (!istype(mover, /obj/item/projectile))
-		if(air_group || (height==0 || wall_mounted)) return TRUE
+		if (air_group || (height==0 || wall_mounted)) return TRUE
 		return !density
 	if (prob(80))
 		return !density
@@ -66,13 +66,13 @@
 		return TRUE
 
 /obj/structure/closet/proc/can_open()
-	if(welded)
+	if (welded)
 		return FALSE
 	return TRUE
 
 /obj/structure/closet/proc/can_close()
 	for(var/obj/structure/closet/closet in get_turf(src))
-		if(closet != src)
+		if (closet != src)
 			return FALSE
 	return TRUE
 
@@ -83,15 +83,15 @@
 
 	for(var/mob/M in src)
 		M.forceMove(loc)
-		if(M.client)
+		if (M.client)
 			M.client.eye = M.client.mob
 			M.client.perspective = MOB_PERSPECTIVE
 
 /obj/structure/closet/proc/open()
-	if(opened)
+	if (opened)
 		return FALSE
 
-	if(!can_open())
+	if (!can_open())
 		return FALSE
 
 	dump_contents()
@@ -103,19 +103,19 @@
 	return TRUE
 
 /obj/structure/closet/proc/close()
-	if(!opened)
+	if (!opened)
 		return FALSE
 
-	if(!can_close())
+	if (!can_close())
 		return FALSE
 
 	var/stored_units = FALSE
 
-	if(store_misc)
+	if (store_misc)
 		stored_units += store_misc(stored_units)
-	if(store_items)
+	if (store_items)
 		stored_units += store_items(stored_units)
-	if(store_mobs)
+	if (store_mobs)
 		stored_units += store_mobs(stored_units)
 
 	icon_state = icon_closed
@@ -134,9 +134,9 @@
 	var/added_units = FALSE
 	for(var/obj/item/I in loc)
 		var/item_size = Ceiling(I.w_class / 2)
-		if(stored_units + added_units + item_size > storage_capacity)
+		if (stored_units + added_units + item_size > storage_capacity)
 			continue
-		if(!I.anchored)
+		if (!I.anchored)
 			I.forceMove(src)
 			added_units += item_size
 	return added_units
@@ -144,11 +144,11 @@
 /obj/structure/closet/proc/store_mobs(var/stored_units)
 	var/added_units = FALSE
 	for(var/mob/living/M in loc)
-		if(M.buckled || M.pinned.len)
+		if (M.buckled || M.pinned.len)
 			continue
-		if(stored_units + added_units + M.mob_size > storage_capacity)
+		if (stored_units + added_units + M.mob_size > storage_capacity)
 			break
-		if(M.client)
+		if (M.client)
 			M.client.perspective = EYE_PERSPECTIVE
 			M.client.eye = src
 		M.forceMove(src)
@@ -156,7 +156,7 @@
 	return added_units
 
 /obj/structure/closet/proc/toggle(mob/user as mob)
-	if(!(opened ? close() : open()))
+	if (!(opened ? close() : open()))
 		user << "<span class='notice'>It won't budge!</span>"
 		return
 	update_icon()
@@ -164,33 +164,33 @@
 // this should probably use dump_contents()
 /obj/structure/closet/ex_act(severity)
 	switch(severity)
-		if(1)
+		if (1)
 			for(var/atom/movable/A as mob|obj in src)//pulls everything out of the locker and hits it with an explosion
 				A.forceMove(loc)
 				A.ex_act(severity + 1)
 			qdel(src)
-		if(2)
-			if(prob(50))
+		if (2)
+			if (prob(50))
 				for (var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
 					A.ex_act(severity + 1)
 				qdel(src)
-		if(3)
-			if(prob(5))
+		if (3)
+			if (prob(5))
 				for(var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
 				qdel(src)
 
 /obj/structure/closet/proc/damage(var/damage)
 	health -= damage
-	if(health <= 0)
+	if (health <= 0)
 		for(var/atom/movable/A in src)
 			A.forceMove(loc)
 		qdel(src)
 
 /obj/structure/closet/bullet_act(var/obj/item/projectile/Proj)
 	var/proj_damage = Proj.get_structure_damage()
-	if(!proj_damage)
+	if (!proj_damage)
 		return
 
 	..()
@@ -199,17 +199,17 @@
 	return
 
 /obj/structure/closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(opened)
-		if(istype(W, /obj/item/weapon/grab))
+	if (opened)
+		if (istype(W, /obj/item/weapon/grab))
 			var/obj/item/weapon/grab/G = W
 			MouseDrop_T(G.affecting, user)      //act like they were dragged onto the closet
 			return FALSE
-/*		if(istype(W,/obj/item/tk_grab))
+/*		if (istype(W,/obj/item/tk_grab))
 			return FALSE*/
-		if(istype(W, /obj/item/weapon/weldingtool))
+		if (istype(W, /obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/WT = W
-			if(!WT.remove_fuel(0,user))
-				if(!WT.isOn())
+			if (!WT.remove_fuel(0,user))
+				if (!WT.isOn())
 					return
 				else
 					user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
@@ -219,17 +219,17 @@
 				M.show_message("<span class='notice'>\The [src] has been cut apart by [user] with \the [WT].</span>", 3, "You hear welding.", 2)
 			qdel(src)
 			return
-		if(isrobot(user))
+		if (isrobot(user))
 			return
-		if(W.loc != user) // This should stop mounted modules ending up outside the module.
+		if (W.loc != user) // This should stop mounted modules ending up outside the module.
 			return
 		usr.drop_item()
-		if(W)
+		if (W)
 			W.forceMove(loc)
-	else if(istype(W, /obj/item/weapon/weldingtool))
+	else if (istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
-		if(!WT.remove_fuel(0,user))
-			if(!WT.isOn())
+		if (!WT.remove_fuel(0,user))
+			if (!WT.isOn())
 				return
 			else
 				user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
@@ -243,31 +243,31 @@
 	return
 
 /obj/structure/closet/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
-	if(istype(O, /obj/screen))	//fix for HUD elements making their way into the world	-Pete
+	if (istype(O, /obj/screen))	//fix for HUD elements making their way into the world	-Pete
 		return
-	if(O.loc == user)
+	if (O.loc == user)
 		return
-	if(user.restrained() || user.stat || user.weakened || user.stunned || user.paralysis)
+	if (user.restrained() || user.stat || user.weakened || user.stunned || user.paralysis)
 		return
-	if((!( istype(O, /atom/movable) ) || O.anchored || !Adjacent(user) || !Adjacent(O) || !user.Adjacent(O) || user.contents.Find(src)))
+	if ((!( istype(O, /atom/movable) ) || O.anchored || !Adjacent(user) || !Adjacent(O) || !user.Adjacent(O) || user.contents.Find(src)))
 		return
-	if(!isturf(user.loc)) // are you in a container/closet/pod/etc?
+	if (!isturf(user.loc)) // are you in a container/closet/pod/etc?
 		return
-	if(!opened)
+	if (!opened)
 		return
-	if(istype(O, /obj/structure/closet))
+	if (istype(O, /obj/structure/closet))
 		return
 	step_towards(O, loc)
-	if(user != O)
+	if (user != O)
 		user.show_viewers("<span class='danger'>[user] stuffs [O] into [src]!</span>")
 	add_fingerprint(user)
 	return
 
 /obj/structure/closet/relaymove(mob/user as mob)
-	if(user.stat || !isturf(loc))
+	if (user.stat || !isturf(loc))
 		return
 
-	if(!open())
+	if (!open())
 		user << "<span class='notice'>It won't budge!</span>"
 
 /obj/structure/closet/attack_hand(mob/user as mob)
@@ -277,7 +277,7 @@
 // tk grab then use on self
 /obj/structure/closet/attack_self_tk(mob/user as mob)
 	add_fingerprint(user)
-	if(!toggle())
+	if (!toggle())
 		usr << "<span class='notice'>It won't budge!</span>"
 */
 /obj/structure/closet/verb/verb_toggleopen()
@@ -285,10 +285,10 @@
 	set category = null
 	set name = "Toggle Open"
 
-	if(!usr.canmove || usr.stat || usr.restrained())
+	if (!usr.canmove || usr.stat || usr.restrained())
 		return
 
-	if(ishuman(usr))
+	if (ishuman(usr))
 		add_fingerprint(usr)
 		toggle(usr)
 	else
@@ -296,15 +296,15 @@
 
 /obj/structure/closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()
-	if(!opened)
+	if (!opened)
 		icon_state = icon_closed
-		if(welded)
+		if (welded)
 			overlays += "welded"
 	else
 		icon_state = icon_opened
 
 /obj/structure/closet/attack_generic(var/mob/user, var/damage, var/attack_message = "destroys", var/wallbreaker)
-	if(!damage || !wallbreaker)
+	if (!damage || !wallbreaker)
 		return
 	attack_animation(user)
 	visible_message("<span class='danger'>[user] [attack_message] the [src]!</span>")
@@ -313,16 +313,16 @@
 	return TRUE
 
 /obj/structure/closet/proc/req_breakout()
-	if(opened)
+	if (opened)
 		return FALSE //Door's open... wait, why are you in it's contents then?
-	if(!welded)
+	if (!welded)
 		return FALSE //closed but not welded...
 	return TRUE
 
 /obj/structure/closet/proc/mob_breakout(var/mob/living/escapee)
 	var/breakout_time = 2 //2 minutes by default
 
-	if(breakout || !req_breakout())
+	if (breakout || !req_breakout())
 		return
 
 	escapee.setClickCooldown(100)
@@ -334,14 +334,14 @@
 
 	breakout = TRUE //can't think of a better way to do this right now.
 	for(var/i in TRUE to (6*breakout_time * 2)) //minutes * 6 * 5seconds * 2
-		if(!do_after(escapee, 50, src)) //5 seconds
+		if (!do_after(escapee, 50, src)) //5 seconds
 			breakout = FALSE
 			return
-		if(!escapee || escapee.incapacitated() || escapee.loc != src)
+		if (!escapee || escapee.incapacitated() || escapee.loc != src)
 			breakout = FALSE
 			return //closet/user destroyed OR user dead/unconcious OR user no longer in closet OR closet opened
 		//Perform the same set of checks as above for weld and lock status to determine if there is even still a point in 'resisting'...
-		if(!req_breakout())
+		if (!req_breakout())
 			breakout = FALSE
 			return
 

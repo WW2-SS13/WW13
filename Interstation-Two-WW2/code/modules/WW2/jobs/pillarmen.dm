@@ -13,7 +13,7 @@
 	spawn_location = "JoinLatePillarMan"
 
 /datum/job/pillarman/pillarman/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/stone(H), slot_r_hand)
 	equip_random_civilian_clothing(H)
@@ -33,7 +33,7 @@
 	spawn_location = "JoinLateVampire"
 
 /datum/job/pillarman/vampire/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 
 	// melee weapons for Vampires. Pillar Men don't need them since they're so robust already.

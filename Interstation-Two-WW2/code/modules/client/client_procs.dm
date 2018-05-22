@@ -21,30 +21,30 @@
 	If you have any  questions about this stuff feel free to ask. ~Carn
 	*/
 /client/Topic(href, href_list, hsrc)
-	if(!usr || usr != mob)	//stops us calling Topic for somebody else's client. Also helps prevent usr=null
+	if (!usr || usr != mob)	//stops us calling Topic for somebody else's client. Also helps prevent usr=null
 		return
 
 	//search the href for script injection
-	if( findtext(href,"<script",1,0) )
+	if ( findtext(href,"<script",1,0) )
 		world.log << "Attempted use of scripts within a topic call, by [src]"
 		message_admins("Attempted use of scripts within a topic call, by [src]")
 		//del(usr)
 		return
 
 	//Admin PM
-	if(href_list["priv_msg"])
+	if (href_list["priv_msg"])
 		var/client/C = locate(href_list["priv_msg"])
-		if(ismob(C)) 		//Old stuff can feed-in mobs instead of clients
+		if (ismob(C)) 		//Old stuff can feed-in mobs instead of clients
 			var/mob/M = C
 			C = M.client
 		cmd_admin_pm(C,null)
 		return
 
-	if(href_list["irc_msg"])
-		if(!holder && received_irc_pm < world.time - 6000) //Worse they can do is spam IRC for 10 minutes
+	if (href_list["irc_msg"])
+		if (!holder && received_irc_pm < world.time - 6000) //Worse they can do is spam IRC for 10 minutes
 			usr << "<span class='warning'>You are no longer able to use this, it's been more then 10 minutes since an admin on IRC has responded to you</span>"
 			return
-		if(mute_irc)
+		if (mute_irc)
 			usr << "<span class='warning'You cannot use this as your client has been muted from sending messages to the admins on IRC</span>"
 			return
 		cmd_admin_irc_pm(href_list["irc_msg"])
@@ -62,25 +62,25 @@
 					message_admins(M)
 
 	//Logs all hrefs
-	if(config && config.log_hrefs && href_logfile)
+	if (config && config.log_hrefs && href_logfile)
 		href_logfile << "<small>[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]<br>"
 
 	switch(href_list["_src_"])
-		if("holder")	hsrc = holder
-		if("usr")		hsrc = mob
-		if("prefs")		return prefs.process_link(usr,href_list)
-		if("vars")		return view_var_Topic(href,href_list,hsrc)
+		if ("holder")	hsrc = holder
+		if ("usr")		hsrc = mob
+		if ("prefs")		return prefs.process_link(usr,href_list)
+		if ("vars")		return view_var_Topic(href,href_list,hsrc)
 
 	..()	//redirect to hTopic()
 
 /client/proc/handle_spam_prevention(var/message, var/mute_type)
-	if(config.automute_on && !holder && last_message == message)
+	if (config.automute_on && !holder && last_message == message)
 		last_message_count++
-		if(last_message_count >= SPAM_TRIGGER_AUTOMUTE)
+		if (last_message_count >= SPAM_TRIGGER_AUTOMUTE)
 			src << "<span class = 'red'>You have exceeded the spam filter limit for identical messages. An auto-mute was applied.</span>"
 			cmd_admin_mute(mob, mute_type, TRUE)
 			return TRUE
-		if(last_message_count >= SPAM_TRIGGER_WARNING)
+		if (last_message_count >= SPAM_TRIGGER_WARNING)
 			src << "<span class = 'red'>You are nearing the spam filter limit for identical messages.</span>"
 			return FALSE
 	else
@@ -90,13 +90,13 @@
 
 //This stops files larger than UPLOAD_LIMIT being sent from client to server via input(), client.Import() etc.
 /client/AllowUpload(filename, filelength)
-	if(filelength > UPLOAD_LIMIT)
+	if (filelength > UPLOAD_LIMIT)
 		src << "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB.</font>"
 		return FALSE
 /*	//Don't need this at the moment. But it's here if it's needed later.
 	//Helps prevent multiple files being uploaded at once. Or right after eachother.
 	var/time_to_wait = fileaccess_timer - world.time
-	if(time_to_wait > 0)
+	if (time_to_wait > 0)
 		src << "<font color='red'>Error: AllowUpload(): Spam prevention. Please wait [round(time_to_wait/10)] seconds.</font>"
 		return FALSE
 	fileaccess_timer = world.time + FTPDELAY	*/
@@ -110,20 +110,20 @@
 	dir = NORTH
 	TopicData = null							//Prevent calls to client.Topic from connect
 
-	if(!(connection in list("seeker", "web")))					//Invalid connection type.
+	if (!(connection in list("seeker", "web")))					//Invalid connection type.
 		return null
 
-	if(byond_version < ABSOLUTE_MIN_CLIENT_VERSION)		// seriously out of date client.
+	if (byond_version < ABSOLUTE_MIN_CLIENT_VERSION)		// seriously out of date client.
 		return null
 
 	if (key != world.host)
-		if(!config.guests_allowed && IsGuestKey(key))
+		if (!config.guests_allowed && IsGuestKey(key))
 			alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.","Guest","OK")
 			del(src)
 			return
 
 	// Change the way they should download resources.
-	if(config.resource_urls)
+	if (config.resource_urls)
 		preload_rsc = pick(config.resource_urls)
 	else preload_rsc = TRUE // If config.resource_urls is not set, preload like normal.
 
@@ -136,7 +136,7 @@
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = preferences_datums[ckey]
 
-	if(!prefs)
+	if (!prefs)
 		prefs = new /datum/preferences(src)
 		preferences_datums[ckey] = prefs
 
@@ -145,7 +145,7 @@
 
 	. = ..()	//calls mob.Login()
 
-	if(!serverswap_open_status)
+	if (!serverswap_open_status)
 		if (serverswap.Find("snext"))
 			var/linked = "byond://[world.internet_address]:[serverswap[serverswap["snext"]]]"
 			src << "<span class = 'notice'><font size = 1>This server is not open, so you will be automatically redirected to the linked server - if it doesn't automatically take you there, click this: <b>[linked]</b>.</font></span>"
@@ -157,7 +157,7 @@
 		del(src)
 		return FALSE
 
-	if(byond_version < REAL_MIN_CLIENT_VERSION)		//Out of date client.
+	if (byond_version < REAL_MIN_CLIENT_VERSION)		//Out of date client.
 		src << "<span class = 'danger'><font size = 4>Please upgrade to BYOND [REAL_MIN_CLIENT_VERSION] to play.</font></span>"
 		del(src)
 		return FALSE
@@ -175,13 +175,13 @@
 	holder = admin_datums[ckey]
 
 	// this is here because mob/Login() is called whenever a mob spawns in
-	if(holder)
+	if (holder)
 		if (ticker && ticker.current_state == GAME_STATE_PLAYING) //Only report this stuff if we are currently playing.
 			message_admins("Staff login: [key_name(src)]")
 
 	establish_db_connection()
 
-	if(holder)
+	if (holder)
 		holder.associate(src)
 		admins |= src
 		holder.owner = src
@@ -224,13 +224,13 @@
 			del(src)
 			return
 
-	if(custom_event_msg && custom_event_msg != "")
+	if (custom_event_msg && custom_event_msg != "")
 		src << "<h1 class='alert'>Custom Event</h1>"
 		src << "<h2 class='alert'>A custom event is taking place. OOC Info:</h2>"
 		src << "<span class='alert'>[custom_event_msg]</span>"
 		src << "<br>"
 
-	if(holder)
+	if (holder)
 		add_admin_verbs()
 		admin_memo_show()
 
@@ -243,17 +243,17 @@
 	// Forcibly enable hardware-accelerated graphics, as we need them for the lighting overlays.
 	// (but turn them off first, since sometimes BYOND doesn't turn them on properly otherwise)
 	spawn(5) // And wait a half-second, since it sounds like you can do this too fast.
-		if(src)
+		if (src)
 			winset(src, null, "command=\".configure graphics-hwmode off\"")
 			sleep(2) // wait a bit more, possibly fixes hardware mode not re-activating right
 			winset(src, null, "command=\".configure graphics-hwmode on\"")
 
 	send_resources()
 /*
-	if(prefs.lastchangelog != changelog_hash) //bolds the changelog button on the interface so we know there are updates.
+	if (prefs.lastchangelog != changelog_hash) //bolds the changelog button on the interface so we know there are updates.
 		src << "<span class='info'>You have unread updates in the changelog.</span>"
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
-		if(config.aggressive_changelog)
+		if (config.aggressive_changelog)
 			changes()*/
 
 	fix_nanoUI()
@@ -279,7 +279,7 @@
 	if (processes.client)
 		processes.client.logged_next_normal_respawns[ckey] = next_normal_respawn
 
-	if(holder)
+	if (holder)
 		holder.owner = null
 		admins -= src
 	directory -= ckey
@@ -297,14 +297,14 @@
 
 /proc/get_player_age(key)
 	establish_db_connection()
-	if(!database)
+	if (!database)
 		return null
 
 	var/sql_ckey = sql_sanitize_text(ckey(key))
 
 	var/list/rowdata = database.execute("SELECT datediff(Now(),firstseen) as age FROM player WHERE ckey = '[sql_ckey]'")
 
-	if(islist(rowdata) && !isemptylist(rowdata))
+	if (islist(rowdata) && !isemptylist(rowdata))
 		return text2num(rowdata["age"])
 	else
 		return -1
@@ -342,14 +342,14 @@
 		related_accounts_cid += "[rowdata["ckey"]], "
 /*
 	//Just the standard check to see if it's actually a number
-	if(sql_id)
-		if(istext(sql_id))
+	if (sql_id)
+		if (istext(sql_id))
 			sql_id = text2num(sql_id)
-		if(!isnum(sql_id))
+		if (!isnum(sql_id))
 			return*/
 
 	var/admin_rank = "Player"
-	if(holder)
+	if (holder)
 		admin_rank = holder.rank
 
 	var/sql_ip = sql_sanitize_text(address)
@@ -368,7 +368,7 @@
 	world << "sql_id: [sql_id]"
 	#endif
 
-	if(sql_id)
+	if (sql_id)
 		#ifdef SQLDEBUG
 		world << "prev. player [src]"
 		#endif
@@ -393,7 +393,7 @@
 //checks if a client is afk
 //3000 frames = 5 minutes
 /client/proc/is_afk(duration=3000)
-	if(inactivity > duration)	return inactivity
+	if (inactivity > duration)	return inactivity
 	return FALSE
 
 //Checks if the client game window is minimized
@@ -433,7 +433,7 @@
 	return FALSE
 
 /client/proc/MayRespawn()
-	if(mob)
+	if (mob)
 		return mob.MayRespawn()
 
 	// Something went wrong, client is usually kicked or transfered to a new mob at this point
@@ -442,7 +442,7 @@
 /client/verb/character_setup()
 	set name = "Character & Preferences Setup"
 	set category = "OOC"
-	if(prefs)
+	if (prefs)
 		prefs.ShowChoices(usr)
 
 // for testing

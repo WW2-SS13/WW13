@@ -55,7 +55,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/c20r/update_icon()
 	..()
-	if(ammo_magazine)
+	if (ammo_magazine)
 		icon_state = "c20r-[round(ammo_magazine.stored_ammo.len,4)]"
 	else
 		icon_state = "c20r"
@@ -90,7 +90,7 @@
 /obj/item/weapon/gun/projectile/automatic/sts35/update_icon(var/ignore_inhands)
 	..()
 	icon_state = (ammo_magazine)? "arifle" : "arifle-empty"
-	if(!ignore_inhands) update_held_icon()
+	if (!ignore_inhands) update_held_icon()
 
 /obj/item/weapon/gun/projectile/automatic/wt550
 	name = "machine pistol"
@@ -107,7 +107,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/wt550/update_icon()
 	..()
-	if(ammo_magazine)
+	if (ammo_magazine)
 		icon_state = "wt550-[round(ammo_magazine.stored_ammo.len,4)]"
 	else
 		icon_state = "wt550"
@@ -153,28 +153,28 @@
 	if (..()) // handle attachments
 		return TRUE
 
-	if((istype(I, /obj/item/weapon/grenade)))
+	if ((istype(I, /obj/item/weapon/grenade)))
 		launcher.load(I, user)
 	else
 		..()
 
 /obj/item/weapon/gun/projectile/automatic/z8/attack_hand(mob/user)
-	if(user.get_inactive_hand() == src && use_launcher)
+	if (user.get_inactive_hand() == src && use_launcher)
 		launcher.unload(user)
 	else
 		..()
 
 /obj/item/weapon/gun/projectile/automatic/z8/Fire(atom/target, mob/living/user, params, pointblank=0, reflex=0)
-	if(use_launcher)
+	if (use_launcher)
 		launcher.Fire(target, user, params, pointblank, reflex)
-		if(!launcher.chambered)
+		if (!launcher.chambered)
 			switch_firemodes() //switch back automatically
 	else
 		..()
 
 /obj/item/weapon/gun/projectile/automatic/z8/update_icon()
 	..()
-	if(ammo_magazine)
+	if (ammo_magazine)
 		icon_state = "carbine-[round(ammo_magazine.stored_ammo.len,2)]"
 	else
 		icon_state = "carbine"
@@ -182,7 +182,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/z8/examine(mob/user)
 	..()
-	if(launcher.chambered)
+	if (launcher.chambered)
 		user << "\The [launcher] has \a [launcher.chambered] loaded."
 	else
 		user << "\The [launcher] is empty."
@@ -218,7 +218,7 @@
 	var/cover_open = FALSE
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw/special_check(mob/user)
-	if(cover_open)
+	if (cover_open)
 		user << "<span class='warning'>[src]'s cover is open! Close it before firing!</span>"
 		return FALSE
 	return ..()
@@ -229,14 +229,14 @@
 	update_icon()
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw/attack_self(mob/user as mob)
-	if(cover_open)
+	if (cover_open)
 		toggle_cover(user) //close the cover
 		playsound(loc, 'sound/weapons/guns/interact/lmg_close.ogg', 100, TRUE)
 	else
 		return ..() //once closed, behave like normal
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw/attack_hand(mob/user as mob)
-	if(!cover_open && user.get_inactive_hand() == src)
+	if (!cover_open && user.get_inactive_hand() == src)
 		toggle_cover(user) //open the cover
 		playsound(loc, 'sound/weapons/guns/interact/lmg_open.ogg', 100, TRUE)
 	else
@@ -246,13 +246,13 @@
 	icon_state = "l6[cover_open ? "open" : "closed"][ammo_magazine ? round(ammo_magazine.stored_ammo.len, 25) : "-empty"]"
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw/load_ammo(var/obj/item/A, mob/user)
-	if(!cover_open)
+	if (!cover_open)
 		user << "<span class='warning'>You need to open the cover to load [src].</span>"
 		return
 	..()
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw/unload_ammo(mob/user, var/allow_dump=1)
-	if(!cover_open)
+	if (!cover_open)
 		user << "<span class='warning'>You need to open the cover to unload [src].</span>"
 		return
 	..()
@@ -283,10 +283,10 @@
 		)
 
 /obj/item/weapon/gun/projectile/automatic/SMG_sol/proc/update_charge()
-	if(!ammo_magazine)
+	if (!ammo_magazine)
 		return
 	var/ratio = ammo_magazine.stored_ammo.len / ammo_magazine.max_ammo
-	if(ratio < 0.25 && ratio != FALSE)
+	if (ratio < 0.25 && ratio != FALSE)
 		ratio = 0.25
 	ratio = round(ratio, 0.25) * 100
 	overlays += "smg_[ratio]"

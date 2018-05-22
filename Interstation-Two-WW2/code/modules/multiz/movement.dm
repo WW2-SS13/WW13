@@ -2,7 +2,7 @@
 	set name = "Move Upwards"
 	set category = "Ghost"
 	var/turf/T = GetAbove(get_turf(src))
-	if(T)
+	if (T)
 		Move(T)
 
 
@@ -10,5 +10,5 @@
 	set name = "Move Downwards"
 	set category = "Ghost"
 	var/turf/T = GetBelow(get_turf(src))
-	if(T)
+	if (T)
 		Move(T)

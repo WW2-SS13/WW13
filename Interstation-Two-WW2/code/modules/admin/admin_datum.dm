@@ -23,12 +23,12 @@ var/list/admin_datums = list()
 	return rank
 
 /datum/admins/proc/marked_datum()
-	if(marked_datum_weak)
+	if (marked_datum_weak)
 		return marked_datum_weak.resolve()
 
 /datum/admins/New(initial_rank = "Temporary Admin", initial_rights = FALSE, ckey)
 
-	if(!ckey)
+	if (!ckey)
 		error("Admin datum created without a ckey argument. Datum has been deleted")
 		qdel(src)
 		return
@@ -52,21 +52,21 @@ var/list/admin_datums = list()
 	admin_datums[ckey] = src
 
 /datum/admins/proc/associate(client/C)
-	if(istype(C))
+	if (istype(C))
 		owner = C
 		owner.holder = src
 		owner.add_admin_verbs()
 		admins |= C
 
 /datum/admins/proc/disassociate()
-	if(owner)
+	if (owner)
 		admins -= owner
 		owner.remove_admin_verbs()
 		owner.deadmin_holder = owner.holder
 		owner.holder = null
 
 /datum/admins/proc/reassociate()
-	if(owner)
+	if (owner)
 		admins |= owner
 		owner.holder = src
 		owner.deadmin_holder = null
@@ -74,6 +74,6 @@ var/list/admin_datums = list()
 
 
 /client/proc/deadmin()
-	if(holder)
+	if (holder)
 		holder.disassociate()
 	return TRUE

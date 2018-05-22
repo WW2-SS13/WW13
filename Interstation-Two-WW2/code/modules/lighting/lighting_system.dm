@@ -43,7 +43,7 @@
 			continue
 
 		for(var/i = 1 to 4)
-			if(T.corners[i]) // Already have a corner on this direction.
+			if (T.corners[i]) // Already have a corner on this direction.
 				continue
 
 			T.corners[i] = new/datum/lighting_corner(T, LIGHTING_CORNER_DIAGONAL[i])

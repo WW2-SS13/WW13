@@ -16,9 +16,9 @@
 #define KD_CHANCE_HIGH 80
 
 /obj/item/weapon/gun/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/attachment))
+	if (istype(I, /obj/item/weapon/attachment))
 		var/obj/item/weapon/attachment/A = I
-		if(A.attachable)
+		if (A.attachable)
 			try_attach(A, user)
 	..()
 

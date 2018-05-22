@@ -51,21 +51,21 @@
 	..()
 
 /obj/structure/simple_door/proc/update_material(var/material_name)
-	if(!material_name)
+	if (!material_name)
 		material_name = DEFAULT_WALL_MATERIAL
 	material = get_material_by_name(material_name)
-	if(!material)
+	if (!material)
 		qdel(src)
 		return
 	hardness = max(1,round(material.integrity/10))
 	icon_state = material.door_icon_base
 	name = "[material.display_name] door"
 	color = material.icon_colour
-	if(material.opacity < 0.5)
+	if (material.opacity < 0.5)
 		opacity = FALSE
 	else
 		opacity = TRUE
-	if(material.products_need_process())
+	if (material.products_need_process())
 		processing_objects |= src
 	update_nearby_tiles(need_rebuild=1)
 
@@ -79,7 +79,7 @@
 
 /obj/structure/simple_door/Bumped(atom/user)
 	..()
-	if(!state)
+	if (!state)
 		return TryToSwitchState(user)
 	return
 
@@ -87,23 +87,23 @@
 	return TryToSwitchState(user)
 
 /obj/structure/simple_door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group) return FALSE
-	if(istype(mover, /obj/effect/beam))
+	if (air_group) return FALSE
+	if (istype(mover, /obj/effect/beam))
 		return !opacity
 	return !density
 
 /obj/structure/simple_door/proc/TryToSwitchState(atom/user)
-	if(isSwitchingStates) return FALSE
-	if(ismob(user) && canOpen(user))
+	if (isSwitchingStates) return FALSE
+	if (ismob(user) && canOpen(user))
 		var/mob/M = user
-		if(!material.can_open_material_door(user))
+		if (!material.can_open_material_door(user))
 			return FALSE
-		if(world.time - user.last_bumped <= 60)
+		if (world.time - user.last_bumped <= 60)
 			return FALSE
-		if(M.client)
-			if(iscarbon(M))
+		if (M.client)
+			if (iscarbon(M))
 				var/mob/living/carbon/C = M
-				if(!C.handcuffed)
+				if (!C.handcuffed)
 					SwitchState()
 			else
 				SwitchState()
@@ -111,7 +111,7 @@
 
 
 /obj/structure/simple_door/proc/SwitchState()
-	if(state)
+	if (state)
 		Close()
 	else
 		Open()
@@ -158,26 +158,26 @@
 	..()
 
 /obj/structure/simple_door/update_icon()
-	if(state)
+	if (state)
 		icon_state = "[material.door_icon_base]open"
 	else
 		icon_state = material.door_icon_base
 
 /obj/structure/simple_door/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon)) //not sure, can't not just weapons get passed to this proc?
+	if (istype(W,/obj/item/weapon)) //not sure, can't not just weapons get passed to this proc?
 		hardness -= W.force/100
 		user << "You hit the [name] with your [W.name]!"
 		CheckHardness()
-	else if(istype(W,/obj/item/weapon/weldingtool))
+	else if (istype(W,/obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
-		if(material.ignition_point && WT.remove_fuel(0, user))
+		if (material.ignition_point && WT.remove_fuel(0, user))
 			TemperatureAct(150)
 	else
 		attack_hand(user)
 	return TRUE // for key_doors
 
 /obj/structure/simple_door/proc/CheckHardness()
-	if(hardness <= 0)
+	if (hardness <= 0)
 		Dismantle(1)
 
 /obj/structure/simple_door/proc/Dismantle(devastated = FALSE)
@@ -186,21 +186,21 @@
 
 /obj/structure/simple_door/ex_act(severity = TRUE)
 	switch(severity)
-		if(1)
+		if (1)
 			Dismantle(1)
-		if(2)
-			if(prob(20))
+		if (2)
+			if (prob(20))
 				Dismantle(1)
 			else
 				hardness--
 				CheckHardness()
-		if(3)
+		if (3)
 			hardness -= 0.1
 			CheckHardness()
 	return
 
 /obj/structure/simple_door/process()
-	if(!material.radioactivity)
+	if (!material.radioactivity)
 		return
 	for(var/mob/living/L in range(1,src))
 		L.apply_effect(round(material.radioactivity/3),IRRADIATE,0)

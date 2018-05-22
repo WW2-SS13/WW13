@@ -139,7 +139,7 @@
 				string += "[capitalize(inner)] [G.his] [e.name].</span>"
 				user.show_message(string)
 				ecount++
-		if(!ecount)
+		if (!ecount)
 			user.show_message("<span class='notice'>* No local injuries.</span>")
 
 		// check internal organs afterwards
@@ -159,10 +159,10 @@
 				user.show_message(string)
 				icount++
 
-		if(!icount)
+		if (!icount)
 			user.show_message("<span class='notice'>* No organ damage.</span>")
 
-		if(unsplinted_limbs.len >= 1)
+		if (unsplinted_limbs.len >= 1)
 			var/string = "[G.His] "
 			var/Count = TRUE
 			for (var/limb_name in unsplinted_limbs)

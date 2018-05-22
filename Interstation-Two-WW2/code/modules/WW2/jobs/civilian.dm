@@ -13,7 +13,7 @@
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
 
 /datum/job/partisan/civilian/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/flashlight(H), pick(slot_l_hand, slot_r_hand))
 	equip_random_civilian_clothing(H)

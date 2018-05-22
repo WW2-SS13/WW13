@@ -10,55 +10,55 @@
 
 /datum/reagent/blood/initialize_data(var/newdata)
 	..()
-	if(data && data["blood_colour"])
+	if (data && data["blood_colour"])
 		color = data["blood_colour"]
 	return
 
 /datum/reagent/blood/get_data() // Just in case you have a reagent that handles data differently.
 	var/t = data.Copy()
-	if(t["virus2"])
+	if (t["virus2"])
 		var/list/v = t["virus2"]
 		t["virus2"] = v.Copy()
 	return t
 
 /datum/reagent/blood/touch_turf(var/turf/T)
-	if(!istype(T) || volume < 3)
+	if (!istype(T) || volume < 3)
 		return
-	if(!data["donor"] || istype(data["donor"], /mob/living/carbon/human))
+	if (!data["donor"] || istype(data["donor"], /mob/living/carbon/human))
 		blood_splatter(T, src, TRUE)
-	else if(istype(data["donor"], /mob/living/carbon/alien))
+	else if (istype(data["donor"], /mob/living/carbon/alien))
 		var/obj/effect/decal/cleanable/blood/B = blood_splatter(T, src, TRUE)
-		if(B)
+		if (B)
 			B.blood_DNA["UNKNOWN DNA STRUCTURE"] = "X*"
 
 /datum/reagent/blood/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 
 	var/effective_dose = dose
-	if(issmall(M)) effective_dose *= 2
+	if (issmall(M)) effective_dose *= 2
 
-	if(effective_dose > 5)
+	if (effective_dose > 5)
 		M.adjustToxLoss(removed)
-	if(effective_dose > 15)
+	if (effective_dose > 15)
 		M.adjustToxLoss(removed)
 
-/*	if(data && data["virus2"])
+/*	if (data && data["virus2"])
 		var/list/vlist = data["virus2"]
-		if(vlist.len)
+		if (vlist.len)
 			for(var/ID in vlist)
 				var/datum/disease2/disease/V = vlist[ID]
-				if(V.spreadtype == "Contact")
+				if (V.spreadtype == "Contact")
 					infect_virus2(M, V.getcopy())*/
 
 /datum/reagent/blood/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	return
-/*	if(data && data["virus2"])
+/*	if (data && data["virus2"])
 		var/list/vlist = data["virus2"]
-		if(vlist.len)
+		if (vlist.len)
 			for(var/ID in vlist)
 				var/datum/disease2/disease/V = vlist[ID]
-				if(V.spreadtype == "Contact")
+				if (V.spreadtype == "Contact")
 					infect_virus2(M, V.getcopy())
-	if(data && data["antibodies"])
+	if (data && data["antibodies"])
 		M.antibodies |= data["antibodies"]*/
 
 /datum/reagent/blood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -75,7 +75,7 @@
 	color = "#0050F0"
 
 /datum/reagent/antibodies/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(data)
+	if (data)
 		M.antibodies |= data["antibodies"]
 	..()
 
@@ -90,14 +90,14 @@
 	taste_description = "water"
 
 /datum/reagent/water/touch_turf(var/turf/T)
-	if(!istype(T))
+	if (!istype(T))
 		return
 
 	var/datum/gas_mixture/environment = T.return_air()
 	var/min_temperature = T0C + 100 // 100C, the boiling point of water
 
 	var/hotspot = (locate(/obj/fire) in T)
-	if(hotspot && !istype(T, /turf/space))
+	if (hotspot && !istype(T, /turf/space))
 	//	var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
 	//	lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), FALSE)
 	//	lowertemp.react()
@@ -110,20 +110,20 @@
 		if (prob(5))
 			T.visible_message("<span class='warning'>The water sizzles as it lands on \the [T]!</span>")
 
-	else if(volume >= 10)
+	else if (volume >= 10)
 		T.wet_floor(1)
 
 /datum/reagent/water/touch_obj(var/obj/O)
 /*
-	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/monkeycube))
+	if (istype(O, /obj/item/weapon/reagent_containers/food/snacks/monkeycube))
 		var/obj/item/weapon/reagent_containers/food/snacks/monkeycube/cube = O
-		if(!cube.wrapped)
+		if (!cube.wrapped)
 			cube.Expand()*/
 
 /datum/reagent/water/touch_mob(var/mob/living/L, var/amount)
-	if(istype(L))
+	if (istype(L))
 		var/needed = L.fire_stacks * 10
-		if(amount > needed)
+		if (amount > needed)
 			L.fire_stacks = FALSE
 			L.ExtinguishMob()
 			remove_self(needed)
@@ -151,10 +151,10 @@
 	return
 
 /datum/reagent/fuel/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(issmall(M)) removed *= 2
+	if (issmall(M)) removed *= 2
 	M.adjustToxLoss(2 * removed)
 
 /datum/reagent/fuel/touch_mob(var/mob/living/L, var/amount)
-	if(istype(L))
+	if (istype(L))
 		L.adjust_fire_stacks(amount / 10) // Splashing people with welding fuel to make them easy to ignite!
 

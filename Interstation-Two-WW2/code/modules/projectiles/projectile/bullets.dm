@@ -15,7 +15,7 @@
 	muzzle_type = /obj/effect/projectile/bullet/muzzle
 
 /obj/item/projectile/bullet/get_structure_damage()
-	if(damage_type == BRUTE || damage_type == BURN)
+	if (damage_type == BRUTE || damage_type == BURN)
 		return damage/25 // bullets are no longer good at destroying walls, use c4 - Kachnov
 	return FALSE
 
@@ -25,7 +25,7 @@
 		shake_camera(L, 3, 2)
 
 /obj/item/projectile/bullet/attack_mob(var/mob/living/target_mob)
-	if(penetrating > 1 && damage > 20 && prob(damage))
+	if (penetrating > 1 && damage > 20 && prob(damage))
 		mob_passthrough_check = TRUE
 	else
 		mob_passthrough_check = FALSE
@@ -33,22 +33,22 @@
 
 /obj/item/projectile/bullet/can_embed()
 	//prevent embedding if the projectile is passing through the mob
-	if(mob_passthrough_check)
+	if (mob_passthrough_check)
 		return FALSE
 	return ..()
 
 /obj/item/projectile/bullet/check_penetrate(var/atom/A)
-	if(!A || !A.density) return TRUE //if whatever it was got destroyed when we hit it, then I guess we can just keep going
+	if (!A || !A.density) return TRUE //if whatever it was got destroyed when we hit it, then I guess we can just keep going
 
-	else if(ismob(A))
-		if(!mob_passthrough_check)
+	else if (ismob(A))
+		if (!mob_passthrough_check)
 			return FALSE
-		if(iscarbon(A))
+		if (iscarbon(A))
 			damage *= 0.7 //squishy mobs absorb KE
 		return TRUE
 
 	var/chance = 0
-	if(istype(A, /turf/wall))
+	if (istype(A, /turf/wall))
 		var/turf/wall/W = A
 
 		// 21% chance for rifles to penetrate a brick wall, 62% for a wood wall
@@ -57,12 +57,12 @@
 		if (istype(firedfrom, /obj/item/weapon/gun/projectile/automatic/stationary))
 			chance /= 2
 
-	else if(istype(A, /obj/structure/girder))
+	else if (istype(A, /obj/structure/girder))
 		chance = 66
-	else if(istype(A, /obj/structure))
+	else if (istype(A, /obj/structure))
 		chance = round(damage/2) + 10
 
-	if(prob(chance))
+	if (prob(chance))
 		return TRUE
 
 	return FALSE
@@ -94,12 +94,12 @@
 
 	//shrapnel explosions miss prone mobs with a chance that increases with distance
 	var/prone_chance = FALSE
-	if(!base_spread)
+	if (!base_spread)
 		prone_chance = max(spread_step*(distance - 2), FALSE)
 
 	var/hits = FALSE
 	for (var/i in 1 to total_pellets)
-		if(target_mob.lying && target_mob != original && prob(prone_chance))
+		if (target_mob.lying && target_mob != original && prob(prone_chance))
 			continue
 
 		//pellet hits spread out across different zones, but 'aim at' the targeted zone with higher probability
@@ -126,10 +126,10 @@
 		return
 
 	//If this is a shrapnel explosion, allow mobs that are prone to get hit, too
-	if(. && !base_spread && isturf(loc))
+	if (. && !base_spread && isturf(loc))
 		for(var/mob/living/M in loc)
-			if(M.lying || !M.CanPass(src, loc)) //Bump if lying or if we would normally Bump.
-				if(Bump(M)) //Bump will make sure we don't hit a mob multiple times
+			if (M.lying || !M.CanPass(src, loc)) //Bump if lying or if we would normally Bump.
+				if (Bump(M)) //Bump will make sure we don't hit a mob multiple times
 					return
 
 /* short-casing projectiles, like the kind used in pistols or SMGs */
@@ -191,7 +191,7 @@
 	edge = TRUE
 
 /obj/item/projectile/bullet/gyro/on_hit(var/atom/target, var/blocked = FALSE)
-	if(isturf(target))
+	if (isturf(target))
 		explosion(target, -1, FALSE, 2)
 	..()
 

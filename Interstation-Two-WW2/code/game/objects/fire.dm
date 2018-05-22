@@ -14,18 +14,18 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = FALSE)
 	return
 
 /turf/hotspot_expose(exposed_temperature, exposed_volume, soh)
-	if(fire_protection > world.time-300)
+	if (fire_protection > world.time-300)
 		return FALSE
-	if(locate(/obj/fire) in src)
+	if (locate(/obj/fire) in src)
 		return TRUE
 	var/datum/gas_mixture/air_contents = return_air()
-	if(!air_contents || exposed_temperature < (T0C +  126))
+	if (!air_contents || exposed_temperature < (T0C +  126))
 		return FALSE
 
 	var/igniting = FALSE
 	//var/obj/effect/decal/cleanable/liquid_fuel/liquid = locate() in src
 
-/*	if(air_contents.check_combustability(liquid))
+/*	if (air_contents.check_combustability(liquid))
 		igniting = TRUE*/
 
 	//	create_fire(exposed_temperature)
@@ -54,7 +54,7 @@ var/list/fire_pool = list()
 
 /turf/create_fire(fl, temp, spread = TRUE, _time_limit = 10)
 
-	if(fire)
+	if (fire)
 		fire.firelevel = max(fl, fire.firelevel)
 		fire.temperature = max(temp, fire.temperature)
 		return TRUE
@@ -133,16 +133,16 @@ var/obj/burning_overlay_turf = null
 
 	var/turf/my_tile = loc
 
-	if(!istype(my_tile))
-		if(my_tile.fire == src)
+	if (!istype(my_tile))
+		if (my_tile.fire == src)
 			my_tile.fire = null
 			RemoveFire()
 		return TRUE
 
-	if(firelevel > 6)
+	if (firelevel > 6)
 		icon_state = "3"
 		set_light(7, 3)
-	else if(firelevel > 2.5)
+	else if (firelevel > 2.5)
 		icon_state = "2"
 		set_light(5, 2)
 	else
@@ -196,27 +196,27 @@ var/obj/burning_overlay_turf = null
 		for(var/direction in cardinal)
 			var/turf/enemy_tile = get_step(my_tile, direction)
 
-			if(istype(enemy_tile))
-				if(my_tile.open_directions & direction) //Grab all valid bordering tiles
-					if(enemy_tile.fire)
+			if (istype(enemy_tile))
+				if (my_tile.open_directions & direction) //Grab all valid bordering tiles
+					if (enemy_tile.fire)
 						continue
 
-					//if(!enemy_tile.zone.fire_tiles.len) TODO - optimize
+					//if (!enemy_tile.zone.fire_tiles.len) TODO - optimize
 				//	var/datum/gas_mixture/acs = enemy_tile.return_air()
 				//	var/obj/effect/decal/cleanable/liquid_fuel/liquid = locate() in enemy_tile
-				//	if(!acs || !acs.check_combustability(liquid))
+				//	if (!acs || !acs.check_combustability(liquid))
 					//	continue
 
 					//If extinguisher mist passed over the turf it's trying to spread to, don't spread and
 					//reduce firelevel.
 
-					if(enemy_tile.fire_protection > world.time-30)
+					if (enemy_tile.fire_protection > world.time-30)
 						firelevel -= 1.5
 						continue
 
 					//Spread the fire.
 
-				/*	if(prob( 50 + 50 * (firelevel/vsc.fire_firelevel_multiplier) ) && my_tile && my_tile.CanPass(null, enemy_tile, FALSE,0) && enemy_tile && enemy_tile.CanPass(null, my_tile, FALSE,0))
+				/*	if (prob( 50 + 50 * (firelevel/vsc.fire_firelevel_multiplier) ) && my_tile && my_tile.CanPass(null, enemy_tile, FALSE,0) && enemy_tile && enemy_tile.CanPass(null, my_tile, FALSE,0))
 						enemy_tile.create_fire(firelevel)*/
 
 		//	else
@@ -234,7 +234,7 @@ var/obj/burning_overlay_turf = null
 
 /obj/fire/proc/setup(newLoc,fl)
 
-	if(!istype(loc, /turf))
+	if (!istype(loc, /turf))
 		qdel(src)
 		return
 
@@ -302,19 +302,19 @@ var/obj/burning_overlay_turf = null
 		//Get heat transfer coefficients for clothing.
 
 		for(var/obj/item/clothing/C in src)
-			if(H.l_hand == C || H.r_hand == C)
+			if (H.l_hand == C || H.r_hand == C)
 				continue
 
-			if( C.max_heat_protection_temperature >= temperature )
-				if(C.body_parts_covered & HEAD)
+			if ( C.max_heat_protection_temperature >= temperature )
+				if (C.body_parts_covered & HEAD)
 					head_exposure = FALSE
-				if(C.body_parts_covered & UPPER_TORSO)
+				if (C.body_parts_covered & UPPER_TORSO)
 					chest_exposure = FALSE
-				if(C.body_parts_covered & LOWER_TORSO)
+				if (C.body_parts_covered & LOWER_TORSO)
 					groin_exposure = FALSE
-				if(C.body_parts_covered & LEGS)
+				if (C.body_parts_covered & LEGS)
 					legs_exposure = FALSE
-				if(C.body_parts_covered & ARMS)
+				if (C.body_parts_covered & ARMS)
 					arms_exposure = FALSE
 
 		H.apply_damage(damage*0.5*head_exposure, BURN, "head", FALSE, FALSE, "Fire")

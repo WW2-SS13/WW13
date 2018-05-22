@@ -30,8 +30,8 @@ var/global/list/image/fluidtrack_cache=list()
 		wet=_wet
 
 /obj/effect/decal/cleanable/blood/tracks/reveal_blood()
-//	if(!fluorescent)
-	if(stack && stack.len)
+//	if (!fluorescent)
+	if (stack && stack.len)
 		for(var/datum/fluidtrack/track in stack)
 			track.basecolor = COLOR_LUMINOL
 	..()
@@ -88,12 +88,12 @@ var/global/list/image/fluidtrack_cache=list()
 			b=1<<bi
 			// COMING BIT
 			// If setting
-			if(comingdir&b)
+			if (comingdir&b)
 				// If not wet or not set
-				if(dirs&b)
+				if (dirs&b)
 					var/sid=setdirs["[b]"]
 					track=stack[sid]
-					if(track.wet==t && track.basecolor==bloodcolor)
+					if (track.wet==t && track.basecolor==bloodcolor)
 						continue
 					// Remove existing stack entry
 					stack.Remove(track)
@@ -105,12 +105,12 @@ var/global/list/image/fluidtrack_cache=list()
 
 			// GOING BIT (shift up 4)
 			b=b<<4
-			if(realgoing&b)
+			if (realgoing&b)
 				// If not wet or not set
-				if(dirs&b)
+				if (dirs&b)
 					var/sid=setdirs["[b]"]
 					track=stack[sid]
-					if(track.wet==t && track.basecolor==bloodcolor)
+					if (track.wet==t && track.basecolor==bloodcolor)
 						continue
 					// Remove existing stack entry
 					stack.Remove(track)
@@ -121,9 +121,9 @@ var/global/list/image/fluidtrack_cache=list()
 				updated=1
 
 		dirs |= comingdir|realgoing
-		if(islist(blood_DNA))
+		if (islist(blood_DNA))
 			blood_DNA |= DNA.Copy()
-		if(updated)
+		if (updated)
 			update_icon()
 
 	update_icon()
@@ -136,11 +136,11 @@ var/global/list/image/fluidtrack_cache=list()
 			var/stack_idx=setdirs["[track.direction]"]
 			var/state=coming_state
 			truedir=track.direction
-			if(truedir&240) // Check if we're in the GOING block
+			if (truedir&240) // Check if we're in the GOING block
 				state=going_state
 				truedir=truedir>>4
 
-			if(track.overlay)
+			if (track.overlay)
 				track.overlay=null
 			var/image/I = image(icon, icon_state=state, dir=num2dir(truedir))
 			I.color = track.basecolor

@@ -198,13 +198,13 @@ var/global/obj/map_metadata/map = null
 	var/playercount = 0
 	var/only_client_is_host = FALSE
 	for(var/mob/new_player/player in new_player_mob_list)
-		if(player.client)
+		if (player.client)
 			if (!player.client.is_minimized())
 				++playercount
 			if (player.key == world.host)
 				only_client_is_host = TRUE
 
-	if(playercount >= required_players || only_client_is_host)
+	if (playercount >= required_players || only_client_is_host)
 		return TRUE
 
 	return FALSE
@@ -312,10 +312,10 @@ var/global/obj/map_metadata/map = null
 
 		var/datum/job/job = H.original_job
 
-		if(!job)
+		if (!job)
 			continue
 
-		if(H.stat != DEAD && H.stat != UNCONSCIOUS && !H.restrained() && ((H.weakened+H.stunned) == 0) && H.client)
+		if (H.stat != DEAD && H.stat != UNCONSCIOUS && !H.restrained() && ((H.weakened+H.stunned) == 0) && H.client)
 			if (soldiers.Find(job.base_type_flag()))
 				var/H_area = get_area(H)
 				if (roundend_condition_sides[1].Find(job.base_type_flag()))

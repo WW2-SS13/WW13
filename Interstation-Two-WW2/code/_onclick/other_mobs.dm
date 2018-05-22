@@ -10,14 +10,14 @@
 */
 /mob/living/carbon/human/UnarmedAttack(var/atom/A, var/proximity)
 
-	if(!..())
+	if (!..())
 		return
 
 	// Special glove functions:
 	// If the gloves do anything, have them return TRUE to stop
 	// normal attack_hand() here.
 	var/obj/item/clothing/gloves/G = gloves // not typecast specifically enough in defines
-	if(istype(G) && G.Touch(A,1))
+	if (istype(G) && G.Touch(A,1))
 		return
 
 	A.attack_hand(src)
@@ -29,17 +29,17 @@
 	return
 
 /mob/living/carbon/human/RangedAttack(var/atom/A)
-	if(!gloves && !mutations.len) return
+	if (!gloves && !mutations.len) return
 	var/obj/item/clothing/gloves/G = gloves
 
-/*	if((LASER in mutations) && a_intent == I_HURT)
+/*	if ((LASER in mutations) && a_intent == I_HURT)
 		LaserEyes(A) // moved into a proc below
 */
 
-	if(istype(G) && G.Touch(A,0)) // for magic gloves
+	if (istype(G) && G.Touch(A,0)) // for magic gloves
 		return
 /*
-	else if(TK in mutations)
+	else if (TK in mutations)
 		A.attack_tk(src)*/
 
 /mob/living/RestrainedClickOn(var/atom/A)
@@ -54,7 +54,7 @@
 
 /mob/living/carbon/alien/UnarmedAttack(var/atom/A, var/proximity)
 
-	if(!..())
+	if (!..())
 		return FALSE
 
 	A.attack_generic(src,rand(5,6),"bitten")
@@ -69,11 +69,11 @@
 
 /mob/living/carbon/slime/UnarmedAttack(var/atom/A, var/proximity)
 
-	if(!..())
+	if (!..())
 		return
 
 	// Eating
-	if(Victim)
+	if (Victim)
 		if (Victim == A)
 			Feedstop()
 		return
@@ -88,21 +88,21 @@
 				var/stunprob = TRUE
 				var/power = max(0, min(10, (powerlevel + rand(0, 3))))
 				if (powerlevel > 0 && !istype(A, /mob/living/carbon/slime))
-					if(ishuman(M))
+					if (ishuman(M))
 						var/mob/living/carbon/human/H = M
 						stunprob *= H.species.siemens_coefficient
 
 
 					switch(power * 10)
-						if(0) stunprob *= 10
-						if(1 to 2) stunprob *= 20
-						if(3 to 4) stunprob *= 30
-						if(5 to 6) stunprob *= 40
-						if(7 to 8) stunprob *= 60
-						if(9) 	   stunprob *= 70
-						if(10) 	   stunprob *= 95
+						if (0) stunprob *= 10
+						if (1 to 2) stunprob *= 20
+						if (3 to 4) stunprob *= 30
+						if (5 to 6) stunprob *= 40
+						if (7 to 8) stunprob *= 60
+						if (9) 	   stunprob *= 70
+						if (10) 	   stunprob *= 95
 
-				if(prob(stunprob))
+				if (prob(stunprob))
 					powerlevel = max(0, powerlevel-3)
 					M.visible_message("<span class='danger'>[src] has shocked [M]!</span>", "<span class='danger'>[src] has shocked you!</span>")
 					M.Weaken(power)
@@ -113,9 +113,9 @@
 					s.set_up(5, TRUE, M)
 					s.start()
 
-					if(prob(stunprob) && powerlevel >= 8)
+					if (prob(stunprob) && powerlevel >= 8)
 						M.adjustFireLoss(powerlevel * rand(6,10))
-				else if(prob(40))
+				else if (prob(40))
 					M.visible_message("<span class='danger'>[src] has pounced at [M]!</span>", "<span class='danger'>[src] has pounced at you!</span>")
 					M.Weaken(power)
 				else
@@ -140,13 +140,13 @@
 */
 /mob/living/simple_animal/UnarmedAttack(var/atom/A, var/proximity)
 
-	if(!..())
+	if (!..())
 		return
 
-	if(melee_damage_upper == FALSE && istype(A,/mob/living))
+	if (melee_damage_upper == FALSE && istype(A,/mob/living))
 		custom_emote(1,"[friendly] [A]!")
 		return
 
 	var/damage = rand(melee_damage_lower, melee_damage_upper)
-	if(A.attack_generic(src,damage,attacktext,environment_smash) && loc && attack_sound)
+	if (A.attack_generic(src,damage,attacktext,environment_smash) && loc && attack_sound)
 		playsound(loc, attack_sound, 50, TRUE, TRUE)

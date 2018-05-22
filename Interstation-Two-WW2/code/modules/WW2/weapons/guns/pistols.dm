@@ -109,7 +109,7 @@
 
 /obj/item/weapon/gun/projectile/pistol/tokarev/update_icon()
 	..()
-	if(ammo_magazine)
+	if (ammo_magazine)
 		icon_state = "tokarev"
 		item_state = "gun"
 	else
@@ -137,7 +137,7 @@
 
 /obj/item/weapon/gun/projectile/pistol/mauser/update_icon()
 	..()
-	if(loaded.len)
+	if (loaded.len)
 		icon_state = "mauserc96"
 		item_state = "gun"
 	else
@@ -165,7 +165,7 @@
 
 /obj/item/weapon/gun/projectile/revolver/nagant_revolver/update_icon()
 	..()
-	if(loaded.len)
+	if (loaded.len)
 		icon_state = "nagant"
 	else
 		icon_state = "nagant"
@@ -184,7 +184,7 @@
 
 /obj/item/weapon/gun/projectile/pistol/waltherp38/update_icon()
 	..()
-	if(ammo_magazine)
+	if (ammo_magazine)
 		icon_state = "waltherp"
 	else
 		icon_state = "waltherp0"
@@ -224,7 +224,7 @@
 /obj/item/weapon/gun/projectile/pistol/luger/flaregun/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
 
 	if (!silenced)
-		if(muzzle_flash)
+		if (muzzle_flash)
 			set_light(muzzle_flash)
 
 	update_icon()

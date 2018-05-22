@@ -7,7 +7,7 @@ var/hyperefficiency_mode = FALSE
 /client/proc/toggle_hyperefficiency_mode()
 	set category = "Debug"
 	set name = "(WARNING!!!) Toggle Hyperefficiency Mode"
-	if(!check_rights(R_HOST))
+	if (!check_rights(R_HOST))
 		return
 	hyperefficiency_mode = !hyperefficiency_mode
 	var/M = "[key_name(src)] [hyperefficiency_mode ? "enabled" : "disabled"] hyperefficiency mode. Tick usage will be [hyperefficiency_mode ? "be decreased" : "no longer be decreased"][hyperefficiency_mode ? " at the cost of slowing down vital & nonvital processes" : ""]."

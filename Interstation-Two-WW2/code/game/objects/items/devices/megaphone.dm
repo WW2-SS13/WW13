@@ -14,25 +14,25 @@
 
 /obj/item/megaphone/attack_self(mob/living/user as mob)
 	if (user.client)
-		if(user.client.prefs.muted & MUTE_IC)
+		if (user.client.prefs.muted & MUTE_IC)
 			src << "<span class='warning'>You cannot speak in IC (muted).</span>"
 			return
-	if(!ishuman(user))
+	if (!ishuman(user))
 		user << "<span class='warning'>You don't know how to use this!</span>"
 		return
-	if(user.silent)
+	if (user.silent)
 		return
-	if(spamcheck)
+	if (spamcheck)
 		user << "<span class='warning'>\The [src] needs to recharge!</span>"
 		return
 
 	var/message = sanitize(input(user, "Shout a message?", "Megaphone", null)  as text)
-	if(!message)
+	if (!message)
 		return
 	message = capitalize(message)
 	if ((loc == user && usr.stat == FALSE))
-		if(emagged)
-			if(insults)
+		if (emagged)
+			if (insults)
 				for(var/mob/O in (viewers(user)))
 					O.show_message("<b>[user]</b> broadcasts, <FONT size=3>\"[pick(insultmsg)]\"</FONT>",2) // 2 stands for hearable message
 				insults--

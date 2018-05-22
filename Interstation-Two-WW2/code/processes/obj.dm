@@ -10,7 +10,7 @@
 
 	FORNEXT(processing_objects)
 		var/obj/O = current
-		if(!isDeleted(O))
+		if (!isDeleted(O))
 			try
 				O.process()
 			catch(var/exception/e)

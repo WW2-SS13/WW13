@@ -28,25 +28,25 @@
 	return TRUE // Always set!
 
 /datum/dna/gene/disability/activate(var/mob/M, var/connected, var/flags)
-	if(mutation && !(mutation in M.mutations))
+	if (mutation && !(mutation in M.mutations))
 		M.mutations.Add(mutation)
-	if(disability)
+	if (disability)
 		M.disabilities|=disability
-	if(sdisability)
+	if (sdisability)
 		M.sdisabilities|=sdisability
-	if(activation_message)
+	if (activation_message)
 		M << "<span class='warning'>[activation_message]</span>"
 	else
 		testing("[name] has no activation message.")
 
 /datum/dna/gene/disability/deactivate(var/mob/M, var/connected, var/flags)
-	if(mutation && (mutation in M.mutations))
+	if (mutation && (mutation in M.mutations))
 		M.mutations.Remove(mutation)
-	if(disability)
+	if (disability)
 		M.disabilities &= (~disability)
-	if(sdisability)
+	if (sdisability)
 		M.sdisabilities &= (~sdisability)
-	if(deactivation_message)
+	if (deactivation_message)
 		M << "<span class='warning'>[deactivation_message]</span>"
 	else
 		testing("[name] has no deactivation message.")

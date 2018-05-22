@@ -144,9 +144,9 @@
 // Otherwise, the user mob's machine var will be reset directly.
 //
 /proc/onclose(mob/user, windowid, var/atom/ref=null)
-	if(!user || !user.client) return
+	if (!user || !user.client) return
 	var/param = "null"
-	if(ref)
+	if (ref)
 		param = "\ref[ref]"
 
 	winset(user, windowid, "on-close=\".windowclose [param]\"")
@@ -164,9 +164,9 @@
 	set name = ".windowclose"			// no autocomplete on cmd line
 
 	//world << "windowclose: [atomref]"
-	if(atomref!="null")				// if passed a real atomref
+	if (atomref!="null")				// if passed a real atomref
 		var/hsrc = locate(atomref)	// find the reffed atom
-		if(hsrc)
+		if (hsrc)
 			//world << "[src] Topic [href] [hsrc]"
 			usr = mob
 			Topic("close=1", list("close"="1"), hsrc)	// this will direct to the atom's
@@ -174,7 +174,7 @@
 
 	// no atomref specified (or not found)
 	// so just reset the user mob's machine var
-	if(src && mob)
+	if (src && mob)
 		//world << "[src] was [mob.machine], setting to null"
 		mob.unset_using_object()
 	return

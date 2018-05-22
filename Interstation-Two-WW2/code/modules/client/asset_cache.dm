@@ -26,10 +26,10 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 //This proc sends the asset to the client, but only if it needs it.
 //This proc blocks(sleeps) unless verify is set to false
 /proc/send_asset(var/client/client, var/asset_name, var/verify = TRUE)
-	if(!istype(client))
-		if(ismob(client))
+	if (!istype(client))
+		if (ismob(client))
 			var/mob/M = client
-			if(M.client)
+			if (M.client)
 				client = M.client
 
 			else
@@ -38,11 +38,11 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		else
 			return FALSE
 
-	if(client.cache.Find(asset_name) || client.sending.Find(asset_name))
+	if (client.cache.Find(asset_name) || client.sending.Find(asset_name))
 		return FALSE
 
 	client << browse_rsc(asset_cache.cache[asset_name], asset_name)
-	if(!verify || !winexists(client, "asset_cache_browser")) // Can't access the asset cache browser, rip.
+	if (!verify || !winexists(client, "asset_cache_browser")) // Can't access the asset cache browser, rip.
 		if (client)
 			client.cache += asset_name
 		return TRUE
@@ -64,7 +64,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		sleep(1) // Lock up the caller until this is received.
 		t++
 
-	if(client)
+	if (client)
 		client.sending -= asset_name
 		client.cache |= asset_name
 		client.completed_asset_jobs -= job
@@ -73,10 +73,10 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 //This proc blocks(sleeps) unless verify is set to false
 /proc/send_asset_list(var/client/client, var/list/asset_list, var/verify = TRUE)
-	if(!istype(client))
-		if(ismob(client))
+	if (!istype(client))
+		if (ismob(client))
 			var/mob/M = client
-			if(M.client)
+			if (M.client)
 				client = M.client
 			else
 				return FALSE
@@ -84,7 +84,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 			return FALSE
 
 	var/list/unreceived = asset_list - (client.cache + client.sending)
-	if(!unreceived || !unreceived.len)
+	if (!unreceived || !unreceived.len)
 		return FALSE
 	if (unreceived.len >= ASSET_CACHE_TELL_CLIENT_AMOUNT)
 		client << "Sending Resources..."
@@ -92,7 +92,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		if (asset in asset_cache.cache)
 			client << browse_rsc(asset_cache.cache[asset], asset)
 
-	if(!verify || !winexists(client, "asset_cache_browser")) // Can't access the asset cache browser, rip.
+	if (!verify || !winexists(client, "asset_cache_browser")) // Can't access the asset cache browser, rip.
 		if (client)
 			client.cache += unreceived
 		return TRUE
@@ -113,7 +113,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		sleep(1) // Lock up the caller until this is received.
 		t++
 
-	if(client)
+	if (client)
 		client.sending -= unreceived
 		client.cache |= unreceived
 		client.completed_asset_jobs -= job
@@ -217,19 +217,19 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	for (var/path in common_dirs)
 		var/list/filenames = flist(path)
 		for(var/filename in filenames)
-			if(copytext(filename, length(filename)) != "/") // Ignore directories.
-				if(fexists(path + filename))
+			if (copytext(filename, length(filename)) != "/") // Ignore directories.
+				if (fexists(path + filename))
 					common[filename] = fcopy_rsc(path + filename)
 					register_asset(filename, common[filename])
 	for (var/path in uncommon_dirs)
 		var/list/filenames = flist(path)
 		for(var/filename in filenames)
-			if(copytext(filename, length(filename)) != "/") // Ignore directories.
-				if(fexists(path + filename))
+			if (copytext(filename, length(filename)) != "/") // Ignore directories.
+				if (fexists(path + filename))
 					register_asset(filename, fcopy_rsc(path + filename))
 
 /datum/asset/nanoui/send(client, uncommon)
-	if(!islist(uncommon))
+	if (!islist(uncommon))
 		uncommon = list(uncommon)
 
 	send_asset_list(client, uncommon, FALSE)

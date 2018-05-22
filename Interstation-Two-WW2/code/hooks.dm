@@ -10,7 +10,7 @@
  * To add some code to be called by the hook, define a proc under the type, as so:
  * @code
 	hook/foo/proc/bar()
-		if(TRUE)
+		if (TRUE)
 			return TRUE //Sucessful
 		else
 			return FALSE //Error, or runtime.
@@ -51,14 +51,14 @@
 
 /proc/callHook(hook, list/args=null)
 	var/hook_path = text2path("/hook/[hook]")
-	if(!hook_path)
+	if (!hook_path)
 		error("Invalid hook '/hook/[hook]' called.")
 		return FALSE
 
 	var/caller = new hook_path
 	var/status = TRUE
 	for(var/P in typesof("[hook_path]/proc"))
-		if(!call(caller, P)(arglist(args)))
+		if (!call(caller, P)(arglist(args)))
 			error("Hook '[P]' failed or runtimed.")
 			status = FALSE
 

@@ -4,7 +4,7 @@
 /obj/item/weapon/gun/projectile/automatic/stationary/MouseDrop_T(mob/target, mob/user)
 
 	var/mob/living/H = user
-	if(istype(H) && can_climb(H) && target == user)
+	if (istype(H) && can_climb(H) && target == user)
 		do_climb(target)
 	else
 		return ..()
@@ -18,22 +18,22 @@
 		return FALSE
 
 	var/obj/occupied = turf_is_crowded()
-	if(occupied)
+	if (occupied)
 		user << "<span class='danger'>There's \a [occupied] in the way.</span>"
 		return FALSE
 	return TRUE
 
 /obj/item/weapon/gun/projectile/automatic/stationary/proc/turf_is_crowded()
 	var/turf/T = get_turf(src)
-	if(!T || !istype(T))
+	if (!T || !istype(T))
 		return FALSE
 	for(var/obj/O in T.contents)
 		if (O == src)
 			continue
-		if(istype(O,/obj/structure))
+		if (istype(O,/obj/structure))
 			var/obj/structure/S = O
-			if(S.climbable) continue
-		if(O && O.density && !(O.flags & ON_BORDER)) //ON_BORDER structures are handled by the Adjacent() check.
+			if (S.climbable) continue
+		if (O && O.density && !(O.flags & ON_BORDER)) //ON_BORDER structures are handled by the Adjacent() check.
 			return O
 	return FALSE
 
@@ -60,7 +60,7 @@
 	usr.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
 	climbers |= user
 
-	if(!do_after(user,(issmall(user) ? 20 : 34)))
+	if (!do_after(user,(issmall(user) ? 20 : 34)))
 		climbers -= user
 		return
 
@@ -84,7 +84,7 @@
 /obj/item/weapon/gun/projectile/automatic/stationary/proc/can_touch(var/mob/user)
 	if (!user)
 		return FALSE
-	if(!Adjacent(user))
+	if (!Adjacent(user))
 		return FALSE
 	if (user.restrained() || user.buckled)
 		user << "<span class='notice'>You need your hands and legs free for this.</span>"

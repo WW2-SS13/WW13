@@ -2,7 +2,7 @@
 	set name = "Show Custom Roundstart Tip"
 	set category = "Fun"
 
-	if(!check_rights(R_FUN))	return
+	if (!check_rights(R_FUN))	return
 
 	var/text = input(src, "What? Type nothing to cancel") as text
 	if (text)
@@ -16,7 +16,7 @@
 	set name = "Reset Custom Roundstart Tip"
 	set category = "Fun"
 
-	if(!check_rights(R_FUN))	return
+	if (!check_rights(R_FUN))	return
 
 	ticker.tip = null
 

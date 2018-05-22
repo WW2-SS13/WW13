@@ -26,48 +26,48 @@ var/global/list/GlobalPool = list()
 	var/datum/D
 	D = GetFromPool(get_type,second_arg)
 
-	if(!D)
+	if (!D)
 		// So the GC knows we're pooling this type.
-		if(!GlobalPool[get_type])
+		if (!GlobalPool[get_type])
 			GlobalPool[get_type] = list()
-		if(islist(second_arg))
+		if (islist(second_arg))
 			return new get_type (arglist(second_arg))
 		else
 			return new get_type (second_arg)
 	return D
 
 /proc/GetFromPool(var/get_type,var/second_arg)
-	if(isnull(GlobalPool[get_type]))
+	if (isnull(GlobalPool[get_type]))
 		return FALSE
 
-	if(length(GlobalPool[get_type]) == FALSE)
+	if (length(GlobalPool[get_type]) == FALSE)
 		return FALSE
 
 	var/datum/D = pick_n_take(GlobalPool[get_type])
-	if(D)
+	if (D)
 		D.ResetVars()
 		D.Prepare(second_arg)
 		return D
 	return FALSE
 
 /proc/PlaceInPool(var/datum/D)
-	if(!istype(D))
+	if (!istype(D))
 		return
 
-	if(length(GlobalPool[D.type]) > ATOM_POOL_COUNT)
+	if (length(GlobalPool[D.type]) > ATOM_POOL_COUNT)
 		#ifdef DEBUG_ATOM_POOL
 		world << text("DEBUG_DATUM_POOL: PlaceInPool([]) exceeds []. Discarding.", D.type, ATOM_POOL_COUNT)
 		#endif
-		if(processes.garbage)
+		if (processes.garbage)
 			processes.garbage.AddTrash(D)
 		else
 			del(D)
 		return
 
-	if(D in GlobalPool[D.type])
+	if (D in GlobalPool[D.type])
 		return
 
-	if(!GlobalPool[D.type])
+	if (!GlobalPool[D.type])
 		GlobalPool[D.type] = list()
 
 	GlobalPool[D.type] += D
@@ -76,19 +76,19 @@ var/global/list/GlobalPool = list()
 	D.ResetVars()
 
 /proc/IsPooled(var/datum/D)
-	if(isnull(GlobalPool[D.type]))
+	if (isnull(GlobalPool[D.type]))
 		return FALSE
 	return TRUE
 
 /datum/proc/Prepare(args)
-	if(islist(args))
+	if (islist(args))
 		New(arglist(args))
 	else
 		New(args)
 
 /atom/movable/Prepare(args)
 	var/list/args_list = args
-	if(istype(args_list) && args_list.len)
+	if (istype(args_list) && args_list.len)
 		loc = args[1]
 	else
 		loc = args
@@ -102,12 +102,12 @@ var/list/pooledvariables = list()
 	var/list/all_excluded = excluded_vars + excluded
 
 	for(var/key in vars)
-		if(key in all_excluded)
+		if (key in all_excluded)
 			continue
 		pooledvariables[type][key] = initial(vars[key])
 
 /datum/proc/ResetVars(var/list/excluded = list())
-	if(!pooledvariables[type])
+	if (!pooledvariables[type])
 		createVariables(excluded)
 
 	for(var/key in pooledvariables[type])

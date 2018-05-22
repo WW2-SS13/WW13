@@ -3,7 +3,7 @@
 
 	..()
 
-	if(!loc)
+	if (!loc)
 		return
 
 	if (client)
@@ -31,7 +31,7 @@
 	if (transforming)
 		return
 
-	if(stat != DEAD)
+	if (stat != DEAD)
 
 		//Breathing, if applicable
 		handle_breathing()
@@ -70,7 +70,7 @@
 
 	blinded = FALSE // Placing this here just show how out of place it is.
 	// human/handle_regular_status_updates() needs a cleanup, as blindness should be handled in handle_disabilities()
-	if(handle_regular_status_updates()) // Status & health update, are we dead or alive etc.
+	if (handle_regular_status_updates()) // Status & health update, are we dead or alive etc.
 		handle_disabilities() // eye, ear, brain damages
 		handle_status_effects() //all special effects, stunned, weakened, jitteryness, hallucination, sleeping, etc
 
@@ -102,15 +102,15 @@
 	return
 
 /mob/living/proc/update_pulling()
-	if(pulling)
-		if(incapacitated())
+	if (pulling)
+		if (incapacitated())
 			stop_pulling()
 
 //This updates the health and status of the mob (conscious, unconscious, dead)
 /mob/living/proc/handle_regular_status_updates()
 	updatehealth()
-	if(stat != DEAD)
-		if(paralysis)
+	if (stat != DEAD)
+		if (paralysis)
 			stat = UNCONSCIOUS
 		else if (status_flags & FAKEDEATH)
 			stat = UNCONSCIOUS
@@ -120,38 +120,38 @@
 
 //this updates all special effects: stunned, sleeping, weakened, druggy, stuttering, etc..
 /mob/living/proc/handle_status_effects()
-	if(paralysis)
+	if (paralysis)
 		paralysis = max(paralysis-1,0)
-	if(stunned)
+	if (stunned)
 		stunned = max(stunned-1,0)
-		if(!stunned)
+		if (!stunned)
 			update_icons()
 
-	if(weakened)
+	if (weakened)
 		weakened = max(weakened-1,0)
-		if(!weakened)
+		if (!weakened)
 			update_icons()
 
 /mob/living/proc/handle_disabilities()
 	//Eyes
-	if(sdisabilities & BLIND || stat)	//blindness from disability or unconsciousness doesn't get better on its own
+	if (sdisabilities & BLIND || stat)	//blindness from disability or unconsciousness doesn't get better on its own
 		eye_blind = max(eye_blind, TRUE)
-	else if(eye_blind)			//blindness, heals slowly over time
+	else if (eye_blind)			//blindness, heals slowly over time
 		eye_blind = max(eye_blind-1,0)
-	else if(eye_blurry)			//blurry eyes heal slowly
+	else if (eye_blurry)			//blurry eyes heal slowly
 		eye_blurry = max(eye_blurry-1, FALSE)
 
 	//Ears
-	if(sdisabilities & DEAF)		//disabled-deaf, doesn't get better on its own
+	if (sdisabilities & DEAF)		//disabled-deaf, doesn't get better on its own
 		setEarDamage(-1, max(ear_deaf, TRUE))
 	else
 		// deafness heals slowly over time, unless ear_damage is over 100
-		if(ear_damage < 100)
+		if (ear_damage < 100)
 			adjustEarDamage(-0.05,-1)
 
 //this handles hud updates. Calls update_vision() and handle_hud_icons()
 /mob/living/proc/handle_regular_hud_updates()
-	if(!client)	return FALSE
+	if (!client)	return FALSE
 
 	handle_hud_icons()
 	handle_vision()
@@ -162,10 +162,10 @@
 //	client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson, global_hud.science)
 	update_sight()
 
-	if(stat == DEAD)
+	if (stat == DEAD)
 		return
 
-/*	if(eye_blind)
+/*	if (eye_blind)
 		blind.alpha = 255
 	else
 		blind.alpha = FALSE
@@ -175,20 +175,20 @@
 			client.screen += global_hud.blurry
 		if (druggy)
 			client.screen += global_hud.druggy*/
-	if(using_object)
+	if (using_object)
 		var/viewflags = using_object.check_eye(src)
-		if(viewflags < 0)
+		if (viewflags < 0)
 			reset_view(null, FALSE)
-		else if(viewflags)
+		else if (viewflags)
 			sight |= viewflags
-/*	else if(eyeobj)
-		if(eyeobj.owner != src)
+/*	else if (eyeobj)
+		if (eyeobj.owner != src)
 			reset_view(null)*/
-	else if(!client.adminobs)
+	else if (!client.adminobs)
 		reset_view(null)
 
 /mob/living/proc/update_sight()
-	if(stat == DEAD/* || eyeobj*/)
+	if (stat == DEAD/* || eyeobj*/)
 		update_dead_sight()
 	else
 		sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
@@ -213,7 +213,7 @@
 	if (!usr.client)
 		return
 	usr.client.screen.Cut()
-	if(istype(usr, /mob/living/carbon/human) && (usr.client.prefs.UI_style != null))
+	if (istype(usr, /mob/living/carbon/human) && (usr.client.prefs.UI_style != null))
 		if (!global.HUDdatums.Find(usr.client.prefs.UI_style))
 			log_debug("[usr] try update a HUD, but HUDdatums not have [usr.client.prefs.UI_style]!")
 		else
@@ -226,7 +226,7 @@
 						H.HUDprocess -= HUDobj
 						qdel(HUDobj)
 				for(var/HUDname in HUDdatum.HUDneed)
-					if(!H.species.hud.ProcessHUD.Find(HUDname))
+					if (!H.species.hud.ProcessHUD.Find(HUDname))
 						continue
 					var/HUDtype = HUDdatum.HUDneed[HUDname]
 					var/obj/screen/HUD = new HUDtype()

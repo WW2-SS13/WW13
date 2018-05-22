@@ -22,7 +22,7 @@
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
 
 /datum/job/italian/soldier/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/italianboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/itauni(H), slot_w_uniform)
@@ -62,7 +62,7 @@
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
 
 /datum/job/italian/medic/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/italianboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/itauni(H), slot_w_uniform)
@@ -106,7 +106,7 @@
 	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
 
 /datum/job/italian/squad_leader/equip(var/mob/living/carbon/human/H)
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/italianboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/itauni/officer(H), slot_w_uniform)

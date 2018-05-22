@@ -14,7 +14,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	pass_flags = PASSTABLE | PASSGRILLE
 
 /obj/effect/Destroy()
-	if(reagents)
+	if (reagents)
 		reagents.delete()
 	return ..()
 
@@ -26,7 +26,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	var/setup = FALSE
 
 	proc/set_up(n = 3, c = FALSE, turf/loc)
-		if(n > 10)
+		if (n > 10)
 			n = 10
 		number = n
 		cardinals = c
@@ -63,7 +63,7 @@ steam.start() -- spawns the effect
 /datum/effect/effect/system/steam_spread
 
 	set_up(n = 3, c = FALSE, turf/loc)
-		if(n > 10)
+		if (n > 10)
 			n = 10
 		number = n
 		cardinals = c
@@ -73,11 +73,11 @@ steam.start() -- spawns the effect
 		var/i = FALSE
 		for(i=0, i<number, i++)
 			spawn(0)
-				if(holder)
+				if (holder)
 					location = get_turf(holder)
 				var/obj/effect/effect/steam/steam = PoolOrNew(/obj/effect/effect/steam, location)
 				var/direction
-				if(cardinals)
+				if (cardinals)
 					direction = pick(cardinal)
 				else
 					direction = pick(alldirs)
@@ -128,11 +128,11 @@ steam.start() -- spawns the effect
 	var/total_sparks = FALSE // To stop it being spammed and lagging!
 
 	set_up(n = 3, c = FALSE, loca)
-		if(n > 10)
+		if (n > 10)
 			n = 10
 		number = n
 		cardinals = c
-		if(istype(loca, /turf/))
+		if (istype(loca, /turf/))
 			location = loca
 		else
 			location = get_turf(loca)
@@ -140,15 +140,15 @@ steam.start() -- spawns the effect
 	start()
 		var/i = FALSE
 		for(i=0, i<number, i++)
-			if(total_sparks > 20)
+			if (total_sparks > 20)
 				return
 			spawn(0)
-				if(holder)
+				if (holder)
 					location = get_turf(holder)
 				var/obj/effect/sparks/sparks = PoolOrNew(/obj/effect/sparks, location)
 				total_sparks++
 				var/direction
-				if(cardinals)
+				if (cardinals)
 					direction = pick(cardinal)
 				else
 					direction = pick(alldirs)
@@ -156,7 +156,7 @@ steam.start() -- spawns the effect
 					sleep(5)
 					step(sparks,direction)
 				spawn(20)
-					if(sparks)
+					if (sparks)
 						qdel(sparks)
 					total_sparks--
 
@@ -191,18 +191,18 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke/Crossed(mob/living/carbon/M as mob )
 	..()
-	if(istype(M))
+	if (istype(M))
 		affect(M)
 
 /obj/effect/effect/smoke/proc/affect(var/mob/living/carbon/M)
 	if (istype(M))
 		return FALSE
 	if (M.internal != null)
-		if(M.wear_mask && (M.wear_mask.item_flags & AIRTIGHT))
+		if (M.wear_mask && (M.wear_mask.item_flags & AIRTIGHT))
 			return FALSE
-		if(istype(M,/mob/living/carbon/human))
+		if (istype(M,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = M
-			if(H.head && (H.head.item_flags & AIRTIGHT))
+			if (H.head && (H.head.item_flags & AIRTIGHT))
 				return FALSE
 		return FALSE
 	return TRUE
@@ -254,8 +254,8 @@ steam.start() -- spawns the effect
 			M.coughedtime = FALSE
 
 /obj/effect/effect/smoke/bad/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return TRUE
-/*	if(istype(mover, /obj/item/projectile/beam))
+	if (air_group || (height==0)) return TRUE
+/*	if (istype(mover, /obj/item/projectile/beam))
 		var/obj/item/projectile/beam/B = mover
 		B.damage = (B.damage/2)*/
 	return TRUE
@@ -320,30 +320,30 @@ steam.start() -- spawns the effect
 	var/smoke_type = /obj/effect/effect/smoke
 
 /datum/effect/effect/system/smoke_spread/set_up(n = 5, c = FALSE, loca, direct)
-	if(n > 10)
+	if (n > 10)
 		n = 10
 	number = n
 	cardinals = c
-	if(istype(loca, /turf/))
+	if (istype(loca, /turf/))
 		location = loca
 	else
 		location = get_turf(loca)
-	if(direct)
+	if (direct)
 		direction = direct
 
 /datum/effect/effect/system/smoke_spread/start()
 	var/i = FALSE
 	for(i=0, i<number, i++)
-		if(total_smoke > 20)
+		if (total_smoke > 20)
 			return
 		spawn(0)
-			if(holder)
+			if (holder)
 				location = get_turf(holder)
 			var/obj/effect/effect/smoke/smoke = PoolOrNew(smoke_type, location)
 			total_smoke++
 			var/src_direction = direction
-			if(!src_direction)
-				if(cardinals)
+			if (!src_direction)
+				if (cardinals)
 					src_direction = pick(cardinal)
 				else
 					src_direction = pick(alldirs)
@@ -388,15 +388,15 @@ steam.start() -- spawns the effect
 		oldposition = get_turf(atom)
 
 	start()
-		if(!on)
+		if (!on)
 			on = TRUE
 			processing = TRUE
-		if(processing)
+		if (processing)
 			processing = FALSE
 			spawn(0)
 				var/turf/T = get_turf(holder)
-				if(T != oldposition)
-					if(istype(T, /turf/space))
+				if (T != oldposition)
+					if (istype(T, /turf/space))
 						var/obj/effect/effect/ion_trails/I = PoolOrNew(/obj/effect/effect/ion_trails, oldposition)
 						oldposition = T
 						I.set_dir(holder.dir)
@@ -405,12 +405,12 @@ steam.start() -- spawns the effect
 						spawn( 20 )
 							qdel(I)
 					spawn(2)
-						if(on)
+						if (on)
 							processing = TRUE
 							start()
 				else
 					spawn(2)
-						if(on)
+						if (on)
 							processing = TRUE
 							start()
 
@@ -436,13 +436,13 @@ steam.start() -- spawns the effect
 		oldposition = get_turf(atom)
 
 	start()
-		if(!on)
+		if (!on)
 			on = TRUE
 			processing = TRUE
-		if(processing)
+		if (processing)
 			processing = FALSE
 			spawn(0)
-				if(number < 3)
+				if (number < 3)
 					var/obj/effect/effect/steam/I = PoolOrNew(/obj/effect/effect/steam, oldposition)
 					number++
 					oldposition = get_turf(holder)
@@ -451,12 +451,12 @@ steam.start() -- spawns the effect
 						qdel(I)
 						number--
 					spawn(2)
-						if(on)
+						if (on)
 							processing = TRUE
 							start()
 				else
 					spawn(2)
-						if(on)
+						if (on)
 							processing = TRUE
 							start()
 
@@ -471,7 +471,7 @@ steam.start() -- spawns the effect
 
 	set_up (amt, loc, flash = FALSE, flash_fact = FALSE)
 		amount = amt
-		if(istype(loc, /turf/))
+		if (istype(loc, /turf/))
 			location = loc
 		else
 			location = get_turf(loc)

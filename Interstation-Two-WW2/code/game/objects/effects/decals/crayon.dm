@@ -13,9 +13,9 @@
 		desc = "A [type] drawn in crayon."
 
 		switch(type)
-			if("rune")
+			if ("rune")
 				type = "rune[rand(1,6)]"
-			if("graffiti")
+			if ("graffiti")
 				type = pick("amyjon","face","matt","revolution","engie","guy","end","dwarf","uboa")
 
 		var/icon/mainOverlay = new/icon('icons/effects/crayondecal.dmi',"[type]",2.1)

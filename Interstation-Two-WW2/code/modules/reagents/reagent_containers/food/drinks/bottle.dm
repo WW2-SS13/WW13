@@ -31,7 +31,7 @@
 		icon_state_empty = "[icon_state]_empty"
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/Destroy()
-	if(rag)
+	if (rag)
 		rag.forceMove(loc)
 	rag = null
 	return ..()
@@ -43,10 +43,10 @@
 	..()
 
 	var/mob/M = thrower
-	if(isGlass && istype(M))
+	if (isGlass && istype(M))
 		var/throw_dist = get_dist(throw_source, loc)
-		if(shatter_check(throw_dist)) //not as reliable as shattering directly
-			if(reagents)
+		if (shatter_check(throw_dist)) //not as reliable as shattering directly
+			if (reagents)
 				hit_atom.visible_message("<span class='notice'>The contents of \the [src] splash all over [hit_atom]!</span>")
 				reagents.splash(hit_atom, reagents.total_volume)
 			shatter(loc, hit_atom, alcohol_power)
@@ -67,12 +67,12 @@
 				. += (min(max(E.strength, 25), 50) * E.volume)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/shatter_check(var/distance)
-	if(!isGlass || !shatter_duration)
+	if (!isGlass || !shatter_duration)
 		return FALSE
 
 	var/list/chance_table = list(50, 75, 90, 95, 100, 100, 100) //starting from distance 0
 	var/idx = max(distance + 1, 1) //since list indices start at 1
-	if(idx > chance_table.len)
+	if (idx > chance_table.len)
 		return 0
 	return prob(chance_table[idx])
 
@@ -103,7 +103,7 @@
 	if (!newloc)
 		newloc = get_turf(src)
 
-	if(rag && rag.on_fire && alcohol_power)
+	if (rag && rag.on_fire && alcohol_power)
 
 		forceMove(newloc)
 
@@ -136,13 +136,13 @@
 							L.emote("scream")
 
 	if (src)
-		if(ismob(loc))
+		if (ismob(loc))
 			var/mob/M = loc
 			M.drop_from_inventory(src)
 
 		//Creates a shattering noise and replaces the bottle with a broken_bottle
 		var/obj/item/weapon/broken_bottle/B = new /obj/item/weapon/broken_bottle(newloc)
-		if(prob(33))
+		if (prob(33))
 			new/obj/item/weapon/material/shard(newloc) // Create a glass shard at the target's location!
 
 		B.icon_state = icon_state
@@ -159,25 +159,25 @@
 		return B
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/attackby(obj/item/W, mob/user)
-	if(!rag && istype(W, /obj/item/weapon/reagent_containers/glass/rag))
+	if (!rag && istype(W, /obj/item/weapon/reagent_containers/glass/rag))
 		insert_rag(W, user)
 		update_icon()
 		return
-	else if(rag && (istype(W, /obj/item/weapon/flame) || istype(W, /obj/item/clothing/mask/smokable/cigarette) || (istype(W, /obj/item/flashlight/flare) && W:on) || (istype(W, /obj/item/weapon/weldingtool) && W:welding)))
+	else if (rag && (istype(W, /obj/item/weapon/flame) || istype(W, /obj/item/clothing/mask/smokable/cigarette) || (istype(W, /obj/item/flashlight/flare) && W:on) || (istype(W, /obj/item/weapon/weldingtool) && W:welding)))
 		rag.attackby(W, user)
 		update_icon()
 		return
 	else return ..()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/attack_self(mob/user)
-	if(rag)
+	if (rag)
 		remove_rag(user)
 	else
 		..()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/insert_rag(obj/item/weapon/reagent_containers/glass/rag/R, mob/user)
-	if(!isGlass || rag) return
-	if(user.unEquip(R))
+	if (!isGlass || rag) return
+	if (user.unEquip(R))
 		user << "<span class='notice'>You stuff [R] into [src].</span>"
 		rag = R
 		rag.forceMove(src)
@@ -185,7 +185,7 @@
 		update_icon()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/remove_rag(mob/user)
-	if(!rag) return
+	if (!rag) return
 	user.put_in_hands(rag)
 	rag = null
 	flags |= (initial(flags) & OPENCONTAINER)
@@ -193,19 +193,19 @@
 	user << "<span class='notice'>You remove the rag from [src].</span>"
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/open(mob/user)
-	if(rag) return
+	if (rag) return
 	..()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/update_icon()
 	underlays.Cut()
-	if(rag)
+	if (rag)
 		var/underlay_image = image(icon='icons/obj/drinks.dmi', icon_state=rag.on_fire? "[rag_underlay]_lit" : rag_underlay)
 		underlays += underlay_image
 		if (rag.on_fire)
 			set_light(2)
 	else
 		set_light(0)
-		if(reagents.total_volume)
+		if (reagents.total_volume)
 			icon_state = icon_state_full
 		else
 			icon_state = icon_state_empty
@@ -213,21 +213,21 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	var/blocked = ..()
 
-	if(user.a_intent != I_HURT)
+	if (user.a_intent != I_HURT)
 		return
-	if(!shatter_check(1))
+	if (!shatter_check(1))
 		return //won't always break on the first hit
 
 	// You are going to knock someone out for longer if they are not wearing a helmet.
 	var/weaken_duration = FALSE
-	if(blocked < 2)
+	if (blocked < 2)
 		weaken_duration = shatter_duration + min(0, force - target.getarmor(hit_zone, "melee") + 10)
 
 	var/mob/living/carbon/human/H = target
-	if(istype(H) && H.headcheck(hit_zone))
+	if (istype(H) && H.headcheck(hit_zone))
 		var/obj/item/organ/affecting = H.get_organ(hit_zone) //headcheck should ensure that affecting is not null
 		user.visible_message("<span class='danger'>[user] shatters [src] into [H]'s [affecting.name]!</span>")
-		if(weaken_duration)
+		if (weaken_duration)
 			target.apply_effect(min(weaken_duration, 5), WEAKEN, blocked) // Never weaken more than a flash!
 	else
 		user.visible_message("<span class='danger'>\The [user] shatters [src] into [target]!</span>")
@@ -235,7 +235,7 @@
 	//The reagents in the bottle splash all over the target, thanks for the idea Nodrak
 	var/alcohol_power = calculate_alcohol_power()
 
-	if(reagents)
+	if (reagents)
 		spawn (1) // wait until after our explosion, if we have one
 			user.visible_message("<span class='notice'>The contents of \the [src] splash all over [target]!</span>")
 			if (reagents) reagents.splash(target, reagents.total_volume)

@@ -14,18 +14,18 @@
 	R.add_reagent("fuel", max_fuel)
 
 /obj/item/weapon/weldpack/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/weldingtool))
+	if (istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/T = W
-		if(T.welding & prob(50))
+		if (T.welding & prob(50))
 			message_admins("[key_name_admin(user)] triggered a fueltank explosion.")
 			log_game("[key_name(user)] triggered a fueltank explosion.")
 			user << "<span class='danger'>That was stupid of you.</span>"
 			explosion(get_turf(src),-1,0,2)
-			if(src)
+			if (src)
 				qdel(src)
 			return
 		else
-			if(T.welding)
+			if (T.welding)
 				user << "<span class='danger'>That was close!</span>"
 			reagents.trans_to_obj(W, T.max_fuel)
 			user << "<span class='notice'>Welder refilled!</span>"
@@ -35,7 +35,7 @@
 	return
 
 /obj/item/weapon/weldpack/afterattack(obj/O as obj, mob/user as mob, proximity)
-	if(!proximity) // this replaces and improves the get_dist(src,O) <= 1 checks used previously
+	if (!proximity) // this replaces and improves the get_dist(src,O) <= 1 checks used previously
 		return
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && reagents.total_volume < max_fuel)
 		O.reagents.trans_to_obj(src, max_fuel)

@@ -169,13 +169,13 @@
 	return
 
 /datum/species/New()
-	if(hud_type)
+	if (hud_type)
 		hud = new hud_type()
 	else
 		hud = new()
 
 	//If the species has eyes, they are the default vision organ
-	if(!vision_organ && has_organ["eyes"])
+	if (!vision_organ && has_organ["eyes"])
 		vision_organ = "eyes"
 
 	unarmed_attacks = list()
@@ -193,14 +193,14 @@
 	if ((H.bodytemperature < cold_level_1 && msg_type == "cold") || (H.bodytemperature > heat_level_1 && msg_type == "heat"))
 
 		var/showmsg = FALSE
-		if(prob(12))
+		if (prob(12))
 			showmsg = TRUE
 
 		var/covered = FALSE // Basic coverage can help.
 		for(var/obj/item/clothing/clothes in H)
-			if(H.l_hand == clothes|| H.r_hand == clothes)
+			if (H.l_hand == clothes|| H.r_hand == clothes)
 				continue
-			if((clothes.body_parts_covered & UPPER_TORSO) && (clothes.body_parts_covered & LOWER_TORSO))
+			if ((clothes.body_parts_covered & UPPER_TORSO) && (clothes.body_parts_covered & LOWER_TORSO))
 				covered = TRUE
 				break
 
@@ -236,22 +236,22 @@
 		// if we aren't covered, take more damage + weather damage
 		if (!covered)
 			switch(msg_type)
-				if("cold")
+				if ("cold")
 					H.adjustFireLoss(3)
 					if (showmsg)
 						H << "<span class='danger'>[pick(cold_discomfort_strings)]</span>"
-				if("heat")
+				if ("heat")
 					H.adjustFireLoss(3)
 					if (showmsg)
 						H << "<span class='danger'>[pick(heat_discomfort_strings)]</span>"
 
 		else
 			switch(msg_type)
-				if("cold")
+				if ("cold")
 					H.adjustFireLoss(2)
 					if (showmsg)
 						H << "<span class='danger'>[pick(cold_discomfort_strings)]</span>"
-				if("heat")
+				if ("heat")
 					H.adjustFireLoss(2)
 					if (showmsg)
 						H << "<span class='danger'>[pick(heat_discomfort_strings)]</span>"
@@ -271,22 +271,22 @@
 	return sanitizeName(name)
 
 /datum/species/proc/get_random_name(var/gender)
-	if(!name_language)
-		if(gender == FEMALE)
+	if (!name_language)
+		if (gender == FEMALE)
 			return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
 		else
 			return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 
 	var/datum/language/species_language = all_languages[name_language]
-	if(!species_language)
+	if (!species_language)
 		species_language = all_languages[default_language]
-	if(!species_language)
+	if (!species_language)
 		return "unknown"
 	return species_language.get_random_name(gender)
 
 /datum/species/proc/get_random_german_name(var/gender, var/jew)
-	if(!name_language)
-		if(gender == FEMALE)
+	if (!name_language)
+		if (gender == FEMALE)
 			if (jew)
 				return capitalize(pick(first_names_female_german_jew)) + " " + capitalize(pick(last_names_german_jew))
 			return capitalize(pick(first_names_female_german)) + " " + capitalize(pick(last_names_german))
@@ -296,78 +296,78 @@
 			return capitalize(pick(first_names_male_german)) + " " + capitalize(pick(last_names_german))
 
 	var/datum/language/species_language = all_languages[name_language]
-	if(!species_language)
+	if (!species_language)
 		species_language = all_languages[default_language]
-	if(!species_language)
+	if (!species_language)
 		return "unknown"
 	return species_language.get_random_german_name(gender)
 
 /datum/species/proc/get_random_russian_name(var/gender, var/jew)
-	if(!name_language)
-		if(gender == FEMALE)
+	if (!name_language)
+		if (gender == FEMALE)
 			return capitalize(pick(first_names_female_russian)) + " " + capitalize(pick(russify(last_names_russian, gender)))
 		else
 			return capitalize(pick(first_names_male_russian)) + " " + capitalize(pick(russify(last_names_russian, gender)))
 
 	var/datum/language/species_language = all_languages[name_language]
-	if(!species_language)
+	if (!species_language)
 		species_language = all_languages[default_language]
-	if(!species_language)
+	if (!species_language)
 		return "unknown"
 	return species_language.get_random_russian_name(gender)
 
 /datum/species/proc/get_random_ukrainian_name(var/gender, var/jew)
-	if(!name_language)
-		if(gender == FEMALE)
+	if (!name_language)
+		if (gender == FEMALE)
 			return capitalize(pick(first_names_female_ukrainian)) + " " + capitalize(pick(russify(last_names_ukrainian, gender)))
 		else
 			return capitalize(pick(first_names_male_ukrainian)) + " " + capitalize(pick(russify(last_names_ukrainian, gender)))
 
 	var/datum/language/species_language = all_languages[name_language]
-	if(!species_language)
+	if (!species_language)
 		species_language = all_languages[default_language]
-	if(!species_language)
+	if (!species_language)
 		return "unknown"
 	return species_language.get_random_ukrainian_name(gender)
 
 /datum/species/proc/get_random_polish_name(var/gender, var/jew)
-	if(!name_language)
-		if(gender == FEMALE)
+	if (!name_language)
+		if (gender == FEMALE)
 			return capitalize(pick(first_names_female_polish)) + " " + capitalize(pick(polify(last_names_polish, gender)))
 		else
 			return capitalize(pick(first_names_male_polish)) + " " + capitalize(pick(polify(last_names_polish, gender)))
 
 	var/datum/language/species_language = all_languages[name_language]
-	if(!species_language)
+	if (!species_language)
 		species_language = all_languages[default_language]
-	if(!species_language)
+	if (!species_language)
 		return "unknown"
 	return species_language.get_random_polish_name(gender)
 
 /datum/species/proc/get_random_italian_name(var/gender, var/jew)
-	if(!name_language)
-		if(gender == FEMALE)
+	if (!name_language)
+		if (gender == FEMALE)
 			return capitalize(pick(first_names_female_italian)) + " " + capitalize(pick(russify(last_names_italian, gender)))
 		else
 			return capitalize(pick(first_names_male_italian)) + " " + capitalize(pick(russify(last_names_italian, gender)))
 
 	var/datum/language/species_language = all_languages[name_language]
-	if(!species_language)
+	if (!species_language)
 		species_language = all_languages[default_language]
-	if(!species_language)
+	if (!species_language)
 		return "unknown"
 	return species_language.get_random_italian_name(gender)
 
 /datum/species/proc/create_organs(var/mob/living/carbon/human/H) //Handles creation of mob organs.
 
 	for(var/obj/item/organ/organ in H.contents)
-		if((organ in H.organs) || (organ in H.internal_organs))
+		if ((organ in H.organs) || (organ in H.internal_organs))
 			qdel(organ)
 
-	if(H.organs)                  H.organs.Cut()
-	if(H.internal_organs)         H.internal_organs.Cut()
-	if(H.organs_by_name)          H.organs_by_name.Cut()
-	if(H.internal_organs_by_name) H.internal_organs_by_name.Cut()
+	if (H.organs)                  H.organs.Cut()
+	if (H.internal_organs)         H.internal_organs.Cut()
+	if (H.organs_by_name)          H.organs_by_name.Cut()
+	if (H.internal_organs_by_name) H.internal_organs_by_name.Cut()
 
 	H.organs = list()
 	H.internal_organs = list()
@@ -383,7 +383,7 @@
 	for(var/organ_tag in has_organ)
 		var/organ_type = has_organ[organ_tag]
 		var/obj/item/organ/O = new organ_type(H,1)
-		if(organ_tag != O.organ_tag)
+		if (organ_tag != O.organ_tag)
 			warning("[O.type] has a default organ tag \"[O.organ_tag]\" that differs from the species' organ tag \"[organ_tag]\". Updating organ_tag to match.")
 			O.organ_tag = organ_tag
 		H.internal_organs_by_name[organ_tag] = O
@@ -392,22 +392,22 @@
 
 	var/t_him = "them"
 	switch(target.gender)
-		if(MALE)
+		if (MALE)
 			t_him = "him"
-		if(FEMALE)
+		if (FEMALE)
 			t_him = "her"
 
 	H.visible_message("<span class='notice'>[H] hugs [target] to make [t_him] feel better!</span>", \
 					"<span class='notice'>You hug [target] to make [t_him] feel better!</span>")
 
 /datum/species/proc/remove_inherent_verbs(var/mob/living/carbon/human/H)
-	if(inherent_verbs)
+	if (inherent_verbs)
 		for(var/verb_path in inherent_verbs)
 			H.verbs -= verb_path
 	return
 
 /datum/species/proc/add_inherent_verbs(var/mob/living/carbon/human/H)
-	if(inherent_verbs)
+	if (inherent_verbs)
 		for(var/verb_path in inherent_verbs)
 			H.verbs |= verb_path
 	return
@@ -446,13 +446,13 @@
 // Called when using the shredding behavior.
 /datum/species/proc/can_shred(var/mob/living/carbon/human/H, var/ignore_intent)
 
-	if(!ignore_intent && H.a_intent != I_HURT)
+	if (!ignore_intent && H.a_intent != I_HURT)
 		return FALSE
 
 	for(var/datum/unarmed_attack/attack in unarmed_attacks)
-		if(!attack.is_usable(H))
+		if (!attack.is_usable(H))
 			continue
-		if(attack.shredding)
+		if (attack.shredding)
 			return TRUE
 
 	return FALSE
@@ -469,29 +469,29 @@
 	H.sight |= get_vision_flags(H)
 	H.sight |= H.equipment_vision_flags
 
-	if(H.stat == DEAD)
+	if (H.stat == DEAD)
 		return TRUE
 
-	if(!H.druggy)
+	if (!H.druggy)
 		H.see_in_dark = (H.sight == SEE_TURFS|SEE_MOBS|SEE_OBJS) ? 8 : min(darksight + H.equipment_darkness_modifier, 8)
 
-		if(H.see_invisible != SEE_INVISIBLE_CULT && H.equipment_see_invis)
+		if (H.see_invisible != SEE_INVISIBLE_CULT && H.equipment_see_invis)
 			H.see_invisible = min(H.see_invisible, H.equipment_see_invis)
 
-	if(H.equipment_tint_total >= TINT_BLIND)
+	if (H.equipment_tint_total >= TINT_BLIND)
 		H.eye_blind = max(H.eye_blind, TRUE)
 
-/*	if(H.blind)
+/*	if (H.blind)
 		H.blind.alpha = (H.eye_blind ? 255 : FALSE)*/
 
-	if(!H.client)//no client, no screen to update
+	if (!H.client)//no client, no screen to update
 		return TRUE
 /*
-	if(config.welder_vision)
-		if((!H.equipment_prescription && (H.disabilities & NEARSIGHTED)) || H.equipment_tint_total == TINT_MODERATE)
+	if (config.welder_vision)
+		if ((!H.equipment_prescription && (H.disabilities & NEARSIGHTED)) || H.equipment_tint_total == TINT_MODERATE)
 			H.client.screen += global_hud.vimpaired*/
-//	if(H.eye_blurry)	H.client.screen += global_hud.blurry
-//	if(H.druggy)		H.client.screen += global_hud.druggy
+//	if (H.eye_blurry)	H.client.screen += global_hud.blurry
+//	if (H.druggy)		H.client.screen += global_hud.druggy
 
 	for(var/overlay in H.equipment_overlays)
 		H.client.screen |= overlay

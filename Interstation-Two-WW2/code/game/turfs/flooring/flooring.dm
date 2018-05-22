@@ -1,9 +1,9 @@
 var/list/flooring_types
 
 /proc/get_flooring_data(var/flooring_path)
-	if(!flooring_types)
+	if (!flooring_types)
 		flooring_types = list()
-	if(!flooring_types["[flooring_path]"])
+	if (!flooring_types["[flooring_path]"])
 		flooring_types["[flooring_path]"] = new flooring_path
 	return flooring_types["[flooring_path]"]
 

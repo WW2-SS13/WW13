@@ -29,12 +29,12 @@
 */
 /turf/Adjacent(var/atom/neighbor, var/atom/target = null)
 	var/turf/T0 = get_turf(neighbor)
-	if(T0 == src)
+	if (T0 == src)
 		return TRUE
-	if(get_dist(src,T0) > 1 || (z!=T0.z))
+	if (get_dist(src,T0) > 1 || (z!=T0.z))
 		return FALSE
 
-	if(T0.x == x || T0.y == y)
+	if (T0.x == x || T0.y == y)
 		// Check for border blockages
 		return T0.ClickCross(get_dir(T0,src), border_only = TRUE) && ClickCross(get_dir(src,T0), border_only = TRUE, target_atom = target)
 
@@ -44,14 +44,14 @@
 	var/d2 = in_dir - d1			// eg north		(1+8) - 8 = TRUE
 
 	for(var/d in list(d1,d2))
-		if(!T0.ClickCross(d, border_only = TRUE))
+		if (!T0.ClickCross(d, border_only = TRUE))
 			continue // could not leave T0 in that direction
 
 		var/turf/T1 = get_step(T0,d)
-		if(!T1 || T1.density || !T1.ClickCross(get_dir(T1,T0) | get_dir(T1,src), border_only = FALSE))
+		if (!T1 || T1.density || !T1.ClickCross(get_dir(T1,T0) | get_dir(T1,src), border_only = FALSE))
 			continue // couldn't enter or couldn't leave T1
 
-		if(!ClickCross(get_dir(src,T1), border_only = TRUE, target_atom = target))
+		if (!ClickCross(get_dir(src,T1), border_only = TRUE, target_atom = target))
 			continue // could not enter src
 
 		return TRUE // we don't care about our own density
@@ -59,12 +59,12 @@
 
 /turf/rangedAdjacent(var/atom/neighbor, var/atom/target = null)
 	var/turf/T0 = get_turf(neighbor)
-	if(T0 == src)
+	if (T0 == src)
 		return TRUE
-	if(get_dist(src,T0) > 5 || (z!=T0.z))
+	if (get_dist(src,T0) > 5 || (z!=T0.z))
 		return FALSE
 
-	if(T0.x == x || T0.y == y)
+	if (T0.x == x || T0.y == y)
 		// Check for border blockages
 		return T0.ClickCross(get_dir(T0,src), border_only = TRUE) && ClickCross(get_dir(src,T0), border_only = TRUE, target_atom = target)
 
@@ -74,14 +74,14 @@
 	var/d2 = in_dir - d1			// eg north		(1+8) - 8 = TRUE
 
 	for(var/d in list(d1,d2))
-		if(!T0.ClickCross(d, border_only = TRUE))
+		if (!T0.ClickCross(d, border_only = TRUE))
 			continue // could not leave T0 in that direction
 
 		var/turf/T1 = get_step(T0,d)
-		if(!T1 || T1.density || !T1.ClickCross(get_dir(T1,T0) | get_dir(T1,src), border_only = FALSE))
+		if (!T1 || T1.density || !T1.ClickCross(get_dir(T1,T0) | get_dir(T1,src), border_only = FALSE))
 			continue // couldn't enter or couldn't leave T1
 
-		if(!ClickCross(get_dir(src,T1), border_only = TRUE, target_atom = target))
+		if (!ClickCross(get_dir(src,T1), border_only = TRUE, target_atom = target))
 			continue // could not enter src
 
 		return TRUE // we don't care about our own density
@@ -94,10 +94,10 @@ Quick adjacency (to turf):
 */
 /turf/proc/AdjacentQuick(var/atom/neighbor, var/atom/target = null)
 	var/turf/T0 = get_turf(neighbor)
-	if(T0 == src)
+	if (T0 == src)
 		return TRUE
 
-	if(get_dist(src,T0) > 1 || (z!=T0.z))
+	if (get_dist(src,T0) > 1 || (z!=T0.z))
 		return FALSE
 
 	return TRUE
@@ -111,18 +111,18 @@ Quick adjacency (to turf):
 	This is not used in stock /tg/station currently.
 */
 /atom/movable/Adjacent(var/atom/neighbor)
-	if(neighbor == loc) return TRUE
-	if(!isturf(loc)) return FALSE
+	if (neighbor == loc) return TRUE
+	if (!isturf(loc)) return FALSE
 	for(var/turf/T in locs)
-		if(isnull(T)) continue
-		if(T.Adjacent(neighbor,src)) return TRUE
+		if (isnull(T)) continue
+		if (T.Adjacent(neighbor,src)) return TRUE
 	return FALSE
 
 // This is necessary for storage items not on your person.
 /obj/item/Adjacent(var/atom/neighbor, var/recurse = TRUE)
-	if(neighbor == loc) return TRUE
-	if(istype(loc,/obj/item))
-		if(recurse > 0)
+	if (neighbor == loc) return TRUE
+	if (istype(loc,/obj/item))
+		if (recurse > 0)
 			return loc.Adjacent(neighbor,recurse - 1)
 		return FALSE
 	return ..()
@@ -146,18 +146,18 @@ Quick adjacency (to turf):
 */
 /turf/proc/ClickCross(var/target_dir, var/border_only, var/target_atom = null)
 	for(var/obj/O in src)
-		if( !O.density || O == target_atom || O.throwpass) continue // throwpass is used for anything you can click through
+		if ( !O.density || O == target_atom || O.throwpass) continue // throwpass is used for anything you can click through
 
-		if( O.flags&ON_BORDER) // windows have throwpass but are on border, check them first
-			if( O.dir & target_dir || O.dir&(O.dir-1) ) // full tile windows are just diagonals mechanically
+		if ( O.flags&ON_BORDER) // windows have throwpass but are on border, check them first
+			if ( O.dir & target_dir || O.dir&(O.dir-1) ) // full tile windows are just diagonals mechanically
 				var/obj/structure/window/W = target_atom
-				if(istype(W))
-					if(!W.is_fulltile())	//exception for breaking full tile windows on top of single pane windows
+				if (istype(W))
+					if (!W.is_fulltile())	//exception for breaking full tile windows on top of single pane windows
 						return FALSE
 				else
 					return FALSE
 
-		else if( !border_only ) // dense, not on border, cannot pass over
+		else if ( !border_only ) // dense, not on border, cannot pass over
 			return FALSE
 	return TRUE
 /*

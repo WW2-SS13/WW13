@@ -4,12 +4,12 @@
 	set category = "Help!"
 	set name = "Adminhelp"
 
-	if(say_disabled)	//This is here to try to identify lag problems
+	if (say_disabled)	//This is here to try to identify lag problems
 		usr << "<span class = 'red'>Speech is currently admin-disabled.</span>"
 		return
 
 	//handle muting and automuting
-	if(prefs.muted & MUTE_ADMINHELP)
+	if (prefs.muted & MUTE_ADMINHELP)
 		src << "<span class = 'red'>Error: Admin-PM: You cannot send adminhelps (Muted).</span>"
 		return
 
@@ -21,18 +21,18 @@
 
 	var/msg = input(src, "What do you need help with? Type nothing to cancel.") as text
 
-	if(handle_spam_prevention(msg,MUTE_ADMINHELP))
+	if (handle_spam_prevention(msg,MUTE_ADMINHELP))
 		return
 
 	//clean the input msg
-	if(!msg)
+	if (!msg)
 		return
 
 	msg = sanitize(msg)
-	if(!msg)
+	if (!msg)
 		return
 
-	if(!mob) //this doesn't happen
+	if (!mob) //this doesn't happen
 		return
 
 	//show it to the person adminhelping too
@@ -45,12 +45,12 @@
 	var/mentormsg = "<span class = 'notice'><b><font color=red>Request for Help:</b> [msg]</span>"
 
 	for(var/client/X in admins)
-		if((R_ADMIN|R_MOD) & X.holder.rights)
+		if ((R_ADMIN|R_MOD) & X.holder.rights)
 
-			if(X.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
+			if (X.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
 				X << 'sound/effects/adminhelp.ogg'
 			X << msg
 		else if (R_MENTOR & X.holder.rights)
-			if(X.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
+			if (X.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
 				X << 'sound/effects/adminhelp.ogg'
 			X << mentormsg

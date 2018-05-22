@@ -20,19 +20,19 @@
 
 	attack_damage = Clamp(attack_damage, TRUE, 5)
 
-	if(target == user)
+	if (target == user)
 		user.visible_message("<span class='danger'>[user] [pick(attack_verb)] \himself in the [affecting.name]!</span>")
 		return FALSE
 
 	switch(zone)
-		if("head", "mouth", "eyes")
+		if ("head", "mouth", "eyes")
 			// ----- HEAD ----- //
 			switch(attack_damage)
-				if(1 to 2)
+				if (1 to 2)
 					user.visible_message("<span class='danger'>[user] scratched [target] across \his cheek!</span>")
-				if(3 to 4)
+				if (3 to 4)
 					user.visible_message("<span class='danger'>[user] [pick(attack_verb)] [target]'s [pick("head", "neck")]!</span>") //'with spread claws' sounds a little bit odd, just enough that conciseness is better here I think
-				if(5)
+				if (5)
 					user.visible_message(pick(
 						"<span class='danger'>[user] rakes \his [pick(attack_noun)] across [target]'s face!</span>",
 						"<span class='danger'>[user] tears \his [pick(attack_noun)] into [target]'s face!</span>",
@@ -40,9 +40,9 @@
 		else
 			// ----- BODY ----- //
 			switch(attack_damage)
-				if(1 to 2)	user.visible_message("<span class='danger'>[user] scratched [target]'s [affecting.name]!</span>")
-				if(3 to 4)	user.visible_message("<span class='danger'>[user] [pick(attack_verb)] [pick("", "", "the side of")] [target]'s [affecting.name]!</span>")
-				if(5)		user.visible_message("<span class='danger'>[user] tears \his [pick(attack_noun)] [pick("deep into", "into", "across")] [target]'s [affecting.name]!</span>")
+				if (1 to 2)	user.visible_message("<span class='danger'>[user] scratched [target]'s [affecting.name]!</span>")
+				if (3 to 4)	user.visible_message("<span class='danger'>[user] [pick(attack_verb)] [pick("", "", "the side of")] [target]'s [affecting.name]!</span>")
+				if (5)		user.visible_message("<span class='danger'>[user] tears \his [pick(attack_noun)] [pick("deep into", "into", "across")] [target]'s [affecting.name]!</span>")
 
 /datum/unarmed_attack/claws/strong
 	attack_verb = list("slashed")

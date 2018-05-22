@@ -7,13 +7,13 @@
 	update_Login_details()	//handles setting lastKnownIP and computer_id for use by the ban systems as well as checking for multikeying
 
 	/* if our client was deleted (for example if we're banned), don't show the MOTD */
-	if(join_motd)
+	if (join_motd)
 		spawn (1)
 			if (client)
 				src << "<div class='info'>Game ID: <div class='danger'>[game_id]</div></div>"
 				see_personalized_MOTD()
 
-	if(!mind)
+	if (!mind)
 		mind = new /datum/mind(key)
 		mind.active = TRUE
 		mind.current = src
@@ -27,5 +27,5 @@
 	new_player_panel()
 
 	spawn (10) // lets the host hear music too
-		if(client)
+		if (client)
 			client.playtitlemusic()

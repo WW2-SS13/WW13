@@ -26,7 +26,7 @@
 	var/heat_protection = FALSE //flags which determine which body parts are protected from heat. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
 	var/cold_protection = FALSE //flags which determine which body parts are protected from cold. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
 	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by heat_protection flags
-	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. FALSE is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by cold_protection flags
+	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. FALSE is NOT an acceptable number due to if (varname) tests!! Keep at null to disable protection. Only protects areas set by cold_protection flags
 
 	var/datum/action/item_action/action = null
 	var/action_button_name //It is also the text which gets displayed on the action button. If not set it defaults to 'Use [name]'. If it's not set, there'll be no button.
@@ -73,15 +73,15 @@
 /obj/item/equipped()
 	..()
 	var/mob/M = loc
-	if(!istype(M))
+	if (!istype(M))
 		return
-	if(M.l_hand)
+	if (M.l_hand)
 		M.l_hand.update_held_icon()
-	if(M.r_hand)
+	if (M.r_hand)
 		M.r_hand.update_held_icon()
 
 /obj/item/Destroy()
-	if(ismob(loc))
+	if (ismob(loc))
 		var/mob/m = loc
 		m.drop_from_inventory(src)
 		m.update_inv_r_hand()
@@ -101,23 +101,23 @@
 
 //Checks if the item is being held by a mob, and if so, updates the held icons
 /obj/item/proc/update_held_icon()
-	if(ismob(loc))
+	if (ismob(loc))
 		var/mob/M = loc
-		if(M.l_hand == src)
+		if (M.l_hand == src)
 			M.update_inv_l_hand()
-		else if(M.r_hand == src)
+		else if (M.r_hand == src)
 			M.update_inv_r_hand()
 
 /obj/item/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if (1.0)
 			qdel(src)
 			return
-		if(2.0)
+		if (2.0)
 			if (prob(50))
 				qdel(src)
 				return
-		if(3.0)
+		if (3.0)
 			if (prob(5))
 				qdel(src)
 				return
@@ -127,15 +127,15 @@
 /obj/item/examine(mob/user, var/distance = -1)
 	var/size
 	switch(w_class)
-		if(1.0)
+		if (1.0)
 			size = "tiny"
-		if(2.0)
+		if (2.0)
 			size = "small"
-		if(3.0)
+		if (3.0)
 			size = "normal-sized"
-		if(4.0)
+		if (4.0)
 			size = "bulky"
-		if(5.0)
+		if (5.0)
 			size = "huge"
 	return ..(user, distance, "", "It is a [size] item.")
 
@@ -147,10 +147,10 @@
 		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
 		if (user.hand)
 			temp = H.organs_by_name["l_hand"]
-		if(temp && !temp.is_usable())
+		if (temp && !temp.is_usable())
 			user << "<span class='notice'>You try to move your [temp.name], but cannot!</span>"
 			return
-		if(!temp)
+		if (!temp)
 			user << "<span class='notice'>You try to use your hand, but realize it is no longer attached!</span>"
 			return
 	pickup(user)
@@ -160,10 +160,10 @@
 
 	throwing = FALSE
 	if (loc == user)
-		if(!user.unEquip(src))
+		if (!user.unEquip(src))
 			return
 	else
-		if(isliving(loc))
+		if (isliving(loc))
 			return
 	pickup(user)
 	user.put_in_active_hand(src)
@@ -172,32 +172,32 @@
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
 /obj/item/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/storage))
+	if (istype(W,/obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = W
-		if(S.use_to_pickup)
-			if(S.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
-				if(isturf(loc))
+		if (S.use_to_pickup)
+			if (S.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
+				if (isturf(loc))
 					var/list/rejections = list()
 					var/success = FALSE
 					var/failure = FALSE
 
 					for(var/obj/item/I in loc)
-						if(I.type in rejections) // To limit bag spamming: any given type only complains once
+						if (I.type in rejections) // To limit bag spamming: any given type only complains once
 							continue
-						if(!S.can_be_inserted(I))	// Note can_be_inserted still makes noise when the answer is no
+						if (!S.can_be_inserted(I))	// Note can_be_inserted still makes noise when the answer is no
 							rejections += I.type	// therefore full bags are still a little spammy
 							failure = TRUE
 							continue
 						success = TRUE
 						S.handle_item_insertion(I, TRUE)	//The TRUE stops the "You put the [src] into [S]" insertion message from being displayed.
-					if(success && !failure)
+					if (success && !failure)
 						user << "<span class='notice'>You put everything in [S].</span>"
-					else if(success)
+					else if (success)
 						user << "<span class='notice'>You put some things in [S].</span>"
 					else
 						user << "<span class='notice'>You fail to pick anything up with \the [S].</span>"
 
-			else if(S.can_be_inserted(src))
+			else if (S.can_be_inserted(src))
 				S.handle_item_insertion(src)
 
 	return
@@ -263,8 +263,8 @@
 // note this isn't called during the initial dressing of a player
 /obj/item/proc/equipped(var/mob/user, var/slot)
 	layer = 20
-	if(user.client)	user.client.screen |= src
-	if(user.pulling == src) user.stop_pulling()
+	if (user.client)	user.client.screen |= src
+	if (user.pulling == src) user.stop_pulling()
 	return
 
 //Defines which slots correspond to which slot flags
@@ -290,100 +290,100 @@ var/list/global/slot_flags_enumeration = list(
 //Should probably move the bulk of this into mob code some time, as most of it is related to the definition of slots and not item-specific
 /obj/item/proc/mob_can_equip(M as mob, slot, disable_warning = FALSE)
 
-	if(!slot) return FALSE
-	if(!M) return FALSE
+	if (!slot) return FALSE
+	if (!M) return FALSE
 
-	if(!ishuman(M)) return FALSE
+	if (!ishuman(M)) return FALSE
 
 	var/mob/living/carbon/human/H = M
 	var/list/mob_equip = list()
-	if(H.species.hud && H.species.hud.equip_slots)
+	if (H.species.hud && H.species.hud.equip_slots)
 		mob_equip = H.species.hud.equip_slots
 
-	if(H.species && !(slot in mob_equip))
+	if (H.species && !(slot in mob_equip))
 		return FALSE
 
 	//First check if the item can be equipped to the desired slot.
-	if("[slot]" in slot_flags_enumeration)
+	if ("[slot]" in slot_flags_enumeration)
 		var/req_flags = slot_flags_enumeration["[slot]"]
-		if(!(req_flags & slot_flags))
+		if (!(req_flags & slot_flags))
 			return FALSE
 
 	//Next check that the slot is free
-	if(H.get_equipped_item(slot))
+	if (H.get_equipped_item(slot))
 		return FALSE
 
 	//Next check if the slot is accessible.
 	var/mob/_user = disable_warning? null : H
-	if(!H.slot_is_accessible(slot, src, _user))
+	if (!H.slot_is_accessible(slot, src, _user))
 		return FALSE
 
 	//Lastly, check special rules for the desired slot.
 	switch(slot)
-		if(slot_l_ear, slot_r_ear)
+		if (slot_l_ear, slot_r_ear)
 			var/slot_other_ear = (slot == slot_l_ear)? slot_r_ear : slot_l_ear
-			if( (w_class > 1) && !(slot_flags & SLOT_EARS) )
+			if ( (w_class > 1) && !(slot_flags & SLOT_EARS) )
 				return FALSE
-			if( (slot_flags & SLOT_TWOEARS) && H.get_equipped_item(slot_other_ear) )
+			if ( (slot_flags & SLOT_TWOEARS) && H.get_equipped_item(slot_other_ear) )
 				return FALSE
-		if(slot_wear_id)
-			if(!H.w_uniform && (slot_w_uniform in mob_equip))
-				if(!disable_warning)
+		if (slot_wear_id)
+			if (!H.w_uniform && (slot_w_uniform in mob_equip))
+				if (!disable_warning)
 					H << "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>"
 				return FALSE
-		if(slot_l_store, slot_r_store)
-			if(!H.w_uniform && (slot_w_uniform in mob_equip))
-				if(!disable_warning)
+		if (slot_l_store, slot_r_store)
+			if (!H.w_uniform && (slot_w_uniform in mob_equip))
+				if (!disable_warning)
 					H << "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>"
 				return FALSE
-			if(slot_flags & SLOT_DENYPOCKET)
+			if (slot_flags & SLOT_DENYPOCKET)
 				return FALSE
-			if( w_class > 2 && !(slot_flags & SLOT_POCKET) )
+			if ( w_class > 2 && !(slot_flags & SLOT_POCKET) )
 				return FALSE
-		if(slot_s_store)
-			if(!H.wear_suit && (slot_wear_suit in mob_equip))
-				if(!disable_warning)
+		if (slot_s_store)
+			if (!H.wear_suit && (slot_wear_suit in mob_equip))
+				if (!disable_warning)
 					H << "<span class='warning'>You need a suit before you can attach this [name].</span>"
 				return FALSE
-			if(!H.wear_suit.allowed)
-				if(!disable_warning)
+			if (!H.wear_suit.allowed)
+				if (!disable_warning)
 					usr << "<span class='warning'>You somehow have a suit with no defined allowed items for suit storage, stop that.</span>"
 				return FALSE
-			if( !(istype(src, /obj/item/weapon/pen) || is_type_in_list(src, H.wear_suit.allowed)) )
+			if ( !(istype(src, /obj/item/weapon/pen) || is_type_in_list(src, H.wear_suit.allowed)) )
 				return FALSE
-		if(slot_handcuffed)
-			if(!istype(src, /obj/item/weapon/handcuffs))
+		if (slot_handcuffed)
+			if (!istype(src, /obj/item/weapon/handcuffs))
 				return FALSE
-		if(slot_legcuffed)
-			if(!istype(src, /obj/item/weapon/legcuffs))
+		if (slot_legcuffed)
+			if (!istype(src, /obj/item/weapon/legcuffs))
 				return FALSE
-		if(slot_in_backpack) //used entirely for equipping spawned mobs or at round start
+		if (slot_in_backpack) //used entirely for equipping spawned mobs or at round start
 			var/allow = FALSE
-			if(H.back && istype(H.back, /obj/item/weapon/storage/backpack))
+			if (H.back && istype(H.back, /obj/item/weapon/storage/backpack))
 				var/obj/item/weapon/storage/backpack/B = H.back
-				if(B.can_be_inserted(src,1))
+				if (B.can_be_inserted(src,1))
 					allow = TRUE
-			if(!allow)
+			if (!allow)
 				return FALSE
-		if(slot_tie)
-			if(!H.w_uniform && (slot_w_uniform in mob_equip))
-				if(!disable_warning)
+		if (slot_tie)
+			if (!H.w_uniform && (slot_w_uniform in mob_equip))
+				if (!disable_warning)
 					H << "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>"
 				return FALSE
 			var/obj/item/clothing/under/uniform = H.w_uniform
-			if(uniform.accessories.len && !uniform.can_attach_accessory(src))
+			if (uniform.accessories.len && !uniform.can_attach_accessory(src))
 				if (!disable_warning)
 					H << "<span class='warning'>You already have an accessory of this type attached to your [uniform].</span>"
 				return FALSE
 	return TRUE
 
 /obj/item/proc/mob_can_unequip(mob/M, slot, disable_warning = FALSE)
-	if(!slot) return FALSE
-	if(!M) return FALSE
+	if (!slot) return FALSE
+	if (!M) return FALSE
 
-	if(!canremove)
+	if (!canremove)
 		return FALSE
-	if(!M.slot_is_accessible(slot, src, disable_warning? null : M))
+	if (!M.slot_is_accessible(slot, src, disable_warning? null : M))
 		return FALSE
 	return TRUE
 
@@ -392,26 +392,26 @@ var/list/global/slot_flags_enumeration = list(
 	set category = null
 	set name = "Pick up"
 
-	if(!(usr)) //BS12 EDIT
+	if (!(usr)) //BS12 EDIT
 		return
-	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
+	if (!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
 		return
-	if((!istype(usr, /mob/living/carbon)) || (istype(usr, /mob/living/carbon/brain)))//Is humanoid, and is not a brain
+	if ((!istype(usr, /mob/living/carbon)) || (istype(usr, /mob/living/carbon/brain)))//Is humanoid, and is not a brain
 		usr << "<span class='warning'>You can't pick things up!</span>"
 		return
-	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
+	if ( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
 		usr << "<span class='warning'>You can't pick things up!</span>"
 		return
-	if(anchored) //Object isn't anchored
+	if (anchored) //Object isn't anchored
 		usr << "<span class='warning'>You can't pick that up!</span>"
 		return
-	if(!usr.hand && usr.r_hand) //Right hand is not full
+	if (!usr.hand && usr.r_hand) //Right hand is not full
 		usr << "<span class='warning'>Your right hand is full.</span>"
 		return
-	if(usr.hand && usr.l_hand) //Left hand is not full
+	if (usr.hand && usr.l_hand) //Left hand is not full
 		usr << "<span class='warning'>Your left hand is full.</span>"
 		return
-	if(!istype(loc, /turf)) //Object is on a turf
+	if (!istype(loc, /turf)) //Object is on a turf
 		usr << "<span class='warning'>You can't pick that up!</span>"
 		return
 	//All checks are done, time to pick it up!
@@ -441,14 +441,14 @@ var/list/global/slot_flags_enumeration = list(
 /obj/item/proc/eyestab(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 
 	var/mob/living/carbon/human/H = M
-	if(istype(H))
+	if (istype(H))
 		for(var/obj/item/protection in list(H.head, H.wear_mask, H.glasses))
-			if(protection && (protection.body_parts_covered & EYES))
+			if (protection && (protection.body_parts_covered & EYES))
 				// you can't stab someone in the eyes wearing a mask!
 				user << "<span class='warning'>You're going to need to remove the eye covering first.</span>"
 				return
 
-	if(!M.has_eyes())
+	if (!M.has_eyes())
 		user << "<span class='warning'>You cannot locate any eyes on [M]!</span>"
 		return
 
@@ -460,7 +460,7 @@ var/list/global/slot_flags_enumeration = list(
 	user.do_attack_animation(M)
 
 	add_fingerprint(user)
-	//if((CLUMSY in user.mutations) && prob(50))
+	//if ((CLUMSY in user.mutations) && prob(50))
 	//	M = user
 		/*
 		M << "<span class='warning'>You stab yourself in the eye.</span>"
@@ -469,11 +469,11 @@ var/list/global/slot_flags_enumeration = list(
 		M.adjustBruteLoss(10)
 		*/
 
-	if(istype(H))
+	if (istype(H))
 
 		var/obj/item/organ/eyes/eyes = H.internal_organs_by_name["eyes"]
 
-		if(H != user)
+		if (H != user)
 			for(var/mob/O in (viewers(M) - user - M))
 				O.show_message("<span class='danger'>[M] has been stabbed in the eye with [src] by [user].</span>", TRUE)
 			M << "<span class='danger'>[user] stabs you in the eye with [src]!</span>"
@@ -485,22 +485,22 @@ var/list/global/slot_flags_enumeration = list(
 			)
 
 		eyes.damage += rand(3,4)
-		if(eyes.damage >= eyes.min_bruised_damage)
-			if(M.stat != 2)
-				if(eyes.robotic <= 1) //robot eyes bleeding might be a bit silly
+		if (eyes.damage >= eyes.min_bruised_damage)
+			if (M.stat != 2)
+				if (eyes.robotic <= 1) //robot eyes bleeding might be a bit silly
 					M << "<span class='danger'>Your eyes start to bleed profusely!</span>"
-			if(prob(50))
-				if(M.stat != 2)
+			if (prob(50))
+				if (M.stat != 2)
 					M << "<span class='warning'>You drop what you're holding and clutch at your eyes!</span>"
 					M.drop_item()
 				M.eye_blurry += 10
 				M.Paralyse(1)
 				M.Weaken(4)
 			if (eyes.damage >= eyes.min_broken_damage)
-				if(M.stat != 2)
+				if (M.stat != 2)
 					M << "<span class='warning'>You go blind!</span>"
 		var/obj/item/organ/external/affecting = H.get_organ("head")
-		if(affecting.take_damage(7))
+		if (affecting.take_damage(7))
 			M:UpdateDamageIcon()
 	else
 		M.take_organ_damage(7)
@@ -509,14 +509,14 @@ var/list/global/slot_flags_enumeration = list(
 
 /obj/item/clean_blood()
 	. = ..()
-	if(blood_overlay)
+	if (blood_overlay)
 		overlays.Remove(blood_overlay)
-	if(istype(src, /obj/item/clothing/gloves))
+	if (istype(src, /obj/item/clothing/gloves))
 		var/obj/item/clothing/gloves/G = src
 		G.transfer_blood = FALSE
 
 /obj/item/reveal_blood()
-	if(was_bloodied/* && !fluorescent*/)
+	if (was_bloodied/* && !fluorescent*/)
 	//	fluorescent = TRUE
 		blood_color = COLOR_LUMINOL
 		blood_overlay.color = COLOR_LUMINOL
@@ -526,27 +526,27 @@ var/list/global/slot_flags_enumeration = list(
 	if (!..())
 		return FALSE
 
-/*	if(istype(src, /obj/item/weapon/melee/energy))
+/*	if (istype(src, /obj/item/weapon/melee/energy))
 		return*/
 
 	//if we haven't made our blood_overlay already
-	if( !blood_overlay )
+	if ( !blood_overlay )
 		generate_blood_overlay()
 
 	//apply the blood-splatter overlay if it isn't already in there
-	if(!blood_DNA.len)
+	if (!blood_DNA.len)
 		blood_overlay.color = blood_color
 		overlays += blood_overlay
 
 	//if this blood isn't already in the list, add it
-	if(istype(M))
-		if(blood_DNA[M.dna.unique_enzymes])
+	if (istype(M))
+		if (blood_DNA[M.dna.unique_enzymes])
 			return FALSE //already bloodied with this blood. Cannot add more.
 		blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
 	return TRUE //we applied blood to the item
 
 /obj/item/proc/generate_blood_overlay()
-	if(blood_overlay)
+	if (blood_overlay)
 		return
 
 	var/icon/I = new /icon(icon, icon_state)
@@ -555,7 +555,7 @@ var/list/global/slot_flags_enumeration = list(
 
 	//not sure if this is worth it. It attaches the blood_overlay to every item of the same type if they don't have one already made.
 	for(var/obj/item/A in world)
-		if(A.type == type && !A.blood_overlay)
+		if (A.type == type && !A.blood_overlay)
 			A.blood_overlay = image(I)
 
 /obj/item/proc/showoff(mob/user)
@@ -567,7 +567,7 @@ var/list/global/slot_flags_enumeration = list(
 	set category = null
 
 	var/obj/item/I = get_active_hand()
-	if(I && !I.abstract)
+	if (I && !I.abstract)
 		I.showoff(src)
 
 /obj/item/proc/pwr_drain()

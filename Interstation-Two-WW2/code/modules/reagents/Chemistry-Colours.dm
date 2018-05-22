@@ -1,7 +1,7 @@
 /datum/reagents/proc/get_color()
-	if(!reagent_list || !reagent_list.len)
+	if (!reagent_list || !reagent_list.len)
 		return "#ffffffff"
-	if(reagent_list.len == TRUE) // It's pretty common and saves a lot of work
+	if (reagent_list.len == TRUE) // It's pretty common and saves a lot of work
 		var/datum/reagent/R = reagent_list[1]
 		return R.color
 
@@ -9,9 +9,9 @@
 	var/tot_w = FALSE
 	for(var/datum/reagent/R in reagent_list)
 		var/hex = uppertext(R.color)
-		if(length(hex) == 7)
+		if (length(hex) == 7)
 			hex += "FF"
-		if(length(hex) != 9) // PANIC PANIC PANIC
+		if (length(hex) != 9) // PANIC PANIC PANIC
 			warning("Reagent [R.id] has an incorrect color set ([R.color])")
 			hex = "#FFFFFFFF"
 		colors[1] += hex2num(copytext(hex, 2, 4)) * R.volume * R.color_weight

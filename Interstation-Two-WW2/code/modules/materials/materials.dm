@@ -36,29 +36,29 @@ var/list/name_to_material
 //mostly for convenience
 /obj/proc/get_material_name()
 	var/material/material = get_material()
-	if(material)
+	if (material)
 		return material.name
 
 // Builds the datum list above.
 /proc/populate_material_list(force_remake=0)
-	if(name_to_material && !force_remake) return // Already set up!
+	if (name_to_material && !force_remake) return // Already set up!
 	name_to_material = list()
 	for(var/type in typesof(/material) - /material)
 		var/material/new_mineral = new type
-		if(!new_mineral.name)
+		if (!new_mineral.name)
 			continue
 		name_to_material[lowertext(new_mineral.name)] = new_mineral
 	return TRUE
 
 // Safety proc to make sure the material list exists before trying to grab from it.
 /proc/get_material_by_name(name)
-	if(!name_to_material)
+	if (!name_to_material)
 		populate_material_list()
 	return name_to_material[name]
 
 /proc/material_display_name(name)
 	var/material/material = get_material_by_name(name)
-	if(material)
+	if (material)
 		return material.display_name
 	return null
 
@@ -119,10 +119,10 @@ var/list/name_to_material
 
 // Placeholders for light tiles and rglass.
 /material/proc/build_rod_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
-	if(!rod_product)
+	if (!rod_product)
 		user << "<span class='warning'>You cannot make anything out of \the [target_stack]</span>"
 		return
-	if(used_stack.get_amount() < 1 || target_stack.get_amount() < 1)
+	if (used_stack.get_amount() < 1 || target_stack.get_amount() < 1)
 		user << "<span class='warning'>You need one rod and one sheet of [display_name] to make anything useful.</span>"
 		return
 	used_stack.use(1)
@@ -132,10 +132,10 @@ var/list/name_to_material
 	S.add_to_stacks(user)
 
 /material/proc/build_wired_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
-	if(!wire_product)
+	if (!wire_product)
 		user << "<span class='warning'>You cannot make anything out of \the [target_stack]</span>"
 		return
-	if(used_stack.get_amount() < 5 || target_stack.get_amount() < 1)
+	if (used_stack.get_amount() < 5 || target_stack.get_amount() < 1)
 		user << "<span class='warning'>You need five wires and one sheet of [display_name] to make anything useful.</span>"
 		return
 
@@ -143,17 +143,17 @@ var/list/name_to_material
 	target_stack.use(1)
 	user << "<span class='notice'>You attach wire to the [name].</span>"
 	var/obj/item/product = new wire_product(get_turf(user))
-	if(!(user.l_hand && user.r_hand))
+	if (!(user.l_hand && user.r_hand))
 		user.put_in_hands(product)
 
 // Make sure we have a display name and shard icon even if they aren't explicitly set.
 /material/New()
 	..()
-	if(!display_name)
+	if (!display_name)
 		display_name = name
-	if(!use_name)
+	if (!use_name)
 		use_name = display_name
-	if(!shard_icon)
+	if (!shard_icon)
 		shard_icon = shard_type
 /*
 // This is a placeholder for proper integration of windows/windoors into the system.
@@ -167,10 +167,10 @@ var/list/name_to_material
 // Return the matter comprising this material.
 /material/proc/get_matter()
 	var/list/temp_matter = list()
-	if(islist(composite_material))
+	if (islist(composite_material))
 		for(var/material_string in composite_material)
 			temp_matter[material_string] = composite_material[material_string]
-	else if(SHEET_MATERIAL_AMOUNT)
+	else if (SHEET_MATERIAL_AMOUNT)
 		temp_matter[name] = SHEET_MATERIAL_AMOUNT
 	return temp_matter
 
@@ -193,7 +193,7 @@ var/list/name_to_material
 // Places a girder object when a wall is dismantled, also applies reinforced material.
 /material/proc/place_dismantled_girder(var/turf/target, var/material/reinf_material)
 	var/obj/structure/girder/G = new(target)
-	if(reinf_material)
+	if (reinf_material)
 		G.reinf_material = reinf_material
 		G.reinforce_girder()
 
@@ -205,12 +205,12 @@ var/list/name_to_material
 
 // Debris product. Used ALL THE TIME.
 /material/proc/place_sheet(var/turf/target)
-	if(stack_type)
+	if (stack_type)
 		return new stack_type(target)
 
 // As above.
 /material/proc/place_shard(var/turf/target)
-	if(shard_type)
+	if (shard_type)
 		return new /obj/item/weapon/material/shard(target, name)
 
 // Used by walls and weapons to determine if they break or not.
@@ -308,9 +308,9 @@ var/list/name_to_material
 /*
 // Commenting this out while fires are so spectacularly lethal, as I can't seem to get this balanced appropriately.
 /material/plasma/combustion_effect(var/turf/T, var/temperature, var/effect_multiplier)
-	if(isnull(ignition_point))
+	if (isnull(ignition_point))
 		return FALSE
-	if(temperature < ignition_point)
+	if (temperature < ignition_point)
 		return FALSE
 	var/totalPlasma = FALSE
 	for(var/turf/simulated/floor/target_tile in range(2,T))
@@ -412,22 +412,22 @@ var/list/name_to_material
 /*
 /material/glass/build_windows(var/mob/living/user, var/obj/item/stack/used_stack)
 
-	if(!user || !used_stack || !created_window || !window_options.len)
+	if (!user || !used_stack || !created_window || !window_options.len)
 		return FALSE
 
-	if(!user.IsAdvancedToolUser())
+	if (!user.IsAdvancedToolUser())
 		user << "<span class='warning'>This task is too complex for your clumsy hands.</span>"
 		return TRUE
 
 	var/turf/T = user.loc
-	if(!istype(T))
+	if (!istype(T))
 		user << "<span class='warning'>You must be standing on open flooring to build a window.</span>"
 		return TRUE
 
 	var/title = "Sheet-[used_stack.name] ([used_stack.get_amount()] sheet\s left)"
 	var/choice = input(title, "What would you like to construct?") as null|anything in window_options
 
-	if(!choice || !used_stack || !user || used_stack.loc != user || user.stat || user.loc != T)
+	if (!choice || !used_stack || !user || used_stack.loc != user || user.stat || user.loc != T)
 		return TRUE
 
 	// Get data for building windows here.
@@ -441,35 +441,35 @@ var/list/name_to_material
 //	var/build_dir = SOUTHWEST //Default to southwest for fulltile windows.
 	var/failed_to_build
 
-	if(window_count >= 4)
+	if (window_count >= 4)
 		failed_to_build = TRUE
 	else
-		if(choice in list("One Direction","Windoor"))
-			if(possible_directions.len)
+		if (choice in list("One Direction","Windoor"))
+			if (possible_directions.len)
 				for(var/direction in list(user.dir, turn(user.dir,90), turn(user.dir,180), turn(user.dir,270) ))
-					if(direction in possible_directions)
+					if (direction in possible_directions)
 					//	build_dir = direction
 						break
 			else
 				failed_to_build = TRUE
-			if(!failed_to_build && choice == "Windoor")
-				if(!is_reinforced())
+			if (!failed_to_build && choice == "Windoor")
+				if (!is_reinforced())
 					user << "<span class='warning'>This material is not reinforced enough to use for a door.</span>"
 					return
-		/*		if((locate(/obj/structure/windoor_assembly) in T.contents) || (locate(/obj/machinery/door/window) in T.contents))
+		/*		if ((locate(/obj/structure/windoor_assembly) in T.contents) || (locate(/obj/machinery/door/window) in T.contents))
 					failed_to_build = TRUE*/
-	if(failed_to_build)
+	if (failed_to_build)
 		user << "<span class='warning'>There is no room in this location.</span>"
 		return TRUE
 
 /*	var/build_path = /obj/structure/windoor_assembly
 	var/sheets_needed = window_options[choice]
-	if(choice == "Windoor")
+	if (choice == "Windoor")
 		build_dir = user.dir
 	else
 		build_path = created_window
 
-	if(used_stack.get_amount() < sheets_needed)
+	if (used_stack.get_amount() < sheets_needed)
 		user << "<span class='warning'>You need at least [sheets_needed] sheets to build this.</span>"
 		return TRUE
 

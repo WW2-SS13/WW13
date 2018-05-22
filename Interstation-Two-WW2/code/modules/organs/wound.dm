@@ -86,16 +86,16 @@
 		return damage / amount
 
 	proc/can_autoheal()
-		if(wound_damage() <= autoheal_cutoff)
+		if (wound_damage() <= autoheal_cutoff)
 			return TRUE
 
 		return is_treated()
 
 	// checks whether the wound has been appropriately treated
 	proc/is_treated()
-		if(damage_type == BRUISE || damage_type == CUT)
+		if (damage_type == BRUISE || damage_type == CUT)
 			return bandaged
-		else if(damage_type == BURN)
+		else if (damage_type == BURN)
 			return salved
 
 	// Checks whether other other can be merged into
@@ -162,7 +162,7 @@
 	// than what needed to be healed, return how much heal was left
 	// set @heals_internal to also heal internal organ damage
 	proc/heal_damage(amount, heals_internal = FALSE)
-		if(internal && !heals_internal)
+		if (internal && !heals_internal)
 			// heal nothing
 			return amount
 
@@ -231,45 +231,45 @@
 //because in it's stages list, "deep cut" = 15.
 /proc/get_wound_type(var/type = CUT, var/damage)
 	switch(type)
-		if(CUT)
+		if (CUT)
 			switch(damage)
-				if(70 to INFINITY)
+				if (70 to INFINITY)
 					return /datum/wound/cut/massive
-				if(60 to 70)
+				if (60 to 70)
 					return /datum/wound/cut/gaping_big
-				if(50 to 60)
+				if (50 to 60)
 					return /datum/wound/cut/gaping
-				if(25 to 50)
+				if (25 to 50)
 					return /datum/wound/cut/flesh
-				if(15 to 25)
+				if (15 to 25)
 					return /datum/wound/cut/deep
-				if(0 to 15)
+				if (0 to 15)
 					return /datum/wound/cut/small
-		if(PIERCE)
+		if (PIERCE)
 			switch(damage)
-				if(60 to INFINITY)
+				if (60 to INFINITY)
 					return /datum/wound/puncture/massive
-				if(50 to 60)
+				if (50 to 60)
 					return /datum/wound/puncture/gaping_big
-				if(30 to 50)
+				if (30 to 50)
 					return /datum/wound/puncture/gaping
-				if(15 to 30)
+				if (15 to 30)
 					return /datum/wound/puncture/flesh
-				if(0 to 15)
+				if (0 to 15)
 					return /datum/wound/puncture/small
-		if(BRUISE)
+		if (BRUISE)
 			return /datum/wound/bruise
-		if(BURN)
+		if (BURN)
 			switch(damage)
-				if(50 to INFINITY)
+				if (50 to INFINITY)
 					return /datum/wound/burn/carbonised
-				if(40 to 50)
+				if (40 to 50)
 					return /datum/wound/burn/deep
-				if(30 to 40)
+				if (30 to 40)
 					return /datum/wound/burn/severe
-				if(15 to 30)
+				if (15 to 30)
 					return /datum/wound/burn/large
-				if(0 to 15)
+				if (0 to 15)
 					return /datum/wound/burn/moderate
 	return null //no wound
 
@@ -392,10 +392,10 @@ datum/wound/puncture/massive
 
 /datum/wound/lost_limb/New(var/obj/item/organ/external/lost_limb, var/losstype, var/clean)
 	var/damage_amt = lost_limb.max_damage
-	if(clean) damage_amt /= 2
+	if (clean) damage_amt /= 2
 
 	switch(losstype)
-		if(DROPLIMB_EDGE, DROPLIMB_BLUNT)
+		if (DROPLIMB_EDGE, DROPLIMB_BLUNT)
 			damage_type = CUT
 			max_bleeding_stage = 3 //clotted stump and above can bleed.
 			stages = list(
@@ -404,7 +404,7 @@ datum/wound/puncture/massive
 				"clotted stump" = damage_amt*0.5,
 				"scarred stump" = FALSE
 				)
-		if(DROPLIMB_BURN)
+		if (DROPLIMB_BURN)
 			damage_type = BURN
 			stages = list(
 				"ripped charred stump" = damage_amt*1.3,

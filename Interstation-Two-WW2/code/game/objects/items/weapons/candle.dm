@@ -14,9 +14,9 @@
 
 /obj/item/weapon/flame/candle/update_icon()
 	var/i
-	if(wax > 1500)
+	if (wax > 1500)
 		i = TRUE
-	else if(wax > 800)
+	else if (wax > 800)
 		i = 2
 	else i = 3
 	icon_state = "candle[i][lit ? "_lit" : ""]"
@@ -24,26 +24,26 @@
 
 /obj/item/weapon/flame/candle/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
-	if(istype(W, /obj/item/weapon/weldingtool))
+	if (istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
-		if(WT.isOn()) //Badasses dont get blinded by lighting their candle with a welding tool
+		if (WT.isOn()) //Badasses dont get blinded by lighting their candle with a welding tool
 			light("<span class='notice'>\The [user] casually lights the [name] with [W].</span>")
-	else if(istype(W, /obj/item/weapon/flame/lighter))
+	else if (istype(W, /obj/item/weapon/flame/lighter))
 		var/obj/item/weapon/flame/lighter/L = W
-		if(L.lit)
+		if (L.lit)
 			light()
-	else if(istype(W, /obj/item/weapon/flame/match))
+	else if (istype(W, /obj/item/weapon/flame/match))
 		var/obj/item/weapon/flame/match/M = W
-		if(M.lit)
+		if (M.lit)
 			light()
-	else if(istype(W, /obj/item/weapon/flame/candle))
+	else if (istype(W, /obj/item/weapon/flame/candle))
 		var/obj/item/weapon/flame/candle/C = W
-		if(C.lit)
+		if (C.lit)
 			light()
 
 
 /obj/item/weapon/flame/candle/proc/light(var/flavor_text = "<span class='notice'>\The [usr] lights the [name].</span>")
-	if(!lit)
+	if (!lit)
 		lit = TRUE
 		//damtype = "fire"
 		for(var/mob/O in viewers(usr, null))
@@ -53,21 +53,21 @@
 
 
 /obj/item/weapon/flame/candle/process()
-	if(!lit)
+	if (!lit)
 		return
 	wax--
-	if(!wax)
+	if (!wax)
 		new/obj/item/trash/candle(loc)
-		if(istype(loc, /mob))
+		if (istype(loc, /mob))
 			dropped()
 		qdel(src)
 	update_icon()
-	if(istype(loc, /turf)) //start a fire if possible
+	if (istype(loc, /turf)) //start a fire if possible
 		var/turf/T = loc
 		T.hotspot_expose(700, 5)
 
 /obj/item/weapon/flame/candle/attack_self(mob/user as mob)
-	if(lit)
+	if (lit)
 		lit = FALSE
 		update_icon()
 		set_light(0)

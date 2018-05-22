@@ -29,12 +29,12 @@
 
 /obj/structure/filingcabinet/initialize()
 	for(var/obj/item/I in loc)
-		if(istype(I, /obj/item/weapon/paper) || istype(I, /obj/item/weapon/folder) || istype(I, /obj/item/weapon/photo) || istype(I, /obj/item/weapon/paper_bundle))
+		if (istype(I, /obj/item/weapon/paper) || istype(I, /obj/item/weapon/folder) || istype(I, /obj/item/weapon/photo) || istype(I, /obj/item/weapon/paper_bundle))
 			I.loc = src
 
 
 /obj/structure/filingcabinet/attackby(obj/item/P as obj, mob/user as mob)
-	if(istype(P, /obj/item/weapon/paper) || istype(P, /obj/item/weapon/folder) || istype(P, /obj/item/weapon/photo) || istype(P, /obj/item/weapon/paper_bundle))
+	if (istype(P, /obj/item/weapon/paper) || istype(P, /obj/item/weapon/folder) || istype(P, /obj/item/weapon/photo) || istype(P, /obj/item/weapon/paper_bundle))
 		user << "<span class='notice'>You put [P] in [src].</span>"
 		user.drop_item()
 		P.loc = src
@@ -42,7 +42,7 @@
 		sleep(5)
 		icon_state = initial(icon_state)
 		updateUsrDialog()
-	else if(istype(P, /obj/item/weapon/wrench))
+	else if (istype(P, /obj/item/weapon/wrench))
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, TRUE)
 		anchored = !anchored
 		user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
@@ -51,7 +51,7 @@
 
 
 /obj/structure/filingcabinet/attack_hand(mob/user as mob)
-	if(contents.len <= 0)
+	if (contents.len <= 0)
 		user << "<span class='notice'>\The [src] is empty.</span>"
 		return
 
@@ -65,29 +65,29 @@
 	return
 /*
 /obj/structure/filingcabinet/attack_tk(mob/user)
-	if(anchored)
+	if (anchored)
 		attack_self_tk(user)
 	else
 		..()
 
 /obj/structure/filingcabinet/attack_self_tk(mob/user)
-	if(contents.len)
-		if(prob(40 + contents.len * 5))
+	if (contents.len)
+		if (prob(40 + contents.len * 5))
 			var/obj/item/I = pick(contents)
 			I.loc = loc
-			if(prob(25))
+			if (prob(25))
 				step_rand(I)
 			user << "<span class='notice'>You pull \a [I] out of [src] at random.</span>"
 			return
 	user << "<span class='notice'>You find nothing in [src].</span>"
 */
 /obj/structure/filingcabinet/Topic(href, href_list)
-	if(href_list["retrieve"])
+	if (href_list["retrieve"])
 		usr << browse("", "window=filingcabinet") // Close the menu
 
 		//var/retrieveindex = text2num(href_list["retrieve"])
 		var/obj/item/P = locate(href_list["retrieve"])//contents[retrieveindex]
-		if(istype(P) && (P.loc == src) && Adjacent(usr))
+		if (istype(P) && (P.loc == src) && Adjacent(usr))
 			usr.put_in_hands(P)
 			updateUsrDialog()
 			icon_state = "[initial(icon_state)]-open"
@@ -104,11 +104,11 @@
 
 
 /obj/structure/filingcabinet/security/proc/populate()
-	if(virgin)
+	if (virgin)
 		for(var/datum/data/record/G in data_core.general)
 			var/datum/data/record/S
 			for(var/datum/data/record/R in data_core.security)
-				if((R.fields["name"] == G.fields["name"] || R.fields["id"] == G.fields["id"]))
+				if ((R.fields["name"] == G.fields["name"] || R.fields["id"] == G.fields["id"]))
 					S = R
 					break
 			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(src)
@@ -140,14 +140,14 @@
 	var/virgin = TRUE
 
 /obj/structure/filingcabinet/medical/proc/populate()
-	if(virgin)
+	if (virgin)
 		for(var/datum/data/record/G in data_core.general)
 			var/datum/data/record/M
 			for(var/datum/data/record/R in data_core.medical)
-				if((R.fields["name"] == G.fields["name"] || R.fields["id"] == G.fields["id"]))
+				if ((R.fields["name"] == G.fields["name"] || R.fields["id"] == G.fields["id"]))
 					M = R
 					break
-			if(M)
+			if (M)
 				var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(src)
 				P.info = "<CENTER><b>Medical Record</b></CENTER><BR>"
 				P.info += "Name: [G.fields["name"]] ID: [G.fields["id"]]<BR>\nSex: [G.fields["sex"]]<BR>\nAge: [G.fields["age"]]<BR>\nFingerprint: [G.fields["fingerprint"]]<BR>\nPhysical Status: [G.fields["p_stat"]]<BR>\nMental Status: [G.fields["m_stat"]]<BR>"

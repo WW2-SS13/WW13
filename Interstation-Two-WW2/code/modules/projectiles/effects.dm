@@ -4,11 +4,11 @@
 	layer = 20
 
 /obj/effect/projectile/New(var/turf/location)
-	if(istype(location))
+	if (istype(location))
 		loc = location
 
 /obj/effect/projectile/proc/set_transform(var/matrix/M)
-	if(istype(M))
+	if (istype(M))
 		transform = M
 
 /obj/effect/projectile/proc/activate(var/kill_delay = 1)

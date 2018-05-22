@@ -3,7 +3,7 @@
 	set name = "Toggle Jobs"
 	set category = "Special"
 
-	if(!check_rights(R_ADMIN))
+	if (!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 

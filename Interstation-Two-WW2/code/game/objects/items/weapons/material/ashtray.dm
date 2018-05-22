@@ -11,7 +11,7 @@ var/global/list/ashtray_cache = list()
 
 /obj/item/weapon/material/ashtray/New(var/newloc, var/material_name)
 	..(newloc, material_name)
-	if(!material)
+	if (!material)
 		qdel(src)
 		return
 	max_butts = round(material.hardness/10) //This is arbitrary but whatever.
@@ -24,19 +24,19 @@ var/global/list/ashtray_cache = list()
 	color = null
 	overlays.Cut()
 	var/cache_key = "base-[material.name]"
-	if(!ashtray_cache[cache_key])
+	if (!ashtray_cache[cache_key])
 		var/image/I = image('icons/obj/objects.dmi',"ashtray")
 		I.color = material.icon_colour
 		ashtray_cache[cache_key] = I
 	overlays |= ashtray_cache[cache_key]
 
 	if (contents.len == max_butts)
-		if(!ashtray_cache["full"])
+		if (!ashtray_cache["full"])
 			ashtray_cache["full"] = image('icons/obj/objects.dmi',"ashtray_full")
 		overlays |= ashtray_cache["full"]
 		desc = "It's stuffed full."
 	else if (contents.len > max_butts/2)
-		if(!ashtray_cache["half"])
+		if (!ashtray_cache["half"])
 			ashtray_cache["half"] = image('icons/obj/objects.dmi',"ashtray_half")
 		overlays |= ashtray_cache["half"]
 		desc = "It's half-filled."

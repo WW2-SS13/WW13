@@ -16,7 +16,7 @@
 /datum/category_item/player_setup_item/general/loadout/OnTopic(var/href,var/list/href_list, var/mob/user)
 
 	// neat stuff
-	if(href_list["pocket_1"] || href_list["pocket_2"])
+	if (href_list["pocket_1"] || href_list["pocket_2"])
 		var/one = href_list["pocket_1"]
 		var/two = !one
 		var/number = one ? "first" : "second"

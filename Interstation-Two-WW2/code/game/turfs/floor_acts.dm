@@ -3,15 +3,15 @@
 	if (src_area && src_area.type == /area/prishtina/void)
 		return
 	switch(severity)
-		if(1.0)
+		if (1.0)
 			make_grass()
-		if(2.0)
+		if (2.0)
 			if (prob(75))
 				make_grass()
 			else
 				break_tile()
 				hotspot_expose(1000,CELL_VOLUME)
-		if(3.0)
+		if (3.0)
 			if (prob(50))
 				break_tile()
 				hotspot_expose(1000,CELL_VOLUME)
@@ -20,9 +20,9 @@
 /turf/floor/fire_act(temperature)
 
 	var/temp_destroy = get_damage_temperature()
-	if(!burnt && prob(5))
+	if (!burnt && prob(5))
 		burn_tile(temperature)
-	else if(temp_destroy && temperature >= (temp_destroy + 100) && prob(1) && !is_plating())
+	else if (temp_destroy && temperature >= (temp_destroy + 100) && prob(1) && !is_plating())
 		make_plating() //destroy the tile, exposing plating
 		burn_tile(temperature)
 	return
@@ -35,5 +35,5 @@
 	var/dir_to = get_dir(src, adj_turf)
 
 	for(var/obj/structure/window/W in src)
-		if(W.dir == dir_to || W.is_fulltile()) //Same direction or diagonal (full tile)
+		if (W.dir == dir_to || W.is_fulltile()) //Same direction or diagonal (full tile)
 			W.fire_act(adj_air, adj_temp, adj_volume)

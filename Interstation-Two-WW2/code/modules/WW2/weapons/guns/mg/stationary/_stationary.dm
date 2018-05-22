@@ -53,14 +53,14 @@
 		user << "<span class = 'warning'>\the [src] is already in use.</span>"
 		return
 
-	if(user.using_MG == src)
-		if(firemodes.len > 1)
+	if (user.using_MG == src)
+		if (firemodes.len > 1)
 			switch_firemodes(user)
 	else
 		var/grip_dir = reverse_direction(dir)
 		var/turf/T = get_step(loc, grip_dir)
-		if(user.loc == T)
-			if(user.has_empty_hand(both = TRUE) && !is_used_by(user))
+		if (user.loc == T)
+			if (user.has_empty_hand(both = TRUE) && !is_used_by(user))
 				if (!map || !map.check_prishtina_block(user, loc))
 					if (do_after(user, 15, src))
 						user.use_MG(src)
@@ -87,16 +87,16 @@
 //	silent: boolean controlling whether it should tell the user why they can't zoom in or not
 // I am sorry for creating this abomination -- Irra
 ///obj/item/weapon/gun/projectile/automatic/stationary/can_zoom(mob/user, var/devicename, var/silent)
-	//if(user.stat || !ishuman(user))
+	//if (user.stat || !ishuman(user))
 		//if (!silent) user.show_message("You are unable to focus through the [devicename]")
 		//return FALSE
-	//else if(!zoomed && global_hud.darkMask[1] in user.client.screen)
+	//else if (!zoomed && global_hud.darkMask[1] in user.client.screen)
 		//if (!silent) user.show_message("Your visor gets in the way of looking through the [devicename]")
 		//return FALSE
 	return TRUE
 
 /obj/item/weapon/gun/projectile/automatic/stationary/proc/try_remove_mag(mob/user)
-	if(!ishuman(user))
+	if (!ishuman(user))
 		return
 	if (!is_used_by(user))
 		if (user.has_empty_hand())
@@ -107,22 +107,22 @@
 		user.show_message("<span class='warning'>You can't do this while using \the [src].</span>")
 
 /obj/item/weapon/gun/projectile/automatic/stationary/proc/usedby(mob/user, atom/A, params)
-	if(A == src)
+	if (A == src)
 		switch_firemodes(user)
 
-	if(check_direction(user, A))
+	if (check_direction(user, A))
 		afterattack(A, user, FALSE, params)
 	else
 	//	rotate_to(user, A)
 		update_layer()
 
 /obj/item/weapon/gun/projectile/automatic/stationary/proc/check_direction(mob/user, atom/A)
-	if(get_turf(A) == loc)
+	if (get_turf(A) == loc)
 		return FALSE
 
 	var/shot_dir = get_carginal_dir(src, A)
 
-	if(shot_dir != dir)
+	if (shot_dir != dir)
 		return FALSE
 
 	return TRUE
@@ -132,7 +132,7 @@
 	return FALSE
 
 /obj/item/weapon/gun/projectile/automatic/stationary/proc/update_layer()
-	if(dir == NORTH)
+	if (dir == NORTH)
 		layer = OBJ_LAYER+0.1 // above any casings we drop but below mobs
 	else
 		layer = FLY_LAYER
@@ -149,10 +149,10 @@
 			user.client.canmove = TRUE
 
 	for(var/datum/action/A in actions)
-		if(istype(A, /datum/action/toggle_scope))
-			if(user.client.pixel_x | user.client.pixel_y)
+		if (istype(A, /datum/action/toggle_scope))
+			if (user.client.pixel_x | user.client.pixel_y)
 				for(var/datum/action/toggle_scope/T in user.actions)
-					if(T.scope.zoomed)
+					if (T.scope.zoomed)
 						T.scope.zoom(user, FALSE)
 			var/datum/action/toggle_scope/S = A
 			S.boundto = src
@@ -164,7 +164,7 @@
 	..()
 
 	for(var/datum/action/A in actions)
-		if(istype(A, /datum/action/toggle_scope))
+		if (istype(A, /datum/action/toggle_scope))
 			var/datum/action/toggle_scope/TS = A
 			if (TS.boundto == src)
 				var/datum/action/toggle_scope/S = A
@@ -175,8 +175,8 @@
 	return user.using_MG == src && user.loc == loc
 
 /obj/item/weapon/gun/projectile/automatic/stationary/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return TRUE
-	if(istype(mover, /obj/item/projectile))
+	if (air_group || (height==0)) return TRUE
+	if (istype(mover, /obj/item/projectile))
 		return TRUE
 	return FALSE
 
@@ -203,7 +203,7 @@
 	var/shot_dir = get_carginal_dir(src, A)
 	dir = shot_dir
 
-	//if(zoomed)
+	//if (zoomed)
 		//zoom(user, FALSE) //Stop Zoom
 
 	user.forceMove(loc)

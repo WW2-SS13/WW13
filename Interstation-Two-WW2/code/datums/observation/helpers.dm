@@ -3,7 +3,7 @@
 
 /atom/movable/proc/move_to_destination(var/atom/movable/am, var/old_loc, var/new_loc)
 	var/turf/T = get_turf(new_loc)
-	if(T && T != loc)
+	if (T && T != loc)
 		forceMove(T)
 
 /atom/proc/recursive_dir_set(var/atom/a, var/old_dir, var/new_dir)

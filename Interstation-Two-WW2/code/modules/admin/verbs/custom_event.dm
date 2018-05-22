@@ -3,12 +3,12 @@
 	set category = "Fun"
 	set name = "Change Custom Event"
 
-	if(!holder)
+	if (!holder)
 		src << "Only administrators may use this command."
 		return
 
 	var/input = sanitize(input(usr, "Enter the description of the custom event. Be descriptive. To cancel the event, make this blank or hit cancel.", "Custom Event", custom_event_msg) as message|null, MAX_BOOK_MESSAGE_LEN, extra = FALSE)
-	if(!input || input == "")
+	if (!input || input == "")
 		custom_event_msg = null
 		log_admin("[usr.key] has cleared the custom event text.")
 		message_admins("[key_name_admin(usr)] has cleared the custom event text.")
@@ -29,7 +29,7 @@
 	set category = "OOC"
 	set name = "Custom Event Info"
 
-	if(!custom_event_msg || custom_event_msg == "")
+	if (!custom_event_msg || custom_event_msg == "")
 		src << "There currently is no known custom event taking place."
 		src << "Keep in mind: it is possible that an admin has not properly set this."
 		return

@@ -5,7 +5,7 @@
 	set name = "Restart Process"
 	set desc = "Restart one of the various periodic loop controllers for the game (be careful!)"
 
-	if(!check_rights(R_SERVER)) return
+	if (!check_rights(R_SERVER)) return
 
 	var/process = input(src, "Which process?") in list("Cancel") | processScheduler.nameToProcessMap
 	if (process == "Cancel")
@@ -22,7 +22,7 @@ var/list/special_globalobjects = list("processScheduler", "Master", "Ticker", "C
 	set name = "Debug Controller/GlobalObjects"
 	set desc = "Debug various objects and loops for the game (be careful!)"
 
-	if(!holder)	return
+	if (!holder)	return
 
 	var/list/globals = special_globalobjects.Copy()
 	for (var/controller in processScheduler.nameToProcessMap)
@@ -46,7 +46,7 @@ var/list/special_globalobjects = list("processScheduler", "Master", "Ticker", "C
 		if ("Configuration")
 			debug_variables(config)
 
-		if("Observation")
+		if ("Observation")
 			debug_variables(all_observable_events)
 
 		if ("Primary German Train")

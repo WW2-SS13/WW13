@@ -24,12 +24,12 @@
 	return ..()
 
 /obj/Topic(href, href_list, var/datum/topic_state/state = default_state)
-	if(..())
+	if (..())
 		return TRUE
 
-	// In the far future no checks are made in an overriding Topic() beyond if(..()) return
+	// In the far future no checks are made in an overriding Topic() beyond if (..()) return
 	// Instead any such checks are made in CanUseTopic()
-	if(CanUseTopic(usr, state, href_list) == STATUS_INTERACTIVE)
+	if (CanUseTopic(usr, state, href_list) == STATUS_INTERACTIVE)
 		CouldUseTopic(usr)
 		return FALSE
 
@@ -37,7 +37,7 @@
 	return TRUE
 
 /obj/CanUseTopic(var/mob/user, var/datum/topic_state/state)
-	if(user.CanUseObjTopic(src))
+	if (user.CanUseObjTopic(src))
 		return ..()
 	user << "<span class='danger'>\icon[src]Access Denied!</span>"
 	return STATUS_CLOSE
@@ -52,7 +52,7 @@
 	target.add_hiddenprint(src)
 
 /mob/living/AddTopicPrint(var/obj/target)
-	if(Adjacent(target))
+	if (Adjacent(target))
 		target.add_fingerprint(src)
 	else
 		target.add_hiddenprint(src)
@@ -68,25 +68,25 @@
 	return FALSE
 
 /obj/assume_air(datum/gas_mixture/giver)
-	if(loc)
+	if (loc)
 		return loc.assume_air(giver)
 	else
 		return null
 
 /obj/remove_air(amount)
-	if(loc)
+	if (loc)
 		return loc.remove_air(amount)
 	else
 		return null
 
 /obj/return_air()
-	if(loc)
+	if (loc)
 		return loc.return_air()
 	else
 		return null
 
 /obj/proc/updateUsrDialog()
-	if(in_use)
+	if (in_use)
 		var/is_in_use = FALSE
 		var/list/nearby = viewers(1, src)
 		for(var/mob/M in nearby)
@@ -97,23 +97,23 @@
 		// check for TK users
 
 /*		if (istype(usr, /mob/living/carbon/human))
-			if(istype(usr.l_hand, /obj/item/tk_grab) || istype(usr.r_hand, /obj/item/tk_grab/))
-				if(!(usr in nearby))
-					if(usr.client && usr.using_object==src)
+			if (istype(usr.l_hand, /obj/item/tk_grab) || istype(usr.r_hand, /obj/item/tk_grab/))
+				if (!(usr in nearby))
+					if (usr.client && usr.using_object==src)
 						is_in_use = TRUE
 						attack_hand(usr)*/
 		in_use = is_in_use
 
 /obj/proc/updateDialog()
 	// Check that people are actually using the machine. If not, don't update anymore.
-	if(in_use)
+	if (in_use)
 		var/list/nearby = viewers(1, src)
 		var/is_in_use = FALSE
 		for(var/mob/M in nearby)
 			if ((M.client && M.using_object == src))
 				is_in_use = TRUE
 				interact(M)
-		if(!is_in_use)
+		if (!is_in_use)
 			in_use = FALSE
 
 /obj/attack_ghost(mob/user)
@@ -130,16 +130,16 @@
 	using_object = null
 
 /mob/proc/set_using_object(var/atom/movable/AM)
-	if(using_object)
+	if (using_object)
 		unset_using_object()
 	using_object = AM
-	if(isobj(AM))
+	if (isobj(AM))
 		var/obj/O = AM
 		O.in_use = TRUE
 
 /obj/item/proc/updateSelfDialog()
 	var/mob/M = loc
-	if(istype(M) && M.client && M.using_object == src)
+	if (istype(M) && M.client && M.using_object == src)
 		attack_self(M)
 
 /obj/proc/hide(var/hide)
@@ -149,11 +149,11 @@
 	return level == TRUE
 
 /obj/proc/hear_talk(mob/M as mob, text, verb, datum/language/speaking)
-	//if(talking_atom)
+	//if (talking_atom)
 		//talking_atom.catchMessage(text, M)
 /*
 	var/mob/mo = locate(/mob) in src
-	if(mo)
+	if (mo)
 		var/rendered = "<span class='game say'><span class='name'>[M.name]: </span> <span class='message'>[text]</span></span>"
 		mo.show_message(rendered, 2)
 		*/

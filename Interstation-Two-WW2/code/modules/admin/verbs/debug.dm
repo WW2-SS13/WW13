@@ -1,9 +1,9 @@
 /client/proc/Debug2()
 	set category = "Debug"
 	set name = "Debug-Game"
-	if(!check_rights(R_DEBUG))	return
+	if (!check_rights(R_DEBUG))	return
 
-	if(Debug2)
+	if (Debug2)
 		Debug2 = FALSE
 		message_admins("[key_name(src)] toggled debugging off.")
 		log_admin("[key_name(src)] toggled debugging off.")
@@ -18,7 +18,7 @@
 /client/proc/Cell()
 	set category = "Debug"
 	set name = "Cell"
-	if(!mob)
+	if (!mob)
 		return
 	var/turf/T = mob.loc
 
@@ -45,15 +45,15 @@
 	set category = "Fun"
 	set name = "Make Simple Animal"
 
-	if(!ticker)
+	if (!ticker)
 		alert("Wait until the game starts")
 		return
 
-	if(!M)
+	if (!M)
 		alert("That mob doesn't seem to exist, close the panel and try again.")
 		return
 
-	if(istype(M, /mob/new_player))
+	if (istype(M, /mob/new_player))
 		alert("The mob must not be a new_player.")
 		return
 
@@ -69,9 +69,9 @@
 	// to prevent REALLY stupid deletions
 	var/blocked = list(/obj, /mob, /mob/living, /mob/living/carbon, /mob/living/carbon/human, /mob/observer, /mob/living/silicon, /mob/living/silicon/robot, /mob/living/silicon/ai)
 	var/hsbitem = input(usr, "Choose an object to delete.", "Delete:") as null|anything in typesof(/obj) + typesof(/mob) - blocked
-	if(hsbitem)
+	if (hsbitem)
 		for(var/atom/O in world)
-			if(istype(O, hsbitem))
+			if (istype(O, hsbitem))
 				qdel(O)
 		log_admin("[key_name(src)] has deleted all instances of [hsbitem].")
 		message_admins("[key_name_admin(src)] has deleted all instances of [hsbitem].", FALSE)
@@ -98,9 +98,9 @@
 	set name = "Assume direct control"
 	set desc = "Direct intervention"
 
-	if(!check_rights(R_DEBUG|R_ADMIN))	return
-	if(M.ckey)
-		if(alert("This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.",,"Yes","No") != "Yes")
+	if (!check_rights(R_DEBUG|R_ADMIN))	return
+	if (M.ckey)
+		if (alert("This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.",,"Yes","No") != "Yes")
 			return
 		else
 			var/mob/observer/ghost/ghost = new/mob/observer/ghost(M,1)
@@ -109,7 +109,7 @@
 	log_admin("[key_name(usr)] assumed direct control of [M].")
 	var/mob/adminmob = mob
 	M.ckey = ckey
-	if(isghost(adminmob))
+	if (isghost(adminmob))
 		qdel(adminmob)
 
 
@@ -132,38 +132,38 @@
 	var/list/areas_with_camera = list()
 
 	for(var/area/A in world)
-		if(!(A.type in areas_all))
+		if (!(A.type in areas_all))
 			areas_all.Add(A.type)
 /*
 	for(var/obj/machinery/power/apc/APC in world)
 		var/area/A = get_area(APC)
-		if(!(A.type in areas_with_APC))
+		if (!(A.type in areas_with_APC))
 			areas_with_APC.Add(A.type)*/
 /*
 	for(var/obj/machinery/alarm/alarm in world)
 		var/area/A = get_area(alarm)
-		if(!(A.type in areas_with_air_alarm))
+		if (!(A.type in areas_with_air_alarm))
 			areas_with_air_alarm.Add(A.type)
 */
 /*
 	for(var/obj/machinery/requests_console/RC in world)
 		var/area/A = get_area(RC)
-		if(!(A.type in areas_with_RC))
+		if (!(A.type in areas_with_RC))
 			areas_with_RC.Add(A.type)
 */
 	for(var/obj/structure/light/L in world)
 		var/area/A = get_area(L)
-		if(!(A.type in areas_with_light))
+		if (!(A.type in areas_with_light))
 			areas_with_light.Add(A.type)
 
 /*	for(var/obj/structure/light_switch/LS in world)
 		var/area/A = get_area(LS)
-		if(!(A.type in areas_with_LS))
+		if (!(A.type in areas_with_LS))
 			areas_with_LS.Add(A.type)*/
 
 	for(var/obj/item/radio/intercom/I in world)
 		var/area/A = get_area(I)
-		if(!(A.type in areas_with_intercom))
+		if (!(A.type in areas_with_intercom))
 			areas_with_intercom.Add(A.type)
 
 	var/list/areas_without_APC = areas_all - areas_with_APC
@@ -207,7 +207,7 @@
 	set name = "Select equipment"
 
 	var/mob/living/carbon/human/M = input("Select mob.", "Select equipment.") as null|anything in human_mob_list
-	if(!M) return
+	if (!M) return
 
 	//log_admin("[key_name(src)] has alienized [M.key].")
 	var/list/dresspacks = list(
@@ -243,7 +243,7 @@
 /*		if (istype(I, /obj/item/weapon/implant))
 			continue*/
 		M.drop_from_inventory(I)
-		if(I.loc != M)
+		if (I.loc != M)
 			qdel(I)
 	switch(dresscode)
 		if ("strip")
@@ -254,7 +254,7 @@
 				return
 
 			var/datum/job/job = job_master.GetJob(selected_job)
-			if(!job)
+			if (!job)
 				return
 
 			job.equip(M)
@@ -334,7 +334,7 @@
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(M), slot_shoes)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(M), slot_head)
 /*
-		if("masked killer")
+		if ("masked killer")
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/overalls(M), slot_w_uniform)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/color/white(M), slot_shoes)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(M), slot_gloves)
@@ -350,7 +350,7 @@
 			M.equip_to_slot_or_del(fire_axe, slot_r_hand)
 
 			for(var/obj/item/carried_item in M.contents)
-				if(!istype(carried_item, /obj/item/weapon/implant))//If it's not an implant.
+				if (!istype(carried_item, /obj/item/weapon/implant))//If it's not an implant.
 					carried_item.add_blood(M)//Oh yes, there will be blood...
 */
 	M.regenerate_icons()
@@ -364,7 +364,7 @@
 	set name = "Check positions"
 
 	var/mob/user = mob
-	if(user != usr || !holder || !holder.marked_datum())
+	if (user != usr || !holder || !holder.marked_datum())
 		return
 
 	var/turf/user_pos = get_turf(user)
@@ -395,26 +395,26 @@
 	set desc = "For when you just gotta know"
 
 	switch(input("Which list?") in list("Players","Admins","Mobs","Living Mobs","Dead Mobs", "Clients"))
-		if("Players")
+		if ("Players")
 			usr << jointext(player_list,",")
-		if("Admins")
+		if ("Admins")
 			usr << jointext(admins,",")
-		if("Mobs")
+		if ("Mobs")
 			usr << jointext(mob_list,",")
-		if("Living Mobs")
+		if ("Living Mobs")
 			usr << jointext(living_mob_list,",")
-		if("Dead Mobs")
+		if ("Dead Mobs")
 			usr << jointext(dead_mob_list,",")
-		if("Clients")
+		if ("Clients")
 			usr << jointext(clients,",")
 
 // DNA2 - Admin Hax
 /client/proc/cmd_admin_toggle_block(var/mob/M,var/block)
 	return
-/*	if(!ticker)
+/*	if (!ticker)
 		alert("Wait until the game starts")
 		return
-	if(istype(M, /mob/living/carbon))
+	if (istype(M, /mob/living/carbon))
 		M.dna.SetSEState(block,!M.dna.GetSEState(block))
 		domutcheck(M,null,MUTCHK_FORCED)
 		M.update_mutations()
@@ -432,7 +432,7 @@
 
 	for(var/A in bullet_casings)
 		var/obj/item/ammo_casing/B = A
-		if(B.BB)
+		if (B.BB)
 			continue
 		qdel(B)
 	log_admin("[key_name(usr)] has removed all empty bullet casings.")
@@ -447,7 +447,7 @@
 	var/counter = FALSE
 	for(var/A in bullet_casings)
 		var/obj/item/ammo_casing/B = A
-		if(B.BB || counter > limit)
+		if (B.BB || counter > limit)
 			continue
 		counter ++
 		qdel(B)

@@ -8,10 +8,10 @@
 	set name = "Jump to Area"
 	set desc = "Area to jump to"
 	set category = "Admin"
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if (!check_rights(R_ADMIN|R_MOD|R_DEBUG))
 		return
 
-	if(config.allow_admin_jump)
+	if (config.allow_admin_jump)
 		usr.on_mob_jump()
 
 		var/turf/new_location = safepick(get_area_turfs(A))
@@ -25,7 +25,7 @@
 			if (tries >= 20)
 				break
 
-		if(new_location)
+		if (new_location)
 			usr.loc = new_location
 			log_admin("[key_name(usr)] jumped to [A]")
 			message_admins("[key_name_admin(usr)] jumped to [A]", TRUE)
@@ -38,9 +38,9 @@
 /client/proc/jumptoturf(var/turf/T in turfs)
 	set name = "Jump to Turf"
 	set category = "Admin"
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if (!check_rights(R_ADMIN|R_MOD|R_DEBUG))
 		return
-	if(config.allow_admin_jump)
+	if (config.allow_admin_jump)
 		log_admin("[key_name(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]")
 		message_admins("[key_name_admin(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]", TRUE)
 		usr.on_mob_jump()
@@ -54,16 +54,16 @@
 	set category = "Admin"
 	set name = "Jump to Mob"
 
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if (!check_rights(R_ADMIN|R_MOD|R_DEBUG))
 		return
 
-	if(config.allow_admin_jump)
+	if (config.allow_admin_jump)
 		log_admin("[key_name(usr)] jumped to [key_name(M)]")
 		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]", TRUE)
-		if(mob)
+		if (mob)
 			var/mob/A = mob
 			var/turf/T = get_turf(M)
-			if(T && isturf(T))
+			if (T && isturf(T))
 
 				A.on_mob_jump()
 				A.loc = T
@@ -76,11 +76,11 @@
 	set category = "Admin"
 	set name = "Jump to Coordinate"
 
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if (!check_rights(R_ADMIN|R_MOD|R_DEBUG))
 		return
 
 	if (config.allow_admin_jump)
-		if(mob)
+		if (mob)
 			var/mob/A = mob
 			A.on_mob_jump()
 			A.x = tx
@@ -96,15 +96,15 @@
 	set category = "Admin"
 	set name = "Jump to Key"
 
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if (!check_rights(R_ADMIN|R_MOD|R_DEBUG))
 		return
 
-	if(config.allow_admin_jump)
+	if (config.allow_admin_jump)
 		var/list/keys = list()
 		for(var/mob/M in player_list)
 			keys += M.client
 		var/selection = input("Please, select a player!", "Admin Jumping", null, null) as null|anything in sortKey(keys)
-		if(!selection)
+		if (!selection)
 			src << "No keys found."
 			return
 		var/mob/M = selection:mob
@@ -120,9 +120,9 @@
 	set category = "Admin"
 	set name = "Get Mob"
 	set desc = "Mob to teleport"
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if (!check_rights(R_ADMIN|R_MOD|R_DEBUG))
 		return
-	if(config.allow_admin_jump)
+	if (config.allow_admin_jump)
 		log_admin("[key_name(usr)] teleported [key_name(M)]")
 		message_admins("[key_name_admin(usr)] teleported [key_name_admin(M)]", TRUE)
 		M.on_mob_jump()
@@ -137,7 +137,7 @@ var/turf/default_adminzone_turf = null
 	set category = "Admin"
 	set name = "Go To The Admin Zone"
 
-	if(!check_rights(R_MOD))
+	if (!check_rights(R_MOD))
 		return
 
 	if (!mob)
@@ -172,23 +172,23 @@ var/turf/default_adminzone_turf = null
 	set name = "Get Key"
 	set desc = "Key to teleport"
 
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if (!check_rights(R_ADMIN|R_MOD|R_DEBUG))
 		return
 
-	if(config.allow_admin_jump)
+	if (config.allow_admin_jump)
 		var/list/keys = list()
 		for(var/mob/M in player_list)
 			keys += M.client
 		var/selection = input("Please, select a player!", "Admin Jumping", null, null) as null|anything in sortKey(keys)
-		if(!selection)
+		if (!selection)
 			return
 		var/mob/M = selection:mob
 
-		if(!M)
+		if (!M)
 			return
 		log_admin("[key_name(usr)] teleported [key_name(M)]")
 		message_admins("[key_name_admin(usr)] teleported [key_name(M)]", TRUE)
-		if(M)
+		if (M)
 			M.on_mob_jump()
 			M.loc = get_turf(usr)
 
@@ -198,11 +198,11 @@ var/turf/default_adminzone_turf = null
 /client/proc/sendmob(var/mob/M in sortmobs())
 	set category = "Admin"
 	set name = "Send Mob"
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if (!check_rights(R_ADMIN|R_MOD|R_DEBUG))
 		return
 	var/area/A = input(usr, "Pick an area.", "Pick an area") in return_sorted_areas()
-	if(A)
-		if(config.allow_admin_jump)
+	if (A)
+		if (config.allow_admin_jump)
 			M.on_mob_jump()
 			M.loc = pick(get_area_turfs(A))
 

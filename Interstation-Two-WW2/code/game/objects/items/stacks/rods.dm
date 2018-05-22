@@ -27,11 +27,11 @@
 	if (istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 
-		if(get_amount() < 2)
+		if (get_amount() < 2)
 			user << "<span class='warning'>You need at least two rods to do this.</span>"
 			return
 
-		if(WT.remove_fuel(0,user))
+		if (WT.remove_fuel(0,user))
 			var/obj/item/stack/material/steel/new_item = new(usr.loc)
 			new_item.add_to_stacks(usr)
 			for (var/mob/M in viewers(src))
@@ -49,7 +49,7 @@
 /obj/item/stack/rods/attack_self(mob/user as mob)
 	add_fingerprint(user)
 
-	if(!istype(user.loc,/turf)) return FALSE
+	if (!istype(user.loc,/turf)) return FALSE
 
 	if (locate(/obj/structure/grille, usr.loc))
 		for(var/obj/structure/grille/G in usr.loc)
@@ -62,8 +62,8 @@
 			else
 				return TRUE
 
-	else if(!in_use)
-		if(get_amount() < 2)
+	else if (!in_use)
+		if (get_amount() < 2)
 			user << "<span class='warning'>You need at least two rods to do this.</span>"
 			return
 		usr << "<span class='notice'>Assembling grille...</span>"

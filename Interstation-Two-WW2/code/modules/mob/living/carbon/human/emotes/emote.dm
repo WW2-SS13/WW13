@@ -34,7 +34,7 @@ var/list/vocal_emotes = list(
 			param = copytext(act, t1 + 1, length(act) + 1)
 			act = copytext(act, TRUE, t1)
 
-		if(findtext(act,"s",-1) && !findtext(act,"_",-2))//Removes ending s's unless they are prefixed with a '_'
+		if (findtext(act,"s",-1) && !findtext(act,"_",-2))//Removes ending s's unless they are prefixed with a '_'
 			act = copytext(act,1,length(act))
 
 		var/muzzled = istype(wear_mask, /obj/item/clothing/mask/muzzle) || istype(wear_mask, /obj/item/weapon/grenade)
@@ -44,7 +44,7 @@ var/list/vocal_emotes = list(
 			if (I.implanted)
 				I.trigger(act, src)*/
 
-		if(stat == 2.0/* && (act != "deathgasp")*/)
+		if (stat == 2.0/* && (act != "deathgasp")*/)
 			return
 
 		switch(act)
@@ -113,7 +113,7 @@ var/list/vocal_emotes = list(
 */
 			if ("me")
 
-				//if(silent && silent > 0 && findtext(message,"\"",1, null) > 0)
+				//if (silent && silent > 0 && findtext(message,"\"",1, null) > 0)
 				//	return //This check does not work and I have no idea why, I'm leaving it in for reference.
 
 				if (client)
@@ -124,7 +124,7 @@ var/list/vocal_emotes = list(
 						return
 				if (stat)
 					return
-				if(!(message))
+				if (!(message))
 					return
 				return custom_emote(m_type, message)
 
@@ -146,7 +146,7 @@ var/list/vocal_emotes = list(
 				m_type = 1
 
 			if ("choke")
-				if(miming)
+				if (miming)
 					message = "clutches [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] throat desperately!"
 					m_type = 1
 				else
@@ -161,20 +161,20 @@ var/list/vocal_emotes = list(
 				if (!restrained())
 					message = "claps."
 					m_type = 2
-					if(miming)
+					if (miming)
 						m_type = 1
 			if ("flap")
 				if (!restrained())
 					message = "flaps [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] wings."
 					m_type = 2
-					if(miming)
+					if (miming)
 						m_type = 1
 
 			if ("aflap")
 				if (!restrained())
 					message = "flaps [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] wings ANGRILY!"
 					m_type = 2
-					if(miming)
+					if (miming)
 						m_type = 1
 
 			if ("drool")
@@ -186,7 +186,7 @@ var/list/vocal_emotes = list(
 				m_type = 1
 
 			if ("chuckle")
-				if(miming)
+				if (miming)
 					message = "appears to chuckle."
 					m_type = 1
 				else
@@ -208,13 +208,13 @@ var/list/vocal_emotes = list(
 */
 			if ("faint")
 				message = "faints."
-				if(sleeping)
+				if (sleeping)
 					return //Can't faint while asleep
 				sleeping += 10 //Short-short nap
 				m_type = 1
 
 			if ("cough")
-				if(miming)
+				if (miming)
 					message = "appears to cough!"
 					m_type = 1
 				else
@@ -243,7 +243,7 @@ var/list/vocal_emotes = list(
 				m_type = 1
 
 			if ("gasp")
-				if(miming)
+				if (miming)
 					message = "appears to be gasping!"
 					m_type = 1
 				else
@@ -255,7 +255,7 @@ var/list/vocal_emotes = list(
 						m_type = 2
 
 			if ("giggle")
-				if(miming)
+				if (miming)
 					message = "giggles silently!"
 					m_type = 1
 				else
@@ -318,7 +318,7 @@ var/list/vocal_emotes = list(
 				m_type = 1
 
 			if ("cry")
-				if(miming)
+				if (miming)
 					message = "cries."
 					m_type = 1
 				else
@@ -331,7 +331,7 @@ var/list/vocal_emotes = list(
 						m_type = 2
 
 			if ("sigh")
-				if(miming)
+				if (miming)
 					message = "sighs."
 					m_type = 1
 				else
@@ -344,7 +344,7 @@ var/list/vocal_emotes = list(
 						m_type = 2
 
 			if ("laugh")
-				if(miming)
+				if (miming)
 					message = "acts out a laugh."
 					m_type = 1
 				else
@@ -359,11 +359,11 @@ var/list/vocal_emotes = list(
 			if ("mumble")
 				message = "mumbles!"
 				m_type = 2
-				if(miming)
+				if (miming)
 					m_type = 1
 
 			if ("grumble")
-				if(miming)
+				if (miming)
 					message = "grumbles!"
 					m_type = 1
 				if (!muzzled)
@@ -374,7 +374,7 @@ var/list/vocal_emotes = list(
 					m_type = 2
 
 			if ("groan")
-				if(miming)
+				if (miming)
 					message = "appears to groan!"
 					m_type = 1
 				else
@@ -386,7 +386,7 @@ var/list/vocal_emotes = list(
 						m_type = 2
 
 			if ("moan")
-				if(miming)
+				if (miming)
 					message = "appears to moan!"
 					m_type = 1
 				else
@@ -400,7 +400,7 @@ var/list/vocal_emotes = list(
 				if (!M)
 					param = null
 				else
-					if(miming)
+					if (miming)
 						message = "takes a drag from a cigarette and blows \"[M]\" out in smoke."
 						m_type = 1
 					else
@@ -431,7 +431,7 @@ var/list/vocal_emotes = list(
 					message = "raises a hand."
 				m_type = 1
 
-			if("shake")
+			if ("shake")
 				message = "shakes [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] head."
 				m_type = 1
 
@@ -456,7 +456,7 @@ var/list/vocal_emotes = list(
 			if ("shiver")
 				message = "shivers."
 				m_type = 2
-				if(miming)
+				if (miming)
 					m_type = 1
 /*
 			if ("pale")
@@ -483,7 +483,7 @@ var/list/vocal_emotes = list(
 			if ("sniff")
 				message = "sniffs."
 				m_type = 2
-				if(miming)
+				if (miming)
 					m_type = 1
 
 			if ("snore")
@@ -518,7 +518,7 @@ var/list/vocal_emotes = list(
 				if (!muzzled)
 					message = "yawns."
 					m_type = 2
-					if(miming)
+					if (miming)
 						m_type = 1
 					else
 						playsound(get_turf(src), "yawn_[gender]", 100)
@@ -527,10 +527,10 @@ var/list/vocal_emotes = list(
 				Paralyse(2)
 				message = "collapses!"
 				m_type = 2
-				if(miming)
+				if (miming)
 					m_type = 1
 
-			if("hug")
+			if ("hug")
 				m_type = 1
 				if (!restrained())
 					var/M = null
@@ -587,8 +587,8 @@ var/list/vocal_emotes = list(
 				if (world.time >= next_emote["surrender"])
 					message = "surrenders!"
 					Weaken(50)
-					if(l_hand) unEquip(l_hand)
-					if(r_hand) unEquip(r_hand)
+					if (l_hand) unEquip(l_hand)
+					if (r_hand) unEquip(r_hand)
 					next_emote["surrender"] = world.time + 600
 
 			if ("dab")

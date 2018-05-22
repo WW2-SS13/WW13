@@ -22,12 +22,12 @@
 	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, TRUE)
 
 	var/obj/item/weapon/grenade/next
-	if(grenades.len)
+	if (grenades.len)
 		next = grenades[1] //get this first, so that the chambered grenade can still be removed if the grenades list is empty
-	if(chambered)
+	if (chambered)
 		grenades += chambered //rotate the revolving magazine
 		chambered = null
-	if(next)
+	if (next)
 		grenades -= next //Remove grenade from loaded list.
 		chambered = next
 		M << "<span class='warning'>Mechanism pumps [src], loading \a [next] into the chamber.</span>"
@@ -36,18 +36,18 @@
 	update_icon()
 
 /obj/item/weapon/gun/launcher/grenade/examine(mob/user)
-	if(..(user, 2))
+	if (..(user, 2))
 		var/grenade_count = grenades.len + (chambered? TRUE : FALSE)
 		user << "Has [grenade_count] grenade\s remaining."
-		if(chambered)
+		if (chambered)
 			user << "\A [chambered] is chambered."
 
 /obj/item/weapon/gun/launcher/grenade/proc/load(obj/item/weapon/grenade/G, mob/user)
-	if(!G.loadable)
+	if (!G.loadable)
 		user << "<span class='warning'>\The [G] doesn't seem to fit in \the [src]!</span>"
 		return
 
-	if(grenades.len >= max_grenades)
+	if (grenades.len >= max_grenades)
 		user << "<span class='warning'>\The [src] is full.</span>"
 		return
 	user.remove_from_mob(G)
@@ -58,7 +58,7 @@
 	update_icon()
 
 /obj/item/weapon/gun/launcher/grenade/proc/unload(mob/user)
-	if(grenades.len)
+	if (grenades.len)
 		var/obj/item/weapon/grenade/G = grenades[grenades.len]
 		grenades.len--
 		user.put_in_hands(G)
@@ -74,19 +74,19 @@
 	if (..()) // handle attachments
 		return TRUE
 
-	if((istype(I, /obj/item/weapon/grenade)))
+	if ((istype(I, /obj/item/weapon/grenade)))
 		load(I, user)
 	else
 		..()
 
 /obj/item/weapon/gun/launcher/grenade/attack_hand(mob/user)
-	if(user.get_inactive_hand() == src)
+	if (user.get_inactive_hand() == src)
 		unload(user)
 	else
 		..()
 
 /obj/item/weapon/gun/launcher/grenade/consume_next_projectile()
-	if(chambered)
+	if (chambered)
 		chambered.det_time = 10
 		chambered.activate(null)
 	return chambered
@@ -110,11 +110,11 @@
 
 //load and unload directly into chambered
 /obj/item/weapon/gun/launcher/grenade/underslung/load(obj/item/weapon/grenade/G, mob/user)
-	if(!G.loadable)
+	if (!G.loadable)
 		user << "<span class='warning'>[G] doesn't seem to fit in the [src]!</span>"
 		return
 
-	if(chambered)
+	if (chambered)
 		user << "<span class='warning'>\The [src] is already loaded.</span>"
 		return
 	user.remove_from_mob(G)
@@ -123,7 +123,7 @@
 	user.visible_message("\The [user] load \a [G] into \the [src].", "<span class='notice'>You load \a [G] into \the [src].</span>")
 
 /obj/item/weapon/gun/launcher/grenade/underslung/unload(mob/user)
-	if(chambered)
+	if (chambered)
 		user.put_in_hands(chambered)
 		user.visible_message("\The [user] removes \a [chambered] from \the[src].", "<span class='notice'>You remove \a [chambered] from \the [src].</span>")
 		chambered = null
@@ -147,7 +147,7 @@
 
 /obj/item/weapon/gun/launcher/grenade/lenar/proc/update_charge()
 	var/ratio = (grenades.len + (chambered? TRUE : FALSE)) / (max_grenades + 1)
-	if(ratio < 0.33 && ratio != FALSE)
+	if (ratio < 0.33 && ratio != FALSE)
 		ratio = 0.33
 	ratio = round(ratio, 0.33) * 100
 	overlays += "grenademag_[ratio]"

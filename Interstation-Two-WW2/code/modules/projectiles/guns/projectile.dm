@@ -51,10 +51,10 @@
 
 /obj/item/weapon/gun/projectile/New()
 	..()
-	if(ispath(ammo_type) && (load_method & (SINGLE_CASING|SPEEDLOADER)))
+	if (ispath(ammo_type) && (load_method & (SINGLE_CASING|SPEEDLOADER)))
 		for(var/i in TRUE to max_shells)
 			loaded += new ammo_type(src)
-	if(ispath(magazine_type) && (load_method & MAGAZINE))
+	if (ispath(magazine_type) && (load_method & MAGAZINE))
 		ammo_magazine = new magazine_type(src)
 	update_icon()
 
@@ -63,9 +63,9 @@
 
 /obj/item/weapon/gun/projectile/proc/cock_gun(mob/user)
 	set waitfor = FALSE
-	if(cocked_sound)
+	if (cocked_sound)
 		sleep(3)
-		if(user && loc) playsound(loc, cocked_sound, 75, TRUE)
+		if (user && loc) playsound(loc, cocked_sound, 75, TRUE)
 
 /obj/item/weapon/gun/projectile/consume_next_projectile()
 	if (executing)
@@ -73,16 +73,16 @@
 			return new /obj/item/projectile/bullet/shotgun/murder
 		return new /obj/item/projectile/bullet/rifle/murder
 	//get the next casing
-	if(loaded.len)
+	if (loaded.len)
 		chambered = loaded[1] //load next casing.
-		if(handle_casings != HOLD_CASINGS)
+		if (handle_casings != HOLD_CASINGS)
 			loaded -= chambered
 			if (infinite_ammo)
 				loaded += new chambered.type
 
-	else if(ammo_magazine && ammo_magazine.stored_ammo.len)
+	else if (ammo_magazine && ammo_magazine.stored_ammo.len)
 		chambered = ammo_magazine.stored_ammo[1]
-		if(handle_casings != HOLD_CASINGS)
+		if (handle_casings != HOLD_CASINGS)
 			ammo_magazine.stored_ammo -= chambered
 			if (infinite_ammo)
 				ammo_magazine.stored_ammo += new chambered.type
@@ -97,7 +97,7 @@
 
 /obj/item/weapon/gun/projectile/handle_post_fire(mob/user)
 	..()
-	if(chambered)
+	if (chambered)
 		chambered.expend()
 		process_chambered()
 
@@ -109,10 +109,10 @@
 	if (!chambered) return
 
 	// Aurora forensics port, gunpowder residue.
-	if(chambered.leaves_residue)
+	if (chambered.leaves_residue)
 		var/mob/living/carbon/human/H = loc
-		if(istype(H))
-			if(!H.gloves)
+		if (istype(H))
+			if (!H.gloves)
 				H.gunshot_residue = chambered.caliber
 			else
 				var/obj/item/clothing/G = H.gloves
@@ -121,20 +121,20 @@
 	#define DISABLE_CASINGS // goodbye lag (EXPERIMENTAL) - Kachnov
 
 	switch(handle_casings)
-		if(EJECT_CASINGS) //eject casing onto ground.
+		if (EJECT_CASINGS) //eject casing onto ground.
 			#ifndef DISABLE_CASINGS
 			var/area/src_area = get_area(src)
 			if (!istype(src_area, /area/prishtina/soviet/lift) && !istype(src_area, /area/prishtina/german/lift))
 				chambered.loc = get_turf(src)
 			#endif
 			playsound(loc, casing_sound, 50, TRUE)
-		if(CYCLE_CASINGS) //cycle the casing back to the end.
-			if(ammo_magazine)
+		if (CYCLE_CASINGS) //cycle the casing back to the end.
+			if (ammo_magazine)
 				ammo_magazine.stored_ammo += chambered
 			else
 				loaded += chambered
 
-	if(handle_casings != HOLD_CASINGS)
+	if (handle_casings != HOLD_CASINGS)
 		chambered = null
 
 //Attempts to load A into src, depending on the type of thing being loaded and the load_method
@@ -158,7 +158,7 @@
 			A = AM.stored_ammo[1]
 			return load_ammo(A, user)
 
-	else if(istype(A, /obj/item/ammo_magazine))
+	else if (istype(A, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/AM = A
 
 		if (!(load_method & AM.mag_type) || caliber != AM.caliber)
@@ -168,43 +168,43 @@
 			return // incompatible
 
 		switch(AM.mag_type)
-			if(MAGAZINE)
-				if(AM.ammo_mag != ammo_mag && ammo_mag != "default")
+			if (MAGAZINE)
+				if (AM.ammo_mag != ammo_mag && ammo_mag != "default")
 					user << "<span class='warning'>[src] requires another magazine.</span>" //wrong magazine
 					return
-				if(ammo_magazine)
+				if (ammo_magazine)
 					user << "<span class='warning'>[src] already has a magazine loaded.</span>" //already a magazine here
 					return
 				user.remove_from_mob(AM)
 				AM.loc = src
 				ammo_magazine = AM
 
-				if(reload_sound) playsound(loc, reload_sound, 75, TRUE)
+				if (reload_sound) playsound(loc, reload_sound, 75, TRUE)
 				cock_gun(user)
-			if(SPEEDLOADER)
-				if(loaded.len >= max_shells)
+			if (SPEEDLOADER)
+				if (loaded.len >= max_shells)
 					user << "<span class='warning'>[src] is full!</span>"
 					return
 				var/count = FALSE
 				for(var/obj/item/ammo_casing/C in AM.stored_ammo)
-					if(loaded.len >= max_shells)
+					if (loaded.len >= max_shells)
 						break
-					if(C.caliber == caliber)
+					if (C.caliber == caliber)
 						C.loc = src
 						loaded += C
 						AM.stored_ammo -= C //should probably go inside an ammo_magazine proc, but I guess less proc calls this way...
 						count++
-				if(count)
+				if (count)
 					user.visible_message("[user] reloads [src].", "<span class='notice'>You load [count] round\s into \the [src].</span>")
-					if(reload_sound) playsound(loc, reload_sound, 75, TRUE)
+					if (reload_sound) playsound(loc, reload_sound, 75, TRUE)
 					cock_gun(user)
 		AM.update_icon()
 
-	else if(istype(A, /obj/item/ammo_casing))
+	else if (istype(A, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = A
-		if(!(load_method & SINGLE_CASING) || caliber != C.caliber)
+		if (!(load_method & SINGLE_CASING) || caliber != C.caliber)
 			return //incompatible
-		if(loaded.len >= max_shells)
+		if (loaded.len >= max_shells)
 			user << "<span class='warning'>[src] is full.</span>"
 			return
 
@@ -212,71 +212,71 @@
 		C.loc = src
 		loaded.Insert(1, C) //add to the head of the list
 		user.visible_message("[user] inserts \a [C] into [src].", "<span class='notice'>You insert \a [C] into [src].</span>")
-		if(bulletinsert_sound) playsound(loc, bulletinsert_sound, 75, TRUE)
+		if (bulletinsert_sound) playsound(loc, bulletinsert_sound, 75, TRUE)
 
 	update_icon()
 
 //attempts to unload  If allow_dump is set to FALSE, the speedloader unloading method will be disabled
 /obj/item/weapon/gun/projectile/proc/unload_ammo(mob/user, var/allow_dump=1)
-	if(ammo_magazine)
+	if (ammo_magazine)
 		user.put_in_hands(ammo_magazine)
 
-		if(unload_sound) playsound(loc, unload_sound, 75, TRUE)
+		if (unload_sound) playsound(loc, unload_sound, 75, TRUE)
 		ammo_magazine.update_icon()
 		ammo_magazine = null
-	else if(loaded.len)
+	else if (loaded.len)
 		//presumably, if it can be speed-loaded, it can be speed-unloaded.
-		if(allow_dump && (load_method & SPEEDLOADER))
+		if (allow_dump && (load_method & SPEEDLOADER))
 			var/count = FALSE
 			var/turf/T = get_turf(user)
-			if(T)
+			if (T)
 				for(var/obj/item/ammo_casing/C in loaded)
 					C.loc = T
 					count++
 				loaded.Cut()
-			if(count)
+			if (count)
 				user.visible_message("[user] unloads [src].", "<span class='notice'>You unload [count] round\s from [src].</span>")
-				if(bulletinsert_sound) playsound(loc, bulletinsert_sound, 75, TRUE)
-		else if(load_method & SINGLE_CASING)
+				if (bulletinsert_sound) playsound(loc, bulletinsert_sound, 75, TRUE)
+		else if (load_method & SINGLE_CASING)
 			var/obj/item/ammo_casing/C = loaded[loaded.len]
 			loaded.len--
 			user.put_in_hands(C)
 			user.visible_message("[user] removes \a [C] from [src].", "<span class='notice'>You remove \a [C] from [src].</span>")
-			if(istype(src, /obj/item/weapon/gun/projectile/boltaction))
+			if (istype(src, /obj/item/weapon/gun/projectile/boltaction))
 				var/obj/item/weapon/gun/projectile/boltaction/B = src
-				if(B.bolt_safety && !B.loaded.len)
+				if (B.bolt_safety && !B.loaded.len)
 					B.check_bolt_lock++
-			if(bulletinsert_sound) playsound(loc, bulletinsert_sound, 75, TRUE)
+			if (bulletinsert_sound) playsound(loc, bulletinsert_sound, 75, TRUE)
 	else
 		user << "<span class='warning'>[src] is empty.</span>"
 	update_icon()
 
 /obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user)
 	..()
-	if(istype(A, /obj/item/ammo_magazine) || istype(A, /obj/item/ammo_casing))
+	if (istype(A, /obj/item/ammo_magazine) || istype(A, /obj/item/ammo_casing))
 		load_ammo(A, user)
 
 /obj/item/weapon/gun/projectile/attack_self(mob/user as mob)
-	if(firemodes.len > 1)
+	if (firemodes.len > 1)
 		..()
 	else
 		unload_ammo(user)
 
 /obj/item/weapon/gun/projectile/attack_hand(mob/user as mob)
-	if(user.get_inactive_hand() == src)
+	if (user.get_inactive_hand() == src)
 		unload_ammo(user, allow_dump=0)
 	else
 		return ..()
 
 /obj/item/weapon/gun/projectile/afterattack(atom/A, mob/living/user)
 	..()
-	if(auto_eject && ammo_magazine && ammo_magazine.stored_ammo && !ammo_magazine.stored_ammo.len)
+	if (auto_eject && ammo_magazine && ammo_magazine.stored_ammo && !ammo_magazine.stored_ammo.len)
 		ammo_magazine.loc = get_turf(loc)
 		user.visible_message(
 			"[ammo_magazine] falls out and clatters on the floor!",
 			"<span class='notice'>[ammo_magazine] falls out and clatters on the floor!</span>"
 			)
-		if(auto_eject_sound)
+		if (auto_eject_sound)
 			playsound(user, auto_eject_sound, 40, TRUE)
 		ammo_magazine.update_icon()
 		ammo_magazine = null
@@ -284,19 +284,19 @@
 
 /obj/item/weapon/gun/projectile/examine(mob/user)
 	..(user)
-	if(ammo_magazine)
+	if (ammo_magazine)
 		user << "<span class='notice'>It has \a [ammo_magazine] loaded.</span>"
-	if(!magazine_based)
+	if (!magazine_based)
 		user << "<span class='notice'>[inexactAmmo()]</span>"
 	return
 
 /obj/item/weapon/gun/projectile/proc/getAmmo()
 	var/bullets = FALSE
-	if(loaded)
+	if (loaded)
 		bullets += loaded.len
-	if(ammo_magazine && ammo_magazine.stored_ammo)
+	if (ammo_magazine && ammo_magazine.stored_ammo)
 		bullets += ammo_magazine.stored_ammo.len
-	if(chambered)
+	if (chambered)
 		bullets += 1
 	return bullets
 
@@ -305,15 +305,15 @@
 	var/message
 
 	var/mob/living/M = loc
-	if(istype(M))
-		if(M.l_hand == src || M.r_hand == src)//Gotta be holding it or this won't work.
-			if(ammo >= 6)
+	if (istype(M))
+		if (M.l_hand == src || M.r_hand == src)//Gotta be holding it or this won't work.
+			if (ammo >= 6)
 				message = "It feels very heavy."
-			if(ammo > 3 && ammo < 6)
+			if (ammo > 3 && ammo < 6)
 				message = "It feels heavy."
-			if(ammo <= 3 && ammo != FALSE)
+			if (ammo <= 3 && ammo != FALSE)
 				message = "It feels light."
-			if(ammo == FALSE)
+			if (ammo == FALSE)
 				message = "It feels empty."
 	return message
 
@@ -324,7 +324,7 @@
 	set category = null
 	set src in usr
 
-	if(usr.stat || usr.restrained()) return
+	if (usr.stat || usr.restrained()) return
 
 	unload_ammo(usr)
 */

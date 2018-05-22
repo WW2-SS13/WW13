@@ -30,13 +30,13 @@ Parts of code courtesy of Super3222
 
 /obj/item/weapon/attachment/scope/adjustable/sniper_scope/zoom()
 	..()
-	if(A_attached)
+	if (A_attached)
 		var/obj/item/weapon/gun/G = loc //loc is the gun this is attached to
 //		var/zoom_offset = round(world.view * zoom_amt)
-		if(zoomed)
-	/*		if(G.accuracy)
+		if (zoomed)
+	/*		if (G.accuracy)
 				G.accuracy = G.scoped_accuracy + zoom_offset*/
-			if(G.recoil)
+			if (G.recoil)
 				G.recoil = round(G.recoil*(zoom_amt/5)+1) //recoil is worse when looking through a scope
 		else
 			G.accuracy = initial(G.accuracy)
@@ -53,7 +53,7 @@ Parts of code courtesy of Super3222
 	set name = "Adjust Zoom"
 	set category = null
 	var/mob/living/carbon/human/user = usr
-	if(istype(src, /obj/item/weapon/gun))
+	if (istype(src, /obj/item/weapon/gun))
 		var/obj/item/weapon/gun/G = src
 		for(var/obj/item/weapon/attachment/scope/adjustable/A in G.attachments)
 			src = A
@@ -61,13 +61,13 @@ Parts of code courtesy of Super3222
 
 /obj/item/weapon/attachment/scope/adjustable/proc/adjust_scope(mob/living/carbon/human/user)
 
-	if(!Adjacent(user))
+	if (!Adjacent(user))
 		return
 
 	if (zooming)
 		return
 
-	if(zoomed)
+	if (zoomed)
 		zoom(user, 0)
 
 	zooming = TRUE
@@ -77,26 +77,26 @@ Parts of code courtesy of Super3222
 		zooming = FALSE
 
 		var/input = input(user, "Set the zoom amount.", "Zoom" , "") as num
-		if(input == zoom_amt)
+		if (input == zoom_amt)
 			return
 
 		var/dial_check = FALSE
 
-		if(input > max_zoom)
-			if(zoom_amt == max_zoom)
+		if (input > max_zoom)
+			if (zoom_amt == max_zoom)
 				user << "<span class='warning'>You can't adjust it any further.</span>"
 				return
 			else
 				zoom_amt = max_zoom
 				dial_check = TRUE
-		else if(input < min_zoom)
-			if(zoom_amt == min_zoom)
+		else if (input < min_zoom)
+			if (zoom_amt == min_zoom)
 				user << "<span class='warning'>You can't adjust it any further.</span>"
 				return
 			else
 				zoom_amt = min_zoom
 		else
-			if(input > zoom_amt)
+			if (input > zoom_amt)
 				dial_check = TRUE
 			zoom_amt = input
 
@@ -111,24 +111,24 @@ Parts of code courtesy of Super3222
 // I am sorry for creating this abomination -- Irra
 /obj/item/weapon/attachment/scope/proc/can_zoom(mob/living/user, var/silent = FALSE)
 	var/mob/living/carbon/human/H = user
-	if(user.stat || !ishuman(user))
-		if(!silent) user << "You are unable to focus through \the [src]."
+	if (user.stat || !ishuman(user))
+		if (!silent) user << "You are unable to focus through \the [src]."
 		return FALSE
 	else if (istype(user.loc, /obj/tank))
 		if (!silent) user << "You can't use \the [src] while inside a tank."
 		return FALSE
-	else if(global_hud.darkMask[1] in user.client.screen)
-		if(!silent) user << "Your visor gets in the way of looking through \the [src]."
+	else if (global_hud.darkMask[1] in user.client.screen)
+		if (!silent) user << "Your visor gets in the way of looking through \the [src]."
 		return FALSE
-	else if(!A_attached)
-		if(user.client.pixel_x || user.client.pixel_y) //Keep people from looking through two scopes at once
-			if(!silent) user << "You are too distracted to look through \the [src]."
+	else if (!A_attached)
+		if (user.client.pixel_x || user.client.pixel_y) //Keep people from looking through two scopes at once
+			if (!silent) user << "You are too distracted to look through \the [src]."
 			return FALSE
-		if(user.get_active_hand() != src)
-			if(!silent) user << "You are too distracted to look through \the [src]."
+		if (user.get_active_hand() != src)
+			if (!silent) user << "You are too distracted to look through \the [src]."
 			return FALSE
-	else if(user.get_active_hand() != loc)
-		if(!silent) user << "You are too distracted to look through \the [src]."
+	else if (user.get_active_hand() != loc)
+		if (!silent) user << "You are too distracted to look through \the [src]."
 		return FALSE
 	else
 		var/obj/item/organ/eyes/E = H.internal_organs_by_name["eyes"]
@@ -142,7 +142,7 @@ Parts of code courtesy of Super3222
 
 /obj/item/weapon/attachment/scope/proc/zoom(mob/living/user, forced_zoom, var/bypass_can_zoom = FALSE)
 
-	if(!user || !user.client)
+	if (!user || !user.client)
 		return
 
 	if (user.next_zoom > world.time)
@@ -151,42 +151,42 @@ Parts of code courtesy of Super3222
 	user.next_zoom = world.time + 10
 
 	switch(forced_zoom)
-		if(FALSE)
+		if (FALSE)
 			zoomed = FALSE
-		if(TRUE)
+		if (TRUE)
 			zoomed = TRUE
 		else
 			zoomed = !zoomed
 
-	if(zoomed)
-		if(!can_zoom(user) && !bypass_can_zoom)//Zoom checks
+	if (zoomed)
+		if (!can_zoom(user) && !bypass_can_zoom)//Zoom checks
 			zoomed = FALSE
 			return
 		else
 			user.dizzycheck = TRUE
-			if(do_after(user, 5, user, TRUE))//Scope delay
+			if (do_after(user, 5, user, TRUE))//Scope delay
 				var/_x = 0
 				var/_y = 0
 				switch(user.dir)
-					if(NORTH)
+					if (NORTH)
 						_y = zoom_amt
-					if(EAST)
+					if (EAST)
 						_x = zoom_amt
-					if(SOUTH)
+					if (SOUTH)
 						_y = -zoom_amt
-					if(WEST)
+					if (WEST)
 						_x = -zoom_amt
-				if(zoom_amt > world.view && user && user.client)//So we can still see the player at the edge of the screen if the zoom amount is greater than the world view
+				if (zoom_amt > world.view && user && user.client)//So we can still see the player at the edge of the screen if the zoom amount is greater than the world view
 					var/view_offset = round((zoom_amt - world.view)/2, TRUE)
 					user.client.view += view_offset
 					switch(user.dir)
-						if(NORTH)
+						if (NORTH)
 							_y -= view_offset
-						if(EAST)
+						if (EAST)
 							_x -= view_offset
-						if(SOUTH)
+						if (SOUTH)
 							_y += view_offset
-						if(WEST)
+						if (WEST)
 							_x += view_offset
 					animate(user.client, pixel_x = world.icon_size*_x, pixel_y = world.icon_size*_y, 4, TRUE)
 					animate(user.client, pixel_x = 0, pixel_y = 0)
@@ -230,7 +230,7 @@ Parts of code courtesy of Super3222
 
 /datum/action/toggle_scope/IsAvailable()
 	. = ..()
-	if(scope.zoomed)
+	if (scope.zoomed)
 		return FALSE
 
 /datum/action/toggle_scope/Trigger()
@@ -238,7 +238,7 @@ Parts of code courtesy of Super3222
 	scope.zoom(owner)
 
 /datum/action/toggle_scope/Remove(mob/living/L)
-	if(scope.zoomed)
+	if (scope.zoomed)
 		scope.zoom(L, FALSE)
 	..()
 
@@ -274,7 +274,7 @@ Parts of code courtesy of Super3222
 
 /obj/item/weapon/attachment/scope/dropped(mob/user)
 	..()
-	if(azoom)
+	if (azoom)
 		azoom.Remove(user)
 
 /mob/living/carbon/human/Move()
@@ -303,10 +303,10 @@ Parts of code courtesy of Super3222
 // resets zoom on movement
 /mob/living/carbon/human/proc/handle_zooms_with_movement()
 
-	if(client && actions.len)
-		if(client.pixel_x || client.pixel_y) //Cancel currently scoped weapons
+	if (client && actions.len)
+		if (client.pixel_x || client.pixel_y) //Cancel currently scoped weapons
 			for(var/datum/action/toggle_scope/T in actions)
-				if(T.scope.zoomed && m_intent=="run")
+				if (T.scope.zoomed && m_intent=="run")
 					shake_camera(src, 2, rand(2,3))
 
 	for (var/obj/item/weapon/gun/projectile/automatic/stationary/M in range(2, src))
@@ -320,10 +320,10 @@ Parts of code courtesy of Super3222
 	var/success = FALSE
 
 	if (stat == UNCONSCIOUS || stat == DEAD || forced)
-		if(client && actions.len)
-			if(client.pixel_x || client.pixel_y) //Cancel currently scoped weapons
+		if (client && actions.len)
+			if (client.pixel_x || client.pixel_y) //Cancel currently scoped weapons
 				for(var/datum/action/toggle_scope/T in actions)
-					if(T.scope.zoomed)
+					if (T.scope.zoomed)
 						T.scope.zoom(src, FALSE)
 						success = TRUE
 
@@ -342,10 +342,10 @@ Parts of code courtesy of Super3222
 	if (using_MG)
 		return TRUE
 	if (stat == CONSCIOUS)
-		if(client && actions.len)
-			if(client.pixel_x || client.pixel_y) //Cancel currently scoped weapons
+		if (client && actions.len)
+			if (client.pixel_x || client.pixel_y) //Cancel currently scoped weapons
 				for(var/datum/action/toggle_scope/T in actions)
-					if(T.scope.zoomed)
+					if (T.scope.zoomed)
 						return TRUE
 	return FALSE
 

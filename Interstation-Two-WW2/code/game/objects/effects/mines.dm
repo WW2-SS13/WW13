@@ -18,9 +18,9 @@
 
 /obj/effect/mine/Bumped(mob/M as mob|obj)
 
-	if(triggered) return
+	if (triggered) return
 
-	if(istype(M, /mob/living/carbon/human))
+	if (istype(M, /mob/living/carbon/human))
 		for(var/mob/O in viewers(world.view, loc))
 			O << "<font color='red'>[M] triggered the \icon[src] [src]</font>"
 		triggered = TRUE
@@ -37,7 +37,7 @@
 		qdel(src)
 
 /obj/effect/mine/proc/triggerstun(obj)
-	if(ismob(obj))
+	if (ismob(obj))
 		var/mob/M = obj
 		M.Stun(30)
 	var/datum/effect/effect/system/spark_spread/s = PoolOrNew(/datum/effect/effect/system/spark_spread)
@@ -51,7 +51,7 @@
 	//note: im lazy
 /*
 	for (var/turf/floor/target in range(1,src))
-		if(!target.blocks_air)
+		if (!target.blocks_air)
 			target.assume_gas("sleeping_agent", 30)*/
 
 	spawn(0)
@@ -59,7 +59,7 @@
 
 /obj/effect/mine/proc/triggerplasma(obj)
 	for (var/turf/floor/target in range(1,src))
-	/*	if(!target.blocks_air)
+	/*	if (!target.blocks_air)
 			target.assume_gas("plasma", 30)
 
 			target.hotspot_expose(1000, CELL_VOLUME)

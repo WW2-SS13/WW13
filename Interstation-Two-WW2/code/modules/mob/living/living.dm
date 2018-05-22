@@ -3,16 +3,16 @@
 	set name = "Pull"
 	set category = null
 
-	if(AM.Adjacent(src))
+	if (AM.Adjacent(src))
 		start_pulling(AM)
 
 //mob verbs are faster than object verbs. See above.
 /mob/living/pointed(atom/A as mob|obj|turf in view())
-	if(stat || !canmove || restrained())
+	if (stat || !canmove || restrained())
 		return FALSE
-	if(status_flags & FAKEDEATH)
+	if (status_flags & FAKEDEATH)
 		return FALSE
-	if(!..())
+	if (!..())
 		return FALSE
 
 	usr.visible_message("<b>[src]</b> points to [A]")
@@ -26,19 +26,19 @@ default behaviour is:
  - if si, the proc returns
 */
 /mob/living/proc/can_move_mob(var/mob/living/swapped, swapping = FALSE, passive = FALSE)
-	if(!swapped)
+	if (!swapped)
 		return TRUE
-	if(!passive)
+	if (!passive)
 		return swapped.can_move_mob(src, swapping, TRUE)
 	else
 		var/context_flags = FALSE
-		if(swapping)
+		if (swapping)
 			context_flags = swapped.mob_swap_flags
 		else
 			context_flags = swapped.mob_push_flags
-		if(!mob_bump_flag) //nothing defined, go wild
+		if (!mob_bump_flag) //nothing defined, go wild
 			return TRUE
-		if(mob_bump_flag & context_flags)
+		if (mob_bump_flag & context_flags)
 			return TRUE
 		return FALSE
 
@@ -62,55 +62,55 @@ default behaviour is:
 			var/mob/living/tmob = AM
 
 			for(var/mob/living/M in range(tmob, TRUE))
-				if(tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == FALSE)) || locate(/obj/item/weapon/grab, tmob.grabbed_by.len)) )
+				if (tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == FALSE)) || locate(/obj/item/weapon/grab, tmob.grabbed_by.len)) )
 					if ( !(world.time % 5) )
 						src << "<span class='warning'>[tmob] is restrained, you cannot push past</span>"
 					now_pushing = FALSE
 					return
-				if( tmob.pulling == M && ( M.restrained() && !( tmob.restrained() ) && tmob.stat == FALSE) )
+				if ( tmob.pulling == M && ( M.restrained() && !( tmob.restrained() ) && tmob.stat == FALSE) )
 					if ( !(world.time % 5) )
 						src << "<span class='warning'>[tmob] is restraining [M], you cannot push past</span>"
 					now_pushing = FALSE
 					return
 
 			//Leaping mobs just land on the tile, no pushing, no anything.
-			if(status_flags & LEAPING)
+			if (status_flags & LEAPING)
 				loc = tmob.loc
 				status_flags &= ~LEAPING
 				now_pushing = FALSE
 				return
 
-			if(can_swap_with(tmob)) // mutual brohugs all around!
+			if (can_swap_with(tmob)) // mutual brohugs all around!
 				var/turf/oldloc = loc
 				forceMove(tmob.loc)
 				tmob.forceMove(oldloc)
 				now_pushing = FALSE
 				/*
 				for(var/mob/living/carbon/slime/slime in view(1,tmob))
-					if(slime.Victim == tmob)
+					if (slime.Victim == tmob)
 						slime.UpdateFeed()*/
 				return
 
-			if(!can_move_mob(tmob, FALSE, FALSE))
+			if (!can_move_mob(tmob, FALSE, FALSE))
 				now_pushing = FALSE
 				return
-			if(a_intent == I_HELP || restrained())
+			if (a_intent == I_HELP || restrained())
 				now_pushing = FALSE
 				return
-			if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
-				if(prob(40) && !(FAT in mutations))
+			if (istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
+				if (prob(40) && !(FAT in mutations))
 					src << "<span class='danger'>You fail to push [tmob]'s fat ass out of the way.</span>"
 					now_pushing = FALSE
 					return
-			/*if(tmob.r_hand && istype(tmob.r_hand, /obj/item/weapon/shield/riot))
-				if(prob(99))
+			/*if (tmob.r_hand && istype(tmob.r_hand, /obj/item/weapon/shield/riot))
+				if (prob(99))
 					now_pushing = FALSE
 					return
-			if(tmob.l_hand && istype(tmob.l_hand, /obj/item/weapon/shield/riot))
-				if(prob(99))
+			if (tmob.l_hand && istype(tmob.l_hand, /obj/item/weapon/shield/riot))
+				if (prob(99))
 					now_pushing = FALSE
 					return*/
-			if(!(tmob.status_flags & CANPUSH))
+			if (!(tmob.status_flags & CANPUSH))
 				now_pushing = FALSE
 				return
 
@@ -131,7 +131,7 @@ default behaviour is:
 							now_pushing = FALSE
 							return
 					step(AM, t)
-					if(ishuman(AM) && AM:grabbed_by)
+					if (ishuman(AM) && AM:grabbed_by)
 						for(var/obj/item/weapon/grab/G in AM:grabbed_by)
 							step(G:assailant, get_dir(G:assailant, AM))
 							G.adjust_position()
@@ -141,27 +141,27 @@ default behaviour is:
 
 /proc/swap_density_check(var/mob/swapper, var/mob/swapee)
 	var/turf/T = get_turf(swapper)
-	if(T.density)
+	if (T.density)
 		return TRUE
 	for(var/atom/movable/A in T)
-		if(A == swapper)
+		if (A == swapper)
 			continue
-		if(!A.CanPass(swapee, T, TRUE))
+		if (!A.CanPass(swapee, T, TRUE))
 			return TRUE
 
 /mob/living/proc/can_swap_with(var/mob/living/tmob)
-	if(tmob.buckled || buckled)
+	if (tmob.buckled || buckled)
 		return FALSE
 	//BubbleWrap: people in handcuffs are always switched around as if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
-	if(!(tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || restrained())))
+	if (!(tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || restrained())))
 		return FALSE
-	if(!tmob.canmove || !canmove)
-		return FALSE
-
-	if(swap_density_check(src, tmob))
+	if (!tmob.canmove || !canmove)
 		return FALSE
 
-	if(swap_density_check(tmob, src))
+	if (swap_density_check(src, tmob))
+		return FALSE
+
+	if (swap_density_check(tmob, src))
 		return FALSE
 
 	return can_move_mob(tmob, TRUE, FALSE)
@@ -182,9 +182,9 @@ default behaviour is:
 
 //sort of a legacy burn method for /electrocute, /shock, and the e_chair
 /mob/living/proc/burn_skin(burn_amount)
-	if(istype(src, /mob/living/carbon/human))
+	if (istype(src, /mob/living/carbon/human))
 		//world << "DEBUG: burn_skin(), mutations=[mutations]"
-		if(mShock in mutations) //shockproof
+		if (mShock in mutations) //shockproof
 			return FALSE
 		if (COLD_RESISTANCE in mutations) //fireproof
 			return FALSE
@@ -192,12 +192,12 @@ default behaviour is:
 		var/divided_damage = (burn_amount)/(H.organs.len)
 		var/extradam = FALSE	//added to when organ is at max dam
 		for(var/obj/item/organ/external/affecting in H.organs)
-			if(!affecting)	continue
-			if(affecting.take_damage(0, divided_damage+extradam))	//TODO: fix the extradam stuff. Or, ebtter yet...rewrite this entire proc ~Carn
+			if (!affecting)	continue
+			if (affecting.take_damage(0, divided_damage+extradam))	//TODO: fix the extradam stuff. Or, ebtter yet...rewrite this entire proc ~Carn
 				H.UpdateDamageIcon()
 		H.updatehealth()
 		return TRUE
-	else if(istype(src, /mob/living/silicon/ai))
+	else if (istype(src, /mob/living/silicon/ai))
 		return FALSE
 
 /mob/living/proc/adjustBodyTemp(actual, desired, incrementboost)
@@ -207,16 +207,16 @@ default behaviour is:
 	var/change = increments*incrementboost	// Get the amount to change by (x per increment)
 
 	// Too cold
-	if(actual < desired)
+	if (actual < desired)
 		temperature += change
-		if(actual > desired)
+		if (actual > desired)
 			temperature = desired
 	// Too hot
-	if(actual > desired)
+	if (actual > desired)
 		temperature -= change
-		if(actual < desired)
+		if (actual < desired)
 			temperature = desired
-//	if(istype(src, /mob/living/carbon/human))
+//	if (istype(src, /mob/living/carbon/human))
 //		world << "[src] ~ [bodytemperature] ~ [temperature]"
 	return temperature
 
@@ -229,7 +229,7 @@ default behaviour is:
 	return bruteloss
 
 /mob/living/proc/adjustBruteLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if (status_flags & GODMODE)	return FALSE	//godmode
 	if (ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if (H.takes_less_damage)
@@ -241,7 +241,7 @@ default behaviour is:
 	return oxyloss
 
 /mob/living/proc/adjustOxyLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if (status_flags & GODMODE)	return FALSE	//godmode
 	if (ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if (H.takes_less_damage)
@@ -249,7 +249,7 @@ default behaviour is:
 	oxyloss = min(max(oxyloss + amount, FALSE),(maxHealth*2))
 
 /mob/living/proc/setOxyLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if (status_flags & GODMODE)	return FALSE	//godmode
 	if (ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if (H.takes_less_damage)
@@ -260,7 +260,7 @@ default behaviour is:
 	return toxloss
 
 /mob/living/proc/adjustToxLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if (status_flags & GODMODE)	return FALSE	//godmode
 	if (ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if (H.takes_less_damage)
@@ -268,7 +268,7 @@ default behaviour is:
 	toxloss = min(max(toxloss + amount, FALSE),(maxHealth*2))
 
 /mob/living/proc/setToxLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if (status_flags & GODMODE)	return FALSE	//godmode
 	if (ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if (H.takes_less_damage)
@@ -279,7 +279,7 @@ default behaviour is:
 	return fireloss
 
 /mob/living/proc/adjustFireLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if (status_flags & GODMODE)	return FALSE	//godmode
 	if (ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if (H.takes_less_damage)
@@ -290,7 +290,7 @@ default behaviour is:
 	return cloneloss
 
 /mob/living/proc/adjustCloneLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if (status_flags & GODMODE)	return FALSE	//godmode
 	if (ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if (H.takes_less_damage)
@@ -298,29 +298,29 @@ default behaviour is:
 	cloneloss = min(max(cloneloss + amount, FALSE),(maxHealth*2))
 
 /mob/living/proc/setCloneLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if (status_flags & GODMODE)	return FALSE	//godmode
 	cloneloss = amount
 
 /mob/living/proc/getBrainLoss()
 	return brainloss
 
 /mob/living/proc/adjustBrainLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if (status_flags & GODMODE)	return FALSE	//godmode
 	brainloss = min(max(brainloss + amount, FALSE),(maxHealth*2))
 
 /mob/living/proc/setBrainLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if (status_flags & GODMODE)	return FALSE	//godmode
 	brainloss = amount
 
 /mob/living/proc/getHalLoss()
 	return halloss
 
 /mob/living/proc/adjustHalLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if (status_flags & GODMODE)	return FALSE	//godmode
 	halloss = min(max(halloss + amount, FALSE),(maxHealth*2))
 
 /mob/living/proc/setHalLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if (status_flags & GODMODE)	return FALSE	//godmode
 	halloss = amount
 
 /mob/living/proc/getTotalLoss()
@@ -341,7 +341,7 @@ default behaviour is:
 /mob/living/get_contents(var/obj/item/weapon/storage/Storage = null)
 	var/list/L = list()
 
-	if(Storage) //If it called itself
+	if (Storage) //If it called itself
 		L += Storage.return_inv()
 		return L
 
@@ -357,7 +357,7 @@ default behaviour is:
 	var/list/L = get_contents()
 
 	for(var/obj/B in L)
-		if(B.type == A)
+		if (B.type == A)
 			return TRUE
 	return FALSE
 
@@ -382,7 +382,7 @@ default behaviour is:
 
 // damage ONE external organ, organ gets randomly selected from damaged ones.
 /mob/living/proc/take_organ_damage(var/brute, var/burn, var/emp=0)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if (status_flags & GODMODE)	return FALSE	//godmode
 	adjustBruteLoss(brute)
 	adjustFireLoss(burn)
 	updatehealth()
@@ -395,7 +395,7 @@ default behaviour is:
 
 // damage MANY external organs, in random order
 /mob/living/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if (status_flags & GODMODE)	return FALSE	//godmode
 	adjustBruteLoss(brute)
 	adjustFireLoss(burn)
 	updatehealth()
@@ -407,9 +407,9 @@ default behaviour is:
 
 /mob/living/proc/revive()
 	rejuvenate()
-	if(buckled)
+	if (buckled)
 		buckled.unbuckle_mob()
-	if(iscarbon(src))
+	if (iscarbon(src))
 		var/mob/living/carbon/C = src
 
 		if (C.handcuffed && !initial(C.handcuffed))
@@ -452,7 +452,7 @@ default behaviour is:
 	restore_all_organs()
 
 	// remove the character from the list of the dead
-	if(stat == DEAD)
+	if (stat == DEAD)
 		dead_mob_list -= src
 		living_mob_list += src
 		tod = null
@@ -489,12 +489,12 @@ default behaviour is:
 		. = ..()
 
 		if (pulling && pulling.loc)
-			if(!( isturf(pulling.loc) ))
+			if (!( isturf(pulling.loc) ))
 				stop_pulling()
 				return
 
 		/////
-		if(pulling && pulling.anchored)
+		if (pulling && pulling.anchored)
 			stop_pulling()
 			return
 
@@ -523,40 +523,40 @@ default behaviour is:
 						var/atom/movable/t = M.pulling
 						M.stop_pulling()
 
-						if(!istype(M.loc, /turf/space))
+						if (!istype(M.loc, /turf/space))
 							var/area/A = get_area(M)
-							if(A.has_gravity)
+							if (A.has_gravity)
 								//this is the gay blood on floor shit -- Added back -- Skie
 								if (M.lying && (prob(M.getBruteLoss() / 6)))
 									var/turf/location = M.loc
 									if (istype(location, /turf))
 										location.add_blood(M)
 								//pull damage with injured people
-								/*	if(prob(25))
+								/*	if (prob(25))
 										M.adjustBruteLoss(1)
 										visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state worsens": "wounds open more"] from being dragged!</span>")
-								if(M.pull_damage())
-									if(prob(25))
+								if (M.pull_damage())
+									if (prob(25))
 										M.adjustBruteLoss(2)
 										visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!</span>")
 										var/turf/location = M.loc
 										if (istype(location, /turf))
 											location.add_blood(M)
-											if(ishuman(M))
+											if (ishuman(M))
 												var/mob/living/carbon/human/H = M
 												var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
-												if(blood_volume > 0)
+												if (blood_volume > 0)
 													H.vessel.remove_reagent("blood", TRUE)
 										*/
 
 						step(pulling, get_dir(pulling.loc, T))
-						if(t)
+						if (t)
 							M.start_pulling(t)
 				else
 					if (pulling)
 						if (istype(pulling, /obj/structure/window))
 							var/obj/structure/window/W = pulling
-							if(W.is_full_window())
+							if (W.is_full_window())
 								for(var/obj/structure/window/win in get_step(pulling,get_dir(pulling.loc, T)))
 									stop_pulling()
 					if (pulling)
@@ -568,7 +568,7 @@ default behaviour is:
 	if (s_active && !( s_active in contents ) && get_turf(s_active) != get_turf(src))	//check !( s_active in contents ) first so we hopefully don't have to call get_turf() so much.
 		s_active.close(src)
 /*
-	if(update_slimes)
+	if (update_slimes)
 		for(var/mob/living/carbon/slime/M in view(1,src))
 			M.UpdateFeed(src)*/
 
@@ -581,57 +581,57 @@ default behaviour is:
 	set name = "Resist"
 	set category = "IC"
 
-	if(!stat && canClick())
+	if (!stat && canClick())
 		setClickCooldown(20)
 		resist_grab()
-		if(!weakened)
+		if (!weakened)
 			process_resist()
 
 /mob/living/proc/process_resist()
 	//Getting out of someone's inventory.
-	if(istype(loc, /obj/item/weapon/holder))
+	if (istype(loc, /obj/item/weapon/holder))
 		escape_inventory(loc)
 		return
 
 	//unbuckling yourself
-	if(buckled)
+	if (buckled)
 		spawn() escape_buckle()
 		return TRUE
 
 	//Breaking out of a locker?
-	if( loc && (istype(loc, /obj/structure/closet)) )
+	if ( loc && (istype(loc, /obj/structure/closet)) )
 		var/obj/structure/closet/C = loc
 		spawn() C.mob_breakout(src)
 		return TRUE
 
 /mob/living/proc/escape_inventory(obj/item/weapon/holder/H)
-	if(H != loc) return
+	if (H != loc) return
 
 	var/mob/M = H.loc //Get our mob holder (if any).
 
-	if(istype(M))
+	if (istype(M))
 		M.drop_from_inventory(H)
 		M << "<span class='warning'>\The [H] wriggles out of your grip!</span>"
 		src << "<span class='warning'>You wriggle out of \the [M]'s grip!</span>"
 
 		// Update whether or not this mob needs to pass emotes to contents.
 		for(var/atom/A in M.contents)
-			if(istype(A,/obj/item/weapon/holder))
+			if (istype(A,/obj/item/weapon/holder))
 				return
 		M.status_flags &= ~PASSEMOTES
 
-	else if(istype(H.loc,/obj/item/clothing/accessory/holster))
+	else if (istype(H.loc,/obj/item/clothing/accessory/holster))
 		var/obj/item/clothing/accessory/holster/holster = H.loc
-		if(holster.holstered == H)
+		if (holster.holstered == H)
 			holster.clear_holster()
 		src << "<span class='warning'>You extricate yourself from \the [holster].</span>"
 		H.forceMove(get_turf(H))
-	else if(istype(H.loc,/obj/item))
+	else if (istype(H.loc,/obj/item))
 		src << "<span class='warning'>You struggle free of \the [H.loc].</span>"
 		H.forceMove(get_turf(H))
 
 /mob/living/proc/escape_buckle()
-	if(buckled)
+	if (buckled)
 		buckled.user_unbuckle_mob(src)
 
 /mob/living/proc/resist_grab()
@@ -643,18 +643,18 @@ default behaviour is:
 	for(var/obj/item/weapon/grab/G in grabbed_by)
 		resisting++
 		switch(G.state)
-			if(GRAB_PASSIVE)
+			if (GRAB_PASSIVE)
 				qdel(G)
-			if(GRAB_AGGRESSIVE)
-				if(prob(60)) //same chance of breaking the grab as disarm
+			if (GRAB_AGGRESSIVE)
+				if (prob(60)) //same chance of breaking the grab as disarm
 					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s grip!</span>")
 					qdel(G)
-			if(GRAB_NECK)
+			if (GRAB_NECK)
 				//If the you move when grabbing someone then it's easier for them to break free. Same if the affected mob is immune to stun.
 				if (((world.time - G.assailant.l_move_time < 30 || !stunned) && prob(15)) || prob(3))
 					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s headlock!</span>")
 					qdel(G)
-	if(resisting)
+	if (resisting)
 		visible_message("<span class='danger'>[src] resists!</span>")
 
 
@@ -684,7 +684,7 @@ default behaviour is:
 	return FALSE
 
 /mob/living/carbon/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
-	if(W in internal_organs)
+	if (W in internal_organs)
 		return
 	..()
 
@@ -695,35 +695,35 @@ default behaviour is:
 
 //pass a negative argument to skip one of the variable
 /mob/living/setEarDamage(var/damage, var/deaf)
-	if(damage >= 0)
+	if (damage >= 0)
 		ear_damage = damage
-	if(deaf >= 0)
+	if (deaf >= 0)
 		ear_deaf = deaf
 
 /mob/proc/can_be_possessed_by(var/mob/observer/ghost/possessor)
 	return istype(possessor) && possessor.client
 
 /mob/living/can_be_possessed_by(var/mob/observer/ghost/possessor)
-	if(!..())
+	if (!..())
 		return FALSE
-	if(!possession_candidate)
+	if (!possession_candidate)
 		possessor << "<span class='warning'>That animal cannot be possessed.</span>"
 		return FALSE
 	/*
-	if(jobban_isbanned(possessor, "Animal"))
+	if (jobban_isbanned(possessor, "Animal"))
 		possessor << "<span class='warning'>You are banned from animal roles.</span>"
 		return FALSE
 	*/
-	if(!possessor.MayRespawn(1,0))
+	if (!possessor.MayRespawn(1,0))
 		return FALSE
 	return TRUE
 
 /mob/living/proc/do_possession(var/mob/observer/ghost/possessor)
 
-	if(!(istype(possessor) && possessor.ckey))
+	if (!(istype(possessor) && possessor.ckey))
 		return FALSE
 
-	if(ckey || client)
+	if (ckey || client)
 		possessor << "<span class='warning'>\The [src] already has a player.</span>"
 		return FALSE
 
@@ -732,7 +732,7 @@ default behaviour is:
 	ckey = possessor.ckey
 	qdel(possessor)
 /*
-	if(round_is_spooky(6)) // Six or more active cultists.
+	if (round_is_spooky(6)) // Six or more active cultists.
 		src << "<span class='notice'>You reach out with tendrils of ectoplasm and invade the mind of \the [src]...</span>"
 		src << "<b>You have assumed direct control of \the [src].</b>"
 		src << "<span class='notice'>Due to the spookiness of the round, you have taken control of the poor animal as an invading, possessing spirit - roleplay accordingly.</span>"
@@ -758,7 +758,7 @@ default behaviour is:
 		HUD.update_icon()
 
 	/*if (var/obj/screen/HUDthrow/HUD in client.screen)
-		if(HUD.name == "throw") //in case we don't have the HUD and we use the hotkey
+		if (HUD.name == "throw") //in case we don't have the HUD and we use the hotkey
 			HUD.toggle_throw_mode()
 			break*/
 
@@ -768,10 +768,10 @@ default behaviour is:
 	set category = "IC"
 
 
-	if(pulling)
+	if (pulling)
 		pulling.pulledby = null
 		pulling = null
-/*		if(pullin)
+/*		if (pullin)
 			pullin.icon_state = "pull0"*/
 		if (HUDneed.Find("pull"))
 			var/obj/screen/HUDthrow/HUD = HUDneed["pull"]
@@ -787,17 +787,17 @@ default behaviour is:
 		return
 
 	var/mob/M = AM
-	if(ismob(AM))
+	if (ismob(AM))
 
-		if(!can_pull_mobs || !can_pull_size)
+		if (!can_pull_mobs || !can_pull_size)
 			src << "<span class='warning'>It won't budge!</span>"
 			return
 
-		if((mob_size < M.mob_size) && (can_pull_mobs != MOB_PULL_LARGER))
+		if ((mob_size < M.mob_size) && (can_pull_mobs != MOB_PULL_LARGER))
 			src << "<span class='warning'>It won't budge!</span>"
 			return
 
-		if((mob_size == M.mob_size) && (can_pull_mobs == MOB_PULL_SMALLER))
+		if ((mob_size == M.mob_size) && (can_pull_mobs == MOB_PULL_SMALLER))
 			src << "<span class='warning'>It won't budge!</span>"
 			return
 
@@ -805,40 +805,40 @@ default behaviour is:
 		// kind of mob pull value AT ALL, you will be able to pull
 		// them, so don't bother checking that explicitly.
 
-		if(!iscarbon(src))
+		if (!iscarbon(src))
 			M.LAssailant = null
 		else
 			M.LAssailant = usr
 
-	else if(isobj(AM))
+	else if (isobj(AM))
 		var/obj/I = AM
-		if(!can_pull_size || can_pull_size < I.w_class)
+		if (!can_pull_size || can_pull_size < I.w_class)
 			src << "<span class='warning'>It won't budge!</span>"
 			return
 
-	if(pulling)
+	if (pulling)
 		var/pulling_old = pulling
 		stop_pulling()
 		// Are we pulling the same thing twice? Just stop pulling.
-		if(pulling_old == AM)
+		if (pulling_old == AM)
 			return
 
 	pulling = AM
 	AM.pulledby = src
 
-	/*if(pullin)
+	/*if (pullin)
 		pullin.icon_state = "pull1"*/
 	if (HUDneed.Find("pull"))
 		var/obj/screen/HUDthrow/HUD = HUDneed["pull"]
 		HUD.update_icon()
 /*
-	if(ishuman(AM))
+	if (ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		if(H.pull_damage())
+		if (H.pull_damage())
 			src << "\red <b>Pulling \the [H] in their current condition would probably be a bad idea.</b>"
 */
 	//Attempted fix for people flying away through space when cuffed and dragged.
-	if(ismob(AM))
+	if (ismob(AM))
 		var/mob/pulled = AM
 		pulled.inertia_dir = FALSE
 

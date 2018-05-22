@@ -100,7 +100,7 @@
 
 /obj/item/weapon/gun/projectile/semiautomatic/svt/update_icon()
 	..()
-	if(ammo_magazine)
+	if (ammo_magazine)
 		icon_state = "svt"
 		item_state = "svt-mag"
 	else
@@ -132,7 +132,7 @@
 
 /obj/item/weapon/gun/projectile/semiautomatic/g41/update_icon()
 	..()
-	if(ammo_magazine)
+	if (ammo_magazine)
 		icon_state = "g41"
 		item_state = "g41"
 	else
@@ -162,7 +162,7 @@
 
 /obj/item/weapon/gun/projectile/semiautomatic/fg42/update_icon()
 	..()
-	if(ammo_magazine)
+	if (ammo_magazine)
 		icon_state = "fg42"
 		item_state = "fg42"
 	else
@@ -185,15 +185,15 @@
 	magazine_type = /obj/item/ammo_magazine/a792x33/stgmag
 
 /obj/item/weapon/gun/projectile/semiautomatic/stg/update_icon()
-	if(ammo_magazine)
+	if (ammo_magazine)
 		icon_state = "stg"
-/*		if(wielded)
+/*		if (wielded)
 			item_state = "stg-w"
 		else
 			item_state = "stg"*/
 	else
 		icon_state = "stg0"
-/*		if(wielded)
+/*		if (wielded)
 			item_state = "stg-w"
 		else
 			item_state = "stg0"*/
@@ -222,15 +222,15 @@
 	sel_mode = 2
 
 /obj/item/weapon/gun/projectile/semiautomatic/akm/update_icon()
-	if(ammo_magazine)
+	if (ammo_magazine)
 		icon_state = "stg"
-/*		if(wielded)
+/*		if (wielded)
 			item_state = "stg-w"
 		else
 			item_state = "stg"*/
 	else
 		icon_state = "stg0"
-/*		if(wielded)
+/*		if (wielded)
 			item_state = "stg-w"
 		else
 			item_state = "stg0"*/

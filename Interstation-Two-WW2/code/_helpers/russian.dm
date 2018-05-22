@@ -88,7 +88,7 @@ var/global/list/rkeys = list(
 
 //RKEY2KEY
 /proc/rkey2key(t)
-	if(t in rkeys) return rkeys[t]
+	if (t in rkeys) return rkeys[t]
 	return (t)
 
 //TEXT MODS RUS

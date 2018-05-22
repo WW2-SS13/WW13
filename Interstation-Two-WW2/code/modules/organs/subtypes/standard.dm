@@ -83,7 +83,7 @@
 	can_stand = TRUE
 
 /obj/item/organ/external/foot/removed()
-	if(owner) owner.u_equip(owner.shoes)
+	if (owner) owner.u_equip(owner.shoes)
 	..()
 
 /obj/item/organ/external/foot/right
@@ -135,7 +135,7 @@
 	var/can_intake_reagents = TRUE
 
 /obj/item/organ/external/head/removed()
-	if(owner)
+	if (owner)
 		name = "[owner.real_name]'s head"
 		owner.u_equip(owner.glasses)
 		owner.u_equip(owner.head)

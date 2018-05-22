@@ -6,13 +6,13 @@
 	..(max, parent_mob)
 
 	metabolism_class = met_class
-	if(istype(parent_mob))
+	if (istype(parent_mob))
 		parent = parent_mob
 
 /datum/reagents/metabolism/proc/metabolize()
 
 	var/metabolism_type = FALSE //non-human mobs
-	if(ishuman(parent))
+	if (ishuman(parent))
 		var/mob/living/carbon/human/H = parent
 		metabolism_type = H.species.reagent_tag
 

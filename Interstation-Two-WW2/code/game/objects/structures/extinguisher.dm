@@ -13,10 +13,10 @@
 	has_extinguisher = new/obj/item/weapon/extinguisher(src)
 
 /obj/structure/extinguisher_cabinet/attackby(obj/item/O, mob/user)
-	if(isrobot(user))
+	if (isrobot(user))
 		return
-	if(istype(O, /obj/item/weapon/extinguisher))
-		if(!has_extinguisher && opened)
+	if (istype(O, /obj/item/weapon/extinguisher))
+		if (!has_extinguisher && opened)
 			user.remove_from_mob(O)
 			contents += O
 			has_extinguisher = O
@@ -30,17 +30,17 @@
 
 
 /obj/structure/extinguisher_cabinet/attack_hand(mob/user)
-	if(isrobot(user))
+	if (isrobot(user))
 		return
 	if (ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
 		if (user.hand)
 			temp = H.organs_by_name["l_hand"]
-		if(temp && !temp.is_usable())
+		if (temp && !temp.is_usable())
 			user << "<span class='notice'>You try to move your [temp.name], but cannot!</span>"
 			return
-	if(has_extinguisher)
+	if (has_extinguisher)
 		user.put_in_hands(has_extinguisher)
 		user << "<span class='notice'>You take [has_extinguisher] from [src].</span>"
 		playsound(loc, 'sound/machines/Custom_extout.ogg', 50, FALSE)
@@ -51,7 +51,7 @@
 	update_icon()
 /*
 /obj/structure/extinguisher_cabinet/attack_tk(mob/user)
-	if(has_extinguisher)
+	if (has_extinguisher)
 		has_extinguisher.loc = loc
 		user << "<span class='notice'>You telekinetically remove [has_extinguisher] from [src].</span>"
 		has_extinguisher = null
@@ -61,11 +61,11 @@
 	update_icon()
 */
 /obj/structure/extinguisher_cabinet/update_icon()
-	if(!opened)
+	if (!opened)
 		icon_state = "extinguisher_closed"
 		return
-	if(has_extinguisher)
-		if(istype(has_extinguisher, /obj/item/weapon/extinguisher/mini))
+	if (has_extinguisher)
+		if (istype(has_extinguisher, /obj/item/weapon/extinguisher/mini))
 			icon_state = "extinguisher_mini"
 		else
 			icon_state = "extinguisher_full"

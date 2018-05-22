@@ -29,7 +29,7 @@
 			spawn (v * 2)
 				if (objects.len >= v)
 					var/last_path = objects[v]
-					if(last_path)
+					if (last_path)
 						try
 							var/spawned = FALSE
 							for (current in dropspots) // FORNEXT doesn't work here

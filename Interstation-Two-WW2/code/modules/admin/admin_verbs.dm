@@ -333,29 +333,29 @@ var/list/admin_verbs_host = list(
 )
 
 /client/proc/add_admin_verbs()
-	if(holder)
+	if (holder)
 //		world << "[src] getting [holder]([holder.rights]) admin verbs."
 		verbs += admin_verbs_default
-	//	if(holder.rights & R_BUILDMODE)		verbs += /client/proc/togglebuildmodeself
-		if(holder.rights & R_ADMIN)			verbs += admin_verbs_admin
-		if(holder.rights & R_BAN)			verbs += admin_verbs_ban
-		if(holder.rights & R_FUN)			verbs += admin_verbs_fun
-		if(holder.rights & R_SERVER)		verbs += admin_verbs_server
-		if(holder.rights & R_DEBUG)
+	//	if (holder.rights & R_BUILDMODE)		verbs += /client/proc/togglebuildmodeself
+		if (holder.rights & R_ADMIN)			verbs += admin_verbs_admin
+		if (holder.rights & R_BAN)			verbs += admin_verbs_ban
+		if (holder.rights & R_FUN)			verbs += admin_verbs_fun
+		if (holder.rights & R_SERVER)		verbs += admin_verbs_server
+		if (holder.rights & R_DEBUG)
 			verbs += admin_verbs_debug
-			if(config.debugparanoid && !(holder.rights & R_ADMIN))
+			if (config.debugparanoid && !(holder.rights & R_ADMIN))
 				verbs.Remove(admin_verbs_paranoid_debug)			//Right now it's just callproc but we can easily add others later on.
-//		if(holder.rights & R_POSSESS)		verbs += admin_verbs_possess
-		if(holder.rights & R_PERMISSIONS)
+//		if (holder.rights & R_POSSESS)		verbs += admin_verbs_possess
+		if (holder.rights & R_PERMISSIONS)
 			verbs += admin_verbs_permissions
 			verbs += admin_verbs_manager
-		if(holder.rights & R_STEALTH)		verbs += /client/proc/stealth
-		if(holder.rights & R_REJUVINATE)	verbs += admin_verbs_rejuv
-		if(holder.rights & R_SOUNDS)		verbs += admin_verbs_sounds
-		if(holder.rights & R_SPAWN)			verbs += admin_verbs_spawn
-		if(holder.rights & R_MOD)			verbs += admin_verbs_mod
-		if(holder.rights & R_MENTOR)		verbs += admin_verbs_mentor
-		if(holder.rights & R_HOST)
+		if (holder.rights & R_STEALTH)		verbs += /client/proc/stealth
+		if (holder.rights & R_REJUVINATE)	verbs += admin_verbs_rejuv
+		if (holder.rights & R_SOUNDS)		verbs += admin_verbs_sounds
+		if (holder.rights & R_SPAWN)			verbs += admin_verbs_spawn
+		if (holder.rights & R_MOD)			verbs += admin_verbs_mod
+		if (holder.rights & R_MENTOR)		verbs += admin_verbs_mentor
+		if (holder.rights & R_HOST)
 			verbs += admin_verbs_host
 
 /client/proc/remove_admin_verbs()
@@ -416,13 +416,13 @@ var/list/admin_verbs_host = list(
 /client/proc/admin_ghost()
 	set category = "Admin"
 	set name = "Aghost"
-	if(!holder)	return
-	if(isghost(mob))
+	if (!holder)	return
+	if (isghost(mob))
 		//re-enter
 		var/mob/observer/ghost/ghost = mob
-		if(!is_mentor(usr.client))
+		if (!is_mentor(usr.client))
 			ghost.can_reenter_corpse = TRUE
-		if(ghost.can_reenter_corpse)
+		if (ghost.can_reenter_corpse)
 			ghost.reenter_corpse()
 		else
 			ghost << "<font color='red'>Error:  Aghost:  Can't reenter corpse, mentors that use adminHUD while aghosting are not permitted to enter their corpse again.</font>"
@@ -430,7 +430,7 @@ var/list/admin_verbs_host = list(
 
 
 
-	else if(istype(mob,/mob/new_player))
+	else if (istype(mob,/mob/new_player))
 		src << "<font color='red'>Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.</font>"
 	else
 		//ghostize
@@ -441,9 +441,9 @@ var/list/admin_verbs_host = list(
 		var/mob/body = mob
 		var/mob/observer/ghost/ghost = body.ghostize(1)
 		ghost.admin_ghosted = TRUE
-		if(body)
+		if (body)
 			body.teleop = ghost
-			if(!body.key)
+			if (!body.key)
 				body.key = "@[key]"	//Haaaaaaaack. But the people have spoken. If it breaks; blame adminbus
 
 /client/proc/add_ghost_only_admin_verbs()
@@ -466,11 +466,11 @@ var/list/admin_verbs_host = list(
 	set name = "Invisimin"
 	set category = "Admin"
 	set desc = "Toggles ghost-like invisibility (Don't abuse this)"
-	if(holder && mob)
+	if (holder && mob)
 		if (istype(mob, /mob/observer))
 			mob << "<span class = 'warning'>You're already invisible!</span>"
 			return
-		if(mob.invisibility == INVISIBILITY_OBSERVER)
+		if (mob.invisibility == INVISIBILITY_OBSERVER)
 			mob.invisibility = initial(mob.invisibility)
 			mob << "<span class = 'red'><b>Invisimin off. Invisibility reset.</b></span>"
 			mob.alpha = max(mob.alpha + 100, 255)
@@ -484,7 +484,7 @@ var/list/admin_verbs_host = list(
 	set name = "Toggle Staffwho Visibility"
 	set category = "Admin"
 	set desc = "Toggle your visibility in Staffwho."
-	if(holder && mob)
+	if (holder && mob)
 		visible_in_who = !visible_in_who
 		if (visible_in_who)
 			mob << "<span class = 'notice'>You are now <b>visible</b> in Staffwho.</span>"
@@ -494,7 +494,7 @@ var/list/admin_verbs_host = list(
 /client/proc/player_panel()
 	set name = "Player Panel"
 	set category = "Admin"
-	if(holder)
+	if (holder)
 		holder.player_panel_old()
 
 	return
@@ -502,7 +502,7 @@ var/list/admin_verbs_host = list(
 /client/proc/player_panel_new()
 	set name = "Player Panel New"
 	set category = "Admin"
-	if(holder)
+	if (holder)
 		holder.player_panel_new()
 
 	return
@@ -510,7 +510,7 @@ var/list/admin_verbs_host = list(
 /client/proc/check_antagonists()
 	set name = "Check Antagonists"
 	set category = "Admin"
-	if(holder)
+	if (holder)
 		holder.check_antagonists()
 		log_admin("[key_name(usr)] checked antagonists.")	//for tsar~
 
@@ -519,8 +519,8 @@ var/list/admin_verbs_host = list(
 /client/proc/jobbans()
 	set name = "Display Job bans"
 	set category = "Admin"
-	if(holder)/*
-		if(config.ban_legacy_system)
+	if (holder)/*
+		if (config.ban_legacy_system)
 			holder.Jobbans()
 		else*/
 		holder.DB_ban_panel()
@@ -530,7 +530,7 @@ var/list/admin_verbs_host = list(
 /client/proc/ban_panel()
 	set name = "Ban Panel"
 	set category = "Admin"
-	if(holder)
+	if (holder)
 		holder.DB_ban_panel()
 
 	return
@@ -538,7 +538,7 @@ var/list/admin_verbs_host = list(
 /client/proc/game_panel()
 	set name = "Game Panel"
 	set category = "Admin"
-	if(holder)
+	if (holder)
 		holder.game_panel()
 
 	return
@@ -554,11 +554,11 @@ var/list/admin_verbs_host = list(
 /client/proc/colorooc()
 	set category = "Fun"
 	set name = "OOC Text Color"
-	if(!holder)	return
+	if (!holder)	return
 	var/response = alert(src, "Please choose a distinct color that is easy to read and doesn't mix with all the other chat and radio frequency colors.", "Change own OOC color", "Pick new color", "Reset to default", "Cancel")
-	if(response == "Pick new color")
+	if (response == "Pick new color")
 		prefs.ooccolor = input(src, "Please select your OOC colour.", "OOC colour") as color
-	else if(response == "Reset to default")
+	else if (response == "Reset to default")
 		prefs.ooccolor = initial(prefs.ooccolor)
 	prefs.save_preferences()
 
@@ -568,13 +568,13 @@ var/list/admin_verbs_host = list(
 /client/proc/stealth()
 	set category = "Admin"
 	set name = "Stealth Mode"
-	if(holder)
-		if(holder.fakekey)
+	if (holder)
+		if (holder.fakekey)
 			holder.fakekey = null
 		else
 			var/new_key = ckeyEx(input("Enter your desired display name.", "Fake Key", key) as text|null)
-			if(!new_key)	return
-			if(length(new_key) >= 26)
+			if (!new_key)	return
+			if (length(new_key) >= 26)
 				new_key = copytext(new_key, 1, 26)
 			holder.fakekey = new_key
 		log_admin("[key_name(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]")
@@ -598,15 +598,15 @@ var/list/admin_verbs_host = list(
 	var/list/choices = list("Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb")
 	var/choice = input("What size explosion would you like to produce?") in choices
 	switch(choice)
-		if(null)
+		if (null)
 			return FALSE
-		if("Small Bomb")
+		if ("Small Bomb")
 			explosion(epicenter, 1, 2, 3, 3)
-		if("Medium Bomb")
+		if ("Medium Bomb")
 			explosion(epicenter, 2, 3, 4, 4)
-		if("Big Bomb")
+		if ("Big Bomb")
 			explosion(epicenter, 3, 5, 7, 5)
-		if("Custom Bomb")
+		if ("Custom Bomb")
 			var/devastation_range = input("Devastation range (in tiles):") as num
 			var/heavy_impact_range = input("Heavy impact range (in tiles):") as num
 			var/light_impact_range = input("Light impact range (in tiles):") as num
@@ -637,13 +637,13 @@ var/list/admin_verbs_host = list(
 	D.makerandom(severity)
 	D.infectionchance = input("How virulent is this disease? (1-100)", "Give Disease", D.infectionchance) as num
 
-	if(istype(T,/mob/living/carbon/human))
+	if (istype(T,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = T
 		if (H.species)
 			D.affected_species = list(H.species.get_bodytype())
-			if(H.species.primitive_form)
+			if (H.species.primitive_form)
 				D.affected_species |= H.species.primitive_form
-			if(H.species.greater_form)
+			if (H.species.greater_form)
 				D.affected_species |= H.species.greater_form
 	infect_virus2(T,D,1)
 
@@ -655,9 +655,9 @@ var/list/admin_verbs_host = list(
 	set category = "Special"
 	set name = "Make Sound"
 	set desc = "Display a message to everyone who can hear the target"
-	if(O)
+	if (O)
 		var/message = sanitize(input("What do you want the message to be?", "Make Sound") as text|null)
-		if(!message)
+		if (!message)
 			return
 		for (var/mob/V in hearers(O))
 			V.show_message(message, 2)
@@ -669,7 +669,7 @@ var/list/admin_verbs_host = list(
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"
 	set category = "Special"
-	if(mob)
+	if (mob)
 		togglebuildmode(mob)
 */
 
@@ -677,8 +677,8 @@ var/list/admin_verbs_host = list(
 	set category = "Special"
 	set name = "oSay"
 	set desc = "Display a message to everyone who can hear the target"
-	if(mob.control_object)
-		if(!msg)
+	if (mob.control_object)
+		if (!msg)
 			return
 		for (var/mob/V in hearers(mob.control_object))
 			V.show_message("<b>[mob.control_object.name]</b> says: \"" + msg + "\"", 2)
@@ -688,7 +688,7 @@ var/list/admin_verbs_host = list(
 	set category = "Debug"
 	set name = "Kill Air"
 	set desc = "Toggle Air Processing"
-	if(air_processing_killed)
+	if (air_processing_killed)
 		air_processing_killed = FALSE
 		usr << "<b>Enabled air processing.</b>"
 	else
@@ -702,7 +702,7 @@ var/list/admin_verbs_host = list(
 	set name = "Re-Admin self"
 	set category = "Admin"
 
-	if(deadmin_holder)
+	if (deadmin_holder)
 		deadmin_holder.reassociate()
 		log_admin("[src] re-admined themself.")
 		message_admins("[src] re-admined themself.", TRUE)
@@ -712,8 +712,8 @@ var/list/admin_verbs_host = list(
 	set name = "De-admin self"
 	set category = "Admin"
 
-	if(holder)
-		if(alert("Confirm self-deadmin for the round? You can re-admin yourself at any time.",,"Yes","No") == "Yes")
+	if (holder)
+		if (alert("Confirm self-deadmin for the round? You can re-admin yourself at any time.",,"Yes","No") == "Yes")
 			log_admin("[src] deadmined themself.")
 			message_admins("[src] deadmined themself.", TRUE)
 			deadmin()
@@ -722,9 +722,9 @@ var/list/admin_verbs_host = list(
 /client/proc/toggle_log_hrefs()
 	set name = "Toggle href logging"
 	set category = "Server"
-	if(!holder)	return
-	if(config)
-		if(config.log_hrefs)
+	if (!holder)	return
+	if (config)
+		if (config.log_hrefs)
 			config.log_hrefs = FALSE
 			src << "<b>Stopped logging hrefs</b>"
 		else
@@ -752,10 +752,10 @@ var/list/admin_verbs_host = list(
 	set desc = "Allows you to change the mob appearance"
 	set category = "Admin"
 
-	if(!check_rights(R_FUN)) return
+	if (!check_rights(R_FUN)) return
 
 	var/mob/living/carbon/human/H = input("Select mob.", "Change Mob Appearance - Admin") as null|anything in human_mob_list
-	if(!H) return
+	if (!H) return
 
 	log_and_message_admins("is altering the appearance of [H].")
 	H.change_appearance(APPEARANCE_ALL, usr, usr, check_species_whitelist = FALSE, state = admin_state)
@@ -766,20 +766,20 @@ var/list/admin_verbs_host = list(
 	set desc = "Allows the mob to change its appearance"
 	set category = "Admin"
 
-	if(!check_rights(R_FUN)) return
+	if (!check_rights(R_FUN)) return
 
 	var/mob/living/carbon/human/H = input("Select mob.", "Change Mob Appearance - Self") as null|anything in human_mob_list
-	if(!H) return
+	if (!H) return
 
-	if(!H.client)
+	if (!H.client)
 		usr << "Only mobs with clients can alter their own appearance."
 		return
 
 	switch(alert("Do you wish for [H] to be allowed to select non-whitelisted races?","Alter Mob Appearance","Yes","No","Cancel"))
-		if("Yes")
+		if ("Yes")
 			log_and_message_admins("has allowed [H] to change \his appearance, including races that requires whitelisting")
 			H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = FALSE)
-		if("No")
+		if ("No")
 			log_and_message_admins("has allowed [H] to change \his appearance, excluding races that requires whitelisting.")
 			H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = TRUE)
 
@@ -789,12 +789,12 @@ var/list/admin_verbs_host = list(
 	set desc = "Sets the station security level"
 	set category = "Admin"
 	return
-/*	if(!check_rights(R_ADMIN))	return
+/*	if (!check_rights(R_ADMIN))	return
 	var sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green","blue","red","delta")-get_security_level())
-	if(!sec_level)
+	if (!sec_level)
 		return
 
-	if(alert("Switch from code [get_security_level()] to code [sec_level]?","Change security level?","Yes","No") == "Yes")
+	if (alert("Switch from code [get_security_level()] to code [sec_level]?","Change security level?","Yes","No") == "Yes")
 		set_security_level(sec_level)
 		log_admin("[key_name(usr)] changed the security level to code [sec_level].")
 */
@@ -804,7 +804,7 @@ var/list/admin_verbs_host = list(
 /client/proc/mod_panel()
 	set name = "Moderator Panel"
 	set category = "Admin"
-/*	if(holder)
+/*	if (holder)
 		holder.mod_panel()*/
 
 	return
@@ -813,30 +813,30 @@ var/list/admin_verbs_host = list(
 	set name = "Edit Appearance"
 	set category = "Fun"
 
-	if(!check_rights(R_FUN))	return
+	if (!check_rights(R_FUN))	return
 
 	var/mob/living/carbon/human/M = input("Select mob.", "Edit Appearance") as null|anything in human_mob_list
 
-	if(!istype(M, /mob/living/carbon/human))
+	if (!istype(M, /mob/living/carbon/human))
 		usr << "<span class = 'red'>You can only do this to humans!</span>"
 		return
 	switch(alert("Are you sure you wish to edit this mob's appearance?",,"Yes","No"))
-		if("No")
+		if ("No")
 			return
 	var/new_facial = input("Please select facial hair color.", "Character Generation") as color
-	if(new_facial)
+	if (new_facial)
 		M.r_facial = hex2num(copytext(new_facial, 2, 4))
 		M.g_facial = hex2num(copytext(new_facial, 4, 6))
 		M.b_facial = hex2num(copytext(new_facial, 6, 8))
 
 	var/new_hair = input("Please select hair color.", "Character Generation") as color
-	if(new_facial)
+	if (new_facial)
 		M.r_hair = hex2num(copytext(new_hair, 2, 4))
 		M.g_hair = hex2num(copytext(new_hair, 4, 6))
 		M.b_hair = hex2num(copytext(new_hair, 6, 8))
 
 	var/new_eyes = input("Please select eye color.", "Character Generation") as color
-	if(new_eyes)
+	if (new_eyes)
 		M.r_eyes = hex2num(copytext(new_eyes, 2, 4))
 		M.g_eyes = hex2num(copytext(new_eyes, 4, 6))
 		M.b_eyes = hex2num(copytext(new_eyes, 6, 8))
@@ -850,17 +850,17 @@ var/list/admin_verbs_host = list(
 
 	// hair
 	var/new_hstyle = input(usr, "Select a hair style", "Grooming")  as null|anything in hair_styles_list
-	if(new_hstyle)
+	if (new_hstyle)
 		M.h_style = new_hstyle
 
 	// facial hair
 	var/new_fstyle = input(usr, "Select a facial hair style", "Grooming")  as null|anything in facial_hair_styles_list
-	if(new_fstyle)
+	if (new_fstyle)
 		M.f_style = new_fstyle
 
 	var/new_gender = alert(usr, "Please select gender.", "Character Generation", "Male", "Female")
 	if (new_gender)
-		if(new_gender == "Male")
+		if (new_gender == "Male")
 			M.gender = MALE
 		else
 			M.gender = FEMALE
@@ -871,14 +871,14 @@ var/list/admin_verbs_host = list(
 /client/proc/playernotes()
 	set name = "Show Player Info"
 	set category = "Admin"
-	if(holder)
+	if (holder)
 		holder.PlayerNotes()
 	return
 
 /client/proc/free_slot()
 	set name = "Free Job Slot"
 	set category = "Admin"
-	if(holder)
+	if (holder)
 		var/list/jobs = list()
 		for (var/datum/job/J in job_master.occupations)
 			if (J.current_positions >= J.total_positions && J.total_positions != -1)

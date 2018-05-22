@@ -36,7 +36,7 @@
 		game_log("DEBUG", text)
 
 	for(var/client/C in admins)
-		if(C.is_preference_enabled(/datum/client_preference/admin/show_debug_logs))
+		if (C.is_preference_enabled(/datum/client_preference/admin/show_debug_logs))
 			C << "<span class=\"log_message\">DEBUG: [text]</span>"
 
 /proc/log_game(text)
@@ -81,7 +81,7 @@
 
 /proc/log_to_dd(text)
 	world.log << text //this comes before the config check because it can't possibly runtime
-	if(config.log_world_output)
+	if (config.log_world_output)
 		game_log("DD_OUTPUT", text)
 
 /proc/log_misc(text)
@@ -94,12 +94,12 @@
 //pretty print a direction bitflag, can be useful for debugging.
 /proc/print_dir(var/dir)
 	var/list/comps = list()
-	if(dir & NORTH) comps += "NORTH"
-	if(dir & SOUTH) comps += "SOUTH"
-	if(dir & EAST) comps += "EAST"
-	if(dir & WEST) comps += "WEST"
-	if(dir & UP) comps += "UP"
-	if(dir & DOWN) comps += "DOWN"
+	if (dir & NORTH) comps += "NORTH"
+	if (dir & SOUTH) comps += "SOUTH"
+	if (dir & EAST) comps += "EAST"
+	if (dir & WEST) comps += "WEST"
+	if (dir & UP) comps += "UP"
+	if (dir & DOWN) comps += "DOWN"
 
 	return english_list(comps, nothing_text="0", and_text="|", comma_text="|")
 
@@ -109,22 +109,22 @@
 	var/client/C
 	var/key
 
-	if(!whom)	return "*null*"
-	if(istype(whom, /client))
+	if (!whom)	return "*null*"
+	if (istype(whom, /client))
 		C = whom
 		M = C.mob
 		key = C.key
-	else if(ismob(whom))
+	else if (ismob(whom))
 		M = whom
 		C = M.client
 		key = M.key
-	else if(istype(whom, /datum/mind))
+	else if (istype(whom, /datum/mind))
 		var/datum/mind/D = whom
 		key = D.key
 		M = D.current
-		if(D.current)
+		if (D.current)
 			C = D.current.client
-	else if(istype(whom, /datum))
+	else if (istype(whom, /datum))
 		var/datum/D = whom
 		return "*invalid:[D.type]*"
 	else
@@ -132,31 +132,31 @@
 
 	. = ""
 
-	if(key)
-		if(include_link && C)
+	if (key)
+		if (include_link && C)
 			. += "<a href='?priv_msg=\ref[C]'>"
 
-		if(C && C.holder && C.holder.fakekey && !include_name)
+		if (C && C.holder && C.holder.fakekey && !include_name)
 			. += "Administrator"
 		else
 			. += key
 
-		if(include_link)
-			if(C)	. += "</a>"
+		if (include_link)
+			if (C)	. += "</a>"
 			else	. += " (DC)"
 	else
 		. += "*no key*"
 
-	if(include_name && M)
+	if (include_name && M)
 		var/name
 
-		if(M.real_name)
+		if (M.real_name)
 			name = M.real_name
-		else if(M.name)
+		else if (M.name)
 			name = M.name
 
 
-		if(include_link && is_special_character(M) && highlight_special_characters)
+		if (include_link && is_special_character(M) && highlight_special_characters)
 			. += "/(<font color='#FFA500'>[name]</font>)" //Orange
 		else
 			. += "/([name])"

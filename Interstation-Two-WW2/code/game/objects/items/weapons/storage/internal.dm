@@ -32,7 +32,7 @@
 /obj/item/weapon/storage/internal/proc/handle_mousedrop(mob/user as mob, obj/over_object as obj)
 	if (ishuman(user) || issmall(user)) //so monkeys can take off their backpacks -- Urist
 
-		if(over_object == user && Adjacent(user)) // this must come before the screen objects only block
+		if (over_object == user && Adjacent(user)) // this must come before the screen objects only block
 			open(user)
 			return FALSE
 
@@ -47,17 +47,17 @@
 		if (!( user.restrained() ) && !( user.stat ) && (istype(over_object, /obj/screen/inventory/hand)))
 			var/obj/screen/inventory/hand/H = over_object
 			switch(H.slot_id)
-				if(slot_r_hand)
+				if (slot_r_hand)
 					user.u_equip(master_item)
 					user.put_in_r_hand(master_item)
-				if(slot_l_hand)
+				if (slot_l_hand)
 					user.u_equip(master_item)
 					user.put_in_l_hand(master_item)
 			/*switch(over_object.name)
-				if("r_hand")
+				if ("r_hand")
 					user.u_equip(master_item)
 					user.put_in_r_hand(master_item)
-				if("l_hand")
+				if ("l_hand")
 					user.u_equip(master_item)
 					user.put_in_l_hand(master_item)*/
 			master_item.add_fingerprint(user)
@@ -70,13 +70,13 @@
 //It's strange, but no other way of doing it without the ability to call another proc's parent, really.
 /obj/item/weapon/storage/internal/proc/handle_attack_hand(mob/user as mob)
 
-	if(ishuman(user))
+	if (ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.l_store == master_item && !H.get_active_hand())	//Prevents opening if it's in a pocket.
+		if (H.l_store == master_item && !H.get_active_hand())	//Prevents opening if it's in a pocket.
 			H.put_in_hands(master_item)
 			H.l_store = null
 			return FALSE
-		if(H.r_store == master_item && !H.get_active_hand())
+		if (H.r_store == master_item && !H.get_active_hand())
 			H.put_in_hands(master_item)
 			H.r_store = null
 			return FALSE

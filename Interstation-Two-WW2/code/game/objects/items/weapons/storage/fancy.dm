@@ -25,12 +25,12 @@
 	return
 
 /obj/item/weapon/storage/fancy/examine(mob/user)
-	if(!..(user, TRUE))
+	if (!..(user, TRUE))
 		return
 
-	if(contents.len <= 0)
+	if (contents.len <= 0)
 		user << "There are no [icon_type]s left in the box."
-	else if(contents.len == TRUE)
+	else if (contents.len == TRUE)
 		user << "There is one [icon_type] left in the box."
 	else
 		user << "There are [contents.len] [icon_type]s in the box."
@@ -111,12 +111,12 @@
 		overlays += image('icons/obj/crayons.dmi',crayon.colourName)
 
 /obj/item/weapon/storage/fancy/crayons/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/pen/crayon))
+	if (istype(W,/obj/item/weapon/pen/crayon))
 		switch(W:colourName)
-			if("mime")
+			if ("mime")
 				usr << "This crayon is too sad to be contained in this box."
 				return
-			if("rainbow")
+			if ("rainbow")
 				usr << "This crayon is too powerful to be contained in this box."
 				return
 	..()
@@ -151,29 +151,29 @@
 
 /obj/item/weapon/storage/fancy/cigarettes/remove_from_storage(obj/item/W as obj, atom/new_location)
 	// Don't try to transfer reagents to lighters
-	if(istype(W, /obj/item/clothing/mask/smokable/cigarette))
+	if (istype(W, /obj/item/clothing/mask/smokable/cigarette))
 		var/obj/item/clothing/mask/smokable/cigarette/C = W
 		reagents.trans_to_obj(C, (reagents.total_volume/contents.len))
 	..()
 
 /obj/item/weapon/storage/fancy/cigarettes/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(!istype(M, /mob))
+	if (!istype(M, /mob))
 		return
 
-	if(M == user && user.targeted_organ == "mouth")
+	if (M == user && user.targeted_organ == "mouth")
 		// Find ourselves a cig. Note that we could be full of lighters.
 		var/obj/item/clothing/mask/smokable/cigarette/cig = null
 		for(var/obj/item/clothing/mask/smokable/cigarette/C in contents)
 			cig = C
 			break
 
-		if(cig == null)
+		if (cig == null)
 			user << "<span class='notice'>Looks like the packet is out of cigarettes.</span>"
 			return
 
 		// Instead of running equip_to_slot_if_possible() we check here first,
 		// to avoid dousing cig with reagents if we're not going to equip it
-		if(!cig.mob_can_equip(user, slot_wear_mask))
+		if (!cig.mob_can_equip(user, slot_wear_mask))
 			return
 
 		// We call remove_from_storage first to manage the reagent transfer and
@@ -220,7 +220,7 @@
 
 /obj/item/weapon/storage/fancy/cigar/remove_from_storage(obj/item/W as obj, atom/new_location)
 		var/obj/item/clothing/mask/smokable/cigarette/cigar/C = W
-		if(!istype(C)) return
+		if (!istype(C)) return
 		reagents.trans_to_obj(C, (reagents.total_volume/contents.len))
 		..()
 
@@ -265,7 +265,7 @@
 	overlays.Cut()
 	if (!broken)
 		overlays += image(icon, src, "led[locked]")
-		if(locked)
+		if (locked)
 			overlays += image(icon, src, "cover")
 	else
 		overlays += image(icon, src, "ledb")

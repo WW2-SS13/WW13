@@ -34,7 +34,7 @@
 	if (reagent_id)
 		reagents.add_reagent(reagent_id, 500)
 
-	if(cached_icon)
+	if (cached_icon)
 		icon = cached_icon
 
 	set_dir(pick(cardinal))
@@ -72,7 +72,7 @@
 
 	spawn (1)
 
-		if(destination && !dontmove)
+		if (destination && !dontmove)
 
 			walk_to(src, destination,0,rand(2,3),0)
 
@@ -84,33 +84,33 @@
 /obj/effect/effect/smoke/chem/Move()
 	var/list/oldlocs = view(1, src)
 	. = ..()
-	if(.)
+	if (.)
 		// before we gas people, make sure we didn't pass a wall
 		if (!passes_walls && istype(loc, /turf/wall))
 			qdel(src)
 
 		for(var/turf/T in view(1, src) - oldlocs)
 			for(var/atom/movable/AM in T)
-				if(!istype(AM, /obj/effect/effect/smoke/chem))
+				if (!istype(AM, /obj/effect/effect/smoke/chem))
 					reagents.splash(AM, splash_amount, copy = TRUE)
-		if(loc == destination)
+		if (loc == destination)
 			bound_width = 96
 			bound_height = 96
 
 /obj/effect/effect/smoke/chem/Crossed(atom/movable/AM)
 	..()
-	if(!istype(AM, /obj/effect/effect/smoke/chem))
+	if (!istype(AM, /obj/effect/effect/smoke/chem))
 		reagents.splash(AM, splash_amount, copy = TRUE)
 
 /obj/effect/effect/smoke/chem/proc/initial_splash()
 	for(var/turf/T in view(1, src))
 		for(var/atom/movable/AM in T)
-			if(!istype(AM, /obj/effect/effect/smoke/chem))
+			if (!istype(AM, /obj/effect/effect/smoke/chem))
 				reagents.splash(AM, splash_amount, copy = TRUE)
 
 // Fades out the smoke smoothly using it's alpha variable.
 /obj/effect/effect/smoke/chem/proc/fadeOut(var/frames = 16)
-	if(!alpha) return //already transparent
+	if (!alpha) return //already transparent
 
 	frames = max(frames, TRUE) //We will just assume that by FALSE frames, the coder meant "during one frame".
 	var/alpha_step = round(alpha / frames)
@@ -135,9 +135,9 @@
 	var/datum/seed/seed
 
 /datum/effect/effect/system/smoke_spread/chem/spores/New(seed_name)
-	if(seed_name && plant_controller)
+	if (seed_name && plant_controller)
 		seed = plant_controller.seeds[seed_name]
-	if(!seed)
+	if (!seed)
 		qdel(src)
 	..()
 */
@@ -155,11 +155,11 @@
 	cardinals = c
 	carry.trans_to_obj(chemholder, carry.total_volume, copy = TRUE)
 
-	if(istype(loca, /turf/))
+	if (istype(loca, /turf/))
 		location = loca
 	else
 		location = get_turf(loca)
-	if(!location)
+	if (!location)
 		return
 
 	targetTurfs = new()
@@ -167,7 +167,7 @@
 	//build affected area list
 	for(var/turf/T in view(range, location))
 		//cull turfs to circle
-		if(sqrt((T.x - location.x)**2 + (T.y - location.y)**2) <= range)
+		if (sqrt((T.x - location.x)**2 + (T.y - location.y)**2) <= range)
 			targetTurfs += T
 
 	wallList = new()
@@ -184,11 +184,11 @@
 	var/where = "[A.name] | [location.x], [location.y]"
 	var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>[where]</a>"
 
-	if(show_log)
-		if(carry.my_atom.fingerprintslast)
+	if (show_log)
+		if (carry.my_atom.fingerprintslast)
 			var/mob/M = get_mob_by_key(carry.my_atom.fingerprintslast)
 			var/more = ""
-			if(M)
+			if (M)
 				more = "(<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</a>)"
 			message_admins("A chemical smoke reaction has taken place in ([whereLink])[contained]. Last associated key is [carry.my_atom.fingerprintslast][more].", FALSE, TRUE)
 			log_game("A chemical smoke reaction has taken place in ([where])[contained]. Last associated key is [carry.my_atom.fingerprintslast].")
@@ -202,23 +202,23 @@
 // Also calculates target locations to spawn the visual smoke effect on, so the whole area
 // is covered fairly evenly.
 /datum/effect/effect/system/smoke_spread/chem/start()
-	if(!location)
+	if (!location)
 		return
 
-	if(chemholder.reagents.reagent_list.len) //reagent application - only run if there are extra reagents in the smoke
+	if (chemholder.reagents.reagent_list.len) //reagent application - only run if there are extra reagents in the smoke
 		for(var/turf/T in wallList)
 			chemholder.reagents.touch_turf(T)
 		for(var/turf/T in targetTurfs)
 			chemholder.reagents.touch_turf(T)
 			for(var/atom/A in T.contents)
-				if(istype(A, /obj/effect/effect/smoke/chem) || istype(A, /mob))
+				if (istype(A, /obj/effect/effect/smoke/chem) || istype(A, /mob))
 					continue
-				else if(isobj(A) && !A.simulated)
+				else if (isobj(A) && !A.simulated)
 					chemholder.reagents.touch_obj(A)
 
 	var/color = chemholder.reagents.get_color() //build smoke icon
 	var/icon/I
-	if(color)
+	if (color)
 		I = icon('icons/effects/chemsmoke.dmi')
 		I += color
 	else
@@ -229,14 +229,14 @@
 
 	var/pressure = FALSE
 	var/datum/gas_mixture/environment = location.return_air()
-	if(environment) pressure = environment.return_pressure()
+	if (environment) pressure = environment.return_pressure()
 	smoke_duration = between(5, smoke_duration*pressure/(ONE_ATMOSPHERE/3), smoke_duration)
 
 	var/const/arcLength = 2.3559 //distance between each smoke cloud
 
 	for(var/i = FALSE, i < range, i++) //calculate positions for smoke coverage - then spawn smoke
 		var/radius = i * 1.5
-		if(!radius)
+		if (!radius)
 			spawn(0)
 				spawnSmoke(location, I, TRUE, TRUE)
 			continue
@@ -245,7 +245,7 @@
 		var/points = round((radius * 2 * M_PI) / arcLength)
 		var/angle = round(ToDegrees(arcLength / radius), TRUE)
 
-		if(!IsInteger(radius))
+		if (!IsInteger(radius))
 			offset = 45		//degrees
 
 		for(var/j = FALSE, j < points, j++)
@@ -253,9 +253,9 @@
 			var/x = round(radius * cos(a) + location.x, TRUE)
 			var/y = round(radius * sin(a) + location.y, TRUE)
 			var/turf/T = locate(x,y,location.z)
-			if(!T)
+			if (!T)
 				continue
-			if(T in targetTurfs)
+			if (T in targetTurfs)
 				spawn(0)
 					spawnSmoke(T, I, range)
 
@@ -266,16 +266,16 @@
 /datum/effect/effect/system/smoke_spread/chem/proc/spawnSmoke(var/turf/T, var/icon/I, var/smoke_duration, var/dist = TRUE, var/splash_initial=0, var/obj/effect/effect/smoke/chem/passed_smoke)
 
 	var/obj/effect/effect/smoke/chem/smoke
-	if(passed_smoke)
+	if (passed_smoke)
 		smoke = passed_smoke
 	else
 		smoke = PoolOrNew(/obj/effect/effect/smoke/chem, list(location, smoke_duration + rand(0, 20), T, I))
 
-	if(chemholder.reagents.reagent_list.len)
+	if (chemholder.reagents.reagent_list.len)
 		chemholder.reagents.trans_to_obj(smoke, chemholder.reagents.total_volume / dist, copy = TRUE) //copy reagents to the smoke so mob/breathe() can handle inhaling the reagents
 
 	//Kinda ugly, but needed unless the system is reworked
-	if(splash_initial)
+	if (splash_initial)
 		smoke.initial_splash()
 
 /*
@@ -296,21 +296,21 @@
 		for(var/turf/current in pending)
 			for(var/D in cardinal)
 				var/turf/target = get_step(current, D)
-				if(wallList)
-					if(istype(target, /turf/wall))
-						if(!(target in wallList))
+				if (wallList)
+					if (istype(target, /turf/wall))
+						if (!(target in wallList))
 							wallList += target
 						continue
 
-				if(target in pending)
+				if (target in pending)
 					continue
-				if(target in complete)
+				if (target in complete)
 					continue
-				if(!(target in targetTurfs))
+				if (!(target in targetTurfs))
 					continue
-			/*	if(current.c_airblock(target)) //this is needed to stop chemsmoke from passing through thin window walls
+			/*	if (current.c_airblock(target)) //this is needed to stop chemsmoke from passing through thin window walls
 					continue
-				if(target.c_airblock(current))
+				if (target.c_airblock(current))
 					continue*/
 				pending += target
 

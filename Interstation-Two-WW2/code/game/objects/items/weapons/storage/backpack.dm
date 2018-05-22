@@ -57,7 +57,7 @@
 		return
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(istype(W, /obj/item/weapon/storage/backpack/holding))
+		if (istype(W, /obj/item/weapon/storage/backpack/holding))
 			user << "<span class='warning'>The Bluespace interfaces of the two devices conflict and malfunction.</span>"
 			qdel(W)
 			return
@@ -65,7 +65,7 @@
 
 	//Please don't clutter the parent storage item with stupid hacks.
 	can_be_inserted(obj/item/W as obj, stop_messages = FALSE)
-		if(istype(W, /obj/item/weapon/storage/backpack/holding))
+		if (istype(W, /obj/item/weapon/storage/backpack/holding))
 			return TRUE
 		return ..()
 

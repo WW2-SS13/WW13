@@ -7,9 +7,9 @@
 
 //obtain a weak reference to a datum
 /proc/weakref(datum/D)
-	if(D.gcDestroyed)
+	if (D.gcDestroyed)
 		return
-	if(!D.weakref)
+	if (!D.weakref)
 		D.weakref = new /datum/weakref(D)
 	return D.weakref
 
@@ -26,6 +26,6 @@
 
 /datum/weakref/proc/resolve()
 	var/datum/D = locate(ref)
-	if(D && D.weakref == src)
+	if (D && D.weakref == src)
 		return D
 	return null

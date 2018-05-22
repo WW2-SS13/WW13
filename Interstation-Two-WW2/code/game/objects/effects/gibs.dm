@@ -14,40 +14,40 @@
 	New(location, var/_fleshcolor, var/_bloodcolor)
 		..()
 
-		if(fleshcolor) fleshcolor = _fleshcolor
-		if(bloodcolor) bloodcolor = _bloodcolor
+		if (fleshcolor) fleshcolor = _fleshcolor
+		if (bloodcolor) bloodcolor = _bloodcolor
 		Gib(loc)
 
 	proc/Gib(atom/location)
-		if(gibtypes.len != gibamounts.len || gibamounts.len != gibdirections.len)
+		if (gibtypes.len != gibamounts.len || gibamounts.len != gibdirections.len)
 			world << "<span class='warning'>Gib list length mismatch!</span>"
 			return
 
-		if(sparks)
+		if (sparks)
 			var/datum/effect/effect/system/spark_spread/s = PoolOrNew(/datum/effect/effect/system/spark_spread)
 			s.set_up(2, TRUE, get_turf(location)) // Not sure if it's safe to pass an arbitrary object to set_up, todo
 			s.start()
 
 		var/obj/effect/decal/cleanable/blood/gibs/gib = null
 		for(var/i = TRUE, i<= gibtypes.len, i++)
-			if(gibamounts[i])
+			if (gibamounts[i])
 				for(var/j = TRUE, j<= gibamounts[i], j++)
 					var/gibType = gibtypes[i]
 					gib = new gibType(location)
 
 					// Apply human species colouration to masks.
-					if(fleshcolor)
+					if (fleshcolor)
 						gib.fleshcolor = fleshcolor
-					if(bloodcolor)
+					if (bloodcolor)
 						gib.basecolor = bloodcolor
 
 					gib.update_icon()
 
 					gib.blood_DNA = list()
 
-					if(istype(location,/turf/))
+					if (istype(location,/turf/))
 						var/list/directions = gibdirections[i]
-						if(directions.len)
+						if (directions.len)
 							gib.streak(directions)
 
 		qdel(src)

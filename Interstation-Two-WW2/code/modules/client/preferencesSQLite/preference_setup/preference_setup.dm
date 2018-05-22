@@ -76,30 +76,30 @@
 /datum/category_collection/player_setup_collection/proc/header()
 	var/dat = ""
 	for(var/datum/category_group/player_setup_category/PS in categories)
-		if(PS == selected_category)
+		if (PS == selected_category)
 			dat += "[PS.name] "	// TODO: Check how to properly mark a href/button selected in a classic browser window
 		else
 			dat += "<a href='?src=\ref[src];category=\ref[PS]'>[PS.name]</a> "
 	return dat
 
 /datum/category_collection/player_setup_collection/proc/content(var/mob/user)
-	if(selected_category)
+	if (selected_category)
 		return selected_category.content(user)
 
 /datum/category_collection/player_setup_collection/Topic(var/href,var/list/href_list)
-	if(..())
+	if (..())
 		return TRUE
 	var/mob/user = usr
-	if(!user.client)
+	if (!user.client)
 		return TRUE
 
-	if(href_list["category"])
+	if (href_list["category"])
 		var/category = locate(href_list["category"])
-		if(category && category in categories)
+		if (category && category in categories)
 			selected_category = category
 		. = TRUE
 
-	if(.)
+	if (.)
 		user.client.prefs.ShowChoices(user)
 
 /**************************
@@ -153,7 +153,7 @@
 	var/current = FALSE
 	var/halfway = items.len / 2
 	for(var/datum/category_item/player_setup_item/PI in items)
-		if(halfway && current++ >= halfway)
+		if (halfway && current++ >= halfway)
 			halfway = FALSE
 			. += "</td><td></td><td style='width:50%'>"
 		. += "[PI.content(user)]<br>"
@@ -227,15 +227,15 @@
 	return
 
 /datum/category_item/player_setup_item/Topic(var/href,var/list/href_list)
-	if(..())
+	if (..())
 		return TRUE
 
 	var/mob/pref_mob = preference_mob()
 
-	if(isnull(pref_mob))
+	if (isnull(pref_mob))
 		return
 
-	if(!pref_mob || !pref_mob.client)
+	if (!pref_mob || !pref_mob.client)
 		return TRUE
 
 	var/list/pref_initial_vars = list()
@@ -246,7 +246,7 @@
 //		world << "1. [x] = [pref_initial_vars[x]]"
 
 	. = OnTopic(href, href_list, usr)
-	if(. == TOPIC_REFRESH)
+	if (. == TOPIC_REFRESH)
 		pref_mob.client.prefs.ShowChoices(usr)
 
 	update_setup()
@@ -275,11 +275,11 @@
 	return TOPIC_NOACTION
 
 /datum/category_item/player_setup_item/proc/preference_mob()
-	if(!pref.client)
+	if (!pref.client)
 		for(var/client/C)
-			if(C.ckey == pref.client_ckey)
+			if (C.ckey == pref.client_ckey)
 				pref.client = C
 				break
 
-	if(pref.client)
+	if (pref.client)
 		return pref.client.mob

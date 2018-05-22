@@ -261,7 +261,7 @@ var/global/datum/controller/occupations/job_master
 
 	var/list/turfs = latejoin_turfs[spawn_location]
 
-	if(turfs && turfs.len > 0)
+	if (turfs && turfs.len > 0)
 		H.loc = pick(turfs)
 
 		if (!locate(H.loc) in turfs)
@@ -279,29 +279,29 @@ var/global/datum/controller/occupations/job_master
 /datum/controller/occupations/proc/SetupOccupations(var/faction = "Station")
 	occupations = list()
 	var/list/all_jobs = typesof(/datum/job)
-	if(!all_jobs.len)
+	if (!all_jobs.len)
 		world << "<span class = 'red'>\b Error setting up jobs, no job datums found</span>"
 		return FALSE
 	for(var/J in all_jobs)
 		var/datum/job/job = new J()
-		if(!job)	continue
-		if(job.faction != faction)	continue
+		if (!job)	continue
+		if (job.faction != faction)	continue
 		occupations += job
 	occupations += new/datum/job/german/oberstleutnant
 	return TRUE
 
 
 /datum/controller/occupations/proc/Debug(var/text)
-	if(!Debug2)	return FALSE
+	if (!Debug2)	return FALSE
 	job_debug.Add(text)
 	return TRUE
 
 
 /datum/controller/occupations/proc/GetJob(var/rank)
-	if(!rank)	return null
+	if (!rank)	return null
 	for(var/datum/job/J in occupations)
-		if(!J)	continue
-		if(J.title == rank)	return J
+		if (!J)	continue
+		if (J.title == rank)	return J
 	return null
 
 /datum/controller/occupations/proc/GetPlayerAltTitle(var/mob/new_player/player, rank)
@@ -309,12 +309,12 @@ var/global/datum/controller/occupations/job_master
 
 /datum/controller/occupations/proc/AssignRole(var/mob/new_player/player, var/rank, var/latejoin = FALSE, var/reinforcements = FALSE)
 	Debug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
-	if(player && rank)
+	if (player && rank)
 		var/datum/job/job = GetJob(rank)
-		if(!job)	return FALSE
-		if(!job.player_old_enough(player.client)) return FALSE
+		if (!job)	return FALSE
+		if (!job.player_old_enough(player.client)) return FALSE
 		var/position_limit = job.total_positions
-		if((job.current_positions < position_limit) || position_limit == -1 || reinforcements)
+		if ((job.current_positions < position_limit) || position_limit == -1 || reinforcements)
 			Debug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[position_limit]")
 			if (player.mind)
 				player.mind.assigned_role = rank
@@ -331,7 +331,7 @@ var/global/datum/controller/occupations/job_master
 
 /datum/controller/occupations/proc/FreeRole(var/rank)	//making additional slot on the fly
 	var/datum/job/job = GetJob(rank)
-	if(job && job.current_positions >= job.total_positions && job.total_positions != -1)
+	if (job && job.current_positions >= job.total_positions && job.total_positions != -1)
 		--job.current_positions
 		return TRUE
 	return FALSE
@@ -339,7 +339,7 @@ var/global/datum/controller/occupations/job_master
 /datum/controller/occupations/proc/ResetOccupations()
 
 	for(var/mob/new_player/player in player_list)
-		if((player) && (player.mind))
+		if ((player) && (player.mind))
 			player.mind.assigned_role = null
 			player.mind.special_role = null
 	SetupOccupations()
@@ -347,11 +347,11 @@ var/global/datum/controller/occupations/job_master
 	return
 
 /datum/controller/occupations/proc/EquipRank(var/mob/living/carbon/human/H, var/rank, var/joined_late = FALSE)
-	if(!H)	return null
+	if (!H)	return null
 
 	var/datum/job/job = GetJob(rank)
 
-	if(job)
+	if (job)
 
 		//Equip job items.
 
@@ -638,14 +638,14 @@ var/global/datum/controller/occupations/job_master
 		#endif
 
 		var/alt_title = null
-		if(H.mind)
+		if (H.mind)
 			H.mind.assigned_role = rank
 			alt_title = H.mind.role_alt_title
 
-		if(istype(H)) //give humans wheelchairs, if they need them.
+		if (istype(H)) //give humans wheelchairs, if they need them.
 			var/obj/item/organ/external/l_foot = H.get_organ("l_foot")
 			var/obj/item/organ/external/r_foot = H.get_organ("r_foot")
-			if((!l_foot || l_foot.status & ORGAN_DESTROYED) && (!r_foot || r_foot.status & ORGAN_DESTROYED))
+			if ((!l_foot || l_foot.status & ORGAN_DESTROYED) && (!r_foot || r_foot.status & ORGAN_DESTROYED))
 				var/obj/structure/bed/chair/wheelchair/W = new /obj/structure/bed/chair/wheelchair(H.loc)
 				H.buckled = W
 				H.update_canmove()
@@ -664,12 +664,12 @@ var/global/datum/controller/occupations/job_master
 		world << "[H] ([rank]) GOT TO after spawnID()"
 		#endif
 
-		if(job.req_admin_notify)
+		if (job.req_admin_notify)
 			H << "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>"
 		//Gives glasses to the vision impaired
-		if(H.disabilities & NEARSIGHTED)
+		if (H.disabilities & NEARSIGHTED)
 			var/equipped = H.equip_to_slot_or_del(new /obj/item/clothing/glasses/regular(H), slot_glasses)
-			if(equipped != TRUE)
+			if (equipped != TRUE)
 				var/obj/item/clothing/glasses/G = H.glasses
 				G.prescription = TRUE
 
@@ -687,11 +687,11 @@ var/global/datum/controller/occupations/job_master
 
 /datum/controller/occupations/proc/spawnKeys(var/mob/living/carbon/human/H, rank, title)
 
-	if(!H)	return FALSE
+	if (!H)	return FALSE
 
 	var/datum/job/job = null
 	for(var/datum/job/J in occupations)
-		if(J.title == rank)
+		if (J.title == rank)
 			job = J
 			break
 
@@ -744,15 +744,15 @@ var/next_calculate_relevant_clients = -1
 	next_calculate_relevant_clients = world.time + 50
 
 /datum/controller/occupations/proc/is_side_locked(side)
-	if(!ticker)
+	if (!ticker)
 		return TRUE
-	if(side == SOVIET)
+	if (side == SOVIET)
 		if (soviets_forceEnabled)
 			return FALSE
 		if (side_is_hardlocked(side))
 			return 2
 		return !ticker.can_latejoin_ruforce
-	else if(side == GERMAN || side == ITALIAN)
+	else if (side == GERMAN || side == ITALIAN)
 		if (germans_forceEnabled)
 			return FALSE
 		if (side_is_hardlocked(side))

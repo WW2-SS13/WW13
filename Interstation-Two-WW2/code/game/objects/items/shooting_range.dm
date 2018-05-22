@@ -12,7 +12,7 @@
 	Destroy()
 		// if a target is deleted and associated with a stake, force stake to forget
 		for(var/obj/structure/target_stake/T in view(3,src))
-			if(T.pinned_target == src)
+			if (T.pinned_target == src)
 				T.pinned_target = null
 				T.density = TRUE
 				break
@@ -22,7 +22,7 @@
 		..()
 		// After target moves, check for nearby stakes. If associated, move to target
 		for(var/obj/structure/target_stake/M in view(3,src))
-			if(M.density == FALSE && M.pinned_target == src)
+			if (M.density == FALSE && M.pinned_target == src)
 				M.loc = loc
 
 		// This may seem a little counter-intuitive but I assure you that's for a purpose.
@@ -35,7 +35,7 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/WT = W
-			if(WT.remove_fuel(0, user))
+			if (WT.remove_fuel(0, user))
 				overlays.Cut()
 				usr << "You slice off [src]'s uneven chunks of aluminum and scorch marks."
 				return
@@ -45,19 +45,19 @@
 		// taking pinned targets off!
 		var/obj/structure/target_stake/stake
 		for(var/obj/structure/target_stake/T in view(3,src))
-			if(T.pinned_target == src)
+			if (T.pinned_target == src)
 				stake = T
 				break
 
-		if(stake)
-			if(stake.pinned_target)
+		if (stake)
+			if (stake.pinned_target)
 				stake.density = TRUE
 				density = FALSE
 				layer = OBJ_LAYER
 
 				loc = user.loc
-				if(ishuman(user))
-					if(!user.get_active_hand())
+				if (ishuman(user))
+					if (!user.get_active_hand())
 						user.put_in_hands(src)
 						user << "You take the target out of the stake."
 				else
@@ -84,16 +84,16 @@
 	var/p_y = Proj.p_y + pick(0,0,0,0,0,-1,1)
 	var/decaltype = TRUE // TRUE - scorch, 2 - bullet
 
-	if(istype(/obj/item/projectile/bullet, Proj))
+	if (istype(/obj/item/projectile/bullet, Proj))
 		decaltype = 2
 
 
 	virtualIcon = new(icon, icon_state)
 
-	if( virtualIcon.GetPixel(p_x, p_y) ) // if the located pixel isn't blank (null)
+	if ( virtualIcon.GetPixel(p_x, p_y) ) // if the located pixel isn't blank (null)
 
 		hp -= Proj.damage
-		if(hp <= 0)
+		if (hp <= 0)
 			for(var/mob/O in oviewers())
 				if ((O.client && !( O.blinded )))
 					O << "<span class='warning'>\The [src] breaks into tiny pieces and collapses!</span>"
@@ -107,14 +107,14 @@
 		bmark.layer = 3.5
 		bmark.icon_state = "scorch"
 
-		if(decaltype == TRUE)
+		if (decaltype == TRUE)
 			// Energy weapons are hot. they scorch!
 
 			// offset correction
 			bmark.pixel_x--
 			bmark.pixel_y--
 
-			if(Proj.damage >= 20/* || istype(Proj, /obj/item/projectile/beam/practice)*/)
+			if (Proj.damage >= 20/* || istype(Proj, /obj/item/projectile/beam/practice)*/)
 				bmark.icon_state = "scorch"
 				bmark.set_dir(pick(NORTH,SOUTH,EAST,WEST)) // random scorch design
 
@@ -126,12 +126,12 @@
 			// Bullets are hard. They make dents!
 			bmark.icon_state = "dent"
 
-		if(Proj.damage >= 10 && bulletholes.len <= 35) // maximum of 35 bullet holes
-			if(decaltype == 2) // bullet
-				if(prob(Proj.damage+30)) // bullets make holes more commonly!
+		if (Proj.damage >= 10 && bulletholes.len <= 35) // maximum of 35 bullet holes
+			if (decaltype == 2) // bullet
+				if (prob(Proj.damage+30)) // bullets make holes more commonly!
 					new/datum/bullethole(src, bmark.pixel_x, bmark.pixel_y) // create new bullet hole
 			else // Lasers!
-				if(prob(Proj.damage-10)) // lasers make holes less commonly
+				if (prob(Proj.damage-10)) // lasers make holes less commonly
 					new/datum/bullethole(src, bmark.pixel_x, bmark.pixel_y) // create new bullet hole
 
 		// draw bullet holes
@@ -162,18 +162,18 @@
 	var/b2y2 = FALSE
 
 	New(var/obj/item/target/Target, var/pixel_x = FALSE, var/pixel_y = FALSE)
-		if(!Target) return
+		if (!Target) return
 
 		// Randomize the first box
 		b1x1 = pixel_x - pick(1,1,1,1,2,2,3,3,4)
 		b1x2 = pixel_x + pick(1,1,1,1,2,2,3,3,4)
 		b1y = pixel_y
-		if(prob(35))
+		if (prob(35))
 			b1y += rand(-4,4)
 
 		// Randomize the second box
 		b2x = pixel_x
-		if(prob(35))
+		if (prob(35))
 			b2x += rand(-4,4)
 		b2y1 = pixel_y + pick(1,1,1,1,2,2,3,3,4)
 		b2y2 = pixel_y - pick(1,1,1,1,2,2,3,3,4)

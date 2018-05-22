@@ -11,7 +11,7 @@
 	thrown_force_divisor = 0.25 // 5 when thrown with weight 20 (steel)
 
 /obj/item/weapon/material/butterfly/update_force()
-	if(active)
+	if (active)
 		edge = TRUE
 		sharp = TRUE
 		..() //Updates force.
@@ -37,7 +37,7 @@
 
 /obj/item/weapon/material/butterfly/attack_self(mob/user)
 	active = !active
-	if(active)
+	if (active)
 		user << "<span class='notice'>You flip out \the [src].</span>"
 		playsound(user, 'sound/weapons/flipblade.ogg', 15, TRUE)
 	else

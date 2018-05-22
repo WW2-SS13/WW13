@@ -77,21 +77,21 @@ var/list/interior_areas = list(/area/prishtina/houses,
 
 
 /turf/CanPass(atom/movable/mover, turf/target, height=1.5,air_group=0)
-	if(!target) return FALSE
+	if (!target) return FALSE
 
-	if(istype(mover)) // turf/Enter(...) will perform more advanced checks
+	if (istype(mover)) // turf/Enter(...) will perform more advanced checks
 		return !density
 
 	else // Now, doing more detailed checks for air movement and air group formation
-	/*	if(target.blocks_air||blocks_air)
+	/*	if (target.blocks_air||blocks_air)
 			return FALSE*/
 
 		for(var/obj/obstacle in src)
-			if(!obstacle.CanPass(mover, target, height, air_group))
+			if (!obstacle.CanPass(mover, target, height, air_group))
 				return FALSE
-		if(target != src)
+		if (target != src)
 			for(var/obj/obstacle in target)
-				if(!obstacle.CanPass(mover, src, height, air_group))
+				if (!obstacle.CanPass(mover, src, height, air_group))
 					return FALSE
 
 		return TRUE
@@ -125,14 +125,14 @@ var/list/interior_areas = list(/area/prishtina/houses,
 
 /mob/var/next_push = -1
 /turf/attack_hand(mob/user)
-	if(!(user.canmove) || user.restrained() || !(user.pulling))
+	if (!(user.canmove) || user.restrained() || !(user.pulling))
 		return FALSE
-	if(user.pulling.anchored || !isturf(user.pulling.loc))
+	if (user.pulling.anchored || !isturf(user.pulling.loc))
 		return FALSE
-	if(user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1)
+	if (user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1)
 		return FALSE
 	if (world.time >= user.next_push)
-		if(ismob(user.pulling))
+		if (ismob(user.pulling))
 			var/mob/M = user.pulling
 			var/atom/movable/t = M.pulling
 			M.stop_pulling()
@@ -144,7 +144,7 @@ var/list/interior_areas = list(/area/prishtina/houses,
 	return TRUE
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
-	if(movement_disabled && usr.ckey != movement_disabled_exception)
+	if (movement_disabled && usr.ckey != movement_disabled_exception)
 		usr << "<span class='warning'>Movement is admin-disabled.</span>" //This is to identify lag problems
 		return
 
@@ -155,22 +155,22 @@ var/list/interior_areas = list(/area/prishtina/houses,
 
 	//First, check objects to block exit that are not on the border
 	for(var/obj/obstacle in mover.loc)
-		if(!(obstacle.flags & ON_BORDER) && (mover != obstacle) && (forget != obstacle))
-			if(!obstacle.CheckExit(mover, src))
+		if (!(obstacle.flags & ON_BORDER) && (mover != obstacle) && (forget != obstacle))
+			if (!obstacle.CheckExit(mover, src))
 				mover.Bump(obstacle, TRUE)
 				return FALSE
 
 	//Now, check objects to block exit that are on the border
 	for(var/obj/border_obstacle in mover.loc)
-		if((border_obstacle.flags & ON_BORDER) && (mover != border_obstacle) && (forget != border_obstacle))
-			if(!border_obstacle.CheckExit(mover, src))
+		if ((border_obstacle.flags & ON_BORDER) && (mover != border_obstacle) && (forget != border_obstacle))
+			if (!border_obstacle.CheckExit(mover, src))
 				mover.Bump(border_obstacle, TRUE)
 				return FALSE
 
 	//Next, check objects to block entry that are on the border
 	for(var/obj/border_obstacle in src)
-		if(border_obstacle.flags & ON_BORDER)
-			if(!border_obstacle.CanPass(mover, mover.loc, TRUE, FALSE) && (forget != border_obstacle))
+		if (border_obstacle.flags & ON_BORDER)
+			if (!border_obstacle.CanPass(mover, mover.loc, TRUE, FALSE) && (forget != border_obstacle))
 				mover.Bump(border_obstacle, TRUE)
 				return FALSE
 
@@ -181,8 +181,8 @@ var/list/interior_areas = list(/area/prishtina/houses,
 
 	//Finally, check objects/mobs to block entry that are not on the border
 	for(var/atom/movable/obstacle in src)
-		if(!(obstacle.flags & ON_BORDER))
-			if(!obstacle.CanPass(mover, mover.loc, TRUE, FALSE) && (forget != obstacle))
+		if (!(obstacle.flags & ON_BORDER))
+			if (!obstacle.CanPass(mover, mover.loc, TRUE, FALSE) && (forget != obstacle))
 				mover.Bump(obstacle, TRUE)
 				return FALSE
 	return TRUE //Nothing found to block so return success!
@@ -190,33 +190,33 @@ var/list/interior_areas = list(/area/prishtina/houses,
 var/const/enterloopsanity = 100
 /turf/Entered(atom/atom as mob|obj)
 
-	if(movement_disabled)
+	if (movement_disabled)
 		usr << "<span class='warning'>Movement is admin-disabled.</span>" //This is to identify lag problems
 		return
 	..()
 
-	if(!istype(atom, /atom/movable))
+	if (!istype(atom, /atom/movable))
 		return
 
 	var/atom/movable/A = atom
 
-	if(ismob(A))
+	if (ismob(A))
 		var/mob/M = A
-		if(!M.lastarea)
+		if (!M.lastarea)
 			M.lastarea = get_area(M.loc)
-		if(M.lastarea.has_gravity == FALSE)
+		if (M.lastarea.has_gravity == FALSE)
 			inertial_drift(M)
-		else if(is_space())
+		else if (is_space())
 			M.inertia_dir = FALSE
 			M.make_floating(0)
 
 	var/objects = FALSE
-	if(A && (A.flags & PROXMOVE))
+	if (A && (A.flags & PROXMOVE))
 		for(var/atom/movable/thing in range(1))
-			if(objects > enterloopsanity) break
+			if (objects > enterloopsanity) break
 			objects++
 			spawn(0)
-				if(A)
+				if (A)
 					A.HasProximity(thing, TRUE)
 					if ((thing && A) && (thing.flags & PROXMOVE))
 						thing.HasProximity(A, TRUE)
@@ -229,15 +229,15 @@ var/const/enterloopsanity = 100
 	return FALSE
 
 /turf/proc/inertial_drift(atom/movable/A as mob|obj)
-	if(!(A.last_move))	return
-	if((istype(A, /mob/) && x > 2 && x < (world.maxx - 1) && y > 2 && y < (world.maxy-1)))
+	if (!(A.last_move))	return
+	if ((istype(A, /mob/) && x > 2 && x < (world.maxx - 1) && y > 2 && y < (world.maxy-1)))
 		var/mob/M = A
-		if(M.Process_Spacemove(1))
+		if (M.Process_Spacemove(1))
 			M.inertia_dir  = FALSE
 			return
 		spawn(5)
-			if((M && !(M.anchored) && !(M.pulledby) && (M.loc == src)))
-				if(M.inertia_dir)
+			if ((M && !(M.anchored) && !(M.pulledby) && (M.loc == src)))
+				if (M.inertia_dir)
 					step(M, M.inertia_dir)
 					return
 				M.inertia_dir = M.last_move
@@ -251,20 +251,20 @@ var/const/enterloopsanity = 100
 /turf/proc/AdjacentTurfs()
 	var/L[] = new()
 	for(var/turf/t in oview(src,1))
-		if(!t.density)
-			if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
+		if (!t.density)
+			if (!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
 				L.Add(t)
 	return L
 
 /turf/proc/CardinalTurfs()
 	var/L[] = new()
 	for(var/turf/T in AdjacentTurfs())
-		if(T.x == x || T.y == y)
+		if (T.x == x || T.y == y)
 			L.Add(T)
 	return L
 
 /turf/proc/Distance(turf/t)
-	if(get_dist(src,t) == TRUE)
+	if (get_dist(src,t) == TRUE)
 		var/cost = (x - t.x) * (x - t.x) + (y - t.y) * (y - t.y)
 		cost *= (pathweight+t.pathweight)/2
 		return cost
@@ -274,8 +274,8 @@ var/const/enterloopsanity = 100
 /turf/proc/AdjacentTurfsSpace()
 	var/L[] = new()
 	for(var/turf/t in oview(src,1))
-		if(!t.density)
-			if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
+		if (!t.density)
+			if (!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
 				L.Add(t)
 	return L
 
@@ -283,22 +283,22 @@ var/const/enterloopsanity = 100
 	return PROCESS_KILL
 
 /turf/proc/contains_dense_objects()
-	if(density)
+	if (density)
 		return TRUE
 	for(var/atom/A in src)
-		if(A.density && !(A.flags & ON_BORDER))
+		if (A.density && !(A.flags & ON_BORDER))
 			return TRUE
 	return FALSE
 
 //expects an atom containing the reagents used to clean the turf
 /turf/proc/clean(atom/source, mob/user)
-	if(source.reagents.has_reagent("water", TRUE) || source.reagents.has_reagent("cleaner", TRUE))
+	if (source.reagents.has_reagent("water", TRUE) || source.reagents.has_reagent("cleaner", TRUE))
 		clean_blood()
-		if(istype(src, /turf))
+		if (istype(src, /turf))
 			var/turf/T = src
 			T.dirt = FALSE
 		for(var/obj/effect/O in src)
-			if(istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
+			if (istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
 				qdel(O)
 	else
 		user << "<span class='warning'>\The [source] is too dry to wash that.</span>"
@@ -308,31 +308,31 @@ var/const/enterloopsanity = 100
 	return
 .
 /turf/proc/wet_floor(var/wet_val = TRUE)
-	if(wet_val < wet)
+	if (wet_val < wet)
 		return
 
-	if(!wet)
+	if (!wet)
 		wet = wet_val
 		wet_overlay = image('icons/effects/water.dmi',src,"wet_floor")
 		overlays += wet_overlay
 
-	if(unwet_task)
+	if (unwet_task)
 		unwet_task.trigger_task_in(8 SECONDS)
 	else
 		unwet_task = schedule_task_in(8 SECONDS)
 		task_triggered_event.register(unwet_task, src, /turf/proc/task_unwet_floor)
 
 /turf/proc/task_unwet_floor(var/triggered_task)
-	if(triggered_task == unwet_task)
+	if (triggered_task == unwet_task)
 		unwet_task = null
 		unwet_floor(TRUE)
 
 /turf/proc/unwet_floor(var/check_very_wet)
-	if(check_very_wet && wet >= 2)
+	if (check_very_wet && wet >= 2)
 		return
 
 	wet = FALSE
-	if(wet_overlay)
+	if (wet_overlay)
 		overlays -= wet_overlay
 		wet_overlay = null
 
@@ -355,7 +355,7 @@ var/const/enterloopsanity = 100
 
 /turf/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
 	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
-	if(!tracks)
+	if (!tracks)
 		tracks = new typepath(src)
 	tracks.AddTracks(bloodDNA,comingdir,goingdir,bloodcolor)
 
@@ -368,35 +368,35 @@ var/const/enterloopsanity = 100
 		dirtoverlay.alpha = min((dirt - 50) * 5, 255)
 
 /turf/Entered(atom/A, atom/OL)
-	if(movement_disabled && usr.ckey != movement_disabled_exception)
+	if (movement_disabled && usr.ckey != movement_disabled_exception)
 		usr << "<span class='danger'>Movement is admin-disabled.</span>" //This is to identify lag problems
 		return
 
 	if (istype(A,/mob/living))
 		var/mob/living/M = A
-		if(M.lying)
+		if (M.lying)
 			return ..()
 
 		// Dirt overlays.
 		update_dirt()
 
-		if(istype(M, /mob/living/carbon/human))
+		if (istype(M, /mob/living/carbon/human))
 			var/footstepsound
 			var/mob/living/carbon/human/H = M
 			// Tracking blood
 			var/list/bloodDNA = null
 			var/bloodcolor=""
 
-			if(H.shoes)
+			if (H.shoes)
 				var/obj/item/clothing/shoes/S = H.shoes
-				if(istype(S))
+				if (istype(S))
 					S.handle_movement(src,(H.m_intent == "run" ? TRUE : FALSE))
-					if(S.track_blood && S.blood_DNA)
+					if (S.track_blood && S.blood_DNA)
 						bloodDNA = S.blood_DNA
 						bloodcolor=S.blood_color
 						S.track_blood--
 			else
-				if(H.track_blood && H.feet_blood_DNA)
+				if (H.track_blood && H.feet_blood_DNA)
 					bloodDNA = H.feet_blood_DNA
 					bloodcolor = H.feet_blood_color
 					H.track_blood--
@@ -404,7 +404,7 @@ var/const/enterloopsanity = 100
 			if (bloodDNA)
 				AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,H.dir,0,bloodcolor) // Coming
 				var/turf/from = get_step(H,reverse_direction(H.dir))
-				if(istype(from) && from)
+				if (istype(from) && from)
 					from.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,0,H.dir,bloodcolor) // Going
 
 				bloodDNA = null
@@ -414,17 +414,17 @@ var/const/enterloopsanity = 100
 				footstepsound = "platingfootsteps"
 			else if 		(istype(src, /turf/floor/grass))
 				footstepsound = "grassfootsteps"
-			//else 	if(istype(src, /turf/stalker/floor/tropa))//Not needed for now.
+			//else 	if (istype(src, /turf/stalker/floor/tropa))//Not needed for now.
 			//	footstepsound = "sandfootsteps"
-			else 	if(istype(src, /turf/floor/plating/beach/water))
+			else 	if (istype(src, /turf/floor/plating/beach/water))
 				if (!istype(src, /turf/floor/plating/beach/water/ice))
 					if (!locate(/obj/structure/catwalk) in src)
 						footstepsound = "waterfootsteps"
-			else 	if(istype(src, /turf/floor/wood))
+			else 	if (istype(src, /turf/floor/wood))
 				footstepsound = "woodfootsteps"
-			else 	if(istype(src, /turf/floor/carpet))
+			else 	if (istype(src, /turf/floor/carpet))
 				footstepsound = "carpetfootsteps"
-			else 	if(istype(src, /turf/floor/dirt))
+			else 	if (istype(src, /turf/floor/dirt))
 				footstepsound = "dirtfootsteps"
 			else
 				footstepsound = "erikafootsteps"
@@ -439,7 +439,7 @@ var/const/enterloopsanity = 100
 			else if (locate(/obj/train_connector) in contents)
 				footstepsound = "erikafootsteps"
 
-			if(istype(H.shoes, /obj/item/clothing/shoes))
+			if (istype(H.shoes, /obj/item/clothing/shoes))
 				if (processes.movement.ticks >= H.next_footstep_sound_at_movement_tick)
 					playsound(src, footstepsound, 100, TRUE)
 					switch (H.m_intent)
@@ -447,9 +447,9 @@ var/const/enterloopsanity = 100
 							H.next_footstep_sound_at_movement_tick = processes.movement.ticks + (processes.movement.schedule_interval*40)
 						if ("walk")
 							H.next_footstep_sound_at_movement_tick = processes.movement.ticks + (processes.movement.schedule_interval*53)
-		if(wet)
+		if (wet)
 
-			if(M.buckled || (wet == TRUE && M.m_intent == "walk"))
+			if (M.buckled || (wet == TRUE && M.m_intent == "walk"))
 				return
 
 			var/slip_dist = TRUE
@@ -457,15 +457,15 @@ var/const/enterloopsanity = 100
 			var/floor_type = "wet"
 
 			switch(wet)
-				if(2) // Lube
+				if (2) // Lube
 					floor_type = "slippery"
 					slip_dist = 4
 					slip_stun = 10
-				if(3) // Ice
+				if (3) // Ice
 					floor_type = "icy"
 					slip_stun = 4
 
-			if(M.slip("the [floor_type] floor",slip_stun))
+			if (M.slip("the [floor_type] floor",slip_stun))
 				for(var/i = FALSE;i<slip_dist;i++)
 					step(M, M.dir)
 					sleep(1)
@@ -481,11 +481,11 @@ var/const/enterloopsanity = 100
 	if (!..())
 		return FALSE
 
-	if(istype(M))
+	if (istype(M))
 		for(var/obj/effect/decal/cleanable/blood/B in contents)
-	/*		if(!B.blood_DNA)
+	/*		if (!B.blood_DNA)
 				B.blood_DNA = list()
-			if(!B.blood_DNA[M.dna.unique_enzymes])
+			if (!B.blood_DNA[M.dna.unique_enzymes])
 				B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
 				B.virus2 = virus_copylist(M.virus2)*/
 			return TRUE //we bloodied the floor
@@ -495,18 +495,18 @@ var/const/enterloopsanity = 100
 
 // Only adds blood on the floor -- Skie
 /turf/proc/add_blood_floor(mob/living/carbon/M as mob)
-	if( istype(M, /mob/living/carbon/alien ))
+	if ( istype(M, /mob/living/carbon/alien ))
 		var/obj/effect/decal/cleanable/blood/xeno/this = new /obj/effect/decal/cleanable/blood/xeno(src)
 		this.blood_DNA["UNKNOWN BLOOD"] = "X*"
 	/*
-	else if( istype(M, /mob/living/silicon/robot ))
+	else if ( istype(M, /mob/living/silicon/robot ))
 		new /obj/effect/decal/cleanable/blood/oil(src)*/
 
 /turf/proc/can_build_cable(var/mob/user)
 	return FALSE
 /*
 /turf/attackby(var/obj/item/thing, var/mob/user)
-	if(istype(thing, /obj/item/stack/cable_coil) && can_build_cable(user))
+	if (istype(thing, /obj/item/stack/cable_coil) && can_build_cable(user))
 		var/obj/item/stack/cable_coil/coil = thing
 		coil.turf_place(src, user)
 		return

@@ -76,11 +76,11 @@
 	..()
 
 /obj/item/weapon/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(!istype(M) || user.a_intent == "help")
+	if (!istype(M) || user.a_intent == "help")
 		return ..()
-	if(user.targeted_organ != "eyes" && user.targeted_organ != "head")
+	if (user.targeted_organ != "eyes" && user.targeted_organ != "head")
 		return ..()
-	if((CLUMSY in user.mutations) && prob(50))
+	if ((CLUMSY in user.mutations) && prob(50))
 		M = user
 	return eyestab(M,user)
 
@@ -106,18 +106,18 @@
 
 /obj/item/weapon/wirecutters/New()
 	if (!istype(src, /obj/item/weapon/wirecutters/boltcutters))
-		if(prob(50))
+		if (prob(50))
 			icon_state = "cutters-y"
 			item_state = "cutters_yellow"
 	..()
 
 /obj/item/weapon/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
-	if(user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/weapon/handcuffs/cable)))
+	if (user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/weapon/handcuffs/cable)))
 		usr.visible_message("\The [usr] cuts \the [C]'s restraints with \the [src]!",\
 		"You cut \the [C]'s restraints with \the [src]!",\
 		"You hear cable being cut.")
 		C.handcuffed = null
-		if(C.buckled && C.buckled.buckle_require_restraints)
+		if (C.buckled && C.buckled.buckle_require_restraints)
 			C.buckled.unbuckle_mob()
 		C.update_inv_handcuffed()
 		return
@@ -163,29 +163,29 @@
 	..()
 
 /obj/item/weapon/weldingtool/Destroy()
-	if(welding)
+	if (welding)
 		processing_objects -= src
 	return ..()
 
 /obj/item/weapon/weldingtool/examine(mob/user)
-	if(..(user, FALSE))
+	if (..(user, FALSE))
 		user << text("\icon[] [] contains []/[] units of fuel!", src, name, get_fuel(),max_fuel )
 
 
 /obj/item/weapon/weldingtool/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/screwdriver))
-		if(welding)
+	if (istype(W,/obj/item/weapon/screwdriver))
+		if (welding)
 			user << "<span class='danger'>Stop welding first!</span>"
 			return
 		status = !status
-		if(status)
+		if (status)
 			user << "<span class='notice'>You secure the welder.</span>"
 		else
 			user << "<span class='notice'>The welder can now be attached and modified.</span>"
 		add_fingerprint(user)
 		return
 
-	if((!status) && (istype(W,/obj/item/stack/rods)))
+	if ((!status) && (istype(W,/obj/item/stack/rods)))
 		var/obj/item/stack/rods/R = W
 		R.use(1)
 		var/obj/item/weapon/flamethrower/F = new/obj/item/weapon/flamethrower(user.loc)
@@ -211,26 +211,26 @@
 
 
 /obj/item/weapon/weldingtool/process()
-	if(welding)
-		if(prob(5))
+	if (welding)
+		if (prob(5))
 			remove_fuel(1)
 
-		if(get_fuel() < 1)
+		if (get_fuel() < 1)
 			setWelding(0)
 
 	//I'm not sure what this does. I assume it has to do with starting fires...
 	//...but it doesnt check to see if the welder is on or not.
 	var/turf/location = loc
-	if(istype(location, /mob/))
+	if (istype(location, /mob/))
 		var/mob/M = location
-		if(M.l_hand == src || M.r_hand == src)
+		if (M.l_hand == src || M.r_hand == src)
 			location = get_turf(M)
 	if (istype(location, /turf))
 		location.hotspot_expose(700, 5)
 
 
 /obj/item/weapon/weldingtool/afterattack(obj/O as obj, mob/user as mob, proximity)
-	if(!proximity) return
+	if (!proximity) return
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && !welding)
 		O.reagents.trans_to_obj(src, max_fuel)
 		user << "<span class='notice'>Welder refueled</span>"
@@ -246,7 +246,7 @@
 	if (welding)
 		remove_fuel(1)
 		var/turf/location = get_turf(user)
-		if(isliving(O))
+		if (isliving(O))
 			var/mob/living/L = O
 			L.IgniteMob()
 		if (istype(location, /turf))
@@ -265,15 +265,15 @@
 
 //Removes fuel from the welding tool. If a mob is passed, it will perform an eyecheck on the mob. This should probably be renamed to use()
 /obj/item/weapon/weldingtool/proc/remove_fuel(var/amount = TRUE, var/mob/M = null)
-	if(!welding)
+	if (!welding)
 		return FALSE
-	if(get_fuel() >= amount)
+	if (get_fuel() >= amount)
 		reagents.remove_reagent("fuel", amount)
-		if(M)
+		if (M)
 			eyecheck(M)
 		return TRUE
 	else
-		if(M)
+		if (M)
 			M << "<span class='notice'>You need more welding fuel to complete this task.</span>"
 		return FALSE
 
@@ -285,22 +285,22 @@
 	..()
 	icon_state = welding ? on_state : off_state
 	var/mob/M = loc
-	if(istype(M))
+	if (istype(M))
 		M.update_inv_l_hand()
 		M.update_inv_r_hand()
 
 //Sets the welding state of the welding tool. If you see W.welding = TRUE anywhere, please change it to W.setWelding(1)
 //so that the welding tool updates accordingly
 /obj/item/weapon/weldingtool/proc/setWelding(var/set_welding, var/mob/M)
-	if(!status)	return
+	if (!status)	return
 
 	var/turf/T = get_turf(src)
 	//If we're turning it on
-	if(set_welding && !welding)
+	if (set_welding && !welding)
 		if (get_fuel() > 0)
-			if(M)
+			if (M)
 				M << "<span class='notice'>You switch the [src] on.</span>"
-			else if(T)
+			else if (T)
 				T.visible_message("<span class='danger'>\The [src] turns on.</span>")
 			force = WEAPON_FORCE_PAINFUL
 			damtype = "fire"
@@ -310,15 +310,15 @@
 			set_light(l_range = 1.4, l_power = TRUE, l_color = COLOR_ORANGE)
 			processing_objects |= src
 		else
-			if(M)
+			if (M)
 				M << "<span class='notice'>You need more welding fuel to complete this task.</span>"
 			return
 	//Otherwise
-	else if(!set_welding && welding)
+	else if (!set_welding && welding)
 		processing_objects -= src
-		if(M)
+		if (M)
 			M << "<span class='notice'>You switch \the [src] off.</span>"
-		else if(T)
+		else if (T)
 			T.visible_message("<span class='warning'>\The [src] turns off.</span>")
 		force = WEAPON_FORCE_WEAK
 		damtype = "brute"
@@ -330,30 +330,30 @@
 //Decides whether or not to damage a player's eyes based on what they're wearing as protection
 //Note: This should probably be moved to mob
 /obj/item/weapon/weldingtool/proc/eyecheck(mob/user as mob)
-	if(!iscarbon(user))	return TRUE
-	if(istype(user, /mob/living/carbon/human))
+	if (!iscarbon(user))	return TRUE
+	if (istype(user, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/eyes/E = H.internal_organs_by_name["eyes"]
-		if(!E)
+		if (!E)
 			return
 		var/safety = H.eyecheck()
 		switch(safety)
-			if(FLASH_PROTECTION_MODERATE)
+			if (FLASH_PROTECTION_MODERATE)
 				H << "<span class='warning'>Your eyes sting a little.</span>"
 				E.damage += rand(1, 2)/2
-				if(E.damage > 12)
+				if (E.damage > 12)
 					H.eye_blurry += rand(3,6)/2
-			if(FLASH_PROTECTION_NONE)
+			if (FLASH_PROTECTION_NONE)
 				H << "<span class='warning'>Your eyes burn.</span>"
 				E.damage += rand(2, 4)/2
-				if(E.damage > 10)
+				if (E.damage > 10)
 					E.damage += rand(4,10)/2
-			if(FLASH_PROTECTION_REDUCED)
+			if (FLASH_PROTECTION_REDUCED)
 				H << "<span class='danger'>Your equipment intensify the welder's glow. Your eyes itch and burn severely.</span>"
 				H.eye_blurry += rand(12,20)/2
 				E.damage += rand(12, 16)/2
-		if(safety<FLASH_PROTECTION_MAJOR)
-			if(E.damage > 10)
+		if (safety<FLASH_PROTECTION_MAJOR)
+			if (E.damage > 10)
 				user << "<span class='warning'>Your eyes are really starting to hurt. This can't be good for you!</span>"
 
 			if (E.damage >= E.min_broken_damage)
@@ -393,7 +393,7 @@
 /obj/item/weapon/weldingtool/experimental/proc/fuel_gen()//Proc to make the experimental welder generate fuel, optimized as fuck -Sieve
 	var/gen_amount = ((world.time-last_gen)/25)
 	reagents += (gen_amount)
-	if(reagents > max_fuel)
+	if (reagents > max_fuel)
 		reagents = max_fuel
 
 /*
@@ -422,23 +422,23 @@
 
 /obj/item/weapon/weldingtool/afterattack(var/mob/M, var/mob/user)
 
-	if(ishuman(M))
+	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/S = H.organs_by_name[user.targeted_organ]
 
 		if (!S) return
-		if(!(S.status & ORGAN_ROBOT) || user.a_intent != I_HELP)
+		if (!(S.status & ORGAN_ROBOT) || user.a_intent != I_HELP)
 			return ..()
 
-		if(S.brute_dam)
-			if(S.brute_dam < ROBOLIMB_SELF_REPAIR_CAP)
+		if (S.brute_dam)
+			if (S.brute_dam < ROBOLIMB_SELF_REPAIR_CAP)
 				S.heal_damage(15,0,0,1)
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 				user.visible_message("<span class='notice'>\The [user] patches some dents on \the [M]'s [S.name] with \the [src].</span>")
-			else if(S.open != 2)
+			else if (S.open != 2)
 				user << "<span class='danger'>The damage is far too severe to patch over externally.</span>"
 			return TRUE
-		else if(S.open != 2)
+		else if (S.open != 2)
 			user << "<span class='notice'>Nothing to fix!</span>"
 
 	else
@@ -464,7 +464,7 @@
 
 /obj/item/weapon/combitool/examine()
 	..()
-	if(loc == usr && tools.len)
+	if (loc == usr && tools.len)
 		usr << "It has the following fittings:"
 		for(var/obj/item/tool in tools)
 			usr << "\icon[tool] - [tool.name][tools[current_tool]==tool?" (selected)":""]"
@@ -475,29 +475,29 @@
 		tools |= new type(src)
 
 /obj/item/weapon/combitool/attack_self(mob/user as mob)
-	if(++current_tool > tools.len) current_tool = TRUE
+	if (++current_tool > tools.len) current_tool = TRUE
 	var/obj/item/tool = tools[current_tool]
-	if(!tool)
+	if (!tool)
 		user << "You can't seem to find any fittings in \the [src]."
 	else
 		user << "You switch \the [src] to the [tool.name] fitting."
 	return TRUE
 
 /obj/item/weapon/combitool/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(!M.Adjacent(user))
+	if (!M.Adjacent(user))
 		return FALSE
 	var/obj/item/tool = tools[current_tool]
-	if(!tool) return FALSE
+	if (!tool) return FALSE
 	return (tool ? tool.attack(M,user) : FALSE)
 
 /obj/item/weapon/combitool/afterattack(var/atom/target, var/mob/living/user, proximity, params)
-	if(!proximity)
+	if (!proximity)
 		return FALSE
 	var/obj/item/tool = tools[current_tool]
-	if(!tool) return FALSE
+	if (!tool) return FALSE
 	tool.loc = user
 	var/resolved = target.attackby(tool,user)
-	if(!resolved && tool && target)
+	if (!resolved && tool && target)
 		tool.afterattack(target,user,1)
-	if(tool)
+	if (tool)
 		tool.loc = src*/

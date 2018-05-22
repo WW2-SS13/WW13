@@ -26,11 +26,11 @@
 	"<span class='notice'>You hear something metallic spin and click.</span>")
 	playsound(loc, 'sound/weapons/revolver_spin.ogg', 100, TRUE)
 	loaded = shuffle(loaded)
-	if(rand(1,max_shells) > loaded.len)
+	if (rand(1,max_shells) > loaded.len)
 		chamber_offset = rand(0,max_shells - loaded.len)
 
 /obj/item/weapon/gun/projectile/revolver/consume_next_projectile()
-	if(chamber_offset)
+	if (chamber_offset)
 		chamber_offset--
 		return
 	return ..()
@@ -60,14 +60,14 @@
 	set desc = "Click to rename your gun. If you're the detective."
 
 	var/mob/M = usr
-	if(!M.mind)	return FALSE
-	if(!M.mind.assigned_role == "Inspector")
+	if (!M.mind)	return FALSE
+	if (!M.mind.assigned_role == "Inspector")
 		M << "<span class='notice'>You don't feel cool enough to name this gun, chump.</span>"
 		return FALSE
 
 	var/input = sanitizeSafe(input("What do you want to name the gun?", ,""), MAX_NAME_LEN)
 
-	if(src && input && !M.stat && in_range(M,src))
+	if (src && input && !M.stat && in_range(M,src))
 		name = input
 		M << "You name the gun [input]. Say hello to your new friend."
 		return TRUE
@@ -81,13 +81,13 @@
 
 /obj/item/weapon/gun/projectile/revolver/deckard/update_icon()
 	..()
-	if(loaded.len)
+	if (loaded.len)
 		icon_state = "deckard-loaded"
 	else
 		icon_state = "deckard-empty"
 
 /obj/item/weapon/gun/projectile/revolver/deckard/load_ammo(var/obj/item/A, mob/user)
-	if(istype(A, /obj/item/ammo_magazine))
+	if (istype(A, /obj/item/ammo_magazine))
 		flick("deckard-reload",src)
 	..()
 
@@ -117,7 +117,7 @@
 	ammo_type = /obj/item/ammo_casing/cl44/rubber
 
 /obj/item/weapon/gun/projectile/revolver/consul/proc/update_charge()
-	if(loaded.len==0)
+	if (loaded.len==0)
 		overlays += "inspector_off"
 	else
 		overlays += "inspector_on"

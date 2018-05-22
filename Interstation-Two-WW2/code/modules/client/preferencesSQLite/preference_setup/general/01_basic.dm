@@ -24,26 +24,26 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	pref.identifying_gender = (pref.identifying_gender in all_genders_define_list) ? pref.identifying_gender : pref.gender
 	pref.real_name		= sanitize_name(pref.real_name, pref.species)
 
-	if(!pref.real_name)
+	if (!pref.real_name)
 		pref.real_name	= random_name(pref.gender, pref.species)
 
 	/* start setting up german, russian names*/
 
 	pref.german_name		= sanitize_name(pref.german_name, pref.species)
 
-	if(!pref.german_name)
+	if (!pref.german_name)
 		pref.german_name	= random_german_name(pref.german_gender, pref.species)
 
 	pref.russian_name		= sanitize_name(pref.russian_name, pref.species)
-	if(!pref.russian_name)
+	if (!pref.russian_name)
 		pref.russian_name	= random_russian_name(pref.russian_gender, pref.species)
 
 	pref.ukrainian_name		= sanitize_name(pref.ukrainian_name, pref.species)
-	if(!pref.ukrainian_name)
+	if (!pref.ukrainian_name)
 		pref.ukrainian_name	= random_ukrainian_name(pref.ukrainian_gender, pref.species)
 
 	pref.italian_name		= sanitize_name(pref.italian_name, pref.species)
-	if(!pref.italian_name)
+	if (!pref.italian_name)
 		pref.italian_name	= random_italian_name(pref.italian_gender, pref.species)
 	/*										*/
 
@@ -123,136 +123,136 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 /datum/category_item/player_setup_item/general/basic/OnTopic(var/href,var/list/href_list, var/mob/user)
 
 	//real names
-	if(href_list["rename"])
+	if (href_list["rename"])
 		var/raw_name = input(user, "Choose your character's name:", "Character Name")  as text|null
 		if (!isnull(raw_name) && CanUseTopic(user))
 			var/new_name = sanitize_name(raw_name, pref.species)
-			if(new_name)
+			if (new_name)
 				pref.real_name = new_name
 				return TOPIC_REFRESH
 			else
 				user << "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>"
 				return TOPIC_NOACTION
 
-	else if(href_list["random_name"])
+	else if (href_list["random_name"])
 		pref.real_name = random_name(pref.gender, pref.species)
 		return TOPIC_REFRESH
 
-	else if(href_list["always_random_name"])
+	else if (href_list["always_random_name"])
 		pref.be_random_name = !pref.be_random_name
 		return TOPIC_REFRESH
 
 	//german names
-	if(href_list["rename_german"])
+	if (href_list["rename_german"])
 		var/raw_name = input(user, "Choose your character's German name:", "Character Name")  as text|null
 		if (!isnull(raw_name) && CanUseTopic(user))
 			var/new_name = sanitize_name(raw_name, pref.species)
-			if(new_name)
+			if (new_name)
 				pref.german_name = new_name
 				return TOPIC_REFRESH
 			else
 				user << "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>"
 				return TOPIC_NOACTION
 
-	else if(href_list["random_name_german"])
+	else if (href_list["random_name_german"])
 		pref.german_name = random_german_name(pref.german_gender, pref.species)
 		return TOPIC_REFRESH
 
-	else if(href_list["always_random_name_german"])
+	else if (href_list["always_random_name_german"])
 		pref.be_random_name_german = !pref.be_random_name_german
 		return TOPIC_REFRESH
 
 	//russian names
-	if(href_list["rename_russian"])
+	if (href_list["rename_russian"])
 		var/raw_name = input(user, "Choose your character's Russian name:", "Character Name")  as text|null
 		if (!isnull(raw_name) && CanUseTopic(user))
 			var/new_name = sanitize_name(raw_name, pref.species)
-			if(new_name)
+			if (new_name)
 				pref.russian_name = new_name
 				return TOPIC_REFRESH
 			else
 				user << "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>"
 				return TOPIC_NOACTION
 
-	else if(href_list["random_name_russian"])
+	else if (href_list["random_name_russian"])
 		pref.russian_name = random_russian_name(pref.russian_gender, pref.species)
 		return TOPIC_REFRESH
 
-	else if(href_list["always_random_name_russian"])
+	else if (href_list["always_random_name_russian"])
 		pref.be_random_name_russian = !pref.be_random_name_russian
 		return TOPIC_REFRESH
 
 	//ukrainian names
-	if(href_list["rename_ukrainian"])
+	if (href_list["rename_ukrainian"])
 		var/raw_name = input(user, "Choose your character's UKRAINIAN/CIVILIAN name:", "Character Name")  as text|null
 		if (!isnull(raw_name) && CanUseTopic(user))
 			var/new_name = sanitize_name(raw_name, pref.species)
-			if(new_name)
+			if (new_name)
 				pref.ukrainian_name = new_name
 				return TOPIC_REFRESH
 			else
 				user << "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>"
 				return TOPIC_NOACTION
 
-	else if(href_list["random_name_ukrainian"])
+	else if (href_list["random_name_ukrainian"])
 		pref.ukrainian_name = random_ukrainian_name(pref.ukrainian_gender, pref.species)
 		return TOPIC_REFRESH
 
-	else if(href_list["always_random_name_ukrainian"])
+	else if (href_list["always_random_name_ukrainian"])
 		pref.be_random_name_ukrainian = !pref.be_random_name_ukrainian
 		return TOPIC_REFRESH
 
 	//polish names
-	if(href_list["rename_polish"])
+	if (href_list["rename_polish"])
 		var/raw_name = input(user, "Choose your character's POLISH name:", "Character Name")  as text|null
 		if (!isnull(raw_name) && CanUseTopic(user))
 			var/new_name = sanitize_name(raw_name, pref.species)
-			if(new_name)
+			if (new_name)
 				pref.polish_name = new_name
 				return TOPIC_REFRESH
 			else
 				user << "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>"
 				return TOPIC_NOACTION
 
-	else if(href_list["random_name_polish"])
+	else if (href_list["random_name_polish"])
 		pref.polish_name = random_polish_name(pref.russian_gender, pref.species)
 		return TOPIC_REFRESH
 
-	else if(href_list["always_random_name_polish"])
+	else if (href_list["always_random_name_polish"])
 		pref.be_random_name_polish = !pref.be_random_name_polish
 		return TOPIC_REFRESH
 
 	//italian names
-	if(href_list["rename_italian"])
+	if (href_list["rename_italian"])
 		var/raw_name = input(user, "Choose your character's ITALIAN name:", "Character Name")  as text|null
 		if (!isnull(raw_name) && CanUseTopic(user))
 			var/new_name = sanitize_name(raw_name, pref.species)
-			if(new_name)
+			if (new_name)
 				pref.italian_name = new_name
 				return TOPIC_REFRESH
 			else
 				user << "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>"
 				return TOPIC_NOACTION
 
-	else if(href_list["random_name_italian"])
+	else if (href_list["random_name_italian"])
 		pref.italian_name = random_italian_name(pref.italian_gender, pref.species)
 		return TOPIC_REFRESH
 
-	else if(href_list["always_random_name_italian"])
+	else if (href_list["always_random_name_italian"])
 		pref.be_random_name_italian = !pref.be_random_name_italian
 		return TOPIC_REFRESH
 
-	else if(href_list["gender"])
+	else if (href_list["gender"])
 		pref.gender = next_in_list(pref.gender, valid_player_genders)
 		return TOPIC_REFRESH
 
-	else if(href_list["gender_german"])
+	else if (href_list["gender_german"])
 		pref.german_gender = next_in_list(pref.german_gender, valid_player_genders)
 		if ((input(user, "Choose a new German name that corresponds with this gender?") in list("Yes", "No")) == "Yes")
 			pref.german_name = random_german_name(pref.german_gender, pref.species)
 		return TOPIC_REFRESH
 
-	else if(href_list["gender_russian"])
+	else if (href_list["gender_russian"])
 		pref.russian_gender = next_in_list(pref.russian_gender, valid_player_genders)
 		if ((input(user, "Choose new Polish, Ukrainian, and Russian names that correspond with this gender?") in list("Yes", "No")) == "Yes")
 			pref.russian_name = random_russian_name(pref.russian_gender, pref.species)
@@ -260,13 +260,13 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 			pref.polish_name = random_polish_name(pref.russian_gender, pref.species)
 		return TOPIC_REFRESH
 
-	else if(href_list["gender_ukrainian"])
+	else if (href_list["gender_ukrainian"])
 		pref.ukrainian_gender = next_in_list(pref.ukrainian_gender, valid_player_genders)
 		if ((input(user, "Choose new Ukrainian name that corresponds with this gender?") in list("Yes", "No")) == "Yes")
 			pref.ukrainian_name = random_ukrainian_name(pref.ukrainian_gender, pref.species)
 		return TOPIC_REFRESH
 
-	else if(href_list["gender_italian"])
+	else if (href_list["gender_italian"])
 		pref.italian_gender = next_in_list(pref.italian_gender, valid_player_genders)
 		if ((input(user, "Choose new Italian name that corresponds with this gender?") in list("Yes", "No")) == "Yes")
 			pref.italian_name = random_italian_name(pref.italian_gender, pref.species)
@@ -276,20 +276,20 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 		pref.soviet_ethnicity = next_in_list(pref.soviet_ethnicity, list(RUSSIAN, UKRAINIAN, POLISH))
 		return TOPIC_REFRESH
 
-	else if(href_list["body_build"])
+	else if (href_list["body_build"])
 		pref.body_build = input("Body Shape", "Body") in list("Default", "Slim", "Fat")
 		return TOPIC_REFRESH
 
-	else if(href_list["age"])
+	else if (href_list["age"])
 		var/datum/species/S = all_species[pref.species]
 		var/new_age = input(user, "Choose your character's age:\n([S.min_age]-[S.max_age])", "Character Preference", pref.age) as num|null
-		if(new_age && CanUseTopic(user))
+		if (new_age && CanUseTopic(user))
 			pref.age = max(min(round(text2num(new_age)), S.max_age), S.min_age)
 			return TOPIC_REFRESH
 /*
-	else if(href_list["metadata"])
+	else if (href_list["metadata"])
 		var/new_metadata = sanitize(input(user, "Enter any information you'd like others to see, such as Roleplay-preferences:", "Game Preference" , pref.metadata)) as message|null
-		if(new_metadata && CanUseTopic(user))
+		if (new_metadata && CanUseTopic(user))
 			pref.metadata = sanitize(new_metadata)
 			return TOPIC_REFRESH*/
 

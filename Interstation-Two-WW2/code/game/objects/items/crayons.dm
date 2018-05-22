@@ -43,7 +43,7 @@
 	uses = FALSE
 
 /obj/item/weapon/pen/crayon/mime/attack_self(mob/living/user as mob) //inversion
-	if(colour != "#FFFFFF" && shadeColour != "#000000")
+	if (colour != "#FFFFFF" && shadeColour != "#000000")
 		colour = "#FFFFFF"
 		shadeColour = "#000000"
 		user << "You will now draw in white and black with this crayon."
@@ -66,39 +66,39 @@
 	return
 
 /obj/item/weapon/pen/crayon/afterattack(atom/target, mob/user as mob, proximity)
-	if(!proximity) return
-	if(istype(target,/turf/floor))
+	if (!proximity) return
+	if (istype(target,/turf/floor))
 		var/drawtype = input("Choose what you'd like to draw.", "Crayon scribbles") in list("graffiti","rune","letter","arrow")
 		switch(drawtype)
-			if("letter")
+			if ("letter")
 				drawtype = input("Choose the letter.", "Crayon scribbles") in list("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z")
 				user << "You start drawing a letter on the [target.name]."
-			if("graffiti")
+			if ("graffiti")
 				user << "You start drawing graffiti on the [target.name]."
-			if("rune")
+			if ("rune")
 				user << "You start drawing a rune on the [target.name]."
-			if("arrow")
+			if ("arrow")
 				drawtype = input("Choose the arrow.", "Crayon scribbles") in list("left", "right", "up", "down")
 				user << "You start drawing an arrow on the [target.name]."
-		if(instant || do_after(user, 50))
+		if (instant || do_after(user, 50))
 			new /obj/effect/decal/cleanable/crayon(target,colour,shadeColour,drawtype)
 			user << "You finish drawing."
 			target.add_fingerprint(user)		// Adds their fingerprints to the floor the crayon is drawn on.
-			if(uses)
+			if (uses)
 				uses--
-				if(!uses)
+				if (!uses)
 					user << "<span class='warning'>You used up your crayon!</span>"
 					qdel(src)
 	return
 
 /obj/item/weapon/pen/crayon/attack(mob/living/carbon/M as mob, mob/user as mob)
-	if(istype(M) && M == user)
+	if (istype(M) && M == user)
 		M << "You take a bite of the crayon and swallow it."
 		M.nutrition += 1
 		M.reagents.add_reagent("crayon_dust",min(5,uses)/3)
-		if(uses)
+		if (uses)
 			uses -= 5
-			if(uses <= 0)
+			if (uses <= 0)
 				M << "<span class='warning'>You ate your crayon!</span>"
 				qdel(src)
 	else

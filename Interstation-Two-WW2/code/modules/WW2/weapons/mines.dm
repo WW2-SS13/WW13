@@ -28,7 +28,7 @@
 
 //Arming
 /obj/item/mine/attack_self(mob/living/user as mob)
-	if(locate(/obj/item/mine) in get_turf(src))
+	if (locate(/obj/item/mine) in get_turf(src))
 		src << "There's already a mine at this position!"
 		return
 
@@ -45,9 +45,9 @@
 					return
 
 
-	if(!anchored)
+	if (!anchored)
 		user.visible_message("<span class = 'notice'>\The [user] starts to deploy the \the [src].</span>")
-		if(!do_after(user,rand(30,40)))
+		if (!do_after(user,rand(30,40)))
 			user.visible_message("<span class = 'notice'>\The [user] decides not to deploy the \the [src].</span>")
 			return
 		nextCanExplode = world.time + 5
@@ -60,13 +60,13 @@
 
 //Disarming
 /obj/item/mine/attackby(obj/item/W as obj, mob/user as mob)
-	if(anchored)
-		if(istype(W, /obj/item/weapon/wirecutters))
+	if (anchored)
+		if (istype(W, /obj/item/weapon/wirecutters))
 			user.visible_message("<span class = 'notice'>\The [user] starts to disarm the \the [src] with the [W].</span>")
-			if(!do_after(user,60))
+			if (!do_after(user,60))
 				user.visible_message("<span class = 'notice'>\The [user] decides not to disarm the \the [src].</span>")
 				return
-			if(prob(95))
+			if (prob(95))
 				user.visible_message("<span class = 'notice'>\The [user] finishes disarming the \the [src]!</span>")
 				anchored = FALSE
 				icon_state = "betty"
@@ -74,12 +74,12 @@
 				return
 			else
 				Bumped(user)
-		else if(istype(W, /obj/item/weapon/material/knife))
+		else if (istype(W, /obj/item/weapon/material/knife))
 			user.visible_message("<span class = 'notice'>\The [user] starts to disarm the \the [src] with the [W].</span>")
-			if(!do_after(user,80))
+			if (!do_after(user,80))
 				user.visible_message("<span class = 'notice'>\The [user] decides not to disarm the \the [src].</span>")
 				return
-			if(prob(50))
+			if (prob(50))
 				user.visible_message("<span class = 'notice'>\The [user] finishes disarming the \the [src]!</span>")
 				anchored = FALSE
 				icon_state = "betty"
@@ -91,12 +91,12 @@
 			Bumped(user)
 
 /obj/item/mine/attack_hand(mob/user as mob)
-	if(anchored)
+	if (anchored)
 		user.visible_message("<span class = 'notice'>\The [user] starts to dig around the \the [src] with their bare hands!</span>")
-		if(!do_after(user,100))
+		if (!do_after(user,100))
 			user.visible_message("<span class = 'notice'>\The [user] decides not to dig up the \the [src].</span>")
 			return
-		if(prob(15))
+		if (prob(15))
 			user.visible_message("<span class = 'notice'>\The [user] finishes digging up the \the [src], disarming it!</span>")
 			anchored = FALSE
 			icon_state = "betty"
@@ -109,14 +109,14 @@
 
 //Triggering
 /obj/item/mine/Crossed(AM as mob|obj)
-	if(isobserver(AM)) return
-	if(istype(AM, /obj/item/projectile)) return
+	if (isobserver(AM)) return
+	if (istype(AM, /obj/item/projectile)) return
 	Bumped(AM)
 
 /obj/item/mine/Bumped(AM as mob|obj)
-	if(isobserver(AM)) return
-	if(!anchored) return //If armed
-	if(triggered) return
+	if (isobserver(AM)) return
+	if (!anchored) return //If armed
+	if (triggered) return
 	trigger(AM)
 
 /obj/item/mine/proc/trigger(atom/movable/AM)
@@ -128,7 +128,7 @@
 	visible_message("<span class = 'red'><b>Click!</b></span>")
 	explosion(get_turf(src),-1,1,3)
 	spawn(0)
-		if(src)
+		if (src)
 			del(src)
 
 //TYPES//

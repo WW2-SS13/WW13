@@ -8,5 +8,5 @@
 	..()
 	for(var/turf/T in src)
 		T.initialize()
-		if(turf_initializer)
+		if (turf_initializer)
 			turf_initializer.initialize(T)

@@ -42,7 +42,7 @@
 	return TRUE / Tan(x)
 
 /proc/Atan2(x, y)
-	if(!x && !y) return FALSE
+	if (!x && !y) return FALSE
 	var/a = arccos(x / sqrt(x*x + y*y))
 	return y >= 0 ? a : -a
 
@@ -116,14 +116,14 @@
 	var/bottom       = 2*a
 
 	// Return if the roots are imaginary.
-	if(discriminant < 0)
+	if (discriminant < 0)
 		return
 
 	var/root = sqrt(discriminant)
 	. += (-b + root) / bottom
 
 	// If discriminant == FALSE, there would be two roots at the same position.
-	if(discriminant != FALSE)
+	if (discriminant != FALSE)
 		. += (-b - root) / bottom
 
 /proc/ToDegrees(radians)
@@ -169,8 +169,8 @@
 /proc/n_pick()
 	var/list/finalpick = list()
 	for(var/e in args)
-		if(isobject(e))
-			if(istype(e, /list))
+		if (isobject(e))
+			if (istype(e, /list))
 				var/list/sublist = e
 				for(var/sube in sublist)
 					finalpick.Add(sube)
@@ -181,23 +181,23 @@
 
 // Clone of list[]
 /proc/n_listpos(var/list/L, var/pos, var/value)
-	if(!istype(L, /list)) return
-	if(isnum(pos))
-		if(!value)
-			if(L.len >= pos)
+	if (!istype(L, /list)) return
+	if (isnum(pos))
+		if (!value)
+			if (L.len >= pos)
 				return L[pos]
 		else
-			if(L.len >= pos)
+			if (L.len >= pos)
 				L[pos] = value
-	else if(istext(pos))
-		if(!value)
+	else if (istext(pos))
+		if (!value)
 			return L[pos]
 		else
 			L[pos] = value
 
 // Clone of list.Copy()
 /proc/n_listcopy(var/list/L, var/start, var/end)
-	if(!istype(L, /list)) return
+	if (!istype(L, /list)) return
 	return L.Copy(start, end)
 
 // Clone of list.Add()
@@ -205,13 +205,13 @@
 	var/list/chosenlist
 	var/i = TRUE
 	for(var/e in args)
-		if(i == TRUE)
-			if(isobject(e))
-				if(istype(e, /list))
+		if (i == TRUE)
+			if (isobject(e))
+				if (istype(e, /list))
 					chosenlist = e
 			i = 2
 		else
-			if(chosenlist)
+			if (chosenlist)
 				chosenlist.Add(e)
 
 // Clone of list.Remove()
@@ -219,29 +219,29 @@
 	var/list/chosenlist
 	var/i = TRUE
 	for(var/e in args)
-		if(i == TRUE)
-			if(isobject(e))
-				if(istype(e, /list))
+		if (i == TRUE)
+			if (isobject(e))
+				if (istype(e, /list))
 					chosenlist = e
 			i = 2
 		else
-			if(chosenlist)
+			if (chosenlist)
 				chosenlist.Remove(e)
 
 // Clone of list.Cut()
 /proc/n_listcut(var/list/L, var/start, var/end)
-	if(!istype(L, /list)) return
+	if (!istype(L, /list)) return
 	return L.Cut(start, end)
 
 // Clone of list.Swap()
 /proc/n_listswap(var/list/L, var/firstindex, var/secondindex)
-	if(!istype(L, /list)) return
-	if(L.len >= secondindex && L.len >= firstindex)
+	if (!istype(L, /list)) return
+	if (L.len >= secondindex && L.len >= firstindex)
 		return L.Swap(firstindex, secondindex)
 
 // Clone of list.Insert()
 /proc/n_listinsert(var/list/L, var/index, var/element)
-	if(!istype(L, /list)) return
+	if (!istype(L, /list)) return
 	return L.Insert(index, element)
 
 // --- Miscellaneous functions ---
@@ -256,38 +256,38 @@
 
 // Merge of list.Find() and findtext()
 /proc/smartfind(var/haystack, var/needle, var/start = TRUE, var/end = FALSE)
-	if(haystack && needle)
-		if(isobject(haystack))
-			if(istype(haystack, /list))
-				if(length(haystack) >= end && start > 0)
+	if (haystack && needle)
+		if (isobject(haystack))
+			if (istype(haystack, /list))
+				if (length(haystack) >= end && start > 0)
 					var/list/listhaystack = haystack
 					return listhaystack.Find(needle, start, end)
 
 		else
-			if(istext(haystack))
-				if(length(haystack) >= end && start > 0)
+			if (istext(haystack))
+				if (length(haystack) >= end && start > 0)
 					return findtext(haystack, needle, start, end)
 
 // Clone of copytext()
 /proc/docopytext(var/string, var/start = TRUE, var/end = FALSE)
-	if(istext(string) && isnum(start) && isnum(end))
-		if(start > 0)
+	if (istext(string) && isnum(start) && isnum(end))
+		if (start > 0)
 			return copytext(string, start, end)
 
 // Clone of length()
 /proc/smartlength(var/container)
-	if(container)
-		if(istype(container, /list) || istext(container))
+	if (container)
+		if (istype(container, /list) || istext(container))
 			return length(container)
 
 // BY DONKIE~
 // String stuff
 /proc/n_lower(var/string)
-	if(istext(string))
+	if (istext(string))
 		return lowertext(string)
 
 /proc/n_upper(var/string)
-	if(istext(string))
+	if (istext(string))
 		return uppertext(string)
 
 /*
@@ -303,15 +303,15 @@ proc/string_tolist(var/string)
 	return L
 
 proc/string_explode(var/string, var/separator)
-	if(istext(string))
-		if(istext(separator) && separator == "")
+	if (istext(string))
+		if (istext(separator) && separator == "")
 			return string_tolist(string)
 		var/i
 		var/lasti = TRUE
 		var/list/L = new/list()
 
 		for(i=1, i<=lentext(string)+1, i++)
-			if(copytext(string, i, i+1) == separator) // We found a separator
+			if (copytext(string, i, i+1) == separator) // We found a separator
 				L.Add(copytext(string, lasti, i))
 				lasti = i+1
 
@@ -322,28 +322,28 @@ proc/string_explode(var/string, var/separator)
 Just found out there was already a string explode function, did some benchmarking, and that function were a bit faster, sticking to that.
 */
 proc/string_explode(var/string, var/separator)
-	if(istext(string) && istext(separator))
+	if (istext(string) && istext(separator))
 		return splittext(string, separator)
 
 proc/n_repeat(var/string, var/amount)
-	if(istext(string) && isnum(amount))
+	if (istext(string) && isnum(amount))
 		var/i
 		var/newstring = ""
-		if(length(newstring)*amount >=1000)
+		if (length(newstring)*amount >=1000)
 			return
 		for(i=0, i<=amount, i++)
-			if(i>=1000)
+			if (i>=1000)
 				break
 			newstring = newstring + string
 
 		return newstring
 
 proc/n_reverse(var/string)
-	if(istext(string))
+	if (istext(string))
 		var/newstring = ""
 		var/i
 		for(i=lentext(string), i>0, i--)
-			if(i>=1000)
+			if (i>=1000)
 				break
 			newstring = newstring + copytext(string, i, i+1)
 
@@ -351,60 +351,60 @@ proc/n_reverse(var/string)
 
 // I don't know if it's neccesary to make my own proc, but I think I have to to be able to check for istext.
 proc/n_str2num(var/string)
-	if(istext(string))
+	if (istext(string))
 		return text2num(string)
 
 // Number shit
 proc/n_num2str(var/num)
-	if(isnum(num))
+	if (isnum(num))
 		return num2text(num)
 /*
 // Squareroot
 proc/n_sqrt(var/num)
-	if(isnum(num))
+	if (isnum(num))
 		return sqrt(num)
 
 // Magnitude of num
 proc/n_abs(var/num)
-	if(isnum(num))
+	if (isnum(num))
 		return abs(num)
 
 // Round down
 proc/n_floor(var/num)
-	if(isnum(num))
+	if (isnum(num))
 		return round(num)
 
 // Round up
 proc/n_ceil(var/num)
-	if(isnum(num))
+	if (isnum(num))
 		return round(num)+1
 
 // Round to nearest integer
 proc/n_round(var/num)
-	if(isnum(num))
-		if(num-round(num)<0.5)
+	if (isnum(num))
+		if (num-round(num)<0.5)
 			return round(num)
 		return n_ceil(num)
 
 // Clamps N between min and max
 proc/n_clamp(var/num, var/min=-1, var/max=1)
-	if(isnum(num)&&isnum(min)&&isnum(max))
-		if(num<=min)
+	if (isnum(num)&&isnum(min)&&isnum(max))
+		if (num<=min)
 			return min
-		if(num>=max)
+		if (num>=max)
 			return max
 		return num
 */
 // Returns TRUE if N is inbetween Min and Max
 proc/n_inrange(var/num, var/min=-1, var/max=1)
-	if(isnum(num)&&isnum(min)&&isnum(max))
+	if (isnum(num)&&isnum(min)&&isnum(max))
 		return ((min <= num) && (num <= max))
 // END OF BY DONKIE :(
 
 // Non-recursive
 // Imported from Mono string.ReplaceUnchecked
 /proc/string_replacetext(var/haystack,var/a,var/b)
-	if(istext(haystack)&&istext(a)&&istext(b))
+	if (istext(haystack)&&istext(a)&&istext(b))
 		var/i = TRUE
 		var/lenh=lentext(haystack)
 		var/lena=lentext(a)

@@ -6,18 +6,18 @@
 	var iscopy = FALSE
 
 /obj/item/weapon/paper/carbon/update_icon()
-	if(iscopy)
-		if(info)
+	if (iscopy)
+		if (info)
 			icon_state = "cpaper_words"
 			return
 		icon_state = "cpaper"
 	else if (copied)
-		if(info)
+		if (info)
 			icon_state = "paper_words"
 			return
 		icon_state = "paper"
 	else
-		if(info)
+		if (info)
 			icon_state = "paper_stack_words"
 			return
 		icon_state = "paper_stack"

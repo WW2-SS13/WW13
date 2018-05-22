@@ -4,7 +4,7 @@
 
 	for(var/obj/item/organ/I in internal_organs)
 		I.removed()
-		if(istype(loc,/turf))
+		if (istype(loc,/turf))
 			I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
 	for(var/obj/item/organ/external/E in organs)
@@ -37,14 +37,14 @@
 	emote("scream")
 
 /mob/living/carbon/human/dust()
-	if(species)
+	if (species)
 		..(species.dusted_anim, species.remains_type)
 	else
 		..()
 
 /mob/living/carbon/human/death(gibbed = FALSE)
 
-	if(stat == DEAD) return
+	if (stat == DEAD) return
 
 	src << browse(null, "window=memory")
 
@@ -62,10 +62,10 @@
 
 	callHook("death", list(src, gibbed))
 
-	if(l_hand) unEquip(l_hand)
-	if(r_hand) unEquip(r_hand)
+	if (l_hand) unEquip(l_hand)
+	if (r_hand) unEquip(r_hand)
 /*
-	if(ticker && ticker.mode)
+	if (ticker && ticker.mode)
 
 		ticker.mode.check_win()*/
 
@@ -74,18 +74,18 @@
 		client << RESPAWN_MESSAGE
 
 	. = ..(gibbed)//,species.death_message)
-	if(!gibbed)
+	if (!gibbed)
 		handle_organs()
-		if(species.death_sound)
+		if (species.death_sound)
 			playsound(loc, species.death_sound, 80, TRUE, TRUE)
 	handle_hud_list()
 
 /mob/living/carbon/human/proc/ChangeToHusk()
-	if(HUSK in mutations)	return
+	if (HUSK in mutations)	return
 
-	if(f_style)
+	if (f_style)
 		f_style = "Shaved"		//we only change the icon_state of the hair datum, so it doesn't mess up their UI/UE
-	if(h_style)
+	if (h_style)
 		h_style = "Bald"
 	update_hair(0)
 
@@ -100,11 +100,11 @@
 	return
 
 /mob/living/carbon/human/proc/ChangeToSkeleton()
-	if(SKELETON in mutations)	return
+	if (SKELETON in mutations)	return
 
-	if(f_style)
+	if (f_style)
 		f_style = "Shaved"
-	if(h_style)
+	if (h_style)
 		h_style = "Bald"
 	update_hair(0)
 

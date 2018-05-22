@@ -12,10 +12,10 @@
 
 /obj/structure/barricade/New(var/newloc, var/material_name)
 	..(newloc)
-	if(!material_name)
+	if (!material_name)
 		material_name = "wood"
 	material = get_material_by_name("[material_name]")
-	if(!material)
+	if (!material)
 		qdel(src)
 		return
 	name = "[material.display_name] barricade"
@@ -33,14 +33,14 @@
 /obj/structure/barricade/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/stack))
 		var/obj/item/stack/D = W
-		if(D.get_material_name() != material.name)
+		if (D.get_material_name() != material.name)
 			return //hitting things with the wrong type of stack usually doesn't produce messages, and probably doesn't need to.
 		if (health < maxhealth)
 			if (D.get_amount() < 1)
 				user << "<span class='warning'>You need one sheet of [material.display_name] to repair \the [src].</span>"
 				return
 			visible_message("<span class='notice'>[user] begins to repair \the [src].</span>")
-			if(do_after(user,20,src) && health < maxhealth)
+			if (do_after(user,20,src) && health < maxhealth)
 				if (D.use(1))
 					health = maxhealth
 					visible_message("<span class='notice'>[user] repairs \the [src].</span>")
@@ -49,9 +49,9 @@
 	else
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		switch(W.damtype)
-			if("fire")
+			if ("fire")
 				health -= W.force * TRUE
-			if("brute")
+			if ("brute")
 				health -= W.force * 0.75
 
 		playsound(get_turf(src), 'sound/weapons/smash.ogg', 100)
@@ -76,11 +76,11 @@
 
 /obj/structure/barricade/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if (1.0)
 			visible_message("<span class='danger'>\The [src] is blown apart!</span>")
 			qdel(src)
 			return
-		if(2.0)
+		if (2.0)
 			health -= (200 + round(maxhealth * 0.30))
 			if (health <= 0)
 				visible_message("<span class='danger'>\The [src] is blown apart!</span>")

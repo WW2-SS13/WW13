@@ -9,11 +9,11 @@
 
 	attack_hand(mob/user as mob)
 		switch(alert("Travel back to ss13?",,"Yes","No"))
-			if("Yes")
-				if(user.z != z)	return
+			if ("Yes")
+				if (user.z != z)	return
 				user.loc.loc.Exited(user)
 				user.loc = pick(latejoin)
-			if("No")
+			if ("No")
 				return
 
 /obj/effect/mark
@@ -49,7 +49,7 @@
 
 /proc/make_list_rank(rank)
 	for(var/prefix in acting_rank_prefixes)
-		if(findtext(rank, "[prefix] ", TRUE, 2+length(prefix)))
+		if (findtext(rank, "[prefix] ", TRUE, 2+length(prefix)))
 			return copytext(rank, 2+length(prefix))
 	return rank
 
@@ -66,7 +66,7 @@ var/global/list/PDA_Manifest = list()
 var/global/ManifestJSON
 
 /datum/datacore/proc/get_manifest_json()
-	if(PDA_Manifest.len)
+	if (PDA_Manifest.len)
 		return
 	var/heads[0]
 	var/sec[0]
@@ -85,54 +85,54 @@ var/global/ManifestJSON
 		var/isactive = t.fields["p_stat"]
 		var/department = FALSE
 		var/depthead = FALSE 			// Department Heads will be placed at the top of their lists.
-		if(real_rank in command_positions)
+		if (real_rank in command_positions)
 			heads[++heads.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = TRUE
 			depthead = TRUE
-			if(rank=="Captain" && heads.len != TRUE)
+			if (rank=="Captain" && heads.len != TRUE)
 				heads.Swap(1,heads.len)
 
-		if(real_rank in security_positions)
+		if (real_rank in security_positions)
 			sec[++sec.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = TRUE
-			if(depthead && sec.len != TRUE)
+			if (depthead && sec.len != TRUE)
 				sec.Swap(1,sec.len)
 
-		if(real_rank in engineering_positions)
+		if (real_rank in engineering_positions)
 			eng[++eng.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = TRUE
-			if(depthead && eng.len != TRUE)
+			if (depthead && eng.len != TRUE)
 				eng.Swap(1,eng.len)
 
-		if(real_rank in medical_positions)
+		if (real_rank in medical_positions)
 			med[++med.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = TRUE
-			if(depthead && med.len != TRUE)
+			if (depthead && med.len != TRUE)
 				med.Swap(1,med.len)
 
-		if(real_rank in science_positions)
+		if (real_rank in science_positions)
 			sci[++sci.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = TRUE
-			if(depthead && sci.len != TRUE)
+			if (depthead && sci.len != TRUE)
 				sci.Swap(1,sci.len)
 
-		if(real_rank in cargo_positions)
+		if (real_rank in cargo_positions)
 			car[++car.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = TRUE
-			if(depthead && car.len != TRUE)
+			if (depthead && car.len != TRUE)
 				car.Swap(1,car.len)
 
-		if(real_rank in civilian_positions)
+		if (real_rank in civilian_positions)
 			civ[++civ.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = TRUE
-			if(depthead && civ.len != TRUE)
+			if (depthead && civ.len != TRUE)
 				civ.Swap(1,civ.len)
 
-		if(real_rank in nonhuman_positions)
+		if (real_rank in nonhuman_positions)
 			bot[++bot.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = TRUE
 
-		if(!department && !(name in heads))
+		if (!department && !(name in heads))
 			misc[++misc.len] = list("name" = name, "rank" = rank, "active" = isactive)
 
 

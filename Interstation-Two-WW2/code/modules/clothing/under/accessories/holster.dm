@@ -6,7 +6,7 @@
 	var/obj/item/holstered = null
 
 /obj/item/clothing/accessory/holster/proc/holster(var/obj/item/I, var/mob/living/user)
-	if(holstered && istype(user))
+	if (holstered && istype(user))
 		user << "<span class='warning'>There is already \a [holstered] holstered here!</span>"
 		return
 
@@ -14,7 +14,7 @@
 		user << "<span class='warning'>[I] won't fit in [src]!</span>"
 		return
 
-	if(istype(user))
+	if (istype(user))
 		user.stop_aiming(no_message=1)
 	holstered = I
 	user.drop_from_inventory(holstered)
@@ -29,13 +29,13 @@
 	name = initial(name)
 
 /obj/item/clothing/accessory/holster/proc/unholster(mob/user as mob)
-	if(!holstered)
+	if (!holstered)
 		return
 
-	if(istype(user.get_active_hand(),/obj) && istype(user.get_inactive_hand(),/obj))
+	if (istype(user.get_active_hand(),/obj) && istype(user.get_inactive_hand(),/obj))
 		user << "<span class='warning'>You need an empty hand to draw \the [holstered]!</span>"
 	else
-		if(user.a_intent == I_HURT)
+		if (user.a_intent == I_HURT)
 			usr.visible_message(
 				"<span class='danger'>[user] draws \the [holstered], ready to shoot!</span>",
 				"<span class='warning'>You draw \the [holstered], ready to shoot!</span>"
@@ -86,8 +86,8 @@
 	set name = "Holster"
 	set category = null
 	set src in usr
-	if(!istype(usr, /mob/living)) return
-	if(usr.stat) return
+	if (!istype(usr, /mob/living)) return
+	if (usr.stat) return
 
 	//can't we just use src here?
 	var/obj/item/clothing/accessory/holster/H = null
@@ -101,9 +101,9 @@
 	if (!H)
 		usr << "<span class='warning'>Something is very wrong.</span>"
 
-	if(!H.holstered)
+	if (!H.holstered)
 		var/obj/item/W = usr.get_active_hand()
-		if(!istype(W, /obj/item))
+		if (!istype(W, /obj/item))
 			usr << "<span class='warning'>You need your gun equiped to holster it.</span>"
 			return
 		H.holster(W, usr)

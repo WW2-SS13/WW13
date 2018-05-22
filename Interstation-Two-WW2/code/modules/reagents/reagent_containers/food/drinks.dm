@@ -14,7 +14,7 @@
 		return
 
 	attack_self(mob/user as mob)
-		if(!is_open_container())
+		if (!is_open_container())
 			open(user)
 
 	proc/open(mob/user)
@@ -23,43 +23,43 @@
 		flags |= OPENCONTAINER
 
 	attack(mob/M as mob, mob/user as mob, def_zone)
-		if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
+		if (force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
 			return ..()
 
-		if(istype(M) && standard_feed_mob(user, M))
+		if (istype(M) && standard_feed_mob(user, M))
 			return
 
 		return FALSE
 
 	afterattack(obj/target, mob/user, proximity)
-		if(!proximity) return
+		if (!proximity) return
 
 		if (istype(target, /obj/structure/pot))
 			return
 
-		if(standard_dispenser_refill(user, target))
+		if (standard_dispenser_refill(user, target))
 			return
-		if(standard_pour_into(user, target))
+		if (standard_pour_into(user, target))
 			return
 
 		return ..()
 
 	standard_feed_mob(var/mob/user, var/mob/target)
-		if(!is_open_container())
+		if (!is_open_container())
 			if (istype(target))
 				user << "<span class='notice'>You need to open [src]!</span>"
 			return TRUE
 		return ..()
 
 	standard_dispenser_refill(var/mob/user, var/obj/structure/reagent_dispensers/target)
-		if(!is_open_container())
+		if (!is_open_container())
 			if (istype(target))
 				user << "<span class='notice'>You need to open [src]!</span>"
 			return TRUE
 		return ..()
 
 	standard_pour_into(var/mob/user, var/atom/target)
-		if(!is_open_container())
+		if (!is_open_container())
 			if (istype(target) && !istype(target, /obj/structure/table)) // setting on a table
 				user << "<span class='notice'>You need to open [src]!</span>"
 			return TRUE
@@ -72,9 +72,9 @@
 		playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), TRUE)
 
 	examine(mob/user)
-		if(!..(user, TRUE))
+		if (!..(user, TRUE))
 			return
-		if(!reagents || reagents.total_volume == FALSE)
+		if (!reagents || reagents.total_volume == FALSE)
 			user << "<span class='notice'>\The [src] is empty!</span>"
 		else if (reagents.total_volume <= volume * 0.25)
 			user << "<span class='notice'>\The [src] is almost empty!</span>"
@@ -192,7 +192,7 @@
 	New()
 		..()
 	on_reagent_change()
-		if(reagents.total_volume)
+		if (reagents.total_volume)
 			icon_state = "water_cup"
 		else
 			icon_state = "water_cup_e"
@@ -273,9 +273,9 @@
 	w_class = 1.0
 
 /obj/item/cocktail_stuff/attack(mob/M as mob, mob/user as mob)
-	if(!is_edible)
+	if (!is_edible)
 		return
-	if(user == M)
+	if (user == M)
 		user << "<span class='notice'>You eat [src]. Yum!</span>"
 		user.visible_message("<b>[user]</b> eats [src].")
 	else

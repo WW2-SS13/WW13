@@ -82,7 +82,7 @@
 
 		if (istype(src, /obj/tank/german))
 			for (var/obj/item/weapon/key/german/command_intermediate/key in kc.keys)
-				if(istype(key))
+				if (istype(key))
 					if (locked == TRUE)
 						tank_message("<span class = 'notice'>[user] unlocks [my_name()].</span>")
 						locked = FALSE
@@ -93,7 +93,7 @@
 
 		else if (istype(src, /obj/tank/soviet))
 			for (var/obj/item/weapon/key/soviet/command_intermediate/key in kc.keys)
-				if(istype(key))
+				if (istype(key))
 					if (locked == TRUE)
 						tank_message("<span class = 'notice'>[user] unlocks [my_name()].</span>")
 						locked = FALSE

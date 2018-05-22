@@ -32,7 +32,7 @@
 	..()
 
 /obj/item/weapon/reagent_containers/glass/rag/attack_self(mob/user as mob)
-	if(on_fire)
+	if (on_fire)
 		user.visible_message("<span class='warning'>\The [user] stamps out [src].</span>", "<span class='warning'>You stamp out [src].</span>")
 		user.unEquip(src)
 		extinguish()
@@ -40,8 +40,8 @@
 		remove_contents(user)
 
 /obj/item/weapon/reagent_containers/glass/rag/attackby(obj/item/W, mob/user)
-	if(!on_fire)
-		if(istype(W, /obj/item/weapon/flame) || istype(W, /obj/item/clothing/mask/smokable/cigarette) || (istype(W, /obj/item/flashlight/flare) && W:on) || (istype(W, /obj/item/weapon/weldingtool) && W:welding))
+	if (!on_fire)
+		if (istype(W, /obj/item/weapon/flame) || istype(W, /obj/item/clothing/mask/smokable/cigarette) || (istype(W, /obj/item/flashlight/flare) && W:on) || (istype(W, /obj/item/weapon/weldingtool) && W:welding))
 			var/cont = FALSE
 			var/obj/item/weapon/flame/F = W
 			if (istype(F) && F.lit)
@@ -55,25 +55,25 @@
 				if (WT.welding)
 					cont = TRUE
 
-			if(cont)
+			if (cont)
 				ignite()
-				if(on_fire)
+				if (on_fire)
 					visible_message("<span class='warning'>\The [user] lights [src] with [W].</span>")
 				else
 					user << "<span class='warning'>You manage to singe [src], but fail to light it. Maybe you should wet it.</span>"
-		else if(istype(W, /obj/item/weapon/weldingtool))
+		else if (istype(W, /obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/F = W
-			if(F.welding)
+			if (F.welding)
 				ignite()
-				if(on_fire)
+				if (on_fire)
 					visible_message("<span class='warning'>\The [user] lights [src] with [W].</span>")
 				else
 					user << "<span class='warning'>You manage to singe [src], but fail to light it. Maybe you should wet it.</span>"
-		else if(istype(W, /obj/item/weapon/flamethrower))
+		else if (istype(W, /obj/item/weapon/flamethrower))
 			var/obj/item/weapon/flamethrower/F = W
-			if(F.lit)
+			if (F.lit)
 				ignite()
-				if(on_fire)
+				if (on_fire)
 					visible_message("<span class='warning'>\The [user] lights [src] with [W].</span>")
 				else
 					user << "<span class='warning'>You manage to singe [src], but fail to light it. Maybe you should wet it.</span>"
@@ -82,9 +82,9 @@
 	update_name()
 
 /obj/item/weapon/reagent_containers/glass/rag/proc/update_name()
-	if(on_fire)
+	if (on_fire)
 		name = "burning [initial(name)]"
-	else if(reagents.total_volume)
+	else if (reagents.total_volume)
 		name = "damp [initial(name)]"
 	else
 		name = "dry [initial(name)]"
@@ -93,23 +93,23 @@
 
 	overlays.Cut()
 
-	if(on_fire)
+	if (on_fire)
 		overlays += icon('icons/effects/fire.dmi', "fire")
 
 	var/obj/item/weapon/reagent_containers/food/drinks/bottle/B = loc
-	if(istype(B))
+	if (istype(B))
 		B.update_icon()
 
 /obj/item/weapon/reagent_containers/glass/rag/proc/remove_contents(mob/user, atom/trans_dest = null)
-	if(!trans_dest && !user.loc)
+	if (!trans_dest && !user.loc)
 		return
 
-	if(reagents.total_volume)
+	if (reagents.total_volume)
 		var/target_text = trans_dest? "\the [trans_dest]" : "\the [user.loc]"
 		user.visible_message("<span class='danger'>\The [user] begins to wring out [src] over [target_text].</span>", "<span class='notice'>You begin to wring out [src] over [target_text].</span>")
 
-		if(do_after(user, reagents.total_volume*5, progress = FALSE)) //50 for a fully soaked rag
-			if(trans_dest)
+		if (do_after(user, reagents.total_volume*5, progress = FALSE)) //50 for a fully soaked rag
+			if (trans_dest)
 				reagents.trans_to(trans_dest, reagents.total_volume)
 			else
 				reagents.splash(user.loc, reagents.total_volume)
@@ -117,26 +117,26 @@
 			update_name()
 
 /obj/item/weapon/reagent_containers/glass/rag/proc/wipe_down(atom/A, mob/user)
-	if(!reagents.total_volume)
+	if (!reagents.total_volume)
 		user << "<span class='warning'>The [initial(name)] is dry!</span>"
 	else
 		user.visible_message("\The [user] starts to wipe down [A] with [src]!")
 		reagents.splash(A, TRUE) //get a small amount of liquid on the thing we're wiping.
 		update_name()
-		if(do_after(user,30, progress = FALSE))
+		if (do_after(user,30, progress = FALSE))
 			user.visible_message("\The [user] finishes wiping off the [A]!")
 			A.clean_blood()
 
 /obj/item/weapon/reagent_containers/glass/rag/attack(atom/target as obj|turf|area, mob/user as mob , flag)
-	if(isliving(target))
+	if (isliving(target))
 		if (do_after(user, 20, get_turf(user)))
 			var/mob/living/M = target
-			if(on_fire)
+			if (on_fire)
 				user.visible_message("<span class='danger'>\The [user] hits [target] with [src]!</span>",)
 				user.do_attack_animation(src)
 				M.IgniteMob()
-			else if(reagents.total_volume)
-				if(user.targeted_organ == "mouth")
+			else if (reagents.total_volume)
+				if (user.targeted_organ == "mouth")
 					user.do_attack_animation(src)
 					user.visible_message(
 						"<span class='danger'>\The [user] smothers [target] with [src]!</span>",
@@ -154,30 +154,30 @@
 	return ..()
 
 /obj/item/weapon/reagent_containers/glass/rag/afterattack(atom/A as obj|turf|area, mob/user as mob, proximity)
-	if(!proximity)
+	if (!proximity)
 		return
 
-	if(istype(A, /obj/structure/reagent_dispensers))
-		if(!reagents.get_free_space())
+	if (istype(A, /obj/structure/reagent_dispensers))
+		if (!reagents.get_free_space())
 			user << "<span class='warning'>\The [src] is already soaked.</span>"
 			return
 
-		if(A.reagents && A.reagents.trans_to_obj(src, reagents.maximum_volume))
+		if (A.reagents && A.reagents.trans_to_obj(src, reagents.maximum_volume))
 			user.visible_message("<span class='notice'>\The [user] soaks [src] using [A].</span>", "<span class='notice'>You soak [src] using [A].</span>")
 			update_name()
 		return
 
-	if(!on_fire && istype(A) && (src in user))
-		if(A.is_open_container() && !(A in user))
+	if (!on_fire && istype(A) && (src in user))
+		if (A.is_open_container() && !(A in user))
 			remove_contents(user, A)
-		else if(!ismob(A)) //mobs are handled in attack() - this prevents us from wiping down people while smothering them.
+		else if (!ismob(A)) //mobs are handled in attack() - this prevents us from wiping down people while smothering them.
 			wipe_down(A, user)
 		return
 /*
 /obj/item/weapon/reagent_containers/glass/rag/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	if(exposed_temperature >= 50 + T0C)
+	if (exposed_temperature >= 50 + T0C)
 		ignite()
-	if(exposed_temperature >= 900 + T0C)
+	if (exposed_temperature >= 900 + T0C)
 		new /obj/effect/decal/cleanable/ash(get_turf(src))
 		qdel(src)
 */
@@ -192,13 +192,13 @@
 	return (fuel >= 2 && fuel >= reagents.total_volume*0.8)
 
 /obj/item/weapon/reagent_containers/glass/rag/proc/ignite()
-	if(on_fire)
+	if (on_fire)
 		return
-	if(!can_ignite())
+	if (!can_ignite())
 		return
 
 	//also copied from matches
-	if(reagents.get_reagent_amount("plasma")) // the plasma explodes when exposed to fire
+	if (reagents.get_reagent_amount("plasma")) // the plasma explodes when exposed to fire
 		visible_message("<span class='danger'>\The [src] conflagrates violently!</span>")
 		var/datum/effect/effect/system/reagents_explosion/e = new()
 		e.set_up(round(reagents.get_reagent_amount("plasma") / 2.5, TRUE), get_turf(src), FALSE, FALSE)
@@ -219,7 +219,7 @@
 
 	//rags sitting around with TRUE second of burn time left is dumb.
 	//ensures players always have a few seconds of burn time left when they light their rag
-	if(burn_time <= 5)
+	if (burn_time <= 5)
 		visible_message("<span class='warning'>\The [src] falls apart!</span>")
 		new /obj/effect/decal/cleanable/ash(get_turf(src))
 		qdel(src)
@@ -227,20 +227,20 @@
 	update_icon()
 
 /obj/item/weapon/reagent_containers/glass/rag/process()
-	if(!can_ignite())
+	if (!can_ignite())
 		visible_message("<span class='warning'>\The [src] burns out.</span>")
 		extinguish()
 
 	//copied from matches
-	if(isliving(loc))
+	if (isliving(loc))
 		var/mob/living/M = loc
 		M.IgniteMob()
 
 	var/turf/location = get_turf(src)
-	if(location)
+	if (location)
 		location.hotspot_expose(700, 5)
 
-	if(burn_time <= 0)
+	if (burn_time <= 0)
 		processing_objects -= src
 		new /obj/effect/decal/cleanable/ash(location)
 		qdel(src)

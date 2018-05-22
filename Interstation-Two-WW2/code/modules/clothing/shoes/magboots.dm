@@ -17,19 +17,19 @@
 		slowdown += 3
 
 /obj/item/clothing/shoes/magboots/attack_self(mob/user)
-	if(magpulse)
+	if (magpulse)
 		item_flags &= ~NOSLIP
 		magpulse = FALSE
 		set_slowdown()
 		force = WEAPON_FORCE_WEAK
-		if(icon_base) icon_state = "[icon_base]0"
+		if (icon_base) icon_state = "[icon_base]0"
 		user << "You disable the mag-pulse traction system."
 	else
 		item_flags |= NOSLIP
 		magpulse = TRUE
 		set_slowdown()
 		force = WEAPON_FORCE_PAINFUL
-		if(icon_base) icon_state = "[icon_base]1"
+		if (icon_base) icon_state = "[icon_base]1"
 		user << "You enable the mag-pulse traction system."
 	user.update_inv_shoes()	//so our mob-overlays update
 	user.update_action_buttons()
@@ -37,18 +37,18 @@
 /obj/item/clothing/shoes/magboots/mob_can_equip(mob/user)
 	var/mob/living/carbon/human/H = user
 
-	if(H.shoes)
+	if (H.shoes)
 		shoes = H.shoes
-		if(shoes.overshoes)
+		if (shoes.overshoes)
 			user << "You are unable to wear \the [src] as \the [H.shoes] are in the way."
 			shoes = null
 			return FALSE
 		H.drop_from_inventory(shoes)	//Remove the old shoes so you can put on the magboots.
 		shoes.forceMove(src)
 
-	if(!..())
-		if(shoes) 	//Put the old shoes back on if the check fails.
-			if(H.equip_to_slot_if_possible(shoes, slot_shoes))
+	if (!..())
+		if (shoes) 	//Put the old shoes back on if the check fails.
+			if (H.equip_to_slot_if_possible(shoes, slot_shoes))
 				shoes = null
 		return FALSE
 
@@ -61,8 +61,8 @@
 /obj/item/clothing/shoes/magboots/dropped()
 	..()
 	var/mob/living/carbon/human/H = wearer
-	if(shoes)
-		if(!H.equip_to_slot_if_possible(shoes, slot_shoes))
+	if (shoes)
+		if (!H.equip_to_slot_if_possible(shoes, slot_shoes))
 			shoes.forceMove(get_turf(src))
 		shoes = null
 	wearer = null
@@ -70,6 +70,6 @@
 /obj/item/clothing/shoes/magboots/examine(mob/user)
 	..(user)
 	var/state = "disabled"
-	if(item_flags & NOSLIP)
+	if (item_flags & NOSLIP)
 		state = "enabled"
 	user << "Its mag-pulse traction system appears to be [state]."

@@ -2,7 +2,7 @@
 	var/list/random_icon_states = list()
 
 /obj/effect/decal/cleanable/clean_blood(var/ignore = FALSE)
-	if(!ignore)
+	if (!ignore)
 		qdel(src)
 		return
 	..()

@@ -9,7 +9,7 @@
 
 	FORNEXT(nanomanager.processing_uis)
 		var/datum/nanoui/NUI = current
-		if(!isDeleted(NUI))
+		if (!isDeleted(NUI))
 			try
 				NUI.process()
 			catch(var/exception/e)

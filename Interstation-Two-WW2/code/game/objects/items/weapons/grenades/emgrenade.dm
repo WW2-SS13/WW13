@@ -6,7 +6,7 @@
 
 	prime()
 		..()
-		if(empulse(src, 4, 10))
+		if (empulse(src, 4, 10))
 			qdel(src)
 		return
 
@@ -19,6 +19,6 @@
 
 	prime()
 		..()
-		if(empulse(src, 4, TRUE))
+		if (empulse(src, 4, TRUE))
 			qdel(src)
 		return

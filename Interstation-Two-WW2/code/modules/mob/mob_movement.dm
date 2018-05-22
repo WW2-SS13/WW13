@@ -37,7 +37,7 @@
 	var/max_weight = (((getStatCoeff("strength")-1)/2)+1) * 59
 	var/heavy = FALSE
 	for (var/obj/item/I in contents)
-		if(I.heavy)
+		if (I.heavy)
 			heavy = TRUE
 		weight += I.get_weight()
 		if (istype(I,/obj/item/weapon/storage))
@@ -64,9 +64,9 @@
 
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 
-	if(air_group || (height==0)) return TRUE
+	if (air_group || (height==0)) return TRUE
 
-	if(ismob(mover))
+	if (ismob(mover))
 		var/mob/moving_mob = mover
 		if ((other_mobs && moving_mob.other_mobs))
 			return TRUE
@@ -76,7 +76,7 @@
 	return
 
 /mob/proc/setMoveCooldown(var/timeout)
-	if(client)
+	if (client)
 		client.move_delay = max(world.time + timeout, client.move_delay)
 
 /client/North()
@@ -105,23 +105,23 @@
 
 /client/proc/diagonal_action(direction)
 	switch(client_dir(direction, TRUE))
-		if(NORTHEAST)
+		if (NORTHEAST)
 			swap_hand()
 			return
-		if(SOUTHEAST)
+		if (SOUTHEAST)
 			attack_self()
 			return
-		if(SOUTHWEST)
-			if(iscarbon(usr))
+		if (SOUTHWEST)
+			if (iscarbon(usr))
 				var/mob/living/carbon/C = usr
 				C.toggle_throw_mode()
 			else
 				usr << "<span class = 'red'>This mob type cannot throw items.</span>"
 			return
-		if(NORTHWEST)
-			if(iscarbon(usr))
+		if (NORTHWEST)
+			if (iscarbon(usr))
 				var/mob/living/carbon/C = usr
-				if(!C.get_active_hand())
+				if (!C.get_active_hand())
 					usr << "<span class = 'red'>You have nothing to drop in your hand.</span>"
 					return
 				drop_item()
@@ -133,14 +133,14 @@
 /client/verb/delete_key_pressed()
 	set hidden = TRUE
 
-	if(!usr.pulling)
+	if (!usr.pulling)
 		usr << "<span class = 'notice'>You are not pulling anything.</span>"
 		return
 	usr.stop_pulling()
 
 /client/verb/swap_hand()
 	set hidden = TRUE
-	if(istype(mob, /mob/living/carbon))
+	if (istype(mob, /mob/living/carbon))
 		mob:swap_hand()
 	return
 
@@ -148,7 +148,7 @@
 
 /client/verb/attack_self()
 	set hidden = TRUE
-	if(mob && isliving(mob))
+	if (mob && isliving(mob))
 		var/mob/living/L = mob
 		L.mode()
 	return
@@ -156,7 +156,7 @@
 
 /client/verb/toggle_throw_mode()
 	set hidden = TRUE
-	if(!istype(mob, /mob/living/carbon))
+	if (!istype(mob, /mob/living/carbon))
 		return
 	if (!mob.stat && isturf(mob.loc) && !mob.restrained())
 		mob:toggle_throw_mode()
@@ -166,7 +166,7 @@
 
 /client/verb/drop_item()
 	set hidden = TRUE
-	if(!isrobot(mob) && mob.stat == CONSCIOUS && isturf(mob.loc))
+	if (!isrobot(mob) && mob.stat == CONSCIOUS && isturf(mob.loc))
 		return mob.drop_item()
 	return
 
@@ -217,7 +217,7 @@
 
 		var/olddir = dir //we can't override this without sacrificing the rest of movable/New()
 		. = ..()
-		if(direct != olddir)
+		if (direct != olddir)
 			dir = olddir
 			set_dir(direct)
 
@@ -229,10 +229,10 @@
 	return
 
 /client/proc/Move_object(direct)
-	if(mob && mob.control_object)
-		if(mob.control_object.density)
+	if (mob && mob.control_object)
+		if (mob.control_object.density)
 			step(mob.control_object,direct)
-			if(!mob.control_object)	return
+			if (!mob.control_object)	return
 			mob.control_object.dir = direct
 		else
 			mob.control_object.forceMove(get_step(mob.control_object,direct))
@@ -249,14 +249,14 @@
 
 /client/Move(n, direct, ordinal = FALSE)
 
-	if(!canmove)
+	if (!canmove)
 		return
 
-	if(moving)	return
+	if (moving)	return
 
-	if(world.time < move_delay)	return
+	if (world.time < move_delay)	return
 
-	if(!mob)
+	if (!mob)
 		return // Moved here to avoid nullrefs below
 
 	if (!mob.next_change_dir)
@@ -288,9 +288,9 @@
 			mob.pixel_y = N.pixel_y
 			return
 
-	if(mob.lying && istype(n, /turf))
+	if (mob.lying && istype(n, /turf))
 		var/turf/floor/F = n
-		if(F.Adjacent(mob))
+		if (F.Adjacent(mob))
 			mob.scramble(F)
 			return
 
@@ -323,7 +323,7 @@
 		if (H.crouching)
 			return
 
-	if(mob_is_observer)
+	if (mob_is_observer)
 		var/turf/t = get_step(mob, direct)
 		if (!t)
 			return
@@ -338,9 +338,9 @@
 			mob.last_train_movement_attempt = world.time // last move attempt
 			return // prevent normal movement if we're on a train
 
-	if(mob.control_object)	Move_object(direct)
+	if (mob.control_object)	Move_object(direct)
 
-	if(mob.incorporeal_move && mob_is_observer)
+	if (mob.incorporeal_move && mob_is_observer)
 		if (mob.velocity_lastdir == direct && mob.lastMovedRecently(5))
 			++mob.ghost_velocity
 		else
@@ -352,22 +352,22 @@
 		return
 
 	for(var/obj/effect/stop/S in mob.loc)
-		if(S.victim == mob)
+		if (S.victim == mob)
 			return
 
-	if(mob_is_living && mob.stat == DEAD)
+	if (mob_is_living && mob.stat == DEAD)
 		mob.ghostize()
 		return
 
 /*	// handle possible Eye movement
-	if(mob.eyeobj)
+	if (mob.eyeobj)
 		return mob.EyeMove(n,direct)
 */
-	if(mob.transforming)	return//This is sota the goto stop mobs from moving var
+	if (mob.transforming)	return//This is sota the goto stop mobs from moving var
 
-	if(mob_is_living)
+	if (mob_is_living)
 		var/mob/living/L = mob
-		if(L.incorporeal_move)//Move though walls
+		if (L.incorporeal_move)//Move though walls
 			if (mob.velocity_lastdir == direct && mob.lastMovedRecently(5))
 				++mob.ghost_velocity
 			else
@@ -377,9 +377,9 @@
 			Process_Incorpmove(direct)
 			return
 
-	if(Process_Grab())	return
+	if (Process_Grab())	return
 
-	if(!mob.canmove)
+	if (!mob.canmove)
 		return
 
 	if (mob_is_living)
@@ -399,19 +399,19 @@
 		var/mob/living/carbon/human/H = mob
 		H.update_laddervision(null)
 
-	if(!mob.lastarea)
+	if (!mob.lastarea)
 		mob.lastarea = get_area(mob_loc)
 
-	if(isobj(mob_loc) || ismob(mob_loc)) //Inside an object, tell it we moved
+	if (isobj(mob_loc) || ismob(mob_loc)) //Inside an object, tell it we moved
 		var/atom/O = mob_loc
 		if (!istype(O, /obj/tank))
 			return O.relaymove(mob, direct)
 
-	else if(isturf(mob_loc))
-		if(mob.restrained()) //Why being pulled while cuffed prevents you from moving
+	else if (isturf(mob_loc))
+		if (mob.restrained()) //Why being pulled while cuffed prevents you from moving
 			for(var/mob/M in range(mob, 1))
-				if(M.pulling == mob)
-					if(!M.restrained() && M.stat == 0 && M.canmove && mob.Adjacent(M))
+				if (M.pulling == mob)
+					if (!M.restrained() && M.stat == 0 && M.canmove && mob.Adjacent(M))
 						if (world.time >= mob.next_cannotmove_message)
 							src << "<span class = 'notice'>You're restrained! You can't move!</span>"
 							mob.next_cannotmove_message = world.time + 10
@@ -419,7 +419,7 @@
 					else
 						M.stop_pulling()
 
-		if(mob.pinned.len)
+		if (mob.pinned.len)
 			if (world.time >= mob.next_cannotmove_message)
 				src << "<span class = 'notice'>You're pinned to a wall by [mob.pinned[1]]!</span>"
 				mob.next_cannotmove_message = world.time + 10
@@ -489,7 +489,7 @@
 				mob.velocity = max(mob.velocity-pick(1,2), FALSE)
 
 		switch(mob.m_intent)
-			if("run")
+			if ("run")
 				mob.velocity = min(mob.velocity+1, 15)
 				mob.velocity_lastdir = direct
 				move_delay += mob.get_run_delay() + standing_on_snow
@@ -501,14 +501,14 @@
 						--H.stats["stamina"][1]
 					if (H.bodytemperature < H.species.body_temperature)
 						H.bodytemperature += 0.66
-			if("walk")
+			if ("walk")
 				move_delay += mob.get_walk_delay() + standing_on_snow
 				if (mob_is_human)
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.002
 					H.water -= 0.002
 
-		if(mob.drowsyness > 0)
+		if (mob.drowsyness > 0)
 			move_delay += 3
 
 		if (mob.pulling)
@@ -545,37 +545,37 @@
 			move_delay += F.get_move_delay()
 
 		var/tickcomp = FALSE //moved this out here so we can use it for vehicles
-		if(config.Tickcomp)
+		if (config.Tickcomp)
 			// move_delay -= 1.3 //~added to the tickcomp calculation below
 			tickcomp = ((1/(world.tick_lag))*1.3) - 1.3
 			move_delay += tickcomp
 
-		if(mob.buckled && istype(mob.buckled, /obj/vehicle))
+		if (mob.buckled && istype(mob.buckled, /obj/vehicle))
 			//manually set move_delay for vehicles so we don't inherit any mob movement penalties
 			//specific vehicle move delays are set in code\modules\vehicles\vehicle.dm
 			move_delay = world.time + tickcomp
 			//drunk driving
-			if(mob.confused && prob(40))
+			if (mob.confused && prob(40))
 				direct = pick(cardinal)
 
 			return mob.buckled.relaymove(mob,direct)
 /*
-		if(mob.machine && istype(mob.machine, /obj/machinery))
-			if(mob.machine.relaymove(mob,direct))
+		if (mob.machine && istype(mob.machine, /obj/machinery))
+			if (mob.machine.relaymove(mob,direct))
 				return*/
 
-		if(mob.pulledby || mob.buckled) // Wheelchair driving!
-/*			if(istype(mob.pulledby, /obj/structure/bed/chair/wheelchair))
+		if (mob.pulledby || mob.buckled) // Wheelchair driving!
+/*			if (istype(mob.pulledby, /obj/structure/bed/chair/wheelchair))
 				return mob.pulledby.relaymove(mob, direct)*/
-			if(istype(mob.buckled, /obj/structure/bed/chair/wheelchair))
-				if(mob_is_human)
+			if (istype(mob.buckled, /obj/structure/bed/chair/wheelchair))
+				if (mob_is_human)
 					var/mob/living/carbon/human/driver = mob
 					var/obj/item/organ/external/l_hand = driver.get_organ("l_hand")
 					var/obj/item/organ/external/r_hand = driver.get_organ("r_hand")
-					if((!l_hand || l_hand.is_stump()) && (!r_hand || r_hand.is_stump()))
+					if ((!l_hand || l_hand.is_stump()) && (!r_hand || r_hand.is_stump()))
 						return // No hands to drive your chair? Tough luck!
 				//drunk wheelchair driving
-				if(mob.confused && prob(40))
+				if (mob.confused && prob(40))
 					direct = pick(cardinal)
 				move_delay += 2
 				return mob.buckled.relaymove(mob,direct)
@@ -584,15 +584,15 @@
 		moving = TRUE
 
 		//Something with grabbing things
-		if(locate(/obj/item/weapon/grab, mob))
+		if (locate(/obj/item/weapon/grab, mob))
 		//	move_delay = max(move_delay, world.time + 7)
 			move_delay += 1.0
 			var/list/L = mob.ret_grab()
-			if(istype(L, /list))
-				if(L.len == 2)
+			if (istype(L, /list))
+				if (L.len == 2)
 					L -= mob
 					var/mob/M = L[1]
-					if(M)
+					if (M)
 						for (var/obj/structure/noose/N in get_turf(M))
 							if (N.hanging == M)
 								goto skipgrab
@@ -610,7 +610,7 @@
 				else
 					for(var/mob/M in L)
 						M.other_mobs = TRUE
-						if(mob != M)
+						if (mob != M)
 							M.animate_movement = 3
 					for(var/mob/M in L)
 						spawn( FALSE )
@@ -621,7 +621,7 @@
 							M.animate_movement = 2
 							return
 
-		else if(mob.confused && prob(40))
+		else if (mob.confused && prob(40))
 			step(mob, pick(cardinal))
 		else
 			. = mob.SelfMove(n, direct)
@@ -706,38 +706,38 @@
 	var/turf/mobloc = get_turf(mob)
 
 	switch(mob.incorporeal_move)
-		if(1)
+		if (1)
 			var/turf/T = get_step(mob, direct)
-			if(mob.check_holy(T))
+			if (mob.check_holy(T))
 				mob << "<span class='warning'>You cannot get past holy grounds while you are in this plane of existence!</span>"
 				return
 			else
 				mob.forceMove(get_step(mob, direct))
 				mob.dir = direct
-		if(2)
-			if(prob(50))
+		if (2)
+			if (prob(50))
 				var/locx
 				var/locy
 				switch(direct)
-					if(NORTH)
+					if (NORTH)
 						locx = mobloc.x
 						locy = (mobloc.y+2)
-						if(locy>world.maxy)
+						if (locy>world.maxy)
 							return
-					if(SOUTH)
+					if (SOUTH)
 						locx = mobloc.x
 						locy = (mobloc.y-2)
-						if(locy<1)
+						if (locy<1)
 							return
-					if(EAST)
+					if (EAST)
 						locy = mobloc.y
 						locx = (mobloc.x+2)
-						if(locx>world.maxx)
+						if (locx>world.maxx)
 							return
-					if(WEST)
+					if (WEST)
 						locy = mobloc.y
 						locx = (mobloc.x-2)
-						if(locx<1)
+						if (locx<1)
 							return
 					else
 						return
@@ -748,7 +748,7 @@
 						spawn(0)
 							anim(T,mob,'icons/mob/mob.dmi',,"shadow",,mob.dir)
 						limit--
-						if(limit<=0)	break
+						if (limit<=0)	break
 			else
 				spawn(0)
 					anim(mobloc,mob,'icons/mob/mob.dmi',,"shadow",,mob.dir)
@@ -756,16 +756,16 @@
 			mob.dir = direct
 	// Crossed is always a bit iffy
 	for(var/obj/S in mob.loc)
-		if(istype(S,/obj/effect/step_trigger) || istype(S,/obj/effect/beam))
+		if (istype(S,/obj/effect/step_trigger) || istype(S,/obj/effect/beam))
 			S.Crossed(mob)
 		if (istype(S,/obj/fire))
 			var/obj/fire/fire = S
 			fire.Burn(mob)
 
 	var/area/A = get_area_master(mob)
-	if(A)
+	if (A)
 		A.Entered(mob)
-	if(isturf(mob.loc))
+	if (isturf(mob.loc))
 		var/turf/T = mob.loc
 		T.Entered(mob)
 	mob.Post_Incorpmove()
@@ -780,17 +780,17 @@
 ///Return TRUE for movement FALSE for none
 /mob/proc/Process_Spacemove(var/check_drift = FALSE)
 
-/*	if(!Check_Dense_Object()) //Nothing to push off of so end here
+/*	if (!Check_Dense_Object()) //Nothing to push off of so end here
 		update_floating(0)
 		return FALSE */
 
 	update_floating(1)
 
-	if(restrained()) //Check to see if we can do things
+	if (restrained()) //Check to see if we can do things
 		return FALSE
 
 	//Check to see if we slipped
-	if(prob(slip_chance(5)) && !buckled)
+	if (prob(slip_chance(5)) && !buckled)
 		src << "<span class='warning'>You slipped!</span>"
 		inertia_dir = last_move
 		step(src, inertia_dir)
@@ -804,17 +804,17 @@
 	var/shoegrip = Check_Shoegrip()
 
 	for(var/turf/T in trange(1,src)) //we only care for non-space turfs
-		if(T.density)	//walls work
+		if (T.density)	//walls work
 			return TRUE
 		else
 			var/area/A = T.loc
-			if(A.has_gravity || shoegrip)
+			if (A.has_gravity || shoegrip)
 				return TRUE
 
 	for(var/obj/O in orange(1, src))
-		if(istype(O, /obj/structure/lattice))
+		if (istype(O, /obj/structure/lattice))
 			return TRUE
-		if(O && O.density && O.anchored)
+		if (O && O.density && O.anchored)
 			return TRUE
 
 	return FALSE
@@ -823,9 +823,9 @@
 	return FALSE
 
 /mob/proc/slip_chance(var/prob_slip = 5)
-	if(stat)
+	if (stat)
 		return FALSE
-	if(Check_Shoegrip())
+	if (Check_Shoegrip())
 		return FALSE
 	return prob_slip
 

@@ -83,7 +83,7 @@ nanoui is used to open and update nano browser uis
 	window_id = "[ui_key]\ref[src_object]"
 
 	master_ui = _master_ui
-	if(master_ui)
+	if (master_ui)
 		master_ui.children += src
 	state = _state
 
@@ -149,11 +149,11 @@ nanoui is used to open and update nano browser uis
 /datum/nanoui/proc/update_status(var/push_update = FALSE)
 	var/atom/host = src_object.nano_host()
 	var/new_status = host.CanUseTopic(user, state)
-	if(master_ui)
+	if (master_ui)
 		new_status = min(new_status, master_ui.status)
 
 	set_status(new_status, push_update)
-	if(new_status == STATUS_CLOSE)
+	if (new_status == STATUS_CLOSE)
 		close()
 
  /**
@@ -407,19 +407,19 @@ nanoui is used to open and update nano browser uis
   * @return nothing
   */
 /datum/nanoui/proc/open()
-	if(!user || !user.client)
+	if (!user || !user.client)
 		return
 
 	// An attempted fix to UIs sometimes locking up spamming runtime errors due to src_object being null for whatever reason.
 	// This hard-deletes the UI, preventing the device that uses the UI from being locked up permanently.
-	if(!src_object)
+	if (!src_object)
 		qdel(src)
 
 	var/window_size = ""
 	if (width && height)
 		window_size = "size=[width]x[height];"
 	update_status(0)
-	if(status == STATUS_CLOSE)
+	if (status == STATUS_CLOSE)
 		return
 
 	user << browse(get_html(), "window=[window_id];[window_size][window_options]")
@@ -434,9 +434,9 @@ nanoui is used to open and update nano browser uis
   * @return nothing
   */
 /datum/nanoui/proc/reinitialise(template, new_initial_data)
-	if(template)
+	if (template)
 		add_template("main", template)
-	if(new_initial_data)
+	if (new_initial_data)
 		set_initial_data(new_initial_data)
 	open()
 
@@ -462,7 +462,7 @@ nanoui is used to open and update nano browser uis
   * @return nothing
   */
 /datum/nanoui/proc/on_close_winset()
-	if(!user.client)
+	if (!user.client)
 		return
 	var/params = "\ref[src]"
 
@@ -499,13 +499,13 @@ nanoui is used to open and update nano browser uis
 
 	// This is used to toggle the nano map ui
 	var/map_update = FALSE
-	if(href_list["showMap"])
+	if (href_list["showMap"])
 		set_show_map(text2num(href_list["showMap"]))
 		map_update = TRUE
 /*
-	if(href_list["mapZLevel"])
+	if (href_list["mapZLevel"])
 		var/map_z = text2num(href_list["mapZLevel"])
-		if(map_z in using_map.map_levels)
+		if (map_z in using_map.map_levels)
 			set_map_z_level(map_z)
 			map_update = TRUE
 		else

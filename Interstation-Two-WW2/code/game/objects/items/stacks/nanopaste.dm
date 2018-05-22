@@ -28,9 +28,9 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/S = H.get_organ(user.targeted_organ)
 
-		if(S.open == TRUE)
+		if (S.open == TRUE)
 			if (S && (S.status & ORGAN_ROBOT))
-				if(S.get_damage())
+				if (S.get_damage())
 					user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 					S.heal_damage(15, 15, robo_repair = TRUE)
 					H.updatehealth()

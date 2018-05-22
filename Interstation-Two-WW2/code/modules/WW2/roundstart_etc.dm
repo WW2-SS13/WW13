@@ -199,7 +199,7 @@ var/mapcheck_train_arrived = FALSE
 
 /hook/train_move/proc/announce_mission_start()
 
-	if(mission_announced)
+	if (mission_announced)
 		return TRUE
 
 	mission_announced = processes.ticker.playtime_elapsed

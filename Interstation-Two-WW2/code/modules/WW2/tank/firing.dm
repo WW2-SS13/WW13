@@ -51,13 +51,13 @@
 
 	var/atom/target = get_x_steps_in_dir(rand(MIN_RANGE,MAX_RANGE))
 
-	if(!target) return
+	if (!target) return
 
 	var/mob/user = back_seat() ? back_seat() : front_seat() // for debugging
 
 	if (!user) return
 
-	if(world.time - last_fire < fire_delay && last_fire != -1)
+	if (world.time - last_fire < fire_delay && last_fire != -1)
 		user << "<span class = 'danger'>You can't fire again so quickly!</span>"
 		return
 

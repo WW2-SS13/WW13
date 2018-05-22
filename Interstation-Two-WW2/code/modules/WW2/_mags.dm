@@ -99,22 +99,22 @@ WW 2 WEAPONS MAGS N AMMO
 	var/overlay_state = null
 
 /obj/item/ammo_magazine/maxim/proc/get_inv_overlay()
-	if(!inv_overlay)
-		if(!mob_overlay)
+	if (!inv_overlay)
+		if (!mob_overlay)
 			get_mob_overlay()
 
 		var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
-		if(icon_override)
-			if("[tmp_icon_state]_tie" in icon_states(icon_override))
+		if (icon_override)
+			if ("[tmp_icon_state]_tie" in icon_states(icon_override))
 				tmp_icon_state = "[tmp_icon_state]_tie"
 		inv_overlay = image(icon = mob_overlay.icon, icon_state = tmp_icon_state, dir = SOUTH)
 	return inv_overlay
 
 /obj/item/ammo_magazine/maxim/proc/get_mob_overlay()
-	if(!mob_overlay)
+	if (!mob_overlay)
 		var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
-		if(icon_override)
-			if("[tmp_icon_state]_mob" in icon_states(icon_override))
+		if (icon_override)
+			if ("[tmp_icon_state]_mob" in icon_states(icon_override))
 				tmp_icon_state = "[tmp_icon_state]_mob"
 			mob_overlay = image("icon" = icon_override, "icon_state" = "[tmp_icon_state]")
 		else
@@ -123,7 +123,7 @@ WW 2 WEAPONS MAGS N AMMO
 
 //when user attached an accessory to S
 /obj/item/ammo_magazine/maxim/proc/on_attached(obj/item/clothing/under/S, mob/user as mob)
-	if(!istype(S))
+	if (!istype(S))
 		return
 	has_suit = S
 	loc = has_suit
@@ -133,7 +133,7 @@ WW 2 WEAPONS MAGS N AMMO
 	add_fingerprint(user)
 
 /obj/item/ammo_magazine/maxim/proc/on_removed(mob/user as mob)
-	if(!has_suit)
+	if (!has_suit)
 		return
 	has_suit.overlays -= get_inv_overlay()
 	has_suit = null

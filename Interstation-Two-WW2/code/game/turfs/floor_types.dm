@@ -33,77 +33,77 @@
 
 /turf/floor/plating/under/update_icon(var/update_neighbors)
 	// Set initial icon and strings.
-	if(!isnull(set_update_icon) && istext(set_update_icon))
+	if (!isnull(set_update_icon) && istext(set_update_icon))
 		icon_state = set_update_icon
-	else if(flooring_override)
+	else if (flooring_override)
 		icon_state = flooring_override
 	else
 		icon_state = icon_base
-		if(has_base_range)
+		if (has_base_range)
 			icon_state = "[icon_state][rand(0,has_base_range)]"
 			flooring_override = icon_state
 	// Apply edges, corners, and inner corners.
 	overlays.Cut()
 	var/has_border = FALSE
-	if(isnull(set_update_icon) && (flags & TURF_HAS_EDGES))
+	if (isnull(set_update_icon) && (flags & TURF_HAS_EDGES))
 		for(var/step_dir in cardinal)
 			var/turf/floor/T = get_step(src, step_dir)
-			if((!istype(T) || !T || T.name != name) && !istype(T, /turf/open) && !istype(T, /turf/space))
+			if ((!istype(T) || !T || T.name != name) && !istype(T, /turf/open) && !istype(T, /turf/space))
 				has_border |= step_dir
 				overlays |= get_flooring_overlayu("[icon_base]-edge-[step_dir]", "[icon_base]_edges", step_dir)
 		if ((flags & TURF_USE0ICON) && has_border)
 			icon_state = icon_base+"0"
 
 		// There has to be a concise numerical way to do this but I am too noob.
-		if((has_border & NORTH) && (has_border & EAST))
+		if ((has_border & NORTH) && (has_border & EAST))
 			overlays |= get_flooring_overlayu("[icon_base]-edge-[NORTHEAST]", "[icon_base]_edges", NORTHEAST)
-		if((has_border & NORTH) && (has_border & WEST))
+		if ((has_border & NORTH) && (has_border & WEST))
 			overlays |= get_flooring_overlayu("[icon_base]-edge-[NORTHWEST]", "[icon_base]_edges", NORTHWEST)
-		if((has_border & SOUTH) && (has_border & EAST))
+		if ((has_border & SOUTH) && (has_border & EAST))
 			overlays |= get_flooring_overlayu("[icon_base]-edge-[SOUTHEAST]", "[icon_base]_edges", SOUTHEAST)
-		if((has_border & SOUTH) && (has_border & WEST))
+		if ((has_border & SOUTH) && (has_border & WEST))
 			overlays |= get_flooring_overlayu("[icon_base]-edge-[SOUTHWEST]", "[icon_base]_edges", SOUTHWEST)
 
-		if(flags & TURF_HAS_CORNERS)
+		if (flags & TURF_HAS_CORNERS)
 			// As above re: concise numerical way to do this.
-			if(!(has_border & NORTH))
-				if(!(has_border & EAST))
+			if (!(has_border & NORTH))
+				if (!(has_border & EAST))
 					var/turf/floor/T = get_step(src, NORTHEAST)
-					if((!istype(T) || !T || T.name != name) && !istype(T, /turf/open) && !istype(T, /turf/space))
+					if ((!istype(T) || !T || T.name != name) && !istype(T, /turf/open) && !istype(T, /turf/space))
 						overlays |= get_flooring_overlayu("[icon_base]-corner-[NORTHEAST]", "[icon_base]_corners", NORTHEAST)
-				if(!(has_border & WEST))
+				if (!(has_border & WEST))
 					var/turf/floor/T = get_step(src, NORTHWEST)
-					if((!istype(T) || !T || T.name != name) && !istype(T, /turf/open) && !istype(T, /turf/space))
+					if ((!istype(T) || !T || T.name != name) && !istype(T, /turf/open) && !istype(T, /turf/space))
 						overlays |= get_flooring_overlayu("[icon_base]-corner-[NORTHWEST]", "[icon_base]_corners", NORTHWEST)
-			if(!(has_border & SOUTH))
-				if(!(has_border & EAST))
+			if (!(has_border & SOUTH))
+				if (!(has_border & EAST))
 					var/turf/floor/T = get_step(src, SOUTHEAST)
-					if((!istype(T) || !T || T.name != name) && !istype(T, /turf/open) && !istype(T, /turf/space))
+					if ((!istype(T) || !T || T.name != name) && !istype(T, /turf/open) && !istype(T, /turf/space))
 						overlays |= get_flooring_overlayu("[icon_base]-corner-[SOUTHEAST]", "[icon_base]_corners", SOUTHEAST)
-				if(!(has_border & WEST))
+				if (!(has_border & WEST))
 					var/turf/floor/T = get_step(src, SOUTHWEST)
-					if((!istype(T) || !T || T.name != name) && !istype(T, /turf/open) && !istype(T, /turf/space))
+					if ((!istype(T) || !T || T.name != name) && !istype(T, /turf/open) && !istype(T, /turf/space))
 						overlays |= get_flooring_overlayu("[icon_base]-corner-[SOUTHWEST]", "[icon_base]_corners", SOUTHWEST)
 
-	if(decals && decals.len)
+	if (decals && decals.len)
 		overlays |= decals
 
-	if(is_plating() && !(isnull(broken) && isnull(burnt))) //temp, todo
+	if (is_plating() && !(isnull(broken) && isnull(burnt))) //temp, todo
 		icon = 'icons/turf/floors.dmi'
 		icon_state = "dmg[rand(1,4)]"
 	else
-		if(!isnull(broken) && (flags & TURF_CAN_BREAK))
+		if (!isnull(broken) && (flags & TURF_CAN_BREAK))
 			overlays |= get_flooring_overlayu("[icon_base]-broken-[broken]", "broken[broken]")
-		if(!isnull(burnt) && (flags & TURF_CAN_BURN))
+		if (!isnull(burnt) && (flags & TURF_CAN_BURN))
 			overlays |= get_flooring_overlayu("[icon_base]-burned-[burnt]", "burned[burnt]")
-	if(update_neighbors)
+	if (update_neighbors)
 		for(var/turf/floor/F in range(src, TRUE))
-			if(F == src)
+			if (F == src)
 				continue
 			F.update_icon()
 
 /turf/floor/plating/under/proc/get_flooring_overlayu(var/cache_key, var/icon_base, var/icon_dir = FALSE)
-	if(!flooring_cache[cache_key])
+	if (!flooring_cache[cache_key])
 		var/image/I = image(icon = icon, icon_state = icon_base, dir = icon_dir)
 		I.layer = layer
 		flooring_cache[cache_key] = I
@@ -119,10 +119,10 @@
 	for(var/obj/structure/catwalk/C in get_turf(src))
 		return
 
-	if(!ishuman(M) || !has_gravity(src))
+	if (!ishuman(M) || !has_gravity(src))
 		return
-	if(M.m_intent == "run")
-		if(prob(75))
+	if (M.m_intent == "run")
+		if (prob(75))
 			M.adjustBruteLoss(5)
 			M.weakened += 3
 			playsound(src, 'sound/effects/bang.ogg', 50, TRUE)
@@ -132,12 +132,12 @@
 /turf/floor/plating/under/attackby(obj/item/C as obj, mob/user as mob)
 	if (istype(C, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = C
-		if(R.amount <= 2)
+		if (R.amount <= 2)
 			return
 		else
 			R.use(2)
 			user << "<span class='notice'>You start connecting [R.name]s to [name], creating catwalk ...</span>"
-			if(do_after(user,50))
+			if (do_after(user,50))
 				alpha = FALSE
 				var/obj/structure/catwalk/CT = new /obj/structure/catwalk(loc)
 				contents += CT
@@ -181,7 +181,7 @@
 		var/n = name //just in case commands rename it in the ..() call
 		..()
 		spawn(4)
-			if(src)
+			if (src)
 				update_icon()
 				name = n
 
@@ -231,14 +231,14 @@
 //	oxygen = FALSE
 
 /turf/floor/engine/attackby(obj/item/weapon/C as obj, mob/user as mob)
-	if(!C)
+	if (!C)
 		return
-	if(!user)
+	if (!user)
 		return
-	if(istype(C, /obj/item/weapon/wrench))
+	if (istype(C, /obj/item/weapon/wrench))
 		user << "<span class = 'notice'>Removing rods...</span>"
 		playsound(src, 'sound/items/Ratchet.ogg', 80, TRUE)
-		if(do_after(user, 30))
+		if (do_after(user, 30))
 			PoolOrNew(/obj/item/stack/rods, list(loc, 2))
 			ChangeTurf(/turf/floor)
 			var/turf/floor/F = src
@@ -270,10 +270,10 @@
 /turf/floor/plating/ex_act(severity)
 		//set src in oview(1)
 	switch(severity)
-		if(1.0)
+		if (1.0)
 			ChangeTurf(world.turf)
-		if(2.0)
-			if(prob(40))
+		if (2.0)
+			if (prob(40))
 				ChangeTurf(world.turf)
 	return
 
@@ -343,10 +343,10 @@
 		icon_state = "grass[pick("1","2","3","4")]"
 		..()
 		spawn(4)
-			if(src)
+			if (src)
 				update_icon()
 				for(var/direction in cardinal)
-					if(istype(get_step(src,direction),/turf/floor))
+					if (istype(get_step(src,direction),/turf/floor))
 						var/turf/floor/FF = get_step(src,direction)
 						FF.update_icon() //so siding get updated properly
 
@@ -356,14 +356,14 @@
 	floor_type = /obj/item/stack/tile/carpet
 
 	New()
-		if(!icon_state)
+		if (!icon_state)
 			icon_state = "carpet"
 		..()
 		spawn(4)
-			if(src)
+			if (src)
 				update_icon()
 				for(var/direction in list(1,2,4,8,5,6,9,10))
-					if(istype(get_step(src,direction),/turf/floor))
+					if (istype(get_step(src,direction),/turf/floor))
 						var/turf/floor/FF = get_step(src,direction)
 						FF.update_icon() //so siding get updated properly
 
@@ -416,14 +416,14 @@
 			return
 		if (locate(/obj/item) in src)
 			return
-		if(prob(0.1)) // default is 0.1
+		if (prob(0.1)) // default is 0.1
 			wild = new/obj/structure/wild/bush(src)
 		else
 			var/chance = FALSE
 			for(var/turf/floor/plating/grass/T in range(1,src))
-				if(T.wild)
+				if (T.wild)
 					chance += 40 // default is 40
-			if(prob(chance))
+			if (prob(chance))
 				wild = new/obj/structure/wild/bush(src)
 
 /turf/floor/plating/grass/wild
@@ -517,13 +517,13 @@
 
 /turf/floor/plating/concrete/New()
 	..()
-	if(icon_state == "concrete2")
+	if (icon_state == "concrete2")
 		icon_state = pick("concrete2", "concrete3")
 		return
-	if(icon_state == "concrete6")
+	if (icon_state == "concrete6")
 		icon_state = pick("concrete6", "concrete7")
 		return
-	if(icon_state == "concrete10")
+	if (icon_state == "concrete10")
 		icon_state = pick("concrete10", "concrete11")
 		return
 

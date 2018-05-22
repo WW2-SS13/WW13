@@ -40,12 +40,12 @@ var/list/global/tank_gauge_cache = list()
 	return
 
 /obj/item/weapon/tank/Destroy()
-	if(air_contents)
+	if (air_contents)
 		qdel(air_contents)
 
 	processing_objects.Remove(src)
 /*
-	if(istype(loc, /obj/item/transfer_valve))
+	if (istype(loc, /obj/item/transfer_valve))
 		var/obj/item/transfer_valve/TTV = loc
 		TTV.remove_tank(src)*/
 
@@ -53,19 +53,19 @@ var/list/global/tank_gauge_cache = list()
 
 /obj/item/weapon/tank/examine(mob/user)
 	. = ..(user, FALSE)
-	if(.)
+	if (.)
 		var/celsius_temperature = air_contents.temperature - T0C
 		var/descriptive
 		switch(celsius_temperature)
-			if(300 to INFINITY)
+			if (300 to INFINITY)
 				descriptive = "furiously hot"
-			if(100 to 300)
+			if (100 to 300)
 				descriptive = "hot"
-			if(80 to 100)
+			if (80 to 100)
 				descriptive = "warm"
-			if(40 to 80)
+			if (40 to 80)
 				descriptive = "lukewarm"
-			if(20 to 40)
+			if (20 to 40)
 				descriptive = "room temperature"
 			else
 				descriptive = "cold"
@@ -80,7 +80,7 @@ var/list/global/tank_gauge_cache = list()
 /*	if ((istype(W, /obj/item/analyzer)) && get_dist(user, src) <= 1)
 		var/obj/item/analyzer/A = W
 		A.analyze_gases(src, user)*/
-//	if(istype(W, /obj/item/assembly_holder))
+//	if (istype(W, /obj/item/assembly_holder))
 	//	bomb_assemble(W,user)
 
 /obj/item/weapon/tank/attack_self(mob/user as mob)
@@ -92,12 +92,12 @@ var/list/global/tank_gauge_cache = list()
 /obj/item/weapon/tank/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = TRUE)
 	var/mob/living/carbon/location = null
 
-	if(istype(loc, /mob/living/carbon))
+	if (istype(loc, /mob/living/carbon))
 		location = loc
 
 	var/using_internal
-	if(istype(location))
-		if(location.internal==src)
+	if (istype(location))
+		if (location.internal==src)
 			using_internal = TRUE
 
 	// this is the data which will be sent to the ui
@@ -110,20 +110,20 @@ var/list/global/tank_gauge_cache = list()
 
 	data["maskConnected"] = FALSE
 
-	if(istype(location))
+	if (istype(location))
 		var/mask_check = FALSE
 
-		if(location.internal == src)	// if tank is current internal
+		if (location.internal == src)	// if tank is current internal
 			mask_check = TRUE
-		else if(src in location)		// or if tank is in the mobs possession
-			if(!location.internal)		// and they do not have any active internals
+		else if (src in location)		// or if tank is in the mobs possession
+			if (!location.internal)		// and they do not have any active internals
 				mask_check = TRUE
-		if(mask_check)
-			if(location.wear_mask && (location.wear_mask.item_flags & AIRTIGHT))
+		if (mask_check)
+			if (location.wear_mask && (location.wear_mask.item_flags & AIRTIGHT))
 				data["maskConnected"] = TRUE
-			else if(istype(location, /mob/living/carbon/human))
+			else if (istype(location, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = location
-				if(H.head && (H.head.item_flags & AIRTIGHT))
+				if (H.head && (H.head.item_flags & AIRTIGHT))
 					data["maskConnected"] = TRUE
 
 	// update the ui if it exists, returns null if no ui is passed/found
@@ -156,12 +156,12 @@ var/list/global/tank_gauge_cache = list()
 			distribute_pressure += cp
 		distribute_pressure = min(max(round(distribute_pressure), FALSE), TANK_MAX_RELEASE_PRESSURE)
 	if (href_list["stat"])
-		if(istype(loc,/mob/living/carbon))
+		if (istype(loc,/mob/living/carbon))
 			var/mob/living/carbon/location = loc
-			if(location.internal == src)
+			if (location.internal == src)
 				location.internal = null
 //				location.internals.icon_state = "internal0"
-				if(location.HUDneed.Find("internal"))
+				if (location.HUDneed.Find("internal"))
 					var/obj/screen/HUDelm = location.HUDneed["internal"]
 					HUDelm.icon_state = "internal0"
 				usr << "<span class='notice'>You close the tank release valve.</span>"
@@ -170,20 +170,20 @@ var/list/global/tank_gauge_cache = list()
 			else
 
 				var/can_open_valve
-				if(location.wear_mask && (location.wear_mask.item_flags & AIRTIGHT))
+				if (location.wear_mask && (location.wear_mask.item_flags & AIRTIGHT))
 					can_open_valve = TRUE
-				else if(istype(location,/mob/living/carbon/human))
+				else if (istype(location,/mob/living/carbon/human))
 					var/mob/living/carbon/human/H = location
-					if(H.head && (H.head.item_flags & AIRTIGHT))
+					if (H.head && (H.head.item_flags & AIRTIGHT))
 						can_open_valve = TRUE
 
-				if(can_open_valve)
+				if (can_open_valve)
 					location.internal = src
 					usr << "<span class='notice'>You open \the [src] valve.</span>"
 					playsound(usr, 'sound/effects/Custom_internals.ogg', 100, FALSE)
 /*					if (location.internals)
 						location.internals.icon_state = "internal1"*/
-					if(location.HUDneed.Find("internal"))
+					if (location.HUDneed.Find("internal"))
 						var/obj/screen/HUDelm = location.HUDneed["internal"]
 						HUDelm.icon_state = "internal1"
 				else
@@ -206,11 +206,11 @@ var/list/global/tank_gauge_cache = list()
 	return TRUE
 
 /obj/item/weapon/tank/proc/remove_air_volume(volume_to_return)
-	if(!air_contents)
+	if (!air_contents)
 		return null
 
 	var/tank_pressure = air_contents.return_pressure()
-	if(tank_pressure < distribute_pressure)
+	if (tank_pressure < distribute_pressure)
 		distribute_pressure = tank_pressure
 
 	var/moles_needed = distribute_pressure*volume_to_return/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
@@ -220,38 +220,38 @@ var/list/global/tank_gauge_cache = list()
 /obj/item/weapon/tank/process()
 	//Allow for reactions
 	air_contents.react() //cooking up air tanks - add plasma and oxygen, then heat above PLASMA_MINIMUM_BURN_TEMPERATURE
-	if(gauge_icon)
+	if (gauge_icon)
 		update_gauge()
 	check_status()
 
 /obj/item/weapon/tank/proc/update_gauge()
 	var/gauge_pressure = FALSE
-	if(air_contents)
+	if (air_contents)
 		gauge_pressure = air_contents.return_pressure()
-		if(gauge_pressure > TANK_IDEAL_PRESSURE)
+		if (gauge_pressure > TANK_IDEAL_PRESSURE)
 			gauge_pressure = -1
 		else
 			gauge_pressure = round((gauge_pressure/TANK_IDEAL_PRESSURE)*gauge_cap)
 
-	if(gauge_pressure == last_gauge_pressure)
+	if (gauge_pressure == last_gauge_pressure)
 		return
 
 	last_gauge_pressure = gauge_pressure
 	overlays.Cut()
 	var/indicator = "[gauge_icon][(gauge_pressure == -1) ? "overload" : gauge_pressure]"
-	if(!tank_gauge_cache[indicator])
+	if (!tank_gauge_cache[indicator])
 		tank_gauge_cache[indicator] = image(icon, indicator)
 	overlays += tank_gauge_cache[indicator]
 
 /obj/item/weapon/tank/proc/check_status()
 	//Handle exploding, leaking, and rupturing of the tank
 
-	if(!air_contents)
+	if (!air_contents)
 		return FALSE
 
 	var/pressure = air_contents.return_pressure()
-	if(pressure > my_tank_fragment_pressure)
-	/*	if(!istype(loc,/obj/item/transfer_valve))
+	if (pressure > my_tank_fragment_pressure)
+	/*	if (!istype(loc,/obj/item/transfer_valve))
 			message_admins("Explosive tank rupture! last key to touch the tank was [fingerprintslast].")
 			log_game("Explosive tank rupture! last key to touch the tank was [fingerprintslast].")*/
 
@@ -272,14 +272,14 @@ var/list/global/tank_gauge_cache = list()
 			)
 		qdel(src)
 
-	else if(pressure > TANK_RUPTURE_PRESSURE)
+	else if (pressure > TANK_RUPTURE_PRESSURE)
 		#ifdef FIREDBG
 		log_debug("<span class='warning'>[x],[y] tank is rupturing: [pressure] kPa, integrity [integrity]</span>")
 		#endif
 
-		if(integrity <= 0)
+		if (integrity <= 0)
 			var/turf/T = get_turf(src)
-			if(!T)
+			if (!T)
 				return
 			T.assume_air(air_contents)
 			playsound(loc, 'sound/effects/spray.ogg', 10, TRUE, -3)
@@ -287,19 +287,19 @@ var/list/global/tank_gauge_cache = list()
 		else
 			integrity--
 
-	else if(pressure > TANK_LEAK_PRESSURE)
+	else if (pressure > TANK_LEAK_PRESSURE)
 		#ifdef FIREDBG
 		log_debug("<span class='warning'>[x],[y] tank is leaking: [pressure] kPa, integrity [integrity]</span>")
 		#endif
 
-		if(integrity <= 0)
+		if (integrity <= 0)
 			var/turf/T = get_turf(src)
-			if(!T)
+			if (!T)
 				return
 			var/datum/gas_mixture/leaked_gas = air_contents.remove_ratio(0.25)
 			T.assume_air(leaked_gas)
 		else
 			integrity--
 
-	else if(integrity < 3)
+	else if (integrity < 3)
 		integrity++

@@ -1,5 +1,5 @@
 /proc/fix_nanoUI(var/mob/user, var/mob/H)
-	if(!istype(H) || !H.client)
+	if (!istype(H) || !H.client)
 		if (user) user << "This can only be done on mobs with clients"
 		return
 

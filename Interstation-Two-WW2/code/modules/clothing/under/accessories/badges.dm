@@ -25,17 +25,17 @@
 
 /obj/item/clothing/accessory/badge/attack_self(mob/user as mob)
 
-	if(!stored_name)
+	if (!stored_name)
 		user << "You polish your badge fondly, shining up the surface."
 		set_name(user.real_name)
 		return
 
-	if(isliving(user))
-		if(stored_name)
+	if (isliving(user))
+		if (stored_name)
 			user.visible_message("<span class='notice'>[user] displays their [name].\nIt reads: [stored_name], [badge_string].</span>","<span class='notice'>You display your [name].\nIt reads: [stored_name], [badge_string].</span>")
 		else
 			user.visible_message("<span class='notice'>[user] displays their [name].\nIt reads: [badge_string].</span>","<span class='notice'>You display your [name]. It reads: [badge_string].</span>")
 
 /obj/item/clothing/accessory/badge/attack(mob/living/carbon/human/M, mob/living/user)
-	if(isliving(user))
+	if (isliving(user))
 		user.visible_message("<span class='danger'>[user] invades [M]'s personal space, thrusting [src] into their face insistently.</span>","<span class='danger'>You invade [M]'s personal space, thrusting [src] into their face insistently.</span>")

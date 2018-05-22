@@ -40,12 +40,12 @@
 	var/colors = list("black","blue","red")
 
 /obj/item/weapon/pen/multi/attack_self(mob/user)
-	if(++selectedColor > 3)
+	if (++selectedColor > 3)
 		selectedColor = TRUE
 
 	colour = colors[selectedColor]
 
-	if(colour == "black")
+	if (colour == "black")
 		icon_state = "pen"
 	else
 		icon_state = "pen_[colour]"
@@ -59,7 +59,7 @@
 
 
 /obj/item/weapon/pen/attack(mob/M as mob, mob/user as mob)
-	if(!ismob(M))
+	if (!ismob(M))
 		return
 	user << "<span class='warning'>You stab [M] with the pen.</span>"
 //	M << "<span class = 'red'>You feel a tiny prick!</span>" //That's a whole lot of meta!
@@ -83,14 +83,14 @@
 
 /obj/item/weapon/pen/reagent/attack(mob/living/M as mob, mob/user as mob)
 
-	if(!istype(M))
+	if (!istype(M))
 		return
 
 	. = ..()
 
-	if(M.can_inject(user,1))
-		if(reagents.total_volume)
-			if(M.reagents)
+	if (M.can_inject(user,1))
+		if (reagents.total_volume)
+			if (M.reagents)
 				var/contained_reagents = reagents.get_reagents()
 				var/trans = reagents.trans_to_mob(M, 30, CHEM_BLOOD)
 				admin_inject_log(user, M, src, contained_reagents, trans)
@@ -133,7 +133,7 @@
 	personnel_list.Add("Anonymous")
 
 	var/new_signature = input("Enter new signature pattern.", "New Signature") as null|anything in personnel_list
-	if(new_signature)
+	if (new_signature)
 		signature = new_signature
 	*/
 	signature = sanitize(input("Enter new signature. Leave blank for 'Anonymous'", "New Signature", signature))
@@ -151,23 +151,23 @@
 	var/list/possible_colours = list ("Yellow", "Green", "Pink", "Blue", "Orange", "Cyan", "Red", "Invisible", "Black")
 	var/selected_type = input("Pick new colour.", "Pen Colour", null, null) as null|anything in possible_colours
 
-	if(selected_type)
+	if (selected_type)
 		switch(selected_type)
-			if("Yellow")
+			if ("Yellow")
 				colour = COLOR_YELLOW
-			if("Green")
+			if ("Green")
 				colour = COLOR_LIME
-			if("Pink")
+			if ("Pink")
 				colour = COLOR_PINK
-			if("Blue")
+			if ("Blue")
 				colour = COLOR_BLUE
-			if("Orange")
+			if ("Orange")
 				colour = COLOR_ORANGE
-			if("Cyan")
+			if ("Cyan")
 				colour = COLOR_CYAN
-			if("Red")
+			if ("Red")
 				colour = COLOR_RED
-			if("Invisible")
+			if ("Invisible")
 				colour = COLOR_WHITE
 			else
 				colour = COLOR_BLACK

@@ -21,7 +21,7 @@
 	return nodrop_special_check()
 
 /obj/item/weapon/flamethrower/flammenwerfer/update_icon()
-	if(lit)
+	if (lit)
 		icon_state = "fw_on"
 		item_state = "fw_on"
 	else
@@ -33,22 +33,22 @@
 	..()
 
 /obj/item/weapon/flamethrower/flammenwerfer/afterattack(atom/target, mob/user, proximity)
-	if(!proximity) return
+	if (!proximity) return
 	// Make sure our user is still holding us
-	if(user && user.get_active_hand() == src)
+	if (user && user.get_active_hand() == src)
 		var/turf/target_turf = get_turf(target)
-		if(target_turf)
+		if (target_turf)
 			var/turflist = getturfsbetween(user, target_turf) | list(target_turf)
 			flame_turfs(turflist, get_dir(get_turf(user), target_turf))
 
 /obj/item/weapon/flamethrower/flammenwerfer/process()
-	if(!lit)
+	if (!lit)
 		processing_objects.Remove(src)
 		return null
 	var/turf/location = loc
-	if(istype(location, /mob/))
+	if (istype(location, /mob/))
 		var/mob/M = location
-		if(M.l_hand == src || M.r_hand == src)
+		if (M.l_hand == src || M.r_hand == src)
 			location = M.loc
 	// made this stop starting fires where we are standing. fuck.
 	return
@@ -58,7 +58,7 @@
 
 	var/turf/my_turf = get_turf(loc)
 
-	if(!lit || operating)	return
+	if (!lit || operating)	return
 
 	var/mob/living/carbon/human/my_mob = loc
 
@@ -95,7 +95,7 @@
 		if (T != get_step(my_turf, my_mob.dir) && prob((get_dist(my_turf, T)+10)/get_temperature_coeff()))
 			continue
 
-		if(T.density)
+		if (T.density)
 			blocking_turfs += T
 		else
 			for (var/obj/structure/S in T.contents)
@@ -136,14 +136,14 @@
 	previousturf = null
 	operating = FALSE
 	for(var/mob/M in viewers(1, loc))
-		if((M.client && M.using_object == src))
+		if ((M.client && M.using_object == src))
 			attack_self(M)
 	return
 
 /obj/item/weapon/flamethrower/flammenwerfer/attack_self(mob/user as mob)
-	if(user.stat || user.restrained() || user.lying)	return
+	if (user.stat || user.restrained() || user.lying)	return
 	user.set_using_object(src)
-	if(!ptank)
+	if (!ptank)
 		user << "<span class='notice'>Attach a plasma tank first!</span>"
 		return
 	var/dat = text({"<TT><b>Das Flammenwerfer (<a href='?src=\ref[src];light=1'>[lit ? "<font color='red'>Lit</font>" : "Unlit"]</a>)</b><BR>\n
@@ -161,29 +161,29 @@
 	return round(fueltank * 100)
 
 /obj/item/weapon/flamethrower/flammenwerfer/Topic(href,href_list[])
-	if(href_list["close"])
+	if (href_list["close"])
 		usr.unset_using_object()
 		usr << browse(null, "window=flamethrower")
 		return
-	if(usr.stat || usr.restrained() || usr.lying)	return
+	if (usr.stat || usr.restrained() || usr.lying)	return
 	usr.set_using_object(src)
-	if(href_list["light"])
-		if(fueltank <= 0) return
-		if(!status)	return
+	if (href_list["light"])
+		if (fueltank <= 0) return
+		if (!status)	return
 		lit = !lit
-		if(lit)
+		if (lit)
 			processing_objects.Add(src)
-	if(href_list["amount"])
+	if (href_list["amount"])
 		throw_amount = throw_amount + text2num(href_list["amount"])
 		throw_amount = max(50, min(5000, throw_amount))
-	if(href_list["rwidth"])
+	if (href_list["rwidth"])
 		var/mod = text2num(href_list["rwidth"])
 		if (rwidth + mod + rheight > max_total_range)
 			usr << "<span class = 'danger'>To increase the width of the fire any more, you have to decrease the height of the fire.</span>"
 			return
 		rwidth = rwidth + mod
 		rwidth = Clamp(rwidth, 1, 7)
-	if(href_list["rheight"])
+	if (href_list["rheight"])
 		var/mod = text2num(href_list["rheight"])
 		if (rheight + mod + rwidth > max_total_range)
 			usr << "<span class = 'danger'>To increase the height of the fire any more, you have to decrease the width of the fire.</span>"
@@ -193,7 +193,7 @@
 
 	// refresh
 	for(var/mob/M in viewers(1, loc))
-		if((M.client && M.using_object == src))
+		if ((M.client && M.using_object == src))
 			attack_self(M)
 
 	update_icon()

@@ -14,7 +14,7 @@
 
 /*
 /obj/structure/bed/chair/attack_tk(mob/user as mob)
-	if(buckled_mob)
+	if (buckled_mob)
 		..()
 	else
 		rotate()
@@ -28,7 +28,7 @@
 
 /*
 	var/cache_key = "[base_icon]-[material.name]-over"
-	if(isnull(stool_cache[cache_key]))
+	if (isnull(stool_cache[cache_key]))
 		var/image/I = image('icons/obj/furniture.dmi', "[base_icon]_over")
 		I.color = material.icon_colour
 		I.layer = FLY_LAYER
@@ -36,18 +36,18 @@
 	overlays |= stool_cache[cache_key]
 */
 	// Padding overlay.
-	if(padding_material)
+	if (padding_material)
 		var/padding_cache_key = "[base_icon]-padding-[padding_material.name]-over"
-		if(isnull(stool_cache[padding_cache_key]))
+		if (isnull(stool_cache[padding_cache_key]))
 			var/image/I =  image(icon, "[base_icon]_padding_over")
 			I.color = padding_material.icon_colour
 			I.layer = FLY_LAYER
 			stool_cache[padding_cache_key] = I
 		overlays |= stool_cache[padding_cache_key]
 
-	if(buckled_mob && padding_material)
+	if (buckled_mob && padding_material)
 		var/cache_key = "[base_icon]-armrest-[padding_material.name]"
-		if(isnull(stool_cache[cache_key]))
+		if (isnull(stool_cache[cache_key]))
 			var/image/I = image(icon, "[base_icon]_armrest")
 			I.layer = MOB_LAYER + 0.1
 			I.color = padding_material.icon_colour
@@ -55,7 +55,7 @@
 		overlays |= stool_cache[cache_key]
 
 /obj/structure/bed/chair/proc/update_layer()
-	if(dir == NORTH)
+	if (dir == NORTH)
 		layer = FLY_LAYER
 	else
 		layer = OBJ_LAYER
@@ -63,7 +63,7 @@
 /obj/structure/bed/chair/set_dir()
 	..()
 	update_layer()
-	if(buckled_mob)
+	if (buckled_mob)
 		buckled_mob.set_dir(dir)
 
 /obj/structure/bed/chair/verb/rotate()
@@ -71,17 +71,17 @@
 	set category = null
 	set src in oview(1)
 
-	if(config.ghost_interaction)
+	if (config.ghost_interaction)
 		set_dir(turn(dir, 90))
 
 		return
 
 	else
-		if(istype(usr,/mob/living/simple_animal/mouse))
+		if (istype(usr,/mob/living/simple_animal/mouse))
 			return
-		if(!usr || !isturf(usr.loc))
+		if (!usr || !isturf(usr.loc))
 			return
-		if(usr.stat || usr.restrained())
+		if (usr.stat || usr.restrained())
 			return
 
 		set_dir(turn(dir, 90))
@@ -136,13 +136,13 @@
 	return
 
 /obj/structure/bed/chair/office/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/stack) || istype(W, /obj/item/weapon/wirecutters))
+	if (istype(W,/obj/item/stack) || istype(W, /obj/item/weapon/wirecutters))
 		return
 	..()
 
 /obj/structure/bed/chair/office/Move()
 	..()
-	if(buckled_mob)
+	if (buckled_mob)
 		var/mob/living/occupant = buckled_mob
 		occupant.buckled = null
 		occupant.Move(loc)
@@ -157,9 +157,9 @@
 
 /obj/structure/bed/chair/office/Bump(atom/A)
 	..()
-	if(!buckled_mob)	return
+	if (!buckled_mob)	return
 
-	if(propelled)
+	if (propelled)
 		var/mob/living/occupant = unbuckle_mob()
 
 		var/def_zone = ran_zone()
@@ -170,7 +170,7 @@
 		occupant.apply_effect(6, STUTTER, blocked)
 		occupant.apply_damage(10, BRUTE, def_zone, blocked)
 		playsound(loc, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
-		if(istype(A, /mob/living))
+		if (istype(A, /mob/living))
 			var/mob/living/victim = A
 			def_zone = ran_zone()
 			blocked = victim.run_armor_check(def_zone, "melee")
@@ -203,7 +203,7 @@
 	return
 
 /obj/structure/bed/chair/wood/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/stack) || istype(W, /obj/item/weapon/wirecutters))
+	if (istype(W,/obj/item/stack) || istype(W, /obj/item/weapon/wirecutters))
 		return
 	..()
 

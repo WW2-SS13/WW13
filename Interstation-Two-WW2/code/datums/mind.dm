@@ -68,19 +68,19 @@
 	..()
 
 /datum/mind/proc/transfer_to(mob/living/new_character)
-	if(!istype(new_character))
+	if (!istype(new_character))
 		world.log << "## DEBUG: transfer_to(): Some idiot has tried to transfer_to() a non mob/living mob. Please inform Carn"
-	if(current)					//remove ourself from our old body's mind variable
+	if (current)					//remove ourself from our old body's mind variable
 		current.mind = null
 		nanomanager.user_transferred(current, new_character) // transfer active NanoUI instances to new user
 
-	if(new_character.mind)		//remove any mind currently in our new body's mind variable
+	if (new_character.mind)		//remove any mind currently in our new body's mind variable
 		new_character.mind.current = null
 
 	current = new_character		//link ourself to our new body
 	new_character.mind = src	//and link our new body to ourself
 
-	if(active)
+	if (active)
 		new_character.key = key		//now transfer the key to link the client to our new body
 
 /datum/mind/proc/add_note(section, note)
@@ -117,7 +117,7 @@
 	else
 		output += "<i>No memories stored.</i>"
 /*
-	if(objectives.len>0)
+	if (objectives.len>0)
 		output += "<HR><b>Objectives:</b>"
 
 		var/obj_count = TRUE
@@ -143,7 +143,7 @@
 	recipient << browse(replacetext(memory_stylized, "PLACEHOLDER", output),"window=memory;size=625x650")
 
 /datum/mind/proc/edit_memory()
-	if(!ticker)
+	if (!ticker)
 		alert("Not before round-start!", "Alert")
 		return
 
@@ -158,11 +158,11 @@
 	out += "</table><hr>"
 /*	out += "<b>Objectives</b></br>"
 
-	if(objectives && objectives.len)
+	if (objectives && objectives.len)
 		var/num = TRUE
 		for(var/datum/objective/O in objectives)
 			out += "<b>Objective #[num]:</b> [O.explanation_text] "
-			if(O.completed)
+			if (O.completed)
 				out += "(<font color='green'>complete</font>)"
 			else
 				out += "(<font color='red'>incomplete</font>)"
@@ -177,31 +177,31 @@
 	usr << browse(out, "window=edit_memory[src]")
 
 /datum/mind/Topic(href, href_list)
-	if(!check_rights(R_ADMIN))	return
+	if (!check_rights(R_ADMIN))	return
 /*
-	if(href_list["add_antagonist"])
+	if (href_list["add_antagonist"])
 		var/datum/antagonist/antag = all_antag_types[href_list["add_antagonist"]]
-		if(antag)
-			if(antag.add_antagonist(src, TRUE, TRUE, FALSE, TRUE, TRUE)) // Ignore equipment and role type for this.
+		if (antag)
+			if (antag.add_antagonist(src, TRUE, TRUE, FALSE, TRUE, TRUE)) // Ignore equipment and role type for this.
 				log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
 			else
 				usr << "<span class='warning'>[src] could not be made into a [antag.role_text]!</span>"
 
-	else if(href_list["remove_antagonist"])
+	else if (href_list["remove_antagonist"])
 		var/datum/antagonist/antag = all_antag_types[href_list["remove_antagonist"]]
-		if(antag) antag.remove_antagonist(src)
+		if (antag) antag.remove_antagonist(src)
 
-	else if(href_list["equip_antagonist"])
+	else if (href_list["equip_antagonist"])
 		var/datum/antagonist/antag = all_antag_types[href_list["equip_antagonist"]]
-		if(antag) antag.equip(current)
+		if (antag) antag.equip(current)
 
-	else if(href_list["unequip_antagonist"])
+	else if (href_list["unequip_antagonist"])
 		var/datum/antagonist/antag = all_antag_types[href_list["unequip_antagonist"]]
-		if(antag) antag.unequip(current)
+		if (antag) antag.unequip(current)
 
-	else if(href_list["move_antag_to_spawn"])
+	else if (href_list["move_antag_to_spawn"])
 		var/datum/antagonist/antag = all_antag_types[href_list["move_antag_to_spawn"]]
-		if(antag) antag.place_mob(current)
+		if (antag) antag.place_mob(current)
 */
 	else if (href_list["role_edit"])
 		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in joblist
@@ -226,7 +226,7 @@
 			//Text strings are easy to manipulate. Revised for simplicity.
 			var/temp_obj_type = "[objective.type]"//Convert path into a text string.
 			def_value = copytext(temp_obj_type, 19)//Convert last part of path into an objective keyword.
-			if(!def_value)//If it's a custom objective, it will be an empty string.
+			if (!def_value)//If it's a custom objective, it will be an empty string.
 				def_value = "custom"
 
 		var/new_obj_type = input("Select objective type:", "Objective type", def_value) as null|anything in list("assassinate", "debrain", "protect", "prevent", "harm", "brig", "hijack", "escape", "survive", "steal", "download", "mercenary", "capture", "absorb", "custom")
@@ -298,9 +298,9 @@
 				if (!steal.select_target())
 					return
 
-			if("download","capture","absorb")
+			if ("download","capture","absorb")
 				var/def_num
-				if(objective&&objective.type==text2path("/datum/objective/[new_obj_type]"))
+				if (objective&&objective.type==text2path("/datum/objective/[new_obj_type]"))
 					def_num = objective.target_amount
 
 				var/target_number = input("Input target number:", "Objective", def_num) as num|null
@@ -308,13 +308,13 @@
 					return
 
 				switch(new_obj_type)
-					if("download")
+					if ("download")
 						new_objective = new /datum/objective/download
 						new_objective.explanation_text = "Download [target_number] research levels."
-					if("capture")
+					if ("capture")
 						new_objective = new /datum/objective/capture
 						new_objective.explanation_text = "Accumulate [target_number] capture points."
-					if("absorb")
+					if ("absorb")
 						new_objective = new /datum/objective/absorb
 						new_objective.explanation_text = "Absorb [target_number] compatible genomes."
 				new_objective.owner = src
@@ -337,20 +337,20 @@
 
 	else if (href_list["obj_delete"])
 		var/datum/objective/objective = locate(href_list["obj_delete"])
-		if(!istype(objective))	return
+		if (!istype(objective))	return
 		objectives -= objective
 
-	else if(href_list["obj_completed"])
+	else if (href_list["obj_completed"])
 		var/datum/objective/objective = locate(href_list["obj_completed"])
-		if(!istype(objective))	return
+		if (!istype(objective))	return
 		objective.completed = !objective.completed*/
 
 	else if (href_list["common"])
 		switch(href_list["common"])
-			if("undress")
+			if ("undress")
 				for(var/obj/item/W in current)
 					current.drop_from_inventory(W)
-			if("takeuplink")
+			if ("takeuplink")
 				take_uplink()
 				memory = null//Remove any memory they may have had.
 /*
@@ -388,8 +388,8 @@
 
 //Antagonist role check
 /mob/living/proc/check_special_role(role)
-	if(mind)
-		if(!role)
+	if (mind)
+		if (!role)
 			return mind.special_role
 		else
 			return (mind.special_role == role) ? TRUE : FALSE
@@ -398,22 +398,22 @@
 
 //Initialisation procs
 /mob/living/proc/mind_initialize()
-	if(mind)
+	if (mind)
 		mind.key = key
 	else
 		mind = new /datum/mind(key)
 		mind.original = src
-		if(ticker)
+		if (ticker)
 			ticker.minds += mind
 		else
 			world.log << "## DEBUG: mind_initialize(): No ticker ready yet! Please inform Carn"
-	if(!mind.name)	mind.name = real_name
+	if (!mind.name)	mind.name = real_name
 	mind.current = src
 
 //HUMAN
 /mob/living/carbon/human/mind_initialize()
 	..()
-	if(!mind.assigned_role)	mind.assigned_role = "Assistant"	//defualt
+	if (!mind.assigned_role)	mind.assigned_role = "Assistant"	//defualt
 
 //slime
 /mob/living/carbon/slime/mind_initialize()

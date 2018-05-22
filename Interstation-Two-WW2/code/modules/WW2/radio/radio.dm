@@ -224,7 +224,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	interact(user)
 
 /obj/item/radio/interact(mob/user)
-	if(!user)
+	if (!user)
 		return FALSE
 
 	return ui_interact(user)
@@ -256,12 +256,12 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	data["supply_crate_objects"] = supply_crate_objects
 
 	var/list/chanlist = list_channels(user)
-	if(islist(chanlist) && chanlist.len)
+	if (islist(chanlist) && chanlist.len)
 		data["chan_list"] = chanlist
 		data["chan_list_len"] = chanlist.len
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if(!ui)
+	if (!ui)
 		ui = new(user, src, ui_key, "radio.tmpl", "[name]", 400, 430)
 		ui.set_initial_data(data)
 		ui.auto_update_content = TRUE
@@ -453,19 +453,19 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	internal_channels = command_soviet_channels.Copy()
 /*
 /obj/item/radio/intercom/a7b/process()
-	if(world.time - last_tick > 30 || last_tick == -1)
+	if (world.time - last_tick > 30 || last_tick == -1)
 		last_tick = world.time
 
-		if(!loc)
+		if (!loc)
 			on = FALSE
 		else
 			var/area/A = loc.loc
-			if(!A || !isarea(A))
+			if (!A || !isarea(A))
 				on = FALSE
 			else
 				on = A.powered(EQUIP) // set "on" to the power status
 
-		if(!on)
+		if (!on)
 			icon_state = "a7b"
 		else
 			icon_state = "a7b"
@@ -506,19 +506,19 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	internal_channels = command_german_channels.Copy()
 /*
 /obj/item/radio/intercom/fu2/process()
-	if(world.time - last_tick > 30 || last_tick == -1)
+	if (world.time - last_tick > 30 || last_tick == -1)
 		last_tick = world.time
 
-		if(!loc)
+		if (!loc)
 			on = FALSE
 		else
 			var/area/A = loc.loc
-			if(!A || !isarea(A))
+			if (!A || !isarea(A))
 				on = FALSE
 			else
 				on = A.powered(EQUIP) // set "on" to the power status
 
-		if(!on)
+		if (!on)
 			icon_state = "fud2"
 		else
 			icon_state = "fud2"
@@ -584,7 +584,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 // radio topic stuff
 
 /obj/item/radio/Topic(href, href_list)
-	if(..())
+	if (..())
 		return TRUE
 
 	usr.set_using_object(src)
@@ -601,7 +601,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	else if (href_list["listen"])
 		listening = !listening
 		. = TRUE
-	else if(href_list["spec_freq"])
+	else if (href_list["spec_freq"])
 		frequency = (text2num(href_list["spec_freq"]))
 		. = TRUE
 	else if (href_list["purchase"])
@@ -627,7 +627,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	for (var/channel in internal_channels)
 		listening_on_channel[radio_freq2name(channel)] = TRUE
 
-	if(.)
+	if (.)
 		nanomanager.update_uis(src)
 
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, TRUE)

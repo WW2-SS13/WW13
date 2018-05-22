@@ -89,26 +89,26 @@
 	var/last_fire = -1
 
 /obj/item/weapon/gun/projectile/boltaction/attack_self(mob/user)
-	if(!check_bolt)//Keeps people from spamming the bolt
+	if (!check_bolt)//Keeps people from spamming the bolt
 		check_bolt++
-		if(!do_after(user, 2, src, FALSE, TRUE, INCAPACITATION_DEFAULT, TRUE))//Delays the bolt
+		if (!do_after(user, 2, src, FALSE, TRUE, INCAPACITATION_DEFAULT, TRUE))//Delays the bolt
 			check_bolt--
 			return
 	else return
-	if(check_bolt_lock)
+	if (check_bolt_lock)
 		user << "<span class='notice'>The bolt won't move, the gun is empty!</span>"
 		check_bolt--
 		return
 	bolt_open = !bolt_open
-	if(bolt_open)
-		if(chambered)
+	if (bolt_open)
+		if (chambered)
 			playsound(loc, 'sound/weapons/bolt_open.ogg', 50, TRUE)
 			user << "<span class='notice'>You work the bolt open, ejecting [chambered]!</span>"
 			chambered.loc = get_turf(src)
 			loaded -= chambered
 			chambered = null
-			if(bolt_safety)
-				if(!loaded.len)
+			if (bolt_safety)
+				if (!loaded.len)
 					check_bolt_lock++
 					user << "<span class='notice'>The bolt is locked!</span>"
 		else
@@ -123,20 +123,20 @@
 	check_bolt--
 
 /obj/item/weapon/gun/projectile/boltaction/special_check(mob/user)
-	if(bolt_open)
+	if (bolt_open)
 		user << "<span class='warning'>You can't fire [src] while the bolt is open!</span>"
 		return FALSE
 	return ..()
 
 /obj/item/weapon/gun/projectile/boltaction/load_ammo(var/obj/item/A, mob/user)
-	if(!bolt_open)
+	if (!bolt_open)
 		return
-	if(check_bolt_lock)
+	if (check_bolt_lock)
 		--check_bolt_lock // preincrement is superior
 	..()
 
 /obj/item/weapon/gun/projectile/boltaction/unload_ammo(mob/user, var/allow_dump=1)
-	if(!bolt_open)
+	if (!bolt_open)
 		return
 	..()
 
@@ -178,8 +178,8 @@
 
 //This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
 /obj/item/weapon/gun/projectile/boltaction/mosin/update_icon(var/add_scope = FALSE)
-	if(add_scope)
-		if(bolt_open)
+	if (add_scope)
+		if (bolt_open)
 			icon_state = "mosin_scope_open"
 			item_state = "mosin_scope"
 			return
@@ -187,12 +187,12 @@
 			icon_state = "mosin_scope"
 			item_state = "mosin_scope"
 			return
-	if(bolt_open)
-		if(!findtext(icon_state, "_open"))
+	if (bolt_open)
+		if (!findtext(icon_state, "_open"))
 			icon_state = addtext(icon_state, "_open") //open
-	else if(icon_state == "mosin_scope_open") //closed
+	else if (icon_state == "mosin_scope_open") //closed
 		icon_state = "mosin_scope"
-	else if(icon_state == "mosin_scope")
+	else if (icon_state == "mosin_scope")
 		return
 	else
 		icon_state = "mosin"
@@ -215,8 +215,8 @@
 
 //This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
 /obj/item/weapon/gun/projectile/boltaction/kar98k/update_icon(var/add_scope = FALSE)
-	if(add_scope)
-		if(bolt_open)
+	if (add_scope)
+		if (bolt_open)
 			icon_state = "kar98k_scope_open"
 			item_state = "kar98k_scope"
 			return
@@ -224,12 +224,12 @@
 			icon_state = "kar98k_scope"
 			item_state = "kar98k_scope"
 			return
-	if(bolt_open)
-		if(!findtext(icon_state, "_open"))
+	if (bolt_open)
+		if (!findtext(icon_state, "_open"))
 			icon_state = addtext(icon_state, "_open") //open
-	else if(icon_state == "kar98k_scope_open") //closed
+	else if (icon_state == "kar98k_scope_open") //closed
 		icon_state = "kar98k_scope"
-	else if(icon_state == "kar98k_scope")
+	else if (icon_state == "kar98k_scope")
 		return
 	else
 		icon_state = "kar98k"
@@ -248,8 +248,8 @@
 	weight = 3.9
 
 /obj/item/weapon/gun/projectile/boltaction/carcano/update_icon(var/add_scope = FALSE)
-	if(add_scope)
-		if(bolt_open)
+	if (add_scope)
+		if (bolt_open)
 			icon_state = "carcano_scope_open"
 			item_state = "carcano"
 			return
@@ -257,12 +257,12 @@
 			icon_state = "carcano_scope"
 			item_state = "carcano"
 			return
-	if(bolt_open)
-		if(!findtext(icon_state, "_open"))
+	if (bolt_open)
+		if (!findtext(icon_state, "_open"))
 			icon_state = addtext(icon_state, "_open") //open
-	else if(icon_state == "carcano_scope_open") //closed
+	else if (icon_state == "carcano_scope_open") //closed
 		icon_state = "carcano_scope"
-	else if(icon_state == "carcano_scope")
+	else if (icon_state == "carcano_scope")
 		return
 	else
 		icon_state = "carcano"

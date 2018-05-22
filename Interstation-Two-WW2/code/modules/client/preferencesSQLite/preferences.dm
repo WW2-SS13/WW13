@@ -139,7 +139,7 @@ var/list/preferences_datums = list()
 	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", TRUE;"B-", 20;"B+", TRUE;"AB-", 5;"AB+")
    */
 
-	if(istype(C))
+	if (istype(C))
 		client = C
 		client_ckey = C.ckey
 		if (IsGuestKey(client_ckey))
@@ -179,9 +179,9 @@ var/list/preferences_datums = list()
 	player_setup.update_setup()
 
 /datum/preferences/proc/ShowChoices(mob/user)
-	if(!user || !user.client)	return
+	if (!user || !user.client)	return
 
-	if(!get_mob_by_key(client_ckey))
+	if (!get_mob_by_key(client_ckey))
 		user << "<span class='danger'>No mob exists for the given client!</span>"
 		close_load_dialog(user)
 		return
@@ -201,7 +201,7 @@ var/list/preferences_datums = list()
 	<body><center>
 	"}
 
-	if(!IsGuestKey(user.key))
+	if (!IsGuestKey(user.key))
 		dat += "<big><b>"
 		dat += "<a href='?src=\ref[src];load=1'>Load Slot</a> - "
 		dat += "<a href='?src=\ref[src];save=1'>Save to Slot</a> - "
@@ -227,12 +227,12 @@ var/list/preferences_datums = list()
 	user << browse(dat, "window=preferences;size=980x800")
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
-	if(!user)	return
+	if (!user)	return
 
-	if(!istype(user, /mob/new_player))	return
+	if (!istype(user, /mob/new_player))	return
 
-	if(href_list["preference"] == "open_whitelist_forum")
-		if(config.forumurl)
+	if (href_list["preference"] == "open_whitelist_forum")
+		if (config.forumurl)
 			user << link(config.forumurl)
 		else
 			user << "<span class='danger'>The forum URL is not set in the server configuration.</span>"
@@ -242,13 +242,13 @@ var/list/preferences_datums = list()
 	return TRUE
 
 /datum/preferences/Topic(href, list/href_list)
-	if(..())
+	if (..())
 		return TRUE
 
-	if(href_list["save"])
+	if (href_list["save"])
 		open_save_dialog(usr)
 
-	else if(href_list["savetoslot"])
+	else if (href_list["savetoslot"])
 		var/previous_slot = text2num(current_slot)
 		current_slot = text2num(href_list["savetoslot"])
 
@@ -264,12 +264,12 @@ var/list/preferences_datums = list()
 			usr << "<span class = 'bad'>FAILED to save current preferences to slot #[current_slot].</span>"
 		close_save_dialog(usr)
 
-	else if(href_list["load"])
-		if(!IsGuestKey(usr.key))
+	else if (href_list["load"])
+		if (!IsGuestKey(usr.key))
 			open_load_dialog(usr)
 			return TRUE
 
-	else if(href_list["loadfromslot"])
+	else if (href_list["loadfromslot"])
 		var/slot = text2num(href_list["loadfromslot"])
 		if (slot == 0)
 			slot = 1
@@ -304,20 +304,20 @@ var/list/preferences_datums = list()
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, safety = FALSE)
 	// Sanitizing rather than saving as someone might still be editing when copy_to occurs.
 	player_setup.sanitize_setup()
-	if(be_random_name)
+	if (be_random_name)
 		real_name = random_name(gender,species)
 
-	if(config.humans_need_surnames)
+	if (config.humans_need_surnames)
 		var/firstspace = findtext(real_name, " ")
 		var/name_length = length(real_name)
-		if(!firstspace)	//we need a surname
+		if (!firstspace)	//we need a surname
 			real_name += " [pick(last_names)]"
-		else if(firstspace == name_length)
+		else if (firstspace == name_length)
 			real_name += "[pick(last_names)]"
 
 	character.real_name = real_name
 
-	if(character.dna)
+	if (character.dna)
 		character.dna.real_name = character.real_name
 
 	character.body_build = get_body_build(gender, body_build)
@@ -352,38 +352,38 @@ var/list/preferences_datums = list()
 
 		var/status = organ_data[name]
 		var/obj/item/organ/external/O = character.organs_by_name[name]
-		if(O)
+		if (O)
 			O.status = FALSE
-			if(status == "amputated")
+			if (status == "amputated")
 				character.organs_by_name[O.limb_name] = null
 				character.organs -= O
-				if(O.children) // This might need to become recursive.
+				if (O.children) // This might need to become recursive.
 					for(var/obj/item/organ/external/child in O.children)
 						character.organs_by_name[child.limb_name] = null
 						character.organs -= child
 
-			else if(status == "cyborg")
-				if(rlimb_data[name])
+			else if (status == "cyborg")
+				if (rlimb_data[name])
 					O.robotize(rlimb_data[name])
 				else
 					O.robotize()
 		else
 			var/obj/item/organ/I = character.internal_organs_by_name[name]
-			if(I)
-				if(status == "assisted")
+			if (I)
+				if (status == "assisted")
 					I.mechassist()
-				else if(status == "mechanical")
+				else if (status == "mechanical")
 					I.robotize()
 
 	character.all_underwear.Cut()
 
-	if(backbag > 4 || backbag < 1)
+	if (backbag > 4 || backbag < 1)
 		backbag = TRUE //Same as above
 	character.backbag = backbag
 
 	//Debugging report to track down a bug, which randomly assigned the plural gender to people.
-	if(character.gender in list(PLURAL, NEUTER))
-		if(isliving(src)) //Ghosts get neuter by default
+	if (character.gender in list(PLURAL, NEUTER))
+		if (isliving(src)) //Ghosts get neuter by default
 			message_admins("[character] ([character.ckey]) has spawned with their gender as plural or neuter. Please notify coders.")
 			character.gender = MALE
 
@@ -554,7 +554,7 @@ var/list/preferences_datums = list()
 
 /client/proc/is_preference_enabled(var/preference)
 
-	if(ispath(preference))
+	if (ispath(preference))
 		var/datum/client_preference/cp = get_client_preference_by_type(preference)
 		preference = cp.key
 
@@ -562,26 +562,26 @@ var/list/preferences_datums = list()
 
 /client/proc/set_preference(var/preference, var/set_preference)
 	var/datum/client_preference/cp
-	if(ispath(preference))
+	if (ispath(preference))
 		cp = get_client_preference_by_type(preference)
 	else
 		cp = get_client_preference_by_key(preference)
 
-	if(!cp)
+	if (!cp)
 		return FALSE
 
 	var/enabled
-	if(set_preference && !(preference in prefs.preferences_enabled))
+	if (set_preference && !(preference in prefs.preferences_enabled))
 		prefs.preferences_enabled  += preference
 		prefs.preferences_disabled -= preference
 		enabled = TRUE
 		. = TRUE
-	else if(!set_preference && (preference in prefs.preferences_enabled))
+	else if (!set_preference && (preference in prefs.preferences_enabled))
 		prefs.preferences_enabled  -= preference
 		prefs.preferences_disabled |= preference
 		enabled = FALSE
 		. = TRUE
-	if(.)
+	if (.)
 		cp.toggled(mob, enabled)
 
 	for (var/client/C in clients)
@@ -591,14 +591,14 @@ var/list/preferences_datums = list()
 	prefs.saveGlobalSettings()
 
 /mob/proc/is_preference_enabled(var/preference)
-	if(!client)
+	if (!client)
 		return FALSE
 	return client.is_preference_enabled(preference)
 
 /mob/proc/set_preference(var/preference, var/set_preference)
-	if(!client)
+	if (!client)
 		return FALSE
-	if(!client.prefs)
+	if (!client.prefs)
 		log_debug("Client prefs found to be null for mob [src] and client [ckey], this should be investigated.")
 		return FALSE
 

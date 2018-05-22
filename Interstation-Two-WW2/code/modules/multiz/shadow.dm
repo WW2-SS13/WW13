@@ -13,7 +13,7 @@
 	var/mob/owner = null
 
 /mob/shadow/New(var/mob/L)
-	if(!istype(L))
+	if (!istype(L))
 		qdel(src)
 		return
 	//..()
@@ -36,7 +36,7 @@
 	overlays = M.overlays
 	transform = M.transform
 	dir = M.dir
-	if(shadow)
+	if (shadow)
 		shadow.sync_icon(src)
 
 /mob/living/Move()
@@ -49,27 +49,27 @@
 
 /mob/living/proc/check_shadow()
 	var/mob/M = src
-	if(isturf(M.loc))
+	if (isturf(M.loc))
 		var/turf/open/OS = GetAbove(src)
 		while(OS && istype(OS))
-			if(!M.shadow)
+			if (!M.shadow)
 				M.shadow = PoolOrNew(/mob/shadow, M)
 			M.shadow.forceMove(OS)
 			M = M.shadow
 			OS = GetAbove(M)
 
-	if(M.shadow)
+	if (M.shadow)
 		qdel(M.shadow)
 		M.shadow = null
 
 /mob/living/update_icons()
 	..()
-	if(shadow)
+	if (shadow)
 		shadow.sync_icon(src)
 
 /mob/set_dir(new_dir)
 	..()
-	if(shadow)
+	if (shadow)
 		shadow.set_dir(new_dir)
 
 #endif
