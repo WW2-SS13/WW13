@@ -44,7 +44,7 @@
 		var/content_size = FALSE
 		for(var/obj/item/I in contents)
 			if (!I.anchored)
-				content_size += Ceiling(I.w_class/2)
+				content_size += ceil(I.w_class/2)
 		if (!content_size)
 			user << "It is empty."
 		else if (storage_capacity > content_size*4)
@@ -133,7 +133,7 @@
 /obj/structure/closet/proc/store_items(var/stored_units)
 	var/added_units = FALSE
 	for(var/obj/item/I in loc)
-		var/item_size = Ceiling(I.w_class / 2)
+		var/item_size = ceil(I.w_class / 2)
 		if (stored_units + added_units + item_size > storage_capacity)
 			continue
 		if (!I.anchored)

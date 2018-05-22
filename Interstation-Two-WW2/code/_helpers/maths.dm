@@ -1,7 +1,3 @@
-// Macro functions.
-#define RAND_F(LOW, HIGH) (rand()*(HIGH-LOW) + LOW)
-#define ceil(x) (-round(-(x)))
-
 // random decimals
 /proc/random_decimal(var/low, var/high)
 	return (rand(smart_round(low*100), smart_round(high*100)))/100
@@ -19,92 +15,24 @@
 	// we're equally far from the ceiling and the floor, return the floor
 	return _floor
 
-// min is inclusive, max is exclusive
-/proc/Wrap(val, min, max)
-	var/d = max - min
-	var/t = Floor((val - min) / d)
-	return val - (t * d)
-
-/proc/Default(a, b)
-	return a ? a : b
-
-// Trigonometric functions.
-/proc/Tan(x)
-	return sin(x) / cos(x)
-
-/proc/Csc(x)
-	return TRUE / sin(x)
-
-/proc/Sec(x)
-	return TRUE / cos(x)
-
-/proc/Cot(x)
-	return TRUE / Tan(x)
-
 /proc/Atan2(x, y)
 	if (!x && !y) return FALSE
 	var/a = arccos(x / sqrt(x*x + y*y))
 	return y >= 0 ? a : -a
 
-/proc/Floor(x)
-	return round(x)
-
-/proc/Ceiling(x)
-	return -round(-x)
-
 // Greatest Common Divisor: Euclid's algorithm.
 /proc/Gcd(a, b)
-	while (1)
+	while (TRUE)
 		if (!b) return a
 		a %= b
 		if (!a) return b
 		b %= a
-
-// Least Common Multiple. The formula is a consequence of: a*b = LCM*GCD.
-/proc/Lcm(a, b)
-	return abs(a) * abs(b) / Gcd(a, b)
-
-// Useful in the cases when x is a large expression, e.g. x = 3a/2 + b^2 + Function(c)
-/proc/Square(x)
-	return x*x
-
-/proc/Inverse(x)
-	return TRUE / x
-
-// Condition checks.
-/proc/IsAboutEqual(a, b, delta = 0.1)
-	return abs(a - b) <= delta
-
-// Returns true if val is from min to max, inclusive.
-/proc/IsInRange(val, min, max)
-	return (val >= min) && (val <= max)
-
-/proc/IsInteger(x)
-	return Floor(x) == x
-
-/proc/IsMultiple(x, y)
-	return x % y == FALSE
-
-/proc/IsEven(x)
-	return !(x & 0x1)
-
-/proc/IsOdd(x)
-	return  (x & 0x1)
-
-// Performs a linear interpolation between a and b.
-// Note: weight=0 returns a, weight=1 returns b, and weight=0.5 returns the mean of a and b.
-/proc/Interpolate(a, b, weight = 0.5)
-	return a + (b - a) * weight // Equivalent to: a*(1 - weight) + b*weight
 
 /proc/Mean(...)
 	var/sum = FALSE
 	for(var/val in args)
 		sum += val
 	return sum / args.len
-
-// Returns the nth root of x.
-/proc/Root(n, x)
-	return x ** (1 / n)
 
 // The quadratic formula. Returns a list with the solutions, or an empty list
 // if they are imaginary.
@@ -125,28 +53,6 @@
 	// If discriminant == FALSE, there would be two roots at the same position.
 	if (discriminant != FALSE)
 		. += (-b - root) / bottom
-
-/proc/ToDegrees(radians)
-	// 180 / Pi ~ 57.2957795
-	return radians * 57.2957795
-
-/proc/ToRadians(degrees)
-	// Pi / 180 ~ 0.0174532925
-	return degrees * 0.0174532925
-
-// Vector algebra.
-/proc/squaredNorm(x, y)
-	return x*x + y*y
-
-/proc/norm(x, y)
-	return sqrt(squaredNorm(x, y))
-
-/proc/IsPowerOfTwo(var/val)
-    return (val & (val-1)) == FALSE
-
-/proc/RoundUpToPowerOfTwo(var/val)
-    return 2 ** -round(-log(2,val))
-
 
 // stuff that was in the scripting folder, but was used elsewhere,
 // so had to be copied here
@@ -246,14 +152,6 @@
 
 // --- Miscellaneous functions ---
 
-// Clone of sleep()
-/proc/delay(var/time)
-	sleep(time)
-
-// Clone of prob()
-/proc/prob_chance(var/chance)
-	return prob(chance)
-
 // Merge of list.Find() and findtext()
 /proc/smartfind(var/haystack, var/needle, var/start = TRUE, var/end = FALSE)
 	if (haystack && needle)
@@ -273,57 +171,6 @@
 	if (istext(string) && isnum(start) && isnum(end))
 		if (start > 0)
 			return copytext(string, start, end)
-
-// Clone of length()
-/proc/smartlength(var/container)
-	if (container)
-		if (istype(container, /list) || istext(container))
-			return length(container)
-
-// BY DONKIE~
-// String stuff
-/proc/n_lower(var/string)
-	if (istext(string))
-		return lowertext(string)
-
-/proc/n_upper(var/string)
-	if (istext(string))
-		return uppertext(string)
-
-/*
-//Makes a list where all indicies in a string is a seperate index in the list
-// JUST A HELPER DON'T ADD TO NTSCRIPT
-proc/string_tolist(var/string)
-	var/list/L = new/list()
-
-	var/i
-	for(i=1, i<=lentext(string), i++)
-		L.Add(copytext(string, i, i))
-
-	return L
-
-proc/string_explode(var/string, var/separator)
-	if (istext(string))
-		if (istext(separator) && separator == "")
-			return string_tolist(string)
-		var/i
-		var/lasti = TRUE
-		var/list/L = new/list()
-
-		for(i=1, i<=lentext(string)+1, i++)
-			if (copytext(string, i, i+1) == separator) // We found a separator
-				L.Add(copytext(string, lasti, i))
-				lasti = i+1
-
-		L.Add(copytext(string, lasti, lentext(string)+1)) // Adds the last segment
-
-		return L
-
-Just found out there was already a string explode function, did some benchmarking, and that function were a bit faster, sticking to that.
-*/
-proc/string_explode(var/string, var/separator)
-	if (istext(string) && istext(separator))
-		return splittext(string, separator)
 
 proc/n_repeat(var/string, var/amount)
 	if (istext(string) && isnum(amount))
@@ -358,43 +205,7 @@ proc/n_str2num(var/string)
 proc/n_num2str(var/num)
 	if (isnum(num))
 		return num2text(num)
-/*
-// Squareroot
-proc/n_sqrt(var/num)
-	if (isnum(num))
-		return sqrt(num)
 
-// Magnitude of num
-proc/n_abs(var/num)
-	if (isnum(num))
-		return abs(num)
-
-// Round down
-proc/n_floor(var/num)
-	if (isnum(num))
-		return round(num)
-
-// Round up
-proc/n_ceil(var/num)
-	if (isnum(num))
-		return round(num)+1
-
-// Round to nearest integer
-proc/n_round(var/num)
-	if (isnum(num))
-		if (num-round(num)<0.5)
-			return round(num)
-		return n_ceil(num)
-
-// Clamps N between min and max
-proc/n_clamp(var/num, var/min=-1, var/max=1)
-	if (isnum(num)&&isnum(min)&&isnum(max))
-		if (num<=min)
-			return min
-		if (num>=max)
-			return max
-		return num
-*/
 // Returns TRUE if N is inbetween Min and Max
 proc/n_inrange(var/num, var/min=-1, var/max=1)
 	if (isnum(num)&&isnum(min)&&isnum(max))

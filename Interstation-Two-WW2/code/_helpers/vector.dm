@@ -82,7 +82,7 @@ return_location()
 
 	// and some rounding to stop the increments jumping whole turfs - because byond favours certain angles
 	if (angle > -135 && angle < 45)
-		angle = Ceiling(angle)
+		angle = ceil(angle)
 	else
 		angle = Floor(angle)
 
