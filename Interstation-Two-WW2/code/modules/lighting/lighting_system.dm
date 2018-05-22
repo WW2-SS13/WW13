@@ -70,7 +70,7 @@ var/created_lighting_corners_and_overlays = FALSE
 	while (!created_lighting_corners_and_overlays)
 		sleep(1)
 
-	time_of_day_change_process.changeto = _time_of_day
-	time_of_day_change_process.admincaller = admincaller
-	time_of_day_change_process.announce = announce
-	time_of_day_change_process.ready = TRUE
+	processes.time_of_day_change.changeto = _time_of_day
+	processes.time_of_day_change.admincaller = admincaller
+	processes.time_of_day_change.announce = announce
+	processes.time_of_day_change.ready = TRUE

@@ -33,13 +33,13 @@
 	var/modded_num_of_SS = FALSE
 
 /obj/map_metadata/pillar/germans_can_cross_blocks()
-	return (tickerProcess.playtime_elapsed >= 4200 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 4200 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/pillar/soviets_can_cross_blocks()
 	return FALSE
 
 /obj/map_metadata/pillar/specialfaction_can_cross_blocks()
-	return (tickerProcess.playtime_elapsed >= 9000)
+	return (processes.ticker.playtime_elapsed >= 9000)
 
 /obj/map_metadata/pillar/announce_mission_start(var/preparation_time)
 	world << "<font size=4>The <b>Waffen SS</b> may attack after 7 minutes. The <b>Pillar Men</b> and <b>Vampires</b> may not attack until after 15 minutes.</font>"

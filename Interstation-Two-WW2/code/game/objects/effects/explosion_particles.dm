@@ -8,7 +8,7 @@
 
 /obj/effect/expl_particles/New()
 	..()
-	callproc_process.queue(src, /datum/proc/qdeleted, null, 15)
+	processes.callproc.queue(src, /datum/proc/qdeleted, null, 15)
 	return
 
 /obj/effect/expl_particles/Move()
@@ -47,7 +47,7 @@
 
 /obj/effect/explosion/New()
 	..()
-	callproc_process.queue(src, /datum/proc/qdeleted, null, 10)
+	processes.callproc.queue(src, /datum/proc/qdeleted, null, 10)
 	return
 
 /datum/effect/system/explosion

@@ -15,10 +15,10 @@
 	respawn_delay = 0
 
 /obj/map_metadata/test/germans_can_cross_blocks()
-	return (tickerProcess.playtime_elapsed >= 7200 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 7200 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/test/soviets_can_cross_blocks()
-	return (tickerProcess.playtime_elapsed >= 7200 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 7200 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/test/announce_mission_start(var/preparation_time)
 	world << "<font size=4>All factions have <b>12 minutes</b> to prepare before combat will begin!</font>"

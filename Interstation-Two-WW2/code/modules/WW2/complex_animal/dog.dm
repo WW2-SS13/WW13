@@ -394,7 +394,7 @@ s
 				return
 
 			enemies |= H
-			callproc_process.queue(src, /mob/living/simple_animal/complex_animal/canine/dog/proc/shred, list(H), 2)
+			processes.callproc.queue(src, /mob/living/simple_animal/complex_animal/canine/dog/proc/shred, list(H), 2)
 
 			// make other dogs go after them too
 			for (var/mob/living/simple_animal/complex_animal/canine/dog/D in view(7, H))

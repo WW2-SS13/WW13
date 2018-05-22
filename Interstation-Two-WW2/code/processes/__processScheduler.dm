@@ -59,6 +59,9 @@ var/global/processScheduler/processScheduler
 	timeAllowance = world.tick_lag * 0.50
 	timeAllowanceMax = world.tick_lag
 
+	if (processes)
+		log_debug("The process scheduler was created. There are [processes.vars.len-new/datum():vars.len] processes.")
+
 /**
  * deferSetupFor
  * @param path processPath

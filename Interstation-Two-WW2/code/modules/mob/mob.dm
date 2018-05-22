@@ -694,16 +694,16 @@
 			stat("Time of Day:", time_of_day)
 
 			if (z == 2 && map && map.ID == "FOREST")
-				stat("Altitude:", "[paratrooper_plane_master.altitude] meters")
+				stat("Altitude:", "[processes.paratrooper_plane.altitude] meters")
 
 			// give the client some information about how the server is running
-			if (ping_track && client)
+			if (processes.ping_track && client)
 				var/our_ping = ceil(client.last_ping)
-				var/avg_ping = ceil(ping_track.avg)
+				var/avg_ping = ceil(processes.ping_track.avg)
 				if (clients.len == 1)
 					avg_ping = our_ping
 				stat("Ping (Average):", "[our_ping] ms ([avg_ping] ms)")
-			stat("Time Dilation (Average):", time_track ? "[ceil(time_track.dilation)]% ([ceil(time_track.average_dilation())]%)" : "0% (0%)")
+			stat("Time Dilation (Average):", processes.time_track ? "[ceil(processes.time_track.dilation)]% ([ceil(processes.time_track.average_dilation())]%)" : "0% (0%)")
 
 		if(client.holder && client.status_tabs)
 			if(statpanel("Status"))

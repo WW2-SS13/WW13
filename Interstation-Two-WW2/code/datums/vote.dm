@@ -200,13 +200,13 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 					choices.Add("Restart Round","Continue Playing")
 					win_threshold = 0.67
 				if ("map")
-					for (var/map in mapswap_process.maps)
+					for (var/map in processes.mapswap.maps)
 						if (!default)
 							default = map
 						map = capitalize(lowertext(map))
 						choices.Add(map)
-						if (clients.len < mapswap_process.maps[map])
-							disabled[map] = "[mapswap_process.maps[map]] players"
+						if (clients.len < processes.mapswap.maps[map])
+							disabled[map] = "[processes.mapswap.maps[map]] players"
 						if (map == "Pillar")
 							choices[map] = -round(clients.len/3)
 						else

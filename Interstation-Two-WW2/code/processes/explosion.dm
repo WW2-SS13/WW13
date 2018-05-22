@@ -1,20 +1,18 @@
-var/process/explosives/bomb_processor
-
-/process/explosives
+/process/explosion
 	var/list/work_queue
 	var/ticks_without_work = 0
 	var/list/explosion_turfs
 	var/explosion_in_progress
 	var/powernet_update_pending = FALSE
 
-/process/explosives/setup()
-	name = "explosives"
+/process/explosion/setup()
+	name = "explosion"
 	schedule_interval = 5 // every half-second
 	work_queue = list()
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	bomb_processor = src
+	processes.explosion = src
 
-/process/explosives/fire()
+/process/explosion/fire()
 	SCHECK
 	if (!work_queue)
 		setup()	// fix for process failing to re-init after termination
@@ -41,7 +39,7 @@ var/process/explosives/bomb_processor
 
 		work_queue -= data
 
-/process/explosives/proc/explosion(var/datum/explosiondata/data)
+/process/explosion/proc/explosion(var/datum/explosiondata/data)
 	var/turf/epicenter = data.epicenter
 	var/devastation_range = data.devastation_range
 	var/heavy_impact_range = data.heavy_impact_range
@@ -177,7 +175,7 @@ var/process/explosives/bomb_processor
 	//You need to press the DebugGame verb to see these now....they were getting annoying and we've collected a fair bit of data. Just -test- changes  to explosion code using this please so we can compare
 	if(Debug2)	world.log << "## DEBUG: Explosion([x0],[y0],[z0])(d[devastation_range],h[heavy_impact_range],l[light_impact_range]): Took [took] seconds."
 
-/process/explosives/proc/explosion_rec(turf/epicenter, power)
+/process/explosion/proc/explosion_rec(turf/epicenter, power)
 	if(power <= 0) return
 	epicenter = get_turf(epicenter)
 	if(!epicenter) return
@@ -222,7 +220,7 @@ var/process/explosives/bomb_processor
 
 	explosion_in_progress = FALSE
 
-/process/explosives/proc/explosion_spread(turf/s, power, direction)
+/process/explosion/proc/explosion_spread(turf/s, power, direction)
 	SCHECK
 	if(power <= 0)
 		return
@@ -244,15 +242,15 @@ var/process/explosives/bomb_processor
 	T = get_step(s, turn(direction,-90))
 	explosion_spread(T, spread_power, turn(direction,90))
 
-/process/explosives/proc/queue(var/datum/explosiondata/data)
+/process/explosion/proc/queue(var/datum/explosiondata/data)
 	if (!data) return
 	work_queue += data
 
-/process/explosives/statProcess()
+/process/explosion/statProcess()
 	..()
 	stat(null, "[work_queue.len] datums in explosion queue")
 
-/process/explosives/htmlProcess()
+/process/explosion/htmlProcess()
 	return ..() + "[work_queue.len] datums in explosion queue"
 
 /datum/explosiondata

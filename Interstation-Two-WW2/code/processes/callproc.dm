@@ -1,5 +1,3 @@
-/var/process/callproc/callproc_process = null
-
 /process/callproc
 	var/list/queue = list()
 	var/list/helpers = list()
@@ -9,11 +7,12 @@
 	schedule_interval = 0.3 // every 1/33th second
 	start_delay = 10
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	callproc_process = src
 	subsystem = TRUE
 
 	for (var/v in 1 to 5000)
 		helpers += new /callproc_helper
+
+	processes.callproc = src
 
 // there are no SCHECKs here, because that would make this proc too unreliable (trains rely on this)
 /process/callproc/fire()

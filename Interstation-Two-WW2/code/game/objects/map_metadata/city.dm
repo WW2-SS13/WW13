@@ -20,10 +20,10 @@
 	battle_name = "Battle of Kiev"
 
 /obj/map_metadata/city/germans_can_cross_blocks()
-	return (tickerProcess.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/city/soviets_can_cross_blocks()
-	return (tickerProcess.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/city/announce_mission_start(var/preparation_time)
 	world << "<font size=4>All factions have <b>15 minutes</b> to prepare before combat will begin!</font>"

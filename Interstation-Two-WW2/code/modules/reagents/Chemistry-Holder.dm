@@ -24,8 +24,8 @@
 
 /datum/reagents/Destroy()
 	..()
-	if(chemistryProcess)
-		chemistryProcess.active_holders -= src
+	if(processes.chemistry)
+		processes.chemistry.active_holders -= src
 
 	for(var/datum/reagent/R in reagent_list)
 		qdel(R)
@@ -86,8 +86,8 @@
 		my_atom.reagents = null
 
 /datum/reagents/proc/handle_reactions()
-	if(chemistryProcess)
-		chemistryProcess.mark_for_update(src)
+	if(processes.chemistry)
+		processes.chemistry.mark_for_update(src)
 
 //returns TRUE if the holder should continue reactiong, FALSE otherwise.
 /datum/reagents/proc/process_reactions()

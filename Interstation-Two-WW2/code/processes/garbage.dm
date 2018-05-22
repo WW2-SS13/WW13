@@ -4,10 +4,9 @@
 #define GC_COLLECTION_TIMEOUT (30 SECONDS)
 #define GC_FORCE_DEL_PER_RUN 30
 
-var/process/garbage_collector/garbage_collector
 var/list/delayed_garbage = list()
 
-/process/garbage_collector
+/process/garbage
 	var/garbage_collect = TRUE			// Whether or not to actually do work
 	var/total_dels 	= 0			// number of total del()'s
 	var/tick_dels 	= 0			// number of del()'s we've done this tick
@@ -20,26 +19,25 @@ var/list/delayed_garbage = list()
 	var/list/logging = list()	// list of all types that have failed to GC associated with the number of times that's happened.
 								// the types are stored as strings
 
-/process/garbage_collector/setup()
+/process/garbage/setup()
 	name = "garbage"
 	schedule_interval = 5 SECONDS
 	start_delay = 3
 
-	if(!garbage_collector)
-		garbage_collector = src
-
 	for(var/garbage in delayed_garbage)
 		qdel(garbage)
+
 	delayed_garbage.Cut()
 	delayed_garbage = null
 
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
+	processes.garbage = src
 
 #ifdef GC_FINDREF
 world/loop_checks = FALSE
 #endif
 
-/process/garbage_collector/fire()
+/process/garbage/fire()
 	SCHECK
 	if(!garbage_collect)
 		return
@@ -98,7 +96,7 @@ world/loop_checks = FALSE
 
 #ifdef GC_FINDREF
 
-/process/garbage_collector/proc/LocateReferences(var/atom/A)
+/process/garbage/proc/LocateReferences(var/atom/A)
 	testing("GC: Attempting to locate references to [A] | [A.type]. This is a potentially long-running operation.")
 	if(istype(A))
 		if(A.loc != null)
@@ -117,7 +115,7 @@ world/loop_checks = FALSE
 		message += " Has likely been supplied as an 'in list' argment to a proc."
 	testing(message)
 
-/process/garbage_collector/proc/LookForRefs(var/datum/D, var/datum/A)
+/process/garbage/proc/LookForRefs(var/datum/D, var/datum/A)
 	. = 0
 	for(var/V in D.vars)
 		if(V == "contents")
@@ -129,7 +127,7 @@ world/loop_checks = FALSE
 		else
 			. += LookForListRefs(D.vars[V], A, D, V)
 
-/process/garbage_collector/proc/LookForListRefs(var/list/L, var/datum/A, var/datum/D, var/V)
+/process/garbage/proc/LookForListRefs(var/list/L, var/datum/A, var/datum/D, var/V)
 	. = 0
 	for(var/F in L)
 		if(!islist(F))
@@ -140,7 +138,7 @@ world/loop_checks = FALSE
 			. += LookForListRefs(F, A, D, "[F] in list [V]")
 #endif
 
-/process/garbage_collector/proc/AddTrash(datum/A)
+/process/garbage/proc/AddTrash(datum/A)
 	if(!istype(A) || A.gcDestroyed)
 		return
 	#ifdef GC_DEBUG
@@ -150,12 +148,12 @@ world/loop_checks = FALSE
 	destroyed -= "\ref[A]" // Removing any previous references that were GC'd so that the current object will be at the end of the list.
 	destroyed["\ref[A]"] = world.time+1
 
-/process/garbage_collector/statProcess()
+/process/garbage/statProcess()
 	..()
 	stat(null, "[garbage_collect ? "On" : "Off"], [destroyed.len] queued")
 	stat(null, "Dels: [total_dels], [soft_dels] soft, [hard_dels] hard, [tick_dels] last run")
 
-/process/garbage_collector/htmlProcess()
+/process/garbage/htmlProcess()
 	return ..() + "[garbage_collect ? "On" : "Off"], [destroyed.len] queued<br>Dels: [total_dels], [soft_dels] soft, [hard_dels] hard, [tick_dels] last run"
 
 // Should be treated as a replacement for the 'del' keyword.
@@ -167,9 +165,9 @@ world/loop_checks = FALSE
 		warning("qdel() passed object of type [A.type]. qdel() can only handle /datum types.")
 		crash_with("qdel() passed object of type [A.type]. qdel() can only handle /datum types.")
 		del(A)
-		if(garbage_collector)
-			garbage_collector.total_dels++
-			garbage_collector.hard_dels++
+		if(processes.garbage)
+			processes.garbage.total_dels++
+			processes.garbage.hard_dels++
 	else if(!A.gcDestroyed)
 		// Let our friend know they're about to get collected
 		. = !A.Destroy()
@@ -189,9 +187,9 @@ world/loop_checks = FALSE
 		warning("qdel_list() passed non-list object [L]. qdel_list() can only handle /list types.")
 		crash_with("qdel_list() passed non-list object [L]. qdel_list() can only handle /list types.")
 		del(L)
-		if(garbage_collector)
-			garbage_collector.total_dels++
-			garbage_collector.hard_dels++
+		if(processes.garbage)
+			processes.garbage.total_dels++
+			processes.garbage.hard_dels++
 	for (var/D in L)
 		L -= D
 		if (isdatum(D))
@@ -212,8 +210,8 @@ world/loop_checks = FALSE
 	if(IsPooled(src))
 		PlaceInPool(src)
 	else
-		if(garbage_collector)
-			garbage_collector.AddTrash(src)
+		if(processes.garbage)
+			processes.garbage.AddTrash(src)
 		else
 			delayed_garbage |= src
 
@@ -266,8 +264,8 @@ world/loop_checks = FALSE
 		return
 
 	// Remove this object from the list of things to be auto-deleted.
-	if(garbage_collector)
-		garbage_collector.destroyed -= "\ref[src]"
+	if(garbage)
+		garbage.destroyed -= "\ref[src]"
 
 	usr.client.running_find_references = type
 	testing("Beginning search for references to a [type].")
@@ -293,13 +291,13 @@ world/loop_checks = FALSE
 
 /client/verb/purge_all_destroyed_objects()
 	set category = "Debug"
-	if(garbage_collector)
-		while(garbage_collector.destroyed.len)
-			var/datum/o = locate(garbage_collector.destroyed[1])
+	if(garbage)
+		while(garbage.destroyed.len)
+			var/datum/o = locate(garbage.destroyed[1])
 			if(istype(o) && o.gcDestroyed)
 				del(o)
-				garbage_collector.dels++
-			garbage_collector.destroyed.Cut(1, 2)
+				garbage.dels++
+			garbage.destroyed.Cut(1, 2)
 #endif
 
 #ifdef GC_DEBUG

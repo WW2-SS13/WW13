@@ -1,6 +1,4 @@
 // ported from /tg/station - Kachnov
-var/process/time_track/time_track = null
-
 /process/time_track
 	var/dilation = 0
 	var/last_tick_realtime = 0
@@ -13,11 +11,8 @@ var/process/time_track/time_track = null
 	name = "Time Tracking"
 	schedule_interval = 10 // this was 50, but this isn't expensive to track so every second is fine - Kachnov
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-
-	if (!time_track)
-		time_track = src
-
 	averages.len = 10
+	processes.time_track = src
 
 /process/time_track/fire()
 	SCHECK

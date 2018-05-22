@@ -1,5 +1,3 @@
-var/global/process/ticker/tickerProcess
-
 /process/ticker
 	var/lastTickerTimeDuration
 	var/lastTickerTime
@@ -16,14 +14,14 @@ var/global/process/ticker/tickerProcess
 
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 
-	tickerProcess = src
-
 	// what happens as soon as the server starts up
 	spawn(0)
 		if(ticker)
 			ticker.pregame()
 		start_serverswap_loop()
 		start_serverdata_loop()
+
+	processes.ticker = src
 
 /process/ticker/fire()
 	SCHECK

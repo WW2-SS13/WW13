@@ -1,5 +1,3 @@
-var/process/movement/movement_process = null
-
 /process/movement
 
 /process/movement/setup()
@@ -7,8 +5,8 @@ var/process/movement/movement_process = null
 	schedule_interval = 0.3
 	start_delay = 10
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	movement_process = src
 	subsystem = TRUE
+	processes.movement = src
 
 /process/movement/fire()
 	SCHECK

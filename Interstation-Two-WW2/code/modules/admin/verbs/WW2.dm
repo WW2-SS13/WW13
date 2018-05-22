@@ -2,7 +2,7 @@
 	set category = "Special"
 	set name = "Send train (German)"
 
-	if (!train_process || !train_process.fires_at_gamestates.Find(ticker.current_state))
+	if (!processes.train || !processes.train.fires_at_gamestates.Find(ticker.current_state))
 		src << "<span class = 'warning'>You can't send the train right now.</span>"
 		return
 
@@ -159,21 +159,21 @@
 	set category = "Special"
 	set name = "Show Battle Report"
 
-	if (!processes.battlereport || !processes.battlereport.fires_at_gamestates.Find(ticker.current_state))
+	if (!processes.battle_report || !processes.battle_report.fires_at_gamestates.Find(ticker.current_state))
 		src << "<span class = 'warning'>You can't send a battle report right now.</span>"
 		return
 
 	// to prevent showing multiple battle reports - Kachnov
-	if (processes.battlereport)
+	if (processes.battle_report)
 		message_admins("[key_name(src)] showed everyone the battle report.")
-		processes.battlereport.BR_ticks = processes.battlereport.max_BR_ticks
+		processes.battle_report.BR_ticks = processes.battle_report.max_BR_ticks
 	else
 		show_global_battle_report(src)
 
 /client/proc/see_battle_report()
 	set category = "Special"
 	set name = "See Battle Report"
-	if (!processes.battlereport || !processes.battlereport.fires_at_gamestates.Find(ticker.current_state))
+	if (!processes.battle_report || !processes.battle_report.fires_at_gamestates.Find(ticker.current_state))
 		src << "<span class = 'warning'>You can't see the battle report right now.</span>"
 		return
 	show_global_battle_report(src, TRUE)

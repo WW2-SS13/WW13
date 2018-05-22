@@ -7,12 +7,12 @@ var/next_german_supplytrain_master_process = -1
 		world << "<span class = 'notice'>Setting up the train system.</span>"
 	german_train_master = new/datum/train_controller/german_train_controller()
 	german_supplytrain_master = new/datum/train_controller/german_supplytrain_controller()
-	train_process.schedule_interval = round(8/german_train_master.velocity)
+	processes.train.schedule_interval = round(8/german_train_master.velocity)
 
 /proc/train_loop()
 	spawn while (1)
-		if (supplytrain_may_process)
-			supplytrain_may_process = FALSE
+		if (processes.train && processes.train.supplytrain_may_process)
+			processes.train.supplytrain_may_process = FALSE
 			supplytrain_processes()
 		sleep (50)
 
@@ -69,10 +69,10 @@ var/next_german_supplytrain_master_process = -1
 			if (world.time >= next_supplytrain_message)
 				radio2germans("The Supply Train is either occupied by a person, has a person standing in its way, or has not had its crates unloaded. Its departure has been delayed until this condition is solved.", "Supply Train Announcements")
 				next_supplytrain_message = world.time + 600
-				train_process.supplytrain_special_check = TRUE
+				processes.train.supplytrain_special_check = TRUE
 			goto skipmovement
 
-		train_process.supplytrain_special_check = FALSE
+		processes.train.supplytrain_special_check = FALSE
 
 		switch (german_supplytrain_master.direction)
 			if ("FORWARDS")

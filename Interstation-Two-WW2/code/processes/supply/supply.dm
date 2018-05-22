@@ -1,5 +1,3 @@
-var/global/process/supply/supplyProcess
-
 /process/supply
 	var/tmpTime1 = 0
 	var/tmpTime2 = 0
@@ -8,7 +6,7 @@ var/global/process/supply/supplyProcess
 	name = "supply points"
 	schedule_interval = 20 // every 2 seconds
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	supplyProcess = src
+	processes.supply = src
 
 /process/supply/fire()
 	SCHECK

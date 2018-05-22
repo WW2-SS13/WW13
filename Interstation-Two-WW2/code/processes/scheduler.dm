@@ -1,8 +1,7 @@
-/var/process/scheduler/scheduler
-
 /************
 * Scheduler *
 ************/
+
 /process/scheduler
 	var/list/scheduled_tasks
 
@@ -11,7 +10,7 @@
 	schedule_interval = 3 SECONDS
 	scheduled_tasks = list()
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	scheduler = src
+	processes.scheduler = src
 
 /process/scheduler/fire()
 	SCHECK
@@ -55,22 +54,22 @@
 
 /proc/schedule_task(var/trigger_time, var/procedure, var/list/arguments)
 	var/datum/scheduled_task/st = new/datum/scheduled_task(trigger_time, procedure, arguments, /proc/destroy_scheduled_task, list())
-	scheduler.schedule(st)
+	processes.scheduler.schedule(st)
 	return st
 
 /proc/schedule_task_with_source(var/trigger_time, var/source, var/procedure, var/list/arguments)
 	var/datum/scheduled_task/st = new/datum/scheduled_task/source(trigger_time, source, procedure, arguments, /proc/destroy_scheduled_task, list())
-	scheduler.schedule(st)
+	processes.scheduler.schedule(st)
 	return st
 
 /proc/schedule_repeating_task(var/trigger_time, var/repeat_interval, var/procedure, var/list/arguments)
 	var/datum/scheduled_task/st = new/datum/scheduled_task(trigger_time, procedure, arguments, /proc/repeat_scheduled_task, list(repeat_interval))
-	scheduler.schedule(st)
+	processes.scheduler.schedule(st)
 	return st
 
 /proc/schedule_repeating_task_with_source(var/trigger_time, var/repeat_interval, var/source, var/procedure, var/list/arguments)
 	var/datum/scheduled_task/st = new/datum/scheduled_task/source(trigger_time, source, procedure, arguments, /proc/repeat_scheduled_task, list(repeat_interval))
-	scheduler.schedule(st)
+	processes.scheduler.schedule(st)
 	return st
 
 /*************
@@ -136,4 +135,4 @@
 
 /proc/repeat_scheduled_task(var/trigger_delay, var/datum/scheduled_task/st)
 	st.trigger_time = world.time + trigger_delay
-	scheduler.schedule(st)
+	processes.scheduler.schedule(st)

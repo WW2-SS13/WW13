@@ -652,7 +652,7 @@
 
 		if (!mob_is_observer)
 			for (var/obj/structure/multiz/ladder/ww2/manhole/M in mob.loc)
-				callproc_process.queue(M, /obj/structure/multiz/ladder/ww2/manhole/proc/fell, list(mob), 1)
+				processes.callproc.queue(M, /obj/structure/multiz/ladder/ww2/manhole/proc/fell, list(mob), 1)
 				break
 
 		// make animals acknowledge us

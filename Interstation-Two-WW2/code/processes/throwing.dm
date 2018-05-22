@@ -1,6 +1,3 @@
-// WIP
-var/process/throwing/throwing_process = null
-
 /process/throwing
 
 /process/throwing/setup()
@@ -8,8 +5,8 @@ var/process/throwing/throwing_process = null
 	schedule_interval = 0.5
 	start_delay = 10
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	throwing_process = src
 	subsystem = TRUE
+	processes.throwing = src
 
 /process/throwing/fire()
 

@@ -530,7 +530,7 @@ its easier to just keep the beam vertical.
 
 /atom/proc/menasize()
 	menacing_atoms |= src
-	menacing_process.fire()
+	processes.menacing.fire()
 
 /atom/proc/unmenasize()
 	menacing_atoms -= src

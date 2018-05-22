@@ -820,8 +820,8 @@ var/first_fallschirm = TRUE
 		H.loc = pick(fallschirm_spawnpoints)
 
 	H.add_note("Role", "You are a <b>[title]</b>, a paratrooper. Your job is to help any other units that need assistance.")
-	if (paratrooper_plane_master)
-		H << paratrooper_plane_master.getMessage()
+	if (processes.paratrooper_plane)
+		H << processes.paratrooper_plane.getMessage()
 	H.give_radio()
 	// Paratroopers are elite so they have very nicu stats - Kachnov
 	H.setStat("strength", STAT_MEDIUM_HIGH)
@@ -839,7 +839,7 @@ var/first_fallschirm = TRUE
 	return list(new/obj/item/weapon/key/german)
 
 /datum/job/german/paratrooper/specialcheck()
-	return ((fallschirm_landmarks.len + fallschirm_spawnpoints.len) && paratrooper_plane_master.altitude > 500)
+	return ((fallschirm_landmarks.len + fallschirm_spawnpoints.len) && processes.paratrooper_plane.altitude > 500)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

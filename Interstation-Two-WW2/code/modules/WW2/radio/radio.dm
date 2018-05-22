@@ -350,9 +350,9 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 						++radio_delay
 
 		if (!stuttering || stuttering < 4)
-			callproc_process.queue(radio, /obj/item/radio/proc/broadcast, list(rhtml_encode(message), src, FALSE), radio_delay)
+			processes.callproc.queue(radio, /obj/item/radio/proc/broadcast, list(rhtml_encode(message), src, FALSE), radio_delay)
 		else
-			callproc_process.queue(radio, /obj/item/radio/proc/broadcast, list(rhtml_encode(message), src, TRUE), radio_delay)
+			processes.callproc.queue(radio, /obj/item/radio/proc/broadcast, list(rhtml_encode(message), src, TRUE), radio_delay)
 
 /obj/item/radio/proc/broadcast(var/msg, var/mob/living/carbon/human/speaker, var/hardtohear = FALSE, var/needs_loc = TRUE)
 
@@ -642,7 +642,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 
 	// sanity checking due to crashing, not sure it will help - Kachnov
 	if (ispath(path) && list(GERMAN, SOVIET).Find(faction))
-		supplydrop_process.add("[path]", faction)
+		processes.supplydrop.add("[path]", faction)
 
 // shitcode copied from the german supplytrain system - Kachnov
 /obj/item/radio
@@ -695,4 +695,4 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	return TRUE
 
 /obj/item/radio/proc/announce_after(msg, _announcer, time)
-	callproc_process.queue(src, /obj/item/radio/proc/announce, list(msg, _announcer), time)
+	processes.callproc.queue(src, /obj/item/radio/proc/announce, list(msg, _announcer), time)

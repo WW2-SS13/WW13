@@ -1,17 +1,15 @@
-var/process/train/train_process = null
-var/supplytrain_may_process = FALSE
-
 /process/train
 	var/tmpTime = 0
 	var/firstTmpTime = TRUE
 	var/supplytrain_special_check = FALSE
+	var/supplytrain_may_process = FALSE
 
 /process/train/setup()
 	name = "train process"
 	schedule_interval = 10
 	start_delay = 100
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	train_process = src
+	processes.train = src
 
 /process/train/fire()
 	SCHECK

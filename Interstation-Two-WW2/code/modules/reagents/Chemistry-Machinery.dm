@@ -36,9 +36,11 @@
 	processing_objects += src
 
 /obj/structure/chemical_dispenser/proc/recharge()
-	if(stat & BROKEN) return
-	if(!obj_process) return
-	var/addenergy = 1 * (obj_process.schedule_interval/20)
+	if(stat & BROKEN)
+		return
+	if(!processes.obj)
+		return
+	var/addenergy = 1
 	var/oldenergy = energy
 	energy = min(energy + addenergy, max_energy)
 	if(energy != oldenergy)

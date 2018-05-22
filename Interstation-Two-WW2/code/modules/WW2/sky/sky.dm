@@ -38,7 +38,7 @@ var/list/sky_drop_map = list()
 					mover.loc = get_turf(mover.loc)
 					sky_drop_map["[mover.x],[mover.y],[mover.z]"] = mover.loc
 
-		if (paratrooper_plane_master.isLethalToJump())
+		if (processes.paratrooper_plane.isLethalToJump())
 			if (ishuman(mover))
 				var/mob/living/carbon/human/H = mover
 				H << "<span class = 'userdanger'>You land hard on the ground.</span>"

@@ -1,7 +1,3 @@
-// more modulized way to handle supply drops I guess - Kachnov
-
-var/process/supplydrop/supplydrop_process = null
-
 /process/supplydrop
 
 /process/supplydrop/setup()
@@ -9,7 +5,7 @@ var/process/supplydrop/supplydrop_process = null
 	schedule_interval = 300
 	start_delay = 100
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	supplydrop_process = src
+	processes.supplydrop = src
 
 /process/supplydrop/fire()
 	SCHECK

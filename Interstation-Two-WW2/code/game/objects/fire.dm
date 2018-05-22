@@ -78,7 +78,7 @@ var/list/fire_pool = list()
 	if (fuel)
 		fire.time_limit += rand(10,20)
 
-	callproc_process.queue(fire, /datum/proc/qdeleted, null, fire.time_limit)
+	processes.callproc.queue(fire, /datum/proc/qdeleted, null, fire.time_limit)
 
 	return fire
 

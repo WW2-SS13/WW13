@@ -1,11 +1,9 @@
-var/process/menacing/menacing_process = null
-
 /process/menacing/setup()
 	name = "menacing"
 	schedule_interval = 50 // every 5 seconds
 	start_delay = 50
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	menacing_process = src
+	processes.menacing = src
 
 /process/menacing/fire()
 	SCHECK

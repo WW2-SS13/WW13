@@ -1,21 +1,19 @@
 #define SMOOTH_MOVEMENT
 
-var/process/paratrooper_plane_controller/paratrooper_plane_master = null
-
-/process/paratrooper_plane_controller
+/process/paratrooper_plane
 	var/altitude = 10000  // takes ~9.5 minutes to get to nonlethal altitude ((1000 - (19*500)) = 500, 19 * 30 = 570 seconds)
 	var/first_nonlethal_altitude = 500
 	var/tmpTime = 0
 	var/list/my_turfs = list()
 
-/process/paratrooper_plane_controller/setup()
+/process/paratrooper_plane/setup()
 	name = "paratrooper plane controller"
 	schedule_interval = 10
 	start_delay = 50
 	fires_at_gamestates = list(GAME_STATE_PLAYING)
-	paratrooper_plane_master = src
+	processes.paratrooper_plane = src
 
-/process/paratrooper_plane_controller/fire()
+/process/paratrooper_plane/fire()
 	SCHECK
 	if (altitude == 500 || !latejoin_turfs["Fallschirm"] || !latejoin_turfs["Fallschirm"]:len)
 		return
@@ -65,10 +63,10 @@ var/process/paratrooper_plane_controller/paratrooper_plane_master = null
 	catch(var/exception/e)
 		catchException(e)
 
-/process/paratrooper_plane_controller/proc/isLethalToJump()
+/process/paratrooper_plane/proc/isLethalToJump()
 	return altitude > first_nonlethal_altitude
 
-/process/paratrooper_plane_controller/proc/getMessage()
+/process/paratrooper_plane/proc/getMessage()
 	return "<big><span class = 'red'>The plane's current altitude is [altitude]m. <b>It is lethal to jump</b> until it has descended to [first_nonlethal_altitude]m."
 
 #undef SMOOTH_MOVEMENT

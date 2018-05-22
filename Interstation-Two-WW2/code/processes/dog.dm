@@ -1,5 +1,3 @@
-var/process/dog/dog_process = null
-
 /process/dog
 
 /process/dog/setup()
@@ -7,7 +5,7 @@ var/process/dog/dog_process = null
 	schedule_interval = 2 // a bit slower than humans run (1.42 to 1.76 deciseconds)
 	start_delay = 300
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	dog_process = src
+	processes.dog = src
 
 /process/dog/fire()
 	SCHECK
