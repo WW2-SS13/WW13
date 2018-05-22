@@ -51,7 +51,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 		if (serverswap_open_status)
 			if (!processScheduler.isRunning)
 				processScheduler.start()
-				message_admins("The process scheduler has been started.")
+				message_admins("The process scheduler has been started. There are [processes.get_num_processes()] active processes.")
 				log_admin("processScheduler.start() was called at gameticker.pregame().")
 
 		if (!lobby_music_player)
@@ -164,7 +164,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 	if (!processScheduler.isRunning)
 		processScheduler.start()
-		message_admins("The process scheduler has been started.")
+		message_admins("The process scheduler has been started. There are [processes.get_num_processes()] active processes.")
 		log_admin("processScheduler.start() was called at gameticker.setup().")
 
 	return TRUE

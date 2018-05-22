@@ -37,3 +37,9 @@ var/datum/process_list/processes = new
 	var/process/zoom/zoom = null
 	var/process/supply/supply = null
 	var/process/supplydrop/supplydrop = null
+
+/datum/process_list/proc/get_num_processes()
+	. = 0
+	for (var/varname in vars)
+		if (istype(vars[varname], /process))
+			++.
