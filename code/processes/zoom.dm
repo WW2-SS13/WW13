@@ -68,8 +68,8 @@
 						for (var/obj/O in H.client.screen)
 							if (O.scoped_invisible)
 								O.invisibility = FALSE
-						H.pixel_x = 0
-						H.pixel_y = 0
+						H.client.pixel_x = 0
+						H.client.pixel_y = 0
 
 			catch(var/exception/e)
 				catchException(e, H)

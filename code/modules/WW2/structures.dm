@@ -169,5 +169,6 @@
 	if (do_after(H, 75, src))
 		if (src)
 			visible_message("<span class = 'danger'>[H] frees [hanging] from the noose!</span>")
-			animate(hanging, pixel_y = 0, 0, -1)
+			hanging.pixel_x = 0
+			hanging.pixel_y = 0
 			hanging = null

@@ -239,7 +239,6 @@
 	return
 
 
-
 /mob/var/next_snow_message = -1
 /mob/var/next_mud_message = -1
 /mob/var/next_stamina_message = -1
@@ -284,8 +283,6 @@
 
 	for (var/obj/structure/noose/N in get_turf(mob))
 		if (N.hanging == mob)
-			mob.pixel_x = N.pixel_x
-			mob.pixel_y = N.pixel_y
 			return
 
 	if (mob.lying && istype(n, /turf))
