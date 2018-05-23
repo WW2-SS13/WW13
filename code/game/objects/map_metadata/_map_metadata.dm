@@ -83,20 +83,23 @@ var/global/obj/map_metadata/map = null
 
 	initial_faction_organization = faction_organization.Copy()
 
-	if (no_subfaction_chance)
-		if (available_subfactions.len)
-			switch (available_subfactions.len)
-				if (1) // this may be necessary due to prob() memes - Kachnov
-					if (prob(50))
-						available_subfactions = list(available_subfactions[1])
-					else
-						available_subfactions = list()
-				if (2 to INFINITY)
-					if (prob(100 - round((100/(available_subfactions.len+1)))))
-						available_subfactions = list(available_subfactions[rand(1, available_subfactions.len)])
-					else
-						available_subfactions = list()
+	// get a subfaction, just one, for this round
+	var/subfaction = null
+	for (var/faction in available_subfactions)
+		if (prob(available_subfactions[faction]))
+			subfaction = faction
+			break
 
+	if (!no_subfaction_chance && available_subfactions.len)
+		subfaction = pick(available_subfactions)
+
+	qdel_list(available_subfactions)
+	available_subfactions = list()
+
+	if (subfaction)
+		available_subfactions += subfaction
+
+	// makes win condition helper datum
 	win_condition = new
 
 // called from the map process

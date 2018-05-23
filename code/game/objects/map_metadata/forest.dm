@@ -21,9 +21,10 @@
 		PARTISAN,
 		CIVILIAN,
 		ITALIAN)
+	// lower chances because paratroopers are fun too. Todo: make paratroopers a subfaction
 	available_subfactions = list(
-		SCHUTZSTAFFEL,
-		ITALIAN)
+		SCHUTZSTAFFEL = 25,
+		ITALIAN = 25)
 	faction_distribution_coeffs = list(GERMAN = 0.42, SOVIET = 0.58)
 	battle_name = "Battle of Brest"
 
