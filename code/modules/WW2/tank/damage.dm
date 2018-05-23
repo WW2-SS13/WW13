@@ -3,6 +3,10 @@
 
 /obj/tank/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
+	// we can't be hit by our own bullets
+	if (P.firer == back_seat())
+		return
+
 	if (istype(P, /obj/item/projectile/bullet/pellet))
 		tank_message("<span class = 'danger'>[P] bounces off the tank!</span>")
 		return
