@@ -220,13 +220,36 @@ Parts of code courtesy of Super3222
 	if (user.aiming)
 		user.aiming.update_aiming()
 
+	// make other buttons invisible
+	var/moved = 0
+	if (ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if (H.using_zoom())
+			for (var/obj/screen/movable/action_button/AB in user.client.screen)
+				if (AB.name == "Toggle Sights" && AB != azoom.button)
+					AB.invisibility = 101
+
+					var/azoom_button_screenX = text2num(splittext(splittext(azoom.button.screen_loc, ":")[1], "+")[2])
+					var/AB_screenX = text2num(splittext(splittext(AB.screen_loc, ":")[1], "+")[2])
+
+					// see if we need to move this button left to compensate
+					if (azoom_button_screenX > AB_screenX)
+						++moved
+		else
+			for (var/obj/screen/movable/action_button/AB in user.client.screen)
+				if (AB.name == "Toggle Sights")
+					AB.invisibility = 0
+
+	// actually shift the button
+	azoom.button.pixel_x = -(moved*32)
+	azoom.button.UpdateIcon()
+
 /datum/action/toggle_scope
 	name = "Toggle Sights"
 	check_flags = AB_CHECK_ALIVE|AB_CHECK_RESTRAINED|AB_CHECK_STUNNED|AB_CHECK_LYING
 	button_icon_state = "sniper_zoom"
 	var/obj/item/weapon/attachment/scope/scope = null
 	var/boundto = null
-
 
 /datum/action/toggle_scope/IsAvailable()
 	. = ..()
