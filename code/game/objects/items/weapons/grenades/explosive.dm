@@ -18,7 +18,7 @@
 	name = "fragmentation grenade"
 	desc = "A fragmentation grenade, optimized for harming personnel without causing massive structural damage."
 	icon_state = "frggrenade"
-	item_state = "frggrenade"
+	item_state = "grenade"
 	loadable = TRUE
 
 	var/fragment_type = /obj/item/projectile/bullet/pellet/fragment

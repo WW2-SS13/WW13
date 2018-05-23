@@ -5,14 +5,12 @@
 /obj/item/weapon/grenade/explosive/stgnade
 	name = "Stielgranate 41"
 	icon_state = "stgnade"
-	item_state = "stgnade"
 	explosion_size = 4
 	num_fragments = 37
 
 /obj/item/weapon/grenade/explosive/rgd
 	name = "RGD-33"
 	icon_state = "rgd"
-	item_state = "rgd"
 	explosion_size = 4
 	num_fragments = 37
 
@@ -36,7 +34,6 @@
 	name = "Smoke grenade"
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "smoke_grenade"
-	item_state = "smoke_grenade"
 	det_time = 20
 
 /obj/item/weapon/grenade/smokebomb/soviet
@@ -44,7 +41,6 @@
 	name = "Smoke grenade"
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "smoke_grenade"
-	item_state = "smoke_grenade"
 	det_time = 20
 
 /obj/item/weapon/storage/box/smoke_grenades
@@ -53,5 +49,5 @@
 
 /obj/item/weapon/storage/box/smoke_grenades/New()
 	..()
-	for(var/i = FALSE; i < 7; i++)
+	for(var/i = 0; i < 7; i++)
 		new /obj/item/ammo_casing/grenade/smoke(src)
