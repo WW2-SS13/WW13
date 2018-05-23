@@ -52,10 +52,11 @@ bullet_act
 
 	if (def_zone == "mouth")
 		if (wear_mask && istype(wear_mask, /obj/item/weapon/grenade))
-			visible_message("<span class = 'danger'>The grenade in [src]'s mouth goes off!</span>")
 			var/obj/item/weapon/grenade/G = wear_mask
-			G.active = TRUE
-			G.prime()
+			if (!G.active)
+				visible_message("<span class = 'danger'>The grenade in [src]'s mouth goes off!</span>")
+				G.active = TRUE
+				G.prime()
 
 	// if we hit a client who's not on our team, increase our stats
 	if (client && stat == CONSCIOUS && P.firer && ishuman(P.firer) && P.firedfrom)
