@@ -1,4 +1,3 @@
-// WIP, currently unused so it probably doesn't work
 /process/python
 
 /process/python/setup()
@@ -11,12 +10,8 @@
 /process/python/fire()
 	return
 
-/process/python/proc/execute(var/script, var/args, var/scriptsprefix = TRUE)
-	if(scriptsprefix) script = "scripts/" + script
-
-	if(world.system_type == MS_WINDOWS)
-		script = replacetext(script, "/", "\\")
-
-	var/command = script + " " + args
-
-	return shell(command)
+/process/python/proc/execute(var/command, var/list/args = list())
+	for (var/argument in args)
+		command = "[command] [argument]"
+	log_debug("Executing python3 command '[command]'")
+	return shell("cd && sudo python3 [command]")

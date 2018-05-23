@@ -45,10 +45,7 @@
 /process/mapswap/proc/swap(var/winner = "City")
 	next_map_title = winner
 	winner = uppertext(winner)
-	if (!list(MAP_CITY, MAP_FOREST, MAP_PILLAR).Find(winner))
+	if (!maps.Find(winner))
 		winner = maps[1]
-	if (shell())
-		shell("cd && sudo python3 mapswap.py [winner]")
-		log_debug("Ran mapswap.py with arg '[winner]' on the shell.")
-	else
-		log_debug("Failed to execute python shell command in mapswap process!")
+	if (!processes.python.execute("mapswap.py", list(winner)))
+		log_debug("Failed to swap the map! mapswap.py must have broke.")
