@@ -116,6 +116,7 @@
 	desc = "A case full of medals granted to the bravest Wehrmacht soldiers."
 	icon_state = "cigarcase"
 	item_state = "cigarcase"
+	icon_type = "cigar"
 	icon = 'icons/obj/cigarettes.dmi'
 	w_class = 2
 	throwforce = WEAPON_FORCE_HARMLESS
