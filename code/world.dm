@@ -423,7 +423,7 @@ var/setting_up_db_connection = FALSE
 					// "this" = "s1" or "sfinal" = "s2" or "snext" = "s2"
 					serverswap[p1] = p2
 				else if (p1 == "masterdir")
-					// "masterdir" = "server/WW13/..."
+					// "masterdir" = "server/WW13/.../"
 					if (p2 == "nil")
 						serverswap.Cut()
 						goto end_serverswap
@@ -446,15 +446,15 @@ var/setting_up_db_connection = FALSE
 				/*
 					// we're starting up for the first time, so clear the sharedinfo folder
 					for (var/i in TRUE to 10)
-						var/d1 = "[serverswap["masterdir"]]/sharedinfo/s[i]_normal.txt"
-						var/d2 = "[serverswap["masterdir"]]/sharedinfo/s[i]_closed.txt"
+						var/d1 = "[serverswap["masterdir"]]sharedinfo/s[i]_normal.txt"
+						var/d2 = "[serverswap["masterdir"]]sharedinfo/s[i]_closed.txt"
 						if (fexists(d1))
 							fdel(d1)
 						if (fexists(d2))
 							fdel(d2)
 						*/
 					DEBUG_SERVERSWAP(5.1)
-					if (fexists("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt"))
+					if (fexists("[serverswap["masterdir"]]sharedinfo/[serverswap["this"]]_closed.txt"))
 						serverswap_open_status = FALSE
 						DEBUG_SERVERSWAP(5.11)
 					else
@@ -467,7 +467,7 @@ var/setting_up_db_connection = FALSE
 			DEBUG_SERVERSWAP(6)
 			if (serverswap.Find("masterdir") && serverswap["masterdir"] != "nil")
 				DEBUG_SERVERSWAP(7.1)
-				database = new("[serverswap["masterdir"]]/SQL/database.db")
+				database = new("[serverswap["masterdir"]]SQL/database.db")
 				if (!database)
 					DEBUG_SERVERSWAP(7.15)
 			else
@@ -546,10 +546,10 @@ var/setting_up_db_connection = FALSE
 			DEBUG_SERVERSWAP(11)
 			if (!serverswap.Find("sfinal")) // ditto
 				break
-			serverswap["master_data_dir"] = "[serverswap["masterdir"]]/sharedinfo/data/"
-			serverswap["master_log_dir"] = "[serverswap["masterdir"]]/sharedinfo/data/logs/"
-			serverswap["runtime_log_dir"] = "[serverswap["masterdir"]]/sharedinfo/data/logs/runtime/"
-			serverswap["attack_log_dir"] = "[serverswap["masterdir"]]/sharedinfo/data/logs/attack/"
+			serverswap["master_data_dir"] = "[serverswap["masterdir"]]sharedinfo/data/"
+			serverswap["master_log_dir"] = "[serverswap["masterdir"]]sharedinfo/data/logs/"
+			serverswap["runtime_log_dir"] = "[serverswap["masterdir"]]sharedinfo/data/logs/runtime/"
+			serverswap["attack_log_dir"] = "[serverswap["masterdir"]]sharedinfo/data/logs/attack/"
 			DEBUG_SERVERSWAP(12)
 			var/wdir = ""
 			var/F = ""
@@ -566,11 +566,11 @@ var/setting_up_db_connection = FALSE
 						waiting_on_id = serverswap["sfinal"]
 
 					DEBUG_SERVERSWAP("13.01 = [waiting_on_id]")
-					DEBUG_SERVERSWAP("13.02 = [serverswap["masterdir"]]/sharedinfo/[waiting_on_id]_closed.txt")
+					DEBUG_SERVERSWAP("13.02 = [serverswap["masterdir"]]sharedinfo/[waiting_on_id]_closed.txt")
 					DEBUG_SERVERSWAP("13.03 = [serverswap_open_status]")
 					DEBUG_SERVERSWAP("13.04 = [serverswap_closed]")
 
-					if (fexists("[serverswap["masterdir"]]/sharedinfo/[waiting_on_id]_closed.txt"))
+					if (fexists("[serverswap["masterdir"]]sharedinfo/[waiting_on_id]_closed.txt"))
 						// other server is closed, time to open (if we aren't already open)
 						serverswap_open_status = TRUE
 						serverswap_closed = FALSE
@@ -578,12 +578,12 @@ var/setting_up_db_connection = FALSE
 							// reset the pregame timer
 							ticker.pregame_timeleft = 185
 							// recreate the database, may or may not fix a DB bug
-							database = new("[serverswap["masterdir"]]/SQL/database.db")
+							database = new("[serverswap["masterdir"]]SQL/database.db")
 
 						DEBUG_SERVERSWAP("13.1")
 
 						// make sure we aren't marked as closed anymore
-						wdir = "[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt"
+						wdir = "[serverswap["masterdir"]]sharedinfo/[serverswap["this"]]_closed.txt"
 						if (fexists(wdir))
 							fdel(wdir)
 				/*	else
@@ -595,11 +595,11 @@ var/setting_up_db_connection = FALSE
 						world.visibility = TRUE
 			/*		if (!serverswap_closed)
 						// delete the other file, if it exists
-						if (fexists("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt"))
+						if (fexists("[serverswap["masterdir"]]sharedinfo/[serverswap["this"]]_closed.txt"))
 							DEBUG_SERVERSWAP("13.29")
-							fdel("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt")*/
+							fdel("[serverswap["masterdir"]]sharedinfo/[serverswap["this"]]_closed.txt")*/
 
-					wdir = "[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_normal.txt"
+					wdir = "[serverswap["masterdir"]]sharedinfo/[serverswap["this"]]_normal.txt"
 					F = file(wdir)
 					fdel(F)
 					F << "testing"
@@ -617,10 +617,10 @@ var/setting_up_db_connection = FALSE
 
 /proc/serverswap_close_server()
 
-	if (fexists("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_normal.txt"))
+	if (fexists("[serverswap["masterdir"]]sharedinfo/[serverswap["this"]]_normal.txt"))
 		DEBUG_SERVERSWAP("13.39")
-		fdel("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_normal.txt")
+		fdel("[serverswap["masterdir"]]sharedinfo/[serverswap["this"]]_normal.txt")
 
-	var/F = file("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt")
+	var/F = file("[serverswap["masterdir"]]sharedinfo/[serverswap["this"]]_closed.txt")
 	fdel(F)
 	F << "testing"

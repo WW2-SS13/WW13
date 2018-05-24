@@ -14,7 +14,7 @@
 /client/proc/isPatron(pledge = "$3+")
 	var/number = text2num(replacetext(replacetext(pledge, "$", ""), "+", ""))
 	if (serverswap && serverswap.Find("masterdir"))
-		var/list/patron2pledge = file2list("[serverswap["masterdir"]]/patrons.txt")
+		var/list/patron2pledge = file2list("[serverswap["masterdir"]]patrons.txt")
 		for (var/string in patron2pledge)
 			var/list/splitString = splittext(string, "=")
 			if (splitString.len)

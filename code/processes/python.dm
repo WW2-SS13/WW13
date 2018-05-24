@@ -14,4 +14,9 @@
 	for (var/argument in args)
 		command = "[command] [argument]"
 	log_debug("Executing python3 command '[command]'")
-	return shell("cd && cd WW13/scripts && sudo python3 [command]")
+	return shell("cd && cd [getScriptDir()] && sudo python3 [command]")
+
+/process/python/proc/getScriptDir()
+	if (serverswap && serverswap.Find("masterdir"))
+		return "[serverswap["masterdir"]]scripts"
+	return "WW13/scripts"
