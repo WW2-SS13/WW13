@@ -7,8 +7,6 @@ var/list/gamemode_cache = list()
 	var/server_name = null				// server name (for world name / status)
 	var/server_suffix = FALSE				// generate numeric suffix based on server port
 
-	//var/nudge_script_path = "nudge.py"  // where the nudge.py script is located
-
 	var/list/lobby_screens = list("1") // Which lobby screens are available
 
 	var/lobby_countdown = 120
@@ -117,30 +115,12 @@ var/list/gamemode_cache = list()
 	var/bones_can_break = FALSE
 	var/limbs_can_break = FALSE
 
-//	var/revival_pod_plants = TRUE
-//	var/revival_cloning = TRUE
 	var/revival_brain_life = -1
 
-//	var/use_loyalty_implants = FALSE
 
 //	var/welder_vision = TRUE
 	var/generate_asteroid = FALSE
 	var/no_click_cooldown = FALSE
-
-//	var/asteroid_z_levels = list()
-
-	//Used for modifying movement speed for mobs.
-	//Unversal modifiers
-	var/run_speed = FALSE
-	var/walk_speed = FALSE
-
-	//Mob specific modifiers. NOTE: These will affect different mob types in different ways
-	var/human_delay = FALSE
-	var/robot_delay = FALSE
-	var/monkey_delay = FALSE
-	var/alien_delay = FALSE
-	var/slime_delay = FALSE
-	var/animal_delay = FALSE
 
 	var/simultaneous_pm_warning_timeout = 100
 
@@ -229,24 +209,10 @@ var/list/gamemode_cache = list()
 	var/use_hunger = TRUE
 	var/use_thirst = TRUE
 	var/allow_selfheal = FALSE
-/*
-/datum/configuration/New()
-	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
-	for (var/T in L)
-		// I wish I didn't have to instance the game modes in order to look up
-		// their information, but it is the only way (at least that I know of).
-		var/datum/game_mode/M = new T()
-		if (M.config_tag)
-			gamemode_cache[M.config_tag] = M // So we don't instantiate them repeatedly.
-			if (!(M.config_tag in modes))		// ensure each mode is added only once
-				log_misc("Adding game mode [M.name] ([M.config_tag]) to configuration.")
-				modes += M.config_tag
-				mode_names[M.config_tag] = M.name
-				probabilities[M.config_tag] = M.probability
-				if (M.votable)
-					votable_modes += M.config_tag
-	votable_modes += "secret"
-*/
+
+	// python
+	var/scripts_directory = null
+
 /datum/configuration/proc/load(filename, type = "config") //the type can also be game_options, in which case it uses a different switch. not making it separate to not copypaste code - Urist
 
 	var/list/Lines = file2list(filename)
@@ -293,6 +259,12 @@ var/list/gamemode_cache = list()
 						config.resource_website = value
 					else
 						config.resource_website = null
+
+				if ("scripts_directory")
+					if (!list("null", "Null", "NULL", "nil", "Nil", "NILL").Find(value))
+						config.scripts_directory = value
+					else
+						config.scripts_directory = null
 				// allows the global_config to override us with YES/NO
 				if ("hub")
 					if (!value || !list("yes", "Yes", "YES", "no", "No", "NO").Find(value))
@@ -718,25 +690,6 @@ var/list/gamemode_cache = list()
 					config.bones_can_break = value
 				if ("limbs_can_break")
 					config.limbs_can_break = value
-
-				if ("run_speed")
-					config.run_speed = text2num(value)
-
-				if ("walk_speed")
-					config.walk_speed = text2num(value)
-
-				if ("human_delay")
-					config.human_delay = value
-				if ("robot_delay")
-					config.robot_delay = value
-				if ("monkey_delay")
-					config.monkey_delay = value
-				if ("alien_delay")
-					config.alien_delay = value
-				if ("slime_delay")
-					config.slime_delay = value
-				if ("animal_delay")
-					config.animal_delay = value
 				else
 					log_misc("Unknown setting in game_options configuration: '[name]'")
 
@@ -798,119 +751,6 @@ var/list/gamemode_cache = list()
 		world.visibility = TRUE
 	else
 		world.visibility = FALSE
-/*
-/datum/configuration/proc/loadsql(filename)  // -- TLE
-	var/list/Lines = file2list(filename)
-	for(var/t in Lines)
-		if (!t)	continue
-
-		t = trim(t)
-		if (length(t) == 0)
-			continue
-		else if (copytext(t, 1, 2) == "#")
-			continue
-
-		var/pos = findtext(t, " ")
-		var/name = null
-		var/value = null
-
-		if (pos)
-			name = lowertext(copytext(t, 1, pos))
-			value = copytext(t, pos + 1)
-		else
-			name = lowertext(t)
-
-		if (!name)
-			continue
-
-		switch (name)
-			if ("address")
-				sqladdress = value
-			if ("port")
-				sqlport = value
-			if ("database")
-				sqldb = value
-			if ("login")
-				sqllogin = value
-			if ("password")
-				sqlpass = value
-			if ("feedback_database")
-				sqlfdbkdb = value
-			if ("feedback_login")
-				sqlfdbklogin = value
-			if ("feedback_password")
-				sqlfdbkpass = value
-			if ("enable_stat_tracking")
-				sqllogging = TRUE
-			else
-				log_misc("Unknown setting in configuration: '[name]'")*/
-/*
-/datum/configuration/proc/loadforumsql(filename)  // -- TLE
-	var/list/Lines = file2list(filename)
-	for(var/t in Lines)
-		if (!t)	continue
-
-		t = trim(t)
-		if (length(t) == 0)
-			continue
-		else if (copytext(t, 1, 2) == "#")
-			continue
-
-		var/pos = findtext(t, " ")
-		var/name = null
-		var/value = null
-
-		if (pos)
-			name = lowertext(copytext(t, 1, pos))
-			value = copytext(t, pos + 1)
-		else
-			name = lowertext(t)
-
-		if (!name)
-			continue
-
-		switch (name)
-			if ("address")
-				forumsqladdress = value
-			if ("port")
-				forumsqlport = value
-			if ("database")
-				forumsqldb = value
-			if ("login")
-				forumsqllogin = value
-			if ("password")
-				forumsqlpass = value
-			if ("activatedgroup")
-				forum_activated_group = value
-			if ("authenticatedgroup")
-				forum_authenticated_group = value
-			else
-				log_misc("Unknown setting in configuration: '[name]'")*/
-/*
-/datum/configuration/proc/pick_mode(mode_name)
-	// I wish I didn't have to instance the game modes in order to look up
-	// their information, but it is the only way (at least that I know of).
-	for (var/game_mode in gamemode_cache)
-		var/datum/game_mode/M = gamemode_cache[game_mode]
-		if (M.config_tag && M.config_tag == mode_name)
-			return M
-	return gamemode_cache["extended"]
-
-/datum/configuration/proc/get_runnable_modes()
-	var/list/runnable_modes = list()
-	for(var/game_mode in gamemode_cache)
-		var/datum/game_mode/M = gamemode_cache[game_mode]
-		if (M && M.can_start() && !isnull(config.probabilities[M.config_tag]) && config.probabilities[M.config_tag] > 0)
-			runnable_modes |= M
-	return runnable_modes
-*/
 
 /datum/configuration/proc/post_load()
-	//apply a default value to config.python_path, if needed
-	/*
-	if (!config.python_path)
-		if (world.system_type == UNIX)
-			config.python_path = "/usr/bin/env python2"
-		else //probably windows, if not this should work anyway
-			config.python_path = "python"
-*/
+	return

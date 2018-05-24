@@ -326,7 +326,7 @@
 			tally = TRUE
 		tally *= purge
 
-	return tally+config.animal_delay
+	return tally
 
 /mob/living/simple_animal/Stat()
 	..()

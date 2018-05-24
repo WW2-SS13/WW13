@@ -17,6 +17,8 @@
 	return shell("cd && cd [getScriptDir()] && sudo python3 [command]")
 
 /process/python/proc/getScriptDir()
+	if (config.scripts_directory)
+		return config.scripts_directory
 	if (serverswap && serverswap.Find("masterdir"))
 		return "[serverswap["masterdir"]]scripts"
 	return "WW13/scripts"
