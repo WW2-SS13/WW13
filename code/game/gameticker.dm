@@ -241,14 +241,15 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 			if (!delay_end)
 				world << "<span class='notice'><big>Restarting in [round(restart_after/10)] seconds. Next map: <b>[next_map]</b></big></span>"
+				admin_restart_disabled = TRUE
 
 			if (!delay_end)
 				sleep(restart_after)
 				if (!delay_end)
 					world.Reboot()
 				else
-					world << "<span class='notice'><b>An admin has delayed the round end</b></span>"
+					world << "<span class='notice'><b>An admin has delayed the round end.</b></span>"
 			else
-				world << "<span class='notice'><b>An admin has delayed the round end</b></span>"
+				world << "<span class='notice'><b>An admin has delayed the round end.</b></span>"
 
 	return TRUE

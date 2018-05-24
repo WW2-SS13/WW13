@@ -21,8 +21,6 @@
 	if (is_ready())
 		ready = FALSE
 		vote.initiate_vote("map", "MapSwap Process", TRUE, list(src, "swap"))
-		spawn (config.vote_period)
-			finished_at = world.time
 
 /process/mapswap/proc/is_ready()
 	. = FALSE

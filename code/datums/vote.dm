@@ -143,6 +143,8 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 				if ("restart")
 					if (. == "Restart Round")
 						restart = TRUE
+				if ("map")
+					processes.mapswap.finished_at = world.time
 /*				if ("gamemode")
 					if (master_mode != .)
 						world.save_mode(.)
