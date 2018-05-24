@@ -312,6 +312,7 @@
 	rank_abbreviation = "oGftr"
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
+	additional_languages = list( "Russian" = 100, "Ukrainian" = 25, "Italian" = 50)
 
 	// AUTOBALANCE
 	min_positions = 1

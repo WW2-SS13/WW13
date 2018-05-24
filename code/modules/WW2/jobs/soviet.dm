@@ -260,6 +260,7 @@
 	rank_abbreviation = "Efr"
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRAMedic"
+	additional_languages = list( "German" = 100, "Ukrainian" = 50, "Italian" = 25)
 
 	// AUTOBALANCE
 	min_positions = 1
