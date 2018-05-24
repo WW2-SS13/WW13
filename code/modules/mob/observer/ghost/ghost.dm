@@ -520,9 +520,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 	set name = "Toggle Visibility"
 	if (!icon)
-/*		if (!reference_human)
-			src << "<span class = 'danger'>Your mob broke, we can't make your icon visible again. An admin probably did this.</span>"
-			return*/
 		icon = original_icon
 		overlays = original_overlays
 		src << "<span class = 'good'>You are now visible again.</span>"
@@ -586,7 +583,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if (!target)//Make sure we actually have a target
 			return
 		else
-			var/mob/M = getmobs()[target] //Destination mob
+			var/mob/M = getfitmobs()[target] //Destination mob
 			var/turf/T = get_turf(M) //Turf of the destination mob
 
 		//	if (T && isturf(T))	//Make sure the turf exists, then move the source to that destination.
@@ -594,21 +591,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			forceMove(T)
 		//	else
 		//		src << "This mob is not located in the game world."
-/*
-/mob/observer/ghost/verb/boo()
-	set category = "Ghost"
-	set name = "Boo!"
-	set desc= "Scare your crew members because of boredom!"
-
-	if (bootime > world.time) return
-	var/obj/machinery/light/L = locate(/obj/machinery/light) in view(1, src)
-	if (L)
-		L.flicker()
-		bootime = world.time + 600
-		return
-	//Maybe in the future we can add more <i>spooky</i> code here!
-	return
-*/
 
 /mob/observer/ghost/memory()
 	set hidden = TRUE
@@ -620,33 +602,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/observer/ghost/Post_Incorpmove()
 	stop_following()
-/*
-/mob/observer/ghost/verb/analyze_air()
-	set name = "Analyze Air"
-	set category = "Ghost"
 
-	if (!isghost(usr)) return
-
-	// Shamelessly copied from the Gas Analyzers
-	if (!( istype(usr.loc, /turf) ))
-		return
-
-	var/datum/gas_mixture/environment = usr.loc.return_air()
-
-	var/pressure = environment.return_pressure()
-	var/total_moles = environment.total_moles
-
-	src << "\blue <b>Results:</b>"
-	if (abs(pressure - ONE_ATMOSPHERE) < 10)
-		src << "\blue Pressure: [round(pressure,0.1)] kPa"
-	else
-		src << "\red Pressure: [round(pressure,0.1)] kPa"
-	if (total_moles)
-		for(var/g in environment.gas)
-			src << "\blue [gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]% ([round(environment.gas[g], 0.01)] moles)"
-		src << "\blue Temperature: [round(environment.temperature-T0C,0.1)]&deg;C ([round(environment.temperature,0.1)]K)"
-		src << "\blue Heat Capacity: [round(environment.heat_capacity(),0.1)]"
-*/
 /*
 /mob/observer/ghost/verb/become_mouse()
 	set name = "Become mouse"
@@ -690,15 +646,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		host << "<span class='info'>You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent.</span>"
 */
 /*
-/mob/observer/ghost/verb/view_manfiest()
-	set name = "Show Crew Manifest"
-	set category = "Ghost"
-
-	var/dat
-	dat += "<h4>Crew Manifest</h4>"
-	dat += data_core.get_manifest()
-
-	src << browse(dat, "window=manifest;size=370x420;can_close=1")
 
 //This is called when a ghost is drag clicked to something.
 /mob/observer/ghost/MouseDrop(atom/over)
@@ -721,77 +668,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if (!M.can_be_possessed_by(src))
 		return FALSE
 	return M.do_possession(src)
-/*
-//Used for drawing on walls with blood puddles as a spooky ghost.
-/mob/observer/ghost/verb/bloody_doodle()
-
-	set category = "Ghost"
-	set name = "Write in blood"
-	set desc = "If the round is sufficiently spooky, write a short message in blood on the floor or a wall. Remember, no IC in OOC or OOC in IC."
-
-	if (!(config.cult_ghostwriter))
-		src << "\red That verb is not currently permitted."
-		return
-
-	if (!stat)
-		return
-
-	if (usr != src)
-		return FALSE //something is terribly wrong
-
-	if (!round_is_spooky())
-		src << "\red The veil is not thin enough for you to do that."
-		return
-
-	var/list/choices = list()
-	for(var/obj/effect/decal/cleanable/blood/B in view(1,src))
-		if (B.amount > 0)
-			choices += B
-
-	if (!choices.len)
-		src << "<span class = 'warning'>There is no blood to use nearby.</span>"
-		return
-
-	var/obj/effect/decal/cleanable/blood/choice = input(src,"What blood would you like to use?") in null|choices
-
-	var/direction = input(src,"Which way?","Tile selection") as anything in list("Here","North","South","East","West")
-	var/turf/T = loc
-	if (direction != "Here")
-		T = get_step(T,text2dir(direction))
-
-	if (!istype(T))
-		src << "<span class='warning'>You cannot doodle there.</span>"
-		return
-
-	if (!choice || choice.amount == FALSE || !(Adjacent(choice)))
-		return
-
-	var/doodle_color = (choice.basecolor) ? choice.basecolor : "#A10808"
-
-	var/num_doodles = FALSE
-	for (var/obj/effect/decal/cleanable/blood/writing/W in T)
-		num_doodles++
-	if (num_doodles > 4)
-		src << "<span class='warning'>There is no space to write on!</span>"
-		return
-
-	var/max_length = 50
-
-	var/message = sanitize(input("Write a message. It cannot be longer than [max_length] characters.","Blood writing", ""))
-
-	if (message)
-
-		if (length(message) > max_length)
-			message += "-"
-			src << "<span class='warning'>You ran out of blood to write with!</span>"
-
-		var/obj/effect/decal/cleanable/blood/writing/W = new(T)
-		W.basecolor = doodle_color
-		W.update_icon()
-		W.message = message
-		W.add_hiddenprint(src)
-		W.visible_message("\red Invisible fingers crudely paint something in blood on [T]...")
-*/
 
 /mob/observer/ghost/verb/pointed(atom/A as mob|obj|turf in view())
 	set category = "Ghost"
@@ -830,27 +706,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if (!iconRemoved)
 		var/image/J = image('icons/mob/mob.dmi', loc = src, icon_state = icon)
 		client.images += J*/
-/*
-/mob/observer/ghost/proc/toggle_visibility(var/forced = FALSE)
-	set category = "Ghost"
-	set name = "Toggle Visibility"
-	set desc = "Allows you to turn (in)visible (almost) at will."
 
-	var/toggled_invisible
-	if (!forced && invisibility && world.time < toggled_invisible + 600)
-		src << "You must gather strength before you can turn visible again..."
-		return
-
-	if (invisibility == FALSE)
-		toggled_invisible = world.time
-		visible_message("<span class='emote'>It fades from sight...</span>", "<span class='info'>You are now invisible.</span>")
-	else
-		src << "<span class='info'>You are now visible!</span>"
-
-	invisibility = invisibility == INVISIBILITY_OBSERVER ? FALSE : INVISIBILITY_OBSERVER
-	// Give the ghost a cult icon which should be visible only to itself
-	toggle_icon("cult")
-*/
 /mob/observer/ghost/verb/toggle_anonsay()
 	set category = "Ghost"
 	set name = "Toggle Anonymous Chat"
@@ -934,6 +790,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return "|<a href='byond://?src=\ref[ghost];track=\ref[eyeobj]'>eye</a>"
 */
 	return null
+
 /mob/observer/ghost/extra_ghost_link(var/atom/ghost)
 	if (mind && mind.current)
 		return "|<a href='byond://?src=\ref[ghost];track=\ref[mind.current]'>body</a>"
