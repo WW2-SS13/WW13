@@ -122,7 +122,7 @@
 /obj/item/mine/proc/trigger(atom/movable/AM)
 	if (world.time < nextCanExplode)
 		return
-	for(var/mob/O in viewers(world.view, loc))
+	for (var/mob/O in viewers(world.view, loc))
 		O << "<font color='red'>[AM] triggered the [src]!</font>"
 	triggered = TRUE
 	visible_message("<span class = 'red'><b>Click!</b></span>")

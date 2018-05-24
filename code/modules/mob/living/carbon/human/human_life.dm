@@ -226,7 +226,7 @@
 	if (disabilities & EPILEPSY)
 		if ((prob(1) && paralysis < 1))
 			src << "<span class = 'red'>You have a seizure!</span>"
-			for(var/mob/O in viewers(src, null))
+			for (var/mob/O in viewers(src, null))
 				if (O == src)
 					continue
 				O.show_message(text("<span class='danger'>[src] starts having a seizure!</span>"), TRUE)
@@ -514,7 +514,7 @@
 /mob/living/carbon/human/proc/get_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
 	. = FALSE
 	//Handle normal clothing
-	for(var/obj/item/clothing/C in list(head,wear_suit,w_uniform,shoes,gloves,wear_mask))
+	for (var/obj/item/clothing/C in list(head,wear_suit,w_uniform,shoes,gloves,wear_mask))
 		if (C)
 			if (C.max_heat_protection_temperature && C.max_heat_protection_temperature >= temperature)
 				. |= C.heat_protection
@@ -523,7 +523,7 @@
 /mob/living/carbon/human/proc/get_cold_protection_flags(temperature)
 	. = FALSE
 	//Handle normal clothing
-	for(var/obj/item/clothing/C in list(head,wear_suit,w_uniform,shoes,gloves,wear_mask))
+	for (var/obj/item/clothing/C in list(head,wear_suit,w_uniform,shoes,gloves,wear_mask))
 		if (C)
 			if (C.min_cold_protection_temperature && C.min_cold_protection_temperature <= temperature)
 				. |= C.cold_protection
@@ -583,7 +583,7 @@
 			analgesic = chem_effects[CE_PAINKILLER]
 
 		var/total_plasmaloss = FALSE
-	/*	for(var/obj/item/I in src)
+	/*	for (var/obj/item/I in src)
 			if (I.contaminated)
 				total_plasmaloss += vsc.plc.CONTAMINATION_LOSS*/
 		if (!(status_flags & GODMODE)) adjustToxLoss(total_plasmaloss)
@@ -926,7 +926,7 @@
 
 /mob/living/carbon/human/handle_stomach()
 	spawn(0)
-		for(var/mob/living/M in stomach_contents)
+		for (var/mob/living/M in stomach_contents)
 			if (M.loc != src)
 				stomach_contents.Remove(M)
 				continue

@@ -36,7 +36,7 @@
 	var/list/Lines = list()
 
 	if (holder && (R_ADMIN & holder.rights || R_MOD & holder.rights))
-		for(var/client/C in clients)
+		for (var/client/C in clients)
 			var/entry = "\t[C.key]"
 			if (C.holder && C.holder.fakekey)
 				entry += " <i>(as [C.holder.fakekey])</i>"
@@ -74,13 +74,13 @@
 			entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
 			Lines += entry
 	else
-		for(var/client/C in clients)
+		for (var/client/C in clients)
 			if (C.holder && C.holder.fakekey)
 				Lines += C.holder.fakekey
 			else
 				Lines += C.key
 
-	for(var/line in sortList(Lines))
+	for (var/line in sortList(Lines))
 		msg += "[line]\n"
 
 	msg += "<b>Total Players: [length(Lines)]</b>"
@@ -103,7 +103,7 @@
 //	var/num_devs_online = FALSE
 
 	if (holder)
-		for(var/client/C in admins)
+		for (var/client/C in admins)
 			if (!C.visible_in_who)
 				continue
 
@@ -191,7 +191,7 @@
 				num_mentors_online++
 
 	else
-		for(var/client/C in admins)
+		for (var/client/C in admins)
 			if (R_ADMIN & C.holder.rights || (!R_MOD & C.holder.rights && !R_MENTOR & C.holder.rights))
 				if (!C.holder.fakekey)
 					adminmsg += "\t[C] is a [C.holder.rank]\n"
@@ -320,7 +320,7 @@
 		if (holder.rights & R_ADMIN)
 			ooc_style = "admin"
 
-	for(var/client/target in clients)
+	for (var/client/target in clients)
 		if (target.is_preference_enabled(/datum/client_preference/show_ooc))
 			var/display_name = key
 			if (holder)
@@ -411,7 +411,7 @@
 		var/list/hear = hear(7,T)
 		var/list/hearturfs = list()
 
-		for(var/I in hear)
+		for (var/I in hear)
 			if (ismob(I))
 				var/mob/M = I
 				listening |= M.client
@@ -421,7 +421,7 @@
 				hearturfs |= O.locs[1]
 				listening_obj |= O
 
-		for(var/mob/M in player_list)
+		for (var/mob/M in player_list)
 			if (!M.is_preference_enabled(/datum/client_preference/show_looc))
 				continue
 		/*	if (isAI(M))
@@ -435,7 +435,7 @@
 				listening |= M.client
 
 
-	for(var/client/t in listening)
+	for (var/client/t in listening)
 		var/admin_stuff = ""
 		var/prefix = ""
 		if (t in admins)
@@ -450,7 +450,7 @@
 		t << "<span class='ooc'><span class='looc'>" + create_text_tag("looc", "LOOC:", t) + " <span class='prefix'>[prefix]</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span></span>"
 
 
-	for(var/client/adm in admins)	//Now send to all admins that weren't in range.
+	for (var/client/adm in admins)	//Now send to all admins that weren't in range.
 		if (!(adm in listening))
 			var/admin_stuff = "/([key])([admin_jump_link(mob, adm.holder)])"
 			var/prefix = "(R)"

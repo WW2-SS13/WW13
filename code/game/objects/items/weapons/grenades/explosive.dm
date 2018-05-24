@@ -47,7 +47,7 @@
 			var/list/target_turfs = getcircle(T, spread_range)
 			var/fragments_per_projectile = round(num_fragments/target_turfs.len)
 
-			for(var/turf/TT in target_turfs)
+			for (var/turf/TT in target_turfs)
 				var/obj/item/projectile/bullet/pellet/fragment/P = new fragment_type(T)
 				P.damage = fragment_damage
 				P.pellets = fragments_per_projectile
@@ -56,7 +56,7 @@
 				P.launch_fragment(TT)
 
 				//Make sure to hit any mobs in the source turf
-				for(var/mob/living/L in TT)
+				for (var/mob/living/L in TT)
 					//lying on a frag grenade while the grenade is on the ground causes you to absorb most of the shrapnel.
 					//you will most likely be dead, but others nearby will be spared the fragments that hit you instead.
 					if (L.lying)

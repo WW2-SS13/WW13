@@ -6,9 +6,9 @@ var/global/list/limb_icon_cache = list()
 /obj/item/organ/external/proc/compile_icon()
 	overlays.Cut()
 	 // This is a kludge, only one icon has more than one generation of children though.
-	for(var/obj/item/organ/external/organ in contents)
+	for (var/obj/item/organ/external/organ in contents)
 		if (organ.children && organ.children.len)
-			for(var/obj/item/organ/external/child in organ.children)
+			for (var/obj/item/organ/external/child in organ.children)
 				overlays += child.mob_icon
 		overlays += organ.mob_icon
 

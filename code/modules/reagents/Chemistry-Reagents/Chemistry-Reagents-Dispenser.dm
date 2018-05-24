@@ -59,7 +59,7 @@
 /datum/reagent/carbon/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if (M.ingested && M.ingested.reagent_list.len > 1) // Need to have at least 2 reagents - cabon and something to remove
 		var/effect = TRUE / (M.ingested.reagent_list.len - 1)
-		for(var/datum/reagent/R in M.ingested.reagent_list)
+		for (var/datum/reagent/R in M.ingested.reagent_list)
 			if (R == src)
 				continue
 			M.ingested.remove_reagent(R.id, removed * effect)
@@ -320,7 +320,7 @@
 	if (istype(O, /obj/item))
 		var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 		I.desc = "Looks like this was \an [O] some time ago."
-		for(var/mob/M in viewers(5, O))
+		for (var/mob/M in viewers(5, O))
 			M << "<span class='warning'>\The [O] melts.</span>"
 		qdel(O)
 		remove_self(meltdose) // 10 units of acid will not melt EVERYTHING on the tile

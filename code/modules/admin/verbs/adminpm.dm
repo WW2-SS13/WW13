@@ -17,7 +17,7 @@
 		src << "<font color='red'>Error: Admin-PM-Panel: Only administrators may use this command.</font>"
 		return
 	var/list/client/targets[0]
-	for(var/client/T)
+	for (var/client/T)
 		if (T.mob)
 			if (isnewplayer(T.mob))
 				targets["(New Player) - [T]"] = T
@@ -108,7 +108,7 @@
 
 
 	//we don't use message_admins here because the sender/receiver might get it too
-	for(var/client/X in admins)
+	for (var/client/X in admins)
 		//check client/X is an admin and isn't the sender or recipient
 		if (X == C || X == src)
 			continue
@@ -138,7 +138,7 @@
 	src << "<span class='pm'><span class='out'>" + create_text_tag("pm_out_alt", "", src) + " to <span class='name'>IRC-[sender]</span>: <span class='message'>[msg]</span></span></span>"
 
 	log_admin("PM: [key_name(src)]->IRC-[sender]: [msg]")
-	for(var/client/X in admins)
+	for (var/client/X in admins)
 		if (X == src)
 			continue
 		if (X.holder.rights & R_ADMIN|R_MOD)

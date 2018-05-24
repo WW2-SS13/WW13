@@ -133,13 +133,13 @@
 			else
 				user << "<span class='notice'>You can't reach.</span>"
 				return //Only works for cardinal direcitons, diagonals aren't supposed to work like this.
-		for(var/obj/structure/window/WINDOW in loc)
+		for (var/obj/structure/window/WINDOW in loc)
 			if (WINDOW.dir == dir_to_set)
 				user << "<span class='notice'>There is already a window facing this way there.</span>"
 				return
 		user << "<span class='notice'>You start placing the window.</span>"
 		if (do_after(user,20,src))
-			for(var/obj/structure/window/WINDOW in loc)
+			for (var/obj/structure/window/WINDOW in loc)
 				if (WINDOW.dir == dir_to_set)//checking this for a 2nd time to check if a window was made while we were waiting.
 					user << "<span class='notice'>There is already a window facing this way there.</span>"
 					return

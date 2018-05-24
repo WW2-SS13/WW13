@@ -36,7 +36,7 @@
 		var/atom/movable/AM = A
 		var/curtiles = FALSE
 		var/stopthrow = FALSE
-		for(var/obj/effect/step_trigger/thrower/T in orange(2, src))
+		for (var/obj/effect/step_trigger/thrower/T in orange(2, src))
 			if (AM in T.affecting)
 				return
 
@@ -46,7 +46,7 @@
 				M.canmove = FALSE
 
 		affecting.Add(AM)
-		while(AM && !stopthrow)
+		while (AM && !stopthrow)
 			if (tiles)
 				if (curtiles >= tiles)
 					break
@@ -59,11 +59,11 @@
 
 			// Calculate if we should stop the process
 			if (!nostop)
-				for(var/obj/effect/step_trigger/T in get_step(AM, direction))
+				for (var/obj/effect/step_trigger/T in get_step(AM, direction))
 					if (T.stopper && T != src)
 						stopthrow = TRUE
 			else
-				for(var/obj/effect/step_trigger/teleporter/T in get_step(AM, direction))
+				for (var/obj/effect/step_trigger/teleporter/T in get_step(AM, direction))
 					if (T.stopper)
 						stopthrow = TRUE
 

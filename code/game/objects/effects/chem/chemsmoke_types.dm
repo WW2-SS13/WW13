@@ -28,7 +28,7 @@
 /obj/effect/effect/smoke/chem/payload/zyklon_b/Move()
 	. = ..()
 	if (.)
-		for(var/atom/movable/AM in get_turf(src))
+		for (var/atom/movable/AM in get_turf(src))
 			if (!istype(AM, /obj/effect/effect/smoke/chem))
 				reagents.splash(AM, splash_amount, copy = TRUE)
 		if (loc == destination)

@@ -276,7 +276,7 @@
 					MED.amount -= 1
 					if (MED.amount <= 0)
 						qdel(MED)
-					for(var/mob/M in viewers(src, null))
+					for (var/mob/M in viewers(src, null))
 						if ((M.client && !( M.blinded )))
 							M.show_message("<span class='notice'>[user] applies the [MED] on [src].</span>")
 					return TRUE
@@ -383,7 +383,7 @@
 /mob/living/simple_animal/proc/harvest(var/mob/user)
 	var/actual_meat_amount = max(1,(meat_amount/2))
 	if (meat_type && actual_meat_amount>0 && (stat == DEAD))
-		for(var/i=0;i<actual_meat_amount;i++)
+		for (var/i=0;i<actual_meat_amount;i++)
 			var/obj/item/meat = new meat_type(get_turf(src))
 			meat.name = "[name] [meat.name]"
 		if (issmall(src))

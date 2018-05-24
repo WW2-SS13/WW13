@@ -199,16 +199,16 @@
 	do
 		var/cur_oct[7]
 		var/cur_acc[7]
-		for(var/i = TRUE to 7)
+		for (var/i = TRUE to 7)
 			cur_oct[i] = "3"
 			cur_acc[i] = "n"
 
-		for(var/line in song.lines)
+		for (var/line in song.lines)
 			//world << line
-			for(var/beat in splittext(lowertext(line), ","))
+			for (var/beat in splittext(lowertext(line), ","))
 				//world << "beat: [beat]"
 				var/list/notes = splittext(beat, "/")
-				for(var/note in splittext(notes[1], "-"))
+				for (var/note in splittext(notes[1], "-"))
 					//world << "note: [note]"
 					if (!playing || !isliving(loc))//If the violin is playing, or isn't held by a person
 						playing = FALSE
@@ -219,7 +219,7 @@
 					var/cur_note = text2ascii(note) - 96
 					if (cur_note < 1 || cur_note > 7)
 						continue
-					for(var/i=2 to lentext(note))
+					for (var/i=2 to lentext(note))
 						var/ni = copytext(note,i,i+1)
 						if (!text2num(ni))
 							if (ni == "#" || ni == "b" || ni == "n")
@@ -235,7 +235,7 @@
 					sleep(song.tempo)
 		if (repeat > 0)
 			repeat-- //Infinite loops are baaaad.
-	while(repeat > 0)
+	while (repeat > 0)
 	playing = FALSE
 
 /obj/item/violin/attack_self(mob/user as mob)
@@ -261,7 +261,7 @@
 			var/calctempo = (10/song.tempo)*60
 			dat += "Tempo : <A href='?src=\ref[src];tempo=10'>-</A><A href='?src=\ref[src];tempo=1'>-</A> [calctempo] BPM <A href='?src=\ref[src];tempo=-1'>+</A><A href='?src=\ref[src];tempo=-10'>+</A><BR><BR>"
 			var/linecount = FALSE
-			for(var/line in song.lines)
+			for (var/line in song.lines)
 				linecount += 1
 				dat += "Line [linecount]: [line] <A href='?src=\ref[src];deleteline=[linecount]'>Delete Line</A> <A href='?src=\ref[src];modifyline=[linecount]'>Modify Line</A><BR>"
 			dat += "<A href='?src=\ref[src];newline=1'>Add Line</A><BR><BR>"
@@ -366,7 +366,7 @@
 					var/cont = input(usr, "Your song is too long! Would you like to continue editing it?", "", "yes") in list("yes", "no")
 					if (cont == "no")
 						break
-			while(lentext(t) > MAX_CHARS_TOTAL)
+			while (lentext(t) > MAX_CHARS_TOTAL)
 
 			//split into lines
 			spawn()
@@ -379,7 +379,7 @@
 					usr << "Too many lines!"
 					lines.Cut(MAX_CHARS_PER_LINE+1)
 				var/linenum = TRUE
-				for(var/l in lines)
+				for (var/l in lines)
 					if (lentext(l) > MAX_CHARS_PER_LINE)
 						usr << "Line [linenum] too long!"
 						lines.Remove(l)
@@ -390,7 +390,7 @@
 				song.tempo = tempo
 
 	add_fingerprint(usr)
-	for(var/mob/M in viewers(1, loc))
+	for (var/mob/M in viewers(1, loc))
 		if ((M.client && M.using_object == src))
 			attack_self(M)
 	return

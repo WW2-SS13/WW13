@@ -10,7 +10,7 @@
 
 	var/total_burn  = FALSE
 	var/total_brute = FALSE
-	for(var/obj/item/organ/external/O in organs)	//hardcoded to streamline things a bit
+	for (var/obj/item/organ/external/O in organs)	//hardcoded to streamline things a bit
 		if ((O.status & ORGAN_ROBOT) && !O.vital)
 			continue //*non-vital* robot limbs don't count towards shock and crit
 		total_brute += O.brute_dam
@@ -73,7 +73,7 @@
 //These procs fetch a cumulative total damage from all organs
 /mob/living/carbon/human/getBruteLoss()
 	var/amount = FALSE
-	for(var/obj/item/organ/external/O in organs)
+	for (var/obj/item/organ/external/O in organs)
 		if (O.status & ORGAN_ROBOT)
 			continue //robot limbs don't count towards shock and crit
 		amount += O.brute_dam
@@ -81,7 +81,7 @@
 
 /mob/living/carbon/human/getFireLoss()
 	var/amount = FALSE
-	for(var/obj/item/organ/external/O in organs)
+	for (var/obj/item/organ/external/O in organs)
 		if (O.status & ORGAN_ROBOT)
 			continue //robot limbs don't count towards shock and crit
 		amount += O.burn_dam
@@ -239,7 +239,7 @@
 //Returns a list of damaged organs
 /mob/living/carbon/human/proc/get_damaged_organs(var/brute, var/burn)
 	var/list/obj/item/organ/external/parts = list()
-	for(var/obj/item/organ/external/O in organs)
+	for (var/obj/item/organ/external/O in organs)
 		if ((brute && O.brute_dam) || (burn && O.burn_dam))
 			parts += O
 	return parts
@@ -247,7 +247,7 @@
 //Returns a list of damageable organs
 /mob/living/carbon/human/proc/get_damageable_organs()
 	var/list/obj/item/organ/external/parts = list()
-	for(var/obj/item/organ/external/O in organs)
+	for (var/obj/item/organ/external/O in organs)
 		if (O.is_damageable())
 			parts += O
 	return parts
@@ -285,7 +285,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	var/list/obj/item/organ/external/parts = get_damaged_organs(brute,burn)
 
 	var/update = FALSE
-	while(parts.len && (brute>0 || burn>0) )
+	while (parts.len && (brute>0 || burn>0) )
 		var/obj/item/organ/external/picked = pick(parts)
 
 		var/brute_was = picked.brute_dam
@@ -306,7 +306,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	if (status_flags & GODMODE)	return	//godmode
 	var/list/obj/item/organ/external/parts = get_damageable_organs()
 	var/update = FALSE
-	while(parts.len && (brute>0 || burn>0) )
+	while (parts.len && (brute>0 || burn>0) )
 		var/obj/item/organ/external/picked = pick(parts)
 
 		var/brute_was = picked.brute_dam
@@ -336,7 +336,7 @@ This function restores the subjects blood to max.
 This function restores all organs.
 */
 /mob/living/carbon/human/restore_all_organs()
-	for(var/obj/item/organ/external/current_organ in organs)
+	for (var/obj/item/organ/external/current_organ in organs)
 		current_organ.rejuvenate()
 
 /mob/living/carbon/human/proc/HealDamage(zone, brute, burn)

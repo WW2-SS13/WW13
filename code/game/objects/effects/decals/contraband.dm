@@ -28,12 +28,12 @@
 	anchored = TRUE
 	New(turf/loc)
 		if (icon_state != "random")
-			for(var/datum/poster/new_design in poster_designs)
+			for (var/datum/poster/new_design in poster_designs)
 				if (new_design.icon_state == icon_state)
 					return ..(loc, new_design)
 		..()
 		if (iswall(loc) && !pixel_x && !pixel_y)
-			for(var/dir in cardinal)
+			for (var/dir in cardinal)
 				if (isfloor(get_step(src, dir)))
 					switch(dir)
 						if (NORTH) pixel_y = -32
@@ -100,7 +100,7 @@
 		new_loc = user.loc
 	else
 		placement_dir = reverse_dir[placement_dir]
-		for(var/t_dir in cardinal)
+		for (var/t_dir in cardinal)
 			if (!t_dir&placement_dir) continue
 			if (iswall(get_step(W, t_dir)))
 				if (iswall(get_step(W, placement_dir-t_dir)))

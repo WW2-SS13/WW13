@@ -17,7 +17,7 @@
 /obj/effect/effect/water/proc/set_up(var/turf/target, var/step_count = 5, var/delay = 5)
 	if (!target)
 		return
-	for(var/i = TRUE to step_count)
+	for (var/i = TRUE to step_count)
 		if (!loc)
 			return
 		step_towards(src, target)
@@ -25,7 +25,7 @@
 		if (T && reagents)
 			reagents.touch_turf(T)
 			var/mob/M
-			for(var/atom/A in T)
+			for (var/atom/A in T)
 				if (!ismob(A) && A.simulated) // Mobs are handled differently
 					reagents.touch(A)
 				else if (ismob(A) && !M)

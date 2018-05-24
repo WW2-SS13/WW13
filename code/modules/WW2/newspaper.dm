@@ -30,12 +30,12 @@
 						dat+="<I>Other than the title, the rest of the newspaper is unprinted...</I>"
 				else
 					dat+="Contents:<BR><ul>"
-					for(var/datum/feed_channel/NP in news_content)
+					for (var/datum/feed_channel/NP in news_content)
 						pages++
 					if (important_message)
 						dat+="<b><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></b> <FONT SIZE=2>\[page [pages+2]\]</FONT><BR>"
 					var/temp_page=0
-					for(var/datum/feed_channel/NP in news_content)
+					for (var/datum/feed_channel/NP in news_content)
 						temp_page++
 						dat+="<b>[NP.channel_name]</b> <FONT SIZE=2>\[page [temp_page+1]\]</FONT><BR>"
 					dat+="</ul>"
@@ -43,7 +43,7 @@
 					dat+="<BR><I>There is a small scribble near the end of this page... It reads: \"[scribble]\"</I>"
 				dat+= "<HR><DIV STYLE='float:right;'><A href='?src=\ref[src];next_page=1'>Next Page</A></DIV> <div style='float:left;'><A href='?src=\ref[human_user];mach_close=newspaper_main'>Done reading</A></DIV>"
 			if (1) // X channel pages inbetween.
-				for(var/datum/feed_channel/NP in news_content)
+				for (var/datum/feed_channel/NP in news_content)
 					pages++ //Let's get it right again.
 				var/datum/feed_channel/C = news_content[curr_page]
 				dat+="<FONT SIZE=4><b>[C.channel_name]</b></FONT><FONT SIZE=1> \[created by: <FONT COLOR='maroon'>[C.author]</FONT>\]</FONT><BR><BR>"
@@ -55,7 +55,7 @@
 					else
 						dat+="<ul>"
 						var/i = FALSE
-						for(var/datum/feed_message/MESSAGE in C.messages)
+						for (var/datum/feed_message/MESSAGE in C.messages)
 							++i
 							dat+="-[MESSAGE.body] <BR>"
 							if (MESSAGE.img)
@@ -68,7 +68,7 @@
 					dat+="<BR><I>There is a small scribble near the end of this page... It reads: \"[scribble]\"</I>"
 				dat+= "<BR><HR><DIV STYLE='float:left;'><A href='?src=\ref[src];prev_page=1'>Previous Page</A></DIV> <DIV STYLE='float:right;'><A href='?src=\ref[src];next_page=1'>Next Page</A></DIV>"
 			if (2) //Last page
-				for(var/datum/feed_channel/NP in news_content)
+				for (var/datum/feed_channel/NP in news_content)
 					pages++
 				if (important_message!=null)
 					dat+="<DIV STYLE='float:center;'><FONT SIZE=4><b>Wanted Issue:</b></FONT SIZE></DIV><BR><BR>"

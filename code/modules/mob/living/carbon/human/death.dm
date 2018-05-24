@@ -2,17 +2,17 @@
 
 	ghostize() // preserve our body's icon before it explodes
 
-	for(var/obj/item/organ/I in internal_organs)
+	for (var/obj/item/organ/I in internal_organs)
 		I.removed()
 		if (istype(loc,/turf))
 			I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
-	for(var/obj/item/organ/external/E in organs)
+	for (var/obj/item/organ/external/E in organs)
 		E.droplimb(0,DROPLIMB_EDGE,1)
 
 	sleep(1)
 
-	for(var/obj/item/I in src)
+	for (var/obj/item/I in src)
 		drop_from_inventory(I)
 		I.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,3), round(30/I.w_class))
 
@@ -23,7 +23,7 @@
 
 	sleep(1)
 
-	for(var/obj/item/I in contents)
+	for (var/obj/item/I in contents)
 		if (!istype(I, /obj/item/organ))
 			drop_from_inventory(I)
 

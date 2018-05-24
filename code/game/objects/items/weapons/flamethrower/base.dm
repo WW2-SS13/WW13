@@ -156,7 +156,7 @@
 		lit = FALSE
 		usr.unset_using_object()
 		usr << browse(null, "window=flamethrower")
-	for(var/mob/M in viewers(1, loc))
+	for (var/mob/M in viewers(1, loc))
 		if ((M.client && M.using_object == src))
 			attack_self(M)
 	update_icon()
@@ -168,7 +168,7 @@
 	if (!lit || operating)	return
 	operating = TRUE
 	playsound(my_turf, 'sound/weapons/flamethrower.ogg', 100, TRUE)
-	for(var/turf/T in turflist)
+	for (var/turf/T in turflist)
 		if (T == my_turf)
 			continue
 		if (T.density || istype(T, /turf/space))
@@ -182,7 +182,7 @@
 		sleep(1)
 	previousturf = null
 	operating = FALSE
-	for(var/mob/M in viewers(1, loc))
+	for (var/mob/M in viewers(1, loc))
 		if ((M.client && M.using_object == src))
 			attack_self(M)
 	return

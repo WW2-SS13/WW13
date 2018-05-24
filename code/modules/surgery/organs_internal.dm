@@ -32,7 +32,7 @@
 		if (!affected)
 			return
 		var/is_organ_damaged = FALSE
-		for(var/obj/item/organ/I in affected.internal_organs)
+		for (var/obj/item/organ/I in affected.internal_organs)
 			if (I.damage > 0)
 				is_organ_damaged = TRUE
 				break
@@ -49,7 +49,7 @@
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-		for(var/obj/item/organ/I in affected.internal_organs)
+		for (var/obj/item/organ/I in affected.internal_organs)
 			if (I && I.damage > 0)
 				if (I.robotic < 2)
 					user.visible_message("[user] starts treating damage to [target]'s [I.name] with [tool_name].", \
@@ -69,7 +69,7 @@
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-		for(var/obj/item/organ/I in affected.internal_organs)
+		for (var/obj/item/organ/I in affected.internal_organs)
 			if (I && I.damage > 0)
 				if (I.robotic < 2)
 					user.visible_message("<span class='notice'>[user] treats damage to [target]'s [I.name] with [tool_name].</span>", \
@@ -94,7 +94,7 @@
 			target.adjustToxLoss(10)
 			affected.createwound(CUT, 5)
 
-		for(var/obj/item/organ/I in affected.internal_organs)
+		for (var/obj/item/organ/I in affected.internal_organs)
 			if (I && I.damage > 0)
 				I.take_damage(dam_amt,0)
 
@@ -122,7 +122,7 @@
 		target.op_stage.current_organ = null
 
 		var/list/attached_organs = list()
-		for(var/organ in target.internal_organs_by_name)
+		for (var/organ in target.internal_organs_by_name)
 			var/obj/item/organ/I = target.internal_organs_by_name[organ]
 			if (I && !(I.status & ORGAN_CUT_AWAY) && I.parent_organ == target_zone)
 				attached_organs |= organ
@@ -177,7 +177,7 @@
 		target.op_stage.current_organ = null
 
 		var/list/removable_organs = list()
-		for(var/organ in target.internal_organs_by_name)
+		for (var/organ in target.internal_organs_by_name)
 			var/obj/item/organ/I = target.internal_organs_by_name[organ]
 			if ((I.status & ORGAN_CUT_AWAY) && I.parent_organ == target_zone)
 				removable_organs |= organ
@@ -310,7 +310,7 @@
 		target.op_stage.current_organ = null
 
 		var/list/removable_organs = list()
-		for(var/organ in target.internal_organs_by_name)
+		for (var/organ in target.internal_organs_by_name)
 			var/obj/item/organ/I = target.internal_organs_by_name[organ]
 			if (I && (I.status & ORGAN_CUT_AWAY) && !(I.status & ORGAN_ROBOT) && I.parent_organ == target_zone)
 				removable_organs |= organ

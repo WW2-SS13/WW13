@@ -71,7 +71,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 var/list/teleportlocs = list()
 
 /hook/startup/proc/setupTeleportLocs()
-	for(var/area in area_list)
+	for (var/area in area_list)
 		var/area/AR = area
 		if (teleportlocs.Find(AR.name)) continue
 		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))
@@ -86,7 +86,7 @@ var/list/teleportlocs = list()
 var/list/ghostteleportlocs = list()
 
 /hook/startup/proc/setupGhostTeleportLocs()
-	for(var/area in area_list)
+	for (var/area in area_list)
 		var/area/AR = area
 		if (ghostteleportlocs.Find(AR.name)) continue
 		if (AR.type == /area/prishtina/void) continue
@@ -206,12 +206,12 @@ var/list/ghostteleportlocs = list()
 	if ((fire || eject) && (!requires_power||power_environ))//If it doesn't require power, can still activate this proc.
 		if (fire)
 			//icon_state = "blue"
-			for(var/obj/structure/light/L in src)
+			for (var/obj/structure/light/L in src)
 				if (istype(L, /obj/structure/light/small))
 					continue
 				L.set_red()
 	/*	else if (atmosalm == 2)
-			for(var/obj/machinery/light/L in src)
+			for (var/obj/machinery/light/L in src)
 				if (istype(L, /obj/machinery/light/small))
 					continue
 				L.set_blue()
@@ -224,7 +224,7 @@ var/list/ghostteleportlocs = list()
 	else
 	//	new lighting behaviour with obj lights
 		icon_state = null
-		for(var/obj/structure/light/L in src)
+		for (var/obj/structure/light/L in src)
 			if (istype(L, /obj/structure/light/small))
 				continue
 			L.reset_color()
@@ -255,7 +255,7 @@ var/list/ghostteleportlocs = list()
 // called when power status changes
 /*
 /area/proc/power_change()
-	for(var/obj/machinery/M in src)	// for each machine in the area
+	for (var/obj/machinery/M in src)	// for each machine in the area
 		M.power_change()			// reverify power status (to update icons etc.)
 	if (fire || eject)
 		updateicon()*/
@@ -394,7 +394,7 @@ var/list/mob/living/forced_ambiance_list = new
 /area/proc/gravitychange(var/gravitystate = FALSE, var/area/A)
 	A.has_gravity = gravitystate
 
-	for(var/mob/M in A)
+	for (var/mob/M in A)
 		if (has_gravity)
 			thunk(M)
 		M.update_floating( M.Check_Dense_Object() )

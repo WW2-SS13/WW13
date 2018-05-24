@@ -18,7 +18,7 @@
 		return
 	if (istype(A, /mob))
 		var/accept = FALSE
-		for(var/D in accept_mobs)
+		for (var/D in accept_mobs)
 			if (istype(A, D))
 				accept = TRUE
 		if (!accept)
@@ -34,14 +34,14 @@
 /obj/item/glass_jar/attack_self(var/mob/user)
 	switch(contains)
 		if (1)
-			for(var/obj/O in src)
+			for (var/obj/O in src)
 				O.loc = user.loc
 			user << "<span class='notice'>You take money out of \the [src].</span>"
 			contains = FALSE
 			update_icon()
 			return
 		if (2)
-			for(var/mob/M in src)
+			for (var/mob/M in src)
 				M.loc = user.loc
 				user.visible_message("<span class='notice'>[user] releases [M] from \the [src].</span>", "<span class='notice'>You release [M] from \the [src].</span>")
 			contains = FALSE
@@ -72,14 +72,14 @@
 		if (1)
 			name = "tip jar"
 			desc = "A small jar with money inside."
-		/*	for(var/obj/item/weapon/spacecash/S in src)
+		/*	for (var/obj/item/weapon/spacecash/S in src)
 				var/image/money = image(S.icon, S.icon_state)
 				money.pixel_x = rand(-2, 3)
 				money.pixel_y = rand(-6, 6)
 				money.transform *= 0.6
 				underlays += money*/
 		if (2)
-			for(var/mob/M in src)
+			for (var/mob/M in src)
 				var/image/victim = image(M.icon, M.icon_state)
 				victim.pixel_y = 6
 				underlays += victim

@@ -3,7 +3,7 @@
 /proc/initialize_chemical_reagents()
 	var/paths = typesof(/datum/reagent) - /datum/reagent
 	chemical_reagents_list = list()
-	for(var/path in paths)
+	for (var/path in paths)
 		var/datum/reagent/D = new path()
 		if (!D.name)
 			continue

@@ -41,13 +41,13 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 
 			if (time_remaining < 0)
 				result()
-				for(var/client/C in voting)
+				for (var/client/C in voting)
 					if (C)
 						C << browse(null,"window=vote")
 				reset()
 			else
 				voting.Cut()
-				for(var/client/C in voting)
+				for (var/client/C in voting)
 					if (C)
 						C << browse(vote.interface(C),"window=vote")
 
@@ -72,7 +72,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 		//get the highest number of votes
 		var/greatest_votes = 0
 		var/total_votes = 0
-		for(var/option in choices)
+		for (var/option in choices)
 			var/votes = choices[option]
 			total_votes += votes
 			if (votes > greatest_votes)
@@ -99,7 +99,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 		//get all options with that many votes and return them in a list
 		. = list()
 		if (greatest_votes && greatest_votes >= vote_threshold)
-			for(var/option in choices)
+			for (var/option in choices)
 				if (choices[option] == greatest_votes)
 					. += utf8_to_cp1251(option)
 		return .
@@ -114,11 +114,11 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 			if (winners.len > 1)
 			//	if (mode != "gamemode") // Here we are making sure we don't announce potential game modes
 				text = "<b>Vote Tied Between:</b>\n"
-				for(var/option in winners)
+				for (var/option in winners)
 					text += "\t[option]\n"
 			. = pick(winners)
 
-			for(var/key in current_votes)
+			for (var/key in current_votes)
 				if (choices[current_votes[key]] == .)
 					round_voters += key // Keep track of who voted for the winning round.
 			text += "<b>Vote Result: [.]</b><br>"
@@ -218,7 +218,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 				if ("custom")
 					question = cp1251_to_utf8(rhtml_encode(input(usr,"What is the vote for?") as text|null))
 					if (!question)	return FALSE
-					for(var/i=1,i<=10,i++)
+					for (var/i=1,i<=10,i++)
 						var/option = cp1251_to_utf8(capitalize(rhtml_encode(input(usr,"Please enter an option or hit cancel to finish") as text|null)))
 						if (!option || mode || !usr.client)	break
 						choices.Add(option)
@@ -269,7 +269,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 			. += "<table width = '100%'><tr><td align = 'center'><b>Choices</b></td><td align = 'center'><b>Votes</b></td>"
 			if (capitalize(mode) == "Gamemode") .+= "<td align = 'center'><b>Minimum Players</b></td></tr>"
 
-			for(var/i = TRUE, i <= choices.len, i++)
+			for (var/i = TRUE, i <= choices.len, i++)
 				var/votes = choices[choices[i]]
 				if (!votes)	votes = 0
 				. += "<tr>"

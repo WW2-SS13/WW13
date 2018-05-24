@@ -18,11 +18,11 @@
 
 /proc/max_default_z_level()
 	var/max_z = FALSE
-	for(var/z in config.station_levels)
+	for (var/z in config.station_levels)
 		max_z = max(z, max_z)
-	for(var/z in config.admin_levels)
+	for (var/z in config.admin_levels)
 		max_z = max(z, max_z)
-	for(var/z in config.player_levels)
+	for (var/z in config.player_levels)
 		max_z = max(z, max_z)
 	return max_z
 
@@ -33,7 +33,7 @@
 		. = res
 
 /proc/get_area_name(N) //get area by its name
-	for(var/area/A in area_list)
+	for (var/area/A in area_list)
 		if (A.name == N)
 			return A
 	return FALSE
@@ -96,7 +96,7 @@
 	var/list/turfs = new/list()
 	var/rsq = radius * (radius+0.5)
 
-	for(var/atom/T in range(radius, centerturf))
+	for (var/atom/T in range(radius, centerturf))
 		var/dx = T.x - centerturf.x
 		var/dy = T.y - centerturf.y
 		if (dx*dx + dy*dy <= rsq)
@@ -111,7 +111,7 @@
 	var/list/atoms = new/list()
 	var/rsq = radius * (radius+0.5)
 
-	for(var/atom/A in view(radius, centerturf))
+	for (var/atom/A in view(radius, centerturf))
 		var/dx = A.x - centerturf.x
 		var/dy = A.y - centerturf.y
 		if (dx*dx + dy*dy <= rsq)
@@ -142,7 +142,7 @@
 	var/list/turfs = new/list()
 	var/rsq = radius * (radius+0.5)
 
-	for(var/turf/T in range(radius, centerturf))
+	for (var/turf/T in range(radius, centerturf))
 		var/dx = T.x - centerturf.x
 		var/dy = T.y - centerturf.y
 		if (dx*dx + dy*dy <= rsq)
@@ -155,7 +155,7 @@
 	var/list/turfs = new/list()
 	var/rsq = radius * (radius+0.5)
 
-	for(var/turf/T in view(radius, centerturf))
+	for (var/turf/T in view(radius, centerturf))
 		var/dx = T.x - centerturf.x
 		var/dy = T.y - centerturf.y
 		if (dx*dx + dy*dy <= rsq)
@@ -174,7 +174,7 @@
 
 	var/list/range = hear(R, T)
 
-	for(var/I in range)
+	for (var/I in range)
 		if (ismob(I))
 			if (include_mobs)
 				var/mob/M = I
@@ -194,7 +194,7 @@
 	. = list()
 	// Returns a list of mobs who can hear any of the radios given in @radios
 	var/list/speaker_coverage = list()
-	for(var/obj/item/radio/R in radios)
+	for (var/obj/item/radio/R in radios)
 		if (R)
 		/*
 			//Cyborg checks. Receiving message uses a bit of cyborg's charge.
@@ -211,12 +211,12 @@
 
 			var/turf/speaker = get_turf(R)
 			if (speaker)
-				for(var/turf/T in hear(R.canhear_range,speaker))
+				for (var/turf/T in hear(R.canhear_range,speaker))
 					speaker_coverage[T] = T
 
 
 	// Try to find all the players who can hear the message
-	for(var/i = TRUE; i <= player_list.len; i++)
+	for (var/i = TRUE; i <= player_list.len; i++)
 		var/mob/M = player_list[i]
 		if (M)
 			var/turf/ear = get_turf(M)
@@ -237,7 +237,7 @@ proc
 			else
 				var/s = SIGN(Y2-Y1)
 				Y1+=s
-				while(Y1!=Y2)
+				while (Y1!=Y2)
 					T=locate(X1,Y1,Z)
 					if (T.opacity)
 						return FALSE
@@ -249,7 +249,7 @@ proc
 			var/signY = SIGN(Y2-Y1)
 			if (X1<X2)
 				b+=m
-			while(X1!=X2 || Y1!=Y2)
+			while (X1!=X2 || Y1!=Y2)
 				if (round(m*X1+b-Y1))
 					Y1+=signY //Line exits tile vertically
 				else
@@ -289,7 +289,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 			return get_step(start, EAST)
 
 /proc/get_mob_by_key(var/key)
-	for(var/mob/M in mob_list)
+	for (var/mob/M in mob_list)
 		if (M.ckey == lowertext(key))
 			return M
 	return null
@@ -300,8 +300,8 @@ proc/isInSight(var/atom/A, var/atom/B)
 
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = FALSE
-	while(candidates.len <= 0 && i < 5)
-		for(var/mob/observer/ghost/G in player_list)
+	while (candidates.len <= 0 && i < 5)
+		for (var/mob/observer/ghost/G in player_list)
 			if (((G.client.inactivity/10)/60) <= buffer + i) // the most active players are more likely to become an alien
 				if (!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
 					candidates += G.key
@@ -313,8 +313,8 @@ proc/isInSight(var/atom/A, var/atom/B)
 /proc/get_alien_candidates()
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = FALSE
-	while(candidates.len <= 0 && i < 5)
-		for(var/mob/observer/ghost/G in player_list)
+	while (candidates.len <= 0 && i < 5)
+		for (var/mob/observer/ghost/G in player_list)
 			if (MODE_XENOMORPH in G.client.prefs.be_special_role)
 				if (((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + i) // the most active players are more likely to become an alien
 					if (!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
@@ -333,18 +333,18 @@ proc/isInSight(var/atom/A, var/atom/B)
 /proc/Show2Group4Delay(obj/O, list/group, delay=0)
 	if (!isobj(O))	return
 	if (!group)	group = clients
-	for(var/client/C in group)
+	for (var/client/C in group)
 		C.screen += O
 	if (delay)
 		spawn(delay)
-			for(var/client/C in group)
+			for (var/client/C in group)
 				C.screen -= O
 
 /proc/flick_overlay(image/I, list/show_to, duration)
-	for(var/client/C in show_to)
+	for (var/client/C in show_to)
 		C.images += I
 	spawn(duration)
-		for(var/client/C in show_to)
+		for (var/client/C in show_to)
 			C.images -= I
 
 datum/projectile_data
@@ -427,14 +427,14 @@ datum/projectile_data
 
 	//normalize weights
 	var/listsum = FALSE
-	for(i=1; i<=contents; i++)
+	for (i=1; i<=contents; i++)
 		listsum += weight[i]
-	for(i=1; i<=contents; i++)
+	for (i=1; i<=contents; i++)
 		weight[i] /= listsum
 
 	//mix them
 	var/mixedcolor = FALSE
-	for(i=1; i<=contents; i++)
+	for (i=1; i<=contents; i++)
 		mixedcolor += weight[i]*color[i]
 	mixedcolor = round(mixedcolor)
 
@@ -454,7 +454,7 @@ datum/projectile_data
 /proc/getOPressureDifferential(var/turf/loc)
 	var/minp=16777216;
 	var/maxp=0;
-	for(var/dir in cardinal)
+	for (var/dir in cardinal)
 		var/turf/T=get_turf(get_step(loc,dir))
 		var/cp=0
 		if (T && istype(T) && T.zone)
@@ -475,7 +475,7 @@ datum/projectile_data
 
 /proc/getCardinalAirInfo(var/turf/loc, var/list/stats=list("temperature"))
 	var/list/temps = new/list(4)
-	for(var/dir in cardinal)
+	for (var/dir in cardinal)
 		var/direction
 		switch(dir)
 			if (NORTH)
@@ -490,7 +490,7 @@ datum/projectile_data
 		var/list/rstats = new /list(stats.len)
 		if (T && istype(T)/* && T.zone*/)
 			var/datum/gas_mixture/environment = T.return_air()
-			for(var/i=1;i<=stats.len;i++)
+			for (var/i=1;i<=stats.len;i++)
 				if (stats[i] == "pressure")
 					rstats[i] = environment.return_pressure()
 				else
@@ -500,7 +500,7 @@ datum/projectile_data
 		else if (istype(T, /turf))
 			// Should still work.  (/turf/return_air())
 			var/datum/gas_mixture/environment = T.return_air()
-			for(var/i=1;i<=stats.len;i++)
+			for (var/i=1;i<=stats.len;i++)
 				if (stats[i] == "pressure")
 					rstats[i] = environment.return_pressure()
 				else

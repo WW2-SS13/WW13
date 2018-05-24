@@ -272,7 +272,7 @@
 			S.dirt = FALSE
 		T.clean_blood()
 
-		for(var/mob/living/carbon/slime/M in T)
+		for (var/mob/living/carbon/slime/M in T)
 			M.adjustToxLoss(rand(5, 10))
 
 /datum/reagent/space_cleaner/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)

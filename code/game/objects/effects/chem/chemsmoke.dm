@@ -89,8 +89,8 @@
 		if (!passes_walls && istype(loc, /turf/wall))
 			qdel(src)
 
-		for(var/turf/T in view(1, src) - oldlocs)
-			for(var/atom/movable/AM in T)
+		for (var/turf/T in view(1, src) - oldlocs)
+			for (var/atom/movable/AM in T)
 				if (!istype(AM, /obj/effect/effect/smoke/chem))
 					reagents.splash(AM, splash_amount, copy = TRUE)
 		if (loc == destination)
@@ -103,8 +103,8 @@
 		reagents.splash(AM, splash_amount, copy = TRUE)
 
 /obj/effect/effect/smoke/chem/proc/initial_splash()
-	for(var/turf/T in view(1, src))
-		for(var/atom/movable/AM in T)
+	for (var/turf/T in view(1, src))
+		for (var/atom/movable/AM in T)
 			if (!istype(AM, /obj/effect/effect/smoke/chem))
 				reagents.splash(AM, splash_amount, copy = TRUE)
 
@@ -114,7 +114,7 @@
 
 	frames = max(frames, TRUE) //We will just assume that by FALSE frames, the coder meant "during one frame".
 	var/alpha_step = round(alpha / frames)
-	while(alpha > 0)
+	while (alpha > 0)
 		alpha = max(0, alpha - alpha_step)
 		sleep(world.tick_lag)
 
@@ -165,7 +165,7 @@
 	targetTurfs = new()
 
 	//build affected area list
-	for(var/turf/T in view(range, location))
+	for (var/turf/T in view(range, location))
 		//cull turfs to circle
 		if (sqrt((T.x - location.x)**2 + (T.y - location.y)**2) <= range)
 			targetTurfs += T
@@ -206,11 +206,11 @@
 		return
 
 	if (chemholder.reagents.reagent_list.len) //reagent application - only run if there are extra reagents in the smoke
-		for(var/turf/T in wallList)
+		for (var/turf/T in wallList)
 			chemholder.reagents.touch_turf(T)
-		for(var/turf/T in targetTurfs)
+		for (var/turf/T in targetTurfs)
 			chemholder.reagents.touch_turf(T)
-			for(var/atom/A in T.contents)
+			for (var/atom/A in T.contents)
 				if (istype(A, /obj/effect/effect/smoke/chem) || istype(A, /mob))
 					continue
 				else if (isobj(A) && !A.simulated)
@@ -234,7 +234,7 @@
 
 	var/const/arcLength = 2.3559 //distance between each smoke cloud
 
-	for(var/i = FALSE, i < range, i++) //calculate positions for smoke coverage - then spawn smoke
+	for (var/i = FALSE, i < range, i++) //calculate positions for smoke coverage - then spawn smoke
 		var/radius = i * 1.5
 		if (!radius)
 			spawn(0)
@@ -248,7 +248,7 @@
 		if (!IsInteger(radius))
 			offset = 45		//degrees
 
-		for(var/j = FALSE, j < points, j++)
+		for (var/j = FALSE, j < points, j++)
 			var/a = (angle * j) + offset
 			var/x = round(radius * cos(a) + location.x, TRUE)
 			var/y = round(radius * sin(a) + location.y, TRUE)
@@ -292,9 +292,9 @@
 
 	pending += location
 
-	while(pending.len)
-		for(var/turf/current in pending)
-			for(var/D in cardinal)
+	while (pending.len)
+		for (var/turf/current in pending)
+			for (var/D in cardinal)
 				var/turf/target = get_step(current, D)
 				if (wallList)
 					if (istype(target, /turf/wall))

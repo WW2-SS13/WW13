@@ -665,7 +665,7 @@
 						nicename = list("right hand", "left hand", "back")
 						tankcheck = list(C.r_hand, C.l_hand, C.back)
 
-					for(var/i=1, i<tankcheck.len+1, ++i)
+					for (var/i=1, i<tankcheck.len+1, ++i)
 						if (istype(tankcheck[i], /obj/item/weapon/tank))
 							var/obj/item/weapon/tank/t = tankcheck[i]
 							if (!isnull(t.manipulated_by) && t.manipulated_by != C.real_name && findtext(t.desc,breathes))
@@ -702,7 +702,7 @@
 
 					var/best = FALSE
 					var/bestcontents = FALSE
-					for(var/i=1, i <  contents.len + 1 , ++i)
+					for (var/i=1, i <  contents.len + 1 , ++i)
 						if (!contents[i])
 							continue
 						if (contents[i] > bestcontents)
@@ -1284,7 +1284,7 @@
 			if (H.wear_suit) H.wear_suit.screen_loc = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
 		if (slot_wear_mask)
 			if (H.wear_mask) H.wear_mask.screen_loc = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
-/*	for(var/obj/screen/inventory/inv_elem in parentmob.HUDinventory)
+/*	for (var/obj/screen/inventory/inv_elem in parentmob.HUDinventory)
 		switch (inv_elem.slot_id)
 			if (slot_head)
 				if (H.head)      H.head.screen_loc =     (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
@@ -1308,7 +1308,7 @@
 /*//	if (!mymob) return
 //	if (ishuman(mymob))
 	var/mob/living/carbon/human/H = parentmob
-	for(var/gear_slot in H.species.hud.gear)
+	for (var/gear_slot in H.species.hud.gear)
 		var/list/hud_data = H.species.hud.gear[gear_slot]
 		if (H.inventory_shown)
 			switch(hud_data["slot"])

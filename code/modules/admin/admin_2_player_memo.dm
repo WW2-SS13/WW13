@@ -36,7 +36,7 @@
 	if (ENABLE_MEMOS)
 		var/savefile/F = new(get_player_memo_file_dir())
 		if (F)
-			for(var/ckey in F.dir)
+			for (var/ckey in F.dir)
 				src << "<center><span class='motd'>[F[ckey]]</span></center>"
 
 //delete your own or somebody else's memo

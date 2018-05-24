@@ -27,7 +27,7 @@
 					alert(user, "Non-special character. Rejected.", "Error", "Ok")
 				else
 					keys.Add(char)
-		while(char && keys.len < 3)
+		while (char && keys.len < 3)
 
 		if (keys.len == 3)
 			pref.language_prefixes = keys

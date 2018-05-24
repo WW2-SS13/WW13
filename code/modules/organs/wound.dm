@@ -60,7 +60,7 @@
 
 		// reading from a list("stage" = damage) is pretty difficult, so build two separate
 		// lists from them instead
-		for(var/V in stages)
+		for (var/V in stages)
 			desc_list += V
 			damage_list += stages[V]
 
@@ -75,7 +75,7 @@
 	proc/init_stage(var/initial_damage)
 		current_stage = stages.len
 
-		while(current_stage > 1 && damage_list[current_stage-1] <= initial_damage / amount)
+		while (current_stage > 1 && damage_list[current_stage-1] <= initial_damage / amount)
 			current_stage--
 
 		min_damage = damage_list[current_stage]
@@ -170,7 +170,7 @@
 		amount -= healed_damage
 		damage -= healed_damage
 
-		while(wound_damage() < damage_list[current_stage] && current_stage < desc_list.len)
+		while (wound_damage() < damage_list[current_stage] && current_stage < desc_list.len)
 			current_stage++
 
 		desc = desc_list[current_stage]
@@ -184,7 +184,7 @@
 		damage += _damage
 		bleed_timer += _damage
 
-		while(current_stage > 1 && damage_list[current_stage-1] <= damage / amount)
+		while (current_stage > 1 && damage_list[current_stage-1] <= damage / amount)
 			current_stage--
 
 		desc = desc_list[current_stage]

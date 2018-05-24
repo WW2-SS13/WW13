@@ -32,7 +32,7 @@ var/global/list/image/fluidtrack_cache=list()
 /obj/effect/decal/cleanable/blood/tracks/reveal_blood()
 //	if (!fluorescent)
 	if (stack && stack.len)
-		for(var/datum/fluidtrack/track in stack)
+		for (var/datum/fluidtrack/track in stack)
 			track.basecolor = COLOR_LUMINOL
 	..()
 
@@ -84,7 +84,7 @@ var/global/list/image/fluidtrack_cache=list()
 		var/datum/fluidtrack/track
 
 		// Process 4 bits
-		for(var/bi=0;bi<4;bi++)
+		for (var/bi=0;bi<4;bi++)
 			b=1<<bi
 			// COMING BIT
 			// If setting
@@ -132,7 +132,7 @@ var/global/list/image/fluidtrack_cache=list()
 		var/truedir=0
 
 		// Update ONLY the overlays that have changed.
-		for(var/datum/fluidtrack/track in stack)
+		for (var/datum/fluidtrack/track in stack)
 			var/stack_idx=setdirs["[track.direction]"]
 			var/state=coming_state
 			truedir=track.direction

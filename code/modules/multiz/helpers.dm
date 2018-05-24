@@ -7,7 +7,7 @@ var/z_levels = FALSE // Each bit represents a connection between adjacent levels
 	ASSERT(height > 1)
 	// Due to the offsets of how connections are stored v.s. how z-levels are indexed, some magic number silliness happened.
 
-	for(var/i = (height-1); i--;)
+	for (var/i = (height-1); i--;)
 		z_levels |= (1 << (z+i-1))
 */
 // The storage of connections between adjacent levels means some bitwise magic is needed.

@@ -113,7 +113,7 @@
 					if (length(code) > 5)
 						code = "ERROR"
 			add_fingerprint(usr)
-			for(var/mob/M in viewers(1, loc))
+			for (var/mob/M in viewers(1, loc))
 				if ((M.client && M.using_object == src))
 					attack_self(M)
 				return
@@ -141,7 +141,7 @@
 			open(usr)
 		else
 			..()
-			for(var/mob/M in range(1))
+			for (var/mob/M in range(1))
 				if (M.s_active == src)
 					close(M)
 		add_fingerprint(user)

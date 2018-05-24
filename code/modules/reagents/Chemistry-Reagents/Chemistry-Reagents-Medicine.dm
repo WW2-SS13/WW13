@@ -277,7 +277,7 @@
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 
-		for(var/obj/item/organ/I in H.internal_organs)
+		for (var/obj/item/organ/I in H.internal_organs)
 			if ((I.damage > 0) && (I.robotic != 2)) //Peridaxon heals only non-robotic organs
 				I.damage = max(I.damage - removed, FALSE)
 
@@ -332,7 +332,7 @@
 	M.stuttering = FALSE
 	M.confused = FALSE
 	if (M.ingested)
-		for(var/datum/reagent/R in M.ingested.reagent_list)
+		for (var/datum/reagent/R in M.ingested.reagent_list)
 			if (istype(R, /datum/reagent/ethanol))
 				R.dose = max(R.dose - removed * 5, FALSE)
 
@@ -388,7 +388,7 @@
 
 /datum/reagent/sterilizine/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	M.germ_level -= min(removed*20, M.germ_level)
-	for(var/obj/item/I in M.contents)
+	for (var/obj/item/I in M.contents)
 		I.was_bloodied = null
 	M.was_bloodied = null
 
@@ -398,9 +398,9 @@
 
 /datum/reagent/sterilizine/touch_turf(var/turf/T)
 	T.germ_level -= min(volume*20, T.germ_level)
-	for(var/obj/item/I in T.contents)
+	for (var/obj/item/I in T.contents)
 		I.was_bloodied = null
-	for(var/obj/effect/decal/cleanable/blood/B in T)
+	for (var/obj/effect/decal/cleanable/blood/B in T)
 		qdel(B)
 
 /datum/reagent/leporazine

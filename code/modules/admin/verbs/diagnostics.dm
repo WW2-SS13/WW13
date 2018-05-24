@@ -10,12 +10,12 @@
 	var/inactive_groups = air_master.zones.len - active_groups
 
 	var/hotspots = FALSE
-	for(var/obj/fire/hotspot in world)
+	for (var/obj/fire/hotspot in world)
 		hotspots++
 
 	var/active_on_main_station = FALSE
 	var/inactive_on_main_station = FALSE
-	for(var/zone/zone in air_master.zones)
+	for (var/zone/zone in air_master.zones)
 		var/turf/simulated/turf = locate() in zone.contents
 		if (turf && turf.z in config.station_levels)
 			if (zone.needs_update)
@@ -49,7 +49,7 @@
 	var/largest_click_time = FALSE
 	var/mob/largest_move_mob = null
 	var/mob/largest_click_mob = null
-	for(var/mob/M in world)
+	for (var/mob/M in world)
 		if (!M.client)
 			continue
 		if (M.next_move >= largest_move_time)
@@ -113,7 +113,7 @@
 		usr << "Cannot find air_system"
 		return
 	var/datum/air_group/dead_groups = list()
-	for(var/datum/air_group/group in air_master.air_groups)
+	for (var/datum/air_group/group in air_master.air_groups)
 		if (!group.group_processing)
 			dead_groups += group
 	var/datum/air_group/dest_group = pick(dead_groups)
@@ -151,7 +151,7 @@
 	set category = "Debug"
 
 	usr << "<b>Jobbans active in this round.</b>"
-	for(var/t in jobban_keylist)
+	for (var/t in jobban_keylist)
 		usr << "[t]"
 
 /client/proc/print_jobban_old_filter()
@@ -164,7 +164,7 @@
 		return
 
 	usr << "<b>Jobbans active in this round.</b>"
-	for(var/t in jobban_keylist)
+	for (var/t in jobban_keylist)
 		if (findtext(t, filter))
 			usr << "[t]"
 */

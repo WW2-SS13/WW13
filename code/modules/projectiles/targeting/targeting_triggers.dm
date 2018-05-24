@@ -1,7 +1,7 @@
 /mob/living/proc/trigger_aiming(var/trigger_type)
 	if (!aimed.len)
 		return
-	for(var/obj/aiming_overlay/AO in aimed)
+	for (var/obj/aiming_overlay/AO in aimed)
 		if (AO.aiming_at == src)
 			AO.update_aiming()
 			if (AO.aiming_at == src)

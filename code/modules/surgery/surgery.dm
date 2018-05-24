@@ -33,12 +33,12 @@
 			return FALSE
 
 		if (allowed_species)
-			for(var/species in allowed_species)
+			for (var/species in allowed_species)
 				if (target.species.get_bodytype() == species)
 					return TRUE
 
 		if (disallowed_species)
-			for(var/species in disallowed_species)
+			for (var/species in disallowed_species)
 				if (target.species.get_bodytype() == species)
 					return FALSE
 
@@ -88,7 +88,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	if (zone in M.op_stage.in_progress) //Can't operate on someone repeatedly.
 		user << "<span class='warning'>You can't operate on this area while surgery is already in progress.</span>"
 		return TRUE
-	for(var/datum/surgery_step/S in surgery_steps)
+	for (var/datum/surgery_step/S in surgery_steps)
 		//check if tool is right or close enough and if this step is possible
 		if (S.tool_quality(tool, user))
 			var/step_is_valid = S.can_use(user, M, zone, tool)
@@ -131,7 +131,7 @@ proc/sort_surgeries()
 			gap = round(gap / 1.247330950103979)
 		if (gap < 1)
 			gap = TRUE
-		for(var/i = TRUE; gap + i <= surgery_steps.len; i++)
+		for (var/i = TRUE; gap + i <= surgery_steps.len; i++)
 			var/datum/surgery_step/l = surgery_steps[i]		//Fucking hate
 			var/datum/surgery_step/r = surgery_steps[gap+i]	//how lists work here
 			if (l.priority < r.priority)

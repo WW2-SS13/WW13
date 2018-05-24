@@ -191,7 +191,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 
 /obj/item/radio/proc/list_internal_channels(var/mob/user)
 	var/dat[0]
-	for(var/internal_chan in internal_channels)
+	for (var/internal_chan in internal_channels)
 		dat.Add(list(list("chan" = internal_chan, "display_name" = radio_freq2name(text2num(internal_chan)), "chan_span" = radio_freq2span(text2num(internal_chan)))))
 
 	return dat

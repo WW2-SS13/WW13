@@ -89,7 +89,7 @@
 	if (in_use)
 		var/is_in_use = FALSE
 		var/list/nearby = viewers(1, src)
-		for(var/mob/M in nearby)
+		for (var/mob/M in nearby)
 			if ((M.client && M.using_object == src))
 				is_in_use = TRUE
 				attack_hand(M)
@@ -109,7 +109,7 @@
 	if (in_use)
 		var/list/nearby = viewers(1, src)
 		var/is_in_use = FALSE
-		for(var/mob/M in nearby)
+		for (var/mob/M in nearby)
 			if ((M.client && M.using_object == src))
 				is_in_use = TRUE
 				interact(M)

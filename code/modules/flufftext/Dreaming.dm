@@ -7,7 +7,7 @@ var/list/dreams = list(
 	dreaming = TRUE
 
 	spawn(0)
-		for(var/i = rand(1,4),i > 0, i--)
+		for (var/i = rand(1,4),i > 0, i--)
 			src << "<span class = 'notice'><i>... [pick(dreams)] ...</i></span>"
 			sleep(rand(40,70))
 			if (paralysis <= 0)

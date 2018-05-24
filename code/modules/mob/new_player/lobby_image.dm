@@ -12,7 +12,7 @@
 		icon_state = map.lobby_icon_state
 	else
 		var/list/known_icon_states = icon_states(icon)
-		for(var/lobby_screen in config.lobby_screens)
+		for (var/lobby_screen in config.lobby_screens)
 			if (!(lobby_screen in known_icon_states))
 				error("Lobby screen '[lobby_screen]' did not exist in the icon set [icon].")
 				config.lobby_screens -= lobby_screen

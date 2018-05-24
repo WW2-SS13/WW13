@@ -1,7 +1,7 @@
 /*/mob/living/carbon/human/proc/monkeyize()
 	if (transforming)
 		return
-	for(var/obj/item/W in src)
+	for (var/obj/item/W in src)
 		if (W==w_uniform) // will be torn
 			continue
 		drop_from_inventory(W)
@@ -11,7 +11,7 @@
 	stunned = TRUE
 	icon = null
 	invisibility = 101
-	for(var/t in organs)
+	for (var/t in organs)
 		qdel(t)
 	var/atom/movable/overlay/animation = new /atom/movable/overlay( loc )
 	animation.icon_state = "blank"
@@ -30,7 +30,7 @@
 		gib()
 		return
 
-	for(var/obj/item/W in src)
+	for (var/obj/item/W in src)
 		drop_from_inventory(W)
 	set_species(species.primitive_form)
 	dna.SetSEState(MONKEYBLOCK,1)
@@ -44,21 +44,21 @@
 /mob/living/carbon/human/proc/slimeize(adult as num, reproduce as num)
 	if (transforming)
 		return
-	for(var/obj/item/W in src)
+	for (var/obj/item/W in src)
 		drop_from_inventory(W)
 	regenerate_icons()
 	transforming = TRUE
 	canmove = FALSE
 	icon = null
 	invisibility = 101
-	for(var/t in organs)
+	for (var/t in organs)
 		qdel(t)
 
 	var/mob/living/carbon/slime/new_slime
 	if (reproduce)
 		var/number = pick(14;2,3,4)	//reproduce (has a small chance of producing 3 or 4 offspring)
 		var/list/babies = list()
-		for(var/i=1,i<=number,i++)
+		for (var/i=1,i<=number,i++)
 			var/mob/living/carbon/slime/M = new/mob/living/carbon/slime(loc)
 			M.nutrition = round(nutrition/number)
 			step_away(M,src)
@@ -78,14 +78,14 @@
 /mob/living/carbon/human/proc/corgize()
 	if (transforming)
 		return
-	for(var/obj/item/W in src)
+	for (var/obj/item/W in src)
 		drop_from_inventory(W)
 	regenerate_icons()
 	transforming = TRUE
 	canmove = FALSE
 	icon = null
 	invisibility = 101
-	for(var/t in organs)	//this really should not be necessary
+	for (var/t in organs)	//this really should not be necessary
 		qdel(t)
 
 	var/mob/living/simple_animal/corgi/new_corgi = new /mob/living/simple_animal/corgi (loc)
@@ -107,7 +107,7 @@
 
 	if (transforming)
 		return
-	for(var/obj/item/W in src)
+	for (var/obj/item/W in src)
 		drop_from_inventory(W)
 
 	regenerate_icons()
@@ -116,7 +116,7 @@
 	icon = null
 	invisibility = 101
 
-	for(var/t in organs)
+	for (var/t in organs)
 		qdel(t)
 
 	var/mob/new_mob = new mobpath(loc)

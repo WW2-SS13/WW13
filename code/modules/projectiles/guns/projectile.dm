@@ -52,7 +52,7 @@
 /obj/item/weapon/gun/projectile/New()
 	..()
 	if (ispath(ammo_type) && (load_method & (SINGLE_CASING|SPEEDLOADER)))
-		for(var/i in TRUE to max_shells)
+		for (var/i in TRUE to max_shells)
 			loaded += new ammo_type(src)
 	if (ispath(magazine_type) && (load_method & MAGAZINE))
 		ammo_magazine = new magazine_type(src)
@@ -186,7 +186,7 @@
 					user << "<span class='warning'>[src] is full!</span>"
 					return
 				var/count = FALSE
-				for(var/obj/item/ammo_casing/C in AM.stored_ammo)
+				for (var/obj/item/ammo_casing/C in AM.stored_ammo)
 					if (loaded.len >= max_shells)
 						break
 					if (C.caliber == caliber)
@@ -230,7 +230,7 @@
 			var/count = FALSE
 			var/turf/T = get_turf(user)
 			if (T)
-				for(var/obj/item/ammo_casing/C in loaded)
+				for (var/obj/item/ammo_casing/C in loaded)
 					C.loc = T
 					count++
 				loaded.Cut()

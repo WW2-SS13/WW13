@@ -69,7 +69,7 @@ var/list/interior_areas = list(/area/prishtina/houses,
 
 /turf/New()
 	..()
-	for(var/atom/movable/AM as mob|obj in src)
+	for (var/atom/movable/AM as mob|obj in src)
 		spawn( FALSE )
 			Entered(AM)
 			return
@@ -86,11 +86,11 @@ var/list/interior_areas = list(/area/prishtina/houses,
 	/*	if (target.blocks_air||blocks_air)
 			return FALSE*/
 
-		for(var/obj/obstacle in src)
+		for (var/obj/obstacle in src)
 			if (!obstacle.CanPass(mover, target, height, air_group))
 				return FALSE
 		if (target != src)
-			for(var/obj/obstacle in target)
+			for (var/obj/obstacle in target)
 				if (!obstacle.CanPass(mover, src, height, air_group))
 					return FALSE
 
@@ -154,21 +154,21 @@ var/list/interior_areas = list(/area/prishtina/houses,
 		return TRUE
 
 	//First, check objects to block exit that are not on the border
-	for(var/obj/obstacle in mover.loc)
+	for (var/obj/obstacle in mover.loc)
 		if (!(obstacle.flags & ON_BORDER) && (mover != obstacle) && (forget != obstacle))
 			if (!obstacle.CheckExit(mover, src))
 				mover.Bump(obstacle, TRUE)
 				return FALSE
 
 	//Now, check objects to block exit that are on the border
-	for(var/obj/border_obstacle in mover.loc)
+	for (var/obj/border_obstacle in mover.loc)
 		if ((border_obstacle.flags & ON_BORDER) && (mover != border_obstacle) && (forget != border_obstacle))
 			if (!border_obstacle.CheckExit(mover, src))
 				mover.Bump(border_obstacle, TRUE)
 				return FALSE
 
 	//Next, check objects to block entry that are on the border
-	for(var/obj/border_obstacle in src)
+	for (var/obj/border_obstacle in src)
 		if (border_obstacle.flags & ON_BORDER)
 			if (!border_obstacle.CanPass(mover, mover.loc, TRUE, FALSE) && (forget != border_obstacle))
 				mover.Bump(border_obstacle, TRUE)
@@ -180,7 +180,7 @@ var/list/interior_areas = list(/area/prishtina/houses,
 		return FALSE
 
 	//Finally, check objects/mobs to block entry that are not on the border
-	for(var/atom/movable/obstacle in src)
+	for (var/atom/movable/obstacle in src)
 		if (!(obstacle.flags & ON_BORDER))
 			if (!obstacle.CanPass(mover, mover.loc, TRUE, FALSE) && (forget != obstacle))
 				mover.Bump(obstacle, TRUE)
@@ -212,7 +212,7 @@ var/const/enterloopsanity = 100
 
 	var/objects = FALSE
 	if (A && (A.flags & PROXMOVE))
-		for(var/atom/movable/thing in range(1))
+		for (var/atom/movable/thing in range(1))
 			if (objects > enterloopsanity) break
 			objects++
 			spawn(0)
@@ -245,12 +245,12 @@ var/const/enterloopsanity = 100
 	return
 
 /turf/proc/levelupdate()
-	for(var/obj/O in src)
+	for (var/obj/O in src)
 		O.hide(O.hides_under_flooring() && !is_plating())
 
 /turf/proc/AdjacentTurfs()
 	var/L[] = new()
-	for(var/turf/t in oview(src,1))
+	for (var/turf/t in oview(src,1))
 		if (!t.density)
 			if (!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
 				L.Add(t)
@@ -258,7 +258,7 @@ var/const/enterloopsanity = 100
 
 /turf/proc/CardinalTurfs()
 	var/L[] = new()
-	for(var/turf/T in AdjacentTurfs())
+	for (var/turf/T in AdjacentTurfs())
 		if (T.x == x || T.y == y)
 			L.Add(T)
 	return L
@@ -273,7 +273,7 @@ var/const/enterloopsanity = 100
 
 /turf/proc/AdjacentTurfsSpace()
 	var/L[] = new()
-	for(var/turf/t in oview(src,1))
+	for (var/turf/t in oview(src,1))
 		if (!t.density)
 			if (!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
 				L.Add(t)
@@ -285,7 +285,7 @@ var/const/enterloopsanity = 100
 /turf/proc/contains_dense_objects()
 	if (density)
 		return TRUE
-	for(var/atom/A in src)
+	for (var/atom/A in src)
 		if (A.density && !(A.flags & ON_BORDER))
 			return TRUE
 	return FALSE
@@ -297,7 +297,7 @@ var/const/enterloopsanity = 100
 		if (istype(src, /turf))
 			var/turf/T = src
 			T.dirt = FALSE
-		for(var/obj/effect/O in src)
+		for (var/obj/effect/O in src)
 			if (istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
 				qdel(O)
 	else
@@ -337,7 +337,7 @@ var/const/enterloopsanity = 100
 		wet_overlay = null
 
 /turf/clean_blood()
-	for(var/obj/effect/decal/cleanable/blood/B in contents)
+	for (var/obj/effect/decal/cleanable/blood/B in contents)
 		B.clean_blood()
 	..()
 
@@ -466,7 +466,7 @@ var/const/enterloopsanity = 100
 					slip_stun = 4
 
 			if (M.slip("the [floor_type] floor",slip_stun))
-				for(var/i = FALSE;i<slip_dist;i++)
+				for (var/i = FALSE;i<slip_dist;i++)
 					step(M, M.dir)
 					sleep(1)
 			else
@@ -482,7 +482,7 @@ var/const/enterloopsanity = 100
 		return FALSE
 
 	if (istype(M))
-		for(var/obj/effect/decal/cleanable/blood/B in contents)
+		for (var/obj/effect/decal/cleanable/blood/B in contents)
 	/*		if (!B.blood_DNA)
 				B.blood_DNA = list()
 			if (!B.blood_DNA[M.dna.unique_enzymes])

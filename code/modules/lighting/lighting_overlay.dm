@@ -76,7 +76,7 @@
 	var/list/L = copylist(color)
 	var/anylums = FALSE
 
-	for(var/datum/lighting_corner/C in T.corners)
+	for (var/datum/lighting_corner/C in T.corners)
 		var/i = 0
 
 		// Huge switch to determine i based on D.

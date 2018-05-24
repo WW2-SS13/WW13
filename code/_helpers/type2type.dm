@@ -44,7 +44,7 @@
 	var/global/list/hexdigits = list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F")
 
 	. = ""
-	while(num > 0)
+	while (num > 0)
 		var/hexdigit = hexdigits[(num & 0xF) + 1]
 		. = "[hexdigit][.]"
 		num >>= 4 //go to the next half-byte
@@ -57,7 +57,7 @@
 
 /proc/text2numlist(text, delimiter="\n")
 	var/list/num_list = list()
-	for(var/x in splittext(text, delimiter))
+	for (var/x in splittext(text, delimiter))
 		num_list += text2num(x)
 	return num_list
 
@@ -198,7 +198,7 @@
 	var/month = TRUE //This will be the returned MONTH NUMBER.
 	var/day //This will be the returned day number.
 
-	while(tmpDays > daysInYear) //Start adding years to 1970
+	while (tmpDays > daysInYear) //Start adding years to 1970
 		year++
 		if (isLeap(year))
 			tmpDays -= daysInLYear
@@ -213,7 +213,7 @@
 	var/mDays = FALSE;
 	var/monthIndex = FALSE;
 
-	for(var/m in monthsInDays)
+	for (var/m in monthsInDays)
 		monthIndex++
 		if (tmpDays > m)
 			mDays = m

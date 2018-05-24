@@ -60,7 +60,7 @@
 			air_master.mark_for_update(src) //handle the addition of the new turf.
 */
 /*
-		for(var/turf/space/S in range(W,1))
+		for (var/turf/space/S in range(W,1))
 			S.update_starlight()*/
 
 		W.levelupdate()
@@ -76,7 +76,7 @@
 		if (air_master)
 			air_master.mark_for_update(src)*/
 /*
-		for(var/turf/space/S in range(W,1))
+		for (var/turf/space/S in range(W,1))
 			S.update_starlight()
 */
 		W.levelupdate()
@@ -86,11 +86,11 @@
 	affecting_lights = old_affecting_lights
 	corners = old_lighting_corners
 
-	for(var/atom/A in contents)
+	for (var/atom/A in contents)
 		if (A.light)
 			A.light.force_update = TRUE
 
-	for(var/i = TRUE to 4)//Generate more light corners when needed. If removed - pitch black shuttles will come for your soul!
+	for (var/i = TRUE to 4)//Generate more light corners when needed. If removed - pitch black shuttles will come for your soul!
 		if (corners[i]) // Already have a corner on this direction.
 			continue
 		corners[i] = new/datum/lighting_corner(src, LIGHTING_CORNER_DIAGONAL[i])

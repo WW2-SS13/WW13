@@ -1,5 +1,5 @@
 /mob/living/carbon/human/proc/get_unarmed_attack(var/mob/living/carbon/human/target, var/hit_zone)
-	for(var/datum/unarmed_attack/u_attack in species.unarmed_attacks)
+	for (var/datum/unarmed_attack/u_attack in species.unarmed_attacks)
 		if (u_attack.is_usable(src, target, hit_zone))
 			if (pulling_punches)
 				var/datum/unarmed_attack/soft_variant = u_attack.get_sparring_variant()
@@ -99,7 +99,7 @@
 			for (var/obj/structure/noose/N in get_turf(src))
 				if (N.hanging == src)
 					return
-			for(var/obj/item/weapon/grab/G in grabbed_by)
+			for (var/obj/item/weapon/grab/G in grabbed_by)
 				if (G.assailant == M)
 					M << "<span class='notice'>You already grabbed [src].</span>"
 					return
@@ -266,10 +266,10 @@
 			var/list/holding = list(get_active_hand() = 40, get_inactive_hand = 20)
 
 			//See if they have any guns that might go off
-			for(var/obj/item/weapon/gun/W in holding)
+			for (var/obj/item/weapon/gun/W in holding)
 				if (W && prob(holding[W]))
 					var/list/turfs = list()
-					for(var/turf/T in view())
+					for (var/turf/T in view())
 						turfs += T
 					if (turfs.len)
 						var/turf/target = pick(turfs)
@@ -294,7 +294,7 @@
 					return
 
 				//Actually disarm them
-				for(var/obj/item/I in holding)
+				for (var/obj/item/I in holding)
 					if (I)
 						drop_from_inventory(I)
 						visible_message("<span class='danger'>[M] has disarmed [src]!</span>")
@@ -328,7 +328,7 @@
 //Used to attack a joint through grabbing
 /mob/living/carbon/human/proc/grab_joint(var/mob/living/user, var/def_zone)
 	var/has_grab = FALSE
-	for(var/obj/item/weapon/grab/G in list(user.l_hand, user.r_hand))
+	for (var/obj/item/weapon/grab/G in list(user.l_hand, user.r_hand))
 		if (G.affecting == src && G.state == GRAB_NECK)
 			has_grab = TRUE
 			break

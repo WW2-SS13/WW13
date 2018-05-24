@@ -78,7 +78,7 @@
 /mob/living/carbon/human/Destroy()
 	human_mob_list -= src
 	human_clients_mob_list -= src
-	for(var/organ in organs)
+	for (var/organ in organs)
 		qdel(organ)
 	return ..()
 
@@ -215,7 +215,7 @@ var/list/coefflist = list()
 
 	var/weapon_message = "Explosive Blast"
 
-	for(var/obj/item/organ/external/temp in organs)
+	for (var/obj/item/organ/external/temp in organs)
 		switch(temp.name)
 			if ("head")
 				update |= temp.take_damage(b_loss * 0.2, f_loss * 0.2, used_weapon = weapon_message)
@@ -262,7 +262,7 @@ var/list/coefflist = list()
 	user.set_using_object(src)
 	var/dat = "<B><HR><FONT size=3>[name]</FONT></B><BR><HR>"
 
-	for(var/entry in species.hud.gear)
+	for (var/entry in species.hud.gear)
 		var/slot = species.hud.gear[entry]
 		if (slot in list(slot_l_store, slot_r_store))
 			continue
@@ -552,7 +552,7 @@ var/list/rank_prefix = list(\
 	var/list/hairs = list()
 
 	// loop through potential hairs
-	for(var/x in all_hairs)
+	for (var/x in all_hairs)
 		var/datum/sprite_accessory/hair/H = new x // create new hair datum based on type x
 		hairs.Add(H.name) // add hair name to hairs
 		qdel(H) // delete the hair after it's all done
@@ -567,7 +567,7 @@ var/list/rank_prefix = list(\
 	var/list/all_fhairs = typesof(/datum/sprite_accessory/facial_hair) - /datum/sprite_accessory/facial_hair
 	var/list/fhairs = list()
 
-	for(var/x in all_fhairs)
+	for (var/x in all_fhairs)
 		var/datum/sprite_accessory/facial_hair/H = new x
 		fhairs.Add(H.name)
 		qdel(H)
@@ -601,7 +601,7 @@ var/list/rank_prefix = list(\
 		verbs -= /mob/living/carbon/human/proc/remotesay
 		return
 	var/list/creatures = list()
-	for(var/H in human_mob_list)
+	for (var/H in human_mob_list)
 		creatures += H
 	var/mob/target = input("Who do you want to project your mind to ?") as null|anything in creatures
 	if (isnull(target))
@@ -614,7 +614,7 @@ var/list/rank_prefix = list(\
 		target.show_message("<span class = 'notice'>You hear a voice that seems to echo around the room: [say]</span>")
 	usr.show_message("<span class = 'notice'>You project your mind into [target.real_name]: [say]</span>")
 	log_say("[key_name(usr)] sent a telepathic message to [key_name(target)]: [say]")
-	for(var/mob/observer/ghost/G in dead_mob_list)
+	for (var/mob/observer/ghost/G in dead_mob_list)
 		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")
 
 /mob/living/carbon/human/proc/remoteobserve()
@@ -639,7 +639,7 @@ var/list/rank_prefix = list(\
 
 	var/list/mob/creatures = list()
 
-	for(var/human in human_mob_list)
+	for (var/human in human_mob_list)
 		var/mob/living/carbon/human/H = human
 		var/turf/temp_turf = get_turf(H)
 		if ((temp_turf.z != TRUE && temp_turf.z != 5) || H.stat != CONSCIOUS) //Not on mining or the station. Or dead
@@ -981,7 +981,7 @@ var/list/rank_prefix = list(\
 		if (!stat)
 			visible_message("<span class = 'notice'>[src] examines [gender==MALE?"himself":"herself"].</span>")
 
-		for(var/obj/item/organ/external/org in H.organs)
+		for (var/obj/item/organ/external/org in H.organs)
 			var/status = ""
 
 			if (H.painchecks())//Can we feel pain? If we can then it tells us how much pain our limbs are in.
@@ -1041,7 +1041,7 @@ var/list/rank_prefix = list(\
 /mob/living/carbon/human/print_flavor_text(var/shrink = TRUE)
 	var/list/equipment = list(head,wear_mask,glasses,w_uniform,wear_suit,gloves,shoes)
 
-	for(var/obj/item/clothing/C in equipment)
+	for (var/obj/item/clothing/C in equipment)
 		if (C.body_parts_covered & FACE)
 			// Do not show flavor if face is hidden
 			return
@@ -1112,7 +1112,7 @@ var/list/rank_prefix = list(\
 		self = TRUE // Removing object from yourself.
 
 	var/list/limbs = list()
-	for(var/limb in organs_by_name)
+	for (var/limb in organs_by_name)
 		var/obj/item/organ/external/current_limb = organs_by_name[limb]
 		if (current_limb && current_limb.dislocated == 2)
 			limbs |= limb

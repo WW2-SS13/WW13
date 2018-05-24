@@ -42,12 +42,12 @@ var/global/datum/global_init/init = new ()
 	var/l = c.len
 
 	var/t = world.timeofday
-	for(var/_ = TRUE to 4)
+	for (var/_ = TRUE to 4)
 		game_id = "[c[(t % l) + 1]][game_id]"
 		t = round(t / l)
 	game_id = "-[game_id]"
 	t = round(world.realtime / (10 * 60 * 60 * 24))
-	for(var/_ = TRUE to 3)
+	for (var/_ = TRUE to 3)
 		game_id = "[c[(t % l) + 1]][game_id]"
 		t = round(t / l)
 
@@ -92,7 +92,7 @@ var/world_is_open = TRUE
 //	master_controller = new /datum/controller/game_controller()
 
 	spawn(1)
-		processScheduler.deferSetupFor(/process/ticker)
+		processScheduler.deferSetupfor (/process/ticker)
 		processScheduler.setup()
 		setup_everything()
 //		master_controller.setup()
@@ -226,7 +226,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			var/list/players = list()
 			var/list/admins = list()
 
-			for(var/client/C in clients)
+			for (var/client/C in clients)
 				if (C.holder)
 					if (C.holder.fakekey)
 						continue
@@ -241,7 +241,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			var/n = FALSE
 			var/admins = FALSE
 
-			for(var/client/C in clients)
+			for (var/client/C in clients)
 				if (C.holder)
 					if (C.holder.fakekey)
 						continue	//so stealthmins aren't revealed by the hub

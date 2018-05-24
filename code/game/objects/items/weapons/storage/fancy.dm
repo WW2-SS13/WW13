@@ -54,7 +54,7 @@
 
 /obj/item/weapon/storage/fancy/egg_box/New()
 	..()
-	for(var/i=1; i <= storage_slots; i++)
+	for (var/i=1; i <= storage_slots; i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/egg(src)
 	return
 
@@ -75,7 +75,7 @@
 
 /obj/item/weapon/storage/fancy/candle_box/New()
 	..()
-	for(var/i=1; i <= 5; i++)
+	for (var/i=1; i <= 5; i++)
 		new /obj/item/weapon/flame/candle(src)
 	return
 
@@ -107,7 +107,7 @@
 /obj/item/weapon/storage/fancy/crayons/update_icon()
 	overlays = list() //resets list
 	overlays += image('icons/obj/crayons.dmi',"crayonbox")
-	for(var/obj/item/weapon/pen/crayon/crayon in contents)
+	for (var/obj/item/weapon/pen/crayon/crayon in contents)
 		overlays += image('icons/obj/crayons.dmi',crayon.colourName)
 
 /obj/item/weapon/storage/fancy/crayons/attackby(obj/item/W as obj, mob/user as mob)
@@ -140,7 +140,7 @@
 /obj/item/weapon/storage/fancy/cigarettes/New()
 	..()
 	flags |= NOREACT
-	for(var/i = TRUE to storage_slots)
+	for (var/i = TRUE to storage_slots)
 		new /obj/item/clothing/mask/smokable/cigarette(src)
 	create_reagents(15 * storage_slots)//so people can inject cigarettes without opening a packet, now with being able to inject the whole one
 	flags |= OPENCONTAINER
@@ -163,7 +163,7 @@
 	if (M == user && user.targeted_organ == "mouth")
 		// Find ourselves a cig. Note that we could be full of lighters.
 		var/obj/item/clothing/mask/smokable/cigarette/cig = null
-		for(var/obj/item/clothing/mask/smokable/cigarette/C in contents)
+		for (var/obj/item/clothing/mask/smokable/cigarette/C in contents)
 			cig = C
 			break
 
@@ -210,7 +210,7 @@
 /obj/item/weapon/storage/fancy/cigar/New()
 	..()
 	flags |= NOREACT
-	for(var/i = 1 to storage_slots)
+	for (var/i = 1 to storage_slots)
 		new /obj/item/clothing/mask/smokable/cigarette/cigar(src)
 	create_reagents(15 * storage_slots)
 
@@ -239,7 +239,7 @@
 
 /obj/item/weapon/storage/fancy/vials/New()
 	..()
-	for(var/i=1; i <= storage_slots; i++)
+	for (var/i=1; i <= storage_slots; i++)
 		new /obj/item/weapon/reagent_containers/glass/beaker/vial(src)
 	return
 /*

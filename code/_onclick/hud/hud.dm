@@ -90,7 +90,7 @@ var/list/global_huds = list(
 	O = darkMask[8]
 	O.screen_loc = "WEST+2,NORTH-1 to EAST-2,NORTH"
 
-	for(i = TRUE, i <= 4, i++)
+	for (i = TRUE, i <= 4, i++)
 		O = vimpaired[i]
 		O.icon_state = "dither50"
 		O.layer = 17
@@ -101,7 +101,7 @@ var/list/global_huds = list(
 		O.layer = 17
 		O.mouse_opacity = FALSE
 
-	for(i = 5, i <= 8, i++)
+	for (i = 5, i <= 8, i++)
 		O = darkMask[i]
 		O.icon_state = "black"
 		O.layer = 17
@@ -164,7 +164,7 @@ datum/hud/New(mob/owner)
 	if (!mymob) return
 	if (ishuman(mymob))
 		var/mob/living/carbon/human/H = mymob
-		for(var/gear_slot in H.species.hud.gear)
+		for (var/gear_slot in H.species.hud.gear)
 			var/list/hud_data = H.species.hud.gear[gear_slot]
 			if (inventory_shown && hud_shown)
 				switch(hud_data["slot"])
@@ -214,7 +214,7 @@ datum/hud/New(mob/owner)
 
 	if (ishuman(mymob))
 		var/mob/living/carbon/human/H = mymob
-		for(var/gear_slot in H.species.hud.gear)
+		for (var/gear_slot in H.species.hud.gear)
 			var/list/hud_data = H.species.hud.gear[gear_slot]
 			if (hud_shown)
 				switch(hud_data["slot"])

@@ -597,7 +597,7 @@
 				for (var/obj/tank/T in range(1, t))
 					T.ex_act(1.0, TRUE)
 				spawn (1)
-					for(var/turf/T in getcircle(locate(t_x,t_y,t_z), 12))
+					for (var/turf/T in getcircle(locate(t_x,t_y,t_z), 12))
 						var/obj/item/projectile/bullet/pellet/fragment/P = new /obj/item/projectile/bullet/pellet/fragment(T)
 						P.damage = 12
 						P.pellets = 1
@@ -606,7 +606,7 @@
 						P.launch_fragment(T)
 
 						//Make sure to hit any mobs in the source turf
-						for(var/mob/living/L in T)
+						for (var/mob/living/L in T)
 							//lying on a frag grenade while the grenade is on the ground causes you to absorb most of the shrapnel.
 							//you will most likely be dead, but others nearby will be spared the fragments that hit you instead.
 							if (L.lying)

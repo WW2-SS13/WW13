@@ -35,7 +35,7 @@
 	if (config.log_debug)
 		game_log("DEBUG", text)
 
-	for(var/client/C in admins)
+	for (var/client/C in admins)
 		if (C.is_preference_enabled(/datum/client_preference/admin/show_debug_logs))
 			C << "<span class=\"log_message\">DEBUG: [text]</span>"
 

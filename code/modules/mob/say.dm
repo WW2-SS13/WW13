@@ -88,7 +88,7 @@
 		return TRUE
 
 	//Language check.
-	for(var/datum/language/L in languages)
+	for (var/datum/language/L in languages)
 		if (speaking.name == L.name)
 			return TRUE
 

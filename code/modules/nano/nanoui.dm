@@ -449,7 +449,7 @@ nanoui is used to open and update nano browser uis
 	is_auto_updating = FALSE
 	nanomanager.ui_closed(src)
 	user << browse(null, "window=[window_id]")
-	for(var/datum/nanoui/child in children)
+	for (var/datum/nanoui/child in children)
 		child.close()
 	children.Cut()
 	state = null

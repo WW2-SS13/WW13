@@ -78,7 +78,7 @@
 
 	var/list/blocking_turfs = list()
 
-	for(var/turf/T in turflist)
+	for (var/turf/T in turflist)
 
 		if (T == my_turf)
 			continue
@@ -135,7 +135,7 @@
 
 	previousturf = null
 	operating = FALSE
-	for(var/mob/M in viewers(1, loc))
+	for (var/mob/M in viewers(1, loc))
 		if ((M.client && M.using_object == src))
 			attack_self(M)
 	return
@@ -192,7 +192,7 @@
 		rheight = Clamp(rheight, 1, 3)
 
 	// refresh
-	for(var/mob/M in viewers(1, loc))
+	for (var/mob/M in viewers(1, loc))
 		if ((M.client && M.using_object == src))
 			attack_self(M)
 

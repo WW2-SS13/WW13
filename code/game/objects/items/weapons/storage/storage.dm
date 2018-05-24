@@ -103,13 +103,13 @@
 
 	L += contents
 
-	for(var/obj/item/weapon/storage/S in src)
+	for (var/obj/item/weapon/storage/S in src)
 		L += S.return_inv()
 	return L
 
 /obj/item/weapon/storage/proc/show_to(mob/user as mob)
 	if (user.s_active != src)
-		for(var/obj/item/I in src)
+		for (var/obj/item/I in src)
 			if (I.on_found(user))
 				return
 	if (user.s_active)
@@ -161,13 +161,13 @@
 	return
 
 /obj/item/weapon/storage/proc/close_all()
-	for(var/mob/M in can_see_contents())
+	for (var/mob/M in can_see_contents())
 		close(M)
 		. = TRUE
 
 /obj/item/weapon/storage/proc/can_see_contents()
 	var/list/cansee = list()
-	for(var/mob/M in is_seeing)
+	for (var/mob/M in is_seeing)
 		if (M.s_active == src && M.client)
 			cansee |= M
 		else
@@ -180,7 +180,7 @@
 	var/cx = tx
 	var/cy = ty
 	boxes.screen_loc = "[tx]:,[ty] to [mx],[my]"
-	for(var/obj/O in contents)
+	for (var/obj/O in contents)
 		O.screen_loc = "[cx],[cy]"
 		O.layer = 20
 		cx++
@@ -197,7 +197,7 @@
 	boxes.screen_loc = "[Xcord]:16,2:16 to [Xcord+cols]:16,[Ycord+rows]:16"
 
 	if (display_contents_with_number)
-		for(var/datum/numbered_display/ND in display_contents)
+		for (var/datum/numbered_display/ND in display_contents)
 			ND.sample_object.screen_loc = "[cx]:16,[cy]:16"
 			ND.sample_object.maptext = "<font color='white'>[(ND.number > 1)? "[ND.number]" : ""]</font>"
 			ND.sample_object.layer = 20
@@ -206,7 +206,7 @@
 				cx = Xcord
 				cy--
 	else
-		for(var/obj/O in contents)
+		for (var/obj/O in contents)
 			O.screen_loc = "[cx]:16,[cy]:16"
 			O.maptext = ""
 			O.layer = 20
@@ -237,7 +237,7 @@
 	var/startpoint = FALSE
 	var/endpoint = TRUE
 
-	for(var/obj/item/O in contents)
+	for (var/obj/item/O in contents)
 		startpoint = endpoint + 1
 		endpoint += storage_width * O.get_storage_cost()/max_storage_space
 
@@ -297,9 +297,9 @@
 	if (display_contents_with_number)
 		numbered_contents = list()
 		adjusted_contents = FALSE
-		for(var/obj/item/I in contents)
+		for (var/obj/item/I in contents)
 			var/found = FALSE
-			for(var/datum/numbered_display/ND in numbered_contents)
+			for (var/datum/numbered_display/ND in numbered_contents)
 				if (ND.sample_object.type == I.type)
 					ND.number++
 					found = TRUE
@@ -359,7 +359,7 @@
 		return FALSE
 
 	var/total_storage_space = W.get_storage_cost()
-	for(var/obj/item/I in contents)
+	for (var/obj/item/I in contents)
 		total_storage_space += I.get_storage_cost() //Adds up the combined w_classes which will be in the storage item if the item is added to it.
 
 	if (total_storage_space > max_storage_space)
@@ -391,7 +391,7 @@
 		add_fingerprint(usr)
 
 		if (!prevent_warning)
-			for(var/mob/M in viewers(usr, null))
+			for (var/mob/M in viewers(usr, null))
 				if (M == usr)
 					usr << "<span class='notice'>You put \the [W] into [src].</span>"
 				else if (M in range(1)) //If someone is standing close enough, they can tell what it is...
@@ -410,7 +410,7 @@
 	if (!istype(W)) return FALSE
 
 
-	for(var/mob/M in range(1, loc))
+	for (var/mob/M in range(1, loc))
 		if (M.s_active == src)
 			if (M.client)
 				M.client.screen -= W
@@ -481,7 +481,7 @@
 		open(user)
 	else
 		..()
-		for(var/mob/M in range(1))
+		for (var/mob/M in range(1))
 			if (M.s_active == src)
 				close(M)
 	add_fingerprint(user)
@@ -508,7 +508,7 @@
 
 	var/turf/T = get_turf(src)
 	hide_from(usr)
-	for(var/obj/item/I in contents)
+	for (var/obj/item/I in contents)
 		remove_from_storage(I, T)
 
 /obj/item/weapon/storage/New()
@@ -525,7 +525,7 @@
 
 	spawn(5)
 		var/total_storage_space = FALSE
-		for(var/obj/item/I in contents)
+		for (var/obj/item/I in contents)
 			total_storage_space += I.get_storage_cost()
 		max_storage_space = max(total_storage_space,max_storage_space) //prevents spawned containers from being too small for their contents
 
@@ -573,7 +573,7 @@
 
 /obj/item/weapon/storage/emp_act(severity)
 	if (!istype(loc, /mob/living))
-		for(var/obj/O in contents)
+		for (var/obj/O in contents)
 			O.emp_act(severity)
 	..()
 
@@ -590,7 +590,7 @@
 	can_hold.Cut()
 	max_w_class = FALSE
 	max_storage_space = FALSE
-	for(var/obj/item/I in src)
+	for (var/obj/item/I in src)
 		can_hold[I.type]++
 		max_w_class = max(I.w_class, max_w_class)
 		max_storage_space += I.get_storage_cost()

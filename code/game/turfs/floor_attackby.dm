@@ -113,7 +113,7 @@
 				return
 			var/obj/item/stack/S = C
 			var/decl/flooring/use_flooring
-			for(var/flooring_type in flooring_types)
+			for (var/flooring_type in flooring_types)
 				var/decl/flooring/F = flooring_types[flooring_type]
 				if (!F.build_type)
 					continue

@@ -13,7 +13,7 @@
 	log_admin("ASAY: [key_name(src)] : [msg]")
 
 	if (check_rights(R_MENTOR|R_MOD,0))
-		for(var/client/C in admins)
+		for (var/client/C in admins)
 			if (R_MENTOR & C.holder.rights || R_MOD & C.holder.rights)
 				C << "<span class='admin_channel'>" + create_text_tag("admin", "ADMIN:", C) + " <span class='name'>[key_name(usr, TRUE)]</span>([admin_jump_link(mob, src)]): <span class='message'>[msg]</span></span>"
 
@@ -30,7 +30,7 @@
 	log_admin("ADMIN: [key_name(src)] : [msg]")
 
 	if (check_rights(R_MOD,0))
-		for(var/client/C in admins)
+		for (var/client/C in admins)
 			if (R_MOD & C.holder.rights)
 				C << "<span class='admin_channel'>" + create_text_tag("admin", "ADMIN:", C) + " <span class='name'>[key_name(usr, TRUE)]</span>([admin_jump_link(mob, src)]): <span class='message'>[msg]</span></span>"
 
@@ -50,7 +50,7 @@
 	var/sender_name = key_name(usr, TRUE)
 	if (check_rights(R_ADMIN, FALSE))
 		sender_name = "<span class='admin'>[sender_name]</span>"
-	for(var/client/C in admins)
+	for (var/client/C in admins)
 		C << "<span class='mod_channel'>" + create_text_tag("mod", "MOD:", C) + " <span class='name'>[sender_name]</span>([admin_jump_link(mob, C.holder)]): <span class='message'>[msg]</span></span>"
 */
 

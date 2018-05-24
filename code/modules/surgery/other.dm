@@ -23,7 +23,7 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if (!affected) return
 		var/internal_bleeding = FALSE
-		for(var/datum/wound/W in affected.wounds) if (W.internal)
+		for (var/datum/wound/W in affected.wounds) if (W.internal)
 			internal_bleeding = TRUE
 			break
 
@@ -41,7 +41,7 @@
 		user.visible_message("<span class = 'notice'>[user] has patched the damaged vein in [target]'s [affected.name] with \the [tool].</span>", \
 			"<span class = 'notice'>You have patched the damaged vein in [target]'s [affected.name] with \the [tool].</span>")
 
-		for(var/datum/wound/W in affected.wounds) if (W.internal)
+		for (var/datum/wound/W in affected.wounds) if (W.internal)
 			affected.wounds -= W
 			affected.update_damages()
 		if (ishuman(user) && prob(40)) user:bloody_hands(target, FALSE)

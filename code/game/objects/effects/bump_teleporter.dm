@@ -28,7 +28,7 @@ var/list/obj/effect/bump_teleporter/BUMP_TELEPORTERS = list()
 		//user.loc = loc	//Stop at teleporter location, there is nowhere to teleport to.
 		return
 
-	for(var/obj/effect/bump_teleporter/BT in BUMP_TELEPORTERS)
+	for (var/obj/effect/bump_teleporter/BT in BUMP_TELEPORTERS)
 		if (BT.id == id_target)
 			usr.loc = BT.loc	//Teleport to location with correct id.
 			return

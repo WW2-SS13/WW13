@@ -49,7 +49,7 @@
 
 /atom/movable/Destroy()
 	. = ..()
-	for(var/atom/movable/AM in contents)
+	for (var/atom/movable/AM in contents)
 		qdel(AM)
 	forceMove(null)
 	if (pulledby)
@@ -64,7 +64,7 @@
 /*	if (!air_master)
 		return FALSE
 
-	for(var/turf/turf in locs)
+	for (var/turf/turf in locs)
 		air_master.mark_for_update(turf)*/
 
 	return TRUE
@@ -105,7 +105,7 @@
 	if (origin)
 		origin.Exited(src, destination)
 		if (is_origin_turf)
-			for(var/atom/movable/AM in origin)
+			for (var/atom/movable/AM in origin)
 				AM.Uncrossed(src)
 			if (is_new_area && is_origin_turf)
 				origin.loc.Exited(src, destination)
@@ -113,7 +113,7 @@
 	if (destination)
 		destination.Entered(src, origin, special_event)
 		if (is_destination_turf) // If we're entering a turf, cross all movable atoms
-			for(var/atom/movable/AM in loc)
+			for (var/atom/movable/AM in loc)
 				if (AM != src)
 					AM.Crossed(src)
 			if (is_new_area && is_destination_turf)
@@ -166,7 +166,7 @@
 //decided whether a movable atom being thrown can pass through the turf it is in.
 /atom/movable/proc/hit_check(var/speed)
 	if (throwing)
-		for(var/atom/movable/A in get_turf(src))
+		for (var/atom/movable/A in get_turf(src))
 			if (A == src) continue
 			if (istype(A,/mob/living))
 				if (A:lying) continue
@@ -248,7 +248,7 @@
 	anchored = TRUE
 
 /atom/movable/overlay/New()
-	for(var/x in verbs)
+	for (var/x in verbs)
 		verbs -= x
 	..()
 

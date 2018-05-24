@@ -223,7 +223,7 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 
 	//Bodybuilds
 	paths = typesof(/datum/body_build)
-	for(var/path in paths)
+	for (var/path in paths)
 		var/datum/body_build/B = new path()
 		if (B.gender == FEMALE)
 			female_body_builds[B.name] = B
@@ -232,7 +232,7 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 
 	//Hair - Initialise all /datum/sprite_accessory/hair into an list indexed by hair-style name
 	paths = typesof(/datum/sprite_accessory/hair) - /datum/sprite_accessory/hair
-	for(var/path in paths)
+	for (var/path in paths)
 		var/datum/sprite_accessory/hair/H = new path()
 		hair_styles_list[H.name] = H
 		switch(H.gender)
@@ -244,7 +244,7 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 
 	//Facial Hair - Initialise all /datum/sprite_accessory/facial_hair into an list indexed by facialhair-style name
 	paths = typesof(/datum/sprite_accessory/facial_hair) - /datum/sprite_accessory/facial_hair
-	for(var/path in paths)
+	for (var/path in paths)
 		var/datum/sprite_accessory/facial_hair/H = new path()
 		facial_hair_styles_list[H.name] = H
 		switch(H.gender)
@@ -256,7 +256,7 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 
 	//Surgery Steps - Initialize all /datum/surgery_step into a list
 	paths = typesof(/datum/surgery_step)-/datum/surgery_step
-	for(var/T in paths)
+	for (var/T in paths)
 		var/datum/surgery_step/S = new T
 		surgery_steps += S
 	sort_surgeries()
@@ -264,13 +264,13 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 	//List of job. I can't believe this was calculated multiple times per tick!
 	paths = typesof(/datum/job)-/datum/job
 	paths -= exclude_jobs
-	for(var/T in paths)
+	for (var/T in paths)
 		var/datum/job/J = new T
 		joblist[J.title] = J
 
 	//Languages and species.
 	paths = typesof(/datum/language)-/datum/language
-	for(var/T in paths)
+	for (var/T in paths)
 		var/datum/language/L = new T
 		all_languages[L.name] = L
 
@@ -281,7 +281,7 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 
 	var/rkey = FALSE
 	paths = typesof(/datum/species)-/datum/species
-	for(var/T in paths)
+	for (var/T in paths)
 		rkey++
 		var/datum/species/S = new T
 		S.race_key = rkey //Used in mob icon caching.
@@ -294,18 +294,18 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 
 	//Posters
 	paths = typesof(/datum/poster) - /datum/poster /*- /datum/poster/wanted*/
-	for(var/T in paths)
+	for (var/T in paths)
 		var/datum/poster/P = new T
 		poster_designs += P
 /*
 	//Corporations
 	paths = typesof(/datum/corporation) - /datum/corporation
-	for(var/T in paths)
+	for (var/T in paths)
 		var/datum/corporation/C = new T
 		global.global_corporations[C.name] = C
 */
 	paths = typesof(/datum/hud) - /datum/hud
-	for(var/T in paths)
+	for (var/T in paths)
 		var/datum/hud/C = new T
 		global.HUDdatums[C.name] = C
 
@@ -318,7 +318,7 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 		. += "chemical_reactions_list\[\"[reaction]\"\] = \"[chemical_reactions_list[reaction]]\"\n"
 		if (islist(chemical_reactions_list[reaction]))
 			var/list/L = chemical_reactions_list[reaction]
-			for(var/t in L)
+			for (var/t in L)
 				. += "    has: [t]\n"
 	world << .
 */

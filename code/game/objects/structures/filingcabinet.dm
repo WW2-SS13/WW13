@@ -28,7 +28,7 @@
 
 
 /obj/structure/filingcabinet/initialize()
-	for(var/obj/item/I in loc)
+	for (var/obj/item/I in loc)
 		if (istype(I, /obj/item/weapon/paper) || istype(I, /obj/item/weapon/folder) || istype(I, /obj/item/weapon/photo) || istype(I, /obj/item/weapon/paper_bundle))
 			I.loc = src
 
@@ -57,7 +57,7 @@
 
 	user.set_using_object(src)
 	var/dat = "<center><table>"
-	for(var/obj/item/P in src)
+	for (var/obj/item/P in src)
 		dat += "<tr><td><a href='?src=\ref[src];retrieve=\ref[P]'>[P.name]</a></td></tr>"
 	dat += "</table></center>"
 	user << browse("<html><head><title>[name]</title></head><body>[dat]</body></html>", "window=filingcabinet;size=350x300")
@@ -105,9 +105,9 @@
 
 /obj/structure/filingcabinet/security/proc/populate()
 	if (virgin)
-		for(var/datum/data/record/G in data_core.general)
+		for (var/datum/data/record/G in data_core.general)
 			var/datum/data/record/S
-			for(var/datum/data/record/R in data_core.security)
+			for (var/datum/data/record/R in data_core.security)
 				if ((R.fields["name"] == G.fields["name"] || R.fields["id"] == G.fields["id"]))
 					S = R
 					break
@@ -116,7 +116,7 @@
 			P.info += "Name: [G.fields["name"]] ID: [G.fields["id"]]<BR>\nSex: [G.fields["sex"]]<BR>\nAge: [G.fields["age"]]<BR>\nFingerprint: [G.fields["fingerprint"]]<BR>\nPhysical Status: [G.fields["p_stat"]]<BR>\nMental Status: [G.fields["m_stat"]]<BR>"
 			P.info += "<BR>\n<CENTER><b>Security Data</b></CENTER><BR>\nCriminal Status: [S.fields["criminal"]]<BR>\n<BR>\nMinor Crimes: [S.fields["mi_crim"]]<BR>\nDetails: [S.fields["mi_crim_d"]]<BR>\n<BR>\nMajor Crimes: [S.fields["ma_crim"]]<BR>\nDetails: [S.fields["ma_crim_d"]]<BR>\n<BR>\nImportant Notes:<BR>\n\t[S.fields["notes"]]<BR>\n<BR>\n<CENTER><b>Comments/Log</b></CENTER><BR>"
 			var/counter = TRUE
-			while(S.fields["com_[counter]"])
+			while (S.fields["com_[counter]"])
 				P.info += "[S.fields["com_[counter]"]]<BR>"
 				counter++
 			P.info += "</TT>"
@@ -141,9 +141,9 @@
 
 /obj/structure/filingcabinet/medical/proc/populate()
 	if (virgin)
-		for(var/datum/data/record/G in data_core.general)
+		for (var/datum/data/record/G in data_core.general)
 			var/datum/data/record/M
-			for(var/datum/data/record/R in data_core.medical)
+			for (var/datum/data/record/R in data_core.medical)
 				if ((R.fields["name"] == G.fields["name"] || R.fields["id"] == G.fields["id"]))
 					M = R
 					break
@@ -154,7 +154,7 @@
 
 				P.info += "<BR>\n<CENTER><b>Medical Data</b></CENTER><BR>\nBlood Type: [M.fields["b_type"]]<BR>\nDNA: [M.fields["b_dna"]]<BR>\n<BR>\nMinor Disabilities: [M.fields["mi_dis"]]<BR>\nDetails: [M.fields["mi_dis_d"]]<BR>\n<BR>\nMajor Disabilities: [M.fields["ma_dis"]]<BR>\nDetails: [M.fields["ma_dis_d"]]<BR>\n<BR>\nAllergies: [M.fields["alg"]]<BR>\nDetails: [M.fields["alg_d"]]<BR>\n<BR>\nCurrent Diseases: [M.fields["cdi"]] (per disease info placed in log/comment section)<BR>\nDetails: [M.fields["cdi_d"]]<BR>\n<BR>\nImportant Notes:<BR>\n\t[M.fields["notes"]]<BR>\n<BR>\n<CENTER><b>Comments/Log</b></CENTER><BR>"
 				var/counter = TRUE
-				while(M.fields["com_[counter]"])
+				while (M.fields["com_[counter]"])
 					P.info += "[M.fields["com_[counter]"]]<BR>"
 					counter++
 				P.info += "</TT>"

@@ -10,7 +10,7 @@
 	var/list/turfs = list()
 	for (var/area/A in area_list)
 		if (istype(A, areatype))
-			for(var/turf/T in A.contents)
+			for (var/turf/T in A.contents)
 				if (!predicates || all_predicates_true(list(T), predicates))
 					turfs += T
 	return turfs

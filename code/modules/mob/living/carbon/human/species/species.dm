@@ -179,7 +179,7 @@
 		vision_organ = "eyes"
 
 	unarmed_attacks = list()
-	for(var/u_type in unarmed_types)
+	for (var/u_type in unarmed_types)
 		unarmed_attacks += new u_type()
 
 /datum/species/proc/get_station_variant()
@@ -197,7 +197,7 @@
 			showmsg = TRUE
 
 		var/covered = FALSE // Basic coverage can help.
-		for(var/obj/item/clothing/clothes in H)
+		for (var/obj/item/clothing/clothes in H)
 			if (H.l_hand == clothes|| H.r_hand == clothes)
 				continue
 			if ((clothes.body_parts_covered & UPPER_TORSO) && (clothes.body_parts_covered & LOWER_TORSO))
@@ -360,7 +360,7 @@
 
 /datum/species/proc/create_organs(var/mob/living/carbon/human/H) //Handles creation of mob organs.
 
-	for(var/obj/item/organ/organ in H.contents)
+	for (var/obj/item/organ/organ in H.contents)
 		if ((organ in H.organs) || (organ in H.internal_organs))
 			qdel(organ)
 
@@ -374,13 +374,13 @@
 	H.organs_by_name = list()
 	H.internal_organs_by_name = list()
 
-	for(var/limb_type in has_limbs)
+	for (var/limb_type in has_limbs)
 		var/list/organ_data = has_limbs[limb_type]
 		var/limb_path = organ_data["path"]
 		var/obj/item/organ/O = new limb_path(H)
 		organ_data["descriptor"] = O.name
 
-	for(var/organ_tag in has_organ)
+	for (var/organ_tag in has_organ)
 		var/organ_type = has_organ[organ_tag]
 		var/obj/item/organ/O = new organ_type(H,1)
 		if (organ_tag != O.organ_tag)
@@ -402,13 +402,13 @@
 
 /datum/species/proc/remove_inherent_verbs(var/mob/living/carbon/human/H)
 	if (inherent_verbs)
-		for(var/verb_path in inherent_verbs)
+		for (var/verb_path in inherent_verbs)
 			H.verbs -= verb_path
 	return
 
 /datum/species/proc/add_inherent_verbs(var/mob/living/carbon/human/H)
 	if (inherent_verbs)
-		for(var/verb_path in inherent_verbs)
+		for (var/verb_path in inherent_verbs)
 			H.verbs |= verb_path
 	return
 
@@ -449,7 +449,7 @@
 	if (!ignore_intent && H.a_intent != I_HURT)
 		return FALSE
 
-	for(var/datum/unarmed_attack/attack in unarmed_attacks)
+	for (var/datum/unarmed_attack/attack in unarmed_attacks)
 		if (!attack.is_usable(H))
 			continue
 		if (attack.shredding)
@@ -493,7 +493,7 @@
 //	if (H.eye_blurry)	H.client.screen += global_hud.blurry
 //	if (H.druggy)		H.client.screen += global_hud.druggy
 
-	for(var/overlay in H.equipment_overlays)
+	for (var/overlay in H.equipment_overlays)
 		H.client.screen |= overlay
 
 	return TRUE

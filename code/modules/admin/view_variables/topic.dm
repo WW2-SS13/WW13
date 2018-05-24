@@ -165,7 +165,7 @@
 		switch(action_type)
 			if ("Strict type")
 				var/i = FALSE
-				for(var/atom/movable/AM2 in world)
+				for (var/atom/movable/AM2 in world)
 					if (AM2.type == AM_type)
 						i++
 						qdel(AM2)
@@ -176,7 +176,7 @@
 				message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type [AM_type] ([i] objects deleted)</span>")
 			if ("Type and subtypes")
 				var/i = FALSE
-				for(var/atom/movable/AM2 in world)
+				for (var/atom/movable/AM2 in world)
 					if (istype(AM2,AM_type))
 						i++
 						qdel(AM2)

@@ -15,7 +15,7 @@
 	if (!(istype(loc, /turf/space) || istype(loc, /turf/open) || istype(loc, /turf/floor/hull))) // || istype(loc, /turf/floor/open)
 ///// Z-Level Stuff
 		qdel(src)
-	for(var/obj/structure/lattice/LAT in loc)
+	for (var/obj/structure/lattice/LAT in loc)
 		if (LAT != src)
 			qdel(LAT)
 	icon = 'icons/obj/smoothlattice.dmi'

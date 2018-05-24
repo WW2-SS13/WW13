@@ -24,7 +24,7 @@ var/list/delayed_garbage = list()
 	schedule_interval = 5 SECONDS
 	start_delay = 3
 
-	for(var/garbage in delayed_garbage)
+	for (var/garbage in delayed_garbage)
 		qdel(garbage)
 
 	delayed_garbage.Cut()
@@ -47,7 +47,7 @@ world/loop_checks = FALSE
 	var/checkRemain = GC_COLLECTIONS_PER_RUN
 	var/remaining_force_dels = GC_FORCE_DEL_PER_RUN
 
-	while(destroyed.len && --checkRemain >= 0)
+	while (destroyed.len && --checkRemain >= 0)
 		if (remaining_force_dels <= 0)
 			#ifdef GC_DEBUG
 			testing("GC: Reached max force dels per tick [dels] vs [maxDels]")
@@ -104,11 +104,11 @@ world/loop_checks = FALSE
 		if (A.contents.len)
 			testing("GC: [A] | [A.type] has contents: [jointext(A.contents)]")
 	var/ref_count = 0
-	for(var/atom/atom)
+	for (var/atom/atom)
 		ref_count += LookForRefs(atom, A)
-	for(var/datum/datum)	// This is strictly /datum, not subtypes.
+	for (var/datum/datum)	// This is strictly /datum, not subtypes.
 		ref_count += LookForRefs(datum, A)
-	for(var/client/client)
+	for (var/client/client)
 		ref_count += LookForRefs(client, A)
 	var/message = "GC: References found to [A] | [A.type]: [ref_count]."
 	if (!ref_count)
@@ -117,7 +117,7 @@ world/loop_checks = FALSE
 
 /process/garbage/proc/LookForRefs(var/datum/D, var/datum/A)
 	. = 0
-	for(var/V in D.vars)
+	for (var/V in D.vars)
 		if (V == "contents")
 			continue
 		if (!islist(D.vars[V]))
@@ -129,7 +129,7 @@ world/loop_checks = FALSE
 
 /process/garbage/proc/LookForListRefs(var/list/L, var/datum/A, var/datum/D, var/V)
 	. = 0
-	for(var/F in L)
+	for (var/F in L)
 		if (!islist(F))
 			if (F == A || L[F] == A)
 				testing("GC: [A] | [A.type] referenced by [D] | [D.type], list [V]")
@@ -270,16 +270,16 @@ world/loop_checks = FALSE
 	usr.client.running_find_references = type
 	testing("Beginning search for references to a [type].")
 	var/list/things = list()
-	for(var/client/thing)
+	for (var/client/thing)
 		things += thing
-	for(var/datum/thing)
+	for (var/datum/thing)
 		things += thing
-	for(var/atom/thing)
+	for (var/atom/thing)
 		things += thing
 	testing("Collected list of things in search for references to a [type]. ([things.len] Thing\s)")
-	for(var/datum/thing in things)
+	for (var/datum/thing in things)
 		if (!usr.client.running_find_references) return
-		for(var/varname in thing.vars)
+		for (var/varname in thing.vars)
 			var/variable = thing.vars[varname]
 			if (variable == src)
 				testing("Found [type] \ref[src] in [thing.type]'s [varname] var.")
@@ -292,7 +292,7 @@ world/loop_checks = FALSE
 /client/verb/purge_all_destroyed_objects()
 	set category = "Debug"
 	if (garbage)
-		while(garbage.destroyed.len)
+		while (garbage.destroyed.len)
 			var/datum/o = locate(garbage.destroyed[1])
 			if (istype(o) && o.gcDestroyed)
 				del(o)

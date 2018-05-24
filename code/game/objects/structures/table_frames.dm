@@ -26,7 +26,7 @@
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, TRUE)
 		if (do_after(user, 30, target = src))
 			playsound(loc, 'sound/items/Deconstruct.ogg', 50, TRUE)
-			for(var/i = TRUE, i <= framestackamount, i++)
+			for (var/i = TRUE, i <= framestackamount, i++)
 				new framestack(get_turf(src))
 			qdel(src)
 			return

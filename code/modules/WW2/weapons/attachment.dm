@@ -57,18 +57,18 @@ Current Defines (_defines/attachment.dm)
 /obj/item/weapon/gun/examine(mob/user)
   ..()
   if (attachments.len)
-    for(var/obj/item/weapon/attachment/A in attachments)
+    for (var/obj/item/weapon/attachment/A in attachments)
       user << "<span class='notice'>It has [A] attached.</span>"
 
 /obj/item/weapon/gun/dropped(mob/user)
   ..()
   if (attachments.len)
-    for(var/obj/item/weapon/attachment/A in attachments)
+    for (var/obj/item/weapon/attachment/A in attachments)
       A.dropped(user)
 
 /obj/item/weapon/gun/pickup(mob/user)
   if (attachments.len)
-    for(var/obj/item/weapon/attachment/A in attachments)
+    for (var/obj/item/weapon/attachment/A in attachments)
       A.pickup(user)
 
 /obj/item/weapon/gun/verb/field_strip()
@@ -77,7 +77,7 @@ Current Defines (_defines/attachment.dm)
   set category = null
   var/mob/living/carbon/human/user = usr
 
-  for(var/obj/item/weapon/attachment/A in attachments)
+  for (var/obj/item/weapon/attachment/A in attachments)
     A.removed(user, src)
 
 //Use this under /New() of weapons if they spawn with attachments
@@ -88,7 +88,7 @@ Current Defines (_defines/attachment.dm)
   actions += A.actions
 
 /obj/item/weapon/gun/proc/update_attachment_actions(mob/user)
-  for(var/datum/action/action in actions)
+  for (var/datum/action/action in actions)
     action.Grant(user)
 
 /obj/item/weapon/gun/proc/try_attach(obj/item/weapon/attachment/A, mob/user)

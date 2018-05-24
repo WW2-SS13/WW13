@@ -39,7 +39,7 @@
 	..()
 
 	if (!stat && prob(speak_chance))
-		for(var/mob/M in view())
+		for (var/mob/M in view())
 			M << 'sound/effects/mousesqueek.ogg'
 
 	if (!ckey && stat == CONSCIOUS && prob(1))

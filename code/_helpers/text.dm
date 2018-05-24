@@ -70,7 +70,7 @@
 	var/last_char_group			= FALSE
 	var/output = ""
 
-	for(var/i=1, i<=length(input), i++)
+	for (var/i=1, i<=length(input), i++)
 		var/ascii_char = text2ascii(input,i)
 		switch(ascii_char)
 			// A  .. Z
@@ -120,7 +120,7 @@
 	if (last_char_group == TRUE)
 		output = copytext(output,1,length(output))	//removes the last character (in this case a space)
 
-	for(var/bad_name in list("space","floor","wall","r-wall","monkey","unknown","inactive ai","plating"))	//prevents these common metagamey names
+	for (var/bad_name in list("space","floor","wall","r-wall","monkey","unknown","inactive ai","plating"))	//prevents these common metagamey names
 		if (cmptext(output,bad_name))	return	//(not case sensitive)
 
 	return output
@@ -129,7 +129,7 @@
 /proc/reject_bad_text(var/text, var/max_length=512)
 	if (length(text) > max_length)	return			//message too long
 	var/non_whitespace = FALSE
-	for(var/i=1, i<=length(text), i++)
+	for (var/i=1, i<=length(text), i++)
 		switch(text2ascii(text,i))
 			if (62,60,92,47)	return			//rejects the text if it contains these bad characters: <, >, \ or /
 			if (127 to 255)	return			//rejects weird letters like �
@@ -182,7 +182,7 @@
 
 
 /proc/replace_characters(var/t,var/list/repl_chars)
-	for(var/char in repl_chars)
+	for (var/char in repl_chars)
 		t = replacetext(t, char, repl_chars[char])
 	return t
 
@@ -200,13 +200,13 @@
 
 //Adds 'u' number of spaces ahead of the text 't'
 /proc/add_lspace(t, u)
-	while(length(t) < u)
+	while (length(t) < u)
 		t = " [t]"
 	return t
 
 //Adds 'u' number of spaces behind the text 't'
 /proc/add_tspace(t, u)
-	while(length(t) < u)
+	while (length(t) < u)
 		t = "[t] "
 	return t
 
@@ -239,7 +239,7 @@
 		return
 	var/opentag = TRUE //These store the position of < and > respectively.
 	var/closetag = TRUE
-	while(1)
+	while (1)
 		opentag = findtext(input, "<")
 		closetag = findtext(input, ">")
 		if (closetag && opentag)
@@ -264,7 +264,7 @@
 	var/newtext = text
 	if (lentext(text) != lentext(compare))
 		return FALSE
-	for(var/i = TRUE, i < lentext(text), i++)
+	for (var/i = TRUE, i < lentext(text), i++)
 		var/a = copytext(text,i,i+1)
 		var/b = copytext(compare,i,i+1)
 		//if it isn't both the same letter, or if they are both the replacement character
@@ -284,7 +284,7 @@
 	if (!text || !character)
 		return FALSE
 	var/count = FALSE
-	for(var/i = TRUE, i <= lentext(text), i++)
+	for (var/i = TRUE, i <= lentext(text), i++)
 		var/a = copytext(text,i,i+1)
 		if (a == character)
 			count++
@@ -292,7 +292,7 @@
 
 /proc/reverse_text(var/text = "")
 	var/new_text = ""
-	for(var/i = length(text); i > 0; i--)
+	for (var/i = length(text); i > 0; i--)
 		new_text += copytext(text, i, i+1)
 	return new_text
 
@@ -321,7 +321,7 @@ proc/TextPreview(var/string,var/len=40)
 	return "<IMG src='\ref[text_tag_icons.icon]' class='text_tag' iconstate='[tagname]'" + (tagdesc ? " alt='[tagdesc]'" : "") + ">"
 
 /proc/contains_az09(var/input)
-	for(var/i=1, i<=length(input), i++)
+	for (var/i=1, i<=length(input), i++)
 		var/ascii_char = text2ascii(input,i)
 		switch(ascii_char)
 			// A  .. Z

@@ -120,7 +120,7 @@
 			if ( WT.remove_fuel(0,user) )
 				user << "<span class='notice'>You burn away the fungi with \the [WT].</span>"
 				playsound(src, 'sound/items/Welder.ogg', 10, TRUE)
-				for(var/obj/effect/overlay/wallrot/WR in src)
+				for (var/obj/effect/overlay/wallrot/WR in src)
 					qdel(WR)
 				return
 		else if (!is_sharp(W) && W.force >= 10 || W.force >= 20)

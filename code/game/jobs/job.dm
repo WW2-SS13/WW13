@@ -95,7 +95,7 @@
 		var/obj/item/weapon/storage/backpack/BPK = new backpack(H)
 		if (H.equip_to_slot_or_del(BPK, slot_back,1))
 			new survival_gear(BPK)
-			for( var/path in put_in_backpack )
+			for ( var/path in put_in_backpack )
 				new path(BPK)
 
 	//Survival equipment
@@ -115,10 +115,10 @@
 
 	if (!H.back || !istype(H.back, /obj/item/weapon/storage/backpack))
 		var/list/slots = list( slot_belt, slot_r_store, slot_l_store, slot_r_hand, slot_l_hand, slot_s_store )
-		for( var/path in put_in_backpack )
+		for ( var/path in put_in_backpack )
 			if ( !slots.len ) break
 			var/obj/item/I = new path(H)
-			for( var/slot in slots )
+			for ( var/slot in slots )
 				if ( H.equip_to_slot_if_possible(I, slot, FALSE, TRUE, FALSE) )
 					slots -= slot
 					break
@@ -149,14 +149,14 @@
 /datum/job/proc/apply_fingerprints(var/mob/living/carbon/human/target)
 	if (!istype(target))
 		return FALSE
-	for(var/obj/item/item in target.contents)
+	for (var/obj/item/item in target.contents)
 		apply_fingerprints_to_item(target, item)
 	return TRUE
 
 /datum/job/proc/apply_fingerprints_to_item(var/mob/living/carbon/human/holder, var/obj/item/item)
 	item.add_fingerprint(holder,1)
 	if (item.contents.len)
-		for(var/obj/item/sub_item in item.contents)
+		for (var/obj/item/sub_item in item.contents)
 			apply_fingerprints_to_item(holder, sub_item)
 
 /datum/job/proc/is_position_available(var/list/restricted_choices, var/list/people_in_join_queue)

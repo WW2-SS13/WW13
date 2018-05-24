@@ -101,7 +101,7 @@ var/list/pooledvariables = list()
 	pooledvariables[type] = new/list()
 	var/list/all_excluded = excluded_vars + excluded
 
-	for(var/key in vars)
+	for (var/key in vars)
 		if (key in all_excluded)
 			continue
 		pooledvariables[type][key] = initial(vars[key])
@@ -110,7 +110,7 @@ var/list/pooledvariables = list()
 	if (!pooledvariables[type])
 		createVariables(excluded)
 
-	for(var/key in pooledvariables[type])
+	for (var/key in pooledvariables[type])
 		vars[key] = pooledvariables[type][key]
 
 /atom/movable/ResetVars()

@@ -108,7 +108,7 @@ mob/living/carbon/human/proc/custom_pain(var/message, var/flash_strength)
 		return
 	var/maxdam = FALSE
 	var/obj/item/organ/external/damaged_organ = null
-	for(var/obj/item/organ/external/E in organs)
+	for (var/obj/item/organ/external/E in organs)
 		if (E.status & (ORGAN_DEAD|ORGAN_ROBOT)) continue
 		var/dam = E.get_damage()
 		// make the choice of the organ depend on damage,
@@ -122,7 +122,7 @@ mob/living/carbon/human/proc/custom_pain(var/message, var/flash_strength)
 		damaged_organ.pain = maxdam
 
 	// Damage to internal organs hurts a lot.
-	for(var/obj/item/organ/I in internal_organs)
+	for (var/obj/item/organ/I in internal_organs)
 		if (I.status & (ORGAN_DEAD|ORGAN_ROBOT)) continue
 		if (I.damage > 2) if (prob(2))
 			var/obj/item/organ/external/parent = get_organ(I.parent_organ)

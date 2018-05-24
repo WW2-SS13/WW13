@@ -7,7 +7,7 @@
 
 	if (client)
 		remove_screen_obj_references()
-		for(var/atom/movable/AM in client.screen)
+		for (var/atom/movable/AM in client.screen)
 			qdel(AM)
 		client.screen = list()
 
@@ -90,7 +90,7 @@
 /mob/visible_message(var/message, var/self_message, var/blind_message)
 	var/list/see = get_mobs_or_objects_in_view(world.view,src) | viewers(world.view,src)
 
-	for(var/I in see)
+	for (var/I in see)
 		if (isobj(I))
 			spawn(0)
 				if (I) //It's possible that it could be deleted in the meantime.
@@ -125,7 +125,7 @@
 		range = hearing_distance
 	var/list/hear = get_mobs_or_objects_in_view(range,src)
 
-	for(var/I in hear)
+	for (var/I in hear)
 		if (isobj(I))
 			spawn(0)
 				if (I) //It's possible that it could be deleted in the meantime.
@@ -140,7 +140,7 @@
 
 
 /mob/proc/findname(msg)
-	for(var/mob/M in mob_list)
+	for (var/mob/M in mob_list)
 		if (M.real_name == text("[]", msg))
 			return M
 	return FALSE
@@ -269,7 +269,7 @@
 /mob/verb/dump_source()
 
 	var/master = "<PRE>"
-	for(var/t in typesof(/area))
+	for (var/t in typesof(/area))
 		master += text("[]\n", t)
 		//Foreach goto(26)
 	src << browse(master)
@@ -456,7 +456,7 @@
 	var/list/namecounts = list()
 	var/list/creatures = list()
 /*
-	for(var/obj/O in world)				//EWWWWWWWWWWWWWWWWWWWWWWWW ~needs to be optimised
+	for (var/obj/O in world)				//EWWWWWWWWWWWWWWWWWWWWWWWW ~needs to be optimised
 		if (!O.loc)
 			continue*/
 
@@ -481,7 +481,7 @@
 			creatures[name] = O
 */
 
-	for(var/mob/M in sortAtom(mob_list))
+	for (var/mob/M in sortAtom(mob_list))
 		var/name = M.name
 		if (names.Find(name))
 			namecounts[name]++
@@ -537,7 +537,7 @@
 	if (ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if (H.health - H.halloss <= config.health_threshold_softcrit)
-			for(var/name in H.organs_by_name)
+			for (var/name in H.organs_by_name)
 				var/obj/item/organ/external/e = H.organs_by_name[name]
 				if (e && H.lying)
 					if (((e.status & ORGAN_BROKEN && !(e.status & ORGAN_SPLINTED)) || e.status & ORGAN_BLEEDING) && (H.getBruteLoss() + H.getFireLoss() >= 100))
@@ -654,7 +654,7 @@
 	return TRUE
 
 /mob/proc/show_viewers(message)
-	for(var/mob/M in viewers())
+	for (var/mob/M in viewers())
 		M.see(message)
 
 // this CSS is terrible but its the only thing that works - Kachnov
@@ -725,7 +725,7 @@
 			else
 				if (statpanel("Turf"))
 					stat(listed_turf)
-					for(var/atom/A in listed_turf)
+					for (var/atom/A in listed_turf)
 						if (!A.mouse_opacity)
 							continue
 						if (A.invisibility > see_invisible)
@@ -789,7 +789,7 @@
 	else
 		density = initial(density)
 
-	for(var/obj/item/weapon/grab/G in grabbed_by)
+	for (var/obj/item/weapon/grab/G in grabbed_by)
 		if (G.state >= GRAB_AGGRESSIVE)
 			canmove = FALSE
 			break
@@ -849,7 +849,7 @@
 
 /mob/proc/get_visible_implants(var/class = FALSE)
 	var/list/visible_implants = list()
-	for(var/obj/item/O in embedded)
+	for (var/obj/item/O in embedded)
 		if (O.w_class > class)
 			visible_implants += O
 	return visible_implants
@@ -915,8 +915,8 @@ mob/proc/yank_out_object()
 		var/mob/living/carbon/human/H = src
 		var/obj/item/organ/external/affected
 
-		for(var/obj/item/organ/external/organ in H.organs) //Grab the organ holding the implant.
-			for(var/obj/item/O in organ.implants)
+		for (var/obj/item/organ/external/organ in H.organs) //Grab the organ holding the implant.
+			for (var/obj/item/O in organ.implants)
 				if (O == selection)
 					affected = organ
 
@@ -943,7 +943,7 @@ mob/proc/yank_out_object()
 	if (!(U.l_hand && U.r_hand))
 		U.put_in_hands(selection)
 
-	for(var/obj/item/weapon/O in pinned)
+	for (var/obj/item/weapon/O in pinned)
 		if (O == selection)
 			pinned -= O
 		if (!pinned.len)

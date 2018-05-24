@@ -30,7 +30,7 @@ LINEN BINS
 		user.visible_message("<span class='notice'>\The [user] begins cutting up \the [src] with \a [I].</span>", "<span class='notice'>You begin cutting up \the [src] with \the [I].</span>")
 		if (do_after(user, 50, src))
 			user << "<span class='notice'>You cut \the [src] into pieces!</span>"
-			for(var/i in TRUE to rand(2,5))
+			for (var/i in TRUE to rand(2,5))
 				new /obj/item/weapon/reagent_containers/glass/rag(get_turf(src))
 			qdel(src)
 		return

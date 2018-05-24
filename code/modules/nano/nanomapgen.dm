@@ -58,8 +58,8 @@
 	usr << "NanoMapGen: <b>GENERATE MAP ([startX],[startY],[currentZ]) to ([endX],[endY],[currentZ])</b>"
 
 	var/count = FALSE;
-	for(var/WorldX = startX, WorldX <= endX, WorldX++)
-		for(var/WorldY = startY, WorldY <= endY, WorldY++)
+	for (var/WorldX = startX, WorldX <= endX, WorldX++)
+		for (var/WorldY = startY, WorldY <= endY, WorldY++)
 
 			var/atom/Turf = locate(WorldX, WorldY, currentZ)
 

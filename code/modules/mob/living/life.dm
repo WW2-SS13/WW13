@@ -65,7 +65,7 @@
 
 	update_pulling()
 
-	for(var/obj/item/weapon/grab/G in src)
+	for (var/obj/item/weapon/grab/G in src)
 		G.process()
 
 	blinded = FALSE // Placing this here just show how out of place it is.
@@ -222,10 +222,10 @@
 			if (!H.HUDneed.len)
 				if (H.HUDprocess.len)
 					log_debug("[usr] have object in HUDprocess list, but HUDneed is empty.")
-					for(var/obj/screen/health/HUDobj in H.HUDprocess)
+					for (var/obj/screen/health/HUDobj in H.HUDprocess)
 						H.HUDprocess -= HUDobj
 						qdel(HUDobj)
-				for(var/HUDname in HUDdatum.HUDneed)
+				for (var/HUDname in HUDdatum.HUDneed)
 					if (!H.species.hud.ProcessHUD.Find(HUDname))
 						continue
 					var/HUDtype = HUDdatum.HUDneed[HUDname]

@@ -27,7 +27,7 @@
 			return
 		user << "<span class = 'notice'>It contains:</span>"
 		if (reagents && reagents.reagent_list.len)
-			for(var/datum/reagent/R in reagents.reagent_list)
+			for (var/datum/reagent/R in reagents.reagent_list)
 				user << "<span class = 'notice'>[R.volume] units of [R.name]</span>"
 		else
 			user << "<span class = 'notice'>Nothing.</span>"

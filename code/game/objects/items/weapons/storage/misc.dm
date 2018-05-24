@@ -21,7 +21,7 @@
 
 /obj/item/weapon/storage/box/donut/New()
 	..()
-	for(var/i=1; i <= startswith; i++)
+	for (var/i=1; i <= startswith; i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/donut/normal(src)
 	update_icon()
 	return
@@ -29,7 +29,7 @@
 /obj/item/weapon/storage/box/donut/update_icon()
 	overlays.Cut()
 	var/i = FALSE
-	for(var/obj/item/weapon/reagent_containers/food/snacks/donut/D in contents)
+	for (var/obj/item/weapon/reagent_containers/food/snacks/donut/D in contents)
 		overlays += image('icons/obj/food.dmi', "[i][D.overlay_state]")
 		i++
 

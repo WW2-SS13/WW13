@@ -41,7 +41,7 @@
 	var/mentormsg = "<b><font color=green>Request for Help:</font>[get_options_bar(mob, 4, FALSE, TRUE, FALSE)]:</b> [msg]</font>"
 	var/adminmsg = "(MENTORHELP) [mentormsg]"
 
-	for(var/client/X in admins)
+	for (var/client/X in admins)
 		if ((R_MENTOR & X.holder.rights) && !((R_ADMIN|R_MOD) & X.holder.rights))
 			if (X.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
 				X << 'sound/effects/adminhelp.ogg'

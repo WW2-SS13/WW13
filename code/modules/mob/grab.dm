@@ -5,7 +5,7 @@
 ///Called by client/Move()
 ///Checks to see if you are grabbing anything and if moving will affect your grab.
 /client/proc/Process_Grab()
-	for(var/obj/item/weapon/grab/G in list(mob.l_hand, mob.r_hand))
+	for (var/obj/item/weapon/grab/G in list(mob.l_hand, mob.r_hand))
 		G.reset_kill_state() //no wandering across the station/asteroid while choking someone
 
 /obj/item/weapon/grab
@@ -106,7 +106,7 @@
 				allow_upgrade = FALSE
 
 		//disallow upgrading past aggressive if we're being grabbed aggressively
-		for(var/obj/item/weapon/grab/G in affecting.grabbed_by)
+		for (var/obj/item/weapon/grab/G in affecting.grabbed_by)
 			if (G == src) continue
 			if (G.state >= GRAB_AGGRESSIVE)
 				allow_upgrade = FALSE

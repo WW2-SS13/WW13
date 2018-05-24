@@ -42,7 +42,7 @@ var/process/open_space/OS_controller = null
 		if (!istype(below,/turf/open))
 			// get objects
 			var/image/o_img = list()
-			for(var/obj/o in below)
+			for (var/obj/o in below)
 				// ingore objects that have any form of invisibility
 				if (o.invisibility) continue
 				var/image/temp2 = image(o, dir=o.dir, layer = o.layer)

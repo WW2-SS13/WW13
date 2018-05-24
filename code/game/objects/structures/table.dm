@@ -34,17 +34,17 @@
 
 /obj/structure/table/New()
 	..()
-	for(var/obj/structure/table/T in loc)
+	for (var/obj/structure/table/T in loc)
 		if (T != src)
 			qdel(T)
 	update_icon()
-	for(var/direction in list(1,2,4,8,5,6,9,10))
+	for (var/direction in list(1,2,4,8,5,6,9,10))
 		if (locate(/obj/structure/table,get_step(src,direction)))
 			var/obj/structure/table/T = locate(/obj/structure/table,get_step(src,direction))
 			T.update_icon()
 
 /obj/structure/table/Destroy()
-	for(var/direction in list(1,2,4,8,5,6,9,10))
+	for (var/direction in list(1,2,4,8,5,6,9,10))
 		if (locate(/obj/structure/table,get_step(src,direction)))
 			var/obj/structure/table/T = locate(/obj/structure/table,get_step(src,direction))
 			T.update_icon()
@@ -53,9 +53,9 @@
 /obj/structure/table/update_icon()
 	spawn(2) //So it properly updates when deleting
 		var/dir_sum = FALSE
-		for(var/direction in list(1,2,4,8,5,6,9,10))
+		for (var/direction in list(1,2,4,8,5,6,9,10))
 			var/skip_sum = FALSE
-			for(var/obj/structure/window/W in loc)
+			for (var/obj/structure/window/W in loc)
 				if (W.dir == direction) //So smooth tables don't go smooth through windows
 					skip_sum = TRUE
 					continue
@@ -77,7 +77,7 @@
 					inv_direction = 6
 				if (10)
 					inv_direction = 5
-			for(var/obj/structure/window/W in get_step(src,direction))
+			for (var/obj/structure/window/W in get_step(src,direction))
 				if (W.dir == inv_direction) //So smooth tables don't go smooth through windows when the window is on the other table's tile
 					skip_sum = TRUE
 					continue
@@ -351,9 +351,9 @@
 		return
 
 	if (destroy_type == TBL_DESTROY)
-		for(var/i = TRUE, i <= framestackamount, i++)
+		for (var/i = TRUE, i <= framestackamount, i++)
 			new framestack(get_turf(src))
-		for(var/i = TRUE, i <= buildstackamount, i++)
+		for (var/i = TRUE, i <= buildstackamount, i++)
 			new buildstack(get_turf(src))
 		qdel(src)
 		return
@@ -363,7 +363,7 @@
 		playsound(loc, 'sound/items/Screwdriver.ogg', 50, TRUE)
 		if (do_after(user, 20, target = src))
 			new frame(loc)
-			for(var/i = TRUE, i <= buildstackamount, i++)
+			for (var/i = TRUE, i <= buildstackamount, i++)
 				new buildstack(get_turf(src))
 			qdel(src)
 			return
@@ -372,9 +372,9 @@
 		user << "<span class='notice'>You start deconstructing [src]...</span>"
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, TRUE)
 		if (do_after(user, 40, target = src))
-			for(var/i = TRUE, i <= framestackamount, i++)
+			for (var/i = TRUE, i <= framestackamount, i++)
 				new framestack(get_turf(src))
-			for(var/i = TRUE, i <= buildstackamount, i++)
+			for (var/i = TRUE, i <= buildstackamount, i++)
 				new buildstack(get_turf(src))
 			playsound(loc, 'sound/items/Deconstruct.ogg', 50, TRUE)
 			qdel(src)

@@ -49,5 +49,5 @@
 
 /obj/item/weapon/storage/box/smoke_grenades/New()
 	..()
-	for(var/i = 0; i < 7; i++)
+	for (var/i = 0; i < 7; i++)
 		new /obj/item/ammo_casing/grenade/smoke(src)

@@ -12,7 +12,7 @@
 		return
 
 	var/list/affected_areas = list()
-	for(var/mob/M in living_mob_list)
+	for (var/mob/M in living_mob_list)
 		if (M.stat == CONSCIOUS && !(M in affected_mobs))
 			affected_mobs |= M
 			switch(rand(1,4))
@@ -25,7 +25,7 @@
 				if (4)
 					M.show_message(text("<span class='notice'>You notice something moving out of the corner of your eye, but nothing is there...</span>"), TRUE)
 
-			for(var/obj/W in orange(5,M))
+			for (var/obj/W in orange(5,M))
 				if (prob(25) && !W.anchored)
 					step_rand(W)
 
@@ -34,7 +34,7 @@
 				affected_areas |= get_area(M)
 
 	affected_mobs |= user
-	for(var/area/AffectedArea in affected_areas)
+	for (var/area/AffectedArea in affected_areas)
 		AffectedArea.power_light = FALSE
 //		AffectedArea.power_change()
 		spawn(rand(25,50))
@@ -42,7 +42,7 @@
 //			AffectedArea.power_change()
 
 	sleep(100)
-	for(var/mob/M in affected_mobs)
+	for (var/mob/M in affected_mobs)
 		M.show_message(text("<span class='notice'>The chilling wind suddenly stops...</span>"), TRUE)
 	affected_mobs.Cut()
 	affected_areas.Cut()

@@ -43,7 +43,7 @@ var/list/name_to_material
 /proc/populate_material_list(force_remake=0)
 	if (name_to_material && !force_remake) return // Already set up!
 	name_to_material = list()
-	for(var/type in typesof(/material) - /material)
+	for (var/type in typesof(/material) - /material)
 		var/material/new_mineral = new type
 		if (!new_mineral.name)
 			continue
@@ -168,7 +168,7 @@ var/list/name_to_material
 /material/proc/get_matter()
 	var/list/temp_matter = list()
 	if (islist(composite_material))
-		for(var/material_string in composite_material)
+		for (var/material_string in composite_material)
 			temp_matter[material_string] = composite_material[material_string]
 	else if (SHEET_MATERIAL_AMOUNT)
 		temp_matter[name] = SHEET_MATERIAL_AMOUNT
@@ -200,7 +200,7 @@ var/list/name_to_material
 // General wall debris product placement.
 // Not particularly necessary aside from snowflakey cult girders.
 /material/proc/place_dismantled_product(var/turf/target,var/is_devastated)
-	for(var/x=1;x<(is_devastated?2:3);x++)
+	for (var/x=1;x<(is_devastated?2:3);x++)
 		place_sheet(target)
 
 // Debris product. Used ALL THE TIME.
@@ -313,7 +313,7 @@ var/list/name_to_material
 	if (temperature < ignition_point)
 		return FALSE
 	var/totalPlasma = FALSE
-	for(var/turf/simulated/floor/target_tile in range(2,T))
+	for (var/turf/simulated/floor/target_tile in range(2,T))
 		var/plasmaToDeduce = (temperature/30) * effect_multiplier
 		totalPlasma += plasmaToDeduce
 		target_tile.assume_gas("plasma", plasmaToDeduce, 200+T0C)
@@ -446,7 +446,7 @@ var/list/name_to_material
 	else
 		if (choice in list("One Direction","Windoor"))
 			if (possible_directions.len)
-				for(var/direction in list(user.dir, turn(user.dir,90), turn(user.dir,180), turn(user.dir,270) ))
+				for (var/direction in list(user.dir, turn(user.dir,90), turn(user.dir,180), turn(user.dir,270) ))
 					if (direction in possible_directions)
 					//	build_dir = direction
 						break

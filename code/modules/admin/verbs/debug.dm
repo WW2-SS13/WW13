@@ -30,7 +30,7 @@
 	var/t = "<span class = 'notice'>Coordinates: [T.x],[T.y],[T.z]\n</span>"
 	t += "<span class = 'red'>Temperature: [env.temperature]</span>\n"
 	t += "<span class = 'red'>Pressure: [env.return_pressure()]kPa</span>\n"
-	for(var/g in env.gas)
+	for (var/g in env.gas)
 		t += "<span class = 'notice'>[g]: [env.gas[g]] / [env.gas[g] * R_IDEAL_GAS_EQUATION * env.temperature / env.volume]kPa</span>\n"
 
 	usr.show_message(t, TRUE)
@@ -70,7 +70,7 @@
 	var/blocked = list(/obj, /mob, /mob/living, /mob/living/carbon, /mob/living/carbon/human, /mob/observer, /mob/living/silicon, /mob/living/silicon/robot, /mob/living/silicon/ai)
 	var/hsbitem = input(usr, "Choose an object to delete.", "Delete:") as null|anything in typesof(/obj) + typesof(/mob) - blocked
 	if (hsbitem)
-		for(var/atom/O in world)
+		for (var/atom/O in world)
 			if (istype(O, hsbitem))
 				qdel(O)
 		log_admin("[key_name(src)] has deleted all instances of [hsbitem].")
@@ -131,37 +131,37 @@
 	var/list/areas_with_intercom = list()
 	var/list/areas_with_camera = list()
 
-	for(var/area/A in world)
+	for (var/area/A in world)
 		if (!(A.type in areas_all))
 			areas_all.Add(A.type)
 /*
-	for(var/obj/machinery/power/apc/APC in world)
+	for (var/obj/machinery/power/apc/APC in world)
 		var/area/A = get_area(APC)
 		if (!(A.type in areas_with_APC))
 			areas_with_APC.Add(A.type)*/
 /*
-	for(var/obj/machinery/alarm/alarm in world)
+	for (var/obj/machinery/alarm/alarm in world)
 		var/area/A = get_area(alarm)
 		if (!(A.type in areas_with_air_alarm))
 			areas_with_air_alarm.Add(A.type)
 */
 /*
-	for(var/obj/machinery/requests_console/RC in world)
+	for (var/obj/machinery/requests_console/RC in world)
 		var/area/A = get_area(RC)
 		if (!(A.type in areas_with_RC))
 			areas_with_RC.Add(A.type)
 */
-	for(var/obj/structure/light/L in world)
+	for (var/obj/structure/light/L in world)
 		var/area/A = get_area(L)
 		if (!(A.type in areas_with_light))
 			areas_with_light.Add(A.type)
 
-/*	for(var/obj/structure/light_switch/LS in world)
+/*	for (var/obj/structure/light_switch/LS in world)
 		var/area/A = get_area(LS)
 		if (!(A.type in areas_with_LS))
 			areas_with_LS.Add(A.type)*/
 
-	for(var/obj/item/radio/intercom/I in world)
+	for (var/obj/item/radio/intercom/I in world)
 		var/area/A = get_area(I)
 		if (!(A.type in areas_with_intercom))
 			areas_with_intercom.Add(A.type)
@@ -175,31 +175,31 @@
 	var/list/areas_without_camera = areas_all - areas_with_camera
 
 	world << "<b>AREAS WITHOUT AN APC:</b>"
-	for(var/areatype in areas_without_APC)
+	for (var/areatype in areas_without_APC)
 		world << "* [areatype]"
 
 	world << "<b>AREAS WITHOUT AN AIR ALARM:</b>"
-	for(var/areatype in areas_without_air_alarm)
+	for (var/areatype in areas_without_air_alarm)
 		world << "* [areatype]"
 
 	world << "<b>AREAS WITHOUT A REQUEST CONSOLE:</b>"
-	for(var/areatype in areas_without_RC)
+	for (var/areatype in areas_without_RC)
 		world << "* [areatype]"
 
 	world << "<b>AREAS WITHOUT ANY LIGHTS:</b>"
-	for(var/areatype in areas_without_light)
+	for (var/areatype in areas_without_light)
 		world << "* [areatype]"
 
 	world << "<b>AREAS WITHOUT A LIGHT SWITCH:</b>"
-	for(var/areatype in areas_without_LS)
+	for (var/areatype in areas_without_LS)
 		world << "* [areatype]"
 
 	world << "<b>AREAS WITHOUT ANY INTERCOMS:</b>"
-	for(var/areatype in areas_without_intercom)
+	for (var/areatype in areas_without_intercom)
 		world << "* [areatype]"
 
 	world << "<b>AREAS WITHOUT ANY CAMERAS:</b>"
-	for(var/areatype in areas_without_camera)
+	for (var/areatype in areas_without_camera)
 		world << "* [areatype]"
 */
 /client/proc/cmd_admin_dress()
@@ -303,7 +303,7 @@
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/rank/janitor(M), slot_w_uniform)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(M), slot_shoes)
 			var/obj/item/weapon/storage/backpack/backpack = new(M)
-			for(var/obj/item/I in backpack)
+			for (var/obj/item/I in backpack)
 				qdel(I)
 			M.equip_to_slot_or_del(backpack, slot_back)
 
@@ -349,7 +349,7 @@
 			var/obj/item/weapon/material/twohanded/fireaxe/fire_axe = new(M)
 			M.equip_to_slot_or_del(fire_axe, slot_r_hand)
 
-			for(var/obj/item/carried_item in M.contents)
+			for (var/obj/item/carried_item in M.contents)
 				if (!istype(carried_item, /obj/item/weapon/implant))//If it's not an implant.
 					carried_item.add_blood(M)//Oh yes, there will be blood...
 */
@@ -430,7 +430,7 @@
 	set name = "Remove empty bullet casings"
 	set desc = "Removes ALL empty bullet casings from the map"
 
-	for(var/A in bullet_casings)
+	for (var/A in bullet_casings)
 		var/obj/item/ammo_casing/B = A
 		if (B.BB)
 			continue
@@ -445,7 +445,7 @@
 
 	var/limit = bullet_casings.len/2
 	var/counter = FALSE
-	for(var/A in bullet_casings)
+	for (var/A in bullet_casings)
 		var/obj/item/ammo_casing/B = A
 		if (B.BB || counter > limit)
 			continue
@@ -459,7 +459,7 @@
 	set name = "Remove All Blood"
 	set desc = "Removes ALL blood from the map"
 
-	for(var/B in blood)
+	for (var/B in blood)
 		if (istype(B, /datum))
 			qdel(B)
 

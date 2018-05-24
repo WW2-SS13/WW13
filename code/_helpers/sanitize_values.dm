@@ -37,7 +37,7 @@
 	if (len != 7 && len !=4) return default
 	if (text2ascii(color,1) != 35) return default	//35 is the ascii code for "#"
 	. = "#"
-	for(var/i=2,i<=len,i++)
+	for (var/i=2,i<=len,i++)
 		var/ascii = text2ascii(color,i)
 		switch(ascii)
 			if (48 to 57)	. += ascii2text(ascii)		//numbers FALSE to 9

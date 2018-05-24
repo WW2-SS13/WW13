@@ -200,7 +200,7 @@ var/global/obj/map_metadata/map = null
 
 	var/playercount = 0
 	var/only_client_is_host = FALSE
-	for(var/mob/new_player/player in new_player_mob_list)
+	for (var/mob/new_player/player in new_player_mob_list)
 		if (player.client)
 			if (!player.client.is_minimized())
 				++playercount
@@ -311,7 +311,7 @@ var/global/obj/map_metadata/map = null
 	var/s1 = 0
 	var/s2 = 0
 
-	for(var/mob/living/carbon/human/H in human_mob_list)
+	for (var/mob/living/carbon/human/H in human_mob_list)
 
 		var/datum/job/job = H.original_job
 

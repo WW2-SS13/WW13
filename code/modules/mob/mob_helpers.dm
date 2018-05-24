@@ -13,7 +13,7 @@
 
 /mob/living/carbon/human/isSynthetic()
 	// If they are 100% robotic, they count as synthetic.
-	for(var/obj/item/organ/external/E in organs)
+	for (var/obj/item/organ/external/E in organs)
 		if (!(E.status & ORGAN_ROBOT))
 			return FALSE
 	return TRUE
@@ -121,7 +121,7 @@ var/list/global/organ_rel_size = list(
 		if (target.buckled || target.lying)
 			return zone
 		// if your target is being grabbed aggressively by someone you cannot miss either
-		for(var/obj/item/weapon/grab/G in target.grabbed_by)
+		for (var/obj/item/weapon/grab/G in target.grabbed_by)
 			if (G.state >= GRAB_AGGRESSIVE)
 				return zone
 
@@ -145,7 +145,7 @@ var/list/global/organ_rel_size = list(
 	var/p = null
 	p = TRUE
 	var/intag = FALSE
-	while(p <= n)
+	while (p <= n)
 		var/char = copytext(te, p, p + 1)
 		if (char == "<") //let's try to not break tags
 			intag = !intag
@@ -164,7 +164,7 @@ proc/slur(phrase)
 	var/counter=lentext(phrase)
 	var/newphrase=""
 	var/newletter=""
-	while(counter>=1)
+	while (counter>=1)
 		newletter=copytext(phrase,(leng-counter)+1,(leng-counter)+2)
 		if (rand(1,3)==3)
 			if (lowertext(newletter)=="o")	newletter="u"
@@ -187,7 +187,7 @@ proc/slur(phrase)
 	n = length(n)//length of the entire word
 	var/p = null
 	p = TRUE//1 is the start of any word
-	while(p <= n)//while P, which starts at TRUE is less or equal to N which is the length.
+	while (p <= n)//while P, which starts at TRUE is less or equal to N which is the length.
 		var/n_letter = copytext(te, p, p + 1)//copies text from a certain distance. In this case, only one letter at a time.
 		if (prob(80) && (ckey(n_letter) in list("b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z")))
 			if (prob(10))
@@ -217,14 +217,14 @@ proc/slur(phrase)
 proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
 	/* Turn text into complete gibberish! */
 	var/returntext = ""
-	for(var/i = TRUE, i <= length(t), i++)
+	for (var/i = TRUE, i <= length(t), i++)
 
 		var/letter = copytext(t, i, i+1)
 		if (prob(50))
 			if (p >= 70)
 				letter = ""
 
-			for(var/j = TRUE, j <= rand(0, 2), j++)
+			for (var/j = TRUE, j <= rand(0, 2), j++)
 				letter += pick("#","@","*","&","%","$","/", "<", ">", ";","*","*","*","*","*","*","*")
 
 		returntext += letter
@@ -242,7 +242,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	var/t = ""
 	n = length(n)
 	var/p = TRUE
-	while(p <= n)
+	while (p <= n)
 		var/n_letter
 		var/n_mod = rand(1,4)
 		if (p+n_mod>n+1)
@@ -275,7 +275,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 		var/atom/oldeye=M.client.eye
 
 		var/x
-		for(x=0; x<duration, x++)
+		for (x=0; x<duration, x++)
 			M.client.eye = locate(dd_range(1,M.loc.x+rand(-strength,strength),world.maxx),dd_range(1,M.loc.y+rand(-strength,strength),world.maxy),M.loc.z)
 			sleep(1)
 		M.client.eye=oldeye
@@ -283,7 +283,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 
 /proc/findname(msg)
-	for(var/mob/M in mob_list)
+	for (var/mob/M in mob_list)
 		if (M.real_name == text("[msg]"))
 			return TRUE
 	return FALSE
@@ -330,14 +330,14 @@ proc/is_blind(A)
 
 /proc/broadcast_hud_message(var/message, var/broadcast_source, var/list/targets, var/icon)
 	var/turf/sourceturf = get_turf(broadcast_source)
-	for(var/mob/M in targets)
+	for (var/mob/M in targets)
 		var/turf/targetturf = get_turf(M)
 		if ((targetturf.z == sourceturf.z))
 			M.show_message("<span class='info'>\icon[icon] [message]</span>", TRUE)
 */
 /proc/mobs_in_area(var/area/A)
 	var/list/mobs = new
-	for(var/mob/living/M in mob_list)
+	for (var/mob/living/M in mob_list)
 		if (get_area(M) == A)
 			mobs += M
 	return mobs
@@ -366,7 +366,7 @@ proc/is_blind(A)
 			name = C.mob.real_name
 
 
-	for(var/mob/M in player_list)
+	for (var/mob/M in player_list)
 		if (M.client && ((!istype(M, /mob/new_player) && M.stat == DEAD) || (M.client.holder && !is_mentor(M.client))) && M.is_preference_enabled(/datum/client_preference/show_dsay))
 			var/follow
 			var/lname

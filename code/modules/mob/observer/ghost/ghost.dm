@@ -113,13 +113,13 @@ Works together with spawning an observer, noted above.
 	if (!client) return FALSE
 
 	if (client.images.len)
-		for(var/image/hud in client.images)
+		for (var/image/hud in client.images)
 			if (copytext(hud.icon_state,1,4) == "hud")
 				client.images.Remove(hud)
 /*
 	if (antagHUD)
 		var/list/target_list = list()
-		for(var/mob/living/target in oview(src, 14))
+		for (var/mob/living/target in oview(src, 14))
 			if (target.mind && target.mind.special_role)
 				target_list += target
 		if (target_list.len)
@@ -129,12 +129,12 @@ Works together with spawning an observer, noted above.
 		process_medHUD()
 
 /mob/observer/ghost/proc/process_medHUD()
-	for(var/mob/living/carbon/human/patient in oview(src, 14))
+	for (var/mob/living/carbon/human/patient in oview(src, 14))
 		client.images += patient.hud_list[HEALTH_HUD]
 		client.images += patient.hud_list[STATUS_HUD_OOC]
 
 /mob/observer/ghost/proc/assess_targets(list/target_list)
-	for(var/mob/living/carbon/human/target in target_list)
+	for (var/mob/living/carbon/human/target in target_list)
 		client.images += target.hud_list[SPECIALROLE_HUD]
 	return TRUE
 
@@ -308,10 +308,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/list/L = list()
 
 	if (usr.invisibility <= SEE_INVISIBLE_LIVING)
-		for(var/turf/T in get_area_turfs(thearea.type))
+		for (var/turf/T in get_area_turfs(thearea.type))
 			L += T
 	else
-		for(var/turf/T in get_area_turfs(thearea.type))
+		for (var/turf/T in get_area_turfs(thearea.type))
 			L+=T
 
 	if (!L || !L.len)
@@ -629,7 +629,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/mob/living/simple_animal/mouse/host
 	var/obj/machinery/atmospherics/unary/vent_pump/vent_found
 	var/list/found_vents = list()
-	for(var/obj/machinery/atmospherics/unary/vent_pump/v in machines)
+	for (var/obj/machinery/atmospherics/unary/vent_pump/v in machines)
 		if (!v.welded && v.z == T.z)
 			found_vents.Add(v)
 	if (found_vents.len)
@@ -698,7 +698,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	var/iconRemoved = FALSE
-	for(var/image/I in client.images)
+	for (var/image/I in client.images)
 		if (I.icon_state == icon)
 			iconRemoved = TRUE
 			qdel(I)

@@ -99,5 +99,5 @@
 	ChangeTurf(get_base_turf_by_area(src))
 
 /turf/floor/levelupdate()
-	for(var/obj/O in src)
+	for (var/obj/O in src)
 		O.hide(O.hides_under_flooring() && flooring)

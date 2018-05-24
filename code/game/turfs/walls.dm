@@ -46,7 +46,7 @@ var/list/global/wall_cache = list()
 
 // Walls always hide the stuff below them.
 /turf/wall/levelupdate()
-	for(var/obj/O in src)
+	for (var/obj/O in src)
 		O.hide(1)
 
 /turf/wall/New(var/newloc, var/materialtype, var/rmaterialtype)
@@ -106,7 +106,7 @@ var/list/global/wall_cache = list()
 	take_damage(tforce)
 
 /turf/wall/proc/clear_plants()
-	for(var/obj/effect/overlay/wallrot/WR in src)
+	for (var/obj/effect/overlay/wallrot/WR in src)
 		qdel(WR)
 	return
 
@@ -192,7 +192,7 @@ var/list/global/wall_cache = list()
 			material.place_dismantled_girder(src)
 		material.place_dismantled_product(src,devastated)
 
-	for(var/obj/O in contents) //Eject contents!
+	for (var/obj/O in contents) //Eject contents!
 		if (istype(O,/obj/item/weapon/contraband/poster))
 			var/obj/item/weapon/contraband/poster/P = O
 			P.roll_and_drop(src)
@@ -225,7 +225,7 @@ var/list/global/wall_cache = list()
 	if (locate(/obj/effect/overlay/wallrot) in src)
 		return
 	var/number_rots = rand(2,3)
-	for(var/i=0, i<number_rots, i++)
+	for (var/i=0, i<number_rots, i++)
 		new/obj/effect/overlay/wallrot(src)
 
 /turf/wall/proc/can_melt()
@@ -263,7 +263,7 @@ var/list/global/wall_cache = list()
 	if (!total_radiation)
 		return
 
-	for(var/mob/living/L in range(3,src))
+	for (var/mob/living/L in range(3,src))
 		L.apply_effect(total_radiation, IRRADIATE,0)
 	return total_radiation
 
@@ -272,5 +272,5 @@ var/list/global/wall_cache = list()
 		spawn(2)
 			new /obj/structure/girder(src)
 			ChangeTurf(/turf/floor)
-			for(var/turf/wall/W in range(3,src))
+			for (var/turf/wall/W in range(3,src))
 				W.burn((temperature/4))

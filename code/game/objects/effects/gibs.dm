@@ -29,9 +29,9 @@
 			s.start()
 
 		var/obj/effect/decal/cleanable/blood/gibs/gib = null
-		for(var/i = TRUE, i<= gibtypes.len, i++)
+		for (var/i = TRUE, i<= gibtypes.len, i++)
 			if (gibamounts[i])
-				for(var/j = TRUE, j<= gibamounts[i], j++)
+				for (var/j = TRUE, j<= gibamounts[i], j++)
 					var/gibType = gibtypes[i]
 					gib = new gibType(location)
 

@@ -101,12 +101,12 @@ var/syndicate_code_response//Code response for traitors.
 	var/locations[] = teleportlocs.len ? teleportlocs : drinks//if null, defaults to drinks instead.
 
 	var/names[] = list()
-	for(var/datum/data/record/t in data_core.general)//Picks from crew manifest.
+	for (var/datum/data/record/t in data_core.general)//Picks from crew manifest.
 		names += t.fields["name"]
 
 	var/maxwords = words//Extra var to check for duplicates.
 
-	for(words,words>0,words--)//Randomly picks from one of the choices below.
+	for (words,words>0,words--)//Randomly picks from one of the choices below.
 
 		if (words==1&&(1 in safety)&&(2 in safety))//If there is only one word remaining and choice TRUE or 2 have not been selected.
 			safety = list(pick(1,2))//Select choice TRUE or 2.

@@ -95,7 +95,7 @@ var/list/slot_equipment_priority = list( \
 /mob/proc/equip_to_appropriate_slot(obj/item/W)
 	if (!istype(W)) return FALSE
 
-	for(var/slot in slot_equipment_priority)
+	for (var/slot in slot_equipment_priority)
 		if (equip_to_slot_if_possible(W, slot, del_on_fail=0, disable_warning=1, redraw_mob=1))
 			return TRUE
 
@@ -110,7 +110,7 @@ var/list/slot_equipment_priority = list( \
 			return TRUE
 
 	// Try to place it in any item that can store stuff, on the mob.
-	for(var/obj/item/weapon/storage/S in contents)
+	for (var/obj/item/weapon/storage/S in contents)
 		if (S.can_be_inserted(newitem, TRUE))
 			newitem.forceMove(S)
 			return TRUE
@@ -261,7 +261,7 @@ var/list/slot_equipment_priority = list( \
 
 /mob/proc/get_inventory_slot(obj/item/I)
 	var/slot = FALSE
-	for(var/s in slot_back to slot_tie) //kind of worries me
+	for (var/s in slot_back to slot_tie) //kind of worries me
 		if (get_equipped_item(s) == I)
 			slot = s
 			break

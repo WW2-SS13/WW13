@@ -86,7 +86,7 @@
 		C.client.eye = src
 	C.resting = TRUE
 	C.loc = loc
-	for(var/obj/O in src)
+	for (var/obj/O in src)
 		O.loc = loc
 	add_fingerprint(user)
 	if (ishuman(C))

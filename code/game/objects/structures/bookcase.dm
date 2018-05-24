@@ -7,7 +7,7 @@
 	opacity = TRUE
 
 /obj/structure/bookcase/initialize()
-	for(var/obj/item/I in loc)
+	for (var/obj/item/I in loc)
 		if (istype(I, /obj/item/weapon/book))
 			I.loc = src
 	update_icon()
@@ -33,7 +33,7 @@
 		if (do_after(user,25,src))
 			user << "<span class='notice'>You dismantle \the [src].</span>"
 			new /obj/item/stack/material/wood(get_turf(src), amount = 3)
-			for(var/obj/item/weapon/book/b in contents)
+			for (var/obj/item/weapon/book/b in contents)
 				b.loc = (get_turf(src))
 			qdel(src)
 
@@ -56,19 +56,19 @@
 /obj/structure/bookcase/ex_act(severity)
 	switch(severity)
 		if (1.0)
-			for(var/obj/item/weapon/book/b in contents)
+			for (var/obj/item/weapon/book/b in contents)
 				qdel(b)
 			qdel(src)
 			return
 		if (2.0)
-			for(var/obj/item/weapon/book/b in contents)
+			for (var/obj/item/weapon/book/b in contents)
 				if (prob(50)) b.loc = (get_turf(src))
 				else qdel(b)
 			qdel(src)
 			return
 		if (3.0)
 			if (prob(50))
-				for(var/obj/item/weapon/book/b in contents)
+				for (var/obj/item/weapon/book/b in contents)
 					b.loc = (get_turf(src))
 				qdel(src)
 			return

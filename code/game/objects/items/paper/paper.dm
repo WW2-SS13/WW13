@@ -152,7 +152,7 @@
 	var/locid = FALSE
 	var/laststart = TRUE
 	var/textindex = TRUE
-	while(1) // I know this can cause infinite loops and fuck up the whole server, but the if (istart==0) should be safe as fuck
+	while (1) // I know this can cause infinite loops and fuck up the whole server, but the if (istart==0) should be safe as fuck
 		var/istart = FALSE
 		if (links)
 			istart = findtext(info_links, "<span class=\"paper_field\">", laststart)
@@ -188,7 +188,7 @@
 /obj/item/weapon/paper/proc/updateinfolinks()
 	info_links = info
 	var/i = FALSE
-	for(i=1,i<=fields,i++)
+	for (i=1,i<=fields,i++)
 		addtofield(i, "<font face=\"[deffont]\"><A href='?src=\ref[src];write=[i]'>write</A></font>", TRUE)
 	info_links = info_links + "<font face=\"[deffont]\"><A href='?src=\ref[src];write=end'>write</A></font>"
 
@@ -269,7 +269,7 @@
 
 //Count the fields
 	var/laststart = TRUE
-	while(1)
+	while (1)
 		var/i = findtext(t, "<span class=\"paper_field\">", laststart)	//</span>
 		if (i==0)
 			break
@@ -339,7 +339,7 @@
 		t = checkhtml(t)
 
 		// check for exploits
-		for(var/bad in paper_blacklist)
+		for (var/bad in paper_blacklist)
 			if (findtext(t,bad))
 				usr << "<span class = 'notice'>You think to yourself, \"Hm.. this is only paper...\"</span>"
 				log_admin("PAPER: [usr] ([usr.ckey]) tried to use forbidden word in [src]: [bad].")

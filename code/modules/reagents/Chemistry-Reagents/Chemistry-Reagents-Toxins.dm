@@ -202,7 +202,7 @@
 	if (istype(T, /turf/wall))
 		var/turf/wall/W = T
 		if (locate(/obj/effect/overlay/wallrot) in W)
-			for(var/obj/effect/overlay/wallrot/E in W)
+			for (var/obj/effect/overlay/wallrot/E in W)
 				qdel(E)
 			W.visible_message("<span class='notice'>The fungi are completely dissolved by the solution!</span>")
 
@@ -475,7 +475,7 @@
 	M.icon = null
 	M.overlays.Cut()
 	M.invisibility = 101
-	for(var/obj/item/W in M)
+	for (var/obj/item/W in M)
 /*		if (istype(W, /obj/item/weapon/implant)) //TODO: Carn. give implants a dropped() or something
 			qdel(W)
 			continue*/

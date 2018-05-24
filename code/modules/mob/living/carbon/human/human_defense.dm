@@ -23,7 +23,7 @@ bullet_act
 		return ..(W, user)
 
 	var/grabbed_by_user = FALSE
-	for(var/obj/item/weapon/grab/G in grabbed_by)
+	for (var/obj/item/weapon/grab/G in grabbed_by)
 		if (G.assailant == user && G.state >= GRAB_NECK)
 			grabbed_by_user = TRUE
 
@@ -254,7 +254,7 @@ bullet_act
 		//If a specific bodypart is targetted, check how that bodypart is protected and return the value.
 
 	//If you don't specify a bodypart, it checks ALL your bodyparts for protection, and averages out the values
-	for(var/organ_name in organs_by_name)
+	for (var/organ_name in organs_by_name)
 		if (organ_name in organ_rel_size)
 			var/obj/item/organ/external/organ = organs_by_name[organ_name]
 			if (organ)
@@ -271,7 +271,7 @@ bullet_act
 	var/siemens_coefficient = species.siemens_coefficient
 
 	var/list/clothing_items = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes) // What all are we checking?
-	for(var/obj/item/clothing/C in clothing_items)
+	for (var/obj/item/clothing/C in clothing_items)
 		if (istype(C) && (C.body_parts_covered & def_zone.body_part)) // Is that body part being targeted covered?
 			siemens_coefficient *= C.siemens_coefficient
 
@@ -282,7 +282,7 @@ bullet_act
 	if (!type || !def_zone) return FALSE
 	var/protection = FALSE
 	var/list/protective_gear = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes)
-	for(var/gear in protective_gear)
+	for (var/gear in protective_gear)
 		if (gear && istype(gear ,/obj/item/clothing))
 			var/obj/item/clothing/C = gear
 			if (istype(C) && C.body_parts_covered & def_zone.body_part)
@@ -292,7 +292,7 @@ bullet_act
 /mob/living/carbon/human/proc/check_head_coverage()
 
 	var/list/body_parts = list(head, wear_mask, wear_suit, w_uniform)
-	for(var/bp in body_parts)
+	for (var/bp in body_parts)
 		if (!bp)	continue
 		if (bp && istype(bp ,/obj/item/clothing))
 			var/obj/item/clothing/C = bp
@@ -303,13 +303,13 @@ bullet_act
 //Used to check if they can be fed food/drinks/pills
 /mob/living/carbon/human/proc/check_mouth_coverage()
 	var/list/protective_gear = list(head, wear_mask, wear_suit, w_uniform)
-	for(var/obj/item/gear in protective_gear)
+	for (var/obj/item/gear in protective_gear)
 		if (istype(gear) && (gear.body_parts_covered & FACE) && !(gear.item_flags & FLEXIBLEMATERIAL))
 			return gear
 	return null
 
 /mob/living/carbon/human/proc/check_shields(var/damage = FALSE, var/atom/damage_source = null, var/mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
-	for(var/obj/item/shield in list(l_hand, r_hand, wear_suit))
+	for (var/obj/item/shield in list(l_hand, r_hand, wear_suit))
 		if (!shield) continue
 		. = shield.handle_shield(src, damage, damage_source, attacker, def_zone, attack_text)
 		if (.) return
@@ -578,7 +578,7 @@ bullet_act
 		"hands" = THERMAL_PROTECTION_HAND_LEFT + THERMAL_PROTECTION_HAND_RIGHT
 		)
 
-	for(var/obj/item/clothing/C in get_equipped_items())
+	for (var/obj/item/clothing/C in get_equipped_items())
 		if (C.permeability_coefficient == TRUE || !C.body_parts_covered)
 			continue
 		if (C.body_parts_covered & HEAD)
@@ -596,7 +596,7 @@ bullet_act
 		if (C.body_parts_covered & HANDS)
 			perm_by_part["hands"] *= C.permeability_coefficient
 
-	for(var/part in perm_by_part)
+	for (var/part in perm_by_part)
 		perm += perm_by_part[part]
 
 	return perm

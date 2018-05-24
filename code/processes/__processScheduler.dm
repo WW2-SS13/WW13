@@ -66,7 +66,7 @@ var/global/processScheduler/processScheduler
  * the deferred setup list. On goonstation, only the ticker needs to have
  * this treatment.
  */
-/processScheduler/proc/deferSetupFor(var/processPath)
+/processScheduler/proc/deferSetupfor (var/processPath)
 	if (!(processPath in deferredSetupList))
 		deferredSetupList += processPath
 
@@ -98,7 +98,7 @@ var/global/processScheduler/processScheduler
 /processScheduler/proc/process()
 	updateCurrentTickData()
 
-	for(var/i=world.tick_lag,i<world.tick_lag*50,i+=world.tick_lag)
+	for (var/i=world.tick_lag,i<world.tick_lag*50,i+=world.tick_lag)
 		spawn(i) updateCurrentTickData()
 	while (isRunning)
 		// Hopefully spawning this for 50 ticks in the future will make it the first thing in the queue.
@@ -116,7 +116,7 @@ var/global/processScheduler/processScheduler
 	isRunning = FALSE
 
 /processScheduler/proc/checkRunningProcesses()
-	for(var/process/p in running)
+	for (var/process/p in running)
 		p.update()
 
 		if (isnull(p)) // Process was killed
@@ -135,7 +135,7 @@ var/global/processScheduler/processScheduler
 					message_admins("Process '[p.name]' is hung and will be restarted.")
 
 /processScheduler/proc/queueProcesses()
-	for(var/process/p in processes)
+	for (var/process/p in processes)
 		// Don't double-queue, don't queue running processes
 		if (p.disabled || p.running || p.queued || !p.idle)
 			continue
@@ -148,7 +148,7 @@ var/global/processScheduler/processScheduler
 			setQueuedProcessState(p)
 
 /processScheduler/proc/runQueuedProcesses()
-	for(var/process/p in queued)
+	for (var/process/p in queued)
 		if (!p.subsystem)
 			runProcess(p)
 
@@ -213,7 +213,7 @@ var/global/processScheduler/processScheduler
 	nameToProcessMap[newProcess.name] = newProcess
 
 /processScheduler/proc/updateStartDelays()
-	for(var/process/p in processes)
+	for (var/process/p in processes)
 		if (p.start_delay)
 			last_queued[p] = world.time - p.start_delay
 
@@ -300,7 +300,7 @@ var/global/processScheduler/processScheduler
 
 	var/t = 0
 	var/c = 0
-	for(var/time in lastTwenty)
+	for (var/time in lastTwenty)
 		t += time
 		c++
 
@@ -385,7 +385,7 @@ var/global/processScheduler/processScheduler
 		return
 	stat("Processes", "[processes.len] (R [running.len] / Q [queued.len] / I [idle.len])")
 	stat(null, "[round(cpuAverage, 0.1)] CPU, [round(timeAllowance, 0.1)/10] TA")
-	for(var/process/p in processes)
+	for (var/process/p in processes)
 		p.statProcess()
 
 /processScheduler/proc/htmlProcesses()
@@ -395,7 +395,7 @@ var/global/processScheduler/processScheduler
 		return
 	. += "<p><big>Processes: [processes.len] (R [running.len] / Q [queued.len] / I [idle.len])</big></p>"
 	. += "<p>[round(cpuAverage, 0.1)] CPU, [round(timeAllowance, 0.1)/10] TA</p>"
-	for(var/process/p in processes)
+	for (var/process/p in processes)
 		. += "<p><b>[p.name]</b>: [p.htmlProcess()]</p>"
 	. += "</body></html>"
 

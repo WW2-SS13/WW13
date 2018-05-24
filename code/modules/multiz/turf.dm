@@ -59,7 +59,7 @@
 */
 	// See if something prevents us from falling.
 	var/soft = FALSE
-	for(var/atom/A in below)
+	for (var/atom/A in below)
 		if (A.density)
 			if (!istype(A, /obj/structure/window))
 				return
@@ -104,7 +104,7 @@
 
 // override to make sure nothing is hidden
 /turf/open/levelupdate()
-	for(var/obj/O in src)
+	for (var/obj/O in src)
 		O.hide(0)
 
 // Straight copy from space.

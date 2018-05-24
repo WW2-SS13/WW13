@@ -11,7 +11,7 @@
 
 	// Arrange preferences that have never been enabled/disabled.
 	var/list/client_preference_keys = list()
-	for(var/cp in get_client_preferences())
+	for (var/cp in get_client_preferences())
 		var/datum/client_preference/client_pref = cp
 		client_preference_keys += client_pref.key
 		if ((client_pref.key in pref.preferences_enabled) || (client_pref.key in pref.preferences_disabled))
@@ -23,10 +23,10 @@
 			pref.preferences_disabled += client_pref.key
 
 	// Clean out preferences that no longer exist.
-	for(var/key in pref.preferences_enabled)
+	for (var/key in pref.preferences_enabled)
 		if (!(key in client_preference_keys))
 			pref.preferences_enabled -= key
-	for(var/key in pref.preferences_disabled)
+	for (var/key in pref.preferences_disabled)
 		if (!(key in client_preference_keys))
 			pref.preferences_disabled -= key
 
@@ -38,7 +38,7 @@
 	. += "<b><big>Preferences</big></b><br><br>"
 	. += "<table>"
 	var/mob/pref_mob = preference_mob()
-	for(var/cp in get_client_preferences())
+	for (var/cp in get_client_preferences())
 		var/datum/client_preference/client_pref = cp
 		if (!client_pref.may_toggle(pref_mob))
 			continue

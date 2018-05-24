@@ -105,7 +105,7 @@
 		initial_ammo = max_ammo
 
 	if (initial_ammo)
-		for(var/i in TRUE to initial_ammo)
+		for (var/i in TRUE to initial_ammo)
 			stored_ammo += new ammo_type(src)
 	update_icon()
 
@@ -174,7 +174,7 @@
 	if (multiple_sprites && icon_keys.len)
 		//find the lowest key greater than or equal to stored_ammo.len
 		var/new_state = null
-		for(var/idx in TRUE to icon_keys.len)
+		for (var/idx in TRUE to icon_keys.len)
 			var/ammo_count = icon_keys[idx]
 			if (ammo_count >= stored_ammo.len)
 				new_state = ammo_states[idx]
@@ -203,7 +203,7 @@
 	var/list/icon_keys = list()
 	var/list/ammo_states = list()
 	var/list/states = icon_states(M.icon)
-	for(var/i = FALSE, i <= M.max_ammo, i++)
+	for (var/i = FALSE, i <= M.max_ammo, i++)
 		var/ammo_state = "[M.icon_state]-[i]"
 		if (ammo_state in states)
 			icon_keys += i

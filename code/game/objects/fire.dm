@@ -193,7 +193,7 @@ var/obj/burning_overlay_turf = null
 	//spread
 
 	if (!nospread)
-		for(var/direction in cardinal)
+		for (var/direction in cardinal)
 			var/turf/enemy_tile = get_step(my_tile, direction)
 
 			if (istype(enemy_tile))
@@ -301,7 +301,7 @@ var/obj/burning_overlay_turf = null
 
 		//Get heat transfer coefficients for clothing.
 
-		for(var/obj/item/clothing/C in src)
+		for (var/obj/item/clothing/C in src)
 			if (H.l_hand == C || H.r_hand == C)
 				continue
 

@@ -128,7 +128,7 @@
 	return
 
 /*
- *	atom/proc/search_contents_for(path,list/filter_path=null)
+ *	atom/proc/search_contents_for (path,list/filter_path=null)
  * Recursevly searches all atom contens (including contents contents and so on).
  *
  * ARGS: path - search atom contents for atoms of this type
@@ -137,19 +137,19 @@
  * RETURNS: list of found atoms
  */
 
-/atom/proc/search_contents_for(path,list/filter_path=null)
+/atom/proc/search_contents_for (path,list/filter_path=null)
 	var/list/found = list()
-	for(var/atom/A in src)
+	for (var/atom/A in src)
 		if (istype(A, path))
 			found += A
 		if (filter_path)
 			var/pass = FALSE
-			for(var/type in filter_path)
+			for (var/type in filter_path)
 				pass |= istype(A, type)
 			if (!pass)
 				continue
 		if (A.contents.len)
-			found += A.search_contents_for(path,filter_path)
+			found += A.search_contents_for (path,filter_path)
 	return found
 
 
@@ -171,14 +171,14 @@ its easier to just keep the beam vertical.
 	//Icon_state is what icon state is used. Default is b_beam which is a blue beam.
 	//Maxdistance is the longest range the beam will persist before it gives up.
 	var/EndTime=world.time+time
-	while(BeamTarget&&world.time<EndTime&&get_dist(src,BeamTarget)<maxdistance&&z==BeamTarget.z)
+	while (BeamTarget&&world.time<EndTime&&get_dist(src,BeamTarget)<maxdistance&&z==BeamTarget.z)
 	//If the BeamTarget gets deleted, the time expires, or the BeamTarget gets out
 	//of range or to another z-level, then the beam will stop.  Otherwise it will
 	//continue to draw.
 
 		set_dir(get_dir(src,BeamTarget))	//Causes the source of the beam to rotate to continuosly face the BeamTarget.
 
-		for(var/obj/effect/overlay/beam/O in orange(10,src))	//This section erases the previously drawn beam because I found it was easier to
+		for (var/obj/effect/overlay/beam/O in orange(10,src))	//This section erases the previously drawn beam because I found it was easier to
 			if (O.BeamSource==src)				//just draw another instance of the beam instead of trying to manipulate all the
 				qdel(O)							//pieces to a new orientation.
 		var/Angle=round(Get_Angle(src,BeamTarget))
@@ -188,7 +188,7 @@ its easier to just keep the beam vertical.
 		var/DY=(32*BeamTarget.y+BeamTarget.pixel_y)-(32*y+pixel_y)
 		var/N=0
 		var/length=round(sqrt((DX)**2+(DY)**2))
-		for(N,N<length,N+=32)
+		for (N,N<length,N+=32)
 			var/obj/effect/overlay/beam/X=new(loc)
 			X.BeamSource=src
 			if (N+32>length)
@@ -202,26 +202,26 @@ its easier to just keep the beam vertical.
 			if (DX==0) Pixel_x=0
 			if (DY==0) Pixel_y=0
 			if (Pixel_x>32)
-				for(var/a=0, a<=Pixel_x,a+=32)
+				for (var/a=0, a<=Pixel_x,a+=32)
 					X.x++
 					Pixel_x-=32
 			if (Pixel_x<-32)
-				for(var/a=0, a>=Pixel_x,a-=32)
+				for (var/a=0, a>=Pixel_x,a-=32)
 					X.x--
 					Pixel_x+=32
 			if (Pixel_y>32)
-				for(var/a=0, a<=Pixel_y,a+=32)
+				for (var/a=0, a<=Pixel_y,a+=32)
 					X.y++
 					Pixel_y-=32
 			if (Pixel_y<-32)
-				for(var/a=0, a>=Pixel_y,a-=32)
+				for (var/a=0, a>=Pixel_y,a-=32)
 					X.y--
 					Pixel_y+=32
 			X.pixel_x=Pixel_x
 			X.pixel_y=Pixel_y
 		sleep(3)	//Changing this to a lower value will cause the beam to follow more smoothly with movement, but it will also be more laggy.
 					//I've found that 3 ticks provided a nice balance for my use.
-	for(var/obj/effect/overlay/beam/O in orange(10,src)) if (O.BeamSource==src) qdel(O)
+	for (var/obj/effect/overlay/beam/O in orange(10,src)) if (O.BeamSource==src) qdel(O)
 
 
 //All atoms
@@ -465,7 +465,7 @@ its easier to just keep the beam vertical.
 	var/cur_x = null
 	var/cur_y = null
 	var/list/y_arr = null
-	for(cur_x=1,cur_x<=global_map.len,cur_x++)
+	for (cur_x=1,cur_x<=global_map.len,cur_x++)
 		y_arr = global_map[cur_x]
 		cur_y = y_arr.Find(z)
 		if (cur_y)
@@ -493,7 +493,7 @@ its easier to just keep the beam vertical.
 
 	var/list/see = get_mobs_or_objects_in_view(world.view,src) | viewers(get_turf(src), null)
 
-	for(var/I in see)
+	for (var/I in see)
 		if (isobj(I))
 			spawn(0)
 				if (I) //It's possible that it could be deleted in the meantime.
@@ -518,7 +518,7 @@ its easier to just keep the beam vertical.
 		range = hearing_distance
 	var/list/hear = get_mobs_or_objects_in_view(range,src)
 
-	for(var/I in hear)
+	for (var/I in hear)
 		if (isobj(I))
 			spawn(0)
 				if (I) //It's possible that it could be deleted in the meantime.

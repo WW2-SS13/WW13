@@ -35,7 +35,7 @@
 		return
 	if (amount)
 		usr << "<spawn class='notice'>You take out some items from \the [src]."
-		for(var/path in spawnitems)
+		for (var/path in spawnitems)
 			new path(loc)
 		amount--
 	return

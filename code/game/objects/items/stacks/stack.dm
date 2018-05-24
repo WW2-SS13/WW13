@@ -58,7 +58,7 @@
 		var/datum/stack_recipe_list/srl = recipe_list[recipes_sublist]
 		recipe_list = srl.recipes
 	var/t1 = text("<HTML><HEAD><title>Constructions from []</title></HEAD><body><TT>Amount Left: []<br>", src, get_amount())
-	for(var/i=1;i<=recipe_list.len,i++)
+	for (var/i=1;i<=recipe_list.len,i++)
 		var/E = recipe_list[i]
 		if (isnull(E))
 			t1 += "<hr>"
@@ -316,7 +316,7 @@
 	else
 		if (get_amount() < used)
 			return FALSE
-		for(var/i = TRUE to charge_costs.len)
+		for (var/i = TRUE to charge_costs.len)
 			var/datum/matter_synth/S = synths[i]
 			S.use_charge(charge_costs[i] * used) // Doesn't need to be deleted
 		return TRUE
@@ -332,7 +332,7 @@
 	else if (!synths || synths.len < uses_charge)
 		return FALSE
 	else
-		for(var/i = TRUE to uses_charge)
+		for (var/i = TRUE to uses_charge)
 			var/datum/matter_synth/S = synths[i]
 			S.add_charge(charge_costs[i] * extra)
 
@@ -390,7 +390,7 @@
 		var/datum/matter_synth/S = synths[1]
 		. = round(S.get_charge() / charge_costs[1])
 		if (charge_costs.len > 1)
-			for(var/i = 2 to charge_costs.len)
+			for (var/i = 2 to charge_costs.len)
 				S = synths[i]
 				. = min(., round(S.get_charge() / charge_costs[i]))
 		return
@@ -403,7 +403,7 @@
 		var/datum/matter_synth/S = synths[1]
 		. = round(S.max_energy / charge_costs[1])
 		if (uses_charge > 1)
-			for(var/i = 2 to uses_charge)
+			for (var/i = 2 to uses_charge)
 				S = synths[i]
 				. = min(., round(S.max_energy / charge_costs[i]))
 		return

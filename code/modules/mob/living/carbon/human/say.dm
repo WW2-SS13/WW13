@@ -68,7 +68,7 @@
 					temp = copytext(trim_left(temp), 6)	//normal speech
 					virgin = FALSE
 
-				while(findtext(trim_left(temp), ":", TRUE, 2))	//dept radio again (necessary)
+				while (findtext(trim_left(temp), ":", TRUE, 2))	//dept radio again (necessary)
 					temp = copytext(trim_left(temp), 3)
 
 				if (findtext(temp, "*", TRUE, 2))	//emotes
@@ -111,7 +111,7 @@
 /mob/living/carbon/human/GetVoice()
 /*
 	var/voice_sub
-	for(var/obj/item/gear in list(wear_mask,wear_suit,head))
+	for (var/obj/item/gear in list(wear_mask,wear_suit,head))
 		if (!gear)
 			continue
 		var/obj/item/voice_changer/changer = locate() in gear
@@ -187,7 +187,7 @@
 	switch(message_mode)
 		if ("intercom")
 			if (!restrained())
-				for(var/obj/item/radio/intercom/I in view(1))
+				for (var/obj/item/radio/intercom/I in view(1))
 					I.talk_into(src, message, null, verb, speaking)
 					I.add_fingerprint(src)
 					used_radios += I

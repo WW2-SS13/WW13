@@ -5,7 +5,7 @@
 	var/list/Rstates = IR.IconStates()
 
 	var/text
-	for(var/A in typesof(/obj/item))
+	for (var/A in typesof(/obj/item))
 		var/obj/item/O = new A( locate(1,1,1) )
 		if (!O) continue
 		var/icon/J = new(O.icon)

@@ -75,7 +75,7 @@
 		if (!is_open_container() || !flag)
 			return
 
-		for(var/type in can_be_placed_into)
+		for (var/type in can_be_placed_into)
 			if (istype(target, type))
 				return
 

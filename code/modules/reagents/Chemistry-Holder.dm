@@ -16,7 +16,7 @@
 		//Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id
 		var/paths = typesof(/datum/reagent) - /datum/reagent
 		chemical_reagents_list = list()
-		for(var/path in paths)
+		for (var/path in paths)
 			var/datum/reagent/D = new path()
 			if (!D.name)
 				continue
@@ -27,7 +27,7 @@
 	if (processes.chemistry)
 		processes.chemistry.active_holders -= src
 
-	for(var/datum/reagent/R in reagent_list)
+	for (var/datum/reagent/R in reagent_list)
 		qdel(R)
 	reagent_list.Cut()
 	reagent_list = null
@@ -43,7 +43,7 @@
 	var/the_reagent = null
 	var/the_volume = 0
 
-	for(var/datum/reagent/A in reagent_list)
+	for (var/datum/reagent/A in reagent_list)
 		if (A.volume > the_volume)
 			the_volume = A.volume
 			the_reagent = A
@@ -53,7 +53,7 @@
 /datum/reagents/proc/get_master_reagent_name() // Returns the name of the reagent with the biggest volume.
 	var/the_name = null
 	var/the_volume = 0
-	for(var/datum/reagent/A in reagent_list)
+	for (var/datum/reagent/A in reagent_list)
 		if (A.volume > the_volume)
 			the_volume = A.volume
 			the_name = A.name
@@ -63,7 +63,7 @@
 /datum/reagents/proc/get_master_reagent_id() // Returns the id of the reagent with the biggest volume.
 	var/the_id = null
 	var/the_volume = 0
-	for(var/datum/reagent/A in reagent_list)
+	for (var/datum/reagent/A in reagent_list)
 		if (A.volume > the_volume)
 			the_volume = A.volume
 			the_id = A.id
@@ -72,7 +72,7 @@
 
 /datum/reagents/proc/update_total() // Updates volume.
 	total_volume = 0
-	for(var/datum/reagent/R in reagent_list)
+	for (var/datum/reagent/R in reagent_list)
 		if (R.volume < MINIMUM_CHEMICAL_VOLUME)
 			del_reagent(R.id)
 		else
@@ -80,7 +80,7 @@
 	return
 
 /datum/reagents/proc/delete()
-	for(var/datum/reagent/R in reagent_list)
+	for (var/datum/reagent/R in reagent_list)
 		R.holder = null
 	if (my_atom)
 		my_atom.reagents = null
@@ -101,14 +101,14 @@
 	var/reaction_occured
 	var/list/effect_reactions = list()
 	var/list/eligible_reactions = list()
-	for(var/i in TRUE to PROCESS_REACTION_ITER)
+	for (var/i in TRUE to PROCESS_REACTION_ITER)
 		reaction_occured = FALSE
 
 		//need to rebuild this to account for chain reactions
-		for(var/datum/reagent/R in reagent_list)
+		for (var/datum/reagent/R in reagent_list)
 			eligible_reactions |= chemical_reactions_list[R.id]
 
-		for(var/datum/chemical_reaction/C in eligible_reactions)
+		for (var/datum/chemical_reaction/C in eligible_reactions)
 			if (C.can_happen(src) && C.process(src))
 				effect_reactions |= C
 				reaction_occured = TRUE
@@ -118,7 +118,7 @@
 		if (!reaction_occured)
 			break
 
-	for(var/datum/chemical_reaction/C in effect_reactions)
+	for (var/datum/chemical_reaction/C in effect_reactions)
 		C.post_reaction(src)
 
 	update_total()
@@ -133,7 +133,7 @@
 	update_total()
 	amount = min(amount, get_free_space())
 
-	for(var/datum/reagent/current in reagent_list)
+	for (var/datum/reagent/current in reagent_list)
 		if (current.id == id)
 			current.volume += amount
 			if (!isnull(data)) // For all we know, it could be zero or empty string and meaningful
@@ -170,7 +170,7 @@
 /datum/reagents/proc/remove_reagent(var/id, var/amount, var/safety = FALSE)
 	if (!isnum(amount))
 		return FALSE
-	for(var/datum/reagent/current in reagent_list)
+	for (var/datum/reagent/current in reagent_list)
 		if (current.id == id)
 			current.volume -= amount // It can go negative, but it doesn't matter
 			update_total() // Because this proc will delete it then
@@ -190,7 +190,7 @@
 	return FALSE
 
 /datum/reagents/proc/del_reagent(var/id)
-	for(var/datum/reagent/current in reagent_list)
+	for (var/datum/reagent/current in reagent_list)
 		if (current.id == id || id == TRUE)
 			reagent_list -= current
 			qdel(current)
@@ -203,7 +203,7 @@
 	return del_reagent(TRUE)
 
 /datum/reagents/proc/has_reagent(var/id, var/amount = 0)
-	for(var/datum/reagent/current in reagent_list)
+	for (var/datum/reagent/current in reagent_list)
 		if (current.id == id)
 			if (current.volume >= amount)
 				return TRUE
@@ -212,7 +212,7 @@
 	return FALSE
 
 /datum/reagents/proc/has_any_reagent(var/list/check_reagents)
-	for(var/datum/reagent/current in reagent_list)
+	for (var/datum/reagent/current in reagent_list)
 		if (current.id in check_reagents)
 			if (current.volume >= check_reagents[current.id])
 				return TRUE
@@ -223,32 +223,32 @@
 /datum/reagents/proc/has_all_reagents(var/list/check_reagents)
 	//this only works if check_reagents has no duplicate entries... hopefully okay since it expects an associative list
 	var/missing = check_reagents.len
-	for(var/datum/reagent/current in reagent_list)
+	for (var/datum/reagent/current in reagent_list)
 		if (current.id in check_reagents)
 			if (current.volume >= check_reagents[current.id])
 				missing--
 	return !missing
 
 /datum/reagents/proc/clear_reagents()
-	for(var/datum/reagent/current in reagent_list)
+	for (var/datum/reagent/current in reagent_list)
 		del_reagent(current.id)
 	return
 
 /datum/reagents/proc/get_reagent_amount(var/id)
-	for(var/datum/reagent/current in reagent_list)
+	for (var/datum/reagent/current in reagent_list)
 		if (current.id == id)
 			return current.volume
 	return FALSE
 
 /datum/reagents/proc/get_data(var/id)
-	for(var/datum/reagent/current in reagent_list)
+	for (var/datum/reagent/current in reagent_list)
 		if (current.id == id)
 			return current.get_data()
 	return FALSE
 
 /datum/reagents/proc/get_reagents()
 	. = list()
-	for(var/datum/reagent/current in reagent_list)
+	for (var/datum/reagent/current in reagent_list)
 		. += "[current.id] ([current.volume])"
 	return english_list(., "EMPTY", "", ", ", ", ")
 
@@ -262,7 +262,7 @@
 
 	var/part = amount / total_volume
 
-	for(var/datum/reagent/current in reagent_list)
+	for (var/datum/reagent/current in reagent_list)
 		var/amount_to_remove = current.volume * part
 		remove_reagent(current.id, amount_to_remove, TRUE)
 
@@ -281,7 +281,7 @@
 
 	var/part = amount / total_volume
 
-	for(var/datum/reagent/current in reagent_list)
+	for (var/datum/reagent/current in reagent_list)
 		var/amount_to_transfer = current.volume * part
 		target.add_reagent(current.id, amount_to_transfer * multiplier, current.get_data(), safety = TRUE) // We don't react until everything is in place
 		if (!copy)
@@ -353,7 +353,7 @@
 	if (!target || !istype(target) || !target.simulated)
 		return
 
-	for(var/datum/reagent/current in reagent_list)
+	for (var/datum/reagent/current in reagent_list)
 		current.touch_mob(target, current.volume)
 
 	update_total()
@@ -362,7 +362,7 @@
 	if (!target || !istype(target) || !target.simulated)
 		return
 
-	for(var/datum/reagent/current in reagent_list)
+	for (var/datum/reagent/current in reagent_list)
 		current.touch_turf(target, current.volume)
 
 	update_total()
@@ -371,7 +371,7 @@
 	if (!target || !istype(target) || !target.simulated)
 		return
 
-	for(var/datum/reagent/current in reagent_list)
+	for (var/datum/reagent/current in reagent_list)
 		current.touch_obj(target, current.volume)
 
 	update_total()

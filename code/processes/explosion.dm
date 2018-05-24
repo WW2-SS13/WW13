@@ -153,7 +153,7 @@
 	var/y0 = epicenter.y
 	var/z0 = epicenter.z
 
-	for(var/turf/T in trange(max_range, epicenter))
+	for (var/turf/T in trange(max_range, epicenter))
 		var/dist = sqrt((T.x - x0)**2 + (T.y - y0)**2)
 
 		if (dist < devastation_range)		dist = 1
@@ -192,7 +192,7 @@
 	explosion_turfs[epicenter] = power
 
 	//This steap handles the gathering of turfs which will be ex_act() -ed in the next step. It also ensures each turf gets the maximum possible amount of power dealt to it.
-	for(var/direction in cardinal)
+	for (var/direction in cardinal)
 		var/turf/T = get_step(epicenter, direction)
 		explosion_spread(T, power - epicenter.explosion_resistance, direction)
 		SCHECK
@@ -231,7 +231,7 @@
 
 	var/spread_power = power - s.explosion_resistance //This is the amount of power that will be spread to the tile in the direction of the blast
 
-	for(var/obj/O in s)
+	for (var/obj/O in s)
 		if (O.explosion_resistance)
 			spread_power -= O.explosion_resistance
 

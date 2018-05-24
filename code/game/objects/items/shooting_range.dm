@@ -11,7 +11,7 @@
 
 	Destroy()
 		// if a target is deleted and associated with a stake, force stake to forget
-		for(var/obj/structure/target_stake/T in view(3,src))
+		for (var/obj/structure/target_stake/T in view(3,src))
 			if (T.pinned_target == src)
 				T.pinned_target = null
 				T.density = TRUE
@@ -21,7 +21,7 @@
 	Move()
 		..()
 		// After target moves, check for nearby stakes. If associated, move to target
-		for(var/obj/structure/target_stake/M in view(3,src))
+		for (var/obj/structure/target_stake/M in view(3,src))
 			if (M.density == FALSE && M.pinned_target == src)
 				M.loc = loc
 
@@ -44,7 +44,7 @@
 	attack_hand(mob/user as mob)
 		// taking pinned targets off!
 		var/obj/structure/target_stake/stake
-		for(var/obj/structure/target_stake/T in view(3,src))
+		for (var/obj/structure/target_stake/T in view(3,src))
 			if (T.pinned_target == src)
 				stake = T
 				break
@@ -94,7 +94,7 @@
 
 		hp -= Proj.damage
 		if (hp <= 0)
-			for(var/mob/O in oviewers())
+			for (var/mob/O in oviewers())
 				if ((O.client && !( O.blinded )))
 					O << "<span class='warning'>\The [src] breaks into tiny pieces and collapses!</span>"
 			qdel(src)
@@ -135,7 +135,7 @@
 					new/datum/bullethole(src, bmark.pixel_x, bmark.pixel_y) // create new bullet hole
 
 		// draw bullet holes
-		for(var/datum/bullethole/B in bulletholes)
+		for (var/datum/bullethole/B in bulletholes)
 
 			virtualIcon.DrawBox(null, B.b1x1, B.b1y,  B.b1x2, B.b1y) // horizontal line, left to right
 			virtualIcon.DrawBox(null, B.b2x, B.b2y1,  B.b2x, B.b2y2) // vertical line, top to bottom

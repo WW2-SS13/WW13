@@ -19,11 +19,11 @@
 	last_dam = damage_this_tick
 	if (force_process)
 		bad_external_organs.Cut()
-		for(var/obj/item/organ/external/Ex in organs)
+		for (var/obj/item/organ/external/Ex in organs)
 			bad_external_organs |= Ex
 
 	//processing internal organs is pretty cheap, do that first.
-	for(var/obj/item/organ/I in internal_organs)
+	for (var/obj/item/organ/I in internal_organs)
 		I.process()
 
 	handle_stance()
@@ -32,7 +32,7 @@
 	if (!force_process && !bad_external_organs.len)
 		return
 
-	for(var/obj/item/organ/external/E in bad_external_organs)
+	for (var/obj/item/organ/external/E in bad_external_organs)
 		if (!E)
 			continue
 		if (!E.need_process())
@@ -50,7 +50,7 @@
 
 				//Moving makes open wounds get infected much faster
 				if (E.wounds.len)
-					for(var/datum/wound/W in E.wounds)
+					for (var/datum/wound/W in E.wounds)
 						if (W.infection_check())
 							W.germ_level += 1
 
@@ -86,7 +86,7 @@
 	if (istype(buckled, /obj/structure/bed))
 		return
 
-	for(var/limb_tag in list("l_leg","r_leg","l_foot","r_foot"))
+	for (var/limb_tag in list("l_leg","r_leg","l_foot","r_foot"))
 		var/obj/item/organ/external/E = organs_by_name[limb_tag]
 		if (!E || (E.status & (ORGAN_MUTATED|ORGAN_DEAD)) || E.is_stump()) //should just be !E.is_usable() here but dislocation screws that up.
 			stance_damage += 2 // let it fail even if just foot&leg
@@ -127,7 +127,7 @@
 
 	// You should not be able to pick anything up, but stranger things have happened.
 	if (l_hand)
-		for(var/limb_tag in list("l_hand","l_arm"))
+		for (var/limb_tag in list("l_hand","l_arm"))
 			var/obj/item/organ/external/E = get_organ(limb_tag)
 			if (!E)
 				visible_message("<span class='danger'>Lacking a functioning left hand, \the [src] drops \the [l_hand].</span>")
@@ -135,7 +135,7 @@
 				break
 
 	if (r_hand)
-		for(var/limb_tag in list("r_hand","r_arm"))
+		for (var/limb_tag in list("r_hand","r_arm"))
 			var/obj/item/organ/external/E = get_organ(limb_tag)
 			if (!E)
 				visible_message("<span class='danger'>Lacking a functioning right hand, \the [src] drops \the [r_hand].</span>")
@@ -187,11 +187,11 @@
 //Handles chem traces
 /mob/living/carbon/human/proc/handle_trace_chems()
 	//New are added for reagents to random organs.
-	for(var/datum/reagent/A in reagents.reagent_list)
+	for (var/datum/reagent/A in reagents.reagent_list)
 		var/obj/item/organ/O = pick(organs)
 		O.trace_chemicals[A.name] = 100
 
 /mob/living/carbon/human/proc/sync_organ_dna()
 	var/list/all_bits = internal_organs|organs
-	for(var/obj/item/organ/O in all_bits)
+	for (var/obj/item/organ/O in all_bits)
 		O.set_dna(dna)

@@ -52,7 +52,7 @@
 	if (!istype(user.loc,/turf)) return FALSE
 
 	if (locate(/obj/structure/grille, usr.loc))
-		for(var/obj/structure/grille/G in usr.loc)
+		for (var/obj/structure/grille/G in usr.loc)
 			if (G.destroyed)
 				G.health = 10
 				G.density = TRUE

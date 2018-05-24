@@ -197,7 +197,7 @@
 				user.visible_message("<span class='notice'>\The [user] slices \the [src]!</span>", "<span class='notice'>You slice \the [src]!</span>")
 
 			var/reagents_per_slice = reagents.total_volume/slices_num
-			for(var/i=1 to (slices_num-slices_lost))
+			for (var/i=1 to (slices_num-slices_lost))
 				var/obj/slice = new slice_path (loc)
 				reagents.trans_to_obj(slice, reagents_per_slice)
 			qdel(src)
@@ -208,7 +208,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/Destroy()
 	if (contents)
-		for(var/atom/movable/something in contents)
+		for (var/atom/movable/something in contents)
 			something.loc = get_turf(src)
 	..()
 
@@ -782,7 +782,7 @@
 	var/list/heated_reagents = list("tricordrazine" = 5)
 	proc/heat()
 		warm = TRUE
-		for(var/reagent in heated_reagents)
+		for (var/reagent in heated_reagents)
 			reagents.add_reagent(reagent, heated_reagents[reagent])
 		bitesize = 6
 		name = "Warm " + name
@@ -792,7 +792,7 @@
 		if (warm)
 			spawn(4200)
 				warm = FALSE
-				for(var/reagent in heated_reagents)
+				for (var/reagent in heated_reagents)
 					reagents.del_reagent(reagent)
 				name = initial(name)
 		return
@@ -2874,7 +2874,7 @@
 			// Make a list of all boxes to be added
 			var/list/boxestoadd = list()
 			boxestoadd += box
-			for(var/obj/item/pizzabox/i in box.boxes)
+			for (var/obj/item/pizzabox/i in box.boxes)
 				boxestoadd += i
 
 			if ( (boxes.len+1) + boxestoadd.len <= 5 )

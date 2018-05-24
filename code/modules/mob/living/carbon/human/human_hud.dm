@@ -142,7 +142,7 @@
 	var/mob/living/carbon/human/H = src
 	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
 
-	for(var/HUDname in species.hud.ProcessHUD) //Добавляем Элементы ХУДа (не инвентарь)
+	for (var/HUDname in species.hud.ProcessHUD) //Добавляем Элементы ХУДа (не инвентарь)
 		if (!(HUDdatum.HUDneed.Find(HUDname))) //Ищем такой в датуме
 		//	log_debug("[usr] try create a [HUDname], but it no have in HUDdatum [HUDdatum.name]")
 		else
@@ -231,7 +231,7 @@ the HUD updates properly! */
 	#endif
 
 	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, faction_hud_users)
-	for(var/mob/living/carbon/human/perp in P.Mob.in_view(P.Turf))
+	for (var/mob/living/carbon/human/perp in P.Mob.in_view(P.Turf))
 
 		if (P.Mob.see_invisible < perp.invisibility)
 			continue
@@ -295,7 +295,7 @@ the HUD updates properly! */
 //Deletes the current HUD images so they can be refreshed with new ones.
 /mob/proc/handle_hud_glasses() //Used in the life.dm of mobs that can use HUDs.
 	if (client)
-		for(var/image/hud in client.images)
+		for (var/image/hud in client.images)
 			if (copytext(hud.icon_state,1,4) == "hud")
 				client.images -= hud
 //	med_hud_users -= src
@@ -306,7 +306,7 @@ the HUD updates properly! */
 
 /mob/observer/eye/in_view(var/turf/T)
 	var/list/viewed = new
-	for(var/mob/living/carbon/human/H in mob_list)
+	for (var/mob/living/carbon/human/H in mob_list)
 		if (get_dist(H, T) <= 7)
 			viewed += H
 	return viewed

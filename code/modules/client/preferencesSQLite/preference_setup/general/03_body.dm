@@ -98,7 +98,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	//display limbs below
 	var/ind = FALSE
-	for(var/name in pref.organ_data)
+	for (var/name in pref.organ_data)
 		var/status = pref.organ_data[name]
 		var/organ_name = null
 		switch(name)
@@ -183,7 +183,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/datum/species/mob_species = all_species[pref.species]
 
 	if (href_list["random"])
-		pref.randomize_appearance_for()
+		pref.randomize_appearance_for ()
 		return TOPIC_REFRESH
 
 	else if (href_list["blood_type"])
@@ -206,7 +206,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if (href_list["hair_style"])
 		var/list/valid_hairstyles = list()
-		for(var/hairstyle in hair_styles_list)
+		for (var/hairstyle in hair_styles_list)
 			var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
 			if (!(mob_species.get_bodytype() in S.species_allowed))
 				continue
@@ -263,7 +263,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if (href_list["facial_style"])
 		var/list/valid_facialhairstyles = list()
-		for(var/facialhairstyle in facial_hair_styles_list)
+		for (var/facialhairstyle in facial_hair_styles_list)
 			var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
 			if (pref.gender == MALE && S.gender == FEMALE)
 				continue
@@ -331,7 +331,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 /*
 			if ("Prosthesis")
 				var/list/usable_manufacturers = list()
-				for(var/company in chargen_robolimbs)
+				for (var/company in chargen_robolimbs)
 					var/datum/robolimb/M = chargen_robolimbs[company]
 					usable_manufacturers[company] = M
 				if (!usable_manufacturers.len)

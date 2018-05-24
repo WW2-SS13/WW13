@@ -14,7 +14,7 @@
 	..()
 
 	if (ispath(pill_type))
-		for(var/i = TRUE to 6)
+		for (var/i = TRUE to 6)
 			new pill_type(src)
 
 	update_icon()

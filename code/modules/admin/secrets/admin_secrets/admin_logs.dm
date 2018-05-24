@@ -6,7 +6,7 @@
 	if (!.)
 		return
 	var/dat = "<b>Admin Log<HR></b>"
-	for(var/l in admin_log)
+	for (var/l in admin_log)
 		dat += "<li>[l]</li>"
 	if (!admin_log.len)
 		dat += "No-one has done anything this round!"

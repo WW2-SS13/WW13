@@ -19,9 +19,9 @@
 	qdel(ingested)
 	qdel(touching)
 	// We don't qdel(bloodstr) because it's the same as qdel(reagents)
-	for(var/guts in internal_organs)
+	for (var/guts in internal_organs)
 		qdel(guts)
-	for(var/food in stomach_contents)
+	for (var/food in stomach_contents)
 		qdel(food)
 	return ..()
 
@@ -68,17 +68,17 @@
 				playsound(user.loc, 'sound/effects/attackblob.ogg', 50, TRUE)
 
 				if (prob(getBruteLoss() - 50))
-					for(var/atom/movable/A in stomach_contents)
+					for (var/atom/movable/A in stomach_contents)
 						A.loc = loc
 						stomach_contents.Remove(A)
 					gib()
 
 /mob/living/carbon/gib()
-	for(var/mob/M in src)
+	for (var/mob/M in src)
 		if (M in stomach_contents)
 			stomach_contents.Remove(M)
 		M.loc = loc
-		for(var/mob/N in viewers(src, null))
+		for (var/mob/N in viewers(src, null))
 			if (N.client)
 				N.show_message(text("<span class = 'red'><b>[M] bursts out of [src]!</b></span>"), 2)
 	..()
@@ -154,7 +154,7 @@
 				"\blue You check yourself for injuries." \
 				)
 
-			for(var/obj/item/organ/external/org in H.organs)
+			for (var/obj/item/organ/external/org in H.organs)
 				var/list/status = list()
 				var/brutedamage = org.brute_dam
 				var/burndamage = org.burn_dam

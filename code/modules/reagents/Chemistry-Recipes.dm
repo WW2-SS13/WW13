@@ -9,7 +9,7 @@
 	var/paths = typesof(/datum/chemical_reaction) - /datum/chemical_reaction
 	chemical_reactions_list = list()
 
-	for(var/path in paths)
+	for (var/path in paths)
 		var/datum/chemical_reaction/D = new path()
 		if (D.required_reagents && D.required_reagents.len)
 			var/reagent_id = D.required_reagents[1]
@@ -88,7 +88,7 @@
 
 	//apply min reaction progress - wasn't sure if this should go before or after applying yield
 	//I guess people can just have their miniscule reactions go to completion regardless of yield.
-	for(var/reactant in required_reagents)
+	for (var/reactant in required_reagents)
 		var/remainder = holder.get_reagent_amount(reactant) - progress*required_reagents[reactant]
 		if (remainder <= min_reaction*required_reagents[reactant])
 			progress = reaction_limit
@@ -99,7 +99,7 @@
 /datum/chemical_reaction/proc/process(var/datum/reagents/holder)
 	//determine how far the reaction can proceed
 	var/list/reaction_limits = list()
-	for(var/reactant in required_reagents)
+	for (var/reactant in required_reagents)
 		reaction_limits += holder.get_reagent_amount(reactant) / required_reagents[reactant]
 
 	//determine how far the reaction proceeds
@@ -112,7 +112,7 @@
 	var/data = send_data(holder, reaction_progress)
 
 	//remove the reactants
-	for(var/reactant in required_reagents)
+	for (var/reactant in required_reagents)
 		var/amt_used = required_reagents[reactant] * reaction_progress
 		holder.remove_reagent(reactant, amt_used, safety = TRUE)
 
@@ -135,7 +135,7 @@
 	if (mix_message && container && !ismob(container))
 		var/turf/T = get_turf(container)
 		var/list/seen = viewers(4, T)
-		for(var/mob/M in seen)
+		for (var/mob/M in seen)
 			M.show_message("<span class='notice'>\icon[container] [mix_message]</span>", TRUE)
 		playsound(T, reaction_sound, 80, TRUE)
 
@@ -591,7 +591,7 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(2, TRUE, location)
 	s.start()
-	for(var/mob/living/carbon/M in viewers(world.view, location))
+	for (var/mob/living/carbon/M in viewers(world.view, location))
 		switch(get_dist(M, location))
 			if (0 to 3)
 				if (hasvar(M, "glasses"))
@@ -656,7 +656,7 @@
 
 /datum/chemical_reaction/napalm/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/turf/location = get_turf(holder.my_atom.loc)
-	for(var/turf/floor/target_tile in range(0,location))
+	for (var/turf/floor/target_tile in range(0,location))
 	//	target_tile.assume_gas("tungsten", created_volume, 400+T0C)
 		spawn (0) target_tile.hotspot_expose(700, 400)
 	holder.del_reagent("napalm")
@@ -691,7 +691,7 @@
 /datum/chemical_reaction/foam/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 
-	for(var/mob/M in viewers(5, location))
+	for (var/mob/M in viewers(5, location))
 		M << "<span class='warning'>The solution spews out foam!</span>"
 
 	var/datum/effect/effect/system/foam_spread/s = new()
@@ -710,7 +710,7 @@
 /datum/chemical_reaction/metalfoam/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 
-	for(var/mob/M in viewers(5, location))
+	for (var/mob/M in viewers(5, location))
 		M << "<span class='warning'>The solution spews out a metalic foam!</span>"
 
 	var/datum/effect/effect/system/foam_spread/s = new()
@@ -728,7 +728,7 @@
 /datum/chemical_reaction/ironfoam/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 
-	for(var/mob/M in viewers(5, location))
+	for (var/mob/M in viewers(5, location))
 		M << "<span class='warning'>The solution spews out a metalic foam!</span>"
 
 	var/datum/effect/effect/system/foam_spread/s = new()
@@ -983,7 +983,7 @@
 
 /datum/chemical_reaction/tofu/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
-	for(var/i = TRUE, i <= created_volume, i++)
+	for (var/i = TRUE, i <= created_volume, i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/tofu(location)
 	return
 
@@ -996,7 +996,7 @@
 
 /datum/chemical_reaction/chocolate_bar/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
-	for(var/i = TRUE, i <= created_volume, i++)
+	for (var/i = TRUE, i <= created_volume, i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/chocolatebar(location)
 	return
 
@@ -1009,7 +1009,7 @@
 
 /datum/chemical_reaction/chocolate_bar2/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
-	for(var/i = TRUE, i <= created_volume, i++)
+	for (var/i = TRUE, i <= created_volume, i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/chocolatebar(location)
 	return
 
@@ -1044,7 +1044,7 @@
 
 /datum/chemical_reaction/cheesewheel/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
-	for(var/i = TRUE, i <= created_volume, i++)
+	for (var/i = TRUE, i <= created_volume, i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesewheel(location)
 	return
 
@@ -1057,7 +1057,7 @@
 
 /datum/chemical_reaction/meatball/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
-	for(var/i = TRUE, i <= created_volume, i++)
+	for (var/i = TRUE, i <= created_volume, i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/meatball(location)
 	return
 
@@ -1070,7 +1070,7 @@
 
 /datum/chemical_reaction/dough/on_reaction(var/datum/reagents/holder, var/created_volume = 1)
 	var/location = get_turf(holder.my_atom)
-	for(var/i = 1, i <= created_volume, i++)
+	for (var/i = 1, i <= created_volume, i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/dough(location)
 	return
 
@@ -1083,7 +1083,7 @@
 
 /datum/chemical_reaction/syntiflesh/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
-	for(var/i = TRUE, i <= created_volume, i++)
+	for (var/i = TRUE, i <= created_volume, i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/meat/syntiflesh(location)
 	return
 

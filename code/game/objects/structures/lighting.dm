@@ -465,7 +465,7 @@
 		if (prob(1+W.force * 5))
 
 			user << "You hit the light, and it smashes!"
-			for(var/mob/M in viewers(src))
+			for (var/mob/M in viewers(src))
 				if (M == user)
 					continue
 				M.show_message("[user.name] smashed the light!", 3, "You hear a tinkle of breaking glass", 2)
@@ -522,7 +522,7 @@
 	flickering = TRUE
 	spawn(0)
 		if (on && status == LIGHT_OK)
-			for(var/i in 1 to amount)
+			for (var/i in 1 to amount)
 				if (status != LIGHT_OK) break
 				on = !on
 				update(0, nosound = TRUE)
@@ -547,7 +547,7 @@
 	if (istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
 		if (H.species.can_shred(H))
-			for(var/mob/M in viewers(src))
+			for (var/mob/M in viewers(src))
 				M.show_message("<span class = 'red'>[user.name] smashed the light!</span>", 3, "You hear a tinkle of breaking glass", 2)
 			broken()
 			return

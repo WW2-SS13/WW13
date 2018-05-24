@@ -24,7 +24,7 @@
 
 // Causes any affecting light sources to be queued for a visibility update, for example a door got opened.
 /turf/proc/reconsider_lights()
-	for(var/A in affecting_lights)
+	for (var/A in affecting_lights)
 		if (!A)
 			continue
 
@@ -35,7 +35,7 @@
 	if (lighting_overlay)
 		qdel(lighting_overlay)
 
-	for(var/A in corners)
+	for (var/A in corners)
 		if (!A)
 			continue
 
@@ -49,13 +49,13 @@
 		if (A.dynamic_lighting)
 			PoolOrNew(/atom/movable/lighting_overlay, src)
 
-			for(var/LC in corners)
+			for (var/LC in corners)
 				if (!LC)
 					continue
 
 				var/datum/lighting_corner/C = LC
 				if (!C.active) // We would activate the corner, calculate the lighting for it.
-					for(var/L in C.affecting)
+					for (var/L in C.affecting)
 						var/datum/light_source/S = L
 						S.recalc_corner(C)
 
@@ -94,7 +94,7 @@
 
 /turf/proc/fix_corners_and_lighting_overlay() // workaround for broken ice corners
 	if (istype(src, /turf/floor/plating/beach/water/ice))
-		for(var/i = 1 to 4)
+		for (var/i = 1 to 4)
 			if (corners[i]) // Already have a corner on this direction.
 				continue
 
@@ -126,7 +126,7 @@
 		return 0.5
 
 	var/totallums = FALSE
-	for(var/LL in corners)
+	for (var/LL in corners)
 		var/datum/lighting_corner/L = LL
 		totallums += L.getLumR(src) + L.getLumB(src) + L.getLumG(src)
 
@@ -139,7 +139,7 @@
 // Can't think of a good name, this proc will recalculate the has_opaque_atom variable.
 /turf/proc/recalc_atom_opacity()
 	has_opaque_atom = FALSE
-	for(var/atom/A in contents + src) // Loop through every movable atom on our tile PLUS ourselves (we matter too...)
+	for (var/atom/A in contents + src) // Loop through every movable atom on our tile PLUS ourselves (we matter too...)
 		if (A.opacity)
 			has_opaque_atom = TRUE
 

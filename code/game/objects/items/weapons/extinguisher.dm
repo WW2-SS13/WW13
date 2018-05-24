@@ -59,13 +59,13 @@
 		C = O
 
 	var/list/move_speed = list(1, TRUE, TRUE, 2, 2, 3)
-	for(var/i in TRUE to 6)
+	for (var/i in TRUE to 6)
 		if (C) C.propelled = (6-i)
 		O.Move(get_step(user,movementdirection), movementdirection)
 		sleep(move_speed[i])
 
 	//additional movement
-	for(var/i in TRUE to 3)
+	for (var/i in TRUE to 3)
 		O.Move(get_step(user,movementdirection), movementdirection)
 		sleep(3)
 
@@ -103,7 +103,7 @@
 
 		var/list/the_targets = list(T,T1,T2)
 
-		for(var/a = TRUE to spray_particles)
+		for (var/a = TRUE to spray_particles)
 			spawn(0)
 				if (!src || !reagents.total_volume) return
 

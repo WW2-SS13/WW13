@@ -415,7 +415,7 @@
 					usr << "The option ID difference is too big. Please contact administration or the database admin."
 					return
 
-				for(var/optionid = id_min; optionid <= id_max; optionid++)
+				for (var/optionid = id_min; optionid <= id_max; optionid++)
 					if (!isnull(href_list["o[optionid]"]))	//Test if this optionid was replied to
 						var/rating
 						if (href_list["o[optionid]"] == "abstain")
@@ -434,7 +434,7 @@
 					usr << "The option ID difference is too big. Please contact administration or the database admin."
 					return
 
-				for(var/optionid = id_min; optionid <= id_max; optionid++)
+				for (var/optionid = id_min; optionid <= id_max; optionid++)
 					if (!isnull(href_list["option_[optionid]"]))	//Test if this optionid was selected
 						vote_on_poll(pollid, optionid, TRUE)
 */
@@ -586,7 +586,7 @@
 
 	dat += "<b>Choose from the following open positions:</b>"
 
-	for(var/datum/job/job in job_master.faction_organized_occupations)
+	for (var/datum/job/job in job_master.faction_organized_occupations)
 
 		if (job.faction != "Station")
 			continue
@@ -662,7 +662,7 @@
 		if (job)
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
-			for(var/mob/M in player_list) if (M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
+			for (var/mob/M in player_list) if (M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
 				active++
 			if (job.base_type_flag() != prev_side)
 				prev_side = job.base_type_flag()
@@ -779,7 +779,7 @@
 	new_character.lastarea = get_area(loc)
 
 	if (client)
-		for(var/lang in client.prefs.alternate_languages)
+		for (var/lang in client.prefs.alternate_languages)
 			var/datum/language/chosen_language = all_languages[lang]
 			if (chosen_language)
 				if (has_admin_rights() \
@@ -789,7 +789,7 @@
 		if (ticker.random_players)
 			new_character.gender = pick(MALE, FEMALE)
 			client.prefs.real_name = random_name(new_character.gender)
-			client.prefs.randomize_appearance_for(new_character)
+			client.prefs.randomize_appearance_for (new_character)
 		else
 			// no more traps - Kachnov
 			var/datum/job/J = original_job

@@ -4,7 +4,7 @@
 	else
 		return FALSE
 	if (accessories.len && restricted_accessory_slots && (A.slot in restricted_accessory_slots))
-		for(var/obj/item/clothing/accessory/AC in accessories)
+		for (var/obj/item/clothing/accessory/AC in accessories)
 			if (AC.slot == A.slot)
 				return FALSE
 
@@ -30,7 +30,7 @@
 		return
 
 	if (accessories.len)
-		for(var/obj/item/clothing/accessory/A in accessories)
+		for (var/obj/item/clothing/accessory/A in accessories)
 			A.attackby(I, user)
 		return
 
@@ -39,7 +39,7 @@
 /obj/item/clothing/attack_hand(var/mob/user)
 	//only forward to the attached accessory if the clothing is equipped (not in a storage)
 	if (accessories.len && loc == user)
-		for(var/obj/item/clothing/accessory/A in accessories)
+		for (var/obj/item/clothing/accessory/A in accessories)
 			A.attack_hand(user)
 		return
 	return ..()
@@ -67,7 +67,7 @@
 /obj/item/clothing/examine(var/mob/user)
 	..(user)
 	if (accessories.len)
-		for(var/obj/item/clothing/accessory/A in accessories)
+		for (var/obj/item/clothing/accessory/A in accessories)
 			user << "\A [A] is attached to it."
 
 /obj/item/clothing/proc/remove_accessory(mob/user, obj/item/clothing/accessory/A)
@@ -96,6 +96,6 @@
 
 /obj/item/clothing/emp_act(severity)
 	if (accessories.len)
-		for(var/obj/item/clothing/accessory/A in accessories)
+		for (var/obj/item/clothing/accessory/A in accessories)
 			A.emp_act(severity)
 	..()

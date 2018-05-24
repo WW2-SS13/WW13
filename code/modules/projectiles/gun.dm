@@ -13,7 +13,7 @@
 	..()
 	if (!properties) return
 
-	for(var/propname in vars)
+	for (var/propname in vars)
 		if (!isnull(properties[propname]))
 			vars[propname] = properties[propname]
 
@@ -87,7 +87,7 @@
 	if (!firemodes.len)
 		firemodes += new firemode_type
 	else
-		for(var/i in 1 to firemodes.len)
+		for (var/i in 1 to firemodes.len)
 			firemodes[i] = new firemode_type(firemodes[i])
 
 	for (var/datum/firemode/FM in firemodes)
@@ -134,7 +134,7 @@
 	return TRUE
 
 /obj/item/weapon/gun/emp_act(severity)
-	for(var/obj/O in contents)
+	for (var/obj/O in contents)
 		O.emp_act(severity)
 
 /obj/item/weapon/gun/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
@@ -260,7 +260,7 @@
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
 
-	for(var/i in 1 to _burst)
+	for (var/i in 1 to _burst)
 		var/obj/projectile = consume_next_projectile(user)
 
 		if (!projectile)
@@ -370,7 +370,7 @@
 		var/mob/M = target
 		if (M.grabbed_by.len)
 			var/grabstate = FALSE
-			for(var/obj/item/weapon/grab/G in M.grabbed_by)
+			for (var/obj/item/weapon/grab/G in M.grabbed_by)
 				grabstate = max(grabstate, G.state)
 			if (grabstate >= GRAB_NECK)
 				damage_mult = 4

@@ -38,7 +38,7 @@
 		return
 	var/found = FALSE
 	// Close any open UI windows first
-	for(var/mob/M in range(1))
+	for (var/mob/M in range(1))
 		if (M.s_active == src)
 			close(M)
 		if ( M == user )
@@ -443,7 +443,7 @@
 	New()
 		..()
 		if (type == /obj/item/weapon/storage/box/monkeycubes)
-			for(var/i = TRUE; i <= 5; i++)
+			for (var/i = TRUE; i <= 5; i++)
 				new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped(src)
 */
 
@@ -500,7 +500,7 @@
 	can_hold = list(/obj/item/toy/snappop)
 	New()
 		..()
-		for(var/i=1; i <= 8; i++)
+		for (var/i=1; i <= 8; i++)
 			new /obj/item/toy/snappop(src)
 
 /obj/item/weapon/storage/box/matches
@@ -515,7 +515,7 @@
 
 	New()
 		..()
-		for(var/i=1; i <= 10; i++)
+		for (var/i=1; i <= 10; i++)
 			new /obj/item/weapon/flame/match(src)
 
 	attackby(obj/item/weapon/flame/match/W as obj, mob/user as mob)
@@ -553,7 +553,7 @@
 	make_exact_fit()
 
 /obj/item/weapon/storage/box/lights/bulbs/New()
-	for(var/i = FALSE; i < 21; i++)
+	for (var/i = FALSE; i < 21; i++)
 		new /obj/item/weapon/light/bulb(src)
 	..()
 
@@ -562,7 +562,7 @@
 	icon_state = "lighttube"
 
 /obj/item/weapon/storage/box/lights/tubes/New()
-	for(var/i = FALSE; i < 21; i++)
+	for (var/i = FALSE; i < 21; i++)
 		new /obj/item/weapon/light/tube(src)
 	..()
 
@@ -571,9 +571,9 @@
 	icon_state = "lightmixed"
 
 /obj/item/weapon/storage/box/lights/mixed/New()
-	for(var/i = FALSE; i < 14; i++)
+	for (var/i = FALSE; i < 14; i++)
 		new /obj/item/weapon/light/tube(src)
-	for(var/i = FALSE; i < 7; i++)
+	for (var/i = FALSE; i < 7; i++)
 		new /obj/item/weapon/light/bulb(src)
 	..()
 

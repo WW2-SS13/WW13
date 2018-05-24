@@ -30,7 +30,7 @@ var/list/flooring_cache = list()
 		var/has_border = FALSE
 		if (flooring.flags & SMOOTH_ONLY_WITH_ITSELF) // for carpets and stuff like that
 			if (isnull(set_update_icon) && (flooring.flags & TURF_HAS_EDGES))
-				for(var/step_dir in cardinal)
+				for (var/step_dir in cardinal)
 					var/turf/floor/T = get_step(src, step_dir)
 					if (!istype(T) || !T.flooring || T.flooring.name != flooring.name)
 						has_border |= step_dir
@@ -71,7 +71,7 @@ var/list/flooring_cache = list()
 
 		else
 			if (isnull(set_update_icon) && (flooring.flags & TURF_HAS_EDGES))
-				for(var/step_dir in cardinal)
+				for (var/step_dir in cardinal)
 					var/turf/T = get_step(src, step_dir)
 					if (istype(T, /turf/open) || istype(T, /turf/space))
 						has_border |= step_dir
@@ -123,7 +123,7 @@ var/list/flooring_cache = list()
 			overlays |= get_flooring_overlay("[flooring.icon_base]-burned-[burnt]", "burned[burnt]")
 
 	if (update_neighbors)
-		for(var/turf/floor/F in range(src, TRUE))
+		for (var/turf/floor/F in range(src, TRUE))
 			if (F == src)
 				continue
 			F.update_icon()

@@ -9,7 +9,7 @@
 
 /proc/mobs_in_view(var/range, var/source)
 	var/list/mobs = list()
-	for(var/atom/movable/AM in view(range, source))
+	for (var/atom/movable/AM in view(range, source))
 		var/M = AM.get_mob()
 		if (M)
 			mobs += M
@@ -20,7 +20,7 @@ proc/random_hair_style(gender, species = "Human")
 	var/h_style = "Bald"
 
 	var/list/valid_hairstyles = list()
-	for(var/hairstyle in hair_styles_list)
+	for (var/hairstyle in hair_styles_list)
 		var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
 		if (gender == MALE && S.gender == FEMALE)
 			continue
@@ -39,7 +39,7 @@ proc/random_facial_hair_style(gender, species = "Human")
 	var/f_style = "Shaved"
 
 	var/list/valid_facialhairstyles = list()
-	for(var/facialhairstyle in facial_hair_styles_list)
+	for (var/facialhairstyle in facial_hair_styles_list)
 		var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
 		if (gender == MALE && S.gender == FEMALE)
 			continue
@@ -431,7 +431,7 @@ Proc for attack log creation, because really why not
 	var/list/names = list()
 	var/list/creatures = list()
 	var/list/namecounts = list()
-	for(var/mob/M in mobs)
+	for (var/mob/M in mobs)
 		var/name = M.name
 		if (name in names)
 			namecounts[name]++
@@ -595,27 +595,27 @@ Proc for attack log creation, because really why not
 /proc/sortmobs()
 	var/list/moblist = list()
 	var/list/sortmob = sortAtom(mob_list)
-	for(var/mob/observer/eye/M in sortmob)
+	for (var/mob/observer/eye/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/silicon/ai/M in sortmob)
+	for (var/mob/living/silicon/ai/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/silicon/pai/M in sortmob)
+	for (var/mob/living/silicon/pai/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/silicon/robot/M in sortmob)
+	for (var/mob/living/silicon/robot/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/carbon/human/M in sortmob)
+	for (var/mob/living/carbon/human/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/carbon/brain/M in sortmob)
+	for (var/mob/living/carbon/brain/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/carbon/alien/M in sortmob)
+	for (var/mob/living/carbon/alien/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/observer/ghost/M in sortmob)
+	for (var/mob/observer/ghost/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/new_player/M in sortmob)
+	for (var/mob/new_player/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/carbon/slime/M in sortmob)
+	for (var/mob/living/carbon/slime/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/simple_animal/M in sortmob)
+	for (var/mob/living/simple_animal/M in sortmob)
 		moblist.Add(M)
 	return moblist
 

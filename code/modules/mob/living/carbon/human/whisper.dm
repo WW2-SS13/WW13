@@ -78,7 +78,7 @@
 	//looks like this only appears in whisper. Should it be elsewhere as well? Maybe handle_speech_problems?
 	var/voice_sub
 
-	for(var/obj/item/gear in list(wear_mask,wear_suit,head))
+	for (var/obj/item/gear in list(wear_mask,wear_suit,head))
 		if (!gear)
 			continue
 		var/obj/item/voice_changer/changer = locate() in gear
@@ -89,9 +89,9 @@
 		if (copytext(message, TRUE, 2) != "*")
 			var/list/temp_message = splittext(message, " ")
 			var/list/pick_list = list()
-			for(var/i = TRUE, i <= temp_message.len, i++)
+			for (var/i = TRUE, i <= temp_message.len, i++)
 				pick_list += i
-			for(var/i=1, i <= abs(temp_message.len/3), i++)
+			for (var/i=1, i <= abs(temp_message.len/3), i++)
 				var/H = pick(pick_list)
 				if (findtext(temp_message[H], "*") || findtext(temp_message[H], ";") || findtext(temp_message[H], ":")) continue
 				temp_message[H] = ninjaspeak(temp_message[H])
@@ -115,8 +115,8 @@
 			listening |= M
 
 	//Pass whispers on to anything inside the immediate listeners.
-	for(var/mob/L in listening)
-		for(var/mob/C in L.contents)
+	for (var/mob/L in listening)
+		for (var/mob/C in L.contents)
 			if (istype(C,/mob/living))
 				listening += C
 
@@ -140,13 +140,13 @@
 	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"h[speech_bubble_test]")
 	spawn(30) qdel(speech_bubble)
 
-	for(var/mob/M in listening)
+	for (var/mob/M in listening)
 		M << speech_bubble
 		M.hear_say(message, verb, speaking, alt_name, italics, src)
 
 	if (eavesdropping.len)
 		var/new_message = stars(message)	//hopefully passing the message twice through stars() won't hurt... I guess if you already don't understand the language, when they speak it too quietly to hear normally you would be able to catch even less.
-		for(var/mob/M in eavesdropping)
+		for (var/mob/M in eavesdropping)
 			M << speech_bubble
 			M.hear_say(new_message, verb, speaking, alt_name, italics, src)
 

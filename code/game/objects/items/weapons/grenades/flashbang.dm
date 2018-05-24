@@ -7,13 +7,13 @@
 
 	prime()
 		..()
-		for(var/obj/structure/closet/L in hear(7, get_turf(src)))
+		for (var/obj/structure/closet/L in hear(7, get_turf(src)))
 			if (locate(/mob/living/carbon/, L))
-				for(var/mob/living/carbon/M in L)
+				for (var/mob/living/carbon/M in L)
 					bang(get_turf(src), M)
 
 
-		for(var/mob/living/carbon/M in hear(7, get_turf(src)))
+		for (var/mob/living/carbon/M in hear(7, get_turf(src)))
 			bang(get_turf(src), M)
 
 		new/obj/effect/sparks(loc)
@@ -102,17 +102,17 @@
 /obj/item/weapon/grenade/flashbang/clusterbang/prime()
 	var/numspawned = rand(4,8)
 	var/again = FALSE
-	for(var/more = numspawned,more > 0,more--)
+	for (var/more = numspawned,more > 0,more--)
 		if (prob(35))
 			again++
 			numspawned --
 
-	for(,numspawned > 0, numspawned--)
+	for (,numspawned > 0, numspawned--)
 		spawn(0)
 			new /obj/item/weapon/grenade/flashbang/cluster(loc)//Launches flashbangs
 			playsound(loc, 'sound/weapons/armbomb.ogg', 75, TRUE, -3)
 
-	for(,again > 0, again--)
+	for (,again > 0, again--)
 		spawn(0)
 			new /obj/item/weapon/grenade/flashbang/clusterbang/segment(loc)//Creates a 'segment' that launches a few more flashbangs
 			playsound(loc, 'sound/weapons/armbomb.ogg', 75, TRUE, -3)
@@ -139,11 +139,11 @@
 
 /obj/item/weapon/grenade/flashbang/clusterbang/segment/prime()
 	var/numspawned = rand(4,8)
-	for(var/more = numspawned,more > 0,more--)
+	for (var/more = numspawned,more > 0,more--)
 		if (prob(35))
 			numspawned --
 
-	for(,numspawned > 0, numspawned--)
+	for (,numspawned > 0, numspawned--)
 		spawn(0)
 			new /obj/item/weapon/grenade/flashbang/cluster(loc)
 			playsound(loc, 'sound/weapons/armbomb.ogg', 75, TRUE, -3)

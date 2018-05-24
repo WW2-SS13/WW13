@@ -191,7 +191,7 @@
 			msg += "<span class='warning'>[T.He] [T.is] twitching ever so slightly.</span>\n"
 
 	//splints
-	for(var/organ in list("l_leg","r_leg","l_arm","r_arm"))
+	for (var/organ in list("l_leg","r_leg","l_arm","r_arm"))
 		var/obj/item/organ/external/o = get_organ(organ)
 		if (o && o.status & ORGAN_SPLINTED)
 			msg += "<span class='warning'>[T.He] [T.has] a splint on [T.his] [o.name]!</span>\n"
@@ -251,7 +251,7 @@
 	if (health_percentage <= 25)//Or incredibly hurt.
 		msg += "<span class='warning'><b>[T.He] looks incredibly wounded.</b>\n</span>"
 
-	for(var/organ_tag in species.has_limbs)
+	for (var/organ_tag in species.has_limbs)
 
 		var/list/organ_data = species.has_limbs[organ_tag]
 		var/organ_descriptor = organ_data["descriptor"]
@@ -265,7 +265,7 @@
 			continue
 
 
-	for(var/obj/item/organ/external/temp in organs)
+	for (var/obj/item/organ/external/temp in organs)
 		if (temp)
 			if (temp.status & ORGAN_ROBOT)
 				if (!(temp.brute_dam + temp.burn_dam))
@@ -363,12 +363,12 @@
 		msg += "<span class='danger'>[src] [T.has] blood running from under [T.his] gloves!</span>\n"
 	*/
 
-	for(var/limb in wound_flavor_text)//Uneeded.
+	for (var/limb in wound_flavor_text)//Uneeded.
 		msg += wound_flavor_text[limb]
 		is_bleeding[limb] = null
-	for(var/limb in is_bleeding)
+	for (var/limb in is_bleeding)
 		msg += is_bleeding[limb]
-	for(var/implant in get_visible_implants(0))
+	for (var/implant in get_visible_implants(0))
 		msg += "<span class='danger'>[src] [T.has] \a [implant] sticking out of [T.his] flesh!</span>\n"
 	if (digitalcamo)
 		msg += "[T.He] [T.is] repulsively uncanny!\n"

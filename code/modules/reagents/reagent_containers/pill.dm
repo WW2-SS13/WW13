@@ -70,7 +70,7 @@
 			msg_admin_attack("[user.name] ([user.ckey]) spiked \a [target] with a pill. Reagents: [reagentlist()] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 			reagents.trans_to(target, reagents.total_volume)
-			for(var/mob/O in viewers(2, user))
+			for (var/mob/O in viewers(2, user))
 				O.show_message("<span class='warning'>[user] puts something in \the [target].</span>", TRUE)
 
 			qdel(src)

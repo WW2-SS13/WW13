@@ -14,13 +14,13 @@ calculate text size per text.
 		minimum_percent = round(15/H.species.taste_sensitivity)
 	if (minimum_percent < 100)
 		var/total_taste = FALSE
-		for(var/datum/reagent/R in temp.reagent_list)
+		for (var/datum/reagent/R in temp.reagent_list)
 			var/desc
 			if (!R.taste_mult)
 				continue
 			if (R.id == "nutriment")
 				var/list/t = R.get_data()
-				for(var/i in TRUE to t.len)
+				for (var/i in TRUE to t.len)
 					var/A = t[i]
 					if (!(A in tastes))
 						tastes.Add(A)
@@ -36,7 +36,7 @@ calculate text size per text.
 			tastes[desc] += temp.get_reagent_amount(R.id) * R.taste_mult
 			total_taste += temp.get_reagent_amount(R.id) * R.taste_mult
 		if (tastes.len)
-			for(var/i in TRUE to tastes.len)
+			for (var/i in TRUE to tastes.len)
 				var/size = "a hint of "
 				var/percent = tastes[tastes[i]]/total_taste * 100
 				if (percent == 100) //completely TRUE thing, dont need to do anything to it.

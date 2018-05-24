@@ -217,7 +217,7 @@ var/list/gamemode_cache = list()
 
 	var/list/Lines = file2list(filename)
 
-	for(var/t in Lines)
+	for (var/t in Lines)
 		if (!t)	continue
 
 		t = trim(t)

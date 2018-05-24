@@ -33,7 +33,7 @@
 		if (rawlist.len)
 			fdel(get_tor_file_dir())
 			var/savefile/F = new(get_tor_file_dir())
-			for( var/line in rawlist )
+			for ( var/line in rawlist )
 				if (!line)	continue
 				if ( copytext(line,1,12) == "ExitAddress" )
 					var/cleaned = copytext(line,13,length(line)-19)
@@ -65,7 +65,7 @@
 			var/savefile/F = new(get_tor_file_dir())
 			var/dat
 			if ( length(F.dir) )
-				for( var/i=1, i<=length(F.dir), i++ )
+				for ( var/i=1, i<=length(F.dir), i++ )
 					dat += "<tr><td>#[i]</td><td> [F.dir[i]]</td></tr>"
 				dat = "<table width='100%'>[dat]</table>"
 			else

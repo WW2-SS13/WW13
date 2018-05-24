@@ -44,7 +44,7 @@
 /*	if (data && data["virus2"])
 		var/list/vlist = data["virus2"]
 		if (vlist.len)
-			for(var/ID in vlist)
+			for (var/ID in vlist)
 				var/datum/disease2/disease/V = vlist[ID]
 				if (V.spreadtype == "Contact")
 					infect_virus2(M, V.getcopy())*/
@@ -54,7 +54,7 @@
 /*	if (data && data["virus2"])
 		var/list/vlist = data["virus2"]
 		if (vlist.len)
-			for(var/ID in vlist)
+			for (var/ID in vlist)
 				var/datum/disease2/disease/V = vlist[ID]
 				if (V.spreadtype == "Contact")
 					infect_virus2(M, V.getcopy())

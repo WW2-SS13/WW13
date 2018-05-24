@@ -97,14 +97,14 @@ proc/isemptylist(list/list)
 
 //Checks for specific types in a list
 /proc/is_type_in_list(var/atom/A, var/list/L)
-	for(var/type in L)
+	for (var/type in L)
 		if (istype(A, type))
 			return TRUE
 	return FALSE
 
 /proc/instances_of_type_in_list(var/atom/A, var/list/L)
 	var/instances = FALSE
-	for(var/type in L)
+	for (var/type in L)
 		if (istype(A, type))
 			instances++
 	return instances
@@ -117,7 +117,7 @@ proc/clearlist(var/list/L)
 //Removes any null entries from the list
 proc/listclearnulls(list/list)
 	if (istype(list))
-		while(null in list)
+		while (null in list)
 			list -= null
 	return
 
@@ -131,7 +131,7 @@ proc/listclearnulls(list/list)
 		return
 	var/list/result = new
 	if (skiprep)
-		for(var/e in first)
+		for (var/e in first)
 			if (!(e in result) && !(e in second))
 				result += e
 	else
@@ -188,7 +188,7 @@ proc/listclearnulls(list/list)
 
 //Returns the next element in parameter list after first appearance of parameter element. If it is the last element of the list or not present in list, returns first element.
 /proc/next_in_list(element, list/L)
-	for(var/i=1, i<L.len, i++)
+	for (var/i=1, i<L.len, i++)
 		if (L[i] == element)
 			return L[i+1]
 	return L[1]
@@ -201,7 +201,7 @@ proc/listclearnulls(list/list)
 /proc/reverselist(list/L)
 	var/list/output = list()
 	if (L)
-		for(var/i = L.len; i >= 1; i--)
+		for (var/i = L.len; i >= 1; i--)
 			output += L[i]
 	return output
 
@@ -212,14 +212,14 @@ proc/listclearnulls(list/list)
 
 	L = L.Copy()
 
-	for(var/i=1; i<L.len; i++)
+	for (var/i=1; i<L.len; i++)
 		L.Swap(i, rand(i,L.len))
 	return L
 
 //Return a list with no duplicate entries
 /proc/uniquelist(var/list/L)
 	. = list()
-	for(var/i in L)
+	for (var/i in L)
 		. |= i
 
 //Mergesort: divides up the list into halves to begin the sort
@@ -234,7 +234,7 @@ proc/listclearnulls(list/list)
 	var/Li=1
 	var/Ri=1
 	var/list/result = new()
-	while(Li <= L.len && Ri <= R.len)
+	while (Li <= L.len && Ri <= R.len)
 		var/client/rL = L[Li]
 		var/client/rR = R[Ri]
 		if (sorttext(rL.ckey, rR.ckey) == order)
@@ -258,7 +258,7 @@ proc/listclearnulls(list/list)
 	var/Li=1
 	var/Ri=1
 	var/list/result = new()
-	while(Li <= L.len && Ri <= R.len)
+	while (Li <= L.len && Ri <= R.len)
 		var/atom/rL = L[Li]
 		var/atom/rR = R[Ri]
 		if (sorttext(rL.name, rR.name) == order)
@@ -288,7 +288,7 @@ proc/listclearnulls(list/list)
 	var/Ri=1
 	var/list/result = new()
 	if (!isnull(L) && !isnull(R))
-		while(Li <= L.len && Ri <= R.len)
+		while (Li <= L.len && Ri <= R.len)
 			var/datum/data/record/rL = L[Li]
 			if (isnull(rL))
 				L -= rL
@@ -319,7 +319,7 @@ proc/listclearnulls(list/list)
 //Mergsorge: uses sortList() but uses the var's name specifically. This should probably be using mergeAtom() instead
 /proc/sortNames(var/list/L)
 	var/list/Q = new()
-	for(var/atom/x in L)
+	for (var/atom/x in L)
 		Q[x.name] = x
 	return sortList(Q)
 
@@ -327,7 +327,7 @@ proc/listclearnulls(list/list)
 	var/Li=1
 	var/Ri=1
 	var/list/result = new()
-	while(Li <= L.len && Ri <= R.len)
+	while (Li <= L.len && Ri <= R.len)
 		if (sorttext(L[Li], R[Ri]) < 1)
 			result += R[Ri++]
 		else
@@ -349,7 +349,7 @@ proc/listclearnulls(list/list)
 	var/Li=1
 	var/Ri=1
 	var/list/result = new()
-	while(Li <= L.len && Ri <= R.len)
+	while (Li <= L.len && Ri <= R.len)
 		if (sorttext(L[Li][key], R[Ri][key]) < 1)
 			// Works around list += list2 merging lists; it's not pretty but it works
 			result += "temp item"
@@ -381,7 +381,7 @@ proc/listclearnulls(list/list)
 	var/Li=1
 	var/Ri=1
 	var/list/result = new()
-	while(Li <= L.len && Ri <= R.len)
+	while (Li <= L.len && Ri <= R.len)
 		if (sorttext(L[Li], R[Ri]) < 1)
 			result += R&R[Ri++]
 		else
@@ -403,12 +403,12 @@ proc/listclearnulls(list/list)
 	if (istype(wordlist,/list))
 		var/max = min(wordlist.len,16)
 		var/bit = TRUE
-		for(var/i=1, i<=max, i++)
+		for (var/i=1, i<=max, i++)
 			if (bitfield & bit)
 				r += wordlist[i]
 			bit = bit << 1
 	else
-		for(var/bit=1, bit<=65535, bit = bit << 1)
+		for (var/bit=1, bit<=65535, bit = bit << 1)
 			if (bitfield & bit)
 				r += bit
 
@@ -417,7 +417,7 @@ proc/listclearnulls(list/list)
 // Returns the key based on the index
 /proc/get_key_by_index(var/list/L, var/index)
 	var/i = TRUE
-	for(var/key in L)
+	for (var/key in L)
 		if (index == i)
 			return key
 		i++
@@ -425,13 +425,13 @@ proc/listclearnulls(list/list)
 
 // Returns the key based on the index
 /proc/get_key_by_value(var/list/L, var/value)
-	for(var/key in L)
+	for (var/key in L)
 		if (L[key] == value)
 			return key
 
 /proc/count_by_type(var/list/L, type)
 	var/i = FALSE
-	for(var/T in L)
+	for (var/T in L)
 		if (istype(T, type))
 			i++
 	return i
@@ -440,10 +440,10 @@ proc/listclearnulls(list/list)
 /proc/insertion_sort_numeric_list_ascending(var/list/L)
 	//world.log << "ascending len input: [L.len]"
 	var/list/out = list(pop(L))
-	for(var/entry in L)
+	for (var/entry in L)
 		if (isnum(entry))
 			var/success = FALSE
-			for(var/i=1, i<=out.len, i++)
+			for (var/i=1, i<=out.len, i++)
 				if (entry <= out[i])
 					success = TRUE
 					out.Insert(i, entry)
@@ -470,7 +470,7 @@ proc/listclearnulls(list/list)
 	var/Li=1
 	var/Ri=1
 	var/list/result = new()
-	while(Li <= L.len && Ri <= R.len)
+	while (Li <= L.len && Ri <= R.len)
 		var/LLi = L[Li]
 		var/RRi = R[Ri]
 		var/LLiV = cache[LLi]
@@ -496,7 +496,7 @@ proc/listclearnulls(list/list)
 	var/max = L.len
 	var/Oval = O:dd_SortValue()
 
-	while(1)
+	while (1)
 		var/mid = min+round((max-min)/2)
 
 		if (mid == max)
@@ -651,7 +651,7 @@ proc/dd_sortedTextList(list/incoming)
 //if no list/L is provided, one is created.
 /proc/init_subtypes(prototype, list/L)
 	if (!istype(L))	L = list()
-	for(var/path in subtypesof(prototype))
+	for (var/path in subtypesof(prototype))
 		L += new path()
 	return L
 

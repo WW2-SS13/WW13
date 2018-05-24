@@ -55,7 +55,7 @@ Parts of code courtesy of Super3222
 	var/mob/living/carbon/human/user = usr
 	if (istype(src, /obj/item/weapon/gun))
 		var/obj/item/weapon/gun/G = src
-		for(var/obj/item/weapon/attachment/scope/adjustable/A in G.attachments)
+		for (var/obj/item/weapon/attachment/scope/adjustable/A in G.attachments)
 			src = A
 	adjust_scope(user)
 
@@ -328,7 +328,7 @@ Parts of code courtesy of Super3222
 
 	if (client && actions.len)
 		if (client.pixel_x || client.pixel_y) //Cancel currently scoped weapons
-			for(var/datum/action/toggle_scope/T in actions)
+			for (var/datum/action/toggle_scope/T in actions)
 				if (T.scope.zoomed && m_intent=="run")
 					shake_camera(src, 2, rand(2,3))
 
@@ -345,7 +345,7 @@ Parts of code courtesy of Super3222
 	if (stat == UNCONSCIOUS || stat == DEAD || forced)
 		if (client && actions.len)
 			if (client.pixel_x || client.pixel_y) //Cancel currently scoped weapons
-				for(var/datum/action/toggle_scope/T in actions)
+				for (var/datum/action/toggle_scope/T in actions)
 					if (T.scope.zoomed)
 						T.scope.zoom(src, FALSE)
 						success = TRUE
@@ -367,7 +367,7 @@ Parts of code courtesy of Super3222
 	if (stat == CONSCIOUS)
 		if (client && actions.len)
 			if (client.pixel_x || client.pixel_y) //Cancel currently scoped weapons
-				for(var/datum/action/toggle_scope/T in actions)
+				for (var/datum/action/toggle_scope/T in actions)
 					if (T.scope.zoomed)
 						return TRUE
 	return FALSE

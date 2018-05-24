@@ -89,7 +89,7 @@
 	if (dir == SOUTHWEST)
 		var/index = null
 		index = FALSE
-		while(index < 2)
+		while (index < 2)
 			new shardtype(loc) //todo pooling?
 			if (reinf) PoolOrNew(/obj/item/stack/rods, loc)
 			index++
@@ -343,7 +343,7 @@
 	update_nearby_tiles()
 	var/turf/location = loc
 	loc = null
-	for(var/obj/structure/window/W in orange(location, TRUE))
+	for (var/obj/structure/window/W in orange(location, TRUE))
 		W.update_icon()
 	loc = location
 	..()
@@ -372,7 +372,7 @@
 //This proc is used to update the icons of nearby windows. It should not be confused with update_nearby_tiles(), which is an atmos proc!
 /obj/structure/window/proc/update_nearby_icons()
 	update_icon()
-	for(var/obj/structure/window/W in orange(src, TRUE))
+	for (var/obj/structure/window/W in orange(src, TRUE))
 		W.update_icon()
 
 //Updates the availabiliy of the rotation verbs
@@ -394,14 +394,14 @@
 		return
 	var/list/dirs = list()
 	if (anchored)
-		for(var/obj/structure/window/W in orange(src,1))
+		for (var/obj/structure/window/W in orange(src,1))
 			if (W.anchored && W.density && W.type == type && W.is_fulltile()) //Only counts anchored, not-destroyed fill-tile windows.
 				dirs += get_dir(src, W)
 
 /*	var/list/connections = dirs_to_corner_states(dirs)
 
 	icon_state = ""
-	for(var/i = TRUE to 4)
+	for (var/i = TRUE to 4)
 		var/image/I = image(icon, "[basestate][connections[i]]", dir = TRUE<<(i-1))
 		overlays += I
 */

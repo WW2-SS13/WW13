@@ -30,9 +30,9 @@
 	var/full_name = ""
 	var/new_name = ""
 
-	for(var/i = 0;i<name_count;i++)
+	for (var/i = 0;i<name_count;i++)
 		new_name = ""
-		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
+		for (var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
 			new_name += pick(syllables)
 		full_name += " [capitalize(lowertext(new_name))]"
 
@@ -48,9 +48,9 @@
 	var/full_name = ""
 	var/new_name = ""
 
-	for(var/i = 0;i<name_count;i++)
+	for (var/i = 0;i<name_count;i++)
 		new_name = ""
-		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
+		for (var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
 			new_name += pick(syllables)
 		full_name += " [capitalize(lowertext(new_name))]"
 
@@ -67,9 +67,9 @@
 	var/full_name = ""
 	var/new_name = ""
 
-	for(var/i = 0;i<name_count;i++)
+	for (var/i = 0;i<name_count;i++)
 		new_name = ""
-		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
+		for (var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
 			new_name += pick(syllables)
 		full_name += " [capitalize(lowertext(new_name))]"
 
@@ -85,9 +85,9 @@
 	var/full_name = ""
 	var/new_name = ""
 
-	for(var/i = 0;i<name_count;i++)
+	for (var/i = 0;i<name_count;i++)
 		new_name = ""
-		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
+		for (var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
 			new_name += pick(syllables)
 		full_name += " [capitalize(lowertext(new_name))]"
 
@@ -103,9 +103,9 @@
 	var/full_name = ""
 	var/new_name = ""
 
-	for(var/i = 0;i<name_count;i++)
+	for (var/i = 0;i<name_count;i++)
 		new_name = ""
-		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
+		for (var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
 			new_name += pick(syllables)
 		full_name += " [capitalize(lowertext(new_name))]"
 
@@ -121,9 +121,9 @@
 	var/full_name = ""
 	var/new_name = ""
 
-	for(var/i = 0;i<name_count;i++)
+	for (var/i = 0;i<name_count;i++)
 		new_name = ""
-		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
+		for (var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
 			new_name += pick(syllables)
 		full_name += " [capitalize(lowertext(new_name))]"
 
@@ -155,7 +155,7 @@
 	if (hearer)
 		mutual_intelligibility = hearer.get_mutual_intelligibility(src)
 
-	while(length(scrambled_text) < input_size)
+	while (length(scrambled_text) < input_size)
 		var/next = ""
 		var/MI = FALSE
 		if (prob(mutual_intelligibility) && original_words.len)
@@ -219,7 +219,7 @@
 	if (!speaker_mask) speaker_mask = speaker.name
 	message = format_message(message, get_spoken_verb(message))
 
-	for(var/mob/player in player_list)
+	for (var/mob/player in player_list)
 		player.hear_broadcast(src, speaker, speaker_mask, message)
 
 /mob/proc/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
@@ -365,7 +365,7 @@
 
 	var/dat = "<b><font size = 5>Known Languages</font></b><br/><br/>"
 
-	for(var/datum/language/L in languages)
+	for (var/datum/language/L in languages)
 		if (!(L.flags & NONGLOBAL))
 			dat += "<b>[L.name] ([get_language_prefix()][L.key])</b><br/>[L.desc]<br/><br/>"
 
@@ -378,7 +378,7 @@
 	if (default_language)
 		dat += "Current default language: [default_language] - <a href='byond://?src=\ref[src];default_lang=reset'>reset</a><br/><br/>"
 
-	for(var/datum/language/L in languages)
+	for (var/datum/language/L in languages)
 		if (!(L.flags & NONGLOBAL))
 			if (L == default_language)
 				dat += "<b>[L.name] ([get_language_prefix()][L.key])</b> - default - <a href='byond://?src=\ref[src];default_lang=reset'>reset</a><br/>[L.desc]<br/><br/>"
@@ -401,7 +401,7 @@
 		return ..()
 
 /proc/transfer_languages(var/mob/source, var/mob/target, var/except_flags)
-	for(var/datum/language/L in source.languages)
+	for (var/datum/language/L in source.languages)
 		if (L.flags & except_flags)
 			continue
 		target.add_language(L.name)

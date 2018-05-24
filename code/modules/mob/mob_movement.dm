@@ -348,7 +348,7 @@
 		Process_Incorpmove(direct)
 		return
 
-	for(var/obj/effect/stop/S in mob.loc)
+	for (var/obj/effect/stop/S in mob.loc)
 		if (S.victim == mob)
 			return
 
@@ -406,7 +406,7 @@
 
 	else if (isturf(mob_loc))
 		if (mob.restrained()) //Why being pulled while cuffed prevents you from moving
-			for(var/mob/M in range(mob, 1))
+			for (var/mob/M in range(mob, 1))
 				if (M.pulling == mob)
 					if (!M.restrained() && M.stat == 0 && M.canmove && mob.Adjacent(M))
 						if (world.time >= mob.next_cannotmove_message)
@@ -605,11 +605,11 @@
 								if ((get_dist(mob, M) > 1 || diag))
 									step(M, get_dir(M.loc, T))
 				else
-					for(var/mob/M in L)
+					for (var/mob/M in L)
 						M.other_mobs = TRUE
 						if (mob != M)
 							M.animate_movement = 3
-					for(var/mob/M in L)
+					for (var/mob/M in L)
 						spawn( FALSE )
 							step(M, direct)
 							return
@@ -741,7 +741,7 @@
 				mob.forceMove(locate(locx,locy,mobloc.z))
 				spawn(0)
 					var/limit = 2//For only two trailing shadows.
-					for(var/turf/T in getline(mobloc, mob.loc))
+					for (var/turf/T in getline(mobloc, mob.loc))
 						spawn(0)
 							anim(T,mob,'icons/mob/mob.dmi',,"shadow",,mob.dir)
 						limit--
@@ -752,7 +752,7 @@
 				mob.forceMove(get_step(mob, direct))
 			mob.dir = direct
 	// Crossed is always a bit iffy
-	for(var/obj/S in mob.loc)
+	for (var/obj/S in mob.loc)
 		if (istype(S,/obj/effect/step_trigger) || istype(S,/obj/effect/beam))
 			S.Crossed(mob)
 		if (istype(S,/obj/fire))
@@ -800,7 +800,7 @@
 
 	var/shoegrip = Check_Shoegrip()
 
-	for(var/turf/T in trange(1,src)) //we only care for non-space turfs
+	for (var/turf/T in trange(1,src)) //we only care for non-space turfs
 		if (T.density)	//walls work
 			return TRUE
 		else
@@ -808,7 +808,7 @@
 			if (A.has_gravity || shoegrip)
 				return TRUE
 
-	for(var/obj/O in orange(1, src))
+	for (var/obj/O in orange(1, src))
 		if (istype(O, /obj/structure/lattice))
 			return TRUE
 		if (O && O.density && O.anchored)

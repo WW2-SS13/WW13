@@ -46,7 +46,7 @@
 	if (!lit)
 		lit = TRUE
 		//damtype = "fire"
-		for(var/mob/O in viewers(usr, null))
+		for (var/mob/O in viewers(usr, null))
 			O.show_message(flavor_text, TRUE)
 		set_light(CANDLE_LUM)
 		processing_objects.Add(src)

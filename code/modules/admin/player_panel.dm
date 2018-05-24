@@ -93,7 +93,7 @@
 
 				function clearAll(){
 					var spans = document.getElementsByTagName('span');
-					for(var i = FALSE; i < spans.length; i++){
+					for (var i = FALSE; i < spans.length; i++){
 						var span = spans\[i\];
 
 						var id = span.getAttribute("id");
@@ -103,7 +103,7 @@
 
 						var pass = TRUE;
 
-						for(var j = FALSE; j < locked_tabs.length; j++){
+						for (var j = FALSE; j < locked_tabs.length; j++){
 							if (locked_tabs\[j\]==id){
 								pass = FALSE;
 								break;
@@ -132,7 +132,7 @@
 					}
 
 					var pass = TRUE;
-					for(var j = FALSE; j < locked_tabs.length; j++){
+					for (var j = FALSE; j < locked_tabs.length; j++){
 						if (locked_tabs\[j\]==id){
 							pass = FALSE;
 							break;
@@ -156,7 +156,7 @@
 					//document.write("a");
 					var index = FALSE;
 					var pass = FALSE;
-					for(var j = FALSE; j < locked_tabs.length; j++){
+					for (var j = FALSE; j < locked_tabs.length; j++){
 						if (locked_tabs\[j\]==id){
 							pass = TRUE;
 							index = j;
@@ -214,7 +214,7 @@
 
 	var/list/mobs = sortmobs()
 	var/i = TRUE
-	for(var/mob/M in mobs)
+	for (var/mob/M in mobs)
 		if (M.ckey)
 
 			var/color = "#e6e6e6"
@@ -329,7 +329,7 @@
 	//add <td>(IP: [M.lastKnownIP])</td> if you want to know their ip to the lists below
 	var/list/mobs = sortmobs()
 
-	for(var/mob/M in mobs)
+	for (var/mob/M in mobs)
 		if (!M.ckey) continue
 
 		dat += "<tr><td>[M.name]</td>"
@@ -399,7 +399,7 @@
 
 		dat += "<a href='?src=\ref[src];delay_round_end=1'>[ticker.delay_end ? "End Round Normally" : "Delay Round End"]</a><br>"
 		dat += "<hr>"
-		for(var/antag_type in all_antag_types)
+		for (var/antag_type in all_antag_types)
 			var/datum/antagonist/A = all_antag_types[antag_type]
 			dat += A.get_check_antag_output(src)
 		dat += "</body></html>"

@@ -104,7 +104,7 @@
 	var beakerContents[0]
 	var beakerCurrentVolume = FALSE
 	if (beaker && beaker:reagents && beaker:reagents.reagent_list.len)
-		for(var/datum/reagent/R in beaker:reagents.reagent_list)
+		for (var/datum/reagent/R in beaker:reagents.reagent_list)
 			beakerContents.Add(list(list("name" = R.name, "volume" = R.volume))) // list in a list because Byond merges the first list...
 			beakerCurrentVolume += R.volume
 	data["beakerContents"] = beakerContents
@@ -337,7 +337,7 @@
 			if (!condi)
 				if (href_list["name"] == "Blood")
 					var/datum/reagent/blood/G
-					for(var/datum/reagent/F in R.reagent_list)
+					for (var/datum/reagent/F in R.reagent_list)
 						if (F.name == href_list["name"])
 							G = F
 							break
@@ -446,14 +446,14 @@
 		else if (href_list["change_pill"])
 			#define MAX_PILL_SPRITE 20 //max icon state of the pill sprites
 			var/dat = "<table>"
-			for(var/i = TRUE to MAX_PILL_SPRITE)
+			for (var/i = TRUE to MAX_PILL_SPRITE)
 				dat += "<tr><td><a href=\"?src=\ref[src]&pill_sprite=[i]\"><img src=\"pill[i].png\" /></a></td></tr>"
 			dat += "</table>"
 			usr << browse(dat, "window=chem_master")
 			return
 		else if (href_list["change_bottle"])
 			var/dat = "<table>"
-			for(var/sprite in BOTTLE_SPRITES)
+			for (var/sprite in BOTTLE_SPRITES)
 				dat += "<tr><td><a href=\"?src=\ref[src]&bottle_sprite=[sprite]\"><img src=\"[sprite].png\" /></a></td></tr>"
 			dat += "</table>"
 			usr << browse(dat, "window=chem_master")
@@ -472,9 +472,9 @@
 	if (!(user.client in has_sprites))
 		spawn()
 			has_sprites += user.client
-			for(var/i = TRUE to MAX_PILL_SPRITE)
+			for (var/i = TRUE to MAX_PILL_SPRITE)
 				usr << browse_rsc(icon('icons/obj/chemical.dmi', "pill" + num2text(i)), "pill[i].png")
-			for(var/sprite in BOTTLE_SPRITES)
+			for (var/sprite in BOTTLE_SPRITES)
 				usr << browse_rsc(icon('icons/obj/chemical.dmi', sprite), "[sprite].png")
 	var/dat = ""
 	if (!beaker)
@@ -495,7 +495,7 @@
 			dat += "Beaker is empty."
 		else
 			dat += "Add to buffer:<BR>"
-			for(var/datum/reagent/G in R.reagent_list)
+			for (var/datum/reagent/G in R.reagent_list)
 				dat += "[G.name] , [G.volume] Units - "
 				dat += "<A href='?src=\ref[src];analyze=1;desc=[G.description];name=[G.name]'>(Analyze)</A> "
 				dat += "<A href='?src=\ref[src];add=[G.id];amount=1'>(1)</A> "
@@ -506,7 +506,7 @@
 
 		dat += "<HR>Transfer to <A href='?src=\ref[src];toggle=1'>[(!mode ? "disposal" : "beaker")]:</A><BR>"
 		if (reagents.total_volume)
-			for(var/datum/reagent/N in reagents.reagent_list)
+			for (var/datum/reagent/N in reagents.reagent_list)
 				dat += "[N.name] , [N.volume] Units - "
 				dat += "<A href='?src=\ref[src];analyze=1;desc=[N.description];name=[N.name]'>(Analyze)</A> "
 				dat += "<A href='?src=\ref[src];remove=[N.id];amount=1'>(1)</A> "
@@ -626,7 +626,7 @@
 			is_beaker_ready = TRUE
 			beaker_contents = "<b>The beaker contains:</b><br>"
 			var/anything = FALSE
-			for(var/datum/reagent/R in beaker.reagents.reagent_list)
+			for (var/datum/reagent/R in beaker.reagents.reagent_list)
 				anything = TRUE
 				beaker_contents += "[R.volume] - [R.name]<br>"
 			if (!anything)
@@ -683,7 +683,7 @@
 	if (!holdingitems || holdingitems.len == FALSE)
 		return
 
-	for(var/obj/item/O in holdingitems)
+	for (var/obj/item/O in holdingitems)
 		O.loc = loc
 		holdingitems -= O
 	holdingitems.Cut()

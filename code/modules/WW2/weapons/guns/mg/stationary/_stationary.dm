@@ -148,10 +148,10 @@
 		spawn (20)
 			user.client.canmove = TRUE
 
-	for(var/datum/action/A in actions)
+	for (var/datum/action/A in actions)
 		if (istype(A, /datum/action/toggle_scope))
 			if (user.client.pixel_x | user.client.pixel_y)
-				for(var/datum/action/toggle_scope/T in user.actions)
+				for (var/datum/action/toggle_scope/T in user.actions)
 					if (T.scope.zoomed)
 						T.scope.zoom(user, FALSE)
 			var/datum/action/toggle_scope/S = A
@@ -163,7 +163,7 @@
 /obj/item/weapon/gun/projectile/automatic/stationary/proc/stopped_using(mob/user as mob)
 	..()
 
-	for(var/datum/action/A in actions)
+	for (var/datum/action/A in actions)
 		if (istype(A, /datum/action/toggle_scope))
 			var/datum/action/toggle_scope/TS = A
 			if (TS.boundto == src)

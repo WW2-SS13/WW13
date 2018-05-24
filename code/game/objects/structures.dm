@@ -90,7 +90,7 @@
 	var/turf/T = get_turf(src)
 	if (!T || !istype(T))
 		return FALSE
-	for(var/obj/O in T.contents)
+	for (var/obj/O in T.contents)
 		if (istype(O,/obj/structure))
 			var/obj/structure/S = O
 			if (S.climbable) continue
@@ -104,7 +104,7 @@
 		return FALSE
 	if (T.density == TRUE)
 		return FALSE
-	for(var/obj/O in T.contents)
+	for (var/obj/O in T.contents)
 		if (istype(O,/obj/structure))
 			if (istype(O,/obj/structure/railing))
 				return TRUE
@@ -160,12 +160,12 @@
 	climbers -= user
 
 /obj/structure/proc/structure_shaken()
-	for(var/mob/living/M in climbers)
+	for (var/mob/living/M in climbers)
 		M.Weaken(1)
 		M << "<span class='danger'>You topple as you are shaken off \the [src]!</span>"
 		climbers.Cut(1,2)
 
-	for(var/mob/living/M in get_turf(src))
+	for (var/mob/living/M in get_turf(src))
 		if (M.lying) return //No spamming this on people.
 
 		M.Weaken(3)

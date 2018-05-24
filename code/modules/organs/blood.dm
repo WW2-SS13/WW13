@@ -28,7 +28,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 20
 
 //Resets blood data
 /mob/living/carbon/human/proc/fixblood()
-	for(var/datum/reagent/blood/B in vessel.reagent_list)
+	for (var/datum/reagent/blood/B in vessel.reagent_list)
 		if (B.id == "blood")
 			B.data = list(	"donor"=src,"viruses"=null,"species"=species.name,"blood_DNA"=dna.unique_enzymes,"blood_colour"= species.blood_color,"blood_type"=dna.b_type,	\
 							"resistances"=null,"trace_chem"=null, "virus2" = null, "antibodies" = list())
@@ -66,10 +66,10 @@ var/const/BLOOD_VOLUME_SURVIVE = 20
 
 	//Bleeding out
 	var/bloodloss = 0
-	for(var/obj/item/organ/external/temp in organs)
+	for (var/obj/item/organ/external/temp in organs)
 		if (!(temp.status & ORGAN_BLEEDING))
 			continue
-		for(var/datum/wound/W in temp.wounds)
+		for (var/datum/wound/W in temp.wounds)
 			if (W.bleeding())
 				bloodloss += W.damage / 100
 		if (temp.open)
@@ -130,7 +130,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 20
 		B.color = B.data["blood_colour"]
 
 	var/list/temp_chem = list()
-	for(var/datum/reagent/R in reagents.reagent_list)
+	for (var/datum/reagent/R in reagents.reagent_list)
 		temp_chem += R.id
 		temp_chem[R.id] = R.volume
 	B.data["trace_chem"] = list2params(temp_chem)
@@ -154,14 +154,14 @@ var/const/BLOOD_VOLUME_SURVIVE = 20
 		return
 
 /*	var/list/sniffles = virus_copylist(injected.data["virus2"])
-	for(var/ID in sniffles)
+	for (var/ID in sniffles)
 		var/datum/disease2/disease/sniffle = sniffles[ID]
 		infect_virus2(src,sniffle,1)
 	if (injected.data["antibodies"] && prob(5))
 		antibodies |= injected.data["antibodies"]*/
 	var/list/chems = list()
 	chems = params2list(injected.data["trace_chem"])
-	for(var/C in chems)
+	for (var/C in chems)
 		reagents.add_reagent(C, (text2num(chems[C]) / species.blood_volume) * amount)//adds trace chemicals to owner's blood
 	reagents.update_total()
 
@@ -190,7 +190,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 20
 	var/datum/reagent/blood/res = locate() in container.reagent_list //Grab some blood
 	if (res) // Make sure there's some blood at all
 		if (res.data["donor"] != src) //If it's not theirs, then we look for theirs
-			for(var/datum/reagent/blood/D in container.reagent_list)
+			for (var/datum/reagent/blood/D in container.reagent_list)
 				if (D.data["donor"] == src)
 					return D
 	return res
@@ -231,7 +231,7 @@ proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large)
 	// Are we dripping or splattering?
 	var/list/drips = list()
 	// Only a certain number of drips (or one large splatter) can be on a given turf.
-	for(var/obj/effect/decal/cleanable/blood/drip/drop in T)
+	for (var/obj/effect/decal/cleanable/blood/drip/drop in T)
 		drips |= drop.drips
 		qdel(drop)
 	if (!large && drips.len < 3)

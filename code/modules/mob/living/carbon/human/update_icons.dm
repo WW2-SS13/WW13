@@ -148,7 +148,7 @@ Please contact me on #coderbus IRC. ~Carn x
 
 	if (icon_update)
 		icon = stand_icon
-		for(var/image/I in overlays_standing)
+		for (var/image/I in overlays_standing)
 			overlays += I
 		if (species.has_floating_eyes)
 			overlays |= species.get_eyes(src)
@@ -174,7 +174,7 @@ var/global/list/damage_icon_parts = list()
 	// first check whether something actually changed about damage appearance
 	var/damage_appearance = ""
 
-	for(var/obj/item/organ/external/O in organs)
+	for (var/obj/item/organ/external/O in organs)
 		if (O.is_stump())
 			continue
 		damage_appearance += O.damage_state
@@ -188,7 +188,7 @@ var/global/list/damage_icon_parts = list()
 	var/image/standing_image = image(species.damage_overlays, icon_state = "00")
 
 	// blend the individual damage states with our icons
-	for(var/obj/item/organ/external/O in organs)
+	for (var/obj/item/organ/external/O in organs)
 		if (O.is_stump())
 			continue
 
@@ -244,7 +244,7 @@ var/global/list/damage_icon_parts = list()
 	else
 		icon_key += "#000000"
 
-	for(var/organ_tag in species.has_limbs)
+	for (var/organ_tag in species.has_limbs)
 		var/obj/item/organ/external/part = organs_by_name[organ_tag]
 		if (isnull(part) || part.is_stump())
 			icon_key += "0"
@@ -272,7 +272,7 @@ var/global/list/damage_icon_parts = list()
 		//BEGIN CACHED ICON GENERATION.
 		base_icon = new('icons/mob/human.dmi',"blank")
 
-		for(var/obj/item/organ/external/part in organs)
+		for (var/obj/item/organ/external/part in organs)
 			var/icon/temp = part.get_icon(skeleton)
 			//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
 			//And no change in rendering for other parts (they icon_position is FALSE, so goes to 'else' part)
@@ -315,7 +315,7 @@ var/global/list/damage_icon_parts = list()
 
 	//Underwear
 	if (species.appearance_flags & HAS_UNDERWEAR)
-		for(var/category in all_underwear)
+		for (var/category in all_underwear)
 			var/datum/category_item/underwear/UW = all_underwear[category]
 			if (!UW.icon_state)
 				return
@@ -377,7 +377,7 @@ var/global/list/damage_icon_parts = list()
 	var/g = "m"
 	if (gender == FEMALE)	g = "f"
 	// DNA2 - Drawing underlays.
-	for(var/datum/dna/gene/gene in dna_genes)
+	for (var/datum/dna/gene/gene in dna_genes)
 		if (!gene.block)
 			continue
 		if (gene.is_active(src))
@@ -385,7 +385,7 @@ var/global/list/damage_icon_parts = list()
 			if (underlay)
 				standing.underlays += underlay
 				add_image = TRUE
-	for(var/mut in mutations)
+	for (var/mut in mutations)
 		switch(mut)
 			/*
 			if (HULK)
@@ -446,7 +446,7 @@ var/global/list/damage_icon_parts = list()
 /* --------------------------------------- */
 //vvvvvv UPDATE_INV PROCS vvvvvv
 /mob/living/carbon/human/proc/find_inv_position(var/slot_id) //Find HUD position on screen TO:DO ìîãó ëè ÿ óïðîñòèòü???? species_hud?
-	for(var/obj/screen/inventory/HUDinv in HUDinventory)
+	for (var/obj/screen/inventory/HUDinv in HUDinventory)
 		if (HUDinv.slot_id == slot_id)
 			//world << "[slot_id] [HUDinv.screen_loc]"
 			/*if (HUDinv.invisibility == 101)
@@ -496,7 +496,7 @@ var/global/list/damage_icon_parts = list()
 		//accessories
 		var/obj/item/clothing/under/under = w_uniform
 		if (under.accessories.len)
-			for(var/obj/item/clothing/accessory/A in under.accessories)
+			for (var/obj/item/clothing/accessory/A in under.accessories)
 				standing.overlays |= A.get_mob_overlay()
 
 		overlays_standing[UNIFORM_LAYER]	= standing
@@ -735,7 +735,7 @@ var/global/list/damage_icon_parts = list()
 			else
 				overlays_standing[BELT_LAYER_ALT] = null
 			if (belt.contents.len)
-				for(var/obj/item/i in belt.contents)
+				for (var/obj/item/i in belt.contents)
 					var/i_state = i.item_state
 					if (!i_state) i_state = i.icon_state
 					standing.overlays	+= image(icon = body_build.belt_icon, icon_state = i_state)
@@ -782,7 +782,7 @@ var/global/list/damage_icon_parts = list()
 		// Accessories - copied from uniform, BOILERPLATE because fuck this system.
 		var/obj/item/clothing/suit/suit = wear_suit
 		if (istype(suit) && suit.accessories.len)
-			for(var/obj/item/clothing/accessory/A in suit.accessories)
+			for (var/obj/item/clothing/accessory/A in suit.accessories)
 				standing.overlays |= A.get_mob_overlay()
 
 		overlays_standing[SUIT_LAYER]	= standing
@@ -1093,7 +1093,7 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/proc/update_surgery(var/update_icons=1)
 	overlays_standing[SURGERY_LEVEL] = null
 	var/image/total = new
-	for(var/obj/item/organ/external/E in organs)
+	for (var/obj/item/organ/external/E in organs)
 		if (E.open)
 			var/image/I = image("icon"='icons/mob/surgery.dmi', "icon_state"="[E.name][round(E.open)]", "layer"=-SURGERY_LEVEL)
 			total.overlays += I

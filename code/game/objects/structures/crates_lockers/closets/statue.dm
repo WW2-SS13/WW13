@@ -45,7 +45,7 @@
 
 /obj/structure/closet/statue/process()
 	timer--
-	for(var/mob/living/M in src) //Go-go gadget stasis field
+	for (var/mob/living/M in src) //Go-go gadget stasis field
 		M.setToxLoss(intialTox)
 		M.adjustFireLoss(intialFire - M.getFireLoss())
 		M.adjustBruteLoss(intialBrute - M.getBruteLoss())
@@ -57,10 +57,10 @@
 
 /obj/structure/closet/statue/dump_contents()
 
-	for(var/obj/O in src)
+	for (var/obj/O in src)
 		O.loc = loc
 
-	for(var/mob/living/M in src)
+	for (var/mob/living/M in src)
 		M.loc = loc
 		M.sdisabilities &= ~MUTE
 		M.take_overall_damage((M.health - health - 100),0) //any new damage the statue incurred is transfered to the mob
@@ -79,7 +79,7 @@
 
 /obj/structure/closet/statue/proc/check_health()
 	if (health <= 0)
-		for(var/mob/M in src)
+		for (var/mob/M in src)
 			shatter(M)
 
 /obj/structure/closet/statue/bullet_act(var/obj/item/projectile/Proj)
@@ -90,11 +90,11 @@
 
 /obj/structure/closet/statue/attack_generic(var/mob/user, damage, attacktext, environment_smash)
 	if (damage && environment_smash)
-		for(var/mob/M in src)
+		for (var/mob/M in src)
 			shatter(M)
 
 /obj/structure/closet/statue/ex_act(severity)
-	for(var/mob/M in src)
+	for (var/mob/M in src)
 		M.ex_act(severity)
 		health -= 60 / severity
 		check_health()

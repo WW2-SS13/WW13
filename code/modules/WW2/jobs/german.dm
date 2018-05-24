@@ -814,7 +814,7 @@ var/first_fallschirm = TRUE
 	if (!fallschirm_spawnzone)
 		fallschirm_spawnzone = pick(fallschirm_landmarks)
 		fallschirm_landmarks = list()
-		for(var/turf/T in orange(5, fallschirm_spawnzone))
+		for (var/turf/T in orange(5, fallschirm_spawnzone))
 			fallschirm_spawnpoints += T
 		H.loc = get_turf(fallschirm_spawnzone)
 	else

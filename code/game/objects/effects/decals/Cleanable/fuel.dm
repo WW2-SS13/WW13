@@ -14,7 +14,7 @@
 
 		var/has_spread = FALSE
 		//Be absorbed by any other liquid fuel in the tile.
-		for(var/obj/effect/decal/cleanable/liquid_fuel/other in newLoc)
+		for (var/obj/effect/decal/cleanable/liquid_fuel/other in newLoc)
 			if (other != src)
 				other.amount += amount
 				other.Spread()
@@ -32,7 +32,7 @@
 		if (amount < 15) return //lets suppose welder fuel is fairly thick and sticky. For something like water, 5 or less would be more appropriate.
 		var/turf/S = loc
 		if (!istype(S)) return
-		for(var/d in cardinal)
+		for (var/d in cardinal)
 			var/turf/target = get_step(src,d)
 			var/turf/origin = get_turf(src)
 			if (origin.CanPass(null, target, FALSE, FALSE) && target.CanPass(null, origin, FALSE, FALSE))
@@ -71,7 +71,7 @@
 			var/turf/S = loc
 			if (!istype(S)) return
 
-			for(var/d in list(turn(dir,90),turn(dir,-90), dir))
+			for (var/d in list(turn(dir,90),turn(dir,-90), dir))
 				var/turf/O = get_step(S,d)
 				if (locate(/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel) in O)
 					continue

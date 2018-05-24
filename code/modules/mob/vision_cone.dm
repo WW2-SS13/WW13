@@ -39,7 +39,7 @@ mob/dead/InCone(mob/center = usr, dir = NORTH)
 
 mob/living/InCone(mob/center = usr, dir = NORTH)
 	. = ..()
-	for(var/obj/item/weapon/grab/G in center)//TG doesn't have the grab item. But if you're porting it and you do then uncomment this.
+	for (var/obj/item/weapon/grab/G in center)//TG doesn't have the grab item. But if you're porting it and you do then uncomment this.
 		if (src == G.affecting)
 			return FALSE
 		else
@@ -47,7 +47,7 @@ mob/living/InCone(mob/center = usr, dir = NORTH)
 
 
 proc/cone(atom/center = usr, dir = NORTH, list/list = oview(center))
-    for(var/atom/O in list) if (!O.InCone(center, dir)) list -= O
+    for (var/atom/O in list) if (!O.InCone(center, dir)) list -= O
     return list
 
 /mob/proc/update_vision_cone()
@@ -57,7 +57,7 @@ proc/cone(atom/center = usr, dir = NORTH, list/list = oview(center))
 	var/delay = 10
 	if (client && fov)
 		var/image/I = null
-		for(I in client.hidden_atoms)
+		for (I in client.hidden_atoms)
 			I.override = FALSE
 			spawn(delay)
 				qdel(I)
@@ -68,7 +68,7 @@ proc/cone(atom/center = usr, dir = NORTH, list/list = oview(center))
 		fov.dir = dir
 		if (fov.alpha != FALSE)
 			var/mob/living/M
-			for(M in cone(src, OPPOSITE_DIR(dir), view(10, src)))
+			for (M in cone(src, OPPOSITE_DIR(dir), view(10, src)))
 				I = image("split", M)
 				I.override = TRUE
 				client.images += I
@@ -79,7 +79,7 @@ proc/cone(atom/center = usr, dir = NORTH, list/list = oview(center))
 
 			//Optional items can be made invisible too. Uncomment this part if you wish to items to be invisible.
 			//var/obj/item/O
-			//for(O in cone(src, OPPOSITE_DIR(dir), oview(src)))
+			//for (O in cone(src, OPPOSITE_DIR(dir), oview(src)))
 			//	I = image("split", O)
 			//	I.override = TRUE
 			//	client.images += I

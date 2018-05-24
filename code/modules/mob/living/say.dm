@@ -61,7 +61,7 @@ var/list/channel_to_radio_key = new
 proc/get_radio_key_from_channel(var/channel)
 	var/key = channel_to_radio_key[channel]
 	if (!key)
-		for(var/radio_key in department_radio_keys)
+		for (var/radio_key in department_radio_keys)
 			if (department_radio_keys[radio_key] == channel)
 				key = radio_key
 				break
@@ -115,7 +115,7 @@ proc/get_radio_key_from_channel(var/channel)
 
 /mob/living/proc/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
 	if (message_mode == "intercom")
-		for(var/obj/item/radio/intercom/I in view(1, null))
+		for (var/obj/item/radio/intercom/I in view(1, null))
 			I.talk_into(src, message, verb, speaking)
 			used_radios += I
 	return FALSE
@@ -225,7 +225,7 @@ proc/get_radio_key_from_channel(var/channel)
 		var/list/hear = hear(message_range,T)
 		var/list/hearturfs = list()
 
-		for(var/I in hear)
+		for (var/I in hear)
 			if (ismob(I))
 				var/mob/M = I
 				listening += M
@@ -235,7 +235,7 @@ proc/get_radio_key_from_channel(var/channel)
 				hearturfs += O.locs[1]
 				listening_obj |= O
 
-		for(var/mob/M in player_list)
+		for (var/mob/M in player_list)
 			if (M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
 				listening |= M
 				continue
@@ -246,11 +246,11 @@ proc/get_radio_key_from_channel(var/channel)
 	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"h[speech_bubble_test]")
 	spawn(30) qdel(speech_bubble)
 
-	for(var/mob/M in listening)
+	for (var/mob/M in listening)
 		M << speech_bubble
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
 
-	for(var/obj/O in listening_obj)
+	for (var/obj/O in listening_obj)
 		spawn(0)
 			if (O) //It's possible that it could be deleted in the meantime.
 				O.hear_talk(src, message, verb, speaking)

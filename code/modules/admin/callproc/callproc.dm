@@ -65,7 +65,7 @@
 	var/done = FALSE
 	var/current = null
 
-	while(!done)
+	while (!done)
 		if (hastarget && !target)
 			usr << "Your callproc target no longer exists."
 			return

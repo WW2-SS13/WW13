@@ -42,7 +42,7 @@
 
 /datum/hud_data/New()
 	..()
-	for(var/slot in gear)
+	for (var/slot in gear)
 		equip_slots |= gear[slot]
 
 	if (has_hands)

@@ -211,7 +211,7 @@
 
 	if (istype(source_turf))
 		FOR_DVIEW(var/turf/T, light_range, source_turf, INVISIBILITY_LIGHTING)
-			for(var/A in T.get_corners(get_dir(source_turf, T)))
+			for (var/A in T.get_corners(get_dir(source_turf, T)))
 				if (!A)
 					continue
 
@@ -241,7 +241,7 @@
 /datum/light_source/proc/remove_lum()
 	applied = FALSE
 
-	for(var/A in affecting_turfs)
+	for (var/A in affecting_turfs)
 		if (!A)
 			continue
 
@@ -251,7 +251,7 @@
 
 	affecting_turfs.Cut()
 
-	for(var/A in effect_str)
+	for (var/A in effect_str)
 		if (!A)
 			continue
 
@@ -274,7 +274,7 @@
 		corners |= T.get_corners(get_dir(source_turf, T))
 	END_FOR_DVIEW
 
-	for(var/A in corners - effect_str) // New corners
+	for (var/A in corners - effect_str) // New corners
 		if (!A)
 			continue
 
@@ -291,7 +291,7 @@
 		C.affecting += src
 		APPLY_CORNER(C)
 
-	for(var/A in effect_str - corners) // Old, now gone, corners.
+	for (var/A in effect_str - corners) // Old, now gone, corners.
 		if (!A)
 			continue
 

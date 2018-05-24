@@ -61,7 +61,7 @@
 	H.default_language = H.languages[1]
 
 	if (additional_languages && additional_languages.len > 0)
-		for(var/language_name in additional_languages)
+		for (var/language_name in additional_languages)
 			var/probability = additional_languages[language_name]
 
 			if (prob(probability))

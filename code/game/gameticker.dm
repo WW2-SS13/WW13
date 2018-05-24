@@ -66,8 +66,8 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 				world << "<b><span style = 'notice'>Welcome to the pre-game lobby!</span></b>"
 				world << "The game will start in [pregame_timeleft] seconds."
 
-			while(current_state == GAME_STATE_PREGAME)
-				for(var/i=0, i<10, i++)
+			while (current_state == GAME_STATE_PREGAME)
+				for (var/i=0, i<10, i++)
 					sleep(1)
 					vote.process()
 				if (round_progressing)
@@ -75,8 +75,8 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 				if (pregame_timeleft == config.vote_autogamemode_timeleft)
 					if (!vote.time_remaining)
 						vote.autogamemode()	//Quit calling this over and over and over and over.
-						while(vote.time_remaining)
-							for(var/i=0, i<10, i++)
+						while (vote.time_remaining)
+							for (var/i=0, i<10, i++)
 								sleep(1)
 								vote.process()
 				if (pregame_timeleft == 20)
@@ -135,7 +135,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	spawn(0)//Forking here so we dont have to wait for this to finish
 //		mode.post_setup()
 		//Cleanup some stuff
-		for(var/obj/effect/landmark/start/S in landmarks_list)
+		for (var/obj/effect/landmark/start/S in landmarks_list)
 			//Deleting Startpoints but we need the ai point to AI-ize people later
 			if (S.name != "AI")
 				qdel(S)
@@ -155,7 +155,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 	/* TODO: discord bot - Kachnov
 	var/admins_number = 0
-	for(var/client/C)
+	for (var/client/C)
 		if (C.holder)
 			admins_number++
 
@@ -170,12 +170,12 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	return TRUE
 
 /datum/controller/gameticker/proc/close_jobs()
-	for(var/datum/job/job in job_master.occupations)
+	for (var/datum/job/job in job_master.occupations)
 		if (job.title == "Captain")
 			job.total_positions = FALSE
 
 /datum/controller/gameticker/proc/create_characters()
-	for(var/mob/new_player/player in player_list)
+	for (var/mob/new_player/player in player_list)
 		if (player && player.ready && player.mind)
 			if (!player.mind.assigned_role)
 				continue
@@ -185,12 +185,12 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 
 /datum/controller/gameticker/proc/collect_minds()
-	for(var/mob/living/player in player_list)
+	for (var/mob/living/player in player_list)
 		if (player.mind)
 			ticker.minds += player.mind
 
 /datum/controller/gameticker/proc/equip_characters()
-	for(var/mob/living/carbon/human/player in player_list)
+	for (var/mob/living/carbon/human/player in player_list)
 		if (player && player.mind && player.mind.assigned_role)
 		//	if (!player_is_antag(player.mind, only_offstation_roles = TRUE))
 			job_master.EquipRank(player, player.mind.assigned_role, FALSE)

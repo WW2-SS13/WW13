@@ -7,20 +7,20 @@ var/global/floorIsLava = FALSE
 /proc/message_admins(var/msg)
 	msg = "<span class=\"log_message\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
 	log_adminwarn(msg)
-	for(var/client/C in admins)
+	for (var/client/C in admins)
 		C << msg
 
 /proc/msg_admin_attack(var/text) //Toggleable Attack Messages
 	log_attack(text)
 	var/rendered = "<span class=\"log_message\"><span class=\"prefix\">ATTACK:</span> <span class=\"message\">[text]</span></span>"
-	for(var/client/C in admins)
+	for (var/client/C in admins)
 		if (R_ADMIN & C.holder.rights)
 			if (C.is_preference_enabled(/datum/client_preference/admin/show_attack_logs))
 				var/msg = rendered
 				C << msg
 
 proc/admin_notice(var/message, var/rights)
-	for(var/mob/M in mob_list)
+	for (var/mob/M in mob_list)
 		if (check_rights(rights, FALSE, M))
 			M << message
 
@@ -129,7 +129,7 @@ proc/admin_notice(var/message, var/rights)
 				body += "<br><br>"
 				body += "<b>DNA Blocks:</b><br><table border='0'><tr><th>&nbsp;</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>"
 				var/bname
-				for(var/block=1;block<=DNA_SE_LENGTH;block++)
+				for (var/block=1;block<=DNA_SE_LENGTH;block++)
 					if (((block-1)%5)==0)
 						body += "</tr><tr><th>[block-1]</th>"
 					bname = assigned_blocks[block]
@@ -201,7 +201,7 @@ proc/admin_notice(var/message, var/rights)
 	// language toggles
 	body += "<br><br><b>Languages:</b><br>"
 	var/f = TRUE
-	for(var/k in all_languages)
+	for (var/k in all_languages)
 		var/datum/language/L = all_languages[k]
 		if (!(L.flags & INNATE))
 			if (!f) body += " | "
@@ -258,14 +258,14 @@ proc/admin_notice(var/message, var/rights)
 		var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + 1
 		var/upper_bound = (page_index + 1) * PLAYER_NOTES_ENTRIES_PER_PAGE
 		upper_bound = min(upper_bound, note_keys.len)
-		for(var/index = lower_bound, index <= upper_bound, index++)
+		for (var/index = lower_bound, index <= upper_bound, index++)
 			var/t = note_keys[index]
 			dat += "<tr><td><a href='?src=\ref[src];notes=show;ckey=[t]'>[t]</a></td></tr>"
 
 		dat += "</table><br>"
 
 		// Display a footer to select different pages
-		for(var/index = TRUE, index <= number_pages, index++)
+		for (var/index = TRUE, index <= number_pages, index++)
 			if (index == page)
 				dat += "<b>"
 			dat += "<a href='?src=\ref[src];notes=list;index=[index]'>[index]</a> "
@@ -298,7 +298,7 @@ proc/admin_notice(var/message, var/rights)
 	dat += "<body>"
 
 	var/p_age = "unknown"
-	for(var/client/C in clients)
+	for (var/client/C in clients)
 		if (C.ckey == key)
 			p_age = C.player_age
 			break
@@ -312,7 +312,7 @@ proc/admin_notice(var/message, var/rights)
 	else
 		var/update_file = FALSE
 		var/i = FALSE
-		for(var/datum/player_info/I in infos)
+		for (var/datum/player_info/I in infos)
 			i += 1
 			if (!I.timestamp)
 				I.timestamp = "Pre-4/3/2012"
@@ -336,7 +336,7 @@ proc/admin_notice(var/message, var/rights)
 	if (!check_rights(R_BAN))	return
 
 	var/dat = "<b>Job Bans!</b><HR><table>"
-	for(var/t in jobban_keylist)
+	for (var/t in jobban_keylist)
 		var/r = t
 		if ( findtext(r,"##") )
 			r = copytext( r, TRUE, findtext(r,"##") )//removes the description
@@ -380,13 +380,13 @@ proc/admin_notice(var/message, var/rights)
 	if (!check_rights(0))	return
 
 	var/dat = "<b>The first rule of adminbuse is: you don't talk about the adminbuse.</b><HR>"
-	for(var/datum/admin_secret_category/category in admin_secrets.categories)
+	for (var/datum/admin_secret_category/category in admin_secrets.categories)
 		if (!category.can_view(usr))
 			continue
 		dat += "<b>[category.name]</b><br>"
 		if (category.desc)
 			dat += "<I>[category.desc]</I><BR>"
-		for(var/datum/admin_secret_item/item in category.items)
+		for (var/datum/admin_secret_item/item in category.items)
 			if (!item.can_view(usr))
 				continue
 			dat += "<A href='?src=\ref[src];admin_secrets=\ref[item]'>[item.name()]</A><BR>"
@@ -689,7 +689,7 @@ var/admin_restart_disabled = FALSE
 
 	if (M.mind)
 /*		if (ticker.mode.antag_templates && ticker.mode.antag_templates.len)
-			for(var/datum/antagonist/antag in ticker.mode.antag_templates)
+			for (var/datum/antagonist/antag in ticker.mode.antag_templates)
 				if (antag.is_antagonist(M.mind))
 					return 2
 		else */
@@ -733,10 +733,10 @@ var/admin_restart_disabled = FALSE
 		usr << "Custom item list not populated."
 		return
 
-	for(var/assoc_key in custom_items)
+	for (var/assoc_key in custom_items)
 		usr << "[assoc_key] has:"
 		var/list/current_items = custom_items[assoc_key]
-		for(var/datum/custom_item/item in current_items)
+		for (var/datum/custom_item/item in current_items)
 			usr << "- name: [item.name] icon: [item.item_icon] path: [item.item_path] desc: [item.item_desc]"
 */
 
@@ -753,7 +753,7 @@ var/list/atom_types = null
 
 	var/list/matches = list()
 
-	for(var/path in atom_types)
+	for (var/path in atom_types)
 		if (findtext("[path]", object))
 			matches += path
 
@@ -861,7 +861,7 @@ var/list/atom_types = null
 
 	if (ticker.mode.antag_tags && ticker.mode.antag_tags.len)
 		out += "<b>Core antag templates:</b></br>"
-		for(var/antag_tag in ticker.mode.antag_tags)
+		for (var/antag_tag in ticker.mode.antag_tags)
 			out += "<a href='?src=\ref[ticker.mode];debug_antag=[antag_tag]'>[antag_tag]</a>.</br>"
 
 	if (ticker.mode.round_autoantag)
@@ -876,7 +876,7 @@ var/list/atom_types = null
 
 	out += "<b>All antag ids:</b>"
 	if (ticker.mode.antag_templates && ticker.mode.antag_templates.len).
-		for(var/datum/antagonist/antag in ticker.mode.antag_templates)
+		for (var/datum/antagonist/antag in ticker.mode.antag_templates)
 			antag.update_current_antag_max()
 			out += " <a href='?src=\ref[ticker.mode];debug_antag=[antag.id]'>[antag.id]</a>"
 			out += " ([antag.get_antag_count()]/[antag.cur_max]) "

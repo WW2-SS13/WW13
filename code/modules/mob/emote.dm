@@ -30,7 +30,7 @@
  //Hearing gasp and such every five seconds is not good emotes were not global for a reason.
  // Maybe some people are okay with that.
 
-		for(var/mob/M in player_list)
+		for (var/mob/M in player_list)
 			if (!M.client)
 				continue //skip monkeys and leavers
 			if (istype(M, /mob/new_player))
@@ -42,7 +42,7 @@
 
 		if (m_type & TRUE)
 			var/list/see = get_mobs_or_objects_in_view(world.view,src) | viewers(get_turf(src), null)
-			for(var/I in see)
+			for (var/I in see)
 				if (isobj(I))
 					spawn(0)
 						if (I) //It's possible that it could be deleted in the meantime.
@@ -54,7 +54,7 @@
 
 		else if (m_type & 2)
 			var/list/hear = get_mobs_or_objects_in_view(world.view,src)
-			for(var/I in hear)
+			for (var/I in hear)
 				if (isobj(I))
 					spawn(0)
 						if (I) //It's possible that it could be deleted in the meantime.

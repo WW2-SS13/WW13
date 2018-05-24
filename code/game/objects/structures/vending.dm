@@ -36,7 +36,7 @@
 /datum/data/vending_product/Destroy()
 	vending_machine = null
 	if (instances)
-		for(var/product in instances)
+		for (var/product in instances)
 			qdel(product)
 		instances.Cut()
 	. = ..()
@@ -65,7 +65,7 @@
 	if (instances)
 		return
 	instances = list()
-	for(var/i = TRUE to amount)
+	for (var/i = TRUE to amount)
 		var/new_product = new product_path(vending_machine)
 		instances += new_product
 
@@ -177,10 +177,10 @@
 		list(contraband, CAT_HIDDEN),
 		list(premium, CAT_COIN))
 
-	for(var/current_list in all_products)
+	for (var/current_list in all_products)
 		var/category = current_list[2]
 
-		for(var/entry in current_list[1])
+		for (var/entry in current_list[1])
 			var/datum/data/vending_product/product = new/datum/data/vending_product(src, entry)
 
 			product.price = (entry in prices) ? prices[entry] : FALSE
@@ -194,7 +194,7 @@
 //	wires = null
 //	qdel(coin)
 //	coin = null
-	for(var/datum/data/vending_product/R in product_records)
+	for (var/datum/data/vending_product/R in product_records)
 		qdel(R)
 	product_records.Cut()
 	return ..()
@@ -298,7 +298,7 @@
 
 	else
 
-		for(var/datum/data/vending_product/R in product_records)
+		for (var/datum/data/vending_product/R in product_records)
 			if (istype(W, R.product_path))
 				stock(W, R, user)
 				return TRUE
@@ -459,7 +459,7 @@
 		data["mode"] = FALSE
 		var/list/listed_products = list()
 
-		for(var/key = TRUE to product_records.len)
+		for (var/key = TRUE to product_records.len)
 			var/datum/data/vending_product/I = product_records[key]
 
 			if (!(I.category & categories))
@@ -634,7 +634,7 @@
 	if (!message)
 		return
 
-	for(var/mob/O in hearers(src, null))
+	for (var/mob/O in hearers(src, null))
 		O.show_message("<span class='game say'><span class='name'>\The [src]</span> beeps, \"[message]\"</span>",2)
 	return
 */
@@ -653,8 +653,8 @@
 //Oh no we're malfunctioning!  Dump out some product and break.
 /*
 /obj/structure/vending/proc/malfunction()
-	for(var/datum/data/vending_product/R in product_records)
-		while(R.get_amount()>0)
+	for (var/datum/data/vending_product/R in product_records)
+		while (R.get_amount()>0)
 			R.get_product(loc)
 		break
 
@@ -670,7 +670,7 @@
 	if (!target)
 		return FALSE
 
-	for(var/datum/data/vending_product/R in product_records)
+	for (var/datum/data/vending_product/R in product_records)
 		throw_item = R.get_product(loc)
 		if (!throw_item)
 			continue
@@ -910,10 +910,10 @@
 		list(contraband, CAT_HIDDEN),
 		list(premium, CAT_COIN))
 
-	for(var/current_list in all_products)
+	for (var/current_list in all_products)
 		var/category = current_list[2]
 
-		for(var/entry in current_list[1])
+		for (var/entry in current_list[1])
 			var/obj/item/seeds/S = new entry(src)
 			var/name = S.name
 			var/datum/data/vending_product/product = new/datum/data/vending_product(src, entry, name)

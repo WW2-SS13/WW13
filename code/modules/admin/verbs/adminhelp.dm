@@ -44,7 +44,7 @@
 	msg = "<span class = 'notice'><b><font color=red>Request for Help: </span>[get_options_bar(mob, 2, TRUE, TRUE)]:</b> [msg]</span>"
 	var/mentormsg = "<span class = 'notice'><b><font color=red>Request for Help:</b> [msg]</span>"
 
-	for(var/client/X in admins)
+	for (var/client/X in admins)
 		if ((R_ADMIN|R_MOD) & X.holder.rights)
 
 			if (X.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))

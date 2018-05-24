@@ -9,7 +9,7 @@ json_writer
 
 			. = "{"
 			var/i = 1
-			for(var/k in L)
+			for (var/k in L)
 				var/val = L[k]
 				. += {"\"[k]\":[write(val)]"}
 				if (i++ < L.len)
@@ -31,7 +31,7 @@ json_writer
 
 		write_array(list/L)
 			. = "\["
-			for(var/i = 1 to L.len)
+			for (var/i = 1 to L.len)
 				. += write(L[i])
 				if (i < L.len)
 					. += ","
@@ -39,9 +39,9 @@ json_writer
 
 		write_string(txt)
 			var/static/list/json_escape = list("\\" = "\\\\", "\"" = "\\\"", "\n" = "\\n")
-			for(var/targ in json_escape)
+			for (var/targ in json_escape)
 				var/start = 1
-				while(start <= lentext(txt))
+				while (start <= lentext(txt))
 					var/i = findtext(txt, targ, start)
 					if (!i)
 						break
@@ -52,7 +52,7 @@ json_writer
 			return {""[txt]""}
 
 		is_associative(list/L)
-			for(var/key in L)
+			for (var/key in L)
 				// if the key is a list that means it's actually an array of lists (stupid Byond...)
 				if (!isnum(key) && !isnull(L[key]) && !istype(key, /list))
 					return TRUE

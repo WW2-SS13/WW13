@@ -121,7 +121,7 @@
 		output += "<HR><b>Objectives:</b>"
 
 		var/obj_count = TRUE
-		for(var/datum/objective/objective in objectives)
+		for (var/datum/objective/objective in objectives)
 			output += "<b>Objective #[obj_count]</b>: [objective.explanation_text]"
 			obj_count++
 */
@@ -152,7 +152,7 @@
 	out += "Assigned role: [assigned_role]. <a href='?src=\ref[src];role_edit=1'>Edit</a><br>"
 	out += "<hr>"
 /*	out += "Factions and special roles:<br><table>"
-	for(var/antag_type in all_antag_types)
+	for (var/antag_type in all_antag_types)
 		var/datum/antagonist/antag = all_antag_types[antag_type]
 		out += "[antag.get_panel_entry(src)]"*/
 	out += "</table><hr>"
@@ -160,7 +160,7 @@
 
 	if (objectives && objectives.len)
 		var/num = TRUE
-		for(var/datum/objective/O in objectives)
+		for (var/datum/objective/O in objectives)
 			out += "<b>Objective #[num]:</b> [O.explanation_text] "
 			if (O.completed)
 				out += "(<font color='green'>complete</font>)"
@@ -243,7 +243,7 @@
 				var/objective_type = "[objective_type_capital][objective_type_text]"//Add them together into a text string.
 
 				var/list/possible_targets = list("Free objective")
-				for(var/datum/mind/possible_target in ticker.minds)
+				for (var/datum/mind/possible_target in ticker.minds)
 					if ((possible_target != src) && istype(possible_target.current, /mob/living/carbon/human))
 						possible_targets += possible_target.current
 
@@ -348,7 +348,7 @@
 	else if (href_list["common"])
 		switch(href_list["common"])
 			if ("undress")
-				for(var/obj/item/W in current)
+				for (var/obj/item/W in current)
 					current.drop_from_inventory(W)
 			if ("takeuplink")
 				take_uplink()
@@ -357,7 +357,7 @@
 	else if (href_list["obj_announce"])
 		var/obj_count = TRUE
 		current << "<span class = 'notice'>Your current objectives:</span>"
-		for(var/datum/objective/objective in objectives)
+		for (var/datum/objective/objective in objectives)
 			current << "<b>Objective #[obj_count]</b>: [objective.explanation_text]"
 			obj_count++*/
 	edit_memory()

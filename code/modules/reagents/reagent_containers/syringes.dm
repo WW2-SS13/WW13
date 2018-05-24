@@ -109,7 +109,7 @@
 							on_reagent_change()
 							reagents.handle_reactions()
 						user << "<span class='notice'>You take a blood sample from [target].</span>"
-						for(var/mob/O in viewers(4, user))
+						for (var/mob/O in viewers(4, user))
 							O.show_message("<span class='notice'>[user] takes a blood sample from [target].</span>", TRUE)
 
 				else //if not mob
@@ -242,7 +242,7 @@
 				return
 
 			if (target != user && H.getarmor(target_zone, "melee") > 5 && prob(50))
-				for(var/mob/O in viewers(world.view, user))
+				for (var/mob/O in viewers(world.view, user))
 					O.show_message(text("<span class = 'red'><b>[user] tries to stab [target] in \the [hit_area] with [name], but the attack is deflected by armor!</b></span>"), TRUE)
 				user.remove_from_mob(src)
 				qdel(src)

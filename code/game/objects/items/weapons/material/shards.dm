@@ -76,7 +76,7 @@
 			M << "<span class='danger'>You step on \the [src]!</span>"
 
 			var/list/check = list("l_foot", "r_foot")
-			while(check.len)
+			while (check.len)
 				var/picked = pick(check)
 				var/obj/item/organ/external/affecting = H.get_organ(picked)
 				if (affecting)

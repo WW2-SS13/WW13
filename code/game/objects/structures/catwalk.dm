@@ -12,7 +12,7 @@
 //		set_light(l_range = 1.4, l_power = 0.4, l_color = COLOR_ORANGE)
 		spawn(4)
 			if (src)
-				for(var/obj/structure/catwalk/C in get_turf(src))
+				for (var/obj/structure/catwalk/C in get_turf(src))
 					if (C != src)
 						qdel(C)
 				update_icon()
@@ -29,7 +29,7 @@
 
 /obj/structure/catwalk/update_icon()
 	var/connectdir = FALSE
-	for(var/direction in cardinal)
+	for (var/direction in cardinal)
 		if (locate(/obj/structure/catwalk, get_step(src, direction)))
 			connectdir |= direction
 	//if (locate(/obj/structure/catwalk) in get_step(src, dir))

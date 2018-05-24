@@ -1,6 +1,6 @@
 /datum/preferences
 	//The mob should have a gender you want before running this proc. Will run fine without H
-	proc/randomize_appearance_for(var/mob/living/carbon/human/H)
+	proc/randomize_appearance_for (var/mob/living/carbon/human/H)
 		gender = pick(MALE, FEMALE)
 		var/datum/species/current_species = all_species[species]
 
@@ -207,7 +207,7 @@
 			I.Blend(new /icon(icobase, "groin[g][body.index]"), ICON_OVERLAY)
 			I.Blend(new /icon(icobase, "head[g][body.index]"), ICON_OVERLAY)
 
-			for(var/name in list("r_arm","r_hand","r_leg","r_foot","l_leg","l_foot","l_arm","l_hand"))
+			for (var/name in list("r_arm","r_hand","r_leg","r_foot","l_leg","l_foot","l_arm","l_hand"))
 				if (organ_data[name] == "amputated") continue
 				if (organ_data[name] == "cyborg") continue
 
@@ -311,7 +311,7 @@
 
 		/*
 			if (current_species.appearance_flags & HAS_UNDERWEAR)
-				for(var/underwear_category_name in all_underwear)
+				for (var/underwear_category_name in all_underwear)
 					var/datum/category_group/underwear/underwear_category = global_underwear.categories_by_name[underwear_category_name]
 					if (underwear_category)
 						var/underwear_item_name = all_underwear[underwear_category_name]

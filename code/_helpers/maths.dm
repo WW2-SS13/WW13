@@ -30,7 +30,7 @@
 
 /proc/Mean(...)
 	var/sum = FALSE
-	for(var/val in args)
+	for (var/val in args)
 		sum += val
 	return sum / args.len
 
@@ -67,18 +67,18 @@
 // Clone of list()
 /proc/n_list()
 	var/list/returnlist = list()
-	for(var/e in args)
+	for (var/e in args)
 		returnlist.Add(e)
 	return returnlist
 
 // Clone of pick()
 /proc/n_pick()
 	var/list/finalpick = list()
-	for(var/e in args)
+	for (var/e in args)
 		if (isobject(e))
 			if (istype(e, /list))
 				var/list/sublist = e
-				for(var/sube in sublist)
+				for (var/sube in sublist)
 					finalpick.Add(sube)
 				continue
 		finalpick.Add(e)
@@ -110,7 +110,7 @@
 /proc/n_listadd()
 	var/list/chosenlist
 	var/i = TRUE
-	for(var/e in args)
+	for (var/e in args)
 		if (i == TRUE)
 			if (isobject(e))
 				if (istype(e, /list))
@@ -124,7 +124,7 @@
 /proc/n_listremove()
 	var/list/chosenlist
 	var/i = TRUE
-	for(var/e in args)
+	for (var/e in args)
 		if (i == TRUE)
 			if (isobject(e))
 				if (istype(e, /list))
@@ -178,7 +178,7 @@ proc/n_repeat(var/string, var/amount)
 		var/newstring = ""
 		if (length(newstring)*amount >=1000)
 			return
-		for(i=0, i<=amount, i++)
+		for (i=0, i<=amount, i++)
 			if (i>=1000)
 				break
 			newstring = newstring + string
@@ -189,7 +189,7 @@ proc/n_reverse(var/string)
 	if (istext(string))
 		var/newstring = ""
 		var/i
-		for(i=lentext(string), i>0, i--)
+		for (i=lentext(string), i>0, i--)
 			if (i>=1000)
 				break
 			newstring = newstring + copytext(string, i, i+1)

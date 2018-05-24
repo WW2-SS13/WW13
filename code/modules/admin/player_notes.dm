@@ -15,7 +15,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 		. = "<b>Notes for <a href='?src=\ref[src];notes=show'>[ckey]</a>:</b> <a href='?src=\ref[src];notes=add;ckey=[ckey]'>\[+\]</a> <a href='?src=\ref[src];notes=remove;ckey=[ckey]'>\[-\]</a><br>"
 		notesfile.cd = "/[ckey]"
 		var/index = TRUE
-		while( !notesfile.eof )
+		while ( !notesfile.eof )
 			var/note
 			notesfile >> note
 			. += "[note] <a href='?src=\ref[src];notes=remove;ckey=[ckey];from=[index]'>\[-\]</a><br>"
@@ -23,7 +23,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	else
 		. = "<b>All Notes:</b> <a href='?src=\ref[src];notes=add'>\[+\]</a> <a href='?src=\ref[src];notes=remove'>\[-\]</a><br>"
 		notesfile.cd = "/"
-		for(var/dir in notesfile.dir)
+		for (var/dir in notesfile.dir)
 			. += "<a href='?src=\ref[src];notes=show;ckey=[dir]'>[dir]</a><br>"
 	return
 
@@ -42,7 +42,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 		var/list/noteslist = list()
 		if (!end_index)	end_index = start_index
 		var/index = FALSE
-		while( !notesfile.eof )
+		while ( !notesfile.eof )
 			index++
 			var/temp
 			notesfile >> temp
@@ -52,7 +52,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 
 		notesfile.eof = -2		//Move to the start of the buffer and then erase.
 
-		for( var/note in noteslist )
+		for ( var/note in noteslist )
 			notesfile << note
 	else
 		notesfile.cd = "/"
@@ -141,7 +141,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	if (!infos)
 		dat = "No information found on the given key."
 	else
-		for(var/datum/player_info/I in infos)
+		for (var/datum/player_info/I in infos)
 			dat += "[I.content]\nby [I.author] ([I.rank]) on [I.timestamp]\n\n"
 
 	return list2params(list(dat))

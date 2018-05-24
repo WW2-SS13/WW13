@@ -333,7 +333,7 @@
 
 	if (isturf(loc))
 		var/turf/tile = loc
-		for(var/obj/effect/E in tile)
+		for (var/obj/effect/E in tile)
 			if (istype(E,/obj/effect/decal/cleanable) || istype(E,/obj/effect/overlay))
 				qdel(E)
 
@@ -342,7 +342,7 @@
 /obj/structure/shower/process()
 	if (!on) return
 
-	for(var/thing in loc)
+	for (var/thing in loc)
 		var/atom/movable/AM = thing
 		var/mob/living/L = thing
 		if (istype(AM) && AM.simulated)
@@ -455,7 +455,7 @@
 	user.clean_blood()
 	if (ishuman(user))
 		user:update_inv_gloves()
-	for(var/mob/V in viewers(src, null))
+	for (var/mob/V in viewers(src, null))
 		V.show_message("<span class='notice'>[user] washes their hands using \the [src].</span>")
 
 /obj/structure/sink/attackby(obj/item/O as obj, mob/living/user as mob)

@@ -12,7 +12,7 @@ var/global/datum/getrev/revdata = new()
 		branch = copytext(head_branch[1], 17)
 
 	var/list/head_log = file2list("Interstation-Two-WW2/.git/logs/HEAD", "\n")
-	for(var/line=head_log.len, line>=1, line--)
+	for (var/line=head_log.len, line>=1, line--)
 		if (head_log[line])
 			var/list/last_entry = splittext(head_log[line], " ")
 			if (last_entry.len < 2)	continue

@@ -80,7 +80,7 @@
 	. = ..()
 
 	if (Obj && OldLoc != src)
-		for(var/A in Obj.light_sources) // Cycle through the light sources on this atom and tell them to update.
+		for (var/A in Obj.light_sources) // Cycle through the light sources on this atom and tell them to update.
 			if (!A)
 				continue
 
@@ -91,7 +91,7 @@
 	. = ..()
 
 	if (!newloc && Obj && newloc != src) // Incase the atom is being moved to nullspace, we handle queuing for a lighting update here.
-		for(var/A in Obj.light_sources) // Cycle through the light sources on this atom and tell them to update.
+		for (var/A in Obj.light_sources) // Cycle through the light sources on this atom and tell them to update.
 			if (!A)
 				continue
 

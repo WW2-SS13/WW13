@@ -38,7 +38,7 @@
 	user << "<span class='notice'>You empty [src].</span>"
 	var/turf/T = get_turf(src)
 	hold.hide_from(usr)
-	for(var/obj/item/I in hold.contents)
+	for (var/obj/item/I in hold.contents)
 		hold.remove_from_storage(I, T)
 	add_fingerprint(user)
 

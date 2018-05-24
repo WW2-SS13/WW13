@@ -60,7 +60,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 	var/t = FALSE
 	var/timeout_time = (ASSET_CACHE_SEND_TIMEOUT * client.sending.len) + ASSET_CACHE_SEND_TIMEOUT
-	while(client && !client.completed_asset_jobs.Find(job) && t < timeout_time) // Reception is handled in Topic()
+	while (client && !client.completed_asset_jobs.Find(job) && t < timeout_time) // Reception is handled in Topic()
 		sleep(1) // Lock up the caller until this is received.
 		t++
 
@@ -88,7 +88,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		return FALSE
 	if (unreceived.len >= ASSET_CACHE_TELL_CLIENT_AMOUNT)
 		client << "Sending Resources..."
-	for(var/asset in unreceived)
+	for (var/asset in unreceived)
 		if (asset in asset_cache.cache)
 			client << browse_rsc(asset_cache.cache[asset], asset)
 
@@ -109,7 +109,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 	var/t = FALSE
 	var/timeout_time = ASSET_CACHE_SEND_TIMEOUT * client.sending.len
-	while(client && !client.completed_asset_jobs.Find(job) && t < timeout_time) // Reception is handled in Topic()
+	while (client && !client.completed_asset_jobs.Find(job) && t < timeout_time) // Reception is handled in Topic()
 		sleep(1) // Lock up the caller until this is received.
 		t++
 
@@ -123,7 +123,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 //This proc will download the files without clogging up the browse() queue, used for passively sending files on connection start.
 //The proc calls procs that sleep for long times.
 /proc/getFilesSlow(var/client/client, var/list/files, var/register_asset = TRUE)
-	for(var/file in files)
+	for (var/file in files)
 		if (!client)
 			break
 		if (register_asset)
@@ -162,7 +162,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	var/verify = FALSE
 
 /datum/asset/simple/register()
-	for(var/asset_name in assets)
+	for (var/asset_name in assets)
 		register_asset(asset_name, assets[asset_name])
 /datum/asset/simple/send(client)
 	send_asset_list(client,assets,verify)
@@ -216,14 +216,14 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	// Crawl the directories to find files.
 	for (var/path in common_dirs)
 		var/list/filenames = flist(path)
-		for(var/filename in filenames)
+		for (var/filename in filenames)
 			if (copytext(filename, length(filename)) != "/") // Ignore directories.
 				if (fexists(path + filename))
 					common[filename] = fcopy_rsc(path + filename)
 					register_asset(filename, common[filename])
 	for (var/path in uncommon_dirs)
 		var/list/filenames = flist(path)
-		for(var/filename in filenames)
+		for (var/filename in filenames)
 			if (copytext(filename, length(filename)) != "/") // Ignore directories.
 				if (fexists(path + filename))
 					register_asset(filename, fcopy_rsc(path + filename))
@@ -248,11 +248,11 @@ var/decl/asset_cache/asset_cache = new()
 	cache = new
 
 /hook/roundstart/proc/send_assets()
-	for(var/type in typesof(/datum/asset) - list(/datum/asset, /datum/asset/simple))
+	for (var/type in typesof(/datum/asset) - list(/datum/asset, /datum/asset/simple))
 		var/datum/asset/A = new type()
 		A.register()
 
-	for(var/client/C in clients)
+	for (var/client/C in clients)
 		// Doing this to a client too soon after they've connected can cause issues, also the proc we call sleeps.
 		spawn(10)
 			getFilesSlow(C, asset_cache.cache, FALSE)

@@ -68,7 +68,7 @@
 	return TRUE
 
 /obj/structure/mirror/Destroy()
-	for(var/user in ui_users)
+	for (var/user in ui_users)
 		var/datum/nano_module/appearance_changer/AC = ui_users[user]
 		qdel(AC)
 	ui_users.Cut()
@@ -92,7 +92,7 @@
 		AC.ui_interact(user)
 
 /obj/item/weapon/mirror/Destroy()
-	for(var/user in ui_users)
+	for (var/user in ui_users)
 		var/datum/nano_module/appearance_changer/AC = ui_users[user]
 		qdel(AC)
 	ui_users.Cut()

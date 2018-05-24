@@ -139,7 +139,7 @@
 
 /mob/living/carbon/human/proc/generate_valid_species(var/check_whitelist = TRUE, var/list/whitelist = list(), var/list/blacklist = list())
 	var/list/valid_species = new()
-	for(var/current_species_name in all_species)
+	for (var/current_species_name in all_species)
 		var/datum/species/current_species = all_species[current_species_name]
 
 		if (check_whitelist && !check_rights(R_ADMIN, FALSE, src)) //If we're using the whitelist, make sure to check it!
@@ -156,7 +156,7 @@
 
 /mob/living/carbon/human/proc/generate_valid_hairstyles(var/check_gender = TRUE)
 	var/list/valid_hairstyles = new()
-	for(var/hairstyle in hair_styles_list)
+	for (var/hairstyle in hair_styles_list)
 		var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
 
 		if (check_gender && gender == MALE && S.gender == FEMALE)
@@ -171,7 +171,7 @@
 
 /mob/living/carbon/human/proc/generate_valid_facial_hairstyles()
 	var/list/valid_facial_hairstyles = new()
-	for(var/facialhairstyle in facial_hair_styles_list)
+	for (var/facialhairstyle in facial_hair_styles_list)
 		var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
 
 		if (gender == MALE && S.gender == FEMALE)
@@ -186,6 +186,6 @@
 	return valid_facial_hairstyles
 
 /mob/living/carbon/human/proc/force_update_limbs()
-	for(var/obj/item/organ/external/O in organs)
+	for (var/obj/item/organ/external/O in organs)
 		O.sync_colour_to_human(src)
 	update_body(0)

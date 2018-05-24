@@ -61,7 +61,7 @@ default behaviour is:
 		if (istype(AM, /mob/living))
 			var/mob/living/tmob = AM
 
-			for(var/mob/living/M in range(tmob, TRUE))
+			for (var/mob/living/M in range(tmob, TRUE))
 				if (tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == FALSE)) || locate(/obj/item/weapon/grab, tmob.grabbed_by.len)) )
 					if ( !(world.time % 5) )
 						src << "<span class='warning'>[tmob] is restrained, you cannot push past</span>"
@@ -86,7 +86,7 @@ default behaviour is:
 				tmob.forceMove(oldloc)
 				now_pushing = FALSE
 				/*
-				for(var/mob/living/carbon/slime/slime in view(1,tmob))
+				for (var/mob/living/carbon/slime/slime in view(1,tmob))
 					if (slime.Victim == tmob)
 						slime.UpdateFeed()*/
 				return
@@ -127,12 +127,12 @@ default behaviour is:
 				if (!AM.anchored)
 					var/t = get_dir(src, AM)
 					if (istype(AM, /obj/structure/window))
-						for(var/obj/structure/window/win in get_step(AM,t))
+						for (var/obj/structure/window/win in get_step(AM,t))
 							now_pushing = FALSE
 							return
 					step(AM, t)
 					if (ishuman(AM) && AM:grabbed_by)
-						for(var/obj/item/weapon/grab/G in AM:grabbed_by)
+						for (var/obj/item/weapon/grab/G in AM:grabbed_by)
 							step(G:assailant, get_dir(G:assailant, AM))
 							G.adjust_position()
 				now_pushing = FALSE
@@ -143,7 +143,7 @@ default behaviour is:
 	var/turf/T = get_turf(swapper)
 	if (T.density)
 		return TRUE
-	for(var/atom/movable/A in T)
+	for (var/atom/movable/A in T)
 		if (A == swapper)
 			continue
 		if (!A.CanPass(swapee, T, TRUE))
@@ -191,7 +191,7 @@ default behaviour is:
 		var/mob/living/carbon/human/H = src	//make this damage method divide the damage to be done among all the body parts, then burn each body part for that much damage. will have better effect then just randomly picking a body part
 		var/divided_damage = (burn_amount)/(H.organs.len)
 		var/extradam = FALSE	//added to when organ is at max dam
-		for(var/obj/item/organ/external/affecting in H.organs)
+		for (var/obj/item/organ/external/affecting in H.organs)
 			if (!affecting)	continue
 			if (affecting.take_damage(0, divided_damage+extradam))	//TODO: fix the extradam stuff. Or, ebtter yet...rewrite this entire proc ~Carn
 				H.UpdateDamageIcon()
@@ -348,15 +348,15 @@ default behaviour is:
 	else
 
 		L += contents
-		for(var/obj/item/weapon/storage/S in contents)	//Check for storage items
+		for (var/obj/item/weapon/storage/S in contents)	//Check for storage items
 			L += get_contents(S)
 
 		return L
 
-/mob/living/proc/check_contents_for(A)
+/mob/living/proc/check_contents_for (A)
 	var/list/L = get_contents()
 
-	for(var/obj/B in L)
+	for (var/obj/B in L)
 		if (B.type == A)
 			return TRUE
 	return FALSE
@@ -481,7 +481,7 @@ default behaviour is:
 
 	var/t7 = TRUE
 	if (restrained())
-		for(var/mob/living/M in range(src, TRUE))
+		for (var/mob/living/M in range(src, TRUE))
 			if ((M.pulling == src && M.stat == FALSE && !( M.restrained() )))
 				t7 = null
 	if ((t7 && (pulling && ((get_dist(src, pulling) <= 1 || pulling.loc == loc) && (client && client.moving)))))
@@ -511,7 +511,7 @@ default behaviour is:
 						if (prob(75))
 							var/obj/item/weapon/grab/G = pick(M.grabbed_by)
 							if (istype(G, /obj/item/weapon/grab))
-								for(var/mob/O in viewers(M, null))
+								for (var/mob/O in viewers(M, null))
 									O.show_message(text("<span class = 'red'>[] has been pulled from []'s grip by [].</span>", G.affecting, G.assailant, src), TRUE)
 								//G = null
 								qdel(G)
@@ -557,7 +557,7 @@ default behaviour is:
 						if (istype(pulling, /obj/structure/window))
 							var/obj/structure/window/W = pulling
 							if (W.is_full_window())
-								for(var/obj/structure/window/win in get_step(pulling,get_dir(pulling.loc, T)))
+								for (var/obj/structure/window/win in get_step(pulling,get_dir(pulling.loc, T)))
 									stop_pulling()
 					if (pulling)
 						step(pulling, get_dir(pulling.loc, T))
@@ -569,10 +569,10 @@ default behaviour is:
 		s_active.close(src)
 /*
 	if (update_slimes)
-		for(var/mob/living/carbon/slime/M in view(1,src))
+		for (var/mob/living/carbon/slime/M in view(1,src))
 			M.UpdateFeed(src)*/
 
-	for(var/mob/M in oview(src))
+	for (var/mob/M in oview(src))
 		M.update_vision_cone()
 
 	update_vision_cone()
@@ -615,7 +615,7 @@ default behaviour is:
 		src << "<span class='warning'>You wriggle out of \the [M]'s grip!</span>"
 
 		// Update whether or not this mob needs to pass emotes to contents.
-		for(var/atom/A in M.contents)
+		for (var/atom/A in M.contents)
 			if (istype(A,/obj/item/weapon/holder))
 				return
 		M.status_flags &= ~PASSEMOTES
@@ -636,11 +636,11 @@ default behaviour is:
 
 /mob/living/proc/resist_grab()
 	var/resisting = FALSE
-	for(var/obj/O in requests)
+	for (var/obj/O in requests)
 		requests.Remove(O)
 		qdel(O)
 		resisting++
-	for(var/obj/item/weapon/grab/G in grabbed_by)
+	for (var/obj/item/weapon/grab/G in grabbed_by)
 		resisting++
 		switch(G.state)
 			if (GRAB_PASSIVE)

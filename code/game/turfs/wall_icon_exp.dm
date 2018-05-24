@@ -118,7 +118,7 @@
 /turf/wall/proc/generate_overlays()
 	var/alpha_inc = 256 / max(damage_overlays.len, 1)
 
-	for(var/i = 1; i <= damage_overlays.len; i++)
+	for (var/i = 1; i <= damage_overlays.len; i++)
 		var/image/img = image(icon = 'icons/turf/walls.dmi', icon_state = "overlay_damage")
 		img.blend_mode = BLEND_MULTIPLY
 		img.alpha = (i * alpha_inc) - 1
@@ -131,7 +131,7 @@
 	var/junction
 	if (update_self)
 		junction = FALSE
-	for(var/checkdir in cardinal)
+	for (var/checkdir in cardinal)
 		var/turf/wall/T = get_step(src, checkdir)
 		if (!istype(T) || !T.material)
 			continue

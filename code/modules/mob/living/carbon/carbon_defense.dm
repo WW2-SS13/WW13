@@ -43,7 +43,7 @@
 // Attacking someone with a weapon while they are neck-grabbed = throat slitting
 /mob/living/carbon/proc/check_attack_throat(obj/item/W, mob/user)
 	if (user.a_intent == I_HURT)
-		for(var/obj/item/weapon/grab/G in grabbed_by)
+		for (var/obj/item/weapon/grab/G in grabbed_by)
 			if (G.assailant == user && G.state >= GRAB_NECK)
 				if (attack_throat(W, G, user))
 					return TRUE
@@ -72,7 +72,7 @@
 		damage_mod = base_damage_mod - (helmet.armor["melee"]/100)
 
 	var/total_damage = FALSE
-	for(var/i in TRUE to 3)
+	for (var/i in TRUE to 3)
 		var/damage = min(W.force*1.5, 20)*damage_mod
 		apply_damage(damage, W.damtype, "head", FALSE, sharp=W.sharp, edge=W.edge)
 		total_damage += damage

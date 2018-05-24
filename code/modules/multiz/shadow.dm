@@ -51,7 +51,7 @@
 	var/mob/M = src
 	if (isturf(M.loc))
 		var/turf/open/OS = GetAbove(src)
-		while(OS && istype(OS))
+		while (OS && istype(OS))
 			if (!M.shadow)
 				M.shadow = PoolOrNew(/mob/shadow, M)
 			M.shadow.forceMove(OS)

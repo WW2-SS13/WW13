@@ -46,7 +46,7 @@
 	overlays.Cut()
 	var/has_border = FALSE
 	if (isnull(set_update_icon) && (flags & TURF_HAS_EDGES))
-		for(var/step_dir in cardinal)
+		for (var/step_dir in cardinal)
 			var/turf/floor/T = get_step(src, step_dir)
 			if ((!istype(T) || !T || T.name != name) && !istype(T, /turf/open) && !istype(T, /turf/space))
 				has_border |= step_dir
@@ -97,7 +97,7 @@
 		if (!isnull(burnt) && (flags & TURF_CAN_BURN))
 			overlays |= get_flooring_overlayu("[icon_base]-burned-[burnt]", "burned[burnt]")
 	if (update_neighbors)
-		for(var/turf/floor/F in range(src, TRUE))
+		for (var/turf/floor/F in range(src, TRUE))
 			if (F == src)
 				continue
 			F.update_icon()
@@ -116,7 +116,7 @@
 
 /turf/floor/plating/under/Entered(mob/living/M as mob)
 	..()
-	for(var/obj/structure/catwalk/C in get_turf(src))
+	for (var/obj/structure/catwalk/C in get_turf(src))
 		return
 
 	if (!ishuman(M) || !has_gravity(src))
@@ -345,7 +345,7 @@
 		spawn(4)
 			if (src)
 				update_icon()
-				for(var/direction in cardinal)
+				for (var/direction in cardinal)
 					if (istype(get_step(src,direction),/turf/floor))
 						var/turf/floor/FF = get_step(src,direction)
 						FF.update_icon() //so siding get updated properly
@@ -362,7 +362,7 @@
 		spawn(4)
 			if (src)
 				update_icon()
-				for(var/direction in list(1,2,4,8,5,6,9,10))
+				for (var/direction in list(1,2,4,8,5,6,9,10))
 					if (istype(get_step(src,direction),/turf/floor))
 						var/turf/floor/FF = get_step(src,direction)
 						FF.update_icon() //so siding get updated properly
@@ -420,7 +420,7 @@
 			wild = new/obj/structure/wild/bush(src)
 		else
 			var/chance = FALSE
-			for(var/turf/floor/plating/grass/T in range(1,src))
+			for (var/turf/floor/plating/grass/T in range(1,src))
 				if (T.wild)
 					chance += 40 // default is 40
 			if (prob(chance))

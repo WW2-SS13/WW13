@@ -7,7 +7,7 @@
 	if (delay)
 		selected_target[1] = object
 		selected_target[2] = params
-		while(selected_target[1] && mob && !mob.lying && mob.stat == CONSCIOUS)
+		while (selected_target[1] && mob && !mob.lying && mob.stat == CONSCIOUS)
 			var/foundMG = FALSE
 			for (var/obj/item/weapon/gun/projectile/automatic/stationary/MG in get_turf(src))
 				var/can_fire = TRUE

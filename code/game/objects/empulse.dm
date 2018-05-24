@@ -26,10 +26,10 @@ proc/empulse(turf/epicenter, heavy_range, light_range, log=0)
 	if (heavy_range > light_range)
 		light_range = heavy_range
 
-	for(var/mob/M in range(heavy_range, epicenter))
+	for (var/mob/M in range(heavy_range, epicenter))
 		M << 'sound/effects/EMPulse.ogg'
 
-	for(var/atom/T in range(light_range, epicenter))
+	for (var/atom/T in range(light_range, epicenter))
 		#ifdef EMPDEBUG
 		var/time = world.timeofday
 		#endif

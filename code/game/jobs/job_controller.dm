@@ -282,7 +282,7 @@ var/global/datum/controller/occupations/job_master
 	if (!all_jobs.len)
 		world << "<span class = 'red'>\b Error setting up jobs, no job datums found</span>"
 		return FALSE
-	for(var/J in all_jobs)
+	for (var/J in all_jobs)
 		var/datum/job/job = new J()
 		if (!job)	continue
 		if (job.faction != faction)	continue
@@ -299,7 +299,7 @@ var/global/datum/controller/occupations/job_master
 
 /datum/controller/occupations/proc/GetJob(var/rank)
 	if (!rank)	return null
-	for(var/datum/job/J in occupations)
+	for (var/datum/job/J in occupations)
 		if (!J)	continue
 		if (J.title == rank)	return J
 	return null
@@ -338,7 +338,7 @@ var/global/datum/controller/occupations/job_master
 
 /datum/controller/occupations/proc/ResetOccupations()
 
-	for(var/mob/new_player/player in player_list)
+	for (var/mob/new_player/player in player_list)
 		if ((player) && (player.mind))
 			player.mind.assigned_role = null
 			player.mind.special_role = null
@@ -690,7 +690,7 @@ var/global/datum/controller/occupations/job_master
 	if (!H)	return FALSE
 
 	var/datum/job/job = null
-	for(var/datum/job/J in occupations)
+	for (var/datum/job/J in occupations)
 		if (J.title == rank)
 			job = J
 			break

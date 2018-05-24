@@ -27,7 +27,7 @@
 	var/turf/T = get_turf(src)
 	if (!T || !istype(T))
 		return FALSE
-	for(var/obj/O in T.contents)
+	for (var/obj/O in T.contents)
 		if (O == src)
 			continue
 		if (istype(O,/obj/structure))

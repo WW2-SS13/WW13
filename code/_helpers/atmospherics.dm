@@ -6,7 +6,7 @@
 	var/list/result = A.atmosanalyze(user)
 	if (result && result.len)
 		user << "<span class='notice'>Results of the analysis[src == A ? "" : " of \the [A]"]</span>"
-		for(var/line in result)
+		for (var/line in result)
 			user << "<span class='notice'>[line]</span>"
 		return TRUE
 
@@ -20,7 +20,7 @@
 	var/list/results = list()
 	if (total_moles>0)
 		results += "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>"
-		for(var/mix in mixture.gas)
+		for (var/mix in mixture.gas)
 			results += "<span class='notice'>[gas_data.name[mix]]: [round((mixture.gas[mix] / total_moles) * 100)]%</span>"
 		results += "<span class='notice'>Temperature: [round(mixture.temperature-T0C)]&deg;C</span>"
 	else

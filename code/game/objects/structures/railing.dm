@@ -31,7 +31,7 @@
 	anchored = null
 	flags = null
 	broken = TRUE
-	for(var/obj/structure/railing/R in oview(src, TRUE))
+	for (var/obj/structure/railing/R in oview(src, TRUE))
 		R.update_icon()
 	..()
 
@@ -72,7 +72,7 @@
 	var/Rturn = turn(dir, -90)
 	var/Lturn = turn(dir, 90)
 
-	for(var/obj/structure/railing/R in loc)// Анализ клетки, где находится сам объект
+	for (var/obj/structure/railing/R in loc)// Анализ клетки, где находится сам объект
 		if ((R.dir == Lturn) && R.anchored)//Проверка левой стороны
 			//LeftSide[1] = TRUE
 			check |= 32
@@ -109,7 +109,7 @@
 				R.update_icon(0)
 
 
-/*	for(var/obj/structure/railing/R in get_step(src, dir))
+/*	for (var/obj/structure/railing/R in get_step(src, dir))
 		if ((R.dir == Lturn) && R.anchored)//Проверка левой стороны
 			LeftSide[3] = TRUE
 		if ((R.dir == Rturn) && R.anchored)//Проверка правой стороны

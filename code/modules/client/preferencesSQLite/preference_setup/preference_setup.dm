@@ -50,32 +50,32 @@
 	return ..()
 
 /datum/category_collection/player_setup_collection/proc/sanitize_setup()
-	for(var/datum/category_group/player_setup_category/PS in categories)
+	for (var/datum/category_group/player_setup_category/PS in categories)
 		PS.sanitize_setup()
 
 /datum/category_collection/player_setup_collection/proc/load_character()
-	for(var/datum/category_group/player_setup_category/PS in categories)
+	for (var/datum/category_group/player_setup_category/PS in categories)
 		PS.load_character()
 
 /datum/category_collection/player_setup_collection/proc/save_character()
-	for(var/datum/category_group/player_setup_category/PS in categories)
+	for (var/datum/category_group/player_setup_category/PS in categories)
 		PS.save_character()
 
 /datum/category_collection/player_setup_collection/proc/load_preferences()
-	for(var/datum/category_group/player_setup_category/PS in categories)
+	for (var/datum/category_group/player_setup_category/PS in categories)
 		PS.load_preferences()
 
 /datum/category_collection/player_setup_collection/proc/save_preferences()
-	for(var/datum/category_group/player_setup_category/PS in categories)
+	for (var/datum/category_group/player_setup_category/PS in categories)
 		PS.save_preferences()
 
 /datum/category_collection/player_setup_collection/proc/update_setup()
-	for(var/datum/category_group/player_setup_category/PS in categories)
+	for (var/datum/category_group/player_setup_category/PS in categories)
 		. = . && PS.update_setup()
 
 /datum/category_collection/player_setup_collection/proc/header()
 	var/dat = ""
-	for(var/datum/category_group/player_setup_category/PS in categories)
+	for (var/datum/category_group/player_setup_category/PS in categories)
 		if (PS == selected_category)
 			dat += "[PS.name] "	// TODO: Check how to properly mark a href/button selected in a classic browser window
 		else
@@ -112,47 +112,47 @@
 	return sort_order
 
 /datum/category_group/player_setup_category/proc/sanitize_setup()
-	for(var/datum/category_item/player_setup_item/PI in items)
+	for (var/datum/category_item/player_setup_item/PI in items)
 		PI.sanitize_preferences()
-	for(var/datum/category_item/player_setup_item/PI in items)
+	for (var/datum/category_item/player_setup_item/PI in items)
 		PI.sanitize_character()
 
 /datum/category_group/player_setup_category/proc/load_character()
 	// Load all data, then sanitize it.
 	// Need due to, for example, the 11_basic module relying on species having been loaded to sanitize correctly but that isn't loaded until module FALSE3_body.
-	for(var/datum/category_item/player_setup_item/PI in items)
+	for (var/datum/category_item/player_setup_item/PI in items)
 		PI.load_character()
-	for(var/datum/category_item/player_setup_item/PI in items)
+	for (var/datum/category_item/player_setup_item/PI in items)
 		PI.sanitize_character()
 
 /datum/category_group/player_setup_category/proc/save_character()
 	// Sanitize all data, then save it
-	for(var/datum/category_item/player_setup_item/PI in items)
+	for (var/datum/category_item/player_setup_item/PI in items)
 		PI.sanitize_character()
-	for(var/datum/category_item/player_setup_item/PI in items)
+	for (var/datum/category_item/player_setup_item/PI in items)
 		PI.save_character()
 
 /datum/category_group/player_setup_category/proc/load_preferences()
-	for(var/datum/category_item/player_setup_item/PI in items)
+	for (var/datum/category_item/player_setup_item/PI in items)
 		PI.load_preferences()
-	for(var/datum/category_item/player_setup_item/PI in items)
+	for (var/datum/category_item/player_setup_item/PI in items)
 		PI.sanitize_preferences()
 
 /datum/category_group/player_setup_category/proc/save_preferences()
-	for(var/datum/category_item/player_setup_item/PI in items)
+	for (var/datum/category_item/player_setup_item/PI in items)
 		PI.sanitize_preferences()
-	for(var/datum/category_item/player_setup_item/PI in items)
+	for (var/datum/category_item/player_setup_item/PI in items)
 		PI.save_preferences()
 
 /datum/category_group/player_setup_category/proc/update_setup()
-	for(var/datum/category_item/player_setup_item/PI in items)
+	for (var/datum/category_item/player_setup_item/PI in items)
 		. = . && PI.update_setup()
 
 /datum/category_group/player_setup_category/proc/content(var/mob/user)
 	. = "<table style='width:100%'><tr style='vertical-align:top'><td style='width:50%'>"
 	var/current = FALSE
 	var/halfway = items.len / 2
-	for(var/datum/category_item/player_setup_item/PI in items)
+	for (var/datum/category_item/player_setup_item/PI in items)
 		if (halfway && current++ >= halfway)
 			halfway = FALSE
 			. += "</td><td></td><td style='width:50%'>"
@@ -165,7 +165,7 @@
 		user.client.prefs.current_character_type = SOVIET
 */
 /datum/category_group/player_setup_category/occupation_preferences/content(var/mob/user)
-	for(var/datum/category_item/player_setup_item/PI in items)
+	for (var/datum/category_item/player_setup_item/PI in items)
 		. += "[PI.content(user)]<br>"
 
 /**********************
@@ -276,7 +276,7 @@
 
 /datum/category_item/player_setup_item/proc/preference_mob()
 	if (!pref.client)
-		for(var/client/C)
+		for (var/client/C)
 			if (C.ckey == pref.client_ckey)
 				pref.client = C
 				break

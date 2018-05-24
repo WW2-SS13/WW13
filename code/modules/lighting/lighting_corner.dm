@@ -98,7 +98,7 @@
 
 /datum/lighting_corner/proc/update_active()
 	active = FALSE
-	for(var/TT in masters)
+	for (var/TT in masters)
 		var/turf/T = TT
 		if (T.lighting_overlay)
 			active = TRUE
@@ -110,7 +110,7 @@
 	lum_g += delta_g
 	lum_b += delta_b
 
-	for(var/TT in masters)
+	for (var/TT in masters)
 		var/turf/T = TT
 		if (T.lighting_overlay)
 			#ifdef LIGHTING_INSTANT_UPDATES

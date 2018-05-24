@@ -43,7 +43,7 @@
 	var/d1 = in_dir&(in_dir-1)		// eg west		(1+8)&(8) = 8
 	var/d2 = in_dir - d1			// eg north		(1+8) - 8 = TRUE
 
-	for(var/d in list(d1,d2))
+	for (var/d in list(d1,d2))
 		if (!T0.ClickCross(d, border_only = TRUE))
 			continue // could not leave T0 in that direction
 
@@ -73,7 +73,7 @@
 	var/d1 = in_dir&(in_dir-1)		// eg west		(1+8)&(8) = 8
 	var/d2 = in_dir - d1			// eg north		(1+8) - 8 = TRUE
 
-	for(var/d in list(d1,d2))
+	for (var/d in list(d1,d2))
 		if (!T0.ClickCross(d, border_only = TRUE))
 			continue // could not leave T0 in that direction
 
@@ -113,7 +113,7 @@ Quick adjacency (to turf):
 /atom/movable/Adjacent(var/atom/neighbor)
 	if (neighbor == loc) return TRUE
 	if (!isturf(loc)) return FALSE
-	for(var/turf/T in locs)
+	for (var/turf/T in locs)
 		if (isnull(T)) continue
 		if (T.Adjacent(neighbor,src)) return TRUE
 	return FALSE
@@ -145,7 +145,7 @@ Quick adjacency (to turf):
 	The border_only flag allows you to not objects (for source and destination squares)
 */
 /turf/proc/ClickCross(var/target_dir, var/border_only, var/target_atom = null)
-	for(var/obj/O in src)
+	for (var/obj/O in src)
 		if ( !O.density || O == target_atom || O.throwpass) continue // throwpass is used for anything you can click through
 
 		if ( O.flags&ON_BORDER) // windows have throwpass but are on border, check them first

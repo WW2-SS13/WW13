@@ -71,7 +71,7 @@
 	affecting = loc.contents - src		// moved items will be all in loc
 	spawn(1)	// slight delay to prevent infinite propagation due to map order	//TODO: please no spawn() in process(). It's a very bad idea
 		var/items_moved = FALSE
-		for(var/atom/movable/A in affecting)
+		for (var/atom/movable/A in affecting)
 			if (!A.anchored)
 				if (A.loc == loc) // prevents the object from being affected if it's not currently here.
 					step(A,movedir)
@@ -171,7 +171,7 @@
 /*
 	spawn(5)		// allow map load
 		conveyors = list()
-		for(var/obj/structure/conveyor/C in world)
+		for (var/obj/structure/conveyor/C in world)
 			if (C.id == id)
 				conveyors += C*/
 
@@ -195,7 +195,7 @@
 		return
 	operated = FALSE
 
-	for(var/obj/structure/conveyor/C in conveyors)
+	for (var/obj/structure/conveyor/C in conveyors)
 		C.operating = position
 		C.setmove()
 
@@ -220,7 +220,7 @@
 
 /*
 	// find any switches with same id as this one, and set their positions to match us
-	for(var/obj/structure/conveyor_switch/S in world)
+	for (var/obj/structure/conveyor_switch/S in world)
 		if (S.id == id)
 			S.position = position
 			S.update()*/
@@ -250,7 +250,7 @@
 	update()
 
 	// find any switches with same id as this one, and set their positions to match us
-	for(var/obj/structure/conveyor_switch/S in world)
+	for (var/obj/structure/conveyor_switch/S in world)
 		if (S.id == id)
 			S.position = position
 			S.update()
@@ -282,7 +282,7 @@
 	var/cdir = get_dir(A, user)
 	if (!(cdir in cardinal) || A == user.loc)
 		return
-	for(var/obj/structure/conveyor/CB in A)
+	for (var/obj/structure/conveyor/CB in A)
 		if (CB.dir == cdir || CB.dir == turn(cdir,180))
 			return
 		cdir |= CB.dir
@@ -308,7 +308,7 @@
 	if (!proximity || !istype(A, /turf/floor) || user.incapacitated())
 		return
 	var/found = FALSE
-	for(var/obj/structure/conveyor/C in view())
+	for (var/obj/structure/conveyor/C in view())
 		if (C.id == id)
 			found = TRUE
 			break
@@ -350,7 +350,7 @@
 	if (istype(M))
 		if (M.lying)
 			return ..()
-		for(var/mob_type in mobs_can_pass)
+		for (var/mob_type in mobs_can_pass)
 			if (istype(A, mob_type))
 				return ..()
 		return issmall(M)

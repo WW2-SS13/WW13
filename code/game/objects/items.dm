@@ -182,7 +182,7 @@
 					var/success = FALSE
 					var/failure = FALSE
 
-					for(var/obj/item/I in loc)
+					for (var/obj/item/I in loc)
 						if (I.type in rejections) // To limit bag spamming: any given type only complains once
 							continue
 						if (!S.can_be_inserted(I))	// Note can_be_inserted still makes noise when the answer is no
@@ -435,7 +435,7 @@ var/list/global/slot_flags_enumeration = list(
 
 /obj/item/proc/get_loc_turf()
 	var/atom/L = loc
-	while(L && !istype(L, /turf/))
+	while (L && !istype(L, /turf/))
 		L = L.loc
 	return loc
 
@@ -443,7 +443,7 @@ var/list/global/slot_flags_enumeration = list(
 
 	var/mob/living/carbon/human/H = M
 	if (istype(H))
-		for(var/obj/item/protection in list(H.head, H.wear_mask, H.glasses))
+		for (var/obj/item/protection in list(H.head, H.wear_mask, H.glasses))
 			if (protection && (protection.body_parts_covered & EYES))
 				// you can't stab someone in the eyes wearing a mask!
 				user << "<span class='warning'>You're going to need to remove the eye covering first.</span>"
@@ -475,7 +475,7 @@ var/list/global/slot_flags_enumeration = list(
 		var/obj/item/organ/eyes/eyes = H.internal_organs_by_name["eyes"]
 
 		if (H != user)
-			for(var/mob/O in (viewers(M) - user - M))
+			for (var/mob/O in (viewers(M) - user - M))
 				O.show_message("<span class='danger'>[M] has been stabbed in the eye with [src] by [user].</span>", TRUE)
 			M << "<span class='danger'>[user] stabs you in the eye with [src]!</span>"
 			user << "<span class='danger'>You stab [M] in the eye with [src]!</span>"
@@ -555,7 +555,7 @@ var/list/global/slot_flags_enumeration = list(
 	I.Blend(new /icon('icons/effects/blood.dmi', "itemblood"),ICON_MULTIPLY) //adds blood and the remaining white areas become transparant
 
 	//not sure if this is worth it. It attaches the blood_overlay to every item of the same type if they don't have one already made.
-	for(var/obj/item/A in world)
+	for (var/obj/item/A in world)
 		if (A.type == type && !A.blood_overlay)
 			A.blood_overlay = image(I)
 

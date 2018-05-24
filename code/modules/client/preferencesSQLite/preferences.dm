@@ -357,7 +357,7 @@ var/list/preferences_datums = list()
 	character.f_style = f_style
 	// Destroy/cyborgize organs
 
-	for(var/name in organ_data)
+	for (var/name in organ_data)
 
 		var/status = organ_data[name]
 		var/obj/item/organ/external/O = character.organs_by_name[name]
@@ -367,7 +367,7 @@ var/list/preferences_datums = list()
 				character.organs_by_name[O.limb_name] = null
 				character.organs -= O
 				if (O.children) // This might need to become recursive.
-					for(var/obj/item/organ/external/child in O.children)
+					for (var/obj/item/organ/external/child in O.children)
 						character.organs_by_name[child.limb_name] = null
 						character.organs -= child
 

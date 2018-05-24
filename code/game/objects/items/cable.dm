@@ -173,14 +173,14 @@
 		else
 			dirn = get_dir(F, user)
 
-		for(var/obj/structure/cable/LC in F)
+		for (var/obj/structure/cable/LC in F)
 			if ((LC.d1 == dirn && LC.d2 == FALSE ) || ( LC.d2 == dirn && LC.d1 == FALSE))
 				user << "<span class='warning'>There's already a cable at that position.</span>"
 				return
 ///// Z-Level Stuff
 		// check if the target is open space
 		if (istype(F, /turf/open))
-			for(var/obj/structure/cable/LC in F)
+			for (var/obj/structure/cable/LC in F)
 				if ((LC.d1 == dirn && LC.d2 == 11 ) || ( LC.d2 == dirn && LC.d1 == 11))
 					user << "<span class='warning'>There's already a cable at that position.</span>"
 					return
@@ -215,7 +215,7 @@
 		// do the normal stuff
 		else
 ///// Z-Level Stuff
-			for(var/obj/structure/cable/LC in F)
+			for (var/obj/structure/cable/LC in F)
 				if ((LC.d1 == dirn && LC.d2 == FALSE ) || ( LC.d2 == dirn && LC.d1 == FALSE))
 					user << "There's already a cable at that position."
 					return
@@ -281,7 +281,7 @@
 
 			var/fdirn = turn(dirn, 180)		// the opposite direction
 
-			for(var/obj/structure/cable/LC in U)		// check to make sure there's not a cable there already
+			for (var/obj/structure/cable/LC in U)		// check to make sure there's not a cable there already
 				if (LC.d1 == fdirn || LC.d2 == fdirn)
 					user << "There's already a cable at that position."
 					return
@@ -325,7 +325,7 @@
 			nd2 = C.d2
 
 
-		for(var/obj/structure/cable/LC in T)		// check to make sure there's no matching cable
+		for (var/obj/structure/cable/LC in T)		// check to make sure there's no matching cable
 			if (LC == C)			// skip the cable we're interacting with
 				continue
 			if ((LC.d1 == nd1 && LC.d2 == nd2) || (LC.d1 == nd2 && LC.d2 == nd1) )	// make sure no cable matches either direction

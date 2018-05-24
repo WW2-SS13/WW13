@@ -9,7 +9,7 @@
 	if (confirm != "Yes")
 		return
 
-	for(var/obj/item/W in M)
+	for (var/obj/item/W in M)
 		M.drop_from_inventory(W)
 
 	log_admin("[key_name(usr)] made [key_name(M)] drop everything!")
@@ -26,7 +26,7 @@
 			alert("The AI can't be sent to prison you jerk!", null, null, null, null, null)
 			return
 		//strip their stuff before they teleport into a cell :downs:
-		for(var/obj/item/W in M)
+		for (var/obj/item/W in M)
 			M.drop_from_inventory(W)
 		//teleport person to cell
 		M.Paralyse(5)
@@ -84,7 +84,7 @@
 	if (is_mentor(usr.client))
 		highlight_special_characters = FALSE
 
-	for(var/client/C in clients)
+	for (var/client/C in clients)
 		if (C.player_age == "Requires database")
 			missing_ages = TRUE
 			continue
@@ -215,7 +215,7 @@ Ccomp's first proc.
 	var/list/ghosts = list()
 	var/list/sortmob = sortAtom(mob_list)                           // get the mob list.
 	var/any=0
-	for(var/mob/observer/ghost/M in sortmob)
+	for (var/mob/observer/ghost/M in sortmob)
 		mobs.Add(M)                                             //filter it where it's only ghosts
 		any = TRUE                                                 //if no ghosts show up, any will just be FALSE
 	if (!any)
@@ -223,7 +223,7 @@ Ccomp's first proc.
 			src << "There doesn't appear to be any ghosts for you to select."
 		return
 
-	for(var/mob/M in mobs)
+	for (var/mob/M in mobs)
 		var/name = M.name
 		ghosts[name] = M                                        //get the name of the mob for the popup list
 	if (what==1)
@@ -270,7 +270,7 @@ Ccomp's first proc.
 		src << "Only administrators may use this command."
 	var/action=""
 	if (config.antag_hud_allowed)
-		for(var/mob/observer/ghost/g in get_ghosts())
+		for (var/mob/observer/ghost/g in get_ghosts())
 		//	if (!g.client.holder)						//Remove the verb from non-admin ghosts
 		//		g.verbs -= /mob/observer/ghost/verb/toggle_antagHUD
 			if (g.antagHUD)
@@ -281,7 +281,7 @@ Ccomp's first proc.
 		src << "<span class = 'red'><b>AntagHUD usage has been disabled.</b></span>"
 		action = "disabled"
 	else
-		for(var/mob/observer/ghost/g in get_ghosts())
+		for (var/mob/observer/ghost/g in get_ghosts())
 		//	if (!g.client.holder)						// Add the verb back for all non-admin ghosts
 			//	g.verbs += /mob/observer/ghost/verb/toggle_antagHUD
 			g << "<span class = 'notice'><b>The Administrator has enabled AntagHUD </b></span>"	// Notify all observers they can now use AntagHUD
@@ -303,13 +303,13 @@ Ccomp's first proc.
 		src << "Only administrators may use this command."
 	var/action=""
 	if (config.antag_hud_restricted)
-		for(var/mob/observer/ghost/g in get_ghosts())
+		for (var/mob/observer/ghost/g in get_ghosts())
 			g << "<span class = 'notice'><b>The administrator has lifted restrictions on joining the round if you use AntagHUD</b></span>"
 		action = "lifted restrictions"
 		config.antag_hud_restricted = FALSE
 		src << "<span class = 'notice'><b>AntagHUD restrictions have been lifted</b></span>"
 	else
-		for(var/mob/observer/ghost/g in get_ghosts())
+		for (var/mob/observer/ghost/g in get_ghosts())
 			g << "<span class = 'red'><b>The administrator has placed restrictions on joining the round if you use AntagHUD</b></span>"
 			g << "<span class = 'red'><b>Your AntagHUD has been disabled, you may choose to re-enabled it but will be under restrictions</b></span>"
 			g.antagHUD = FALSE
@@ -338,7 +338,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	var/mob/observer/ghost/G_found
-	for(var/mob/observer/ghost/G in player_list)
+	for (var/mob/observer/ghost/G in player_list)
 		if (G.ckey == input)
 			G_found = G
 			break
@@ -355,7 +355,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		/*Try and locate a record for the person being respawned through data_core.
 		This isn't an exact science but it does the trick more often than not.*/
 		var/id = md5("[G_found.real_name][G_found.mind.assigned_role]")
-		for(var/datum/data/record/t in data_core.locked)
+		for (var/datum/data/record/t in data_core.locked)
 			if (t.fields["id"]==id)
 				record_found = t//We shall now reference the record.
 				break
@@ -370,7 +370,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	new_character.gender = pick(MALE,FEMALE)
 	var/datum/preferences/A = new()
-	A.randomize_appearance_for(new_character)
+	A.randomize_appearance_for (new_character)
 	new_character.real_name = G_found.real_name
 
 	if (!new_character.real_name)
@@ -500,7 +500,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		src << "Only administrators may use this command."
 		return
 	if (job_master)
-		for(var/datum/job/job in job_master.occupations)
+		for (var/datum/job/job in job_master.occupations)
 			src << "[job.title]: [job.total_positions]"
 
 
@@ -633,7 +633,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Check Contents"
 
 	var/list/L = M.get_contents()
-	for(var/t in L)
+	for (var/t in L)
 		usr << "[t]"
 
 
@@ -647,7 +647,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 // DEFERRED
 	spawn(0)
-		for(var/turf/T in view())
+		for (var/turf/T in view())
 			T.poison = FALSE
 			T.oldpoison = FALSE
 			T.tmppoison = FALSE
@@ -707,7 +707,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Attack Log"
 
 	usr << text("<span class = 'red'><b>Attack Log for []</b></span>", mob)
-	for(var/t in M.attack_log)
+	for (var/t in M.attack_log)
 		usr << t
 /*
 

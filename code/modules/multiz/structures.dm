@@ -34,7 +34,7 @@
 
 	New()
 		. = ..()
-		for(var/obj/structure/multiz/M in loc)
+		for (var/obj/structure/multiz/M in loc)
 			if (M != src)
 				spawn(1)
 					world.log << "##MAP_ERROR: Multiple [initial(name)] at ([x],[y],[z])"
@@ -105,7 +105,7 @@
 
 	var/turf/T = target.loc
 	if (!istop)
-		for(var/atom/movable/AM in T)
+		for (var/atom/movable/AM in T)
 			if (AM.density)
 				M << "<span class='notice'>\A [AM] is blocking \the [src].</span>"
 				return

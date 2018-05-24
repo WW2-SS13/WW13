@@ -174,7 +174,7 @@
 	var/turf/T2 = get_step(T,turn(direction, -90))
 	var/list/the_targets = list(T, T1, T2)
 
-	for(var/a = TRUE to 3)
+	for (var/a = TRUE to 3)
 		spawn(0)
 			if (reagents.total_volume < 1) break
 			var/obj/effect/effect/water/chempuff/D = new/obj/effect/effect/water/chempuff(get_turf(src))

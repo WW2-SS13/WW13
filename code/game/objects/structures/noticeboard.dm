@@ -8,7 +8,7 @@
 	var/notices = FALSE
 
 /obj/structure/noticeboard/initialize()
-	for(var/obj/item/I in loc)
+	for (var/obj/item/I in loc)
 		if (notices > 4) break
 		if (istype(I, /obj/item/weapon/paper))
 			I.loc = src
@@ -39,7 +39,7 @@
 		user = usr
 	if (user.Adjacent(src))
 		var/dat = "<b>Noticeboard</b><BR>"
-		for(var/obj/item/weapon/paper/P in src)
+		for (var/obj/item/weapon/paper/P in src)
 			dat += "<A href='?src=\ref[src];read=\ref[P]'>[P.name]</A> <A href='?src=\ref[src];write=\ref[P]'>Write</A> <A href='?src=\ref[src];remove=\ref[P]'>Remove</A><BR>"
 		user << browse("<HEAD><TITLE>Notices</TITLE></HEAD>[dat]","window=noticeboard")
 		onclose(user, "noticeboard")

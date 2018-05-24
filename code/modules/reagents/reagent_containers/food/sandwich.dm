@@ -18,7 +18,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/csandwich/attackby(obj/item/W as obj, mob/user as mob)
 
 	var/sandwich_limit = 4
-	for(var/obj/item/O in ingredients)
+	for (var/obj/item/O in ingredients)
 		if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/breadslice))
 			sandwich_limit += 4
 
@@ -48,7 +48,7 @@
 
 	overlays.Cut()
 
-	for(var/obj/item/weapon/reagent_containers/food/snacks/O in ingredients)
+	for (var/obj/item/weapon/reagent_containers/food/snacks/O in ingredients)
 
 		i++
 		if (i == TRUE)
@@ -74,7 +74,7 @@
 	w_class = ceil(Clamp((ingredients.len/2),2,4))
 
 /obj/item/weapon/reagent_containers/food/snacks/csandwich/Destroy()
-	for(var/obj/item/O in ingredients)
+	for (var/obj/item/O in ingredients)
 		qdel(O)
 	..()
 
@@ -86,7 +86,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/csandwich/attack(mob/M as mob, mob/user as mob, def_zone)
 
 	var/obj/item/shard
-	for(var/obj/item/O in contents)
+	for (var/obj/item/O in contents)
 		if (istype(O,/obj/item/weapon/material/shard))
 			shard = O
 			break

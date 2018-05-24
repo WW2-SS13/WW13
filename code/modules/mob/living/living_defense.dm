@@ -103,7 +103,7 @@
 
 /mob/living/emp_act(severity)
 	var/list/L = get_contents()
-	for(var/obj/O in L)
+	for (var/obj/O in L)
 		O.emp_act(severity)
 	..()
 
@@ -218,7 +218,7 @@
 	var/turf/last_turf = loc
 	var/i = TRUE
 
-	while(i>0 && i<=distance)
+	while (i>0 && i<=distance)
 		if (T.density) //Turf is a wall!
 			return last_turf
 		i++
@@ -345,10 +345,10 @@ var/obj/human_fire_overlay_lying = null
 
 /mob/living/proc/handle_actions()
 	//Pretty bad, i'd use picked/dropped instead but the parent calls in these are nonexistent
-	for(var/datum/action/A in actions)
+	for (var/datum/action/A in actions)
 		if (A.CheckRemoval(src))
 			A.Remove(src)
-	for(var/obj/item/I in src)
+	for (var/obj/item/I in src)
 		if (I.action_button_name)
 			if (!I.action)
 				if (I.action_button_is_hands_free)
@@ -368,7 +368,7 @@ var/obj/human_fire_overlay_lying = null
 	//	return
 
 	//client.screen -= hud_used.hide_actions_toggle
-	for(var/datum/action/A in actions)
+	for (var/datum/action/A in actions)
 		if (A.button)
 			client.screen -= A.button
 
@@ -385,7 +385,7 @@ var/obj/human_fire_overlay_lying = null
 		return
 */
 	var/button_number = FALSE
-	for(var/datum/action/A in actions)
+	for (var/datum/action/A in actions)
 		button_number++
 		if (A.button == null)
 			var/obj/screen/movable/action_button/N = new(hud_used)

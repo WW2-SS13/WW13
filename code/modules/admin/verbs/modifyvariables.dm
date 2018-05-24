@@ -366,7 +366,7 @@ var/list/VVckey_edit = list("key", "ckey")
 /client/proc/modify_variables(var/atom/O, var/param_var_name = null, var/autodetect_class = FALSE)
 	if (!check_rights(R_VAREDIT))	return
 
-	for(var/p in forbidden_varedit_object_types)
+	for (var/p in forbidden_varedit_object_types)
 		if ( istype(O,p) )
 			usr << "<span class='danger'>It is forbidden to edit this object's variables.</span>"
 			return

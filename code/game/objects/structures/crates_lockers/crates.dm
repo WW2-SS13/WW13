@@ -35,7 +35,7 @@
 		return FALSE
 
 	playsound(loc, 'sound/machines/click.ogg', 15, TRUE, -3)
-	for(var/obj/O in src)
+	for (var/obj/O in src)
 		O.forceMove(get_turf(src))
 	icon_state = icon_opened
 	opened = TRUE
@@ -52,7 +52,7 @@
 
 	playsound(loc, 'sound/machines/click.ogg', 15, TRUE, -3)
 	var/itemcount = FALSE
-	for(var/obj/O in get_turf(src))
+	for (var/obj/O in get_turf(src))
 		if (itemcount >= storage_capacity)
 			break
 		if (O.density || O.anchored)
@@ -89,12 +89,12 @@
 /obj/structure/closet/crate/ex_act(severity)
 	switch(severity)
 		if (1.0)
-			for(var/obj/O in contents)
+			for (var/obj/O in contents)
 				qdel(O)
 			qdel(src)
 			return
 		if (2.0)
-			for(var/obj/O in contents)
+			for (var/obj/O in contents)
 				if (prob(50))
 					qdel(O)
 			qdel(src)
@@ -148,7 +148,7 @@
 
 	locked = newlocked
 	if (user)
-		for(var/mob/O in viewers(user, 3))
+		for (var/mob/O in viewers(user, 3))
 			O.show_message( "<span class='notice'>The crate has been [locked ? null : "un"]locked by [user].</span>", TRUE)
 	overlays.Cut()
 	overlays += locked ? redlight : greenlight
@@ -183,7 +183,7 @@
 	return ..()
 
 /obj/structure/closet/crate/secure/emp_act(severity)
-	for(var/obj/O in src)
+	for (var/obj/O in src)
 		O.emp_act(severity)
 	if (!broken && !opened  && prob(50/severity))
 		if (!locked)
@@ -372,7 +372,7 @@
 /obj/structure/closet/crate/large/close()
 	. = ..()
 	if (.)//we can hold up to one large item
-		for(var/obj/structure/S in loc)
+		for (var/obj/structure/S in loc)
 			if (S == src)
 				continue
 			if (!S.anchored)
@@ -394,7 +394,7 @@
 	. = ..()
 	if (.)//we can hold up to one large item
 		var/found = FALSE
-		for(var/obj/structure/S in loc)
+		for (var/obj/structure/S in loc)
 			if (S == src)
 				continue
 			if (!S.anchored)
@@ -402,7 +402,7 @@
 				S.forceMove(src)
 				break
 		if (!found)
-			for(var/obj/machinery/M in loc)
+			for (var/obj/machinery/M in loc)
 				if (!M.anchored)
 					M.forceMove(src)
 					break

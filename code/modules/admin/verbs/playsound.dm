@@ -17,7 +17,7 @@ var/list/sounds_cache = list()
 	message_admins("[key_name_admin(src)] played sound [S]", TRUE)
 	world << "<span class = 'notice'><b>[key]</b> played a global sound.</span>"
 
-	for(var/mob/M in player_list)
+	for (var/mob/M in player_list)
 		if (!new_player_mob_list.Find(M) || !M.is_preference_enabled(/datum/client_preference/play_lobby_music))
 			if (M.is_preference_enabled(/datum/client_preference/play_admin_midis))
 				M.client << uploaded_sound

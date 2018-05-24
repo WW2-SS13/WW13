@@ -118,7 +118,7 @@
 				usr << "The snatcher does not accept [W]."
 			return FALSE
 		var/current = FALSE
-		for(var/obj/item/stack/material/S in contents)
+		for (var/obj/item/stack/material/S in contents)
 			current += S.amount
 		if (capacity == current)//If it's full, you're done
 			if (!stop_messages)
@@ -135,14 +135,14 @@
 		var/amount
 		var/inserted = FALSE
 		var/current = FALSE
-		for(var/obj/item/stack/material/S2 in contents)
+		for (var/obj/item/stack/material/S2 in contents)
 			current += S2.amount
 		if (capacity < current + S.amount)//If the stack will fill it up
 			amount = capacity - current
 		else
 			amount = S.amount
 
-		for(var/obj/item/stack/material/sheet in contents)
+		for (var/obj/item/stack/material/sheet in contents)
 			if (S.type == sheet.type) // we are violating the amount limitation because these are not sane objects
 				sheet.amount += amount	// they should only be removed through procs in this file, which split them up.
 				S.amount -= amount
@@ -177,7 +177,7 @@
 		if (display_contents_with_number)
 			numbered_contents = list()
 			adjusted_contents = FALSE
-			for(var/obj/item/stack/material/I in contents)
+			for (var/obj/item/stack/material/I in contents)
 				adjusted_contents++
 				var/datum/numbered_display/D = new/datum/numbered_display(I)
 				D.number = I.amount
@@ -194,8 +194,8 @@
 // Modified quick_empty verb drops appropriate sized stacks
 	quick_empty()
 		var/location = get_turf(src)
-		for(var/obj/item/stack/material/S in contents)
-			while(S.amount)
+		for (var/obj/item/stack/material/S in contents)
+			while (S.amount)
 				var/obj/item/stack/material/N = new S.type(location)
 				var/stacksize = min(S.amount,N.max_amount)
 				N.amount = stacksize

@@ -19,7 +19,7 @@
 	// broken or ripped off organs will add quite a bit of pain
 	if (istype(src,/mob/living/carbon/human))
 		var/mob/living/carbon/human/M = src
-		for(var/obj/item/organ/external/organ in M.organs)
+		for (var/obj/item/organ/external/organ in M.organs)
 			if (organ && (organ.is_broken() || organ.open))
 				traumatic_shock += 30
 

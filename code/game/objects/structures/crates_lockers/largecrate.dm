@@ -13,7 +13,7 @@
 	if (istype(W, /obj/item/weapon/crowbar))
 		new /obj/item/stack/material/wood(src)
 		var/turf/T = get_turf(src)
-		for(var/atom/movable/AM in contents)
+		for (var/atom/movable/AM in contents)
 			if (AM.simulated) AM.forceMove(T)
 		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
 							 "<span class='notice'>You pry open \the [src].</span>", \
@@ -48,7 +48,7 @@
 
 /obj/structure/largecrate/animal/New()
 	..()
-	for(var/i = TRUE;i<=held_count;i++)
+	for (var/i = TRUE;i<=held_count;i++)
 		new held_type(src)
 
 /obj/structure/largecrate/animal/dog

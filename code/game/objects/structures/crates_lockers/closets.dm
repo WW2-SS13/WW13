@@ -25,12 +25,12 @@
 	..()
 	if (!opened)		// if closed, any item at the crate's loc is put in the contents
 		var/obj/item/I
-		for(I in loc)
+		for (I in loc)
 			if (I.density || I.anchored || I == src) continue
 			I.forceMove(src)
 		// adjust locker size to hold all items with 5 units of free store room
 		var/content_size = FALSE
-		for(I in contents)
+		for (I in contents)
 			content_size += ceil(I.w_class/2)
 		if (content_size > storage_capacity-5)
 			storage_capacity = content_size + 5
@@ -42,7 +42,7 @@
 /obj/structure/closet/examine(mob/user)
 	if (..(user, TRUE) && !opened)
 		var/content_size = FALSE
-		for(var/obj/item/I in contents)
+		for (var/obj/item/I in contents)
 			if (!I.anchored)
 				content_size += ceil(I.w_class/2)
 		if (!content_size)
@@ -71,17 +71,17 @@
 	return TRUE
 
 /obj/structure/closet/proc/can_close()
-	for(var/obj/structure/closet/closet in get_turf(src))
+	for (var/obj/structure/closet/closet in get_turf(src))
 		if (closet != src)
 			return FALSE
 	return TRUE
 
 /obj/structure/closet/proc/dump_contents()
 	//Cham Projector Exception
-	for(var/obj/I in src)
+	for (var/obj/I in src)
 		I.forceMove(loc)
 
-	for(var/mob/M in src)
+	for (var/mob/M in src)
 		M.forceMove(loc)
 		if (M.client)
 			M.client.eye = M.client.mob
@@ -132,7 +132,7 @@
 
 /obj/structure/closet/proc/store_items(var/stored_units)
 	var/added_units = FALSE
-	for(var/obj/item/I in loc)
+	for (var/obj/item/I in loc)
 		var/item_size = ceil(I.w_class / 2)
 		if (stored_units + added_units + item_size > storage_capacity)
 			continue
@@ -143,7 +143,7 @@
 
 /obj/structure/closet/proc/store_mobs(var/stored_units)
 	var/added_units = FALSE
-	for(var/mob/living/M in loc)
+	for (var/mob/living/M in loc)
 		if (M.buckled || M.pinned.len)
 			continue
 		if (stored_units + added_units + M.mob_size > storage_capacity)
@@ -165,7 +165,7 @@
 /obj/structure/closet/ex_act(severity)
 	switch(severity)
 		if (1)
-			for(var/atom/movable/A as mob|obj in src)//pulls everything out of the locker and hits it with an explosion
+			for (var/atom/movable/A as mob|obj in src)//pulls everything out of the locker and hits it with an explosion
 				A.forceMove(loc)
 				A.ex_act(severity + 1)
 			qdel(src)
@@ -177,14 +177,14 @@
 				qdel(src)
 		if (3)
 			if (prob(5))
-				for(var/atom/movable/A as mob|obj in src)
+				for (var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
 				qdel(src)
 
 /obj/structure/closet/proc/damage(var/damage)
 	health -= damage
 	if (health <= 0)
-		for(var/atom/movable/A in src)
+		for (var/atom/movable/A in src)
 			A.forceMove(loc)
 		qdel(src)
 
@@ -215,7 +215,7 @@
 					user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
 					return
 			new /obj/item/stack/material/steel(loc)
-			for(var/mob/M in viewers(src))
+			for (var/mob/M in viewers(src))
 				M.show_message("<span class='notice'>\The [src] has been cut apart by [user] with \the [WT].</span>", 3, "You hear welding.", 2)
 			qdel(src)
 			return
@@ -236,7 +236,7 @@
 				return
 		welded = !welded
 		update_icon()
-		for(var/mob/M in viewers(src))
+		for (var/mob/M in viewers(src))
 			M.show_message("<span class='warning'>[src] has been [welded?"welded shut":"unwelded"] by [user.name].</span>", 3, "You hear welding.", 2)
 	else
 		attack_hand(user)
@@ -333,7 +333,7 @@
 	visible_message("<span class='danger'>\The [src] begins to shake violently!</span>")
 
 	breakout = TRUE //can't think of a better way to do this right now.
-	for(var/i in TRUE to (6*breakout_time * 2)) //minutes * 6 * 5seconds * 2
+	for (var/i in TRUE to (6*breakout_time * 2)) //minutes * 6 * 5seconds * 2
 		if (!do_after(escapee, 50, src)) //5 seconds
 			breakout = FALSE
 			return

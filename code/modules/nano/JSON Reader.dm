@@ -26,7 +26,7 @@ json_reader
 			src.json = json
 			. = new/list()
 			src.i = 1
-			while(src.i <= lentext(json))
+			while (src.i <= lentext(json))
 				var/char = get_char()
 				if (is_whitespace(char))
 					i++
@@ -44,7 +44,7 @@ json_reader
 
 		read_word()
 			var/val = ""
-			while(i <= lentext(json))
+			while (i <= lentext(json))
 				var/char = get_char()
 				if (is_whitespace(char) || symbols.Find(char))
 					i-- // let scanner handle this character
@@ -56,7 +56,7 @@ json_reader
 			var
 				escape 	= FALSE
 				val		= ""
-			while(++i <= lentext(json))
+			while (++i <= lentext(json))
 				var/char = get_char()
 				if (escape)
 					switch(char)
@@ -78,7 +78,7 @@ json_reader
 		read_number()
 			var/val = ""
 			var/char = get_char()
-			while(is_digit(char) || char == "." || lowertext(char) == "e")
+			while (is_digit(char) || char == "." || lowertext(char) == "e")
 				val += char
 				i++
 				char = get_char()
@@ -105,7 +105,7 @@ json_reader
 			. = new/list()
 			i = 1
 			read_token("{", /json_token/symbol)
-			while(i <= tokens.len)
+			while (i <= tokens.len)
 				var/json_token/K = get_token()
 				check_type(/json_token/word, /json_token/text)
 				next_token()
@@ -140,7 +140,7 @@ json_reader
 
 		check_type(...)
 			var/json_token/T = get_token()
-			for(var/type in args)
+			for (var/type in args)
 				if (istype(T, type))
 					return
 			CRASH("Bad token type: [T.type].")
@@ -181,7 +181,7 @@ json_reader
 			read_token("\[", /json_token/symbol)
 			. = new/list()
 			var/list/L = .
-			while(i <= tokens.len)
+			while (i <= tokens.len)
 				// Avoid using Add() or += in case a list is returned.
 				L.len++
 				L[L.len] = read_value()

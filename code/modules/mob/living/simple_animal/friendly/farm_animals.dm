@@ -69,7 +69,7 @@
 /mob/living/simple_animal/hostile/retaliate/goat/Move()
 	..()
 	if (!stat)
-		for(var/obj/effect/plant/SV in loc)
+		for (var/obj/effect/plant/SV in loc)
 			SV.die_off(1)
 
 /mob/living/simple_animal/hostile/retaliate/goat/attackby(var/obj/item/O as obj, var/mob/user as mob)

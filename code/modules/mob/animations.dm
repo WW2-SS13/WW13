@@ -31,7 +31,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 */
 /mob/living/proc/dizzy_process()
 	is_dizzy = TRUE
-	while(dizziness > 100)
+	while (dizziness > 100)
 		if (client && !dizzycheck)
 			var/amplitude = dizziness*(sin(dizziness * 0.044 * world.time) + 1) / 70
 			client.pixel_x = amplitude * sin(0.008 * dizziness * world.time)
@@ -62,7 +62,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	//var/old_x = pixel_x
 	//var/old_y = pixel_y
 	is_jittery = TRUE
-	while(jitteriness > 100)
+	while (jitteriness > 100)
 //		var/amplitude = jitteriness*(sin(jitteriness * 0.044 * world.time) + 1) / 70
 //		pixel_x = amplitude * sin(0.008 * jitteriness * world.time)
 //		pixel_y = amplitude * cos(0.008 * jitteriness * world.time)
@@ -213,7 +213,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 /mob/proc/spin(spintime, speed)
 	spawn()
 		var/D = dir
-		while(spintime >= speed)
+		while (spintime >= speed)
 			sleep(speed)
 			switch(D)
 				if (NORTH)

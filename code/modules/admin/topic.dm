@@ -70,7 +70,7 @@
 
 		var/mob/playermob
 
-		for(var/mob/M in player_list)
+		for (var/mob/M in player_list)
 			if (M.ckey == banckey)
 				playermob = M
 				break
@@ -172,7 +172,7 @@
 		else if (task == "permissions")
 			if (!D)	return
 			var/list/permissionlist = list()
-			for(var/i=1, i<=R_MAXPERMISSION, i<<=1)		//that <<= is shorthand for i = i << 1. Which is a left bitshift
+			for (var/i=1, i<=R_MAXPERMISSION, i<<=1)		//that <<= is shorthand for i = i << 1. Which is a left bitshift
 				permissionlist[rights2text(i)] = i
 			var/new_permission = input("Select a permission to turn on/off", "Permission toggle", null, null) as null|anything in permissionlist
 			if (!new_permission)	return
@@ -349,7 +349,7 @@
 		if (ticker && ticker.mode)
 			return alert(usr, "The game has already started.", null, null, null, null)
 		var/dat = {"<b>What mode do you wish to play?</b><HR>"}
-		for(var/mode in config.modes)
+		for (var/mode in config.modes)
 			dat += {"<A href='?src=\ref[src];c_mode2=[mode]'>[config.mode_names[mode]]</A><br>"}
 		dat += {"<A href='?src=\ref[src];c_mode2=secret'>Secret</A><br>"}
 		dat += {"<A href='?src=\ref[src];c_mode2=random'>Random</A><br>"}
@@ -364,7 +364,7 @@
 		if (master_mode != "secret")
 			return alert(usr, "The game mode has to be secret!", null, null, null, null)
 		var/dat = {"<b>What game mode do you want to force secret to be? Use this if you want to change the game mode, but want the players to believe it's secret. This will only work if the current game mode is secret.</b><HR>"}
-		for(var/mode in config.modes)
+		for (var/mode in config.modes)
 			dat += {"<A href='?src=\ref[src];f_secret2=[mode]'>[config.mode_names[mode]]</A><br>"}
 		dat += {"<A href='?src=\ref[src];f_secret2=secret'>Random (default)</A><br>"}
 		dat += {"Now: [secret_force_mode]"}
@@ -726,7 +726,7 @@
 
 		var/paths = list()
 
-		for(var/dirty_path in dirty_paths)
+		for (var/dirty_path in dirty_paths)
 			var/path = text2path(dirty_path)
 			if (!path)
 				continue
