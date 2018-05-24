@@ -15,7 +15,7 @@
 
 /process/paratrooper_plane/fire()
 	SCHECK
-	if (altitude == 500 || !latejoin_turfs["Fallschirm"] || !latejoin_turfs["Fallschirm"]:len)
+	if (altitude <= first_nonlethal_altitude || !latejoin_turfs["Fallschirm"] || !latejoin_turfs["Fallschirm"]:len)
 		return
 	try
 		if (!my_turfs.len)
@@ -51,7 +51,7 @@
 			tmpTime = 0
 			if (altitude == round(initial(altitude)/2, 500) && mobs)
 				radio2soviets("We've received reports of Paratroopers. It is recommended that at least [mobs+1] people stay behind to guard the base.")
-			if (altitude == 500)
+			if (altitude <= first_nonlethal_altitude)
 				return // we're done
 			altitude -= 500
 			for (var/mob/living/carbon/human/H in player_list)

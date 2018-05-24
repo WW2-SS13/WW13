@@ -221,6 +221,8 @@
 
 	if (!user || !target) return
 
+	if (user.pixel_y > 16) return // can't fire while we're this high up - used for paradropping in particular
+
 	// stops admemes from sending immortal dummies into combat
 	if (user && istype(user, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user

@@ -586,6 +586,7 @@
 		contents += new_ration(GERMAN, "solid")
 
 /obj/item/weapon/storage/backpack/german/paratrooper
+	desc = "A German paratrooper's backpack. Parachute built in."
 
 /obj/item/weapon/storage/backpack/german/paratrooper/New()
 	..()

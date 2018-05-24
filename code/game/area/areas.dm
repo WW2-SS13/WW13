@@ -89,7 +89,10 @@ var/list/ghostteleportlocs = list()
 	for(var/area in area_list)
 		var/area/AR = area
 		if (ghostteleportlocs.Find(AR.name)) continue
+		if (AR.type == /area/prishtina/void) continue
 		if (!istype(AR, /area/prishtina)) continue
+		if (istype(AR, /area/prishtina/void/sky) && !istype(AR, /area/prishtina/void/sky/paratrooper_drop_zone/plane)) continue
+		if (istype(AR, /area/prishtina/void/skybox)) continue
 		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))
 		if (picked)
 			ghostteleportlocs += AR.name

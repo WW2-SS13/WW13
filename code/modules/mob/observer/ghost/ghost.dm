@@ -289,7 +289,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		M.antagHUD = TRUE
 		src << "\blue <b>AntagHUD Enabled</b>"
 */
-/mob/observer/ghost/proc/dead_tele(A in ghostteleportlocs - /area/prishtina/void/sky)
+/mob/observer/ghost/proc/dead_tele(A in ghostteleportlocs)
 	set category = "Ghost"
 	set name = "Teleport"
 	set desc= "Teleport to a location"
