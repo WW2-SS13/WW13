@@ -144,7 +144,6 @@ var/global/processScheduler/processScheduler
 			setQueuedProcessState(p)
 
 /processScheduler/proc/runQueuedProcesses()
-	var/time_spent = world.timeofday
 	for (var/process/p in queued)
 		p.run_start_time = world.timeofday
 		p.run_time_allowance = calculate_run_time_allowance(p.priority)
@@ -159,7 +158,6 @@ var/global/processScheduler/processScheduler
 			if (p.run_time_allowance_multiplier > 0.05)
 				--p.run_time_allowance_multiplier_trend
 		p.run_time_allowance_multiplier_modify()
-	time_spent = world.timeofday - time_spent
 
 /processScheduler/proc/addProcess(var/process/process)
 	processes.Add(process)
