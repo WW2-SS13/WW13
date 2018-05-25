@@ -5,11 +5,10 @@
 	schedule_interval = 0.3
 	start_delay = 10
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	subsystem = TRUE
+	priority = PROCESS_PRIORITY_VERY_HIGH
 	processes.movement = src
 
 /process/movement/fire()
-	SCHECK
 
 	if (!clients.len)
 		return
@@ -53,7 +52,7 @@
 			catchBadType(M)
 			mob_list -= M
 
-		SCHECK
+		PROCESS_TICK_CHECK
 
 /process/movement/statProcess()
 	..()

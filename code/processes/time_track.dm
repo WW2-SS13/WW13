@@ -12,10 +12,10 @@
 	schedule_interval = 10 // this was 50, but this isn't expensive to track so every second is fine - Kachnov
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	averages.len = 10
+	priority = PROCESS_PRIORITY_IRRELEVANT
 	processes.time_track = src
 
 /process/time_track/fire()
-	SCHECK
 
 	var/current_realtime = world.timeofday
 

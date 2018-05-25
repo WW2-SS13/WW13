@@ -3,30 +3,34 @@
 	var/changeto = null
 	var/admincaller = null
 	var/announce = TRUE
+	var/list/my_turfs = null
 
 /process/time_of_day_change/setup()
 	name = "time of day change process"
 	schedule_interval = 10
 	start_delay = 0
 	fires_at_gamestates = list(GAME_STATE_PLAYING)
+	priority = PROCESS_PRIORITY_MEDIUM
 	processes.time_of_day_change = src
 
 /process/time_of_day_change/fire()
-	SCHECK_09
 
 	if (!ready)
 		return
 
 	ready = FALSE
 
+	if (!my_turfs.len)
+		my_turfs = turfs.Copy()
+
 	var/O_time_of_day = time_of_day
 	time_of_day = changeto
 
 	// change lighting over x seconds & x*10 loops
 
-	var/turfs_len = turfs.len // this makes things faster and it works because single-threadedness
+	var/turfs_len = my_turfs.len // this makes things faster and it works because single-threadedness
 	for (var/v in 1 to turfs_len)
-		var/turf/T = turfs[v]
+		var/turf/T = my_turfs[v]
 		if (T.z <= max_lighting_z)
 			var/area/a = get_area(T)
 
@@ -36,7 +40,6 @@
 					if (istype(a, area_type))
 						areacheck = FALSE
 						break
-					SCHECK_09
 
 			if (a && a.dynamic_lighting && areacheck && (!map || !map.zlevels_without_lighting.Find(T.z)))
 				T.adjust_lighting_overlay_to_daylight()
@@ -47,15 +50,14 @@
 					T.color = rgb(TOD_2_rgb, TOD_2_rgb, TOD_2_rgb)
 					for (var/obj/train_track/TT in T.contents)
 						TT.color = T.color
-						SCHECK_09
 
 		// regardless of whether or not we use dynamic lighting here
 		// we still need to change the TOD to prevent Vampire dusting
 		for (var/atom/movable/lighting_overlay/LO in T.contents)
 			LO.TOD = time_of_day
-			SCHECK_09
 
-		SCHECK_09
+		my_turfs -= T
+		PROCESS_TICK_CHECK
 
 	if (admincaller)
 		admincaller << "<span class = 'notice'>Updated lights for [time_of_day].</span>"

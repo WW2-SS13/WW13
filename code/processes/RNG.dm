@@ -6,10 +6,10 @@
 	schedule_interval = 1 // every tenth second: 600 for a full minute
 	start_delay = 10
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
+	priority = PROCESS_PRIORITY_IRRELEVANT
 	processes.RNG = src
 
 /process/RNG/fire()
-	SCHECK
 	if (ticks >= 100000)
 		ticks = 600
 	if (ticks && ticks % 600 == 0)

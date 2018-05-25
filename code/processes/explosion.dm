@@ -10,10 +10,10 @@
 	schedule_interval = 5 // every half-second
 	work_queue = list()
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
+	priority = PROCESS_PRIORITY_HIGH
 	processes.explosion = src
 
 /process/explosion/fire()
-	SCHECK
 	if (!work_queue)
 		setup()	// fix for process failing to re-init after termination
 
@@ -35,9 +35,9 @@
 		else
 			explosion(data)
 
-		SCHECK
-
 		work_queue -= data
+
+		PROCESS_TICK_CHECK
 
 /process/explosion/proc/explosion(var/datum/explosiondata/data)
 	var/turf/epicenter = data.epicenter
@@ -98,7 +98,6 @@
 	if (vibration)
 		FORNEXT(player_list)
 			var/mob/M = current
-			SCHECK
 			// Double check for client
 			var/reception = 2//Whether the person can be shaken or hear sound
 			//2 = BOTH
@@ -162,14 +161,12 @@
 		else								continue
 
 		T.ex_act(dist)
-		SCHECK
 		if (T && !data.objects_with_immunity.Find(T))
 			FORNEXT(T.contents)	//bypass type checking since only atom/movable can be contained by turfs anyway
 				var/atom/movable/AM = current
 				if (data.objects_with_immunity.Find(AM))
 					continue
 				if (AM && AM.simulated)	AM.ex_act(dist)
-				SCHECK
 
 	var/took = (world.timeofday-start)/10
 	//You need to press the DebugGame verb to see these now....they were getting annoying and we've collected a fair bit of data. Just -test- changes  to explosion code using this please so we can compare
@@ -195,7 +192,6 @@
 	for (var/direction in cardinal)
 		var/turf/T = get_step(epicenter, direction)
 		explosion_spread(T, power - epicenter.explosion_resistance, direction)
-		SCHECK
 
 	//This step applies the ex_act effects for the explosion, as planned in the previous step.
 	FORNEXT(explosion_turfs)
@@ -216,12 +212,10 @@
 		FORNEXT(T.contents)
 			var/atom/movable/AM = current
 			AM.ex_act(severity)
-			SCHECK
 
 	explosion_in_progress = FALSE
 
 /process/explosion/proc/explosion_spread(turf/s, power, direction)
-	SCHECK
 	if (power <= 0)
 		return
 

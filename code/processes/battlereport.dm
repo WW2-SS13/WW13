@@ -10,6 +10,7 @@
 	name = "Battle Report"
 	schedule_interval = 10 // every second
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
+	priority = PROCESS_PRIORITY_IRRELEVANT
 	processes.battle_report = src
 
 /process/battle_report/statProcess()
@@ -20,8 +21,6 @@
 	return ..() + "Next battle report: [max_BR_ticks - BR_ticks] seconds"
 
 /process/battle_report/fire()
-	SCHECK
-
 	++BR_ticks
 	if (BR_ticks >= max_BR_ticks)
 		show_global_battle_report(null)

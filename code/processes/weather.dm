@@ -17,10 +17,10 @@
 	next_can_mod_weather = world.realtime + 100
 	next_can_change_weather = world.realtime + 12000
 	fires_at_gamestates = list(GAME_STATE_PLAYING)
+	priority = PROCESS_PRIORITY_IRRELEVANT
 	processes.weather = src
 
 /process/weather/fire()
-	SCHECK
 
 	var/deleted = 0
 

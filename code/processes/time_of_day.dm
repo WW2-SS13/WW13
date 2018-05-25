@@ -8,10 +8,10 @@ var/TOD_may_automatically_change = FALSE
 	schedule_interval = 100
 	start_delay = 20
 	fires_at_gamestates = list(GAME_STATE_PLAYING)
+	priority = PROCESS_PRIORITY_IRRELEVANT
 	processes.time_of_day = src
 
 /process/time_of_day/fire()
-	SCHECK
 	if (!roundstart_time || (map && map.times_of_day.len == 1))
 		return
 	try

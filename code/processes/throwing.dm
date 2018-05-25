@@ -5,12 +5,10 @@
 	schedule_interval = 0.5
 	start_delay = 10
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	subsystem = TRUE
+	priority = PROCESS_PRIORITY_VERY_HIGH
 	processes.throwing = src
 
 /process/throwing/fire()
-
-	SCHECK
 
 	if (!thrown_list.len)
 		return
@@ -133,7 +131,7 @@
 			catchBadType(AM)
 			thrown_list -= AM
 
-		SCHECK
+		PROCESS_TICK_CHECK
 
 /process/throwing/statProcess()
 	..()

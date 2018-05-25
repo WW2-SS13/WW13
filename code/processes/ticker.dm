@@ -13,6 +13,7 @@
 		ticker = new
 
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
+	priority = PROCESS_PRIORITY_IRRELEVANT
 
 	// what happens as soon as the server starts up
 	spawn(0)
@@ -24,7 +25,6 @@
 	processes.ticker = src
 
 /process/ticker/fire()
-	SCHECK
 	var/currentTime = world.timeofday
 
 	if (currentTime < lastTickerTime) // check for midnight rollover

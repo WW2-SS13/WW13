@@ -3,10 +3,10 @@
 	schedule_interval = 50 // every 5 seconds
 	start_delay = 100
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
+	priority = PROCESS_PRIORITY_MEDIUM
 	processes.burning = src
 
 /process/burning/fire()
-	SCHECK
 
 	FORNEXT(burning_objs)
 		var/obj/O = current
@@ -24,7 +24,7 @@
 		else
 			catchBadType(O)
 			burning_objs -= O
-		SCHECK
+		PROCESS_TICK_CHECK
 
 	FORNEXT(burning_turfs)
 		var/turf/T = current
@@ -42,7 +42,7 @@
 		else
 			catchBadType(T)
 			burning_turfs -= T
-		SCHECK
+		PROCESS_TICK_CHECK
 
 	var/sound/S = sound('sound/effects/fire_loop.ogg')
 	S.repeat = FALSE
@@ -62,7 +62,7 @@
 					volume -= (dist*3)
 					S.volume = volume
 					M << S
-		SCHECK
+		PROCESS_TICK_CHECK
 
 /process/burning/statProcess()
 	..()

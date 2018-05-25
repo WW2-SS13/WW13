@@ -5,6 +5,7 @@
 	schedule_interval = 50 // every 5 seconds
 	start_delay = 10
 	fires_at_gamestates = list()
+	priority = PROCESS_PRIORITY_IRRELEVANT
 	processes.python = src
 
 /process/python/fire()

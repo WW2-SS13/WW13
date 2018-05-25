@@ -9,10 +9,10 @@
 	schedule_interval = 10
 	start_delay = 100
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
+	priority = PROCESS_PRIORITY_IRRELEVANT
 	processes.train = src
 
 /process/train/fire()
-	SCHECK
 
 	if (!map || map.uses_main_train || map.uses_supply_train)
 		try

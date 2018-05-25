@@ -9,6 +9,7 @@
 	schedule_interval = 7 // every 0.7 seconds
 	start_delay = 100
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
+	priority = PROCESS_PRIORITY_HIGH
 	processes.zoom = src
 
 /process/zoom/started()
@@ -17,7 +18,6 @@
 		zoom_processing_objects = list()
 
 /process/zoom/fire()
-	SCHECK
 
 	// update gun, scope (in)visibility
 	FORNEXT(recent_scopes)
@@ -38,7 +38,7 @@
 		else
 			catchBadType(S)
 			recent_scopes -= S
-		SCHECK
+		PROCESS_TICK_CHECK
 
 	// make stuff invisible while we're scoping
 	FORNEXT(zoom_processing_objects)
@@ -76,7 +76,7 @@
 		else
 			catchBadType(H)
 			zoom_processing_objects -= H
-		SCHECK
+		PROCESS_TICK_CHECK
 
 /process/zoom/statProcess()
 	..()

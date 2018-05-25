@@ -39,8 +39,17 @@ var/datum/process_list/processes = new
 	var/process/supplydrop/supplydrop = null
 	var/process/python/python = null
 
+	// recorded number of processes
+	var/next_get_num_processes = -1
+	var/last_num_processes = 0
+
 /datum/process_list/proc/get_num_processes()
-	. = 0
-	for (var/varname in vars)
-		if (istype(vars[varname], /process))
-			++.
+	if (world.time >= next_get_num_processes)
+		. = 0
+		for (var/varname in vars)
+			if (istype(vars[varname], /process))
+				++.
+		last_num_processes = .
+		next_get_num_processes = world.time + 50
+	else
+		return last_num_processes

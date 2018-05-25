@@ -1,5 +1,3 @@
-#define SMOOTH_MOVEMENT
-
 /process/paratrooper_plane
 	var/altitude = 10000  // takes ~9.5 minutes to get to nonlethal altitude ((1000 - (19*500)) = 500, 19 * 30 = 570 seconds)
 	var/first_nonlethal_altitude = 500
@@ -11,10 +9,10 @@
 	schedule_interval = 10
 	start_delay = 50
 	fires_at_gamestates = list(GAME_STATE_PLAYING)
+	priority = PROCESS_PRIORITY_IRRELEVANT
 	processes.paratrooper_plane = src
 
 /process/paratrooper_plane/fire()
-	SCHECK
 	if (altitude <= first_nonlethal_altitude || !latejoin_turfs["Fallschirm"] || !latejoin_turfs["Fallschirm"]:len)
 		return
 	try
@@ -22,7 +20,6 @@
 			if (latejoin_turfs["Fallschirm"] && latejoin_turfs["Fallschirm"]:len)
 				for (var/turf/T in range(10, latejoin_turfs["Fallschirm"][1]))
 					my_turfs += T
-					SCHECK
 
 		// make our pixel x different from before
 		var/shift = pick(-1, 0, 1)
@@ -39,12 +36,6 @@
 					AM.pixel_x = shift
 				else
 					++mobs
-				#ifndef SMOOTH_MOVEMENT
-				SCHECK
-				#endif
-			#ifndef SMOOTH_MOVEMENT
-			SCHECK
-			#endif
 
 		tmpTime += schedule_interval
 		if (tmpTime >= 300)
@@ -58,7 +49,6 @@
 				if (H.original_job && istype(H.original_job, /datum/job/german/paratrooper))
 					if (H.z == 2)
 						H << getMessage()
-				SCHECK
 
 	catch(var/exception/e)
 		catchException(e)

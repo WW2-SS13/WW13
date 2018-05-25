@@ -8,11 +8,13 @@
 	name = "Ping Tracking"
 	schedule_interval = 5
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
+	priority = PROCESS_PRIORITY_MEDIUM
 	processes.ping_track = src
 
 /process/ping_track/fire()
-	SCHECK
+
 	my_clients = clients.Copy()
+
 	if (!my_clients.len)
 		return // dividing by 0 is bad
 
@@ -39,8 +41,7 @@
 		winset(C, null, "command=.update_ping+[world.time+world.tick_lag*world.tick_usage/100]")
 		avg += C.last_ping
 		++clients_checked
-
-		SCHECK
+		PROCESS_TICK_CHECK
 
 	if (clients_checked)
 		avg /= clients_checked

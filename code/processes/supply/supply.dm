@@ -6,10 +6,10 @@
 	name = "supply points"
 	schedule_interval = 20 // every 2 seconds
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
+	priority = PROCESS_PRIORITY_IRRELEVANT
 	processes.supply = src
 
 /process/supply/fire()
-	SCHECK
 
 	tmpTime1 += schedule_interval
 	tmpTime2 += schedule_interval

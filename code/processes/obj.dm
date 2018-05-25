@@ -3,11 +3,10 @@
 	schedule_interval = 20 // every 2 seconds
 	start_delay = 8
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
+	priority = PROCESS_PRIORITY_HIGH
 	processes.obj = src
 
 /process/obj/fire()
-	SCHECK
-
 	FORNEXT(processing_objects)
 		var/obj/O = current
 		if (!isDeleted(O))
@@ -18,7 +17,7 @@
 		else
 			catchBadType(O)
 			processing_objects -= O
-		SCHECK
+		PROCESS_TICK_CHECK
 
 /process/obj/statProcess()
 	..()

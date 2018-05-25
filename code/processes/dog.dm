@@ -5,10 +5,10 @@
 	schedule_interval = 2 // a bit slower than humans run (1.42 to 1.76 deciseconds)
 	start_delay = 300
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
+	priority = PROCESS_PRIORITY_HIGH
 	processes.dog = src
 
 /process/dog/fire()
-	SCHECK
 	try
 		for (var/D in dog_mob_list)
 			if (!isDeleted(D))
@@ -30,7 +30,7 @@
 			else
 				catchBadType(D)
 				dog_mob_list -= D
-			SCHECK
+			PROCESS_TICK_CHECK
 
 	catch(var/exception/e)
 		catchException(e)

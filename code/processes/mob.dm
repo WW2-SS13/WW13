@@ -5,6 +5,7 @@
 	schedule_interval = 20 // every 2 seconds
 	start_delay = 16
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
+	priority = PROCESS_PRIORITY_HIGH
 	processes.mob = src
 
 /process/mob/started()
@@ -13,8 +14,6 @@
 		mob_list = list()
 
 /process/mob/fire()
-	SCHECK
-
 	FORNEXT(mob_list)
 
 		var/mob/M = current
@@ -70,7 +69,7 @@
 		else
 			catchBadType(M)
 			mob_list -= M
-		SCHECK
+		PROCESS_TICK_CHECK
 
 /process/mob/statProcess()
 	..()

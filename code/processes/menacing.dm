@@ -3,11 +3,10 @@
 	schedule_interval = 50 // every 5 seconds
 	start_delay = 50
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
+	priority = PROCESS_PRIORITY_MEDIUM
 	processes.menacing = src
 
 /process/menacing/fire()
-	SCHECK
-
 	FORNEXT(menacing_atoms)
 		var/atom/A = current
 		if (!isDeleted(A))
@@ -26,7 +25,7 @@
 		else
 			catchBadType(A)
 			processing_objects -= A
-		SCHECK
+		PROCESS_TICK_CHECK
 
 /process/menacing/statProcess()
 	..()

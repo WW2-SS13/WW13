@@ -14,6 +14,7 @@
 	schedule_interval = 50 // every 5 seconds
 	start_delay = 50
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
+	priority = PROCESS_PRIORITY_IRRELEVANT
 	processes.mapswap = src
 
 /process/mapswap/fire()

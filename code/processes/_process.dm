@@ -45,12 +45,6 @@
 	// process running again.
 	var/tmp/schedule_interval = PROCESS_DEFAULT_SCHEDULE_INTERVAL // run every 50 ticks
 
-	// Process sleep interval
-	// This controls how often the process will yield (call sleep(0)) while it is running.
-	// Every concurrent process should sleep periodically while running in order to allow other
-	// processes to execute concurrently.
-	var/tmp/sleep_interval
-
 	// hang_warning_time - this is the time (in 1/10 seconds) after which the server will begin to show "maybe hung" in the context window
 	var/tmp/hang_warning_time = PROCESS_DEFAULT_HANG_WARNING_TIME
 
@@ -60,31 +54,22 @@
 	// hang_restart_time - After this much time(in 1/10 seconds), the server will automatically kill and restart the process.
 	var/tmp/hang_restart_time = PROCESS_DEFAULT_HANG_RESTART_TIME
 
-	// How many times in the current run has the process deferred work till the next tick?
-	var/tmp/cpu_defer_count = 0
-
-	// How many SCHECKs have been skipped (to limit btime calls)
-	var/tmp/calls_since_last_scheck = 0
-
 	/**
 	 * recordkeeping vars
 	 */
-
-	// Records the time (1/10s timeoftick) at which the process last finished sleeping
-	var/tmp/last_slept = 0
 
 	// Records the time (1/10s timeoftick) at which the process last began running
 	var/tmp/run_start = 0
 
 	// Records the number of times this process has been killed and restarted
-	var/tmp/times_killed
+	var/tmp/times_killed = 0
 
 	// Tick count
 	var/tmp/ticks = 0
 
 	var/tmp/last_task = ""
 
-	var/tmp/current
+	var/tmp/current = null
 
 	// Counts the number of times an exception has occurred; gets reset after 10
 	var/tmp/list/exceptions = list()
@@ -102,8 +87,12 @@
 	// when can we call process()
 	var/list/fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 
-	// are we a subsystem that processes independently of other processes
-	var/subsystem = FALSE
+	// new process stuff
+	var/run_start_time = -1
+	var/run_time_allowance = 0.01
+	var/run_time_allowance_multiplier = 1.00
+	var/run_time_allowance_multiplier_trend = 0
+	var/priority = PROCESS_PRIORITY_MEDIUM
 
 /process/New(var/processScheduler/scheduler)
 	..()
@@ -112,8 +101,6 @@
 	idle()
 	name = "process"
 	schedule_interval = 50
-	sleep_interval = world.tick_lag / PROCESS_DEFAULT_SLEEP_INTERVAL
-	last_slept = 0
 	run_start = 0
 	ticks = 0
 	last_task = 0
@@ -126,10 +113,8 @@
 	// Initialize run_start so we can detect hung processes.
 	run_start = TimeOfGame
 
-	// Initialize defer count
-	cpu_defer_count = 0
-
 	running()
+
 	main.processStarted(src)
 
 	onStart()
@@ -147,10 +132,12 @@
 	return
 
 /process/proc/process()
+	. = TRUE
 	started()
 	if (!paused)
-		fire()
+		. = fire()
 	finished()
+	return .
 
 /process/proc/running()
 	idle = FALSE
@@ -204,29 +191,6 @@
 
 		// This should del
 		del(src)
-
-// Do not call this directly - use SHECK or SCHECK_EVERY
-/process/proc/sleepCheck(var/tickId = 0, var/time_allowance_multiplier = 1.0)
-	calls_since_last_scheck = 0
-	if (killed)
-		// The kill proc is the only place where killed is set.
-		// The kill proc should have deleted this datum, and all sleeping procs that are
-		// owned by it.
-		CRASH("A killed process is still running somehow...")
-	if (hung)
-		// This will only really help if the doWork proc ends up in an infinite loop.
-		handleHung()
-		CRASH("Process [name] hung and was restarted.")
-
-	if (main.getCurrentTickElapsedTime() > main.timeAllowance*time_allowance_multiplier)
-		sleep(world.tick_lag)
-		cpu_defer_count++
-		last_slept = 0
-	else
-		if (TimeOfTick > last_slept + sleep_interval)
-			// If we haven't slept in sleep_interval deciseconds, sleep to allow other work to proceed.
-			sleep(0)
-			last_slept = TimeOfTick
 
 /process/proc/update()
 	// Clear delta
@@ -306,8 +270,6 @@
 	main = target.main
 	name = target.name
 	schedule_interval = target.schedule_interval
-	sleep_interval = target.sleep_interval
-	last_slept = 0
 	run_start = 0
 	times_killed = target.times_killed
 	ticks = target.ticks
@@ -349,13 +311,13 @@
 	var/averageRunTime = round(getAverageRunTime(), 0.1)/10
 	var/lastRunTime = round(getLastRunTime(), 0.1)/10
 	var/highestRunTime = round(getHighestRunTime(), 0.1)/10
-	stat("[name]", "T#[getTicks()] | AR [averageRunTime] | LR [lastRunTime] | HR [highestRunTime] | D [cpu_defer_count]")
+	stat("[name]", "T#[getTicks()] | AR [averageRunTime] | LR [lastRunTime] | HR [highestRunTime]")
 
 /process/proc/htmlProcess()
 	var/averageRunTime = round(getAverageRunTime(), 0.1)/10
 	var/lastRunTime = round(getLastRunTime(), 0.1)/10
 	var/highestRunTime = round(getHighestRunTime(), 0.1)/10
-	return "T#[getTicks()] | AR [averageRunTime] | LR [lastRunTime] | HR [highestRunTime] | D [cpu_defer_count]<br>"
+	return "T#[getTicks()] | AR [averageRunTime] | LR [lastRunTime] | HR [highestRunTime]<br>"
 
 /process/proc/catchException(var/exception/e, var/thrower)
 	if (ispath(thrower) || istext(thrower))
@@ -400,3 +362,8 @@
 	if (isnull(caught) || !istype(caught) || caught.gcDestroyed)
 		return // Only bother with types we can identify and that don't belong
 	catchException("Type [caught.type] does not belong in process' queue")
+
+/process/proc/run_time_allowance_multiplier_modify()
+	var/amt = (schedule_interval/600) * run_time_allowance_multiplier_trend // 60 seconds (* trend) to completely change for maximum flexibility
+	run_time_allowance_multiplier += amt
+	run_time_allowance_multiplier = Clamp(run_time_allowance_multiplier, 0.05, 1.00)

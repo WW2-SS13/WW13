@@ -31,6 +31,7 @@ var/list/delayed_garbage = list()
 	delayed_garbage = null
 
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
+	priority = PROCESS_PRIORITY_HIGH
 	processes.garbage = src
 
 #ifdef GC_FINDREF
@@ -38,7 +39,6 @@ world/loop_checks = FALSE
 #endif
 
 /process/garbage/fire()
-	SCHECK
 	if (!garbage_collect)
 		return
 
@@ -88,7 +88,7 @@ world/loop_checks = FALSE
 		tick_dels++
 		total_dels++
 		destroyed.Cut(1, 2)
-		SCHECK
+		PROCESS_TICK_CHECK
 
 #undef GC_FORCE_DEL_PER_TICK
 #undef GC_COLLECTION_TIMEOUT

@@ -8,10 +8,10 @@
 	schedule_interval = 1 // every 1/10th second
 	start_delay = 10
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
+	priority = PROCESS_PRIORITY_HIGH
 	processes.lighting = src
 
 /process/lighting/fire()
-	SCHECK
 
 	FORNEXT(lighting_update_lights)
 		if (!isDeleted(current))
@@ -34,7 +34,7 @@
 			catchBadType(current)
 			lighting_update_lights -= current
 
-		SCHECK
+		PROCESS_TICK_CHECK
 
 	FORNEXT(lighting_update_overlays)
 		if (!isDeleted(current))
@@ -46,4 +46,4 @@
 			catchBadType(current)
 			lighting_update_overlays -= current
 
-		SCHECK
+		PROCESS_TICK_CHECK

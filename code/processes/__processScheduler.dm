@@ -18,6 +18,8 @@ var/global/processScheduler/processScheduler
 	// Process name -> process object map
 	var/tmp/process/list/nameToProcessMap = list()
 
+	var/tmp/process/list/priorityToProcessMap = list()
+
 	// Process last queued times (world time)
 	var/tmp/process/list/last_queued = list()
 
@@ -44,11 +46,7 @@ var/global/processScheduler/processScheduler
 
 	var/tmp/currentTick = 0
 
-	var/tmp/timeAllowance = 0
-
 	var/tmp/cpuAverage = 0
-
-	var/tmp/timeAllowanceMax = 0
 
 /processScheduler/New()
 	..()
@@ -56,8 +54,6 @@ var/global/processScheduler/processScheduler
 	//  get re-initialized when the process scheduler is started.
 	// (These are kept here for any processes that decide to process before round start)
 	scheduler_sleep_interval = world.tick_lag
-	timeAllowance = world.tick_lag * 0.50
-	timeAllowanceMax = world.tick_lag
 
 /**
  * deferSetupFor
@@ -66,6 +62,7 @@ var/global/processScheduler/processScheduler
  * the deferred setup list. On goonstation, only the ticker needs to have
  * this treatment.
  */
+
 /processScheduler/proc/deferSetupfor (var/processPath)
 	if (!(processPath in deferredSetupList))
 		deferredSetupList += processPath
@@ -89,8 +86,6 @@ var/global/processScheduler/processScheduler
 	isRunning = TRUE
 	// tick_lag will have been set by now, so re-initialize these
 	scheduler_sleep_interval = world.tick_lag
-	timeAllowance = world.tick_lag * 0.50
-	timeAllowanceMax = world.tick_lag
 	updateStartDelays()
 	spawn(0)
 		process()
@@ -99,18 +94,19 @@ var/global/processScheduler/processScheduler
 	updateCurrentTickData()
 
 	for (var/i=world.tick_lag,i<world.tick_lag*50,i+=world.tick_lag)
-		spawn(i) updateCurrentTickData()
+		spawn(i)
+			updateCurrentTickData()
+
 	while (isRunning)
 		// Hopefully spawning this for 50 ticks in the future will make it the first thing in the queue.
-		spawn(world.tick_lag*50) updateCurrentTickData()
+		spawn(world.tick_lag*50)
+			updateCurrentTickData()
+
 		checkRunningProcesses()
 		queueProcesses()
 		runQueuedProcesses()
-		sleep(scheduler_sleep_interval)
 
-	// handle hung fake subsystems: restartProcess() only restarts subsystems if they're really dead
-	for (var/name in last_ran_subsystem)
-		restartProcess(name)
+		sleep(scheduler_sleep_interval)
 
 /processScheduler/proc/stop()
 	isRunning = FALSE
@@ -119,7 +115,7 @@ var/global/processScheduler/processScheduler
 	for (var/process/p in running)
 		p.update()
 
-		if (isnull(p)) // Process was killed
+		if (!p) // Process was killed
 			continue
 
 		var/status = p.getStatus()
@@ -148,9 +144,22 @@ var/global/processScheduler/processScheduler
 			setQueuedProcessState(p)
 
 /processScheduler/proc/runQueuedProcesses()
+	var/time_spent = world.timeofday
 	for (var/process/p in queued)
-		if (!p.subsystem)
-			runProcess(p)
+		p.run_start_time = world.timeofday
+		p.run_time_allowance = calculate_run_time_allowance(p.priority)
+		if (p.process() == PROCESS_TICK_CHECK_RETURNED_EARLY)
+			if (p.run_time_allowance_multiplier_trend < 0)
+				p.run_time_allowance_multiplier_trend = 0
+			if (p.run_time_allowance_multiplier < 1.00)
+				++p.run_time_allowance_multiplier_trend
+		else
+			if (p.run_time_allowance_multiplier_trend > 0)
+				p.run_time_allowance_multiplier_trend = 0
+			if (p.run_time_allowance_multiplier > 0.05)
+				--p.run_time_allowance_multiplier_trend
+		p.run_time_allowance_multiplier_modify()
+	time_spent = world.timeofday - time_spent
 
 /processScheduler/proc/addProcess(var/process/process)
 	processes.Add(process)
@@ -174,12 +183,14 @@ var/global/processScheduler/processScheduler
 	// Set up process
 	process.setup()
 
-	// Subsystem? make the process run independently and recover quickly if it hangs
-	if (process.subsystem)
-		DO_INTERNAL_SUBSYSTEM(process)
-
 	// Save process in the name -> process map
 	nameToProcessMap[process.name] = process
+
+	// Save process in the priority -> process map
+	var/key = num2text(process.priority)
+	if (!priorityToProcessMap[key])
+		priorityToProcessMap[key] = list()
+	priorityToProcessMap[key] += process
 
 /processScheduler/proc/replaceProcess(var/process/oldProcess, var/process/newProcess)
 	processes.Remove(oldProcess)
@@ -216,10 +227,6 @@ var/global/processScheduler/processScheduler
 	for (var/process/p in processes)
 		if (p.start_delay)
 			last_queued[p] = world.time - p.start_delay
-
-/processScheduler/proc/runProcess(var/process/process)
-	spawn(0)
-		process.process()
 
 /processScheduler/proc/processStarted(var/process/process)
 	setRunningProcessState(process)
@@ -306,6 +313,7 @@ var/global/processScheduler/processScheduler
 
 	if (c > 0)
 		return t / c
+
 	return c
 
 /processScheduler/proc/getProcessLastRunTime(var/process/process)
@@ -334,13 +342,7 @@ var/global/processScheduler/processScheduler
 	restartProcess(processName)
 
 /processScheduler/proc/restartProcess(var/processName as text)
-	if (subsystems.Find(processName))
-		if (hasProcess(processName))
-			var/process/instance = nameToProcessMap[processName]
-			var/time_since_last_run = world.time - last_ran_subsystem[processName]
-			if (time_since_last_run/10 >= instance.schedule_interval)
-				DO_INTERNAL_SUBSYSTEM(instance)
-	else if (hasProcess(processName))
+	if (hasProcess(processName))
 		var/process/oldInstance = nameToProcessMap[processName]
 		var/process/newInstance = new oldInstance.type(src)
 		newInstance._copyStateFrom(oldInstance)
@@ -368,23 +370,14 @@ var/global/processScheduler/processScheduler
 	if (world.time > currentTick)
 		// New tick!
 		currentTick = world.time
-		updateTimeAllowance()
 		cpuAverage = (world.cpu + cpuAverage + cpuAverage) / 3
-
-/processScheduler/proc/updateTimeAllowance()
-	// Time allowance goes down linearly with world.cpu.
-	var/tmp/error = cpuAverage - 100
-	var/tmp/timeAllowanceDelta = SIMPLE_SIGN(error) * -0.5 * world.tick_lag * max(0, 0.001 * abs(error))
-
-	//timeAllowance = world.tick_lag * min(1, 0.5 * ((200/max(1,cpuAverage)) - 1))
-	timeAllowance = min(timeAllowanceMax, max(0, timeAllowance + timeAllowanceDelta))
 
 /processScheduler/proc/statProcesses()
 	if (!isRunning)
 		stat("Processes", "Scheduler not running")
 		return
 	stat("Processes", "[processes.len] (R [running.len] / Q [queued.len] / I [idle.len])")
-	stat(null, "[round(cpuAverage, 0.1)] CPU, [round(timeAllowance, 0.1)/10] TA")
+	stat(null, "[round(cpuAverage, 0.1)]% CPU")
 	for (var/process/p in processes)
 		p.statProcess()
 
@@ -394,10 +387,25 @@ var/global/processScheduler/processScheduler
 		. += "<p><big>Processes: Scheduler not running</big></p>"
 		return
 	. += "<p><big>Processes: [processes.len] (R [running.len] / Q [queued.len] / I [idle.len])</big></p>"
-	. += "<p>[round(cpuAverage, 0.1)] CPU, [round(timeAllowance, 0.1)/10] TA</p>"
+	. += "<p>[round(cpuAverage, 0.1)]% CPU</p>"
 	for (var/process/p in processes)
 		. += "<p><b>[p.name]</b>: [p.htmlProcess()]</p>"
 	. += "</body></html>"
 
 /processScheduler/proc/getProcess(var/process_name)
 	return nameToProcessMap[process_name]
+
+/processScheduler/proc/calculate_run_time_allowance(var/priority)
+	. = 0
+	switch (priority)
+		if (PROCESS_PRIORITY_VERY_LOW)
+			. = world.tick_lag * 0.05
+		if (PROCESS_PRIORITY_LOW)
+			. = world.tick_lag * 0.10
+		if (PROCESS_PRIORITY_MEDIUM)
+			. = world.tick_lag * 0.15
+		if (PROCESS_PRIORITY_HIGH)
+			. = world.tick_lag * 0.20
+		if (PROCESS_PRIORITY_VERY_HIGH)
+			. = world.tick_lag * 0.50
+	. /= priorityToProcessMap[num2text(priority)]:len

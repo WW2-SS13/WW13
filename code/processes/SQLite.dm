@@ -11,14 +11,13 @@ var/process/SQLite/SQLite_process = null
 	SQLite_process = src
 
 /process/SQLite/fire()
-	SCHECK
 	for (var/query in queries)
 		var/file = getFile()
 		if (!file)
 			continue
 		file << query
 		queries -= query
-		SCHECK
+		PROCESS_TICK_CHECK
 	if (shell())
 		shell("cd && sudo python3 [getWriteDir()]pythonSQL.py")
 
