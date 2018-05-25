@@ -4,9 +4,10 @@
 	name = "the sky"
 
 var/list/sky_drop_map = list()
+
 // this is probably laggy as hell but oh well - Kachnov
 /turf/sky/Entered(var/atom/movable/mover)
-	if (locate_dense_type(contents, /obj/structure)) // plane windows
+	if (locate_dense_type(contents, /obj/structure) || locate_type(contents, /obj/structure/window/classic)) // plane windows
 		return ..(mover)
 	else
 		..(mover)

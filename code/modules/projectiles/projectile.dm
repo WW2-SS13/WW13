@@ -152,14 +152,12 @@
 		def_zone = "chest"
 
 	if (user == target) //Shooting yourself
-		user.pre_bullet_act(src)
-		user.bullet_act(src, target_zone)
+		do_bullet_act(user, target_zone)
 		on_impact(user)
 		qdel(src)
 		return FALSE
 	if (targloc == curloc) //Shooting something in the same turf
-		target.pre_bullet_act(src)
-		target.bullet_act(src, target_zone)
+		do_bullet_act(target, target_zone)
 		on_impact(target)
 		qdel(src)
 		return FALSE
@@ -195,8 +193,7 @@
 	def_zone = "chest"
 
 	if (targloc == curloc) //Shooting something in the same turf
-		target.pre_bullet_act(src)
-		target.bullet_act(src, "chest")
+		do_bullet_act(target, "chest")
 		on_impact(target)
 		qdel(src)
 		return FALSE
@@ -219,8 +216,7 @@
 //called to launch a projectile from a gun
 /obj/item/projectile/proc/launch_from_gun(atom/target, mob/user, obj/item/weapon/gun/launcher, var/target_zone, var/x_offset=0, var/y_offset=0)
 	if (user == target) //Shooting yourself
-		user.pre_bullet_act(src)
-		user.bullet_act(src, target_zone)
+		do_bullet_act(user, target_zone)
 		qdel(src)
 		return FALSE
 
@@ -274,8 +270,8 @@
 						visible_message("<span class='warning'>[H]'s armor deflects the shrapnel!</span>")
 						return
 
-		target_mob.pre_bullet_act(src)
-		target_mob.bullet_act(src, hit_zone)
+		do_bullet_act(target_mob, hit_zone)
+
 		if (silenced)
 			target_mob << "<span class='danger'>You've been hit in the [parse_zone(hit_zone)] by the shrapnel!</span>"
 		else
@@ -378,8 +374,7 @@
 
 	if (hit_zone)
 //		var/def_zone = hit_zone //set def_zone, so if the projectile ends up hitting someone else later (to be implemented), it is more likely to hit the same part
-		target_mob.pre_bullet_act(src)
-		result = target_mob.bullet_act(src, hit_zone)
+		result = do_bullet_act(target_mob, hit_zone)
 
 	if (result == PROJECTILE_FORCE_MISS)
 		if (!silenced)
@@ -441,7 +436,7 @@
 					var/obj/item/I = O
 					hitchance = 25 * I.w_class // a pistol would be 50%
 				if (prob(hitchance))
-					O.bullet_act(src)
+					do_bullet_act(O)
 					bumped = TRUE
 					loc = null
 					qdel(src)
@@ -536,10 +531,8 @@
 	if (src && loc)
 		if (--kill_count < 1)
 			for (var/atom/movable/AM in loc)
-				AM.pre_bullet_act(src)
-				AM.bullet_act(src)
-			loc.pre_bullet_act(src)
-			loc.bullet_act(src)
+				do_bullet_act(AM)
+			do_bullet_act(loc)
 			on_impact(loc) //for any final impact behaviours
 			qdel(src)
 			return
@@ -554,10 +547,8 @@
 		// just before we enter nullspace
 		if (!trajectory.return_location(location))
 			for (var/atom/movable/AM in loc)
-				AM.pre_bullet_act(src)
-				AM.bullet_act(src)
-			loc.pre_bullet_act(src)
-			loc.bullet_act(src)
+				do_bullet_act(AM)
+			do_bullet_act(loc)
 			on_impact(loc)
 			qdel(src)
 			return
@@ -588,6 +579,15 @@
 			muzzle_effect(effect_transform)
 		else if (!bumped)
 			tracer_effect(effect_transform)
+
+/obj/item/projectile/proc/do_bullet_act(var/atom/A, var/zone)
+	if (A != firer && A != firedfrom)
+		A.pre_bullet_act(src)
+		if (zone)
+			return A.bullet_act(src, zone)
+		else
+			return A.bullet_act(src)
+	return FALSE
 
 /obj/item/projectile/proc/before_move()
 	return FALSE
