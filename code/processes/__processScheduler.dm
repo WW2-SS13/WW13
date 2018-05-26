@@ -158,7 +158,7 @@ var/global/processScheduler/processScheduler
 /processScheduler/proc/runQueuedProcesses()
 	// run all processes until we've used 98% of a tick. Higher priority processes will finish in less loops.
 	var/list/tmpQueued = queued.Copy()
-	while (tmpQueued.len && getCurrentTickElapsedTime() < world.tick_lag*0.98)
+	while (tmpQueued.len && getCurrentTickElapsedTime() < world.tick_lag*0.90)
 		for (var/process/p in tmpQueued)
 			p.run_time_start_time = world.timeofday
 			if (p.run_time_allowance == -1)
@@ -414,5 +414,5 @@ var/global/processScheduler/processScheduler
 		if (PROCESS_PRIORITY_HIGH)
 			. = world.tick_lag * 0.20
 		if (PROCESS_PRIORITY_VERY_HIGH)
-			. = world.tick_lag * 0.50
+			. = world.tick_lag * 0.40
 	. /= priorityToProcessMap[num2text(priority)]:len
