@@ -5,7 +5,7 @@
 	schedule_interval = 300
 	start_delay = 100
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	priority = PROCESS_PRIORITY_MEDIUM
+	priority = PROCESS_PRIORITY_LOW
 	processes.supplydrop = src
 
 /process/supplydrop/fire()
@@ -73,6 +73,10 @@
 						if (objects.Find(last_path))
 							objects -= last_path
 			PROCESS_TICK_CHECK
+
+// we don't use this, current_list will be == null
+/process/lighting_sources/reset_current_list()
+	return
 
 /process/supplydrop/statProcess()
 	..()

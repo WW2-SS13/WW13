@@ -28,9 +28,9 @@
 
 		var/mobs = 0
 
-		FORNEXT(my_turfs)
+		for (current in my_turfs)
 			var/turf/T = current
-			FORNEXT(T.contents)
+			for (current in T.contents)
 				var/atom/movable/AM = current
 				if (!ismob(AM))
 					AM.pixel_x = shift

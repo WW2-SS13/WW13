@@ -10,9 +10,9 @@
 
 /process/dog/fire()
 	try
-		for (var/D in dog_mob_list)
-			if (!isDeleted(D))
-				var/mob/living/simple_animal/complex_animal/canine/dog/dog = D
+		for (current in current_list)
+			if (!isDeleted(current))
+				var/mob/living/simple_animal/complex_animal/canine/dog/dog = current
 				if (dog.walking_to)
 					if (ismob(dog.walking_to))
 						var/mob/M = dog.walking_to
@@ -28,12 +28,18 @@
 							continue
 						step(dog, get_dir(dog, dog.walking_to))
 			else
-				catchBadType(D)
-				dog_mob_list -= D
+				catchBadType(current)
+				dog_mob_list -= current
+			current_list -= current
 			PROCESS_TICK_CHECK
 
 	catch(var/exception/e)
 		catchException(e)
+
+/process/dog/reset_current_list()
+	if (current_list)
+		current_list = null
+	current_list = dog_mob_list.Copy()
 
 /process/dog/statProcess()
 	..()

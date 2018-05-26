@@ -180,6 +180,11 @@
 
 	#ifdef DAYLIGHT_LIGHTING_DISABLED
 	if (src_area && src_area.location == AREA_INSIDE)
+		if (iswall(src))
+			for (var/turf/T in orange(1, src))
+				var/area/T_area = get_area(T)
+				if (T_area.location == AREA_OUTSIDE)
+					return 1.0
 		return 0.0
 	#endif
 

@@ -23,8 +23,8 @@ var/global/list/train_car_centers = list()
 var/global/list/german_main_train_car_centers = list()
 var/global/list/german_supply_train_car_centers = list()
 
-var/global/list/burning_objs = list()
-var/global/list/burning_turfs = list()
+var/global/list/burning_obj_list = list()
+var/global/list/burning_turf_list = list()
 
 var/global/list/cable_list = list()					//Index for all cables, so that powernets don't have to look through the entire world all the time
 var/global/list/chemical_reactions_list				//list of all /datum/chemical_reaction datums. Used during chemical reactions
@@ -72,11 +72,15 @@ var/global/list/ladder_list = list()
 
 var/global/list/paper_list = list()
 
-var/global/list/lighting_overlay_list = list()
+var/global/list/lighting_update_lights = list()  // List of lighting sources queued for update.
+
+var/global/list/lighting_overlay_list = list() // List of lighting overlays queued for update.
 
 var/global/list/processing_objects = list()
 
-var/global/list/zoom_processing_objects = list()
+var/global/list/zoom_scopes_list = list()
+
+var/global/list/zoom_processing_mobs = list()
 
 var/global/list/supplydrop_processing_objects_german = list()
 

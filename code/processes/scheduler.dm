@@ -10,11 +10,11 @@
 	schedule_interval = 3 SECONDS
 	scheduled_tasks = list()
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	priority = PROCESS_PRIORITY_HIGH
+	priority = PROCESS_PRIORITY_MEDIUM
 	processes.scheduler = src
 
 /process/scheduler/fire()
-	FORNEXT(scheduled_tasks)
+	for (current in current_list)
 		var/datum/scheduled_task/scheduled_task = current
 		try
 			if (world.time > scheduled_task.trigger_time)
@@ -24,7 +24,15 @@
 				scheduled_task.post_process()
 		catch(var/exception/e)
 			catchException(e, current)
+			scheduled_tasks -= current
+
+		current_list -= current
 		PROCESS_TICK_CHECK
+
+/process/scheduler/reset_current_list()
+	if (current_list)
+		current_list = null
+	current_list = scheduled_tasks.Copy()
 
 /process/scheduler/statProcess()
 	..()

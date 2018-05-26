@@ -1,6 +1,5 @@
 /var/max_lighting_z = 1
 /var/lighting_corners_initialised = FALSE
-/var/setup_lighting = FALSE
 
 /proc/create_all_lighting_overlays()
 	for (var/zlevel = 1 to max_lighting_z)
@@ -73,4 +72,4 @@ var/created_lighting_corners_and_overlays = FALSE
 	processes.time_of_day_change.changeto = _time_of_day
 	processes.time_of_day_change.admincaller = admincaller
 	processes.time_of_day_change.announce = announce
-	processes.time_of_day_change.ready = TRUE
+	processes.time_of_day_change.fire(TRUE)

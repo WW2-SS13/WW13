@@ -8,13 +8,8 @@
 	priority = PROCESS_PRIORITY_HIGH
 	processes.mob = src
 
-/process/mob/started()
-	..()
-	if (!mob_list)
-		mob_list = list()
-
 /process/mob/fire()
-	FORNEXT(mob_list)
+	for (current in current_list)
 
 		var/mob/M = current
 
@@ -61,15 +56,22 @@
 				if (world.time - M.last_movement > 7)
 					M.velocity = 0
 				if (ishuman(M) && M.client)
-					zoom_processing_objects |= M
+					zoom_processing_mobs |= M
 				else
-					zoom_processing_objects -= M
+					zoom_processing_mobs -= M
 			catch (var/exception/e)
 				catchException(e, M)
 		else
 			catchBadType(M)
 			mob_list -= M
+
+		current_list -= current
 		PROCESS_TICK_CHECK
+
+/process/mob/reset_current_list()
+	if (current_list)
+		current_list = null
+	current_list = mob_list.Copy()
 
 /process/mob/statProcess()
 	..()

@@ -69,6 +69,7 @@
 
 	var/tmp/last_task = ""
 
+	// last object in a loop we iterated through
 	var/tmp/current = null
 
 	// Counts the number of times an exception has occurred; gets reset after 10
@@ -87,12 +88,16 @@
 	// when can we call process()
 	var/list/fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 
-	// new process stuff
-	var/run_start_time = -1
-	var/run_time_allowance = 0.01
-	var/run_time_allowance_multiplier = 1.00
-	var/run_time_allowance_multiplier_trend = 0
+	// lebenProcessScheduler stuff
+
+	// when did we start our more recent run
+	var/run_time_start_time = -1
+	// how long are we allowed to run? set in the scheduler whenever this is -1, not New(), since it relies on other processes
+	var/run_time_allowance = -1
+	// the higher priority, the more CPU we're expected to use
 	var/priority = PROCESS_PRIORITY_MEDIUM
+	// recorded list of objects we need to go through - never set for processes with priority IRRELEVANT
+	var/list/current_list = null
 
 /process/New(var/processScheduler/scheduler)
 	..()
@@ -363,7 +368,12 @@
 		return // Only bother with types we can identify and that don't belong
 	catchException("Type [caught.type] does not belong in process' queue")
 
-/process/proc/run_time_allowance_multiplier_modify()
-	var/amt = (schedule_interval/600) * run_time_allowance_multiplier_trend // 60 seconds (* trend) to completely change for maximum flexibility
-	run_time_allowance_multiplier += amt
-	run_time_allowance_multiplier = Clamp(run_time_allowance_multiplier, 0.05, 1.00)
+// sets current_list to an empty list (or null) by default
+/process/proc/reset_current_list()
+	if (!current_list)
+		if (priority != PROCESS_PRIORITY_IRRELEVANT)
+			current_list = list()
+	else
+		if (priority != PROCESS_PRIORITY_IRRELEVANT)
+			current_list = null
+			current_list = list()

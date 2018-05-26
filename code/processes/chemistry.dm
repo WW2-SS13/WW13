@@ -10,12 +10,12 @@
 	chemical_reactions = chemical_reactions_list
 	chemical_reagents = chemical_reagents_list
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	priority = PROCESS_PRIORITY_HIGH
+	priority = PROCESS_PRIORITY_MEDIUM
 	processes.chemistry = src
 
 /process/chemistry/fire()
 
-	FORNEXT(active_holders)
+	for (current in current_list)
 		var/datum/reagents/holder = current
 		if (!isDeleted(holder))
 			if (!holder.process_reactions())
@@ -23,7 +23,13 @@
 		else
 			catchBadType(holder)
 			active_holders -= holder
+		current_list -= current
 		PROCESS_TICK_CHECK
+
+/process/chemistry/reset_current_list()
+	if (current_list)
+		current_list = null
+	current_list = active_holders.Copy()
 
 /process/chemistry/statProcess()
 	..()

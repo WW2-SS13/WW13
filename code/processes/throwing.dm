@@ -10,10 +10,7 @@
 
 /process/throwing/fire()
 
-	if (!thrown_list.len)
-		return
-
-	FORNEXT(thrown_list)
+	for (current in current_list)
 
 		var/atom/movable/AM = current
 
@@ -131,7 +128,13 @@
 			catchBadType(AM)
 			thrown_list -= AM
 
+		current_list -= current
 		PROCESS_TICK_CHECK
+
+/process/throwing/reset_current_list()
+	if (current_list)
+		current_list = null
+	current_list = thrown_list.Copy()
 
 /process/throwing/statProcess()
 	..()

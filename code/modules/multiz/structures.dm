@@ -230,7 +230,7 @@
 			if (I.w_class <= 2.0) // fixes maxim bug and probably some others - Kachnov
 				I.forceMove(get_turf(find_target()))
 				visible_message("\The [I] falls down the ladder.")
-		else if (istype(AM, /obj/structure/closet))
+		else if (!AM.pulledby && istype(AM, /obj/structure/closet))
 			visible_message("\The [AM] falls down the ladder.")
 			AM.forceMove(get_turf(find_target()))
 

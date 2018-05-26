@@ -1,6 +1,5 @@
 // ported from /tg/station - Kachnov
 /process/ping_track
-	var/list/my_clients = null
 	var/avg = 0
 	var/client_ckey_check[1000]
 
@@ -8,24 +7,21 @@
 	name = "Ping Tracking"
 	schedule_interval = 5
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	priority = PROCESS_PRIORITY_MEDIUM
+	priority = PROCESS_PRIORITY_LOW
 	processes.ping_track = src
 
 /process/ping_track/fire()
 
-	my_clients = clients.Copy()
-
-	if (!my_clients.len)
-		return // dividing by 0 is bad
+	if (!current_list.len)
+		return
 
 	avg = 0
-
 	var/clients_checked = 0
 
-	while (my_clients.len)
+	while (current_list.len)
 
-		var/client/C = my_clients[my_clients.len]
-		--my_clients.len
+		var/client/C = current_list[current_list.len]
+		--current_list.len
 
 		if (!C)
 			continue
@@ -38,12 +34,17 @@
 			continue
 		if (world.time < client_ckey_check[C.ckey])
 			continue
+
 		winset(C, null, "command=.update_ping+[world.time+world.tick_lag*world.tick_usage/100]")
 		avg += C.last_ping
 		++clients_checked
+
 		PROCESS_TICK_CHECK
 
 	if (clients_checked)
 		avg /= clients_checked
 
-	my_clients = null
+/process/ping_track/reset_current_list()
+	if (current_list)
+		current_list = null
+	current_list = clients.Copy()

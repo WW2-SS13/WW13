@@ -73,7 +73,12 @@
 		T.calculate_window_coeff()
 		T.next_calculate_window_coeff = world.time + 300
 
+	blend_mode = BLEND_MULTIPLY
+
 	var/list/L = copylist(color)
+	if (!islist(L))
+		L = list()
+
 	var/anylums = FALSE
 
 	for (var/datum/lighting_corner/C in T.corners)

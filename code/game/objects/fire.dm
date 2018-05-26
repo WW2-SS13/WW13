@@ -180,11 +180,11 @@ var/obj/burning_overlay_turf = null
 
 				if (istype(a, /obj))
 					a.overlays |= burning_overlay_obj
-					burning_objs += a
+					burning_obj_list += a
 
 				else if (istype(a, /turf))
 					a.overlays |= burning_overlay_turf
-					burning_turfs += a
+					burning_turf_list += a
 
 	for (var/obj/tank/T in my_tile)
 		T.damage += T.x_percent_of_max_damage(1.0 * (temperature/default_temperature))

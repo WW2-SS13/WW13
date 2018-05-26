@@ -10,10 +10,7 @@
 
 /process/projectile/fire()
 
-	if (!projectile_list.len)
-		return
-
-	FORNEXT(projectile_list)
+	for (current in current_list)
 
 		var/obj/item/projectile/P = current
 
@@ -28,7 +25,13 @@
 			catchBadType(P)
 			projectile_list -= P
 
+		current_list -= current
 		PROCESS_TICK_CHECK
+
+/process/projectile/reset_current_list()
+	if (current_list)
+		current_list = null
+	current_list = projectile_list.Copy()
 
 /process/projectile/statProcess()
 	..()

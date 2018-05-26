@@ -1,19 +1,18 @@
-/process/lag
+/process/casings
 
-/process/lag/setup()
-	name = "lag removal process"
+/process/casings/setup()
+	name = "bullet casings removal process"
 	schedule_interval = 300 // every half minute
 	start_delay = 10
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	priority = PROCESS_PRIORITY_LOW
-	processes.lag = src
+	priority = PROCESS_PRIORITY_HIGH
+	processes.casings = src
 
-/process/lag/fire()
+/process/casings/fire()
 	var/list/turf2casings = list()
-	var/list/turf2cleanables = list()
 
 	// get casings
-	FORNEXT(bullet_casings)
+	for (current in current_list)
 		var/obj/item/ammo_casing/A = current
 		if (!isDeleted(A))
 			if (A.loc && isturf(A.loc)) // so we don't delete ammo casings in guns or mags or nullspace
@@ -23,18 +22,10 @@
 		else
 			catchBadType(A)
 			bullet_casings -= A
+		current_list -= current
+		PROCESS_TICK_CHECK
 
-	// get cleanables
-	FORNEXT(cleanables)
-		var/obj/effect/decal/cleanable/C = current
-		if (!isDeleted(C))
-			if (!turf2cleanables[C.loc])
-				turf2cleanables[C.loc] = 0
-			++turf2cleanables[C.loc]
-		else
-			catchBadType(C)
-			cleanables -= C
-
+	// delete casings
 	for (var/loc in turf2casings)
 		if (turf2casings[loc] >= 2 && turf2casings[loc] <= 9)
 			var/deleted = 0
@@ -45,12 +36,7 @@
 				if (deleted >= turf2casings[loc]-1)
 					break
 
-	for (var/loc in turf2cleanables)
-		if (turf2cleanables[loc] >= 2)
-			var/deleted = 0
-			for (var/obj/effect/decal/cleanable/C in loc)
-				cleanables -= C
-				qdel(C)
-				++deleted
-				if (deleted >= turf2cleanables[loc]-1)
-					break
+/process/casings/reset_current_list()
+	if (current_list)
+		current_list = null
+	current_list = bullet_casings.Copy()

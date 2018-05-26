@@ -25,7 +25,7 @@ var/GRACE_PERIOD_LENGTH = 7
 			update_lighting(time_of_day, null, FALSE)
 			if (!map || !map.meme)
 				spawn (0)
-					while (!setup_lighting)
+					while (!processes.time_of_day_change || !processes.time_of_day_change.setup_lighting)
 						sleep(1)
 					world << "<br><font size=3><span class = 'notice'>It's <b>[lowertext(processes.time_of_day_change.changeto)]</b>, and the season is <b>[get_season()]</b>.</span></font>"
 

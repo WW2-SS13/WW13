@@ -27,7 +27,7 @@
 	ticks_without_work = 0
 	powernet_update_pending = TRUE
 
-	FORNEXT(work_queue)
+	for (current in work_queue)
 		var/datum/explosiondata/data = current
 
 		if (data.is_rec)
@@ -38,6 +38,10 @@
 		work_queue -= data
 
 		PROCESS_TICK_CHECK
+
+// this process does not use current_list, which will be == null
+/process/explosion/reset_current_list()
+	return
 
 /process/explosion/proc/explosion(var/datum/explosiondata/data)
 	var/turf/epicenter = data.epicenter
@@ -96,8 +100,8 @@
 				vibration = TRUE
 
 	if (vibration)
-		FORNEXT(player_list)
-			var/mob/M = current
+		for (var/player in player_list)
+			var/mob/M = player
 			// Double check for client
 			var/reception = 2//Whether the person can be shaken or hear sound
 			//2 = BOTH
@@ -162,8 +166,8 @@
 
 		T.ex_act(dist)
 		if (T && !data.objects_with_immunity.Find(T))
-			FORNEXT(T.contents)	//bypass type checking since only atom/movable can be contained by turfs anyway
-				var/atom/movable/AM = current
+			for (var/something in T.contents)	//bypass type checking since only atom/movable can be contained by turfs anyway
+				var/atom/movable/AM = something
 				if (data.objects_with_immunity.Find(AM))
 					continue
 				if (AM && AM.simulated)	AM.ex_act(dist)
@@ -194,8 +198,8 @@
 		explosion_spread(T, power - epicenter.explosion_resistance, direction)
 
 	//This step applies the ex_act effects for the explosion, as planned in the previous step.
-	FORNEXT(explosion_turfs)
-		var/turf/T = current
+	for (var/turf in explosion_turfs)
+		var/turf/T = turf
 		if (explosion_turfs[T] <= 0) continue
 		if (!T) continue
 
@@ -209,8 +213,8 @@
 		T.ex_act(severity)
 		if (!T)
 			T = locate(x,y,z)
-		FORNEXT(T.contents)
-			var/atom/movable/AM = current
+		for (var/something in T.contents)
+			var/atom/movable/AM = something
 			AM.ex_act(severity)
 
 	explosion_in_progress = FALSE

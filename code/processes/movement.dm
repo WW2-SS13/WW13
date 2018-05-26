@@ -10,10 +10,7 @@
 
 /process/movement/fire()
 
-	if (!clients.len)
-		return
-
-	FORNEXT(clients)
+	for (current in current_list)
 
 		if (!current)
 			catchBadType(current)
@@ -52,11 +49,17 @@
 			catchBadType(M)
 			mob_list -= M
 
+		current_list -= current
 		PROCESS_TICK_CHECK
+
+/process/movement/reset_current_list()
+	if (current_list)
+		current_list = null
+	current_list = clients.Copy()
 
 /process/movement/statProcess()
 	..()
 	stat(null, "[mob_list.len] mobs")
 
-/process/mob/htmlProcess()
+/process/movement/htmlProcess()
 	return ..() + "[mob_list.len] mobs"

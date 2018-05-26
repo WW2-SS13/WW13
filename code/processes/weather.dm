@@ -22,20 +22,6 @@
 
 /process/weather/fire()
 
-	var/deleted = 0
-
-	FORNEXT(cleanables)
-		if (!isDeleted(current))
-			var/area/A = get_area(current)
-			if (A && A.weather == WEATHER_RAIN)
-				qdel(current)
-				++deleted
-				if (deleted >= 100)
-					break
-		else
-			catchBadType(current)
-			cleanables -= current
-
 	var/prob_of_weather_mod = ((((1/mod_weather_interval) * 10) / 2) * 100) * schedule_interval/20
 	var/prob_of_weather_change = ((((1/change_weather_interval) * 10) / 2) * 100) * schedule_interval/20
 

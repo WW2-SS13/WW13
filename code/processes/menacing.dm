@@ -7,7 +7,7 @@
 	processes.menacing = src
 
 /process/menacing/fire()
-	FORNEXT(menacing_atoms)
+	for (current in current_list)
 		var/atom/A = current
 		if (!isDeleted(A))
 			try
@@ -24,8 +24,14 @@
 				catchException(e, A)
 		else
 			catchBadType(A)
-			processing_objects -= A
+			menacing_atoms -= A
+		current_list -= current
 		PROCESS_TICK_CHECK
+
+/process/menacing/reset_current_list()
+	if (current_list)
+		current_list = null
+	current_list = menacing_atoms.Copy()
 
 /process/menacing/statProcess()
 	..()

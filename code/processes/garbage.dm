@@ -35,7 +35,7 @@ var/list/delayed_garbage = list()
 	processes.garbage = src
 
 #ifdef GC_FINDREF
-world/loop_checks = FALSE
+/world/loop_checks = FALSE
 #endif
 
 /process/garbage/fire()
@@ -93,6 +93,10 @@ world/loop_checks = FALSE
 #undef GC_FORCE_DEL_PER_TICK
 #undef GC_COLLECTION_TIMEOUT
 #undef GC_COLLECTIONS_PER_TICK
+
+// this process does not use current_list, which will be == null
+/process/garbage/reset_current_list()
+	return
 
 #ifdef GC_FINDREF
 

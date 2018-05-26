@@ -1,6 +1,3 @@
-// for helper
-#define FORNEXT(list) for (current in list)
-
 // Process status defines
 #define PROCESS_STATUS_IDLE 1
 #define PROCESS_STATUS_QUEUED 2
@@ -22,10 +19,12 @@
 #define PROCESS_PRIORITY_MEDIUM 3
 #define PROCESS_PRIORITY_LOW 4
 #define PROCESS_PRIORITY_VERY_LOW 5
-#define PROCESS_PRIORITY_IRRELEVANT 6 // we don't process or only process once, meaning PROCESS_TICK_CHECK never happens
 
-// Makes a process return if it's spent enough of our tick
-#define PROCESS_TICK_CHECK_RETURNED_EARLY "PTCRE"
+// PROCESS_PRIORITY_IRRELEVANT: we don't process or don't use loops, meaning PROCESS_TICK_CHECK never happens
+#define PROCESS_PRIORITY_IRRELEVANT 6
+
+// Used to indicate that the process was going for too long and had to return early
+#define PROCESS_TICK_CHECK_RETURNED_EARLY 1234
 
 // this uses world.timeofday because world.time doesn't work
-#define PROCESS_TICK_CHECK if (world.timeofday - run_start_time >= (run_time_allowance*run_time_allowance_multiplier)) return PROCESS_TICK_CHECK_RETURNED_EARLY
+#define PROCESS_TICK_CHECK if (world.timeofday - run_time_start_time >= run_time_allowance) return PROCESS_TICK_CHECK_RETURNED_EARLY

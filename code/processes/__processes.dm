@@ -3,7 +3,9 @@ var/datum/process_list/processes = new
 
 /datum/process_list
 	var/process/battle_report/battle_report = null
-	var/process/burning/burning = null
+	var/process/burning_objs/burning_objs = null
+	var/process/burning_turfs/burning_turfs = null
+	var/process/burning_sounds/burning_sounds = null
 	var/process/callproc/callproc = null
 	var/process/chemistry/chemistry = null
 	var/process/client/client = null
@@ -11,8 +13,10 @@ var/datum/process_list/processes = new
 	var/process/explosion/explosion = null
 	var/process/garbage/garbage = null
 	var/process/info/info = null
-	var/process/lag/lag = null
-	var/process/lighting/lighting = null
+	var/process/casings/casings = null
+	var/process/cleanables/cleanables = null
+	var/process/lighting_sources/lighting_sources = null
+	var/process/lighting_overlays/lighting_overlays = null
 	var/process/map/map = null
 	var/process/mapswap/mapswap = null
 	var/process/menacing/menacing = null
@@ -34,10 +38,12 @@ var/datum/process_list/processes = new
 	var/process/train/train = null
 	var/process/vote/vote = null
 	var/process/weather/weather = null
-	var/process/zoom/zoom = null
+	var/process/zoom_scopes/zoom_scopes = null
+	var/process/zoom_mobs/zoom_mobs = null
 	var/process/supply/supply = null
 	var/process/supplydrop/supplydrop = null
 	var/process/python/python = null
+	var/process/self_cleaning/self_cleaning = null
 
 	// recorded number of processes
 	var/next_get_num_processes = -1

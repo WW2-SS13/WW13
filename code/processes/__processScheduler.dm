@@ -88,7 +88,11 @@ var/global/processScheduler/processScheduler
 	scheduler_sleep_interval = world.tick_lag
 	updateStartDelays()
 	spawn(0)
+		// after global lists are created
+		for (var/process/P in processes)
+			P.reset_current_list()
 		process()
+
 
 /processScheduler/proc/process()
 	updateCurrentTickData()
@@ -144,20 +148,17 @@ var/global/processScheduler/processScheduler
 			setQueuedProcessState(p)
 
 /processScheduler/proc/runQueuedProcesses()
-	for (var/process/p in queued)
-		p.run_start_time = world.timeofday
-		p.run_time_allowance = calculate_run_time_allowance(p.priority)
-		if (p.process() == PROCESS_TICK_CHECK_RETURNED_EARLY)
-			if (p.run_time_allowance_multiplier_trend < 0)
-				p.run_time_allowance_multiplier_trend = 0
-			if (p.run_time_allowance_multiplier < 1.00)
-				++p.run_time_allowance_multiplier_trend
-		else
-			if (p.run_time_allowance_multiplier_trend > 0)
-				p.run_time_allowance_multiplier_trend = 0
-			if (p.run_time_allowance_multiplier > 0.05)
-				--p.run_time_allowance_multiplier_trend
-		p.run_time_allowance_multiplier_modify()
+	// run all processes until we've used 98% of a tick. Higher priority processes will finish in less loops.
+	var/list/tmpQueued = queued.Copy()
+	while (tmpQueued.len && getCurrentTickElapsedTime() < world.tick_lag*0.98)
+		for (var/process/p in tmpQueued)
+			p.run_time_start_time = world.timeofday
+			if (p.run_time_allowance == -1)
+				p.run_time_allowance = calculate_run_time_allowance(p.priority)
+			// we finished our current run, reset our current_list to a fresh one
+			if (p.process() != PROCESS_TICK_CHECK_RETURNED_EARLY)
+				p.reset_current_list()
+				tmpQueued -= p
 
 /processScheduler/proc/addProcess(var/process/process)
 	processes.Add(process)
