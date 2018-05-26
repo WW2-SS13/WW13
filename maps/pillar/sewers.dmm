@@ -132,6 +132,7 @@
 "cB" = (/obj/structure/catwalk,/obj/structure/railing{dir = 1},/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/beach/water/sewage,/area/prishtina/sewers)
 "cC" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/effect/decal/cleanable/dirt,/mob/living/carbon/human/corpse/SS,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/sewers)
 "cD" = (/obj/structure/multiz/stairs,/turf/floor/plating/beach/water/sewage,/area/prishtina/sewers)
+"cE" = (/obj/item/weapon/storage/box/shotgunammo,/obj/item/weapon/storage/box/shotgunammo,/obj/item/weapon/storage/box/shotgunammo,/obj/item/weapon/storage/box/shotgunammo,/obj/item/weapon/storage/box/shotgunammo,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/sewers)
 "eU" = (/turf/floor/dirt,/area/prishtina/german/lift/up)
 "eW" = (/turf/wall/brick,/area/prishtina/no_mans_land/invisible_wall/inside)
 "eX" = (/obj/lift_controller/up/soviet,/turf/floor/dirt,/area/prishtina/german/lift/up)
@@ -171,7 +172,7 @@ ajaaababababacagaeaEaaauaabnbnauacababababababababaabOacababababababaaadaeahaaaa
 bbacababababbSagaebTaaauaabnajbUaaaaaaacaaaaacaaaaaaajaaababababababaaadaeahaaaaajaaaaaaacaaaaacaaaaaaaabQaDbRacabababababaaaaaaabababababaa
 bbacaaaaaaaaaaagaeahaaauacauajajajajajajajajajajajajajaaababababababacadaeahacaaajaaabababababababababaabQaDbRacabababababaabaaaabababababaa
 bbbbbbajajaTaUbVaeahacauaabnauauacaaacaaaubnaaaaaaacajacababababababacagaeahacaaajaaabababababababababacbWaCbXaaabababababacajacabababababaa
-acacacaaaaaaaaadaeahacauaaacaaacaaauauauauauauauauaaajaaababababababaaagaeahacaaajaaaaaaaaaaaaaaaaaaabacadaeahaaabababababaaajacabababababaa
+acacacaaaaaaaaadaeahacauaaacaaacaaauauauauauauaucEaaajaaababababababaaagaeahacaaajaaaaaaaaaaaaaaaaaaabacadaeahaaabababababaaajacabababababaa
 ababababababaaagaeahacauauauauauauaubYaubYaubYauauaaajaaaaaaacacaaaaaaagaeaiacaaajacaabaajajajajajaaabaaadaeahaaabababababaaajacabababababaa
 ababababababacagaeahaaauauauauauauauauauauauauauauacajbZauaubnbnauaubwadaeaiaaaaajacaaajaaacaaacajaaabacadaeahaaaaaaacacacaaajacabababababaa
 aaaaababababacaZaebfaaauauauauaucacacacacacacacacaaaajaaaaaaacaaaaaaaaadaeahaaaaajaaaaajaaaaaaacajaaabaccbaeaAccaTajajajajajajacabababababaa

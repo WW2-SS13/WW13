@@ -16,13 +16,13 @@
 	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/stone(H), slot_r_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/pump/combat/winchester1897(H), slot_l_hand)
 	equip_random_civilian_clothing(H)
 	H.add_note("Role", "You are a <b>fucking PILLAR MAN</b>. You have a stone mask. Hit humans with it to turn them into vampires. <span class = 'danger'>Fear the sun's light.</span>")
 	H.add_note("Abilities", "SPACEBAR - shoot boiling blood")
 	H.add_note("Abilities", "Emote *pose - AOE knockdown")
 	H.add_note("Abilities", "Attack (harm intent) - Absorption")
 	H.add_note("Abilities", "Stone Mask - put it on people to make them into Vampires. Has no effect on Pillar Men or Vampires.")
-
 	return TRUE
 
 /datum/job/pillarman/vampire
@@ -41,6 +41,8 @@
 		H.equip_to_slot_or_del(new /obj/item/weapon/material/scythe(H), slot_l_hand)
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/material/knife/ritual(H), slot_l_hand)
+
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/pump/combat/ithaca37(H), slot_r_hand)
 
 	equip_random_civilian_clothing(H)
 	H.add_note("Role", "You are a <b>[title]</b>, a fucking VAMPIRE. Listen to the Pillar Men. Wryyy. <span class = 'danger'>Fear the sun's light.</span>")
