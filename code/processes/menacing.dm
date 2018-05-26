@@ -1,3 +1,6 @@
+/process/menacing
+	var/list/kana = list()
+
 /process/menacing/setup()
 	name = "menacing"
 	schedule_interval = 20 // every 2 seconds
@@ -7,6 +10,8 @@
 	processes.menacing = src
 
 /process/menacing/fire()
+	for (var/motherfuckingjojoreference in kana)
+		qdel(motherfuckingjojoreference)
 	for (current in current_list)
 		var/atom/A = current
 		if (!isDeleted(A))
@@ -17,9 +22,9 @@
 				for (var/turf/T in turfs)
 					if (prob(25))
 						if (ismovable(A))
-							new /obj/effect/kana (T, A)
+							kana += new /obj/effect/kana (T, A)
 						else
-							new /obj/effect/kana (T)
+							kana += new /obj/effect/kana (T)
 			catch(var/exception/e)
 				catchException(e, A)
 		else

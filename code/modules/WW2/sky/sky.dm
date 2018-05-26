@@ -79,9 +79,6 @@ var/list/sky_drop_map = list()
 						// animation is over now: it's supposed to be 7.8 seconds but this works better
 						spawn (60)
 							H.overlays -= I
-							// go away
-							I.icon = null
-							I.icon_state = null
 							qdel(I)
 
 						spawn ((FALL_STEPS+0.5)*5)

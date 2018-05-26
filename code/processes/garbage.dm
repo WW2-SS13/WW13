@@ -180,6 +180,8 @@ var/list/delayed_garbage = list()
 	if (A && isatom(A))
 		var/atom/AT = A
 		AT.invisibility = 101
+		AT.icon = null
+		AT.icon_state = null
 		if (ismovable(A))
 			var/atom/movable/AM = A
 			AM.loc = null // maybe fixes projectiles, hopefully doesn't break anything - Kachnov
