@@ -31,7 +31,7 @@
 		var/turf/T = reference ? reference : masters[1]
 		if (world.time >= T.next_calculate_window_coeff)
 			T.calculate_window_coeff()
-			T.next_calculate_window_coeff = world.time + 300
+		//	T.next_calculate_window_coeff = world.time + 300
 		window_coeff = T.window_coeff
 	return min(1.0, lum_r + (TOD_lum_r * window_coeff))
 
@@ -41,7 +41,7 @@
 		var/turf/T = reference ? reference : masters[1]
 		if (world.time >= T.next_calculate_window_coeff)
 			T.calculate_window_coeff()
-			T.next_calculate_window_coeff = world.time + 300
+		//	T.next_calculate_window_coeff = world.time + 300
 		window_coeff = T.window_coeff
 	return min(1.0, lum_g + (TOD_lum_g * window_coeff))
 
@@ -51,7 +51,7 @@
 		var/turf/T = reference ? reference : masters[1]
 		if (world.time >= T.next_calculate_window_coeff)
 			T.calculate_window_coeff()
-			T.next_calculate_window_coeff = world.time + 300
+		//	T.next_calculate_window_coeff = world.time + 300
 		window_coeff = T.window_coeff
 	return min(1.0, lum_b + (TOD_lum_b * window_coeff))
 

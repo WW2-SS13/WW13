@@ -71,7 +71,7 @@
 
 	if (force_window_coeff_updates)
 		T.calculate_window_coeff()
-		T.next_calculate_window_coeff = world.time + 300
+	//	T.next_calculate_window_coeff = world.time + 300
 
 	blend_mode = BLEND_MULTIPLY
 

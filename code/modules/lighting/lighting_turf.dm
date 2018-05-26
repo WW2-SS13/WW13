@@ -179,13 +179,15 @@
 	var/area/src_area = get_area(src)
 
 	#ifdef DAYLIGHT_LIGHTING_DISABLED
+	. = 0.0
 	if (src_area && src_area.location == AREA_INSIDE)
-		if (iswall(src))
+		if (iswall(src) || locate_dense(contents, /obj/structure))
 			for (var/turf/T in orange(1, src))
 				var/area/T_area = get_area(T)
 				if (T_area.location == AREA_OUTSIDE)
-					return 1.0
-		return 0.0
+					. += 0.16
+	window_coeff = .
+	return window_coeff
 	#endif
 
 	// 100% daylight if we're outside

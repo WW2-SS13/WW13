@@ -74,16 +74,5 @@
 			var/atom/movable/lighting_overlay/LO = lighting_overlay
 			if (LO.invisibility)
 				LO.invisibility = 0
-				/*
-	// extreme hack to make the outside of houses not so damn dark, and stand out from everything else
-	for (var/lighting_overlay in lighting_overlay_list)
-		var/atom/movable/lighting_overlay/LO = lighting_overlay
-		if (LO.loc)
-			if (iswall(LO.loc) || locate_dense_type(LO.loc.contents, /obj/structure))
-				for (var/turf/T in orange(1, LO.loc))
-					var/area/T_area = get_area(T)
-					if (T_area.location == AREA_OUTSIDE)
-						var/TOD_coeff = time_of_day2luminosity[time_of_day]
-						break*/
 
 	setup_lighting = TRUE
