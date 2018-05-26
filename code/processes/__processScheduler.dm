@@ -6,6 +6,9 @@ var/global/processScheduler/processScheduler
 	// Processes known by the scheduler
 	var/tmp/process/list/processes = list()
 
+	// Processes known by the scheduler, ordered by priority
+	var/tmp/process/list/priority_ordered_processes = list()
+
 	// Processes that are currently running
 	var/tmp/process/list/running = list()
 
@@ -91,6 +94,11 @@ var/global/processScheduler/processScheduler
 		// after global lists are created
 		for (var/process/P in processes)
 			P.reset_current_list()
+		// organize processes by priority
+		for (var/priority in PROCESS_PRIORITY_VERY_HIGH to PROCESS_PRIORITY_IRRELEVANT)
+			for (var/process/P in processes)
+				if (P.priority == priority)
+					priority_ordered_processes += P
 		process()
 
 
@@ -135,7 +143,7 @@ var/global/processScheduler/processScheduler
 					message_admins("Process '[p.name]' is hung and will be restarted.")
 
 /processScheduler/proc/queueProcesses()
-	for (var/process/p in processes)
+	for (var/process/p in priority_ordered_processes)
 		// Don't double-queue, don't queue running processes
 		if (p.disabled || p.running || p.queued || !p.idle)
 			continue
