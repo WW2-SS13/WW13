@@ -179,15 +179,20 @@
 	var/area/src_area = get_area(src)
 
 	#ifdef DAYLIGHT_LIGHTING_DISABLED
-	. = 1.0
+	. = 1.00
 	if (src_area && src_area.location == AREA_INSIDE)
 		. = 0.0
 		if (iswall(src) || locate_dense_type(contents, /obj/structure) || locate_type(contents, /obj/structure/window/classic))
+			var/counted = 0
 			for (var/turf/T in orange(1, src))
 				var/area/T_area = get_area(T)
-				if (T_area.location == AREA_OUTSIDE)
+				if (T_area.location == AREA_OUTSIDE || T_area.type == /area/prishtina/void)
 					. += 0.25
-	window_coeff = .
+				++counted
+			// count null turfs as outside
+			. += ((8-counted) * 0.25)
+		. = max(., 0.25) // more natural than pure darkness - only lag-free solution
+	window_coeff = min(., 1.00)
 	return window_coeff
 	#endif
 
