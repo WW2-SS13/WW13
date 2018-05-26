@@ -12,10 +12,12 @@
 	return
 
 /process/python/proc/execute(var/command, var/list/args = list())
-	for (var/argument in args)
-		command = "[command] [argument]"
-	log_debug("Executing python3 command '[command]'")
-	return shell("cd && cd [getScriptDir()] && sudo python3 [command]")
+	if (shell())
+		for (var/argument in args)
+			command = "[command] [argument]"
+		log_debug("Executing python3 command '[command]'")
+		return shell("cd && sudo python3 [getScriptDir()]/[command]")
+	return FALSE
 
 /process/python/proc/getScriptDir()
 	if (config.scripts_directory)
