@@ -181,7 +181,7 @@
 	#ifdef DAYLIGHT_LIGHTING_DISABLED
 	. = 0.0
 	if (src_area && src_area.location == AREA_INSIDE)
-		if (iswall(src) || locate_dense(contents, /obj/structure))
+		if (iswall(src) || locate_dense_type(contents, /obj/structure))
 			for (var/turf/T in orange(1, src))
 				var/area/T_area = get_area(T)
 				if (T_area.location == AREA_OUTSIDE)
