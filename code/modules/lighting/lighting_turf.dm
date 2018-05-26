@@ -179,13 +179,14 @@
 	var/area/src_area = get_area(src)
 
 	#ifdef DAYLIGHT_LIGHTING_DISABLED
-	. = 0.0
+	. = 1.0
 	if (src_area && src_area.location == AREA_INSIDE)
-		if (iswall(src) || locate_dense_type(contents, /obj/structure))
+		. = 0.0
+		if (iswall(src) || locate_dense_type(contents, /obj/structure) || locate_type(contents, /obj/structure/window/classic))
 			for (var/turf/T in orange(1, src))
 				var/area/T_area = get_area(T)
 				if (T_area.location == AREA_OUTSIDE)
-					. += 0.16
+					. += 0.25
 	window_coeff = .
 	return window_coeff
 	#endif
