@@ -182,7 +182,7 @@
 	. = 1.00
 	if (src_area && src_area.location == AREA_INSIDE)
 		. = 0.0
-		if (iswall(src) || locate_dense_type(contents, /obj/structure) || locate_type(contents, /obj/structure/window/classic))
+		if ((iswall(src) && type != /turf/wall/rockwall) || locate_dense_type(contents, /obj/structure) || locate_type(contents, /obj/structure/window/classic))
 			var/counted = 0
 			for (var/turf/T in orange(1, src))
 				var/area/T_area = get_area(T)
