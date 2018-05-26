@@ -45,6 +45,4 @@
 		avg /= clients_checked
 
 /process/ping_track/reset_current_list()
-	if (current_list)
-		current_list = null
-	current_list = clients.Copy()
+	PROCESS_USE_FASTEST_LIST(clients)

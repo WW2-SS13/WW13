@@ -22,7 +22,8 @@
 		else
 			catchBadType(A)
 			bullet_casings -= A
-		current_list -= current
+
+		PROCESS_LIST_CHECK
 		PROCESS_TICK_CHECK
 
 	// delete casings
@@ -37,6 +38,4 @@
 					break
 
 /process/casings/reset_current_list()
-	if (current_list)
-		current_list = null
-	current_list = bullet_casings.Copy()
+	PROCESS_USE_FASTEST_LIST(bullet_casings)

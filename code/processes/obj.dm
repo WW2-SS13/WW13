@@ -18,13 +18,11 @@
 			catchBadType(O)
 			processing_objects -= O
 
-		current_list -= current
+		PROCESS_LIST_CHECK
 		PROCESS_TICK_CHECK
 
 /process/obj/reset_current_list()
-	if (current_list)
-		current_list = null
-	current_list = processing_objects.Copy()
+	PROCESS_USE_FASTEST_LIST(processing_objects)
 
 /process/obj/statProcess()
 	..()

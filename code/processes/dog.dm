@@ -30,16 +30,14 @@
 			else
 				catchBadType(current)
 				dog_mob_list -= current
-			current_list -= current
+			PROCESS_LIST_CHECK
 			PROCESS_TICK_CHECK
 
 	catch(var/exception/e)
 		catchException(e)
 
 /process/dog/reset_current_list()
-	if (current_list)
-		current_list = null
-	current_list = dog_mob_list.Copy()
+	PROCESS_USE_FASTEST_LIST(dog_mob_list)
 
 /process/dog/statProcess()
 	..()

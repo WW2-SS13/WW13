@@ -47,13 +47,11 @@
 			catchBadType(H)
 			zoom_processing_mobs -= H
 
-		current_list -= current
+		PROCESS_LIST_CHECK
 		PROCESS_TICK_CHECK
 
 /process/zoom_mobs/reset_current_list()
-	if (current_list)
-		current_list = null
-	current_list = zoom_processing_mobs.Copy()
+	PROCESS_USE_FASTEST_LIST(zoom_processing_mobs)
 
 /process/zoom_mobs/statProcess()
 	..()

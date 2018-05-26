@@ -128,13 +128,11 @@
 			catchBadType(AM)
 			thrown_list -= AM
 
-		current_list -= current
+		PROCESS_LIST_CHECK
 		PROCESS_TICK_CHECK
 
 /process/throwing/reset_current_list()
-	if (current_list)
-		current_list = null
-	current_list = thrown_list.Copy()
+	PROCESS_USE_FASTEST_LIST(thrown_list)
 
 /process/throwing/statProcess()
 	..()

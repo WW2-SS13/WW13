@@ -370,10 +370,5 @@
 
 // sets current_list to an empty list (or null) by default
 /process/proc/reset_current_list()
-	if (!current_list)
-		if (priority != PROCESS_PRIORITY_IRRELEVANT)
-			current_list = list()
-	else
-		if (priority != PROCESS_PRIORITY_IRRELEVANT)
-			current_list = null
-			current_list = list()
+	if (priority != PROCESS_PRIORITY_IRRELEVANT)
+		PROCESS_USE_FASTEST_LIST(list())

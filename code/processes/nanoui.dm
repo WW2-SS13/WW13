@@ -18,13 +18,12 @@
 		else
 			catchBadType(NUI)
 			nanomanager.processing_uis -= NUI
-		current_list -= current
+
+		PROCESS_LIST_CHECK
 		PROCESS_TICK_CHECK
 
 /process/nanoUI/reset_current_list()
-	if (current_list)
-		current_list = null
-	current_list = nanomanager.processing_uis.Copy()
+	PROCESS_USE_FASTEST_LIST(nanomanager.processing_uis)
 
 /process/nanoUI/statProcess()
 	..()

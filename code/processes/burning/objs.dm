@@ -25,13 +25,11 @@
 			catchBadType(O)
 			burning_obj_list -= O
 
-		current_list -= current
+		PROCESS_LIST_CHECK
 		PROCESS_TICK_CHECK
 
 /process/burning_objs/reset_current_list()
-	if (current_list)
-		current_list = null
-	current_list = burning_obj_list.Copy()
+	PROCESS_USE_FASTEST_LIST(burning_obj_list)
 
 /process/burning_objs/statProcess()
 	..()

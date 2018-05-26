@@ -28,13 +28,12 @@
 					volume -= (dist*3)
 					S.volume = volume
 					M << S
-		current_list -= current
+
+		PROCESS_LIST_CHECK
 		// no PROCESS_TICK_CHECK here: everyone has to hear the sound
 
 /process/burning_sounds/reset_current_list()
-	if (current_list)
-		current_list = null
-	current_list = burning_obj_list.Copy()|burning_turf_list.Copy()
+	PROCESS_USE_FASTEST_LIST(burning_obj_list|burning_turf_list)
 
 /process/burning_sounds/statProcess()
 	..()

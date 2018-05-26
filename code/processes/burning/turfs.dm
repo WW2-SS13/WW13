@@ -27,9 +27,7 @@
 		PROCESS_TICK_CHECK
 
 /process/burning_turfs/reset_current_list()
-	if (current_list)
-		current_list = null
-	current_list = burning_turf_list.Copy()
+	PROCESS_USE_FASTEST_LIST(burning_turf_list)
 
 /process/burning_turfs/statProcess()
 	..()

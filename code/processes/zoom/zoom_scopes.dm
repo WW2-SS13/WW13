@@ -30,13 +30,11 @@
 			catchBadType(S)
 			zoom_scopes_list -= S
 
-		current_list -= current
+		PROCESS_LIST_CHECK
 		PROCESS_TICK_CHECK
 
 /process/zoom_scopes/reset_current_list()
-	if (current_list)
-		current_list = null
-	current_list = zoom_scopes_list.Copy()
+	PROCESS_USE_FASTEST_LIST(zoom_scopes_list)
 
 /process/zoom_scopes/statProcess()
 	..()

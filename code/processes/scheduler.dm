@@ -26,13 +26,11 @@
 			catchException(e, current)
 			scheduled_tasks -= current
 
-		current_list -= current
+		PROCESS_LIST_CHECK
 		PROCESS_TICK_CHECK
 
 /process/scheduler/reset_current_list()
-	if (current_list)
-		current_list = null
-	current_list = scheduled_tasks.Copy()
+	PROCESS_USE_FASTEST_LIST(scheduled_tasks)
 
 /process/scheduler/statProcess()
 	..()

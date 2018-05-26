@@ -24,10 +24,8 @@
 			catchBadType(current)
 			cleanables -= current
 
-		current_list -= current
+		PROCESS_LIST_CHECK
 		PROCESS_TICK_CHECK
 
 /process/self_cleaning/reset_current_list()
-	if (current_list)
-		current_list = null
-	current_list = cleanables.Copy()
+	PROCESS_USE_FASTEST_LIST(cleanables)

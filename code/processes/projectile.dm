@@ -25,13 +25,11 @@
 			catchBadType(P)
 			projectile_list -= P
 
-		current_list -= current
+		PROCESS_LIST_CHECK
 		PROCESS_TICK_CHECK
 
 /process/projectile/reset_current_list()
-	if (current_list)
-		current_list = null
-	current_list = projectile_list.Copy()
+	PROCESS_USE_FASTEST_LIST(projectile_list)
 
 /process/projectile/statProcess()
 	..()

@@ -1,6 +1,6 @@
 /process/menacing/setup()
 	name = "menacing"
-	schedule_interval = 50 // every 5 seconds
+	schedule_interval = 20 // every 2 seconds
 	start_delay = 50
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	priority = PROCESS_PRIORITY_MEDIUM
@@ -15,7 +15,7 @@
 				for (var/turf/T in range(1, turfs[1]))
 					turfs += T
 				for (var/turf/T in turfs)
-					if (prob(33))
+					if (prob(25))
 						if (ismovable(A))
 							new /obj/effect/kana (T, A)
 						else
@@ -25,13 +25,11 @@
 		else
 			catchBadType(A)
 			menacing_atoms -= A
-		current_list -= current
+		PROCESS_LIST_CHECK
 		PROCESS_TICK_CHECK
 
 /process/menacing/reset_current_list()
-	if (current_list)
-		current_list = null
-	current_list = menacing_atoms.Copy()
+	PROCESS_USE_FASTEST_LIST(menacing_atoms)
 
 /process/menacing/statProcess()
 	..()

@@ -65,13 +65,11 @@
 			catchBadType(M)
 			mob_list -= M
 
-		current_list -= current
+		PROCESS_LIST_CHECK
 		PROCESS_TICK_CHECK
 
 /process/mob/reset_current_list()
-	if (current_list)
-		current_list = null
-	current_list = mob_list.Copy()
+	PROCESS_USE_FASTEST_LIST(mob_list)
 
 /process/mob/statProcess()
 	..()
