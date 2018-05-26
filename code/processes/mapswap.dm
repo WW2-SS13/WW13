@@ -48,3 +48,5 @@
 		winner = maps[1]
 	if (!processes.python.execute("mapswap.py", list(winner)))
 		log_debug("Failed to swap the map! mapswap.py must have broke.")
+	else
+		log_debug("Successfully swapped the map to [winner].")
