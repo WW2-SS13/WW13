@@ -540,7 +540,7 @@
 		character.buckled.loc = character.loc
 		character.buckled.set_dir(character.dir)
 
-	if (character.mind.assigned_role != "Cyborg")
+	if (character.mind && character.mind.assigned_role != "Cyborg")
 	//	data_core.manifest_inject(character)
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 

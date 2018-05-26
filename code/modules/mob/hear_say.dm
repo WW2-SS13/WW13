@@ -67,7 +67,7 @@
 			var/turf/source = speaker? get_turf(speaker) : get_turf(src)
 			playsound_local(source, speech_sound, sound_vol, TRUE)
 
-	if (ishuman(src))
+	if (language && ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if (!H.languages.Find(language))
 			var/lname = capitalize(language.name)

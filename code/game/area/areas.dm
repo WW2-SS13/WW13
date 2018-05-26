@@ -329,6 +329,9 @@ var/list/mob/living/forced_ambiance_list = new
 		return
 
 	var/client/CL = L.client
+
+	if (!CL)
+		return
 /*
 	if (CL.ambience_playing && !override) // If any ambience already playing
 		if (forced_ambience && forced_ambience.len)

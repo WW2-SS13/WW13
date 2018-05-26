@@ -226,7 +226,7 @@ Parts of code courtesy of Super3222
 		var/mob/living/carbon/human/H = user
 		if (H.using_zoom())
 			for (var/obj/screen/movable/action_button/AB in user.client.screen)
-				if (AB.name == "Toggle Sights" && AB != azoom.button)
+				if (AB.name == "Toggle Sights" && AB != azoom.button && azoom.button.screen_loc)
 					AB.invisibility = 101
 
 					var/azoom_button_screenX = text2num(splittext(splittext(azoom.button.screen_loc, ":")[1], "+")[2])
