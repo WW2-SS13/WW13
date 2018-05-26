@@ -10,7 +10,9 @@
 		var/datum/nanoui/NUI = current
 		if (!isDeleted(NUI))
 			try
-				NUI.process()
+				// runtime prevention
+				if (NUI.state && NUI.user)
+					NUI.process()
 			catch(var/exception/e)
 				catchException(e, NUI)
 		else
