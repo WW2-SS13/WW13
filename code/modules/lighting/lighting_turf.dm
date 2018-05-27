@@ -191,7 +191,8 @@
 				++counted
 			// count null turfs as outside
 			. += ((8-counted) * 0.25)
-		. = max(., 0.25) // more natural than pure darkness - only lag-free solution
+		if (!istype(src, /turf/wall/rockwall))
+			. = max(., 0.25) // more natural than pure darkness - only lag-free solution
 	window_coeff = min(., 1.00)
 	return window_coeff
 	#endif
