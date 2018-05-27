@@ -887,6 +887,7 @@
 #include "code\processes\explosion.dm"
 #include "code\processes\garbage.dm"
 #include "code\processes\info.dm"
+#include "code\processes\job_data.dm"
 #include "code\processes\map.dm"
 #include "code\processes\mapswap.dm"
 #include "code\processes\menacing.dm"

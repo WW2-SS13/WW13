@@ -660,10 +660,7 @@
 		// check if the job is autobalance-locked
 
 		if (job)
-			var/active = 0
-			// Only players with the job assigned and AFK for less than 10 minutes count as active
-			for (var/mob/M in player_list) if (M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
-				active++
+			var/active = processes.job_data.get_active_positions(job)
 			if (job.base_type_flag() != prev_side)
 				prev_side = job.base_type_flag()
 				var/side_name = "<b><h1><big>[job.get_side_name()]</big></h1></b>&&[job.base_type_flag()]&&"
@@ -820,8 +817,10 @@
 	new_character.original_job = original_job
 	new_character.name = real_name
 	new_character.dna.ready_dna(new_character)
+
 	if (client)
 		new_character.dna.b_type = client.prefs.b_type
+
 	new_character.sync_organ_dna()
 
 	if (client && client.prefs.disabilities)

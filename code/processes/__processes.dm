@@ -44,6 +44,7 @@ var/datum/process_list/processes = new
 	var/process/supplydrop/supplydrop = null
 	var/process/python/python = null
 	var/process/self_cleaning/self_cleaning = null
+	var/process/job_data/job_data = null
 
 	// recorded number of processes
 	var/next_get_num_processes = -1

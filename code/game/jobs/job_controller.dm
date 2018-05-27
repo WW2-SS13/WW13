@@ -513,6 +513,11 @@ var/global/datum/controller/occupations/job_master
 		H.original_job = job
 		H.original_job_title = H.original_job.title
 
+		// add us to the list of players for our job for quick player calculations
+		if (!processes.job_data.job2players[H.original_job.title])
+			processes.job_data.job2players[H.original_job.title] = list()
+		processes.job_data.job2players[H.original_job.title] += H
+
 		#ifdef SPAWNLOC_DEBUG
 		if (H.original_job)
 			world << "[H]'s original job: [H.original_job]"
@@ -722,27 +727,6 @@ var/global/datum/controller/occupations/job_master
 			keychain.keys += key
 			keychain.update_icon_state()
 
-
-/* client.is_minimized()/winget is extremely expensive and bogs down the entire server when its called hundreds of times.
-  this proc is called once for every job in the job window for each player and is a wrapper that makes sure we
-  don't do a winget check, for each client, more often than every 5 seconds. Probably about as expensive as
-  map.can_start(), which also checks is_minimized() for every client - Kachnov */
-
-var/last_relevant_clients = 0
-var/next_calculate_relevant_clients = -1
-/proc/calculate_relevant_clients()
-	if (world.time < next_calculate_relevant_clients)
-		return last_relevant_clients
-	. = 0
-	for (var/client in clients)
-		var/client/C = client
-		/* sometimes C.is_minimized() can take so long that the client no longer exists by the time it's done
-		 * that's why it goes here last - Kachnov */
-		if (C && C.mob && !istype(C.mob, /mob/observer) && !C.is_minimized())
-			++.
-	last_relevant_clients = .
-	next_calculate_relevant_clients = world.time + 50
-
 /datum/controller/occupations/proc/is_side_locked(side)
 	if (!ticker)
 		return TRUE
@@ -784,8 +768,8 @@ var/next_calculate_relevant_clients = -1
 	var/max_civilians = INFINITY
 	var/max_partisans = INFINITY
 
-	// do not snowflake-codeize this, see the definition of calculate_relevant_clients()
-	var/relevant_clients = calculate_relevant_clients()
+	// see job_data.dm
+	var/relevant_clients = processes.job_data.get_relevant_clients()
 
 	if (map && !map.faction_distribution_coeffs.Find(INFINITY))
 		if (map.faction_distribution_coeffs.Find(GERMAN))
