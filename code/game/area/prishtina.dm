@@ -827,6 +827,7 @@
 /area/prishtina/soviet/bunker/entrance
 	icon_state = "green1"
 	name = "entrance"
+	capturable = FALSE
 
 /area/prishtina/soviet/bunker/main_hallway
 	icon_state = "green2"
