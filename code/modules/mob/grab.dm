@@ -32,7 +32,10 @@
 
 /obj/item/weapon/grab/New(mob/user, mob/victim)
 	..()
+
 	loc = user
+	user.grab_list += src
+
 	assailant = user
 	affecting = victim
 
@@ -66,7 +69,6 @@
 			animate(affecting, pixel_x = FALSE, pixel_y = FALSE, 4, TRUE)
 			return affecting
 	return null
-
 
 //This makes sure that the grab screen object is displayed in the correct hand.
 /obj/item/weapon/grab/proc/synch()
@@ -323,6 +325,9 @@
 		devour(affecting, assailant)
 
 /obj/item/weapon/grab/dropped()
+	if (ismob(loc))
+		var/mob/M = loc
+		M.grab_list -= src
 	loc = null
 	if (!destroying)
 		qdel(src)
@@ -337,6 +342,13 @@
 	var/destroying = FALSE
 
 /obj/item/weapon/grab/Destroy()
+
+	// I don't even think this works since its loc is already == null but whatever - Kachnov
+	if (loc)
+		if (ismob(loc))
+			var/mob/M = loc
+			M.grab_list -= src
+
 	animate(affecting, pixel_x = FALSE, pixel_y = FALSE, 4, TRUE, LINEAR_EASING)
 	affecting.layer = 4
 	if (affecting)

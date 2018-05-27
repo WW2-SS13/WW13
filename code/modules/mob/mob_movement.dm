@@ -29,8 +29,14 @@
 
 // weight slowdown
 
+/mob/living/carbon/human/var/last_run_delay = -1
+/mob/living/carbon/human/var/next_calculate_run_delay = -1
 /mob/living/carbon/human/get_run_delay()
+
 	. = ..()
+
+	if (last_run_delay != -1 && world.time < next_calculate_run_delay)
+		return last_run_delay
 
 	var/slowdown = 0
 	var/weight = 0
@@ -61,6 +67,9 @@
 	else if (weight > max_weight * 0.95 && weight <= INFINITY)
 		slowdown = 0.99
 	. *= slowdown+1
+
+	last_run_delay = .
+	next_calculate_run_delay = world.time + 5
 
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 
@@ -251,9 +260,11 @@
 	if (!canmove)
 		return
 
-	if (moving)	return
+	if (moving)
+		return
 
-	if (world.time < move_delay)	return
+	if (world.time < move_delay)
+		return
 
 	if (!mob)
 		return // Moved here to avoid nullrefs below
@@ -273,7 +284,7 @@
 		return
 
 	// relocate or gib chucklefucks who somehow cross the wall
-	if (map.check_prishtina_block(mob, mob.loc))
+	if (map && map.check_prishtina_block(mob, mob.loc))
 		if (!map.special_relocate(mob))
 			if (job_master)
 				job_master.relocate(mob)
@@ -580,93 +591,102 @@
 		//We are now going to move
 		moving = TRUE
 
-		//Something with grabbing things
-		if (locate(/obj/item/weapon/grab, mob))
-		//	move_delay = max(move_delay, world.time + 7)
-			move_delay += 1.0
-			var/list/L = mob.ret_grab()
-			if (istype(L, /list))
-				if (L.len == 2)
-					L -= mob
-					var/mob/M = L[1]
-					if (M)
-						for (var/obj/structure/noose/N in get_turf(M))
-							if (N.hanging == M)
-								goto skipgrab
+		/* this is runtiming somehow, sometimes. But no errors. Now it's in a try-catch block so the var moving is always reset
+		 * should fix the movement bug - Kachnov */
+		try
 
-						if ((get_dist(mob, M) <= 1 || M.loc == mob.loc))
-							var/turf/T = mob.loc
-							. = ..()
-							if (isturf(M.loc))
-								var/diag = get_dir(mob, M)
-								if ((diag - 1) & diag)
-								else
-									diag = null
-								if ((get_dist(mob, M) > 1 || diag))
-									step(M, get_dir(M.loc, T))
-				else
-					for (var/mob/M in L)
-						M.other_mobs = TRUE
-						if (mob != M)
-							M.animate_movement = 3
-					for (var/mob/M in L)
-						spawn( FALSE )
-							step(M, direct)
-							return
-						spawn( TRUE )
-							M.other_mobs = null
-							M.animate_movement = 2
-							return
+			for (var/datum in mob.grab_list)
+				var/datum/D = datum
+				if (D.gcDestroyed)
+					mob.grab_list -= D
 
-		else if (mob.confused && prob(40))
-			step(mob, pick(cardinal))
-		else
-			. = mob.SelfMove(n, direct)
+			//Something with grabbing things
+			if (mob.grab_list.len)
+			//	move_delay = max(move_delay, world.time + 7)
+				move_delay += 1.0
+				var/list/L = mob.ret_grab()
+				if (istype(L, /list))
+					if (L.len == 2)
+						L -= mob
+						var/mob/M = L[1]
+						if (M)
+							for (var/obj/structure/noose/N in get_turf(M))
+								if (N.hanging == M)
+									goto skipgrab
 
-		skipgrab
+							if ((get_dist(mob, M) <= 1 || M.loc == mob.loc))
+								var/turf/T = mob.loc
+								. = ..()
+								if (isturf(M.loc))
+									var/diag = get_dir(mob, M)
+									if ((diag - 1) & diag)
+									else
+										diag = null
+									if ((get_dist(mob, M) > 1 || diag))
+										step(M, get_dir(M.loc, T))
+					else
+						for (var/mob/M in L)
+							M.other_mobs = TRUE
+							if (mob != M)
+								M.animate_movement = 3
+						for (var/mob/M in L)
+								step(M, direct)
+								return
+								M.other_mobs = null
+								M.animate_movement = 2
+								return
 
-		#define STOMP_TIME 3
-
-		//Step on nerds in our way
-		if (mob_is_human)
-			if (H.a_intent == I_HURT)
-				for (var/mob/living/L in mob.loc)
-					if (L.lying && L != H) // you could step on yourself, this fixes it - Kachnov
-						H.visible_message("<span class = 'danger'>[H] steps on [L]!</span>")
-						playsound(mob.loc, 'sound/effects/gore/fallsmash.ogg', 100, TRUE)
-						L.adjustBruteLoss(rand(6,7))
-						if (ishuman(L))
-							L.emote("scream")
-						H.next_change_dir[num2text(opposite_direction(direct))] = world.time + (STOMP_TIME*3)
-						sleep(STOMP_TIME)
-						break
+			else if (mob.confused && prob(40))
+				step(mob, pick(cardinal))
 			else
-				for (var/mob/living/L in mob.loc)
-					if (L.lying && L != H)
-						H.visible_message("<span class = 'warning'>[H] steps over [L].</span>")
+				. = mob.SelfMove(n, direct)
 
-		#undef STOMP_TIME
+			skipgrab
 
-		if (!mob_is_observer)
-			for (var/obj/structure/multiz/ladder/ww2/manhole/M in mob.loc)
-				processes.callproc.queue(M, /obj/structure/multiz/ladder/ww2/manhole/proc/fell, list(mob), 1)
-				break
+			#define STOMP_TIME 3
 
-		// make animals acknowledge us
-		if (mob_is_human)
-			for (var/mob/living/simple_animal/complex_animal/C in living_mob_list) // living_mob_list fails here
-				var/dist_x = abs(mob.x - C.x)
-				var/dist_y = abs(mob.y - C.y)
-				if (dist_x <= 10 && dist_y <= 10)
-					C.onHumanMovement(mob)
+			//Step on nerds in our way
+			if (mob_is_human)
+				if (H.a_intent == I_HURT)
+					for (var/mob/living/L in mob.loc)
+						if (L.lying && L != H) // you could step on yourself, this fixes it - Kachnov
+							H.visible_message("<span class = 'danger'>[H] steps on [L]!</span>")
+							playsound(mob.loc, 'sound/effects/gore/fallsmash.ogg', 100, TRUE)
+							L.adjustBruteLoss(rand(6,7))
+							if (ishuman(L))
+								L.emote("scream")
+							H.next_change_dir[num2text(opposite_direction(direct))] = world.time + (STOMP_TIME*3)
+							sleep(STOMP_TIME)
+							break
+				else
+					for (var/mob/living/L in mob.loc)
+						if (L.lying && L != H)
+							H.visible_message("<span class = 'warning'>[H] steps over [L].</span>")
 
-		for (var/obj/item/weapon/grab/G in mob)
-			if (G.state == GRAB_NECK)
-				mob.set_dir(reverse_dir[direct])
-			G.adjust_position()
+			#undef STOMP_TIME
 
-		for (var/obj/item/weapon/grab/G in mob.grabbed_by)
-			G.adjust_position()
+			if (!mob_is_observer)
+				for (var/obj/structure/multiz/ladder/ww2/manhole/M in mob.loc)
+					processes.callproc.queue(M, /obj/structure/multiz/ladder/ww2/manhole/proc/fell, list(mob), 1)
+					break
+
+			// make animals acknowledge us
+			if (mob_is_human)
+				for (var/mob/living/simple_animal/complex_animal/C in living_mob_list) // living_mob_list fails here
+					var/dist_x = abs(mob.x - C.x)
+					var/dist_y = abs(mob.y - C.y)
+					if (dist_x <= 10 && dist_y <= 10)
+						C.onHumanMovement(mob)
+
+			for (var/obj/item/weapon/grab/G in mob.grab_list)
+				if (G.state == GRAB_NECK)
+					mob.set_dir(reverse_dir[direct])
+				G.adjust_position()
+
+			for (var/obj/item/weapon/grab/G in mob.grabbed_by)
+				G.adjust_position()
+		catch (var/exception/E)
+			pass(E)
 
 		moving = FALSE
 
@@ -840,8 +860,6 @@
 	set name = ".startmovingup"
 	set instant = TRUE
 	if (mob)
-		if (!clients.Find(src))
-			clients += src
 		mob.movement_northsouth = NORTH
 		try
 			Move(get_step(mob, NORTH), NORTH)
@@ -852,8 +870,6 @@
 	set name = ".startmovingdown"
 	set instant = TRUE
 	if (mob)
-		if (!clients.Find(src))
-			clients += src
 		mob.movement_northsouth = SOUTH
 		try
 			Move(get_step(mob, SOUTH), SOUTH)
@@ -864,8 +880,6 @@
 	set name = ".startmovingright"
 	set instant = TRUE
 	if (mob)
-		if (!clients.Find(src))
-			clients += src
 		mob.movement_eastwest = EAST
 		try
 			Move(get_step(mob, EAST), EAST)
@@ -876,8 +890,6 @@
 	set name = ".startmovingleft"
 	set instant = TRUE
 	if (mob)
-		if (!clients.Find(src))
-			clients += src
 		mob.movement_eastwest = WEST
 		try
 			Move(get_step(mob, WEST), WEST)

@@ -111,8 +111,9 @@
 
 	var/datum/hud/hud_used = null
 
-	var/list/grabbed_by = list(  )
-	var/list/requests = list(  )
+	var/list/grab_list = list()
+	var/list/grabbed_by = list()
+	var/list/requests = list()
 
 	var/in_throw_mode = FALSE
 
