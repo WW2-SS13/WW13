@@ -46,7 +46,5 @@
 	winner = uppertext(winner)
 	if (!maps.Find(winner))
 		winner = maps[1]
-	if (!processes.python.execute("mapswap.py", list(winner)))
-		log_debug("Failed to swap the map! mapswap.py must have broke.")
-	else
-		log_debug("Successfully swapped the map to [winner].")
+	// there used to be messages here about success and failure but they lie so they're gone - Kachnov
+	processes.python.execute("mapswap.py", list(winner))
