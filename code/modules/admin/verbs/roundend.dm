@@ -6,6 +6,10 @@
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 
+	if (!ticker || ticker.current_state != GAME_STATE_PLAYING)
+		src << "<span class = 'danger'>You can't end the round right now.</span>"
+		return
+
 	var/conf_1 = input("Are you absolutely positively sure you want to END THE ROUND?") in list ("Yes", "No")
 	if (conf_1 == "No")
 		return
