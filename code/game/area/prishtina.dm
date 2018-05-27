@@ -586,6 +586,7 @@
 /area/prishtina/german/base_defenses
 	name = "Base Defenses"
 	icon_state = "green2"
+	capturable = FALSE
 
 // prevents snowing on some walls
 /area/prishtina/german/base_defenses/wall
