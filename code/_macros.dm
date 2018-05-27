@@ -73,6 +73,8 @@
 
 #define isitem(A) istype(A, /obj/item)
 
+#define iscloset(A) istype(A, /obj/structure/closet)
+
 #define islist(A) istype(A, /list)
 
 #define isatom(A) istype(A, /atom)
