@@ -840,6 +840,8 @@
 	set name = ".startmovingup"
 	set instant = TRUE
 	if (mob)
+		if (!clients.Find(src))
+			clients += src
 		mob.movement_northsouth = NORTH
 		try
 			Move(get_step(mob, NORTH), NORTH)
@@ -850,6 +852,8 @@
 	set name = ".startmovingdown"
 	set instant = TRUE
 	if (mob)
+		if (!clients.Find(src))
+			clients += src
 		mob.movement_northsouth = SOUTH
 		try
 			Move(get_step(mob, SOUTH), SOUTH)
@@ -860,6 +864,8 @@
 	set name = ".startmovingright"
 	set instant = TRUE
 	if (mob)
+		if (!clients.Find(src))
+			clients += src
 		mob.movement_eastwest = EAST
 		try
 			Move(get_step(mob, EAST), EAST)
@@ -870,6 +876,8 @@
 	set name = ".startmovingleft"
 	set instant = TRUE
 	if (mob)
+		if (!clients.Find(src))
+			clients += src
 		mob.movement_eastwest = WEST
 		try
 			Move(get_step(mob, WEST), WEST)
