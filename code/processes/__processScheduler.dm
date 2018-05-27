@@ -246,31 +246,22 @@ var/global/processScheduler/processScheduler
 	recordEnd(process)
 
 /processScheduler/proc/setIdleProcessState(var/process/process)
-	if (process in running)
-		running -= process
-	if (process in queued)
-		queued -= process
-	if (!(process in idle))
-		idle += process
+	running -= process
+	queued -= process
+	idle |= process
 
 /processScheduler/proc/setQueuedProcessState(var/process/process)
-	if (process in running)
-		running -= process
-	if (process in idle)
-		idle -= process
-	if (!(process in queued))
-		queued += process
+	running -= process
+	idle -= process
+	queued |= process
 
 	// The other state transitions are handled internally by the process.
 	process.queued()
 
 /processScheduler/proc/setRunningProcessState(var/process/process)
-	if (process in queued)
-		queued -= process
-	if (process in idle)
-		idle -= process
-	if (!(process in running))
-		running += process
+	queued -= process
+	idle -= process
+	running |= process
 
 /processScheduler/proc/recordStart(var/process/process, var/time = null)
 	if (isnull(time))
