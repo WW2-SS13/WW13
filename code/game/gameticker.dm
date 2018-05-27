@@ -48,12 +48,6 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 		current_state = GAME_STATE_PREGAME // just in case
 
-		if (serverswap_open_status)
-			if (!processScheduler.isRunning)
-				processScheduler.start()
-				message_admins("The process scheduler has been started. There are [processes.get_num_processes()] active processes.")
-				log_admin("processScheduler.start() was called at gameticker.pregame().")
-
 		if (!lobby_music_player)
 			lobby_music_player = new
 
@@ -101,6 +95,11 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 								if (serverswap_open_status)
 									world << "<span class = 'notice'><b>Tip of the round:</b> [pick(tips)]</span>"
 									qdel_list(tips)
+				if (serverswap_open_status)
+					if (!processScheduler.isRunning)
+						processScheduler.start()
+						message_admins("The process scheduler has been started. There are [processes.get_num_processes()] active processes.")
+						log_admin("processScheduler.start() was called at gameticker.pregame().")
 
 		while (!setup())
 
