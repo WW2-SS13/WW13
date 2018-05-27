@@ -33,7 +33,7 @@
 
 /process/projectile/statProcess()
 	..()
-	stat(null, "[mob_list.len] projectiles")
+	stat(null, "[projectile_list.len] projectiles")
 
 /process/projectile/htmlProcess()
-	return ..() + "[mob_list.len] projectiles"
+	return ..() + "[projectile_list.len] projectiles"
