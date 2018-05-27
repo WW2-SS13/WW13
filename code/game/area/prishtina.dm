@@ -434,6 +434,7 @@
 /area/prishtina/german/train_starting_zone
 	icon_state = "blue2"
 	name = "Train Boarding"
+	capturable = FALSE
 
 /area/prishtina/german/train_landing_zone
 	icon_state = "blue2"
@@ -449,7 +450,6 @@
 	name = "Resting Area #2"
 	icon_state = "green2"
 	location = AREA_INSIDE
-
 
 /area/prishtina/german/resting_area_3
 	name = "Resting Area #3"
