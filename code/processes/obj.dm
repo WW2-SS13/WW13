@@ -11,7 +11,8 @@
 		var/obj/O = current
 		if (!isDeleted(O))
 			try
-				O.process()
+				if (O.process() == PROCESS_KILL)
+					processing_objects -= O
 			catch(var/exception/e)
 				catchException(e, O)
 		else
