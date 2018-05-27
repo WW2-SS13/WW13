@@ -7,7 +7,7 @@
 
 /process/job_data/setup()
 	name = "job data"
-	schedule_interval = 20 // (re)calculate relevant_clients every 2 seconds
+	schedule_interval = 100 // (re)calculate relevant_clients every 10 seconds. It was 2, this is laggy as hell
 	start_delay = 0
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING)
 	priority = PROCESS_PRIORITY_IRRELEVANT
