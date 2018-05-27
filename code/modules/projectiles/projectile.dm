@@ -249,7 +249,7 @@
 	if (is_shrapnel)
 		var/hit_zone = "head"
 
-		if (prob(30))
+		if (prob(50))
 			for (var/zone in shuffle(organ_rel_size))
 				if (prob(organ_rel_size[zone]))
 					hit_zone = zone
