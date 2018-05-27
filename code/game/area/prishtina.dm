@@ -723,6 +723,7 @@
 /area/prishtina/soviet/small_map/inside/command_post
 	name = "Soviet Command Post"
 	icon_state = "blue3"
+	capturable = FALSE
 
 /area/prishtina/soviet/small_map/inside/command_post/storage
 	name = "Soviet Command Post Storage"
