@@ -157,11 +157,14 @@ var/global/processScheduler/processScheduler
 			setQueuedProcessState(p)
 
 /processScheduler/proc/runQueuedProcesses()
+
 	// run all processes until we've used all of the world's tick. Higher priority processes will finish in less loops.
+	// don't use world.tick_lag here, it doesn't work well (movement in particular gets choppy) - Kachnov
 	var/max_tick_usage_coeff = (100 - min(world.cpu, 100))/100
 	var/max_tick_usage = world.tick_lag*max_tick_usage_coeff
 
 	var/list/tmpQueued = queued.Copy()
+//	log_debug("1: [getCurrentTickElapsedTime()]")
 	while (tmpQueued.len && getCurrentTickElapsedTime() < max_tick_usage)
 		for (var/process/p in tmpQueued)
 			p.run_time_start_time = world.timeofday
@@ -171,6 +174,7 @@ var/global/processScheduler/processScheduler
 			if (p.process() != PROCESS_TICK_CHECK_RETURNED_EARLY)
 				p.reset_current_list()
 				tmpQueued -= p
+//	log_debug("2: [getCurrentTickElapsedTime()]")
 
 /processScheduler/proc/addProcess(var/process/process)
 
