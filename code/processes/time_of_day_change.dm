@@ -30,7 +30,7 @@
 	var/turfs_len = my_turfs.len // this makes things faster and it works because single-threadedness
 
 	for (var/v in 1 to turfs_len)
-		spawn (round(v/1000))
+		spawn (ceil(v/200)) // 100,000 turfs = 50 seconds
 			var/turf/T = my_turfs[v]
 			if (!T)
 				continue
