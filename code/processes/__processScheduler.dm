@@ -166,7 +166,7 @@ var/global/processScheduler/processScheduler
 	var/list/tmpQueued = queued.Copy()
 //	log_debug("1: [getCurrentTickElapsedTime()]")
 //getCurrentTickElapsedTime() < max_tick_usage
-	while (tmpQueued.len && world.cpu < 95)
+	while (tmpQueued.len && world.cpu < 100)
 		for (var/process/p in tmpQueued)
 			p.run_time_start_time = world.timeofday
 			if (p.run_time_allowance == -1)
