@@ -21,7 +21,7 @@
 
 		if (!isDeleted(M))
 			try
-				if (M.client && (M.movement_eastwest || M.movement_northsouth))
+				if (M.client && M.client.canmove && !M.client.moving && world.time >= M.client.move_delay && (M.movement_eastwest || M.movement_northsouth))
 					var/diag = FALSE
 					var/list/movement_process_dirs = list()
 					if (M.movement_eastwest)

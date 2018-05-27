@@ -257,6 +257,7 @@
 
 /client/Move(n, direct, ordinal = FALSE)
 
+	// these checks occur once in the movement process, but they currently have to be rewritten here due to initial movements
 	if (!canmove)
 		return
 
