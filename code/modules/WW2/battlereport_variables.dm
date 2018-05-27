@@ -1,4 +1,4 @@
-#define AZONE_CHECK(mob) if (!get_area(mob) || !istype(get_area(mob), /area/prishtina/admin))
+#define BATTLEREPORT_VARIABLE_CHECK(_mob) if (!istype(_mob, /mob/living/carbon/human/corpse) && (!get_area(_mob) || !istype(get_area(_mob), /area/prishtina/admin)))
 
 var/list/alive_germans = list()
 var/list/alive_italians = list()
@@ -59,7 +59,7 @@ var/list/recently_died = list()
 
 /mob/living/carbon/human/death()
 
-	AZONE_CHECK(src)
+	BATTLEREPORT_VARIABLE_CHECK(src)
 		if (!istype(src, /mob/living/carbon/human/corpse))
 			var/list/lists = get_battle_report_lists()
 			var/list/alive = lists[1]
@@ -88,7 +88,7 @@ var/list/recently_died = list()
 
 	..()
 
-	AZONE_CHECK(src)
+	BATTLEREPORT_VARIABLE_CHECK(src)
 		if (istype(src, /mob/living/carbon/human/corpse))
 			return
 

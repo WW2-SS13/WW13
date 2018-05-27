@@ -461,6 +461,8 @@ Proc for attack log creation, because really why not
 			continue
 		if (!istype(H.original_job, /datum/job/soviet))
 			continue
+		if (istype(H, /mob/living/carbon/human/corpse))
+			continue
 		soviets += H
 
 	return soviets
@@ -475,6 +477,8 @@ Proc for attack log creation, because really why not
 		if (alive && H.stat == DEAD)
 			continue
 		if (!istype(H.original_job, /datum/job/german))
+			continue
+		if (istype(H, /mob/living/carbon/human/corpse))
 			continue
 		germans += H
 
@@ -491,6 +495,8 @@ Proc for attack log creation, because really why not
 			continue
 		if (!istype(H.original_job, /datum/job/italian))
 			continue
+		if (istype(H, /mob/living/carbon/human/corpse))
+			continue
 		italians += H
 
 	return italians
@@ -505,6 +511,8 @@ Proc for attack log creation, because really why not
 		if (alive && H.stat == DEAD)
 			continue
 		if (!istype(H.original_job, /datum/job/partisan))
+			continue
+		if (istype(H, /mob/living/carbon/human/corpse))
 			continue
 		ukrainians += H
 
@@ -541,7 +549,6 @@ Proc for attack log creation, because really why not
 		if (!istype(H.original_job, /datum/job/partisan/civilian))
 			partisans += H
 	return partisans
-
 
 /proc/getfitmobs(var/faction)
 
