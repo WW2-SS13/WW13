@@ -90,6 +90,7 @@ var/global/processScheduler/processScheduler
 	// tick_lag will have been set by now, so re-initialize these
 	scheduler_sleep_interval = world.tick_lag
 	updateStartDelays()
+
 	spawn(0)
 		// after global lists are created
 		for (var/process/P in processes)
@@ -169,6 +170,7 @@ var/global/processScheduler/processScheduler
 				tmpQueued -= p
 
 /processScheduler/proc/addProcess(var/process/process)
+
 	processes.Add(process)
 	process.idle()
 	idle.Add(process)
