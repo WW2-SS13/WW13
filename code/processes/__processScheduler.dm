@@ -45,11 +45,7 @@ var/global/processScheduler/processScheduler
 	var/tmp/isRunning = FALSE
 
 	// Setup for these processes will be deferred until all the other processes are set up.
-	var/tmp/list/deferredSetupList = new
-
-	var/tmp/currentTick = 0
-
-	var/tmp/cpuAverage = 0
+	var/tmp/list/deferredSetupList = list()
 
 /processScheduler/New()
 	..()
@@ -102,18 +98,9 @@ var/global/processScheduler/processScheduler
 					priority_ordered_processes += P
 		process()
 
-
 /processScheduler/proc/process()
-	updateCurrentTickData()
-
-	for (var/i=world.tick_lag,i<world.tick_lag*50,i+=world.tick_lag)
-		spawn(i)
-			updateCurrentTickData()
 
 	while (isRunning)
-		// Hopefully spawning this for 50 ticks in the future will make it the first thing in the queue.
-		spawn(world.tick_lag*50)
-			updateCurrentTickData()
 
 		checkRunningProcesses()
 		queueProcesses()
@@ -159,14 +146,9 @@ var/global/processScheduler/processScheduler
 /processScheduler/proc/runQueuedProcesses()
 
 	// run all processes until we've used all of the world's tick. Higher priority processes will finish in less loops.
-	// don't use world.tick_lag here, it doesn't work well (movement in particular gets choppy) - Kachnov
-	var/max_tick_usage_coeff = (100 - min(world.cpu, 100))/100
-	var/max_tick_usage = world.tick_lag*max_tick_usage_coeff
-
+	// times are too inaccurate here so we just check world.tick_usage
 	var/list/tmpQueued = queued.Copy()
-//	log_debug("1: [getCurrentTickElapsedTime()]")
-//getCurrentTickElapsedTime() < max_tick_usage
-	while (tmpQueued.len && getCurrentTickElapsedTime() < max_tick_usage)
+	while (tmpQueued.len && world.tick_usage <= 99)
 		for (var/process/p in tmpQueued)
 			p.run_time_start_time = world.timeofday
 			if (p.run_time_allowance == -1)
@@ -175,7 +157,6 @@ var/global/processScheduler/processScheduler
 			if (p.process() != PROCESS_TICK_CHECK_RETURNED_EARLY)
 				p.reset_current_list()
 				tmpQueued -= p
-//	log_debug("2: [getCurrentTickElapsedTime()]")
 
 /processScheduler/proc/addProcess(var/process/process)
 
@@ -331,16 +312,13 @@ var/global/processScheduler/processScheduler
 	return highest_run_time[process]
 
 /processScheduler/proc/getStatusData()
-	var/list/data = new
+	var/list/data = list()
 
 	for (var/process/p in processes)
 		data.len++
 		data[data.len] = p.getContextData()
 
 	return data
-
-/processScheduler/proc/getProcessCount()
-	return processes.len
 
 /processScheduler/proc/hasProcess(var/processName as text)
 	if (nameToProcessMap[processName])
@@ -367,25 +345,11 @@ var/global/processScheduler/processScheduler
 		var/process/process = nameToProcessMap[processName]
 		process.disable()
 
-/processScheduler/proc/getCurrentTickElapsedTime()
-	if (world.time > currentTick)
-		updateCurrentTickData()
-		return 0
-	else
-		return TimeOfTick
-
-/processScheduler/proc/updateCurrentTickData()
-	if (world.time > currentTick)
-		// New tick!
-		currentTick = world.time
-		cpuAverage = (world.cpu + cpuAverage + cpuAverage) / 3
-
 /processScheduler/proc/statProcesses()
 	if (!isRunning)
 		stat("Processes", "Scheduler not running")
 		return
 	stat("Processes", "[processes.len] (R [running.len] / Q [queued.len] / I [idle.len])")
-	stat(null, "[round(cpuAverage, 0.1)]% CPU")
 	for (var/process/p in processes)
 		p.statProcess()
 
@@ -395,7 +359,6 @@ var/global/processScheduler/processScheduler
 		. += "<p><big>Processes: Scheduler not running</big></p>"
 		return
 	. += "<p><big>Processes: [processes.len] (R [running.len] / Q [queued.len] / I [idle.len])</big></p>"
-	. += "<p>[round(cpuAverage, 0.1)]% CPU</p>"
 	for (var/process/p in processes)
 		. += "<p><b>[p.name]</b>: [p.htmlProcess()]</p>"
 	. += "</body></html>"
