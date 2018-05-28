@@ -104,12 +104,10 @@ var/global/processScheduler/processScheduler
 /processScheduler/proc/process()
 
 	while (isRunning)
-
 		checkRunningProcesses()
 		queueProcesses()
 		runQueuedProcesses()
 		last_process = world.time
-
 		sleep(scheduler_sleep_interval)
 
 /processScheduler/proc/stop()
