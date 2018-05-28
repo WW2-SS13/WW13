@@ -187,8 +187,7 @@
 
 /obj/item/weapon/paper/proc/updateinfolinks()
 	info_links = info
-	var/i = FALSE
-	for (i=1,i<=fields,i++)
+	for(var/i in 1 to 15)
 		addtofield(i, "<font face=\"[deffont]\"><A href='?src=\ref[src];write=[i]'>write</A></font>", TRUE)
 	info_links = info_links + "<font face=\"[deffont]\"><A href='?src=\ref[src];write=end'>write</A></font>"
 
