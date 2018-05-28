@@ -522,6 +522,18 @@ var/setting_up_db_connection = FALSE
 	spawn while (1)
 
 		try
+
+			// make sure processScheduler is running when the world starts up
+			if (serverswap_open_status)
+				if (!processScheduler.isRunning)
+					processScheduler.start()
+					message_admins("The process scheduler has been started. There are [processes.get_num_processes()] active processes.")
+					log_admin("processScheduler.start() was called at gameticker.pregame().")
+
+				// some sanity for the processScheduler
+				if (processScheduler.last_process != -1 && world.time - processScheduler.last_process >= processScheduler.scheduler_sleep_interval*300)
+					processScheduler.process()
+
 			if (!global_game_schedule)
 				global_game_schedule = new
 

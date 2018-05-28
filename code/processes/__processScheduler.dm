@@ -47,6 +47,9 @@ var/global/processScheduler/processScheduler
 	// Setup for these processes will be deferred until all the other processes are set up.
 	var/tmp/list/deferredSetupList = list()
 
+	// When did we last process()
+	var/last_process = -1
+
 /processScheduler/New()
 	..()
 	// When the process scheduler is first new'd, tick_lag may be wrong, so these
@@ -105,6 +108,7 @@ var/global/processScheduler/processScheduler
 		checkRunningProcesses()
 		queueProcesses()
 		runQueuedProcesses()
+		last_process = world.time
 
 		sleep(scheduler_sleep_interval)
 
