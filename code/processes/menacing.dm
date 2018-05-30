@@ -3,8 +3,8 @@
 
 /process/menacing/setup()
 	name = "menacing"
-	schedule_interval = 20 // every 2 seconds
-	start_delay = 50
+	schedule_interval = 2 SECONDS
+	start_delay = 5 SECONDS
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	priority = PROCESS_PRIORITY_MEDIUM
 	processes.menacing = src

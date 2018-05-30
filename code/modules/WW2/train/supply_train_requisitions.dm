@@ -47,8 +47,8 @@
 	<b><big>CRATES</big></b><br><br>
 	"}
 
-	for (var/name in german_supply_crate_types)
-		info_links += "[make_purchase_href_link(name)]<br> - [supply_crate_costs[name]] requisition points<br>"
+	for (var/name in processes.supply.german_crate_types)
+		info_links += "[make_purchase_href_link(name)]<br> - [processes.supply.crate_costs[name]] requisition points<br>"
 
 	info_links += "<br><br><b>Purchasing:</b><br><br>"
 
@@ -56,7 +56,7 @@
 
 	for (var/purchase in purchases)
 		info_links += "<i>[purchase]</i><br>"
-		total_cost += supply_crate_costs[purchase]
+		total_cost += processes.supply.crate_costs[purchase]
 
 	if (purchases.len)
 		info_links += "<br><b>Total Cost:</b> [total_cost]<br>"
@@ -131,8 +131,8 @@
 		goto end
 
 	for (var/purchase in purchases)
-		var/cost = supply_crate_costs[purchase]
-		var/cratetype = german_supply_crate_types[purchase]
+		var/cost = processes.supply.crate_costs[purchase]
+		var/cratetype = processes.supply.german_crate_types[purchase]
 		if (cost > train.supply_points)
 			memo = "<i>Unfortunately, you did not have enough supply points left to purchase the [purchase] crate, or any of the purchases listed after it.</i><br>"
 			break
@@ -170,9 +170,9 @@
 	if (create_crates.len) // we didn't have enough space to send them all
 		memo = "<i><br>We didn't have enough space for the crates listed below, so you were reimbursed for their cost: </i><br><br>"
 		for (var/cratetype in create_crates)
-			for (var/cratename in german_supply_crate_types)
-				if (german_supply_crate_types[cratename] == cratetype)
-					var/cost = supply_crate_costs[cratename]
+			for (var/cratename in processes.supply.german_crate_types)
+				if (processes.supply.german_crate_types[cratename] == cratetype)
+					var/cost = processes.supply.crate_costs[cratename]
 					train.supply_points += cost
 					memo += "<i>[cratename]</i><br>"
 

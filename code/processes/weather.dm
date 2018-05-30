@@ -12,8 +12,8 @@
 
 /process/weather/setup()
 	name = "weather"
-	schedule_interval = 100
-	start_delay = 20
+	schedule_interval = 10 SECONDS
+	start_delay = 2 SECONDS
 	next_can_mod_weather = world.realtime + 100
 	next_can_change_weather = world.realtime + 12000
 	fires_at_gamestates = list(GAME_STATE_PLAYING)

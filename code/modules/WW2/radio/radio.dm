@@ -218,7 +218,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	if (is_supply_radio && faction)
 		var/passcheck = input(user, "Enter the password.") as num
 		playsound(get_turf(src), "keyboard", 100, 1)
-		if (passcheck != supply_codes[faction])
+		if (passcheck != processes.supply.codes[faction])
 			user << "<span class = 'warning'>Nothing happens. Perhaps the password was incorrect.</span>"
 			return
 	interact(user)
@@ -239,19 +239,19 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 
 	// supply stuff - Kachnov
 	data["is_supply_radio"] = is_supply_radio
-	data["supply_points"] = supply_points[faction]
+	data["supply_points"] = processes.supply.points[faction]
 
 	var/list/supply_crate_objects = list()
 	switch (faction)
 		if (GERMAN)
-			supply_crate_objects = german_supply_crate_types.Copy()
+			supply_crate_objects = processes.supply.german_crate_types.Copy()
 		if (SOVIET)
-			supply_crate_objects = soviet_supply_crate_types.Copy()
+			supply_crate_objects = processes.supply.soviet_crate_types.Copy()
 
 	for (var/key in supply_crate_objects)
 		supply_crate_objects[key] = null
 		supply_crate_objects -= key
-		supply_crate_objects += "[key] ([supply_crate_costs[key]] points)"
+		supply_crate_objects += "[key] ([processes.supply.crate_costs[key]] points)"
 
 	data["supply_crate_objects"] = supply_crate_objects
 
@@ -611,14 +611,14 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		var/choices = list()
 		switch (faction)
 			if (GERMAN)
-				choices = german_supply_crate_types | soviet_supply_crate_types
+				choices = processes.supply.german_crate_types | processes.supply.soviet_crate_types
 				// crash prevention + balance - Kachnov
 				if (supplydrop_processing_objects_german.len >= MAX_SUPPLYDROP_CRATES)
 					usr << "<span class = 'danger'>There are too many items already arriving! Please wait before ordering more.</span>"
 					return
 			if (SOVIET)
 				// crash prevention + balance - Kachnov
-				choices = soviet_supply_crate_types | soviet_supply_crate_types
+				choices = processes.supply.soviet_crate_types | processes.supply.soviet_crate_types
 				if (supplydrop_processing_objects_soviet.len >= MAX_SUPPLYDROP_CRATES)
 					usr << "<span class = 'danger'>There are too many items already arriving! Please wait before ordering more.</span>"
 					return
@@ -634,11 +634,11 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 
 /obj/item/radio/proc/purchase(var/itemname, var/path, var/pointcost = FALSE)
 
-	if (supply_points[faction] <= pointcost)
+	if (processes.supply.points[faction] <= pointcost)
 		return
 
 	announce("[itemname] has been purchased and will arrive soon.", "Supplydrop Announcements")
-	supply_points[faction] -= pointcost
+	processes.supply.points[faction] -= pointcost
 
 	// sanity checking due to crashing, not sure it will help - Kachnov
 	if (ispath(path) && list(GERMAN, SOVIET).Find(faction))

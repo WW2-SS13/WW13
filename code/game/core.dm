@@ -24,8 +24,8 @@
 	for (var/C in clients)
 		winset(C, null, "mainwindow.flash=1")
 
-	supply_codes[GERMAN] = rand(1000,9999)
-	supply_codes[SOVIET] = rand(1000,9999)
+	processes.supply.codes[GERMAN] = rand(1000,9999)
+	processes.supply.codes[SOVIET] = rand(1000,9999)
 	// announce after some other stuff, like system setups, are announced
 	spawn (3)
 
@@ -55,9 +55,9 @@
 				for (var/obj/structure/closet/crate/artillery_gas/C in crate_list)
 					qdel(C)
 				if (map)
-					german_supply_crate_types -= "7,5 cm FK 18 Artillery Piece"
-					german_supply_crate_types -= "Artillery Ballistic Shells Crate"
-					german_supply_crate_types -= "Artillery Gas Shells Crate"
+					processes.supply.german_crate_types -= "7,5 cm FK 18 Artillery Piece"
+					processes.supply.german_crate_types -= "Artillery Ballistic Shells Crate"
+					processes.supply.german_crate_types -= "Artillery Gas Shells Crate"
 					map.katyushas = FALSE
 				for (var/M in mortar_piece_list)
 					qdel(M)
@@ -66,9 +66,9 @@
 				for (var/obj/structure/closet/crate/mortar_shells/C in crate_list)
 					qdel(C)
 				if (map)
-					german_supply_crate_types -= "Mortar Shells"
-					soviet_supply_crate_types -= "Mortar Shells"
-					soviet_supply_crate_types -= "37mm Spade Mortar"
+					processes.supply.german_crate_types -= "Mortar Shells"
+					processes.supply.soviet_crate_types -= "Mortar Shells"
+					processes.supply.soviet_crate_types -= "37mm Spade Mortar"
 				world << "<i>Due to lowpop, there is no artillery or mortars.</i>"
 
 			if (clients.len <= 12)

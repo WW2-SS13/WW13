@@ -4,7 +4,7 @@
 
 /process/callproc/setup()
 	name = "callproc"
-	schedule_interval = 0.3 // every 1/33th second
+	schedule_interval = 0.03 SECONDS // every 1/33th second
 	start_delay = 10
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	priority = PROCESS_PRIORITY_IRRELEVANT

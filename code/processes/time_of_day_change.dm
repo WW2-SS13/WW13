@@ -8,10 +8,11 @@
 
 /process/time_of_day_change/setup()
 	name = "time of day change process"
-	schedule_interval = 10
-	start_delay = 5
+	schedule_interval = 1 SECONDS
+	start_delay = 0.5 SECONDS
 	fires_at_gamestates = list() // this doesn't fire normally
 	priority = PROCESS_PRIORITY_IRRELEVANT
+	always_runs = TRUE
 	processes.time_of_day_change = src
 
 // only called in lighting_system.dm

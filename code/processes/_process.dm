@@ -98,6 +98,10 @@
 	var/priority = PROCESS_PRIORITY_MEDIUM
 	// recorded list of objects we need to go through - never set for processes with priority IRRELEVANT
 	var/list/current_list = null
+	// move up our priority if we fail to run too many times
+	var/run_failures = 0
+	// do we ignore tick_usage checks and run no matter what
+	var/always_runs = FALSE
 
 /process/New(var/processScheduler/scheduler)
 	..()
@@ -372,3 +376,10 @@
 /process/proc/reset_current_list()
 	if (priority != PROCESS_PRIORITY_IRRELEVANT)
 		PROCESS_USE_FASTEST_LIST(list())
+
+/process/proc/may_run(tick_usage_allowance)
+	. = 0
+	if (main.last_twenty_run_times[src] && main.last_twenty_run_times[src]:len)
+		for (var/runtime in main.last_twenty_run_times[src])
+			. = max(., runtime)
+	return . <= ((tick_usage_allowance/100) * world.tick_lag)

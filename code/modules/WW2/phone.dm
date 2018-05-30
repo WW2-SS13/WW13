@@ -52,7 +52,7 @@ var/list/soviet_traitors = list()
 	if (faction)
 		var/passcheck = input(H, "Enter the password.") as num
 		playsound(get_turf(src), "keyboard", 100, 1)
-		if (passcheck != supply_codes[faction])
+		if (passcheck != processes.supply.codes[faction])
 			H << "<span class = 'warning'>Nothing happens. Perhaps the password was incorrect.</span>"
 			return
 
@@ -79,14 +79,14 @@ var/list/soviet_traitors = list()
 					var/list/targets = (faction == SOVIET ? alive_germans : faction == GERMAN ? alive_russians : list())
 					// it takes 5 minutes for soviets to generate 300 points, not counting rewards
 					var/cost = (targets.len * 5) + processes.battle_report.current_extra_cost_for_air_raid + 200
-					var/yesno = input(H, "A Katyusha attack will cost [cost] supply points right now. You have [supply_points[faction]] supply points. [may_bombard_base_message()]. Would you like to call it in?") in list("Yes", "No")
+					var/yesno = input(H, "A Katyusha attack will cost [cost] supply points right now. You have [processes.supply.points[faction]] supply points. [may_bombard_base_message()]. Would you like to call it in?") in list("Yes", "No")
 					if (yesno == "Yes")
-						if (supply_points[faction] < cost)
+						if (processes.supply.points[faction] < cost)
 							H << "<span class = 'warning'>You can't afford this right now.</span>"
 							return
 						// set next_raid[faction] here in case of runtimes that would have stopped it, may fix spam bug - Kachnov
 						next_raid[faction] = world.time + rand(1500, 2100)
-						supply_points[faction] -= cost
+						processes.supply.points[faction] -= cost
 						radio2faction("[faction == GERMAN ? "A Luftwaffe" : "A Katyusha"] attack has been called in by [H.real_name]. Stand by.", faction)
 						air_raid(faction, src, cost)
 
@@ -217,6 +217,6 @@ var/list/soviet_traitors = list()
 					else
 						break
 		if (!targeted)
-			supply_points[faction] += cost
+			processes.supply.points[faction] += cost
 			radio2faction("Due to a lack of targets, the Katyusha strike was cancelled and refunded.", faction)
 			next_raid[faction] = -1

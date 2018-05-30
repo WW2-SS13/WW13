@@ -2,8 +2,8 @@
 
 /process/self_cleaning/setup()
 	name = "self-cleaning decals"
-	schedule_interval = 100
-	start_delay = 20
+	schedule_interval = 10 SECONDS
+	start_delay = 2 SECONDS
 	fires_at_gamestates = list(GAME_STATE_PLAYING)
 	priority = PROCESS_PRIORITY_MEDIUM
 	processes.self_cleaning = src

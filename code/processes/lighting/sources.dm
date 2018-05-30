@@ -2,10 +2,11 @@
 
 /process/lighting_sources/setup()
 	name = "lighting sources process"
-	schedule_interval = 1 // every 1/10th second
-	start_delay = 10
+	schedule_interval = 0.1 SECONDS
+	start_delay = 1 SECOND
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	priority = PROCESS_PRIORITY_HIGH
+	always_runs = TRUE
 	processes.lighting_sources = src
 
 /process/lighting_sources/fire()

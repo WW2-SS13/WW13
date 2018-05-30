@@ -5,7 +5,7 @@
 
 /process/chemistry/setup()
 	name = "chemistry"
-	schedule_interval = 10 // every second
+	schedule_interval = 1 SECOND
 	active_holders = list()
 	chemical_reactions = chemical_reactions_list
 	chemical_reagents = chemical_reagents_list

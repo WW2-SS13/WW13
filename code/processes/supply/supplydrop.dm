@@ -2,8 +2,8 @@
 
 /process/supplydrop/setup()
 	name = "supplydrop process"
-	schedule_interval = 300
-	start_delay = 100
+	schedule_interval = 0.5 MINUTES
+	start_delay = 10 SECONDS
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	priority = PROCESS_PRIORITY_LOW
 	processes.supplydrop = src
@@ -80,10 +80,10 @@
 
 /process/supplydrop/statProcess()
 	..()
-	stat(null, "[supplydrop_processing_objects_german.len+supplydrop_processing_objects_soviet.len] objects")
+	stat(null, "[supplydrop_processing_objects_german.len+supplydrop_processing_objects_soviet.len] paths")
 
 /process/supplydrop/htmlProcess()
-	return ..() + "[supplydrop_processing_objects_german.len+supplydrop_processing_objects_soviet.len] objects"
+	return ..() + "[supplydrop_processing_objects_german.len+supplydrop_processing_objects_soviet.len] paths"
 
 /process/supplydrop/proc/add(var/object_path, var/faction)
 	if (object_path)

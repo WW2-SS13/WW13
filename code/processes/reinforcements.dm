@@ -2,7 +2,7 @@
 
 /process/reinforcements/setup()
 	name = "reinforcements"
-	schedule_interval = 10 // every second
+	schedule_interval = 1 SECOND
 	fires_at_gamestates = list(GAME_STATE_PLAYING)
 	priority = PROCESS_PRIORITY_IRRELEVANT
 	processes.reinforcements = src

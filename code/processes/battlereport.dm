@@ -8,7 +8,7 @@
 
 /process/battle_report/setup()
 	name = "Battle Report"
-	schedule_interval = 10 // every second
+	schedule_interval = 1 SECOND
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	priority = PROCESS_PRIORITY_IRRELEVANT
 	processes.battle_report = src
@@ -33,14 +33,14 @@
 
 			if (german_deaths_this_cycle && german_death_coeff > soviet_death_coeff)
 				radio2soviets("Due to your triumphs in the battlefield, we are rewarding you with 200 supply points, comrades.")
-				supply_points[SOVIET] += 200
+				processes.supply.points[SOVIET] += 200
 
 			else if (soviet_deaths_this_cycle && soviet_death_coeff > german_death_coeff)
 				radio2germans("Due to your triumphs in the battlefield, we are rewarding you with 200 supply points.")
 				if (german_supplytrain_master)
 					german_supplytrain_master.supply_points += 200
 				else
-					supply_points[GERMAN] += 200
+					processes.supply.points[GERMAN] += 200
 
 			next_can_grant_points = world.time + 5500
 

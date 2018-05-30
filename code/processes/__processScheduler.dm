@@ -1,4 +1,4 @@
-q// Singleton instance of game_controller_new, setup in world.New()
+// Singleton instance of game_controller_new, setup in world.New()
 var/global/processScheduler/processScheduler
 
 /processScheduler
@@ -133,7 +133,7 @@ var/global/processScheduler/processScheduler
 					message_admins("Process '[p.name]' is hung and will be restarted.")
 
 /processScheduler/proc/queueProcesses()
-	for (var/process/p in priority_ordered_processes)
+	for (var/process/p in get_priority_ordered_processes())
 		// Don't double-queue, don't queue running processes
 		if (p.disabled || p.running || p.queued || !p.idle)
 			continue
@@ -147,18 +147,38 @@ var/global/processScheduler/processScheduler
 
 /processScheduler/proc/runQueuedProcesses()
 
-	// run all processes until we've used all of the world's tick. Higher priority processes will finish in less loops.
-	// times are too inaccurate here so we just check world.tick_usage
+	/* run all processes until we've used most of the world's tick. Higher priority processes will finish in less loops.
+	 * timing is too inaccurate here so we just check world.tick_usage, which seems to update in real time - Kachnov */
+
+	#define MAX_TICK_USAGE 95
 	var/list/tmpQueued = queued.Copy()
-	while (tmpQueued.len && world.tick_usage <= 99)
-		for (var/process/p in tmpQueued)
-			p.run_time_start_time = world.timeofday
-			if (p.run_time_allowance == -1)
-				p.run_time_allowance = calculate_run_time_allowance(p.priority)
-			// we finished our current run, reset our current_list to a fresh one
-			if (p.process() != PROCESS_TICK_CHECK_RETURNED_EARLY)
-				p.reset_current_list()
-				tmpQueued -= p
+	var/list/processed = list()
+	var/loops = 0
+
+	main:
+		while (tmpQueued.len && (world.tick_usage < MAX_TICK_USAGE || !loops))
+			for (var/process/p in tmpQueued)
+				if (p.always_runs || p.may_run(MAX_TICK_USAGE - world.tick_usage))
+					p.run_time_start_time = world.timeofday
+					if (p.run_time_allowance == -1)
+						p.run_time_allowance = calculate_run_time_allowance(p.priority)
+					// we finished our current run, reset our current_list to a fresh one
+					if (p.process() != PROCESS_TICK_CHECK_RETURNED_EARLY)
+						p.reset_current_list()
+						tmpQueued -= p
+					p.run_failures = 0
+					processed += p
+				else
+					p.reset_current_list()
+					tmpQueued -= p
+				if (world.tick_usage > MAX_TICK_USAGE)
+					break main
+				++loops
+
+	for (var/process/p in queued-processed)
+		++p.run_failures
+
+	#undef MAX_TICK_USAGE
 
 /processScheduler/proc/addProcess(var/process/process)
 
@@ -286,6 +306,7 @@ var/global/processScheduler/processScheduler
 	var/list/lastTwenty = last_twenty_run_times[process]
 	if (lastTwenty.len == 20)
 		lastTwenty.Cut(1, 2)
+
 	lastTwenty.len++
 	lastTwenty[lastTwenty.len] = time
 
@@ -382,3 +403,23 @@ var/global/processScheduler/processScheduler
 		if (PROCESS_PRIORITY_VERY_HIGH)
 			. = world.tick_lag * 0.40
 	. /= priorityToProcessMap[num2text(priority)]:len
+
+/* returns a list of which processes need to run the most.
+ * whenever a process fails to run on time, its priority gets bumped up by one.
+ * it still won't run, however, unless there is enough of the tick left. Super expensive processes are screwed - Kachnov */
+/processScheduler/proc/get_priority_ordered_processes()
+	. = priority_ordered_processes.Copy()
+	for (var/v in 1 to priority_ordered_processes.len)
+		var/process/p = priority_ordered_processes[v]
+		var/p_initial_priority = p.priority
+		p.priority = max(p.priority - p.run_failures, PROCESS_PRIORITY_VERY_HIGH)
+		var/vv = v
+		while (vv > 1)
+			var/process/pp = priority_ordered_processes[vv]
+			if (p.priority > pp.priority)
+				break
+			--vv
+		var/_tmp = .[vv]
+		.[vv] = p
+		.[v] = _tmp
+		p.priority = p_initial_priority

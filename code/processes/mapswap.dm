@@ -11,8 +11,8 @@
 
 /process/mapswap/setup()
 	name = "mapswap"
-	schedule_interval = 50 // every 5 seconds
-	start_delay = 50
+	schedule_interval = 5 SECONDS
+	start_delay = 5 SECONDS
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	priority = PROCESS_PRIORITY_IRRELEVANT
 	processes.mapswap = src

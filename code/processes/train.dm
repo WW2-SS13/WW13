@@ -6,8 +6,8 @@
 
 /process/train/setup()
 	name = "train process"
-	schedule_interval = 10
-	start_delay = 100
+	schedule_interval = 1 SECOND
+	start_delay = 10 SECONDS
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	priority = PROCESS_PRIORITY_IRRELEVANT
 	processes.train = src

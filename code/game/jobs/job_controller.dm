@@ -632,11 +632,11 @@ var/global/datum/controller/occupations/job_master
 		if (H.original_job.is_officer)
 			if (H.original_job.base_type_flag() == GERMAN)
 		//		H << "The passcode for radios and phones is <b>[supply_codes[GERMAN]].</b>"
-				H.add_memory("The passcode for radios and phones is [supply_codes[GERMAN]].")
+				H.add_memory("The passcode for radios and phones is [processes.supply.codes[GERMAN]].")
 
 			else if (H.original_job.base_type_flag() == SOVIET)
 		//		H << "The passcode for radios and phones is <b>[supply_codes[SOVIET]].</b>"
-				H.add_memory("The passcode for radios and phones is [supply_codes[SOVIET]].")
+				H.add_memory("The passcode for radios and phones is [processes.supply.codes[SOVIET]].")
 
 		#ifdef SPAWNLOC_DEBUG
 		world << "[H] ([rank]) GOT TO job spawn location = [H.job_spawn_location]"

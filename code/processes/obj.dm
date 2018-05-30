@@ -1,7 +1,7 @@
 /process/obj/setup()
 	name = "obj"
-	schedule_interval = 20 // every 2 seconds
-	start_delay = 8
+	schedule_interval = 2 SECONDS
+	start_delay = 0.8 SECONDS
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	priority = PROCESS_PRIORITY_MEDIUM
 	processes.obj = src

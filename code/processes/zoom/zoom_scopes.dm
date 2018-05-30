@@ -2,8 +2,8 @@
 
 /process/zoom_scopes/setup()
 	name = "zoom scopes"
-	schedule_interval = 7 // every 0.7 seconds
-	start_delay = 100
+	schedule_interval = 0.7 SECONDS
+	start_delay = 2 SECONDS
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	priority = PROCESS_PRIORITY_MEDIUM
 	processes.zoom_scopes = src

@@ -1,7 +1,7 @@
 /process/burning_turfs/setup()
 	name = "burning turfs"
-	schedule_interval = 50 // every 5 seconds
-	start_delay = 100
+	schedule_interval = 5 SECONDS
+	start_delay = 10 SECONDS
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	priority = PROCESS_PRIORITY_MEDIUM
 	processes.burning_turfs = src

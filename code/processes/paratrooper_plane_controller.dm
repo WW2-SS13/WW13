@@ -6,8 +6,8 @@
 
 /process/paratrooper_plane/setup()
 	name = "paratrooper plane controller"
-	schedule_interval = 10
-	start_delay = 50
+	schedule_interval = 1 SECOND
+	start_delay = 5 SECONDS
 	fires_at_gamestates = list(GAME_STATE_PLAYING)
 	priority = PROCESS_PRIORITY_IRRELEVANT
 	processes.paratrooper_plane = src
