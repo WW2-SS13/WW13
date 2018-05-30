@@ -30,6 +30,7 @@
 
 /process/projectile/reset_current_list()
 	PROCESS_USE_FASTEST_LIST(projectile_list)
+	current_list.len = min(current_list.len, 150)
 
 /process/projectile/statProcess()
 	..()
