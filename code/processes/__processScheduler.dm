@@ -160,7 +160,7 @@ var/global/processScheduler/processScheduler
 	main:
 		while (tmpQueued.len && (world.tick_usage < MAX_TICK_USAGE || !loops))
 			for (var/process/p in tmpQueued)
-				if (p.always_runs || p.may_run(MAX_TICK_USAGE - world.tick_usage) || (serverisdying && p.priority <= PROCESS_PRIORITY_HIGH))
+				if (p.always_runs || p.priority != PROCESS_PRIORITY_IRRELEVANT || (serverisdying && p.priority <= PROCESS_PRIORITY_HIGH) || p.may_run(MAX_TICK_USAGE - world.tick_usage))
 					p.run_time_start_time = world.timeofday
 					if (p.run_time_allowance == -1)
 						p.run_time_allowance = calculate_run_time_allowance(p.priority)

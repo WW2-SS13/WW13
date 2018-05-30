@@ -382,4 +382,7 @@
 	if (main.last_twenty_run_times[src] && main.last_twenty_run_times[src]:len)
 		for (var/runtime in main.last_twenty_run_times[src])
 			. = max(., runtime)
-	return . <= ((tick_usage_allowance/100) * world.tick_lag)
+	. = . <= ((tick_usage_allowance/100) * world.tick_lag)
+	if (!.)
+		spawn (schedule_interval*5)
+			main.last_twenty_run_times[src]:Cut()
