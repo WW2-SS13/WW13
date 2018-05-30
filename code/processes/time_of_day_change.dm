@@ -60,20 +60,21 @@
 			for (var/atom/movable/lighting_overlay/LO in T.contents)
 				LO.TOD = time_of_day
 
-	if (admincaller)
-		admincaller << "<span class = 'notice'>Updated lights for [time_of_day].</span>"
-		var/M = "[key_name(admincaller)] changed the time of day from [O_time_of_day] to [time_of_day]."
-		log_admin(M)
-		message_admins(M)
+	spawn (ceil(turfs_len/200))
+		if (admincaller)
+			admincaller << "<span class = 'notice'>Updated lights for [time_of_day].</span>"
+			var/M = "[key_name(admincaller)] changed the time of day from [O_time_of_day] to [time_of_day]."
+			log_admin(M)
+			message_admins(M)
 
-	if (announce)
-		for (var/M in player_list)
-			M << "<font size=3><span class = 'notice'>It's <b>[lowertext(capitalize(time_of_day))]</b>.</span></font>"
+		if (announce)
+			for (var/M in player_list)
+				M << "<font size=3><span class = 'notice'>It's <b>[lowertext(capitalize(time_of_day))]</b>.</span></font>"
 
-	if (!setup_lighting)
-		for (var/lighting_overlay in lighting_overlay_list)
-			var/atom/movable/lighting_overlay/LO = lighting_overlay
-			if (LO.invisibility)
-				LO.invisibility = 0
+		if (!setup_lighting)
+			for (var/lighting_overlay in lighting_overlay_list)
+				var/atom/movable/lighting_overlay/LO = lighting_overlay
+				if (LO.invisibility)
+					LO.invisibility = 0
 
-	setup_lighting = TRUE
+		setup_lighting = TRUE
