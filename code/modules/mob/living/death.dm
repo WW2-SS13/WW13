@@ -7,13 +7,15 @@
 	var/list/arms = list()
 	var/list/legs = list()
 
-	for (var/obj/item/organ/external/arm/A in contents)
-		++appendages
-		arms += A
+	if (isliving(src))
+		var/mob/living/carbon/human/H = src
+		for (var/obj/item/organ/external/arm/A in H.organs)
+			++appendages
+			arms += A
 
-	for (var/obj/item/organ/external/leg/L in contents)
-		++appendages
-		legs += L
+		for (var/obj/item/organ/external/leg/L in H.organs)
+			++appendages
+			legs += L
 
 	// combine and shuffle arms and legs so we don't bias either
 	for (var/obj/item/organ/external/E in shuffle(arms|legs))

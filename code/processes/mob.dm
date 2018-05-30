@@ -13,7 +13,9 @@
 
 		var/mob/M = current
 
-		if (isnull(M))
+		if (isDeleted(M))
+			catchBadType(M)
+			mob_list -= M
 			continue
 
 		else if (istype(M, /mob/new_player))
@@ -50,20 +52,21 @@
 
 		skip1
 
-		if (!isDeleted(M))
-			try
-				M.Life()
-				if (world.time - M.last_movement > 7)
-					M.velocity = 0
-				if (ishuman(M) && M.client)
-					zoom_processing_mobs |= M
-				else
-					zoom_processing_mobs -= M
-			catch (var/exception/e)
-				catchException(e, M)
-		else
-			catchBadType(M)
-			mob_list -= M
+		try
+			// since we spent so long getting here we have to do this again
+			if (!M)
+				catchBadType(M)
+				mob_list -= M
+				continue
+			M.Life()
+			if (world.time - M.last_movement > 7)
+				M.velocity = 0
+			if (ishuman(M) && M.client)
+				zoom_processing_mobs |= M
+			else
+				zoom_processing_mobs -= M
+		catch (var/exception/e)
+			catchException(e)
 
 		PROCESS_LIST_CHECK
 		PROCESS_TICK_CHECK

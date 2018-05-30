@@ -412,7 +412,7 @@ var/list/rank_prefix = list(\
 
 	if (internal_organs_by_name["eyes"]) // Eyes are fucked, not a 'weak point'.
 		var/obj/item/organ/I = internal_organs_by_name["eyes"]
-		if (I.status & ORGAN_CUT_AWAY)
+		if (I && I.status & ORGAN_CUT_AWAY)
 			return FLASH_PROTECTION_MAJOR
 
 	return flash_protection

@@ -60,15 +60,15 @@
 		limbs_count--
 
 	E = organs_by_name["r_foot"]
-	if (E.status & ORGAN_DESTROYED)
+	if (!E || (E.status & ORGAN_DESTROYED))
 		limbs_count--
 
 	E = organs_by_name["r_hand"]
-	if (E.status & ORGAN_DESTROYED)
+	if (!E || (E.status & ORGAN_DESTROYED))
 		limbs_count--
 
 	E = organs_by_name["l_hand"]
-	if (E.status & ORGAN_DESTROYED)
+	if (!E || (E.status & ORGAN_DESTROYED))
 		limbs_count--
 
 	if (limbs_count == FALSE)

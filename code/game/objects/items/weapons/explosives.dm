@@ -70,25 +70,32 @@
 		spawn(timer*10)
 			explode(get_turf(target))
 
-/obj/item/weapon/plastique/proc/explode(var/location)
+/obj/item/weapon/plastique/proc/explode(var/turf/location)
+	var/original_mobs = list()
+	var/original_objs = list()
+
 	if (location)
-		for (var/mob/living/L in location)
-			if (L.client)
-				L.client.canmove = FALSE
-				spawn (7)
-					L.client.canmove = TRUE
 		explosion(location, 0, 0, 2, 3)
-		spawn (4)
-			playsound(location, "explosion", 100, TRUE)
-		spawn (6)
-			for (var/mob/living/L in location)
-				L.maim()
-				L.overlays -= image_overlay
-			for (var/obj/O in location)
-				O.ex_act(1.0)
-				O.overlays -= image_overlay
-			location:ex_act(1.0)
-			location:overlays -= image_overlay
+		for (var/mob/living/L in location.contents)
+			original_mobs += L
+			if (L.client)
+				L.canmove = FALSE
+		for (var/obj/O in location.contents)
+			original_objs += O
+		playsound(location, "explosion", 100, TRUE)
+		spawn (1)
+			for (var/mob/living/L in original_mobs)
+				if (L)
+					L.maim()
+					if (L)
+						L.overlays -= image_overlay
+						L.canmove = TRUE
+			for (var/obj/O in original_objs)
+				if (O)
+					O.overlays -= image_overlay
+					O.ex_act(1.0)
+			location.overlays -= image_overlay
+			location.ex_act(1.0)
 	qdel(src)
 
 /obj/item/weapon/plastique/bullet_act(var/obj/item/projectile/proj)

@@ -1004,6 +1004,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	if (!owner)
 		return
+
 	var/is_robotic = status & ORGAN_ROBOT
 	var/mob/living/carbon/human/victim = owner
 
@@ -1018,6 +1019,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			implant.loc = get_turf(victim.loc)
 		else
 			implant.loc = src
+
 	implants.Cut()
 
 	// Attached organs also fly off.
