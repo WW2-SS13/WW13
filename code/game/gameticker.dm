@@ -156,10 +156,10 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	if (admins_number == 0)
 		send2adminirc("Round has started with no admins online.")*/
 
-	// if (!processScheduler.isRunning)
-	//	processScheduler.start()
-	//	message_admins("The process scheduler has been started. There are [processes.get_num_processes()] active processes.")
-	//	log_admin("processScheduler.start() was called at gameticker.setup().")
+	if (!processScheduler.isRunning)
+		processScheduler.start()
+		message_admins("The process scheduler has been started. There are [processes.get_num_processes()] active processes.")
+		log_admin("processScheduler.start() was called at gameticker.setup().")
 
 	return TRUE
 
