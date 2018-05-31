@@ -384,5 +384,5 @@
 			. = max(., runtime)
 	. = . <= ((tick_usage_allowance/100) * world.tick_lag)
 	if (!.)
-		spawn (schedule_interval*5)
+		spawn (schedule_interval)
 			main.last_twenty_run_times[src]:Cut()
