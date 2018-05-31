@@ -21,6 +21,7 @@
 					P.process()
 				catch (var/exception/e)
 					catchException(e, P)
+					projectile_list -= P
 		else
 			catchBadType(P)
 			projectile_list -= P
