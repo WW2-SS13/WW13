@@ -25,6 +25,7 @@
 		else
 			catchBadType(P)
 			projectile_list -= P
+			qdel(P)
 
 		PROCESS_LIST_CHECK
 		PROCESS_TICK_CHECK
