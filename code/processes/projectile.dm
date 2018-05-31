@@ -21,12 +21,13 @@
 					P.process()
 				catch (var/exception/e)
 					catchException(e, P)
+					message_admins("Hey a bullet just froze! If this starts occuring alot please notify Harcourt or Kachnov and maybe tell people to lay off of mg usage!")
 					projectile_list -= P
+					qdel(P)
+
 		else
 			catchBadType(P)
-			message_admins("Hey a bullet just froze! If this starts occuring alot please notify Harcourt or Kachnov and maybe tell people to lay off of mg usage!")
 			projectile_list -= P
-			qdel(P)
 
 		PROCESS_LIST_CHECK
 		PROCESS_TICK_CHECK
