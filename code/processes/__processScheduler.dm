@@ -172,7 +172,7 @@ var/global/processScheduler/processScheduler
 				else
 					p.reset_current_list()
 					tmpQueued -= p
-				if ((world.tick_usage-initial_tick_usage) > MAX_TICK_USAGE)
+				if ((world.tick_usage-initial_tick_usage) >= MAX_TICK_USAGE)
 					break main
 
 	for (var/process/p in queued-processed)
