@@ -411,15 +411,16 @@ var/global/processScheduler/processScheduler
 	. = priority_ordered_processes.Copy()
 	for (var/v in 1 to priority_ordered_processes.len)
 		var/process/p = priority_ordered_processes[v]
-		var/p_initial_priority = p.priority
-		p.priority = max(p.priority - p.run_failures, PROCESS_PRIORITY_VERY_HIGH)
-		var/vv = v
-		while (vv > 1)
-			var/process/pp = priority_ordered_processes[vv]
-			if (p.priority > pp.priority)
-				break
-			--vv
-		var/_tmp = .[vv]
-		.[vv] = p
-		.[v] = _tmp
-		p.priority = p_initial_priority
+		if(p)
+			var/p_initial_priority = p.priority
+			p.priority = max(p.priority - p.run_failures, PROCESS_PRIORITY_VERY_HIGH)
+			var/vv = v
+			while (vv > 1)
+				var/process/pp = priority_ordered_processes[vv]
+				if (p.priority > pp.priority)
+					break
+				--vv
+			var/_tmp = .[vv]
+			.[vv] = p
+			.[v] = _tmp
+			p.priority = p_initial_priority
