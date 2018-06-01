@@ -408,19 +408,23 @@ var/global/processScheduler/processScheduler
  * whenever a process fails to run on time, its priority gets bumped up by one.
  * it still won't run, however, unless there is enough of the tick left. Super expensive processes are screwed - Kachnov */
 /processScheduler/proc/get_priority_ordered_processes()
+	for (var/p in priority_ordered_processes)
+		if (!p)
+			priority_ordered_processes -= p
+
 	. = priority_ordered_processes.Copy()
+
 	for (var/v in 1 to priority_ordered_processes.len)
 		var/process/p = priority_ordered_processes[v]
-		if(p)
-			var/p_initial_priority = p.priority
-			p.priority = max(p.priority - p.run_failures, PROCESS_PRIORITY_VERY_HIGH)
-			var/vv = v
-			while (vv > 1)
-				var/process/pp = priority_ordered_processes[vv]
-				if (p.priority > pp.priority)
-					break
-				--vv
-			var/_tmp = .[vv]
-			.[vv] = p
-			.[v] = _tmp
-			p.priority = p_initial_priority
+		var/p_initial_priority = p.priority
+		p.priority = max(p.priority - p.run_failures, PROCESS_PRIORITY_VERY_HIGH)
+		var/vv = v
+		while (vv > 1)
+			var/process/pp = priority_ordered_processes[vv]
+			if (p.priority > pp.priority)
+				break
+			--vv
+		var/_tmp = .[vv]
+		.[vv] = p
+		.[v] = _tmp
+		p.priority = p_initial_priority
