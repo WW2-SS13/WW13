@@ -150,7 +150,7 @@ var/global/processScheduler/processScheduler
 	/* run all processes until we've used most of the world's tick. Higher priority processes will finish in less loops.
 	 * timing is too inaccurate here so we just check world.tick_usage, which seems to update in real time - Kachnov */
 
-	#define MAX_TICK_USAGE 75
+	#define MAX_TICK_USAGE 90
 
 	var/initial_tick_usage = world.tick_usage
 	var/list/tmpQueued = queued.Copy()
