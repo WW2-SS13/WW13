@@ -456,6 +456,12 @@
 /client/proc/delme()
 	del src
 
+/client/proc/calculate_is_active_non_observer()
+	is_active_non_observer = (src && mob && !istype(mob, /mob/observer) && !is_minimized())
+	next_calculate_is_active_non_observer = world.time + 600
+	return is_active_non_observer
+
 /client/Stat()
 	..()
 	sleep(10)
+

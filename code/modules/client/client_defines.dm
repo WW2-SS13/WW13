@@ -55,3 +55,7 @@
 	var/status_tabs = TRUE
 
 	var/saved_slot = 1
+
+	var/is_active_non_observer = TRUE
+
+	var/next_calculate_is_active_non_observer = -1

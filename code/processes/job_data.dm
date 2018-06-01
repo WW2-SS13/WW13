@@ -7,14 +7,20 @@
 
 /process/job_data/setup()
 	name = "job data"
-	schedule_interval = 10 SECONDS // (re)calculate relevant_clients every 10 seconds. It was 2, this is laggy as hell
+	schedule_interval = 1 SECOND
 	start_delay = 0 SECONDS
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING)
 	priority = PROCESS_PRIORITY_IRRELEVANT
 	processes.job_data = src
 
 /process/job_data/fire()
-	calculate_relevant_clients()
+
+	for (var/client/C in clients)
+		if (world.time >= C.next_calculate_is_active_non_observer)
+			C.calculate_is_active_non_observer()
+
+	if (ticks % 10 == 0)
+		calculate_relevant_clients()
 
 /process/job_data/proc/get_active_positions(var/datum/job/J)
 	. = 0
@@ -41,6 +47,6 @@
 		var/client/C = client
 		/* sometimes C.is_minimized() can take so long that the client no longer exists by the time it's done
 		 * that's why it goes here last - Kachnov */
-		if (C && C.mob && !istype(C.mob, /mob/observer) && !C.is_minimized())
+		if (C.is_active_non_observer)
 			++.
 	relevant_clients = .
