@@ -21,6 +21,7 @@
 					P.process()
 				catch (var/exception/e)
 					catchException(e, P)
+					message_admins("Hey a bullet just froze! If this starts occuring alot please notify Harcourt or Kachnov!")
 					projectile_list -= P
 					qdel(P)
 
