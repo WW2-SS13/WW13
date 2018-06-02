@@ -9,7 +9,7 @@
  */
 /obj/item/weapon/storage/firstaid
 	name = "first-aid kit"
-	desc = "It's an emergency medical kit for those serious boo-boos."
+	desc = "It's an emergency medical kit for general wounds."
 	icon_state = "firstaid"
 	throw_speed = 2
 	throw_range = 8
@@ -18,7 +18,7 @@
 
 /obj/item/weapon/storage/firstaid/fire
 	name = "fire first-aid kit"
-	desc = "It's an emergency medical kit for when the toxins lab <i>-spontaneously-</i> burns down."
+	desc = "It's an emergency medical kit for burns."
 	icon_state = "ointment"
 	item_state = "firstaid-ointment"
 
@@ -51,7 +51,7 @@
 
 /obj/item/weapon/storage/firstaid/toxin
 	name = "toxin first aid"
-	desc = "Used to treat when you have a high amoutn of toxins in your body."
+	desc = "Used to treat high amounts of toxins in the body."
 	icon_state = "antitoxin"
 	item_state = "firstaid-toxin"
 
@@ -71,7 +71,7 @@
 
 /obj/item/weapon/storage/firstaid/o2
 	name = "oxygen deprivation first aid"
-	desc = "A box full of oxygen goodies."
+	desc = "A box full of tools and chemicals for treating oxygen deprivation."
 	icon_state = "o2"
 	item_state = "firstaid-o2"
 
@@ -103,8 +103,8 @@
 	return
 
 /obj/item/weapon/storage/firstaid/combat
-	name = "combat medical kit"
-	desc = "Contains advanced medical treatments."
+	name = "combat medicine kit"
+	desc = "Contains advanced medicine used in combat."
 	icon_state = "bezerk"
 	item_state = "firstaid-advanced"
 
