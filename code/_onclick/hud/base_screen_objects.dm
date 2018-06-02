@@ -441,17 +441,17 @@
 	// todo: correct these numbers, and those below in Click()
 
 	switch(H.nutrition)
-		if (450 to INFINITY)				nstatus = 0
-		if (350 to 450)					nstatus = 1
-		if (250 to 350)					nstatus = 2
-		if (150 to 250)					nstatus = 3
+		if (H.max_nutrition to INFINITY)				nstatus = 0
+		if (H.max_nutrition-75 to H.max_nutrition)					nstatus = 1
+		if (H.max_nutrition-150 to H.max_nutrition-75)					nstatus = 2
+		if (H.max_nutrition-225 to H.max_nutrition-150)					nstatus = 3
 		else							nstatus = 4
 
 	switch(H.water)
-		if (350 to INFINITY)				wstatus = 0
-		if (250 to 350)					wstatus = 1
-		if (150 to 250)					wstatus = 2
-		if (50 to 150)					wstatus = 3
+		if (H.max_water to INFINITY)				wstatus = 0
+		if (H.max_water-60 to H.max_water)					wstatus = 1
+		if (H.max_water-120 to H.max_water-60)					wstatus = 2
+		if (H.max_water-180 to H.max_water-120)					wstatus = 3
 		else							wstatus = 4
 
 	status = max(nstatus, wstatus)
