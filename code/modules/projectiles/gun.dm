@@ -182,7 +182,7 @@
 	if (A == user)
 		if (user.targeted_organ == "mouth" && !mouthshoot)
 			handle_suicide(user)
-		else if (user.a_intent == I_HURT)
+		else if (user.a_intent == I_HURT && do_after(user, 2, get_turf(user)))
 			handle_shoot_self(user)
 		return
 
