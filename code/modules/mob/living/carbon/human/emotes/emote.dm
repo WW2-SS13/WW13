@@ -1,7 +1,8 @@
 /mob/living/carbon/human/var/next_emote = list(
 	"surrender" = -1,
 	"vocal" = -1,
-	"special" = -1)
+	"special" = -1,
+	"normal" = -1)
 
 var/list/vocal_emotes = list(
 	"cry",
@@ -14,6 +15,9 @@ var/list/vocal_emotes = list(
 	"yawn")
 
 /mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null)
+
+	if (world.time < next_emote["normal"])
+		return
 
 	if (vocal_emotes.Find(act) && world.time < next_emote["vocal"])
 		return
@@ -650,3 +654,4 @@ var/list/vocal_emotes = list(
 
 		if (vocal_emotes.Find(act))
 			next_emote["vocal"] = world.time + 50
+		next_emote["normal"] = world.time + 30
