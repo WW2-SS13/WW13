@@ -162,7 +162,7 @@ var/global/processScheduler/processScheduler
 			for (var/process/p in tmpQueued)
 				var/used_tick_usage = world.tick_usage-initial_tick_usage
 				var/available_tick_usage = MAX_TICK_USAGE - used_tick_usage
-				if (p.always_runs || p.priority != PROCESS_PRIORITY_IRRELEVANT || available_tick_usage >= (MAX_TICK_USAGE/2) || p.may_run(MAX_TICK_USAGE - used_tick_usage))
+				if (p.always_runs || p.priority != PROCESS_PRIORITY_IRRELEVANT || available_tick_usage >= (MAX_TICK_USAGE/2) || p.may_run(available_tick_usage))
 					p.run_time_start_time = world.timeofday
 					if (p.run_time_allowance == -1)
 						p.run_time_allowance = calculate_run_time_allowance(p.priority)
