@@ -490,6 +490,7 @@
 	name = "Prison"
 	icon_state = "green1"
 	location = AREA_INSIDE
+	capturable = FALSE
 
 /area/prishtina/german/armory/train
 	name = "Armory"
@@ -608,6 +609,7 @@
 	name = "SS Prison"
 	icon_state = "green2"
 	location = AREA_INSIDE
+	capturable = FALSE
 
 /area/prishtina/german/janitor
 	name = "Janitor's Closet"
@@ -882,17 +884,18 @@
 	icon_state = "red4"
 	name = "Resting Area"
 
-/area/prishtina/soviet/bunker/brig
+/area/prishtina/soviet/bunker/prison
 	icon_state = "red5"
-	name = "Brig"
+	name = "Prison"
+	capturable = FALSE
 
-/area/prishtina/soviet/bunker/brig/cell1
+/area/prishtina/soviet/bunker/prison/cell1
 	icon_state = "red1"
-	name = "Brig Cell #1"
+	name = "Prison Cell #1"
 
-/area/prishtina/soviet/bunker/brig/cell2
+/area/prishtina/soviet/bunker/prison/cell2
 	icon_state = "red2"
-	name = "Brig Cell #2"
+	name = "Prison Cell #2"
 
 /area/prishtina/soviet/lift/
 	icon_state = "blue1"
