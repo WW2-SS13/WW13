@@ -87,3 +87,5 @@
 
 // Tests if an datum has been deleted.
 #define isDeleted(D) (!D || D:gcDestroyed)
+
+#define forrange(x) for (var/v = 1 to x)
