@@ -84,6 +84,8 @@ var/global/processScheduler/processScheduler
 	for (process in deferredSetupList)
 		addProcess(new process(src))
 
+	return TRUE
+
 /processScheduler/proc/start()
 	isRunning = TRUE
 	// tick_lag will have been set by now, so re-initialize these
@@ -95,6 +97,7 @@ var/global/processScheduler/processScheduler
 		for (var/process/P in processes)
 			P.reset_current_list()
 		// organize processes by priority
+		priority_ordered_processes.Cut()
 		for (var/priority in PROCESS_PRIORITY_VERY_HIGH to PROCESS_PRIORITY_IRRELEVANT)
 			for (var/process/P in processes)
 				if (P.priority == priority)

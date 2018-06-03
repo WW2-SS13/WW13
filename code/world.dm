@@ -528,11 +528,24 @@ var/setting_up_db_connection = FALSE
 				if (!processScheduler.isRunning)
 					processScheduler.start()
 					message_admins("The process scheduler has been started. There are [processes.get_num_processes()] active processes.")
-					log_admin("processScheduler.start() was called at gameticker.pregame().")
+					log_admin("processScheduler.start() was called at start_serverswap_loop().")
 
 				// some sanity for the processScheduler
 				if (processScheduler.last_process != -1 && world.time - processScheduler.last_process >= processScheduler.scheduler_sleep_interval*300)
-					processScheduler.process()
+					processScheduler.start()
+
+
+			// make sure movementMachine is running when the world starts up
+			if (serverswap_open_status)
+				if (!movementMachine)
+					movementMachine = new
+					movementMachine.start()
+					message_admins("The movement scheduler has been started.")
+					log_admin("movementMachine.start() was called at start_serverswap_loop().")
+
+				// some sanity for the movementMachine
+				if (movementMachine.last_run != -1 && world.time - movementMachine.last_run >= movementMachine.interval*300)
+					movementMachine.start()
 
 			if (!global_game_schedule)
 				global_game_schedule = new
