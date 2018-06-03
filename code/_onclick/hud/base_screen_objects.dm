@@ -434,11 +434,10 @@
 
 	// show our worst status, hunger or thirst
 
-	var/status = 0
+	var/status = 1
 	var/nstatus = 0
 	var/wstatus = 0
 
-	// todo: correct these numbers, and those below in Click()
 
 	switch(H.nutrition)
 		if (H.max_nutrition to INFINITY)				nstatus = 0
