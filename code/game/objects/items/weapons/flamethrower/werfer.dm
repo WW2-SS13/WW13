@@ -13,9 +13,9 @@
 	nothrow = TRUE
 	var/fueltank = 1.00
 	var/obj/item/weapon/storage/backpack/flammenwerfer/backpack = null
-	var/rwidth = 4
+	var/rwidth = 5
 	var/rheight = 3
-	var/max_total_range = 8 // todo: its actually 7 because of the formula, fix this shit - Kachnov
+	var/max_total_range = 8
 
 /obj/item/weapon/flamethrower/flammenwerfer/nothrow_special_check()
 	return nodrop_special_check()
