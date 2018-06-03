@@ -106,8 +106,7 @@ var/global/processScheduler/processScheduler
 	while (isRunning)
 		checkRunningProcesses()
 		queueProcesses()
-		spawn (0)
-			runQueuedProcesses()
+		runQueuedProcesses()
 		last_process = world.time
 		sleep(scheduler_sleep_interval)
 
