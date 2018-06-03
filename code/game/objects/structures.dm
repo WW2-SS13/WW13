@@ -150,9 +150,13 @@
 		if (S != src && S.density)
 			return
 
-	usr.forceMove(get_turf(src)) // because we're moving if we're on a train
+	// because we're moving if we're on a train
+	if (usr.is_on_train())
+		target = get_turf(src)
 
-	if (get_turf(user) == get_turf(src))
+	usr.forceMove(target)
+
+	if (get_turf(user) == target)
 		usr.visible_message("<span class='warning'>[user] climbs onto \the [src]!</span>")
 		if (istype(src, /obj/structure/table/glass))
 			var/obj/structure/table/glass/G = src
