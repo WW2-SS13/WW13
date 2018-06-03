@@ -15,11 +15,18 @@
 
 /process/job_data/fire()
 
+	var/tickcheck = (!ticks || ticks % 10 == 0)
+	var/counted = 0
+
 	for (var/client/C in clients)
 		if (world.time >= C.next_calculate_is_active_non_observer)
-			C.calculate_is_active_non_observer()
+			if (counted < round(clients.len/10) || tickcheck)
+				C.calculate_is_active_non_observer()
+				++counted
+			else
+				break
 
-	if (ticks % 10 == 0)
+	if (tickcheck)
 		calculate_relevant_clients()
 
 /process/job_data/proc/get_active_positions(var/datum/job/J)
