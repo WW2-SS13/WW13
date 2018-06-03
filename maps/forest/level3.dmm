@@ -10,6 +10,7 @@
 "aj" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/structure/closet/crate/rations/water,/obj/train_decal/cargo/outline/grey,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
 "ak" = (/obj/structure/table/rack,/obj/item/weapon/storage/belt/keychain,/obj/item/weapon/storage/belt/keychain,/obj/item/weapon/key/german,/obj/item/clothing/gloves/thick/combat,/obj/item/clothing/gloves/thick/combat,/obj/item/clothing/gloves/thick/combat,/obj/item/weapon/storage/belt/keychain,/obj/item/weapon/storage/belt/keychain,/obj/item/clothing/gloves/thick/combat,/turf/floor/plating/grass/wild,/area/prishtina/admin)
 "al" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/structure/closet/crate/rations/german_liquids,/obj/train_decal/cargo/outline/grey,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
+"am" = (/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/effect/floor_decal/corner_oldtile/red/full,/obj/structure/table/rack,/obj/item/ammo_magazine/a762,/obj/item/ammo_magazine/a762,/obj/item/ammo_magazine/a762,/obj/item/ammo_magazine/a762,/obj/item/ammo_magazine/a762,/obj/item/weapon/gun/projectile/automatic/mg34,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
 "an" = (/obj/structure/table/rack,/obj/item/clothing/under/darkred,/obj/item/clothing/under/darkred,/obj/item/clothing/shoes/sandal/marisa,/obj/item/clothing/shoes/sandal/marisa,/obj/item/weapon/storage/backpack/holding,/obj/item/weapon/storage/backpack/holding,/obj/item/clothing/shoes/sandal/marisa,/obj/item/clothing/shoes/sandal/marisa,/obj/item/clothing/under/darkred,/turf/floor/plating/grass/wild,/area/prishtina/admin)
 "ap" = (/obj/item/weapon/storage/box/smoke_grenades,/obj/item/weapon/storage/box/smoke_grenades,/obj/item/weapon/storage/box/smoke_grenades,/obj/structure/table/rack,/turf/floor/plating/grass/wild,/area/prishtina/admin)
 "as" = (/obj/structure/table/rack,/turf/floor/plating/grass/wild,/area/prishtina/admin)
@@ -188,7 +189,6 @@
 "eL" = (/turf/floor/plating,/area/prishtina/void)
 "eM" = (/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
 "eN" = (/obj/structure/simple_door/key_door/german/command_high{name = "Commander's Cabin"},/turf/floor/wood,/area/prishtina/train/german/cabin/officer)
-"eO" = (/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/effect/floor_decal/corner_oldtile/red/full,/obj/structure/table/rack,/obj/item/ammo_magazine/a762/m240,/obj/item/ammo_magazine/a762/m240,/obj/item/ammo_magazine/a762/m240,/obj/item/ammo_magazine/a762/m240,/obj/item/weapon/gun/projectile/automatic/mg34,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
 "eP" = (/turf/wall/indestructable,/area/prishtina/void)
 "eQ" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/train_decal/cargo/outline/grey,/obj/structure/closet/crate/empty,/obj/item/ammo_magazine/ptrdbox,/obj/item/weapon/gun/projectile/heavy/ptrd/german,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
 
@@ -253,7 +253,7 @@ aaaaabababababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaePbpbFbpbpbp
 aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaePbpbFbpbybzbBbpePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaePbpbFbxbzbzbCbpePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaePbpbFbpajbzbDbpePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaePbpbFbpalbzeObpePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaePbpbFbpalbzambpePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaePbpbFbpeQbAbDbpePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaePbpbFbpbpbpbpbpePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaePbpbFbFbFbFbFbpePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

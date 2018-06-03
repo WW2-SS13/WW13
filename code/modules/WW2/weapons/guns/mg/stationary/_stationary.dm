@@ -16,7 +16,7 @@
 	desc = "6-barreled highspeed machinegun."
 	icon_state = "minigun"
 	item_state = ""
-	layer = FLY_LAYER
+	layer = MOB_LAYER + 1
 	anchored = TRUE
 	density = TRUE
 	w_class = 6

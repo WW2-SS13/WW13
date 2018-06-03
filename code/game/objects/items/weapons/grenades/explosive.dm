@@ -61,9 +61,8 @@
 					//you will most likely be dead, but others nearby will be spared the fragments that hit you instead.
 					if (L.lying)
 						P.attack_mob(L, FALSE, FALSE)
-					else
-						if (prob(66))
-							P.attack_mob(L, FALSE, 100) //otherwise, allow a decent amount of fragments to pass
+					else if (prob(40))
+						P.attack_mob(L, FALSE, 100) //otherwise, allow a decent amount of fragments to pass
 
 		spawn (5)
 			qdel(src)

@@ -434,28 +434,9 @@
 
 	// show our worst status, hunger or thirst
 
-	var/status = 0
-	var/nstatus = 0
-	var/wstatus = 0
-
-	// todo: correct these numbers, and those below in Click()
-
-	switch(H.nutrition)
-		if (H.max_nutrition to INFINITY)				nstatus = 0
-		if (H.max_nutrition-75 to H.max_nutrition)					nstatus = 1
-		if (H.max_nutrition-150 to H.max_nutrition-75)					nstatus = 2
-		if (H.max_nutrition-225 to H.max_nutrition-150)					nstatus = 3
-		else							nstatus = 4
-
-	switch(H.water)
-		if (H.max_water to INFINITY)				wstatus = 0
-		if (H.max_water-60 to H.max_water)					wstatus = 1
-		if (H.max_water-120 to H.max_water-60)					wstatus = 2
-		if (H.max_water-180 to H.max_water-120)					wstatus = 3
-		else							wstatus = 4
-
-	status = max(nstatus, wstatus)
-	icon_state = "nutrition[status]"
+	var/nstatus = Clamp(round(1/(H.nutrition/H.max_nutrition)), 1, 4)
+	var/wstatus = Clamp(round(1/(H.water/H.max_water)), 1, 4)
+	icon_state = "nutrition[max(nstatus, wstatus)]"
 
 /obj/screen/nutrition/Click()
 	if (!parentmob)
