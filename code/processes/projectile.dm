@@ -1,4 +1,4 @@
-#define MOVE_INTERVAL 0.03 SECONDS
+#define MOVE_INTERVAL 0.06 SECONDS
 /process/projectile
 
 /process/projectile/setup()
