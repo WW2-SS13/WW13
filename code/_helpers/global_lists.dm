@@ -1,4 +1,5 @@
 var/list/clients = list()							//list of all clients
+var/list/movementMachine_clients = list()			//list of all clients the movementMachine datum iterates through
 var/list/admins = list()							//list of all clients who are admins
 var/list/directory = list()							//list of all ckeys with associated client
 

@@ -21,7 +21,7 @@ var/movementMachine/movementMachine = null
 
 	while (TRUE)
 
-		for (var/client in clients)
+		for (var/client in movementMachine_clients)
 
 			if (client)
 

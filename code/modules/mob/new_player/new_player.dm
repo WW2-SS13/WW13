@@ -38,6 +38,10 @@
 		if (client)
 			client.remove_ghost_only_admin_verbs()
 
+	spawn (10)
+		if (client)
+			movementMachine_clients -= client
+
 /mob/new_player/Destroy()
 	..()
 	new_player_mob_list -= src
