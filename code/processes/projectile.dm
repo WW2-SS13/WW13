@@ -1,8 +1,9 @@
+#define MOVE_INTERVAL 0.03 SECONDS
 /process/projectile
 
 /process/projectile/setup()
 	name = "projectile movement"
-	schedule_interval = 0.03 SECONDS
+	schedule_interval = MOVE_INTERVAL * 3
 	start_delay = 1 SECOND
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	priority = PROCESS_PRIORITY_VERY_HIGH
@@ -19,6 +20,24 @@
 			if (P.loc)
 				try
 					P.process()
+					spawn (MOVE_INTERVAL)
+						if (P.loc)
+							try
+								P.process()
+							catch (var/exception/e)
+								catchException(e, P)
+								log_debug("Hey a bullet just froze! If this starts occuring alot please notify Harcourt or Kachnov!")
+								projectile_list -= P
+								qdel(P)
+					spawn (MOVE_INTERVAL*2)
+						if (P.loc)
+							try
+								P.process()
+							catch (var/exception/e)
+								catchException(e, P)
+								log_debug("Hey a bullet just froze! If this starts occuring alot please notify Harcourt or Kachnov!")
+								projectile_list -= P
+								qdel(P)
 				catch (var/exception/e)
 					catchException(e, P)
 					log_debug("Hey a bullet just froze! If this starts occuring alot please notify Harcourt or Kachnov!")
@@ -41,3 +60,4 @@
 
 /process/projectile/htmlProcess()
 	return ..() + "[projectile_list.len] projectiles"
+#undef MOVE_INTERVAL
