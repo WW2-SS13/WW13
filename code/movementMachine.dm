@@ -2,7 +2,7 @@
 var/movementMachine/movementMachine = null
 
 /movementMachine
-	var/interval = 0.03 SECONDS
+	var/interval = 0.01 SECONDS
 	var/ticks = 0
 	var/last_run = -1
 
