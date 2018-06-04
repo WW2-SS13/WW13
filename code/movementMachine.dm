@@ -23,7 +23,7 @@ var/movementMachine/movementMachine = null
 
 		for (var/client in movementMachine_clients)
 
-			if (client)
+			if (client && !isDeleted(client))
 
 				var/mob/M = client:mob
 
