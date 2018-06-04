@@ -1,8 +1,6 @@
 
 // Keep these two together, they *must* be defined on both
 // If /client ever becomes /datum/client or similar, they can be merged
-/client/proc/get_view_variables_header()
-	return "<b>[src]</b>"
 /datum/proc/get_view_variables_header()
 	return "<b>[src]</b>"
 
@@ -30,10 +28,6 @@
 		BRAIN:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=brain'>[getBrainLoss()]</a>
 		</font>
 		"}
-
-// Same for these as for get_view_variables_header() above
-/client/proc/get_view_variables_options()
-	return ""
 
 /datum/proc/get_view_variables_options()
 	return ""
