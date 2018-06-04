@@ -11,6 +11,7 @@
 	start_delay = 0 SECONDS
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING)
 	priority = PROCESS_PRIORITY_IRRELEVANT
+	always_runs = TRUE // due to the structure of this process, we do the most work on our first tick, so ignore recorded runtimes and always run this
 	processes.job_data = src
 
 /process/job_data/fire()
