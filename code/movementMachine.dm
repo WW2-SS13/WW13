@@ -31,23 +31,18 @@ var/movementMachine/movementMachine = null
 					try
 						if (M.client.canmove && !M.client.moving && world.time >= M.client.move_delay && (M.movement_eastwest || M.movement_northsouth))
 							var/diag = FALSE
-							var/list/movement_process_dirs = list()
-							if (M.movement_eastwest)
-								movement_process_dirs += M.movement_eastwest
-							if (M.movement_northsouth)
-								movement_process_dirs += M.movement_northsouth
-							var/movedir = movement_process_dirs[movement_process_dirs.len]
-							if (movement_process_dirs.len > 1 && !istank(M.loc))
-								if (movement_process_dirs.Find(NORTH) && movement_process_dirs.Find(WEST))
+							var/movedir = M.movement_northsouth ? M.movement_northsouth : M.movement_eastwest
+							if ((M.movement_eastwest && M.movement_northsouth) && !istank(M.loc))
+								if (M.movement_northsouth == NORTH && M.movement_eastwest == WEST)
 									movedir = NORTHWEST
 									diag = TRUE
-								else if (movement_process_dirs.Find(NORTH) && movement_process_dirs.Find(EAST))
+								else if (M.movement_northsouth == NORTH && M.movement_eastwest == EAST)
 									movedir = NORTHEAST
 									diag = TRUE
-								else if (movement_process_dirs.Find(SOUTH) && movement_process_dirs.Find(WEST))
+								else if (M.movement_northsouth == SOUTH && M.movement_eastwest == WEST)
 									movedir = SOUTHWEST
 									diag = TRUE
-								else if (movement_process_dirs.Find(SOUTH) && movement_process_dirs.Find(EAST))
+								else if (M.movement_northsouth == SOUTH && M.movement_eastwest == EAST)
 									movedir = SOUTHEAST
 									diag = TRUE
 							M.client.Move(get_step(M, movedir), movedir, diag)
