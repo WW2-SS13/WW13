@@ -164,10 +164,10 @@ var/global/processScheduler/processScheduler
 			for (var/process/p in tmpQueued)
 				var/used_tick_usage = world.tick_usage-initial_tick_usage
 				var/available_tick_usage = MAX_TICK_USAGE - used_tick_usage
-				if (p.always_runs || p.priority != PROCESS_PRIORITY_IRRELEVANT || available_tick_usage >= (MAX_TICK_USAGE/2) || p.may_run(available_tick_usage))
-					p.run_time_start_time = world.timeofday
-					if (p.run_time_allowance == -1)
-						p.run_time_allowance = calculate_run_time_allowance(p.priority)
+				if (p.always_runs || p.priority != PROCESS_PRIORITY_IRRELEVANT || p == tmpQueued[1] || p.may_run(available_tick_usage))
+					p.run_time_tick_usage = world.tick_usage
+					if (p.run_time_tick_usage_allowance == -1)
+						p.run_time_tick_usage_allowance = calculate_run_time_allowance(p.priority)
 					// we finished our current run, reset our current_list to a fresh one
 					if (p.process() != PROCESS_TICK_CHECK_RETURNED_EARLY)
 						p.reset_current_list()
@@ -395,18 +395,18 @@ var/global/processScheduler/processScheduler
 	return nameToProcessMap[process_name]
 
 /processScheduler/proc/calculate_run_time_allowance(var/priority)
-	. = 0
+	. = 100
 	switch (priority)
 		if (PROCESS_PRIORITY_VERY_LOW)
-			. = world.tick_lag * 0.05
+			. *= 0.05
 		if (PROCESS_PRIORITY_LOW)
-			. = world.tick_lag * 0.10
+			. *= 0.10
 		if (PROCESS_PRIORITY_MEDIUM)
-			. = world.tick_lag * 0.15
+			. *= 0.15
 		if (PROCESS_PRIORITY_HIGH)
-			. = world.tick_lag * 0.20
+			. *= 0.20
 		if (PROCESS_PRIORITY_VERY_HIGH)
-			. = world.tick_lag * 0.40
+			. *= 0.40
 	. /= priorityToProcessMap[num2text(priority)]:len
 
 /* returns a list of which processes need to run the most.

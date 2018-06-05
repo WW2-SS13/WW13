@@ -90,10 +90,10 @@
 
 	// lebenProcessScheduler stuff
 
-	// when did we start our more recent run
-	var/run_time_start_time = -1
+	// at what tick usage did we start our more recent run
+	var/run_time_tick_usage = -1
 	// how long are we allowed to run? set in the scheduler whenever this is -1, not New(), since it relies on other processes
-	var/run_time_allowance = -1
+	var/run_time_tick_usage_allowance = -1
 	// the higher priority, the more CPU we're expected to use
 	var/priority = PROCESS_PRIORITY_MEDIUM
 	// recorded list of objects we need to go through - never set for processes with priority IRRELEVANT
