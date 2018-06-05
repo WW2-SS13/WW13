@@ -769,7 +769,7 @@ var/global/datum/controller/occupations/job_master
 	var/max_partisans = INFINITY
 
 	// see job_data.dm
-	var/relevant_clients = processes.job_data.get_relevant_clients()
+	var/relevant_clients = processes.job_data.get_relevant_clients_safe()
 
 	if (map && !map.faction_distribution_coeffs.Find(INFINITY))
 		if (map.faction_distribution_coeffs.Find(GERMAN))

@@ -16,7 +16,7 @@
 
 /process/job_data/fire()
 
-	var/tickcheck = (!ticks || ticks % 10 == 0)
+	var/tickcheck = ticks % 10 == 0 // !ticks check removed to prevent this hanging
 	var/counted = 0
 
 	for (var/client/C in clients)
@@ -58,3 +58,8 @@
 		if (C.is_active_non_observer)
 			++.
 	relevant_clients = .
+
+/process/job_data/proc/get_relevant_clients_safe()
+	if (relevant_clients != -1)
+		return relevant_clients
+	return clients.len
