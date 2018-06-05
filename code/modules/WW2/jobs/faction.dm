@@ -12,6 +12,7 @@
 #define TEAM_RU 1
 #define TEAM_GE 2
 #define TEAM_PN 3
+#define TEAM_RC 4
 
 var/global/spies[3]
 var/global/officers[3]
@@ -35,6 +36,25 @@ var/global/squad_members[3]
 	return "/datum/faction"
 
 // you appear to be a partisan to all other partisans
+/datum/faction/redcross
+	icon_state = "redcross"
+	title = "Red Cross Doctor"
+	team = TEAM_RC
+
+/datum/faction/redcross/base_type()
+	return "/datum/faction/redcross"
+
+// you appear to be a red cross guard to all other red cross members
+/datum/faction/redcross/guard
+	icon_state = "redcross_guard"
+	title = "Red Cross Guard"
+	team = TEAM_RC
+
+/datum/faction/redcross/director
+	icon_state = "redcross_director"
+	title = "Red Cross Director"
+	team = TEAM_RC
+
 /datum/faction/partisan
 	icon_state = "partisan_soldier"
 	title = "Partisan Soldier"
