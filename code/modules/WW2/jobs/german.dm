@@ -212,7 +212,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/MP
-	title = "Militärpolizei"
+	title = "Militï¿½rpolizei"
 	en_meaning = "MPO"
 	rank_abbreviation = "uffz"
 	selection_color = "#2d2d63"
@@ -307,7 +307,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/medic
-	title = "Sanitäter"
+	title = "Sanitï¿½ter"
 	en_meaning = "Field Medic"
 	rank_abbreviation = "oGftr"
 	selection_color = "#4c4ca5"
@@ -438,7 +438,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/sniper
-	title = "Scharfschütze"
+	title = "Scharfschï¿½tze"
 	en_meaning = "Sniper"
 	rank_abbreviation = "gftr"
 	selection_color = "#4c4ca5"
@@ -454,10 +454,9 @@
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ghillie(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/gersuit/ghillie(H), suit)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm/ghillie(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/sniper_scope(H), slot_r_store)
 	H.add_note("Role", "You are a <b>[title]</b>, a sniper. Your job is to assist normal <b>Soldat</b> from behind defenses.")
 	H.give_radio()
@@ -525,7 +524,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/heavy_weapon
-	title = "Maschinengewehrschütze"
+	title = "Maschinengewehrschï¿½tze"
 	en_meaning = "Heavy Weapons Soldier"
 	rank_abbreviation = "oGftr"
 	selection_color = "#4c4ca5"
@@ -759,7 +758,7 @@
 var/first_fallschirm = TRUE
 
 /datum/job/german/paratrooper
-	title = "Fallschirmjäger"
+	title = "Fallschirmjï¿½ger"
 	en_meaning = "Paratrooper"
 	rank_abbreviation = "schtz"
 	selection_color = "#4c4ca5"
@@ -947,7 +946,7 @@ var/first_fallschirm = TRUE
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/scout
-	title = "Aufklärtrupp"
+	title = "Aufklï¿½rtrupp"
 	en_meaning = "Scout"
 	rank_abbreviation = "schtz"
 	selection_color = "#4c4ca5"
@@ -1149,7 +1148,7 @@ var/first_fallschirm = TRUE
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/medic_ss
-	title = "SS-Sanitäter"
+	title = "SS-Sanitï¿½ter"
 	en_meaning = "SS Medic"
 	rank_abbreviation = "schtz" // oGftr for normal medics
 	selection_color = "#4c4ca5"
@@ -1201,7 +1200,7 @@ var/first_fallschirm = TRUE
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/job/german/chef
-	title = "Kuechenchef" // note: SS13 does not like ü in job titles
+	title = "Kuechenchef" // note: SS13 does not like ï¿½ in job titles
 	en_meaning = "Chef"
 	rank_abbreviation = "Kch"
 	selection_color = "#4c4ca5"
