@@ -465,6 +465,7 @@ var/SS_toggled = TRUE
 var/paratroopers_toggled = TRUE
 var/germans_toggled = TRUE
 var/soviets_toggled = TRUE
+var/redcross_toggled = TRUE
 
 /client/proc/toggle_factions()
 	set name = "Toggle Factions"
@@ -482,6 +483,7 @@ var/soviets_toggled = TRUE
 	choices += "PARATROOPERS ([paratroopers_toggled ? "ENABLED" : "DISABLED"])"
 	choices += "GERMANS ([germans_toggled ? "ENABLED" : "DISABLED"])"
 	choices += "SOVIET ([soviets_toggled ? "ENABLED" : "DISABLED"])"
+	choices += "RED CROSS ([redcross_toggled ? "ENABLED" : "DISABLED"])"
 	choices += "CANCEL"
 
 	var/choice = input("Enable/Disable what faction?") in choices
@@ -497,6 +499,10 @@ var/soviets_toggled = TRUE
 		civilians_toggled = !civilians_toggled
 		world << "<span class = 'warning'>The Civilian faction has been [civilians_toggled ? "<b><i>ENABLED</i></b>" : "<b><i>DISABLED</i></b>"].</span>"
 		message_admins("[key_name(src)] changed the Civilian faction 'enabled' setting to [civilians_toggled].")
+	else if (findtext(choice, "REDCROSS"))
+		redcross_toggled = !redcross_toggled
+		world << "<span class = 'warning'>The Red Cross faction has been [civilians_toggled ? "<b><i>ENABLED</i></b>" : "<b><i>DISABLED</i></b>"].</span>"
+		message_admins("[key_name(src)] changed the Red Cross faction 'enabled' setting to [civilians_toggled].")
 	else if (findtext(choice, "WAFFEN-SS"))
 		SS_toggled = !SS_toggled
 		world << "<span class = 'warning'>The SS faction has been [SS_toggled ? "<b><i>ENABLED</i></b>" : "<b><i>DISABLED</i></b>"].</span>"
@@ -515,6 +521,7 @@ var/soviets_toggled = TRUE
 		message_admins("[key_name(src)] changed the Soviet faction 'enabled' setting to [soviets_toggled].")
 
 var/partisans_forceEnabled = FALSE
+var/redcross_forceEnabled = FALSE
 var/civilians_forceEnabled = FALSE
 var/germans_forceEnabled = FALSE
 var/soviets_forceEnabled = FALSE
@@ -537,6 +544,7 @@ var/paratroopers_forceEnabled = FALSE
 	choices += "SOVIET ([soviets_forceEnabled ? "FORCIBLY ENABLED" : "NOT FORCIBLY ENABLED"])"
 	choices += "SS ([SS_forceEnabled ? "FORCIBLY ENABLED" : "NOT FORCIBLY ENABLED"])"
 	choices += "PARATROOPERS ([paratroopers_forceEnabled ? "FORCIBLY ENABLED" : "NOT FORCIBLY ENABLED"])"
+	choices += "RED ([redcross_forceEnabled ? "FORCIBLY ENABLED" : "NOT FORCIBLY ENABLED"])"
 	choices += "CANCEL"
 
 	var/choice = input("Enable/Disable what faction?") in choices
@@ -564,6 +572,10 @@ var/paratroopers_forceEnabled = FALSE
 		SS_forceEnabled = !SS_forceEnabled
 		world << "<span class = 'notice'>The SS subfaction [SS_forceEnabled ? "has been forcibly <b>enabled</b>" : "<b>is no longer forcibly enabled</b>"].</span>"
 		message_admins("[key_name(src)] changed the SS subfaction 'forceEnabled' setting to [SS_forceEnabled].")
+	else if (findtext(choice, "RED"))
+		redcross_forceEnabled = !redcross_forceEnabled
+		world << "<span class = 'notice'>The Red Cross subfaction [redcross_forceEnabled ? "has been forcibly <b>enabled</b>" : "<b>is no longer forcibly enabled</b>"].</span>"
+		message_admins("[key_name(src)] changed the Red Cross subfaction 'forceEnabled' setting to [redcross_forceEnabled].")
 	else if (findtext(choice, "PARATROOPERS"))
 		paratroopers_forceEnabled = !paratroopers_forceEnabled
 		world << "<span class = 'notice'>The Paratrooper subfaction [paratroopers_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"

@@ -64,7 +64,6 @@ var/global/datum/controller/occupations/job_master
 	var/civilians_were_enabled = FALSE
 	var/partisans_were_enabled = FALSE
 	var/redcross_were_enabled = FALSE
-	var/partisans_were_enabled = FALSE
 
 	var/admin_expected_clients = 0
 

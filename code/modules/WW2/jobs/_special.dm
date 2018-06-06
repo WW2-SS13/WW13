@@ -279,6 +279,8 @@
 		return "PILLARMEN"
 	if (side == ITALIAN)
 		return "Italian Army"
+	if (side == REDCROSS)
+		return "Red Cross"
 	return null
 
 // here's a story

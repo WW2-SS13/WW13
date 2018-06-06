@@ -83,7 +83,7 @@
 	H.setStat("shotgun", pick(STAT_MEDIUM_HIGH, STAT_HIGH, STAT_VERY_HIGH))
 	return TRUE
 
-/datum/job/partisan/director
+/datum/job/redcross/director
 	title = "Red Cross Director"
 	is_officer = TRUE
 	is_commander = TRUE
