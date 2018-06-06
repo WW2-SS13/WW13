@@ -606,8 +606,7 @@ var/admin_restart_disabled = FALSE
 		ticker.delay_end = !ticker.delay_end
 		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
 		message_admins("<span class = 'notice'>[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].</span>", TRUE)
-		if (!ticker.delay_end)
-			admin_restart_disabled = FALSE
+		admin_restart_disabled = ticker.delay_end
 		return //alert("Round end delayed", null, null, null, null, null)
 	round_progressing = !round_progressing
 	if (!round_progressing)
