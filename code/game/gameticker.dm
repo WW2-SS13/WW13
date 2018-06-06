@@ -42,6 +42,8 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 	var/finished = FALSE // set to TRUE by the map object
 
+	var/restarting_is_very_bad = FALSE
+
 /datum/controller/gameticker/proc/pregame()
 
 	spawn (0)
@@ -230,6 +232,10 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 			if (!delay_end)
 				world << "<span class='notice'><big>Restarting in [round(restart_after/10)] seconds. Next map: <b>[next_map]</b></big></span>"
+				if (restart_after > restart_timeout)
+					restarting_is_very_bad = TRUE
+					spawn (restart_after - restart_timeout)
+						restarting_is_very_bad = FALSE
 
 			if (!delay_end)
 				sleep(restart_after)

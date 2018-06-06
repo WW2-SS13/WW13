@@ -406,9 +406,13 @@ proc/admin_notice(var/message, var/rights)
 	set desc="Restarts the world"
 	if (!usr.client.holder)
 		return
-	var/confirm = input(usr, "Restart the game world?", "Restart", "Yes", "Cancel")
+	var/confirm = input(usr, "Restart the game world?", "Restart") in list("Yes", "Cancel")
 	if (confirm == "Cancel")
 		return
+	if (processes.mapswap && ticker.restarting_is_very_bad && serverswap.Find("snext"))
+		var/unconfirm = input(usr, "Mapswap is in progress. Restarting now may break the linked server. Continue?") in list("No", "Yes")
+		if (unconfirm == "No")
+			return
 	if (confirm == "Yes")
 		world << "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by <b>[usr.client.holder.fakekey ? "Admin" : usr.key]</b>!</span>"
 		log_admin("[key_name(usr)] initiated a reboot.")
@@ -421,9 +425,13 @@ proc/admin_notice(var/message, var/rights)
 	set desc="Restarts the world with to be continued memes"
 	if (!usr.client.holder)
 		return
-	var/confirm = input(usr, "Restart the game world?", "Restart", "Yes", "Cancel")
+	var/confirm = input(usr, "Restart the game world?", "Restart") in list("Yes", "Cancel")
 	if (confirm == "Cancel")
 		return
+	if (processes.mapswap && ticker.restarting_is_very_bad && serverswap.Find("snext"))
+		var/unconfirm = input(usr, "Mapswap is in progress. Restarting now may break the linked server. Continue?") in list("No", "Yes")
+		if (unconfirm == "No")
+			return
 	if (confirm == "Yes")
 		config.jojoreference = TRUE
 		world << "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by <b>[usr.client.holder.fakekey ? "Admin" : usr.key]</b>!</span>"
