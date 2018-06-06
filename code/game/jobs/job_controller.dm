@@ -377,8 +377,8 @@ var/global/datum/controller/occupations/job_master
 		else if (istype(job, /datum/job/italian))
 			H.equip_coat(/obj/item/clothing/suit/storage/coat/italian)
 
-		// Add loadout items
-		spawn (0)
+		// Add loadout items. spawn(0.1) so it happens after our pockets are filled with default job items
+		spawn (0.1)
 			if (!findtext("[H.original_job.type]", "doctor"))
 				if (!list(CIVILIAN).Find(H.original_job.base_type_flag()))
 					for (var/v in 1 to 2)
@@ -456,7 +456,7 @@ var/global/datum/controller/occupations/job_master
 									H.equip_to_slot(new /obj/item/weapon/screwdriver(H), slot)
 
 		// Give the guy some ammo for his gun
-		spawn (0.1)
+		spawn (0.2)
 			for (var/obj/item/weapon/gun/projectile/gun in H.contents)
 				if (gun.w_class == 5 && gun.gun_type == GUN_TYPE_MG) // MG
 					if (H.back && istype(H.back, /obj/item/weapon/storage/backpack))

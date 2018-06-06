@@ -96,8 +96,12 @@
 		if (A == loc)
 			var/obj/tank/tank = loc
 			var/obj/item/ammo_magazine/maxim/hand = get_active_hand()
+			var/exit_tank = FALSE
+			if (l_hand && r_hand && istype(l_hand, /obj/item/ammo_magazine/maxim) && istype(r_hand, /obj/item/ammo_magazine/maxim))
+				if ((input(src, "Exit the tank to replace the MG belt?") in list("Exit", "Replace MG Belt")) == "Exit")
+					exit_tank = TRUE
 			// reloading the tank MG
-			if (hand && istype(hand))
+			if (hand && istype(hand) && !exit_tank)
 				if (tank.MG && tank.MG.magazine_type == hand.type)
 					tank.tank_message("<span class = 'warning'>[src] starts to replace the MG belt...</span>")
 					if (do_after(src, 50))

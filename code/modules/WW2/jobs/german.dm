@@ -1189,7 +1189,7 @@ var/first_fallschirm = TRUE
 	H.setStat("stamina", STAT_VERY_HIGH)
 	return TRUE
 
-/datum/job/german/soldier_ss/get_keys()
+/datum/job/german/medic_ss/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/SS)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -521,7 +521,11 @@
 			move_delay += 3
 
 		if (mob.pulling)
-			if (istype(mob.pulling, /mob))
+
+			if (!mob.pulling.Adjacent(mob))
+				mob.stop_pulling()
+
+			else if (istype(mob.pulling, /mob))
 				move_delay += 1.25
 				if (istype(mob.pulling, /mob/living/carbon/human))
 					var/mob/living/carbon/human/H = mob.pulling
