@@ -125,7 +125,7 @@
 	else
 		target = get_turf(src)
 
-	if (!target || target.density)
+	if (!target || target.density || (map && map.check_prishtina_block(user, target)))
 		return
 
 	for (var/obj/structure/S in target)
