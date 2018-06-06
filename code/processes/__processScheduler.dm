@@ -157,17 +157,18 @@ var/global/processScheduler/processScheduler
 	/* run all processes until we've used most of the world's tick. Higher priority processes will finish in less loops.
 	 * timing is too inaccurate here so we just check world.tick_usage, which seems to update in real time - Kachnov */
 
-	#define MAX_TICK_USAGE 100
-
+	#define MINIMUM_TICK_USAGE 10
+	#define MAXIMUM_TICK_USAGE 90
+	var/max_tick_usage = min(max(MINIMUM_TICK_USAGE, 100 - world.tick_usage), MAXIMUM_TICK_USAGE)
 	var/initial_tick_usage = world.tick_usage
 	var/list/tmpQueued = queued.Copy()
 	var/list/processed = list()
 
 	main:
-		while (tmpQueued.len && (world.tick_usage-initial_tick_usage) < MAX_TICK_USAGE)
+		while (tmpQueued.len && (world.tick_usage-initial_tick_usage) < max_tick_usage)
 			for (var/process/p in tmpQueued)
 				var/used_tick_usage = world.tick_usage-initial_tick_usage
-				var/available_tick_usage = MAX_TICK_USAGE - used_tick_usage
+				var/available_tick_usage = max_tick_usage - used_tick_usage
 				if (p.always_runs || p.priority != PROCESS_PRIORITY_IRRELEVANT || p == tmpQueued[1] || p.may_run(available_tick_usage))
 					p.run_time_tick_usage = world.tick_usage
 					if (p.run_time_tick_usage_allowance == -1)
@@ -181,13 +182,13 @@ var/global/processScheduler/processScheduler
 				else
 					p.reset_current_list()
 					tmpQueued -= p
-				if (used_tick_usage >= MAX_TICK_USAGE)
+				if (used_tick_usage >= max_tick_usage)
 					break main
 
 	for (var/process/p in queued-processed)
 		++p.run_failures
-
-	#undef MAX_TICK_USAGE
+	#undef MINIMUM_TICK_USAGE
+	#undef MAXIMUM_TICK_USAGE
 
 /processScheduler/proc/addProcess(var/process/process)
 
