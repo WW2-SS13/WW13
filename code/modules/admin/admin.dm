@@ -400,17 +400,13 @@ proc/admin_notice(var/message, var/rights)
 //i.e. buttons/verbs
 
 
-var/admin_restart_disabled = FALSE
 /datum/admins/proc/restart()
 	set category = "Server"
 	set name = "Restart"
 	set desc="Restarts the world"
 	if (!usr.client.holder)
 		return
-	if (admin_restart_disabled)
-		usr << "<span class = 'danger'>The world is already about to restart.</span>"
-		return
-	var/confirm = alert("Restart the game world?", "Restart", "Yes", "Cancel")
+	var/confirm = input(usr, "Restart the game world?", "Restart", "Yes", "Cancel")
 	if (confirm == "Cancel")
 		return
 	if (confirm == "Yes")
@@ -425,10 +421,7 @@ var/admin_restart_disabled = FALSE
 	set desc="Restarts the world with to be continued memes"
 	if (!usr.client.holder)
 		return
-	if (admin_restart_disabled)
-		usr << "<span class = 'danger'>The world is already about to restart.</span>"
-		return
-	var/confirm = alert("Restart the game world?", "Restart", "Yes", "Cancel")
+	var/confirm = input(usr, "Restart the game world?", "Restart", "Yes", "Cancel")
 	if (confirm == "Cancel")
 		return
 	if (confirm == "Yes")
@@ -606,7 +599,6 @@ var/admin_restart_disabled = FALSE
 		ticker.delay_end = !ticker.delay_end
 		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
 		message_admins("<span class = 'notice'>[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].</span>", TRUE)
-		admin_restart_disabled = ticker.delay_end
 		return //alert("Round end delayed", null, null, null, null, null)
 	round_progressing = !round_progressing
 	if (!round_progressing)
