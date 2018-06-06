@@ -812,6 +812,7 @@
 #include "code\modules\WW2\jobs\italian.dm"
 #include "code\modules\WW2\jobs\partisan.dm"
 #include "code\modules\WW2\jobs\pillarmen.dm"
+#include "code\modules\WW2\jobs\redcross.dm"
 #include "code\modules\WW2\jobs\soviet.dm"
 #include "code\modules\WW2\jobs\superiors.dm"
 #include "code\modules\WW2\jobs\whitelist.dm"

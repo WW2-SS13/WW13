@@ -24,6 +24,7 @@ var/global/datum/controller/occupations/job_master
 		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[UKRAINIAN]
 		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[CIVILIAN]
 		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[PARTISAN]
+		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[REDCROSS]
 	else
 		for (var/faction in map.faction_organization)
 			job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[faction]
@@ -62,6 +63,8 @@ var/global/datum/controller/occupations/job_master
 	var/SS_was_enabled = FALSE
 	var/civilians_were_enabled = FALSE
 	var/partisans_were_enabled = FALSE
+	var/redcross_were_enabled = FALSE
+	var/partisans_were_enabled = FALSE
 
 	var/admin_expected_clients = 0
 
@@ -84,6 +87,7 @@ var/global/datum/controller/occupations/job_master
 
 	var/italiano = FALSE
 	var/warcrimes = FALSE
+	var/medic = FALSE
 
 	for (var/datum/job/J in occupations)
 		if (map)
@@ -147,6 +151,16 @@ var/global/datum/controller/occupations/job_master
 		else
 			if (map)
 				map.faction_organization -= list(CIVILIAN, PARTISAN)
+
+	if (!is_side_locked(CIVILIAN) && map && map.faction_organization.Find(CIVILIAN) && map.faction_organization.Find(REDCROSS))
+		if (italiano || warcrimes || autobalance_for_players >= PLAYER_THRESHOLD_HIGHEST-10)
+			if (announce)
+				world << "<font size = 3><span class = 'notice'>Civilian and Red Cross factions are enabled.</span></font>"
+			civilians_were_enabled = TRUE
+			redcross_were_enabled = TRUE
+		else
+			if (map)
+				map.faction_organization -= list(CIVILIAN, REDCROSS)
 
 /datum/controller/occupations/proc/spawn_with_delay(var/mob/new_player/np, var/datum/job/j)
 	// for delayed spawning, wait the spawn_delay of the job
@@ -746,6 +760,10 @@ var/global/datum/controller/occupations/job_master
 		if (civilians_forceEnabled)
 			return FALSE
 		return map.game_really_started()
+	else if (side == REDCROSS)
+		if (redcross_forceEnabled)
+			return FALSE
+		return map.game_really_started()
 	else if (side == PARTISAN)
 		if (partisans_forceEnabled)
 			return FALSE
@@ -761,12 +779,15 @@ var/global/datum/controller/occupations/job_master
 	var/italians = alive_n_of_side(ITALIAN)
 	var/civilians = alive_n_of_side(CIVILIAN)
 	var/partisans = alive_n_of_side(PARTISAN)
+	var/redcross = alive_n_of_side(REDCROSS)
 
 	// by default no sides are hardlocked
 	var/max_germans = INFINITY
 	var/max_soviets = INFINITY
 	var/max_civilians = INFINITY
 	var/max_partisans = INFINITY
+	var/max_redcross = INFINITY
+
 
 	// see job_data.dm
 	var/relevant_clients = processes.job_data.get_relevant_clients()
@@ -786,6 +807,9 @@ var/global/datum/controller/occupations/job_master
 		if (map.faction_distribution_coeffs.Find(PARTISAN))
 			max_partisans = ceil(relevant_clients * map.faction_distribution_coeffs[PARTISAN])
 
+		if (map.faction_distribution_coeffs.Find(REDCROSS))
+			max_partisans = ceil(relevant_clients * map.faction_distribution_coeffs[REDCROSS])
+
 	// fixes soviet-biased autobalance on verylow pop - Kachnov
 	if (map && relevant_clients <= 7)
 		if (map.faction_distribution_coeffs[SOVIET] > map.faction_distribution_coeffs[GERMAN])
@@ -800,6 +824,12 @@ var/global/datum/controller/occupations/job_master
 			if (partisans_forceEnabled)
 				return FALSE
 			if (partisans >= max_partisans)
+				return TRUE
+			return FALSE
+		if (REDCROSS)
+			if (redcross_forceEnabled)
+				return FALSE
+			if (redcross >= max_redcross)
 				return TRUE
 			return FALSE
 		if (CIVILIAN)

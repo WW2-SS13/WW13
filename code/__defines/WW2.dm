@@ -3,6 +3,7 @@
 #define CIVILIAN "CIVILIAN"
 #define PARTISAN "PARTISAN" // ukrainian but not with ruskies
 #define SOVIET "SOVIET"
+#define REDCROSS "REDCROSS"
 #define ITALIAN "ITALIAN"
 #define PILLARMEN "PILLARMEN"
 

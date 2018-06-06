@@ -41,3 +41,13 @@
 	name = "Panzer Crewman Cap"
 	icon_state = "gertankerhat"
 	item_state = "gertankerhat"
+
+/obj/item/clothing/head/caphat/rccap
+	name = "Red Cross Cap"
+	icon_state = "rccap"
+	item_state = "rccap"
+
+/obj/item/clothing/head/caphat/rccapdir
+	name = "Red Cross Director Cap"
+	icon_state = "rccap_DIR"
+	item_state = "rccap_DIR"

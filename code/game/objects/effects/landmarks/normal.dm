@@ -434,8 +434,31 @@ var/area/partisan_stockpile = null
 			qdel(src)
 			return
 
-		// PARTISAN LANDMARKS
 
+		// RED CROSS LANDMARKS
+
+		if ("JoinLateRedCross")
+			if (!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if ("JoinLateRedCrossGuard")
+			if (!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if ("JoinLateRedCrossLeader")
+			if (!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		// PARTISAN LANDMARKS
 		if ("JoinLatePartisan")
 			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()

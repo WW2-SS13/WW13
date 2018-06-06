@@ -12,6 +12,10 @@
 #define ITALIAN_UNIFORM_DESC "A standard issue Italian uniform issued to Italian soldiers fighting alongside the Wehrmacht."
 #define ITALIAN_UNIFORM_STATE "itauni"
 
+#define REDCROSS_UNIFORM_NAME "Red Cross uniform"
+#define REDCROSS_UNIFORM_DESC "A standard issue red cross uniform issued to red cross members."
+#define REDCROSS_UNIFORM_STATE "rcuni"
+
 /* Helmet Metadata: Soviet, German, Italian */
 
 #define SOVIET_HELMET_NAME "Soviet helmet"
@@ -109,6 +113,13 @@
 	desc = "A fancier, more pressed uniform of the Nazi Army, given to German officers. It has a feel of pride and authority."
 	icon_state = "falluni"
 	item_state = "geruniofficer"
+	worn_state = "geruniofficer"
+
+/obj/item/clothing/under/geruni/ghillie
+	name = "german ghilli suit"
+	desc = "A sneaky sneaky ghillie suit."
+	icon_state = "ger_ghillie"
+	item_state = "ger_ghillie"
 	worn_state = "geruniofficer"
 
 /obj/item/clothing/under/geruni/MP
@@ -277,6 +288,25 @@
 	desc =  "A standard metal helmet issued to German combat medics."
 	icon_state = "gerhelm_CM"
 	item_state = "gerhelm_CM"
+
+/obj/item/clothing/head/helmet/rc/guard
+	name = "Red Cross guard's helmet"
+	desc =  "A standard metal helmet issued to Red Cross guards."
+	icon_state = "rchelm_RU"
+	item_state = "rchelm_RU"
+
+/obj/item/clothing/head/helmet/gerhelm/ghillie
+	name = "Ghilie Suit Hood"
+	desc =  "A standard ghillie suit helm."
+	icon_state = "ger_ghillie"
+	item_state = "ger_ghillie"
+
+/obj/item/clothing/suit/gersuit/ghillie
+	name = "Ghilie Ghillie Suit"
+	desc =  "A standard ghillie suit."
+	icon_state = "ger_ghillie"
+	item_state = "ger_ghillie"
+	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
 
 /obj/item/clothing/head/helmet/sovhelm
 	name = SOVIET_HELMET_NAME
