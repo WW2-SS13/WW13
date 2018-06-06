@@ -710,7 +710,7 @@
 				if (clients.len == 1)
 					avg_ping = our_ping
 				stat("Ping (Average):", "[our_ping] ms ([avg_ping] ms)")
-			stat("Time Dilation (Average):", processes.time_track ? "[ceil(processes.time_track.dilation)]% ([ceil(processes.time_track.average_dilation())]%)" : "0% (0%)")
+			stat("Time Dilation (Average):", processes.time_track ? "[ceil(processes.time_track.dilation)]% ([ceil(processes.time_track.stored_averages["dilation"])]%)" : "0% (0%)")
 
 		if (client.holder && client.status_tabs)
 			if (statpanel("Status"))
@@ -718,8 +718,8 @@
 				stat(stat_header("Developer"))
 				stat("")
 				if (processes.time_track)
-					stat("CPU (Average):","[world.cpu]% ([ceil(processes.time_track.average_cpu())]%)")
-					stat("Tick Usage (Average):","[ceil(world.tick_usage)]% ([ceil(processes.time_track.average_tick_usage())]%)")
+					stat("CPU (Average):","[world.cpu]% ([ceil(processes.time_track.stored_averages["cpu"])]%)")
+					stat("Tick Usage (Average):","[ceil(world.tick_usage)]% ([ceil(processes.time_track.stored_averages["tick_usage"])]%)")
 				if (client.holder.rights & R_MOD)
 					stat("Location:", "([x], [y], [z]) - [loc ? loc : "nullspace"]")
 				stat("Object Count:","[world.contents.len] Datums")

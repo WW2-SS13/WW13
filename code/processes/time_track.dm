@@ -8,6 +8,10 @@
 	var/list/averages = list()
 	var/list/average_cpus = list()
 	var/list/average_tick_usages = list()
+	var/stored_averages = list(
+		"dilation" = 0,
+		"cpu" = 0,
+		"tick_usage" = 0)
 
 /process/time_track/setup()
 	name = "Time Tracking"
@@ -63,6 +67,10 @@
 		average_tick_usages.len = 10
 		for (var/v in 11 to 20)
 			average_tick_usages[v-10] = old[v]
+
+	stored_averages["dilation"] = average_dilation()
+	stored_averages["cpu"] = average_cpu()
+	stored_averages["tick_usage"] = average_tick_usage()
 
 /process/time_track/proc/average_dilation()
 	if (!averages.len)
