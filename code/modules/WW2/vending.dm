@@ -116,10 +116,6 @@
 		/obj/item/weapon/grenade/explosive/l2a2 = 7,
 		/obj/item/weapon/grenade/smokebomb/german = 21,
 
-		/obj/item/clothing/suit/gersuit/ghillie = 5,
-		/obj/item/clothing/under/geruni/ghillie = 5,
-		/obj/item/clothing/
-
 		/obj/item/clothing/under/geruni/sscamo = 5,
 
 		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/german = 15,
