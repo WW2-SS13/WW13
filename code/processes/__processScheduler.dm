@@ -50,6 +50,10 @@ var/global/processScheduler/processScheduler
 	// When did we last process()
 	var/last_process = -1
 
+	// Because get_priority_ordered_processes() is expensive, don't do it every tick: Every second is 33 times less often (@ 33 fps), but still works
+	var/next_get_priority_ordered_processes = -1
+	var/list/last_priority_ordered_processes = null
+
 /processScheduler/New()
 	..()
 	// When the process scheduler is first new'd, tick_lag may be wrong, so these
@@ -413,6 +417,10 @@ var/global/processScheduler/processScheduler
  * whenever a process fails to run on time, its priority gets bumped up by one.
  * it still won't run, however, unless there is enough of the tick left. Super expensive processes are screwed - Kachnov */
 /processScheduler/proc/get_priority_ordered_processes()
+
+	if (last_priority_ordered_processes && world.time < next_get_priority_ordered_processes)
+		return last_priority_ordered_processes
+
 	for (var/p in priority_ordered_processes)
 		if (!p)
 			priority_ordered_processes -= p
@@ -433,3 +441,6 @@ var/global/processScheduler/processScheduler
 		.[vv] = p
 		.[v] = _tmp
 		p.priority = p_initial_priority
+
+	next_get_priority_ordered_processes = world.time + 20
+	last_priority_ordered_processes = .
