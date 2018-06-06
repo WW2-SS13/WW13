@@ -17,18 +17,17 @@
 
 /process/job_data/fire()
 
-	var/tickcheck = (ticks % 10 == 0) // !ticks check removed to prevent this hanging
 	var/counted = 0
 
 	for (var/client/C in clients)
 		if (world.time >= C.next_calculate_is_active_non_observer)
-			if (counted < ceil(clients.len/10) || tickcheck)
+			if (!counted)
 				C.calculate_is_active_non_observer()
 				++counted
 			else
 				break
 
-	if (tickcheck)
+	if (!counted)
 		calculate_relevant_clients()
 
 	lastrun = world.time
