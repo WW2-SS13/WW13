@@ -121,7 +121,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 			for (var/key in current_votes)
 				if (choices[current_votes[key]] == .)
 					round_voters += key // Keep track of who voted for the winning round.
-			text += "<b>Vote Result: [.]</b><br>"
+			text += "<b>Vote Result: <span class = 'ping'>[.]</span></b><br>"
 			text += "<b>The vote has ended. </b>" // What will be shown if it is a gamemode vote that isn't extended
 			if (callback)
 				if (callback.len == 2)
