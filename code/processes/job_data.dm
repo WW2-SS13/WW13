@@ -63,5 +63,7 @@
 
 /process/job_data/proc/get_relevant_clients_safe()
 	if (relevant_clients != -1 && lastrun != -1 && (world.time - lastrun <= 100))
-		return relevant_clients
-	return clients.len
+		. = relevant_clients
+	else
+		. = clients.len
+	. = max(., 1)
