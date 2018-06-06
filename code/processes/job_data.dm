@@ -4,6 +4,7 @@
 /process/job_data
 	var/list/job2players = list()
 	var/relevant_clients = -1
+	var/lastrun = -1
 
 /process/job_data/setup()
 	name = "job data"
@@ -16,7 +17,7 @@
 
 /process/job_data/fire()
 
-	var/tickcheck = ticks % 10 == 0 // !ticks check removed to prevent this hanging
+	var/tickcheck = (ticks % 10 == 0) // !ticks check removed to prevent this hanging
 	var/counted = 0
 
 	for (var/client/C in clients)
@@ -29,6 +30,8 @@
 
 	if (tickcheck)
 		calculate_relevant_clients()
+
+	lastrun = world.time
 
 /process/job_data/proc/get_active_positions(var/datum/job/J)
 	. = 0
@@ -60,6 +63,6 @@
 	relevant_clients = .
 
 /process/job_data/proc/get_relevant_clients_safe()
-	if (relevant_clients != -1)
+	if (relevant_clients != -1 && lastrun != -1 && (world.time - lastrun <= 100))
 		return relevant_clients
 	return clients.len
