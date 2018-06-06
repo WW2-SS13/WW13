@@ -66,7 +66,7 @@ var/list/vocal_emotes = list(
 						++turns
 						if (turns >= 10)
 							break
-						sleep(3)
+						sleep(2)
 					next_emote["special"] = world.time + 30
 			/*
 			if ("airguitar")
