@@ -242,7 +242,6 @@ Ccomp's first proc.
 
 	var/target = input("Please, select a ghost!", "COME BACK TO LIFE!", null, null) as null|anything in ghosts
 	if (!target)
-		src << "Hrm, appears you didn't select a ghost"		// Sanity check, if no ghosts in the list we don't want to edit a null variable and cause a runtime error.
 		return
 
 	var/mob/observer/ghost/G = ghosts[target]
