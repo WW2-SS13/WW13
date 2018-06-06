@@ -648,23 +648,26 @@
 
 			#define STOMP_TIME 3
 
-			//Step on nerds in our way
-			if (mob_is_human)
-				if (H.a_intent == I_HURT)
-					for (var/mob/living/L in mob.loc)
-						if (L.lying && L != H) // you could step on yourself, this fixes it - Kachnov
-							H.visible_message("<span class = 'danger'>[H] steps on [L]!</span>")
-							playsound(mob.loc, 'sound/effects/gore/fallsmash.ogg', 100, TRUE)
-							L.adjustBruteLoss(rand(6,7))
-							if (ishuman(L))
-								L.emote("scream")
-							H.next_change_dir[num2text(opposite_direction(direct))] = world.time + (STOMP_TIME*3)
-							sleep(STOMP_TIME)
-							break
-				else
-					for (var/mob/living/L in mob.loc)
-						if (L.lying && L != H)
-							H.visible_message("<span class = 'warning'>[H] steps over [L].</span>")
+			// wall stomping is bad
+			if (!t1.density)
+
+				//Step on nerds in our way
+				if (mob_is_human)
+					if (H.a_intent == I_HURT)
+						for (var/mob/living/L in mob.loc)
+							if (L.lying && L != H) // you could step on yourself, this fixes it - Kachnov
+								H.visible_message("<span class = 'danger'>[H] steps on [L]!</span>")
+								playsound(mob.loc, 'sound/effects/gore/fallsmash.ogg', 100, TRUE)
+								L.adjustBruteLoss(rand(6,7))
+								if (ishuman(L))
+									L.emote("scream")
+								H.next_change_dir[num2text(opposite_direction(direct))] = world.time + (STOMP_TIME*3)
+								sleep(STOMP_TIME)
+								break
+					else
+						for (var/mob/living/L in mob.loc)
+							if (L.lying && L != H)
+								H.visible_message("<span class = 'warning'>[H] steps over [L].</span>")
 
 			#undef STOMP_TIME
 
