@@ -18,6 +18,15 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/stone(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/pump/combat/winchester1897(H), slot_l_hand)
 	equip_random_civilian_clothing(H)
+
+	// give them shotgun shells
+	var/obj/item/clothing/accessory/storage/webbing/webbing = new/obj/item/clothing/accessory/storage/webbing(get_turf(H))
+	var/obj/item/clothing/under/uniform = H.w_uniform
+	uniform.attackby(webbing, H)
+
+	for (var/v in 1 to 5)
+		uniform.attackby(new /obj/item/ammo_casing/shotgun(get_turf(H)), H)
+
 	H.add_note("Role", "You are a <b>fucking PILLAR MAN</b>. You have a stone mask. Hit humans with it to turn them into vampires. <span class = 'danger'>Fear the sun's light.</span>")
 	H.add_note("Abilities", "SPACEBAR - shoot boiling blood")
 	H.add_note("Abilities", "Emote *pose - AOE knockdown")
@@ -44,7 +53,17 @@
 
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/pump/combat/ithaca37(H), slot_r_hand)
 
+
 	equip_random_civilian_clothing(H)
+
+	// give them shotgun shells
+	var/obj/item/clothing/accessory/storage/webbing/webbing = new/obj/item/clothing/accessory/storage/webbing(get_turf(H))
+	var/obj/item/clothing/under/uniform = H.w_uniform
+	uniform.attackby(webbing, H)
+
+	for (var/v in 1 to 5)
+		uniform.attackby(new /obj/item/ammo_casing/shotgun(get_turf(H)), H)
+
 	H.add_note("Role", "You are a <b>[title]</b>, a fucking VAMPIRE. Listen to the Pillar Men. Wryyy. <span class = 'danger'>Fear the sun's light.</span>")
 	H.add_note("Abilities", "Attack (harm intent) - Blood Drain")
 
