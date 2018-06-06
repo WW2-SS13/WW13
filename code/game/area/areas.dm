@@ -66,6 +66,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/parent_area_type = null
 	var/area/parent_area = null
 
+	var/last_lift_master = null
+
 /*Adding a wizard area teleport list because motherfucking lag -- Urist*/
 /*I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game*/
 var/list/teleportlocs = list()
@@ -143,22 +145,25 @@ var/list/ghostteleportlocs = list()
 	return contents
 
 /area/proc/get_turfs()
-	. = get_contents()
+	. = get_contents():Copy()
 	. -= typesof(/obj)
 	. -= typesof(/mob)
 
 /area/proc/get_mobs()
-	. = get_contents()
+	. = get_contents():Copy()
 	. -= typesof(/turf)
 	. -= typesof(/obj)
 
 /area/proc/get_objs()
-	. = get_contents()
+	. = get_contents():Copy()
 	. -= typesof(/turf)
 	. -= typesof(/mob)
 
 /area/proc/lift_master()
+	if (last_lift_master)
+		return last_lift_master
 	for (var/obj/lift_controller/master in contents)
+		last_lift_master = master
 		return master
 	return null
 
