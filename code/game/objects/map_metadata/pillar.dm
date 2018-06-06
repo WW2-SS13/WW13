@@ -54,9 +54,9 @@
 				J.total_positions *= 16
 				modded_num_of_SS = TRUE
 	else if (istype(J, /datum/job/pillarman/pillarman))
-		J.total_positions = max(1, round(clients.len/15))
+		J.total_positions = max(1, round(clients.len/10))
 	else if (istype(J, /datum/job/pillarman/vampire))
-		J.total_positions = max(4, round(clients.len/7))
+		J.total_positions = max(4, round(clients.len/3))
 
 	return .
 
