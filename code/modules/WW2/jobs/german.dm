@@ -783,16 +783,16 @@ var/first_fallschirm = TRUE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/falluni(H), slot_w_uniform)
 
-	var/obj/item/clothing/accessory/storage/webbing/webbing = new/obj/item/clothing/accessory/storage/webbing(get_turf(H))
+	var/obj/item/clothing/accessory/storage/webbing/webbing = new/obj/item/clothing/accessory/storage/webbing(null)
 	var/obj/item/clothing/under/uniform = H.w_uniform
 	uniform.attackby(webbing, H)
 
 	if (first_fallschirm)
 		for (var/v in 1 to 4)
-			uniform.attackby(new /obj/item/ammo_magazine/mp40(src), H)
+			uniform.attackby(new /obj/item/ammo_magazine/mp40(null), H)
 	else
 		for (var/v in 1 to 4)
-			uniform.attackby(new /obj/item/ammo_magazine/kar98k(src), H)
+			uniform.attackby(new /obj/item/ammo_magazine/kar98k(null), H)
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/fallsparka(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
