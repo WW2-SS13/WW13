@@ -37,6 +37,8 @@
 "K" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 8},/obj/structure/closet/crate/rations/german_liquids,/turf/floor/wood,/area/prishtina/german/bunker)
 "L" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 8},/obj/structure/closet/crate/rations/german_alcohol,/turf/floor/wood,/area/prishtina/german/bunker)
 "M" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 8},/obj/structure/closet/crate/rations/water,/turf/floor/wood,/area/prishtina/german/bunker)
+"N" = (/obj/item/weapon/storage/backpack/german,/turf/floor/wood,/area/prishtina/german/bunker)
+"O" = (/obj/item/weapon/storage/belt/german,/turf/floor/wood,/area/prishtina/german/bunker)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -52,9 +54,9 @@ aaaaaaaaaaaaaaahdddddddddddddddddddddddddddddddddddddIaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaahdddydydydydydydydydydydydydydydydddddiaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaahdzdjjjjjjjjjjjjjjjjjjjjjjjjjjjjjdzdddiaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaBdddddddddddddddddddddddddddddddddddddiaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaddddddddddddddddddddddddddddddddddddddIaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaddddddddddddNNNNNNNNNNNNNNddddddddddddIaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaBdzdkkkdddddggggggggggggggddddkkkdzdddiaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaddddddddddddddddddddddddddddddddddddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaddddddddddddOOOOOOOOOOOOOOddddddddddddiaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaBdddydydydydydydydydydydydydydydydddddiaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaamdzdqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdzdddIaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaamdddddddddddddddddddddddddddddddddddddiaaaaaaaaaaaaaaaa
