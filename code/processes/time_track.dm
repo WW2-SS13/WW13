@@ -6,6 +6,8 @@
 	var/last_tick_tickcount = 0
 	var/first_run = TRUE
 	var/list/averages = list()
+	var/list/average_cpus = list()
+	var/list/average_tick_usages = list()
 
 /process/time_track/setup()
 	name = "Time Tracking"
@@ -46,6 +48,22 @@
 		for (var/v in 11 to 20)
 			averages[v-10] = old[v]
 
+	average_cpus += world.cpu
+	if (average_cpus.len >= 20)
+		var/list/old = average_cpus.Copy()
+		average_cpus.Cut()
+		average_cpus.len = 10
+		for (var/v in 11 to 20)
+			average_cpus[v-10] = old[v]
+
+	average_tick_usages += world.tick_usage
+	if (average_tick_usages.len >= 20)
+		var/list/old = average_tick_usages.Copy()
+		average_tick_usages.Cut()
+		average_tick_usages.len = 10
+		for (var/v in 11 to 20)
+			average_tick_usages[v-10] = old[v]
+
 /process/time_track/proc/average_dilation()
 	if (!averages.len)
 		return 0
@@ -53,3 +71,21 @@
 	for (var/n in averages)
 		. += n
 	. /= averages.len
+
+
+/process/time_track/proc/average_cpu()
+	if (!average_cpus.len)
+		return 0
+	. = 0
+	for (var/n in average_cpus)
+		. += n
+	. /= average_cpus.len
+
+
+/process/time_track/proc/average_tick_usage()
+	if (!average_tick_usages.len)
+		return 0
+	. = 0
+	for (var/n in average_tick_usages)
+		. += n
+	. /= average_tick_usages.len
