@@ -34,6 +34,9 @@
 "H" = (/obj/structure/closet/crate/medical,/obj/structure/light/small{icon_state = "bulb1"; dir = 4},/turf/floor/wood,/area/prishtina/german/bunker)
 "I" = (/obj/structure/table/rack,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/mine/betty,/obj/item/weapon/grenade/smokebomb/german,/obj/item/weapon/grenade/smokebomb/german,/obj/item/weapon/grenade/smokebomb/german,/obj/structure/light/small{icon_state = "bulb1"; dir = 4},/turf/floor/wood,/area/prishtina/german/bunker)
 "J" = (/obj/item/clothing/accessory/storage/webbing,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/structure/closet,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/weapon/gun/projectile/submachinegun/mp40,/turf/floor/wood,/area/prishtina/german/bunker)
+"K" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 8},/obj/structure/closet/crate/rations/german_liquids,/turf/floor/wood,/area/prishtina/german/bunker)
+"L" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 8},/obj/structure/closet/crate/rations/german_alcohol,/turf/floor/wood,/area/prishtina/german/bunker)
+"M" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 8},/obj/structure/closet/crate/rations/water,/turf/floor/wood,/area/prishtina/german/bunker)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -64,23 +67,23 @@ aaaaaaaaaaaaaaaddddAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdddddiaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaddddddddddddddddddddddddddddddddddddddIaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaeeeaaaaaaaaaaaeeeaaaaaaaaaaaeeeaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaapdAdddddAdadAdAdAdddddAdAdAdadAdddddAdlaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaadbdbzbdbdnaBdzdzdzuuuzdzdzdDadcdczcdcdlaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaBddddddddEadduuuuuutuuuuuuddaBddddddddHaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaadbdbzbdbdnadduvvvvvvvvvvvuddadcdczcdcdlaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaBddddddddEaBduvvvvvvvvvvvudDaBddddddddHaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaadbdbzbdbdnadduvvvvvvvvvvvuddadcdczcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaanbdbzbdbdnaBdzdzdzuuuzdzdzdDadcdczcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaKddddddddEadduuuuuutuuuuuuddaBddddddddHaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaanbdbzbdbdnadduvvvvvvvvvvvuddadcdczcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaKddddddddEaBduvvvvvvvvvvvudDaBddddddddHaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaanbdbzbdbdnadduvvvvvvvvvvvuddadcdczcdcdlaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaBddddddddDadduvvvvvvvvvvvuddaBddddddddHaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaadbdbzbdbdraBduvvvvvvvvvvvudDadcdczcdcdlaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaBddddddddFadduvvvvvxvvvvvuddaBddddddddHaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaadbdbzbdbdradduvvvvvvvvvvvuddadcdczcdcdlaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaBddddddddFaBduvvvvvvvvvvvudDaBddddddddHaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaadbdbzbdbdradduvvvvvvvvvvvuddadcdczcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaarbdbzbdbdraBduvvvvvvvvvvvudDadcdczcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaLddddddddFadduvvvvvxvvvvvuddaBddddddddHaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaarbdbzbdbdradduvvvvvvvvvvvuddadcdczcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaLddddddddFaBduvvvvvvvvvvvudDaBddddddddHaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaarbdbzbdbdradduvvvvvvvvvvvuddadcdczcdcdlaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaBddddddddDadduvvvvvvvvvvvuddaBddddddddHaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaadbdbzbdbdsaBduvvvvvvvvvvvudDadcdczcdcdlaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaBddddddddGadduuuuuuuuuuuuuddaBddddddddHaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaadbdbzbdbdsaddzdzdzdzdzdzdzddadcdczcdcdlaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaBddddddddGaBdddddddddddddddDaBddddddddHaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaadbybzbybdsadydydyddyddydydydadcyczcycdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaasbdbzbdbdsaBduvvvvvvvvvvvudDadcdczcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaMddddddddGadduuuuuuuuuuuuuddaBddddddddHaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaasbdbzbdbdsaddzdzdzdzdzdzdzddadcdczcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaMddddddddGaBdddddddddddddddDaBddddddddHaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaasbybzbybdsadydydyddyddydydydadcyczcycdlaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
