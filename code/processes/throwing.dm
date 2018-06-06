@@ -25,7 +25,7 @@
 									var/atom/step = get_step(AM, AM.dy)
 									if (!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 										break
-									if (map.check_prishtina_block(AM.thrower, get_turf(step)))
+									if (map.check_prishtina_block(AM.thrower, get_turf(step)) && !map.allow_bullets_through_blocks.Find(get_area(step):type))
 										if (istype(AM, /obj/item/weapon/grenade))
 											var/obj/item/weapon/grenade/G = AM
 											G.active = FALSE
