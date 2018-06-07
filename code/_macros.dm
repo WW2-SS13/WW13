@@ -82,6 +82,14 @@
 
 #define attack_animation(A) if (istype(A)) A.do_attack_animation(src)
 
+//TURF LEVEL
+
+#define iswall(X) istype(X, /turf/wall)
+
+#define isfloor(X) istype(X, /turf/floor)
+
+#define istrueflooring(X) (isfloor(X) && !istype(X, /turf/floor/plating))
+
 // other
 #define isclient(A) istype(A, /client)
 

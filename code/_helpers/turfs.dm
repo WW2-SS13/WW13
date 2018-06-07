@@ -6,15 +6,6 @@
 		mloc = mloc.loc
 	return mloc
 
-/proc/iswall(turf/T)
-	return istype(T, /turf/wall)
-
-/proc/isfloor(turf/T)
-	return istype(T, /turf/floor)
-
-/proc/istrueflooring(turf/T)
-	return (isfloor(T) && !istype(T, /turf/floor/plating))
-
 /proc/turf_clear(turf/T)
 	for (var/atom/A in T)
 		if (A.simulated)
