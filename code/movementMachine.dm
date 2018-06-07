@@ -45,7 +45,9 @@ var/movementMachine/movementMachine = null
 								else if (M.movement_northsouth == SOUTH && M.movement_eastwest == EAST)
 									movedir = SOUTHEAST
 									diag = TRUE
-							M.client.Move(get_step(M, movedir), movedir, diag)
+							// hack to let other clients Move() earlier
+							spawn (0)
+								M.client.Move(get_step(M, movedir), movedir, diag)
 					catch(var/exception/e)
 						pass(e)
 				else
