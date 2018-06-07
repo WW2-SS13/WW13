@@ -98,6 +98,10 @@
 		/obj/item/clothing/mask/gas/german = 10,
 		/obj/item/clothing/shoes/swat = 10,
 
+		/obj/item/clothing/head/helmet/gerhelm/ghillie = 5,
+		/obj/item/clothing/suit/storage/coat/german/ghillie = 5,
+		/obj/item/clothing/under/geruni/ghillie = 5,
+
 		/obj/item/weapon/material/kitchen/utensil/knife/boot = 10,
 		/obj/item/weapon/attachment/bayonet/german = 10,
 		/obj/item/weapon/gauze_pack/gauze = 10,

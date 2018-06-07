@@ -118,6 +118,7 @@
 	item_state = "geruni_MP"
 	worn_state = "geruni_MP"
 
+
 /obj/item/clothing/under/geruni/verb/roll_sleeves()
 	set category = null
 	set src in usr
@@ -143,6 +144,14 @@
 	icon_state = "gerunigeneral"
 	item_state = "gerunigeneral"
 	worn_state = "gerunigeneral"
+
+/obj/item/clothing/under/geruni/ghillie
+	name = "german ghilli suit"
+	desc = "A sneaky sneaky ghillie suit."
+	icon_state = "ger_ghillie"
+	item_state = "ger_ghillie"
+	worn_state = "ger_ghillie"
+
 
 /obj/item/clothing/under/geruni/falluni
 	name = "Fallschirmjager uniform"
@@ -271,6 +280,12 @@
 	desc =  "A fancy metal helmet issued to German military police."
 	icon_state = "gerhelm_MP"
 	item_state = "gerhelm_MP"
+
+/obj/item/clothing/head/helmet/gerhelm/ghillie
+	name = "Ghilie Suit Hood"
+	desc =  "A standard ghillie suit helm."
+	icon_state = "ger_ghillie"
+	item_state = "ger_ghillie"
 
 /obj/item/clothing/head/helmet/gerhelm/medic
 	name = "German medic's helmet"
@@ -653,6 +668,13 @@
 	icon_state = "sovofficer_coat"
 	item_state = "sovofficer_coat"
 	worn_state = "sovofficer_coat"
+
+/obj/item/clothing/suit/storage/coat/german/ghillie
+	name = "Ghilie Ghillie Suit"
+	desc =  "A standard ghillie suit."
+	icon_state = "ger_ghillie"
+	item_state = "ger_ghillie"
+	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
 
 /obj/item/clothing/suit/storage/coat/italian
 	name = "Italian Coat"
