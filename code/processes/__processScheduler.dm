@@ -149,7 +149,7 @@ var/global/processScheduler/processScheduler
 			continue
 
 		// If the process should be running by now, go ahead and queue it
-		if (world.time >= last_queued[p] + p.schedule_interval)
+		if (world.time >= (last_queued[p] + p.schedule_interval))
 			setQueuedProcessState(p)
 
 /processScheduler/proc/runQueuedProcesses()
@@ -366,6 +366,11 @@ var/global/processScheduler/processScheduler
 		var/process/newInstance = new oldInstance.type(src)
 		newInstance._copyStateFrom(oldInstance)
 		replaceProcess(oldInstance, newInstance)
+
+		// add processes to the priority_ordered_processes list so they actually process after dying - Kachnov
+		priority_ordered_processes -= oldInstance
+		priority_ordered_processes += newInstance
+
 		oldInstance.kill()
 
 /processScheduler/proc/enableProcess(var/processName as text)
@@ -423,7 +428,7 @@ var/global/processScheduler/processScheduler
 		return last_priority_ordered_processes
 
 	for (var/p in priority_ordered_processes)
-		if (!p)
+		if (!p) // this shouldn't happen anymore, but just in case some chucklefuck admin deletes the process, it's staying here - Kachnov
 			priority_ordered_processes -= p
 
 	. = priority_ordered_processes.Copy()
