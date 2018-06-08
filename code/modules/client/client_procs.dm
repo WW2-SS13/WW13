@@ -292,6 +292,7 @@
 		admins -= src
 	directory -= ckey
 	clients -= src
+	movementMachine_clients -= src // if we're currently in movementMachine_clients, this removes us. If not, it doesn't matter, since we won't be automatically re-added anymore
 	observer_mob_list -= mob
 	human_clients_mob_list -= mob
 	if (processes.ping_track && processes.ping_track.client_ckey_check[ckey])
