@@ -568,11 +568,13 @@
 	name = "Interrogation Room Cell #1"
 	icon_state = "blue3"
 	location = AREA_INSIDE
+	capturable = FALSE
 
 /area/prishtina/german/ss_torture_room/cell2
 	name = "Interrogation Room Cell #2"
 	icon_state = "blue4"
 	location = AREA_INSIDE
+	capturable = FALSE
 
 /area/prishtina/german/command
 	name = "Command"
@@ -891,15 +893,16 @@
 /area/prishtina/soviet/bunker/prison
 	icon_state = "red5"
 	name = "Prison"
-	capturable = FALSE
 
 /area/prishtina/soviet/bunker/prison/cell1
 	icon_state = "red1"
 	name = "Prison Cell #1"
+	capturable = FALSE
 
 /area/prishtina/soviet/bunker/prison/cell2
 	icon_state = "red2"
 	name = "Prison Cell #2"
+	capturable = FALSE
 
 /area/prishtina/soviet/lift/
 	icon_state = "blue1"
