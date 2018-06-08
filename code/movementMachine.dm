@@ -23,7 +23,7 @@ var/movementMachine/movementMachine = null
 
 		for (var/client in movementMachine_clients)
 
-			if (client && !isDeleted(client) && !client:ignored_by_movement_process)
+			if (client && !isDeleted(client))
 
 				var/mob/M = client:mob
 
@@ -47,10 +47,14 @@ var/movementMachine/movementMachine = null
 									diag = TRUE
 							// hack to let other clients Move() earlier
 							spawn (0)
-								// stops ultra fast movement (because the loop actually runs at 66 fps when we use spawn())
-								M.client.ignored_by_movement_process = TRUE
 								M.client.Move(get_step(M, movedir), movedir, diag)
-								M.client.ignored_by_movement_process = FALSE
+								// remove this client from movementMachine_clients until it needs to be in it again. This makes the amount of loops to be done the absolute minimum
+								var/client/C = M.client
+								movementMachine_clients -= C
+								spawn ((C.move_delay - world.time))
+									if (C)
+										movementMachine_clients += C
+
 					catch(var/exception/e)
 						pass(e)
 				else
