@@ -98,7 +98,7 @@
 		switch(det_time)
 			if (1)
 				det_time = 10
-				user << "<span class='notice'>You set the [name] for TRUE second detonation time.</span>"
+				user << "<span class='notice'>You set the [name] for 1 second detonation time.</span>"
 			if (10)
 				det_time = 30
 				user << "<span class='notice'>You set the [name] for 3 second detonation time.</span>"

@@ -81,4 +81,4 @@
 
 /obj/item/weapon/grenade/explosive/frag/on_explosion(var/turf/O)
 	if (explosion_size)
-		explosion(O, TRUE, round(explosion_size/2), explosion_size, round(explosion_size/2), FALSE)
+		explosion(O, 1, round(explosion_size/2), explosion_size, round(explosion_size/2), FALSE)
