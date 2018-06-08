@@ -33,7 +33,7 @@
 			PROCESS_LIST_CHECK
 			PROCESS_TICK_CHECK
 
-	catch(var/exception/e)
+	catch (var/exception/e)
 		catchException(e)
 
 /process/dog/reset_current_list()

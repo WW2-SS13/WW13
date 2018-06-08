@@ -66,12 +66,12 @@
 	return "<font size = 4>The [faction_const2name(faction)] may now cross the invisible wall!</font>"
 
 
-// pillarmap is special; the round ends immediately when one faction has completely died
+// pillarmap is special; the round ends ALMOST immediately when one faction has completely died: used to be immediately, but falling down counts as being dead so that's a thing
 /obj/map_metadata/pillar/short_win_time(faction)
-	return 0
+	return 1
 
 /obj/map_metadata/pillar/long_win_time(faction)
-	return 0
+	return 1
 
 /obj/map_metadata/pillar/win_condition_specialcheck()
 	return (!alive_n_of_side(PILLARMEN) || !alive_n_of_side(GERMAN))
