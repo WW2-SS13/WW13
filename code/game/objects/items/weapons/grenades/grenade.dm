@@ -60,10 +60,11 @@
 
 			activate(user)
 			add_fingerprint(user)
-			if (iscarbon(user))
-				var/mob/living/carbon/C = user
-				C.throw_mode_on()
-	return
+
+	// clicking a grenade a second time turned throw mode off, this fixes that
+	if (iscarbon(user))
+		var/mob/living/carbon/C = user
+		C.throw_mode_on()
 
 
 /obj/item/weapon/grenade/proc/activate(mob/user as mob)
