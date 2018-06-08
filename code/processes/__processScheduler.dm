@@ -253,6 +253,11 @@ var/global/processScheduler/processScheduler
 
 	nameToProcessMap[newProcess.name] = newProcess
 
+	// add processes to the priority_ordered_processes list so they actually process after dying - Kachnov
+	for (var/v in 1 to priority_ordered_processes.len)
+		if (priority_ordered_processes[v] == oldProcess)
+			priority_ordered_processes[v] = newProcess
+
 /processScheduler/proc/updateStartDelays()
 	for (var/process/p in processes)
 		if (p.start_delay)
@@ -366,11 +371,6 @@ var/global/processScheduler/processScheduler
 		var/process/newInstance = new oldInstance.type(src)
 		newInstance._copyStateFrom(oldInstance)
 		replaceProcess(oldInstance, newInstance)
-
-		// add processes to the priority_ordered_processes list so they actually process after dying - Kachnov
-		priority_ordered_processes -= oldInstance
-		priority_ordered_processes += newInstance
-
 		oldInstance.kill()
 
 /processScheduler/proc/enableProcess(var/processName as text)
