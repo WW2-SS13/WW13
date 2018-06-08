@@ -8,8 +8,8 @@
 "ah" = (/turf/wall/brick,/area/prishtina/german/command/office)
 "ai" = (/obj/snow_maker,/turf/floor/plating/road,/area/prishtina/no_mans_land/sector1)
 "aj" = (/obj/effect/floor_decal/borderfloor{dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector1)
-"ak" = (/obj/structure/closet,/obj/item/weapon/melee/classic_baton,/obj/item/weapon/storage/box/handcuffs,/obj/item/weapon/storage/backpack/german,/obj/item/clothing/head/caphat/formal,/obj/item/clothing/accessory/armband,/turf/floor/wood,/area/prishtina/german/prison)
-"al" = (/obj/structure/light/small{dir = 1},/obj/structure/sign/flag/germany{pixel_y = 30},/turf/floor/wood,/area/prishtina/german/prison)
+"ak" = (/turf/wall/brick,/area/prishtina/german/mparea)
+"al" = (/obj/structure/closet,/obj/item/weapon/melee/classic_baton,/obj/item/weapon/storage/box/handcuffs,/obj/item/weapon/storage/backpack/german,/obj/item/clothing/head/caphat/formal,/obj/item/clothing/accessory/armband,/turf/floor/wood,/area/prishtina/german/mparea)
 "am" = (/turf/wall/wood,/area/prishtina/german/main_area/inside)
 "an" = (/obj/structure/bed/chair/wood{dir = 8},/obj/structure/light/small{dir = 1},/turf/floor/wood,/area/prishtina/german/prison)
 "ao" = (/turf/wall/brick,/area/prishtina/german/kitchen)
@@ -36,7 +36,7 @@
 "aJ" = (/obj/structure/chemical_dispenser,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
 "aK" = (/obj/structure/chem_master,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
 "aL" = (/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector2)
-"aM" = (/turf/floor/wood,/area/prishtina/german/prison)
+"aM" = (/obj/structure/light/small{dir = 1},/obj/structure/sign/flag/germany{pixel_y = 30},/turf/floor/wood,/area/prishtina/german/mparea)
 "aN" = (/obj/structure/simple_door/key_door/german/command_intermediate,/turf/floor/wood,/area/prishtina/german/prison)
 "aO" = (/obj/structure/bed/chair/wood{dir = 8},/turf/floor/wood,/area/prishtina/german/prison)
 "aP" = (/obj/structure/closet/freezer/fridge,/turf/floor/wood,/area/prishtina/german/kitchen)
@@ -1630,9 +1630,12 @@
 "Fr" = (/obj/snow_maker,/turf/floor/plating/road,/area/prishtina/no_mans_land/sector4)
 "Fs" = (/obj/effect/floor_decal/borderfloor{dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector4)
 "Ft" = (/obj/item/weapon/handcuffs,/obj/item/weapon/storage/belt/security/tactical,/obj/item/weapon/storage/backpack/german,/obj/item/weapon/key/german/SS,/obj/structure/closet,/obj/item/weapon/storage/box/handcuffs,/obj/item/clothing/suit/storage/coat/german/SS,/obj/item/clothing/suit/storage/coat/german/SS,/obj/item/weapon/melee/classic_baton/MP/SS,/obj/structure/light/small{dir = 1},/obj/item/clothing/accessory/armband/nsdap,/turf/floor/wood,/area/prishtina/german/ss_armory)
+"Fu" = (/turf/floor/wood,/area/prishtina/german/mparea)
+"Fv" = (/obj/structure/barricade/steel,/obj/structure/window/classic,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/wood,/area/prishtina/german/mparea)
 "Fw" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/structure/window/sandbag,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector4)
 "Fx" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/structure/window/sandbag,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector4)
 "Fy" = (/turf/floor/wood,/area/prishtina/italian_base)
+"Fz" = (/obj/structure/simple_door/key_door/german/command_intermediate,/turf/floor/wood,/area/prishtina/german/mparea)
 "FF" = (/obj/structure/multiz/stairs{dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector3)
 "FG" = (/obj/snow_maker,/obj/item/weapon/newspaper,/turf/floor/plating/road,/area/prishtina/no_mans_land/sector3)
 "FI" = (/obj/effect/floor_decal/borderfloor/full,/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector3)
@@ -2193,11 +2196,11 @@ gfpSMoMpMqMsMtMupSMvMwMxMEqWMzMAMBMCMDMEpSNwMFMGMGMGMLMGMGMGMFNwMMMOMOMOMTMOMOMO
 gfpRhzhzhzhzhzhzpRhzhzhzhzhzhzhzhzhzhzhzpRNwMFMFMFMFMFMFMFMFMFNwMMMMMMMMMMMMMMMMMMNwMUMUMUMUMUMUMUMUMUMUMUNwNgNgNgNgNgNgNgNwNnNnNnNnNnNnNnNwNANANANANANANANANANANANwNvNvNvNvNvNvNvNvNvNvNwNwNwNwNwNwNwNwNwNwNwNwNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvgf
 gfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgf
 NwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNw
-aeaeaeaeaeaeaeaeaeaeaedRiKababacacacacacacacacacacacacacacacacacacLeafaiaiaiajLeheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheaLbabqbqbqbMqQqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEbNbNbNamamamamamamagagagagagapapapapapapaoaoaoaoaobNbNbNbNbNbNaqaqaqaqaqaqararararasbvbvbvbvbvbv
-aegLhihWmQjkjlmJmQmJmhdRiKabacddacacacacacacacacacacacacacacacacacLeafaiaiaiajLehehjhjhlhlhjhlhlhlhjhlhjhlhlhjhjhlhlhjhlhlhlhjhjhlhlhjhlhlhlhjhlhjhlhlhlhjhlheaLbabqbqbqbMqQqEqEqEfAfYqEaUbtbtbtaUaxbjbjCQqEbNbxdudzdAeobsbxamagakaleqanapaCaCgaaEapcJauavaPaRbxbsaBaBbsbxaVaWaZbbbdaVbpbrbybzasaGaHaIaJaKbv
-aemzmzmzmzmzmzmzmzmzmJdRiKabacacabacddacacacacacacacacacacacacacacLeafaiaiaiajLehehlhqhlhlhlhlhlhjhlhlhlhlhlhlhqhlhlhlhlhlhjhlhqhlhlhlhlhlhjhlhlhlhlhlhlhlhlheaLbabqbqbqbMqQqEqEqEbDbDbEIgIgIgIgIgIgIgIgIgqEbNbsdubFdAerbseFxjagakaMaNaOapgclLbGbGbIbcghbcbcaRbsaySHkuazbsaVbUbVbVbWaVckcncncoasaXaXaYaXaXbv
-aemAmBmCmzmJmJmJmJmzmJdRiKababddacacacacacacacacacacacacacacacacacLeafaiaiaiajLehuhlhlhjhlhlhlhjhlhjhlhjhlhlhlhlhjhlhlhlhjhlhlhlhjhlhlhlhjhlhjhlhjhlhlhlhlhlheaLbabqbqbqbMqQqEqEqEbDbDqEIgIgIgLScaMyIgIgcOqEbNqcbsxodAyrbsqcamagakaMeqaOapgncycxgqapbBbcBSbcaRbsaySHkuazbsaVcKcXbVbVaVcYcYcndcasbnaXaXaXbobv
-aemDmzmzmzmzmzmzmzmzmEdRiKabacacacacacacacacacacacacacacacacacacacLeafaiaiaiajLehuhlhlhlhlhlhlhlhlhlhjhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhjhlhlhlhlhlhlheaLbabqbqbqbMqQqEahahahahahIgaAaALScaMyaAaAIgqEbNbNzVamamamzVamamageqaNeqagbJbJbObObJbJbPbPbPbcaRbsaySHkuazbsaVaVbwdjdjaVdkdkczasasdibHdidibvbv
+aeaeaeaeaeaeaeaeaeaeaedRiKababacacacacacacacacacacacacacacacacacacLeafaiaiaiajLeheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheaLbabqbqbqbMqQqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEbNbNbNamamamamamamakakakagagapapapapapapaoaoaoaoaobNbNbNbNbNbNaqaqaqaqaqaqararararasbvbvbvbvbvbv
+aegLhihWmQjkjlmJmQmJmhdRiKabacddacacacacacacacacacacacacacacacacacLeafaiaiaiajLehehjhjhlhlhjhlhlhlhjhlhjhlhlhjhjhlhlhjhlhlhlhjhjhlhlhjhlhlhlhjhlhjhlhlhlhjhlheaLbabqbqbqbMqQqEqEqEfAfYqEaUbtbtbtaUaxbjbjCQqEbNbxdudzdAeobsbxamakalaMeqanapaCaCgaaEapcJauavaPaRbxbsaBaBbsbxaVaWaZbbbdaVbpbrbybzasaGaHaIaJaKbv
+aemzmzmzmzmzmzmzmzmzmJdRiKabacacabacddacacacacacacacacacacacacacacLeafaiaiaiajLehehlhqhlhlhlhlhlhjhlhlhlhlhlhlhqhlhlhlhlhlhjhlhqhlhlhlhlhlhjhlhlhlhlhlhlhlhlheaLbabqbqbqbMqQqEqEqEbDbDbEIgIgIgIgIgIgIgIgIgqEbNbsdubFdAerbseFxjakalFuaNaOapgclLbGbGbIbcghbcbcaRbsaySHkuazbsaVbUbVbVbWaVckcncncoasaXaXaYaXaXbv
+aemAmBmCmzmJmJmJmJmzmJdRiKababddacacacacacacacacacacacacacacacacacLeafaiaiaiajLehuhlhlhjhlhlhlhjhlhjhlhjhlhlhlhlhjhlhlhlhjhlhlhlhjhlhlhlhjhlhjhlhjhlhlhlhlhlheaLbabqbqbqbMqQqEqEqEbDbDqEIgIgIgLScaMyIgIgcOqEbNqcbsxodAyrbsqcamakalFueqaOapgncycxgqapbBbcBSbcaRbsaySHkuazbsaVcKcXbVbVaVcYcYcndcasbnaXaXaXbobv
+aemDmzmzmzmzmzmzmzmzmEdRiKabacacacacacacacacacacacacacacacacacacacLeafaiaiaiajLehuhlhlhlhlhlhlhlhlhlhjhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhjhlhlhlhlhlhlheaLbabqbqbqbMqQqEahahahahahIgaAaALScaMyaAaAIgqEbNbNzVamamamzVamamakFvFzeqagbJbJbObObJbJbPbPbPbcaRbsaySHkuazbsaVaVbwdjdjaVdkdkczasasdibHdidibvbv
 aemAmAmFmzmJmGmJmJmzmJdRiKabddacacacacacacacacacacacacacacacacacacLeafaiaiaiajLehuhlhlhlhlhlhlhlhlhlhlhjhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhjhlhlhlhlhlhlaLbabqbqbqbMqQqEahLVtTawahIgIgIgLScaMyIgIgIgpZIgbsbsbsbxbsbsbsMibsbsbsbsbsbJbQcbcccdbJcfcfcfcfcubsaySHkuazbsdHinbLbLbLpWbLpTpTpTpVpTpTpTpTiPEM
 aemzmzmzmzmzmzmzmzmzmzdRiKababacacacacacacacacacacacacacacacacacacLeafaiaiaiajLehehlhlhlhlhlhlhjhjhlhlhlhlhjhlhlhlhlhlhlhjhjhlhlhlhlhlhlhjhjhlhlhlhlhjhlhlhlhlaLbabqbqbqbMqQqEahaSaTMaahIgIgIgLScaMyIgIgIgqEqEbNbNbNbNbNbNbNbNlTbsbsbsbscCcDcDcDcDcCcfcfcfcfcubsaySHkuazbsdHbLbLbLbLbLbLpTpTpTpTpTpTpTpTpTEM
 aeesfPfQmQmQmNmOmPmQFcdRiKabacacacacacacacacacacacacacacacacacacacLeafaiaiaiajLehehlhjhlhlhjhlhlhlhlhlhjhlhlhlhjhlhlhjhlhlhlhlhjhlhlhjhlhlhlhlhlhjhlhlhlhlhlhlaLbabqbqbqbMqQqEahqSaTMabZIgIgIgLScaMyIgIgIgIgIgqEqEpKpXpXpXqvgubNbRazbsbscCcDcDcDtMcPcQpkplpmpnbsbsbsbsbscgbvbXbLbYcebLcipYIXpYdxpYdxpYdxpYpY

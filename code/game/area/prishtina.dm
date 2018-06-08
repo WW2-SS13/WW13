@@ -487,10 +487,13 @@
 /area/prishtina/german/armory/room3
 	icon_state = "green3"
 
+/area/prishtina/german/mparea
+	name = "MP Area"
+	icon_state = "green1"
+
 /area/prishtina/german/prison
 	name = "Prison"
-	icon_state = "green1"
-	location = AREA_INSIDE
+	icon_state = "green2"
 	capturable = FALSE
 
 /area/prishtina/german/armory/train
