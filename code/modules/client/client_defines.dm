@@ -61,3 +61,5 @@
 	var/is_active_non_observer = TRUE
 
 	var/next_calculate_is_active_non_observer = -1
+
+	var/ignored_by_movement_process = FALSE
