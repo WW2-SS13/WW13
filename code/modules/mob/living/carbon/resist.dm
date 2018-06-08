@@ -45,7 +45,7 @@
 	var/obj/item/weapon/handcuffs/HC = handcuffed
 
 	//A default in case you are somehow handcuffed with something that isn't an obj/item/weapon/handcuffs type
-	var/breakouttime = getHumanBreakoutTime(src, 1200)
+	var/breakouttime = getHumanBreakoutTime(src, 1 MINUTE)
 	var/displaytime = 2 //Minutes to display in the "this will take X minutes."
 	//If you are handcuffed with actual handcuffs... Well what do I know, maybe someone will want to handcuff you with toilet paper in the future...
 	if (istype(HC))
@@ -81,7 +81,7 @@
 	var/obj/item/weapon/legcuffs/HC = legcuffed
 
 	//A default in case you are somehow legcuffed with something that isn't an obj/item/weapon/legcuffs type
-	var/breakouttime = getHumanBreakoutTime(src, 1200)
+	var/breakouttime = getHumanBreakoutTime(src, 1 MINUTE)
 	var/displaytime = 2 //Minutes to display in the "this will take X minutes."
 	//If you are legcuffed with actual legcuffs... Well what do I know, maybe someone will want to legcuff you with toilet paper in the future...
 	if (istype(HC))
@@ -168,11 +168,11 @@
 	else
 		visible_message(
 			"<span class='danger'>[usr] attempts to unbuckle themself!</span>",
-			"<span class='warning'>You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still)</span>"
+			"<span class='warning'>You attempt to unbuckle yourself. (This will take around a minute and you need to stand still)</span>"
 			)
 
 
-		if (do_after(usr, getHumanBreakoutTime(src, 2 MINUTES), incapacitation_flags = INCAPACITATION_DEFAULT & ~(INCAPACITATION_RESTRAINED | INCAPACITATION_BUCKLED_FULLY)))
+		if (do_after(usr, getHumanBreakoutTime(src, 1 MINUTE), incapacitation_flags = INCAPACITATION_DEFAULT & ~(INCAPACITATION_RESTRAINED | INCAPACITATION_BUCKLED_FULLY)))
 			if (!buckled)
 				return
 			visible_message("<span class='danger'>\The [usr] manages to unbuckle themself!</span>",
