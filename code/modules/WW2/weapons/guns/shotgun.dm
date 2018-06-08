@@ -1,50 +1,51 @@
 /obj/item/weapon/gun/projectile/shotgun
 	gun_type = GUN_TYPE_SHOTGUN
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
-	// as accurate as SMGs
+
+	// 15% more accurate than SMGs
 	accuracy_list = list(
 
 		// small body parts: head, hand, feet
 		"small" = list(
-			SHORT_RANGE_STILL = 49,
-			SHORT_RANGE_MOVING = 39,
+			SHORT_RANGE_STILL = 56,
+			SHORT_RANGE_MOVING = 45,
 
-			MEDIUM_RANGE_STILL = 39,
-			MEDIUM_RANGE_MOVING = 31,
-
-			LONG_RANGE_STILL = 14,
-			LONG_RANGE_MOVING = 11,
-
-			VERY_LONG_RANGE_STILL = 7,
-			VERY_LONG_RANGE_MOVING = 6),
-
-		// medium body parts: limbs
-		"medium" = list(
-			SHORT_RANGE_STILL = 59,
-			SHORT_RANGE_MOVING = 47,
-
-			MEDIUM_RANGE_STILL = 39,
-			MEDIUM_RANGE_MOVING = 31,
+			MEDIUM_RANGE_STILL = 45,
+			MEDIUM_RANGE_MOVING = 36,
 
 			LONG_RANGE_STILL = 16,
 			LONG_RANGE_MOVING = 13,
 
-			VERY_LONG_RANGE_STILL = 9,
+			VERY_LONG_RANGE_STILL = 8,
 			VERY_LONG_RANGE_MOVING = 7),
+
+		// medium body parts: limbs
+		"medium" = list(
+			SHORT_RANGE_STILL = 68,
+			SHORT_RANGE_MOVING = 54,
+
+			MEDIUM_RANGE_STILL = 45,
+			MEDIUM_RANGE_MOVING = 36,
+
+			LONG_RANGE_STILL = 18,
+			LONG_RANGE_MOVING = 15,
+
+			VERY_LONG_RANGE_STILL = 10,
+			VERY_LONG_RANGE_MOVING = 8),
 
 		// large body parts: chest, groin
 		"large" = list(
-			SHORT_RANGE_STILL = 79,
-			SHORT_RANGE_MOVING = 63,
+			SHORT_RANGE_STILL = 91,
+			SHORT_RANGE_MOVING = 72,
 
-			MEDIUM_RANGE_STILL = 59,
-			MEDIUM_RANGE_MOVING = 47,
+			MEDIUM_RANGE_STILL = 68,
+			MEDIUM_RANGE_MOVING = 54,
 
-			LONG_RANGE_STILL = 39,
-			LONG_RANGE_MOVING = 31,
+			LONG_RANGE_STILL = 45,
+			LONG_RANGE_MOVING = 36,
 
-			VERY_LONG_RANGE_STILL = 16,
-			VERY_LONG_RANGE_MOVING = 13),
+			VERY_LONG_RANGE_STILL = 18,
+			VERY_LONG_RANGE_MOVING = 15),
 	)
 
 	accuracy_increase_mod = 1.00
