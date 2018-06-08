@@ -581,7 +581,7 @@
 			tracer_effect(effect_transform)
 
 /obj/item/projectile/proc/do_bullet_act(var/atom/A, var/zone)
-	if (A != firer && A != firedfrom)
+	if (A && A != firer && A != firedfrom)
 		A.pre_bullet_act(src)
 		if (zone)
 			return A.bullet_act(src, zone)
