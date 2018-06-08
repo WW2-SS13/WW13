@@ -128,7 +128,6 @@
 	else preload_rsc = TRUE // If config.resource_urls is not set, preload like normal.
 
 	clients += src
-	movementMachine_clients += src
 	directory[ckey] = src
 
 	if (processes.client && processes.client.logged_next_normal_respawns[ckey])
@@ -272,6 +271,14 @@
 		else if (istype(mob, /mob/observer))
 			observer_mob_list |= mob
 
+
+	// Ensure we aren't in movementMachine_clients, then add us to it.
+	for (var/v in 1 to 20)
+		movementMachine_clients -= src
+		sleep(1)
+
+	movementMachine_clients += src
+
 	//////////////
 	//DISCONNECT//
 	//////////////
@@ -285,11 +292,11 @@
 		admins -= src
 	directory -= ckey
 	clients -= src
-	movementMachine_clients -= src
 	observer_mob_list -= mob
 	human_clients_mob_list -= mob
 	if (processes.ping_track && processes.ping_track.client_ckey_check[ckey])
 		processes.ping_track.client_ckey_check -= ckey
+
 	return ..()
 
 
