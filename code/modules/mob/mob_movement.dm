@@ -654,7 +654,7 @@
 			#define STOMP_TIME 3
 
 			// wall stomping is bad
-			if (!t1.density)
+			if (!t1.density && !locate_dense_type(t1.contents, /obj/structure))
 
 				//Step on nerds in our way
 				if (mob_is_human)
