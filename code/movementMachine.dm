@@ -2,7 +2,7 @@
 var/movementMachine/movementMachine = null
 
 /movementMachine
-	var/interval = 0.015 SECONDS // half as long as the fastest ghost movement delay, so ghost movement is smoother
+	var/interval = 0.01 SECONDS // 100 FPS
 	var/ticks = 0
 	var/last_run = -1
 
