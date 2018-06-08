@@ -11,6 +11,7 @@
 			return 0.5
 		if (2)
 			return 0.3
+	return 0.3 // failsafe for instant movement bullshit
 
 /mob/proc/get_run_delay()
 	switch (velocity)
@@ -351,7 +352,7 @@
 
 	if (mob.incorporeal_move && mob_is_observer)
 		if (mob.velocity_lastdir == direct && mob.lastMovedRecently(5))
-			++mob.ghost_velocity
+			mob.ghost_velocity = min(mob.ghost_velocity+1, 2)
 		else
 			mob.ghost_velocity = 0
 		mob.velocity_lastdir = direct
@@ -378,7 +379,7 @@
 		var/mob/living/L = mob
 		if (L.incorporeal_move)//Move though walls
 			if (mob.velocity_lastdir == direct && mob.lastMovedRecently(5))
-				++mob.ghost_velocity
+				mob.ghost_velocity = min(mob.ghost_velocity+1, 2)
 			else
 				mob.ghost_velocity = 0
 			mob.last_movement = world.time

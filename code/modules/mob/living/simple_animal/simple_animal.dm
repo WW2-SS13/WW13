@@ -323,7 +323,7 @@
 	tally = speed
 	if (purge)//Purged creatures will move more slowly. The more time before their purge stops, the slower they'll move.
 		if (tally <= 0)
-			tally = TRUE
+			tally = 1.0
 		tally *= purge
 
 	return tally
