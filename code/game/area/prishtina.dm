@@ -275,6 +275,7 @@
 /area/prishtina/sewers
 	artillery_integrity = INFINITY
 	dynamic_lighting = FALSE
+	location = AREA_INSIDE
 
 // "wormhole" areas: doesn't include trains since they don't get their area copied
 
