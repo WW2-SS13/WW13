@@ -485,3 +485,6 @@
 	user << browse(dat, text("window=mob[];size=325x500", name))
 	onclose(user, "mob[name]")
 	return
+
+/mob/living/carbon/proc/get_fullness()
+	return (nutrition + (reagents.get_reagent_amount("nutriment") * 25)) + 160
