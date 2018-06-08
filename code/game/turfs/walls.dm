@@ -259,7 +259,8 @@ var/list/global/wall_cache = list()
 	return
 
 /turf/wall/proc/radiate()
-	var/total_radiation = material.radioactivity + (reinf_material ? reinf_material.radioactivity / 2 : FALSE)
+
+	var/total_radiation = (material ? material.radioactivity : 0) + (reinf_material ? reinf_material.radioactivity / 2 : FALSE)
 	if (!total_radiation)
 		return
 

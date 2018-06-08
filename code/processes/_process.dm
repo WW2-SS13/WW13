@@ -276,6 +276,13 @@
 	current = object
 
 /process/proc/_copyStateFrom(var/process/target)
+
+	// make sure we're set to the right datum in the processes list datum
+	for (var/variable in processes.vars)
+		var/process/P = processes.vars[variable]
+		if (P == target)
+			processes.vars[variable] = src
+
 	main = target.main
 	name = target.name
 	schedule_interval = target.schedule_interval

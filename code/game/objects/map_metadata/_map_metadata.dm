@@ -204,7 +204,7 @@ var/global/obj/map_metadata/map = null
 		if (player.client)
 			if (!player.client.is_minimized())
 				++playercount
-			if (player.key == world.host)
+			if (player && player.key == world.host) // client.is_minimized() takes a while, so the player may not still exist
 				only_client_is_host = TRUE
 
 	if (playercount >= required_players || only_client_is_host)
