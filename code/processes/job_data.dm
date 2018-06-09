@@ -17,20 +17,22 @@
 
 /process/job_data/fire()
 
-	var/counted = 0
+	spawn (0)
 
-	for (var/client/C in clients)
-		if (world.time >= C.next_calculate_is_active_non_observer)
-			if (!counted)
-				C.calculate_is_active_non_observer()
-				++counted
-			else
-				break
+		var/counted = 0
 
-	if (!counted)
-		calculate_relevant_clients()
+		for (var/client/C in clients)
+			if (world.time >= C.next_calculate_is_active_non_observer)
+				if (!counted)
+					C.calculate_is_active_non_observer()
+					++counted
+				else
+					break
 
-	lastrun = world.time
+		if (!counted)
+			calculate_relevant_clients()
+
+		lastrun = world.time
 
 /process/job_data/proc/get_active_positions(var/datum/job/J)
 	. = 0

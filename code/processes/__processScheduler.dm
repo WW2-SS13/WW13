@@ -172,11 +172,7 @@ var/global/processScheduler/processScheduler
 				if (p.always_runs || p.priority != PROCESS_PRIORITY_IRRELEVANT || p == tmpQueued[1] || p.may_run(available_tick_usage))
 					p.run_time_tick_usage = world.tick_usage
 					if (p.run_time_tick_usage_allowance == -1)
-						// job_data.process() wraps extremely expensive winget calls so that's why this is a thing
-						if (istype(p, /process/job_data))
-							p.run_time_tick_usage_allowance = 20
-						else
-							p.run_time_tick_usage_allowance = calculate_run_time_allowance(p.priority)
+						p.run_time_tick_usage_allowance = calculate_run_time_allowance(p.priority)
 					// we finished our current run, reset our current_list to a fresh one
 					if (p.process() != PROCESS_TICK_CHECK_RETURNED_EARLY)
 						p.reset_current_list()
@@ -421,6 +417,8 @@ var/global/processScheduler/processScheduler
 			. *= 0.20
 		if (PROCESS_PRIORITY_VERY_HIGH)
 			. *= 0.40
+		if (PROCESS_PRIORITY_IRRELEVANT)
+			. *= 0.10
 	. /= priorityToProcessMap[num2text(priority)]:len
 
 /* returns a list of which processes need to run the most.
