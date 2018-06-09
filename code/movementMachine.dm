@@ -47,15 +47,13 @@ var/movementMachine/movementMachine = null
 									diag = TRUE
 							// hack to let other clients Move() earlier
 							spawn (0)
-								if (M.client)
+								if (M && M.client)
 									M.client.Move(get_step(M, movedir), movedir, diag)
 									// remove this client from movementMachine_clients until it needs to be in it again. This makes the amount of loops to be done the absolute minimum
-									var/client/C = M.client
-									movementMachine_clients -= C
-									spawn ((C.move_delay - world.time))
-										if (C)
-											movementMachine_clients += C
-
+									movementMachine_clients -= M.client
+									spawn ((M.client.move_delay - world.time))
+										if (M && M.client)
+											movementMachine_clients += M.client
 					catch(var/exception/e)
 						pass(e)
 				else
