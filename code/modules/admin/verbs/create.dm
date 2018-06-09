@@ -13,7 +13,7 @@
 
 	while (TRUE)
 		retype
-		var/_type = input("What is the type you want in the crate? Cancel to stop.") as text
+		var/_type = input(src, "What is the type you want in the crate? Cancel to stop.") as text
 
 		if (lowertext(_type) == "cancel")
 			return
@@ -22,10 +22,10 @@
 			src << "<span class = 'red'>Invalid path.</span>"
 			goto retype
 
-		var/amount = input("How much of this item do you want? (1 - 50, stacks merge") as num
+		var/amount = input(src, "How much of this item do you want? (1 - 50, stacks merge") as num
 		amount = Clamp(amount, 1, 50)
 		types[_type] = amount
-		var/cont = input("Add another type?") in list("Yes", "No")
+		var/cont = input(src, "Add another type?") in list("Yes", "No")
 		if (cont == "No")
 			break
 
