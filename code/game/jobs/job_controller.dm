@@ -377,12 +377,21 @@ var/global/datum/controller/occupations/job_master
 		else if (istype(job, /datum/job/italian))
 			H.equip_coat(/obj/item/clothing/suit/storage/coat/italian)
 
-		// Add loadout items. spawn(1) so it happens after our pockets are filled with default job items
-		spawn (1)
+		#define SAFE_SPAWN_TIME 4
+		// Add loadout items. spawn(SAFE_SPAWN_TIME) so it happens after our pockets are filled with default job items
+		spawn (SAFE_SPAWN_TIME)
 			if (!findtext("[H.original_job.type]", "doctor"))
 				if (!list(CIVILIAN).Find(H.original_job.base_type_flag()))
 					for (var/v in 1 to 2)
 						var/slot = (v == 1 ? slot_l_store : slot_r_store)
+						// short circuit if pockets are already full
+						switch (slot)
+							if (slot_l_store)
+								if (H.l_store)
+									continue
+							if (slot_r_store)
+								if (H.r_store)
+									continue
 						var/other_slot_num = (v == 1 ? 2 : 1)
 						if (H.client && H.client.prefs.pockets.len >= v)
 							switch (lowertext(H.client.prefs.pockets[v]))
@@ -455,8 +464,8 @@ var/global/datum/controller/occupations/job_master
 								if ("screwdriver")
 									H.equip_to_slot(new /obj/item/weapon/screwdriver(H), slot)
 
-		// Give the guy some ammo for his gun: spawn(2) so it happens after custom loadout
-		spawn (2)
+		// Give the guy some ammo for his gun: spawn(SAFE_SPAWN_TIME*2) so it happens after custom loadout
+		spawn (SAFE_SPAWN_TIME*2)
 			for (var/obj/item/weapon/gun/projectile/gun in H.contents)
 				if (gun.w_class == 5 && gun.gun_type == GUN_TYPE_MG) // MG
 					if (H.back && istype(H.back, /obj/item/weapon/storage/backpack))
@@ -485,6 +494,7 @@ var/global/datum/controller/occupations/job_master
 							if (!H.l_store)
 								H.equip_to_slot_or_del(new gun.magazine_type(H), slot_l_store)
 						break // but only the first gun we find
+		#undef SAFE_SPAWN_TIME
 
 		// get our new real name based on jobspecific language ( and more
 		job.update_character(H)
