@@ -180,8 +180,9 @@ var/global/processScheduler/processScheduler
 					p.run_failures = 0
 					processed += p
 				else
-					p.reset_current_list()
-					tmpQueued -= p
+					if (p) // p might have been killed between now and when the loop started, causing a runtime
+						p.reset_current_list()
+						tmpQueued -= p
 				if (used_tick_usage >= max_tick_usage)
 					break main
 

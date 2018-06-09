@@ -23,7 +23,7 @@ var/movementMachine/movementMachine = null
 
 		for (var/client in movementMachine_clients)
 
-			if (client && !isDeleted(client))
+			if (client && client:type == /client && !isDeleted(client))
 
 				var/mob/M = client:mob
 
@@ -55,7 +55,7 @@ var/movementMachine/movementMachine = null
 										if (M && M.client)
 											movementMachine_clients += M.client
 					catch(var/exception/e)
-						pass(e)
+						world.Error(e)
 				else
 					mob_list -= M
 			else
