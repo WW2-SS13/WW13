@@ -16,10 +16,10 @@ var/list/vocal_emotes = list(
 
 /mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null)
 
-	if (world.time < next_emote["normal"])
+	if (!vocal_emotes.Find(act) && world.time < next_emote["normal"])
 		return
 
-	if (vocal_emotes.Find(act) && world.time < next_emote["vocal"])
+	else if (vocal_emotes.Find(act) && world.time < next_emote["vocal"])
 		return
 
 	// no more screaming when you shoot yourself
