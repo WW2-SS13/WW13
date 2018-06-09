@@ -5,8 +5,12 @@ var/movementMachine/movementMachine = null
 	var/interval = 0.01 SECONDS // 100 FPS
 	var/ticks = 0
 	var/last_run = -1
+
 	var/list/last_twenty_tick_usage_times = list()
-	var/list/last_twenty_cpus = list()
+
+	var/last_tick_usage = 0
+	var/last_cpu = 0
+
 	var/average_tick_usage = 0
 	var/average_cpu = 0
 
@@ -26,7 +30,6 @@ var/movementMachine/movementMachine = null
 	while (TRUE)
 
 		var/initial_tick_usage = world.tick_usage
-		var/initial_cpu = world.cpu
 
 		for (var/client in movementMachine_clients)
 
@@ -74,9 +77,8 @@ var/movementMachine/movementMachine = null
 		++ticks
 		last_run = world.time
 		var/final_tick_usage = world.tick_usage
-		var/final_cpu = world.cpu
 
-		// get average tick usage
+		// get average/last tick usage: cpu stats are based on this, since cpu doesn't update in real time it's the best we can do - Kachnov
 		last_twenty_tick_usage_times += ((final_tick_usage-initial_tick_usage) * (world.tick_lag/interval))
 		if (last_twenty_tick_usage_times.len >= 20)
 			var/list/old = last_twenty_tick_usage_times.Copy()
@@ -86,18 +88,11 @@ var/movementMachine/movementMachine = null
 				last_twenty_tick_usage_times[v-10] = old[v]
 
 		average_tick_usage = average_tick_usage()
+		last_tick_usage = last_twenty_tick_usage_times[last_twenty_tick_usage_times.len]
 
-		// get average cpu
-		last_twenty_cpus += ((final_cpu-initial_cpu) * (world.tick_lag/interval))
-		if (last_twenty_cpus.len >= 20)
-			var/list/old = last_twenty_cpus.Copy()
-			last_twenty_cpus.Cut()
-			last_twenty_cpus.len = 10
-			for (var/v in 11 to 20)
-				last_twenty_cpus[v-10] = old[v]
-
-		average_tick_usage = average_tick_usage()
-		average_cpu = average_cpu()
+		// I'm not confident that this is the best way to "calculate" average/last cpu, but oh well - Kachnov
+		average_cpu = (average_tick_usage/100) * world.cpu
+		last_cpu = (last_tick_usage/100) * world.cpu
 
 		sleep(interval)
 #undef SECONDS
@@ -109,11 +104,3 @@ var/movementMachine/movementMachine = null
 	for (var/n in last_twenty_tick_usage_times)
 		. += n
 	. /= last_twenty_tick_usage_times.len
-
-/movementMachine/proc/average_cpu()
-	if (!last_twenty_cpus.len)
-		return 0
-	. = 0
-	for (var/n in last_twenty_cpus)
-		. += n
-	. /= last_twenty_cpus.len
