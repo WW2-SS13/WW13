@@ -23,12 +23,14 @@ var/movementMachine/movementMachine = null
 
 		for (var/client in movementMachine_clients)
 
-			if (client && client:type == /client && !isDeleted(client))
+			// this try-catch block is here now because apparently client can be something that isn't a client, causing the game to crash
+			try
 
-				var/mob/M = client:mob
+				if (client && client:type == /client && !isDeleted(client))
 
-				if (!isDeleted(M))
-					try
+					var/mob/M = client:mob
+
+					if (!isDeleted(M))
 						if ((M.movement_eastwest || M.movement_northsouth) && M.client.canmove && !M.client.moving && world.time >= M.client.move_delay)
 							var/diag = FALSE
 							var/movedir = M.movement_northsouth ? M.movement_northsouth : M.movement_eastwest
@@ -54,12 +56,13 @@ var/movementMachine/movementMachine = null
 									spawn ((M.client.move_delay - world.time))
 										if (M && M.client)
 											movementMachine_clients += M.client
-					catch(var/exception/e)
-						world.Error(e)
+					else
+						mob_list -= M
 				else
-					mob_list -= M
-			else
-				movementMachine_clients -= client
+					movementMachine_clients -= client
+
+			catch(var/exception/e)
+				world.Error(e)
 
 		++ticks
 		last_run = world.time
