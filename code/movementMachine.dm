@@ -23,50 +23,45 @@ var/movementMachine/movementMachine = null
 
 		for (var/client in movementMachine_clients)
 
-			try
+			if (client && !isDeleted(client))
 
-				if (client && !isDeleted(client))
+				var/mob/M = client:mob
 
-					var/mob/M = client:mob
+				if (!isDeleted(M))
+					try
+						if ((M.movement_eastwest || M.movement_northsouth) && M.client.canmove && !M.client.moving && world.time >= M.client.move_delay)
+							var/diag = FALSE
+							var/movedir = M.movement_northsouth ? M.movement_northsouth : M.movement_eastwest
+							if ((M.movement_eastwest && M.movement_northsouth) && !istank(M.loc))
+								if (M.movement_northsouth == NORTH && M.movement_eastwest == WEST)
+									movedir = NORTHWEST
+									diag = TRUE
+								else if (M.movement_northsouth == NORTH && M.movement_eastwest == EAST)
+									movedir = NORTHEAST
+									diag = TRUE
+								else if (M.movement_northsouth == SOUTH && M.movement_eastwest == WEST)
+									movedir = SOUTHWEST
+									diag = TRUE
+								else if (M.movement_northsouth == SOUTH && M.movement_eastwest == EAST)
+									movedir = SOUTHEAST
+									diag = TRUE
+							// hack to let other clients Move() earlier
+							spawn (0)
+								if (M.client)
+									M.client.Move(get_step(M, movedir), movedir, diag)
+									// remove this client from movementMachine_clients until it needs to be in it again. This makes the amount of loops to be done the absolute minimum
+									var/client/C = M.client
+									movementMachine_clients -= C
+									spawn ((C.move_delay - world.time))
+										if (C)
+											movementMachine_clients += C
 
-					if (!isDeleted(M))
-						try
-							if ((M.movement_eastwest || M.movement_northsouth) && M.client.canmove && !M.client.moving && world.time >= M.client.move_delay)
-								var/diag = FALSE
-								var/movedir = M.movement_northsouth ? M.movement_northsouth : M.movement_eastwest
-								if ((M.movement_eastwest && M.movement_northsouth) && !istank(M.loc))
-									if (M.movement_northsouth == NORTH && M.movement_eastwest == WEST)
-										movedir = NORTHWEST
-										diag = TRUE
-									else if (M.movement_northsouth == NORTH && M.movement_eastwest == EAST)
-										movedir = NORTHEAST
-										diag = TRUE
-									else if (M.movement_northsouth == SOUTH && M.movement_eastwest == WEST)
-										movedir = SOUTHWEST
-										diag = TRUE
-									else if (M.movement_northsouth == SOUTH && M.movement_eastwest == EAST)
-										movedir = SOUTHEAST
-										diag = TRUE
-								// hack to let other clients Move() earlier
-								spawn (0)
-									if (M.client)
-										M.client.Move(get_step(M, movedir), movedir, diag)
-										// remove this client from movementMachine_clients until it needs to be in it again. This makes the amount of loops to be done the absolute minimum
-										var/client/C = M.client
-										movementMachine_clients -= C
-										spawn ((C.move_delay - world.time))
-											if (C)
-												movementMachine_clients += C
-
-						catch(var/exception/e)
-							pass(e)
-					else
-						mob_list -= M
+					catch(var/exception/e)
+						pass(e)
 				else
-					movementMachine_clients -= client
-
-			catch (var/exception/E)
-				world.Error(E)
+					mob_list -= M
+			else
+				movementMachine_clients -= client
 
 		++ticks
 		last_run = world.time
