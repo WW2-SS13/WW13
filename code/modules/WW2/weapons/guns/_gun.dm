@@ -89,6 +89,8 @@
 
 	// must include all organs
 	var/list/adjacent_redirections = list(
+		"eyes" = list("head"),
+		"mouth" = list("head"),
 		"head" = list("head", "chest", "l_arm", "r_arm"), // "shoulders"
 		"chest" = list("chest", "head", "l_arm", "r_arm", "l_leg", "r_leg"),
 		"groin" = list("groin", "chest", "l_leg", "r_leg"),
