@@ -15,6 +15,9 @@
 
 /proc/WWinput(client, message, title, default, toc1, toc2)
 
+	if (!title)
+		title = "Lebensraum"
+
 	. = FALSE
 
 	if (!isclient(client))
