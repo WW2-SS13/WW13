@@ -486,10 +486,12 @@
 	if (map.check_prishtina_block(src, F))
 		return FALSE
 
+	var/oloc = loc
 	var/slowness = weakened ? 1.50 : 1.00
 	scrambling = TRUE
-	sleep(2*slowness)
+	sleep(9*slowness)
 	visible_message("<span class = 'red'><b>[src]</b> crawls!</span>")
-	sleep(7*slowness)
-	Move(F)
+	var/nloc = loc
+	if (nloc == oloc)
+		Move(F)
 	scrambling = FALSE
