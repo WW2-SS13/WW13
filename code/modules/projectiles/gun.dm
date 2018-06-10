@@ -619,7 +619,7 @@
 //weight check stuff
 
 /obj/item/weapon/gun/projectile/get_weight()
-	.=..()
+	. = ..()
 	if (ammo_magazine)
 		.+= ammo_magazine.get_weight()
 	return .
