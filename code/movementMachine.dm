@@ -66,8 +66,8 @@ var/movementMachine/movementMachine = null
 									movementMachine_clients -= M.client
 									spawn ((M.client.move_delay - world.time))
 										if (M && M.client)
+											M.client.canmove = TRUE
 											movementMachine_clients += M.client
-									M.client.canmove = TRUE
 					else
 						mob_list -= M
 				else
