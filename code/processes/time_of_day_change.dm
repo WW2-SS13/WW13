@@ -26,12 +26,12 @@
 	var/O_time_of_day = time_of_day
 	time_of_day = changeto
 
-	// change lighting over x seconds & x*10 loops
-
 	var/turfs_len = my_turfs.len // this makes things faster and it works because single-threadedness
 
+	#define DIVISOR 150 // less lag
+
 	for (var/v in 1 to turfs_len)
-		spawn (ceil(v/200)) // 100,000 turfs = 50 seconds
+		spawn (ceil(v/DIVISOR)) // 100,000 turfs = 50 seconds (when DIVISOR = 200)
 			var/turf/T = my_turfs[v]
 			if (!T)
 				continue
@@ -60,7 +60,7 @@
 			for (var/atom/movable/lighting_overlay/LO in T.contents)
 				LO.TOD = time_of_day
 
-	spawn (ceil(turfs_len/200))
+	spawn (ceil(turfs_len/DIVISOR))
 		if (admincaller)
 			admincaller << "<span class = 'notice'>Updated lights for [time_of_day].</span>"
 			var/M = "[key_name(admincaller)] changed the time of day from [O_time_of_day] to [time_of_day]."
@@ -78,3 +78,5 @@
 					LO.invisibility = 0
 
 		setup_lighting = TRUE
+
+	#undef DIVISOR

@@ -98,7 +98,7 @@
 			var/obj/item/ammo_magazine/maxim/hand = get_active_hand()
 			var/exit_tank = FALSE
 			if (l_hand && r_hand && istype(l_hand, /obj/item/ammo_magazine/maxim) && istype(r_hand, /obj/item/ammo_magazine/maxim))
-				if ((input(src, "Exit the tank to replace the MG belt?") in list("Exit", "Replace MG Belt")) == "Exit")
+				if ((WWinput(src, "Exit the tank or replace the MG belt?", "Exit", "Replace MG Belt", list("Exit", "Replace MG Belt"))) == "Exit")
 					exit_tank = TRUE
 			// reloading the tank MG
 			if (hand && istype(hand) && !exit_tank)
@@ -486,10 +486,12 @@
 	if (map.check_prishtina_block(src, F))
 		return FALSE
 
+	var/oloc = loc
 	var/slowness = weakened ? 1.50 : 1.00
 	scrambling = TRUE
-	sleep(2*slowness)
+	sleep(9*slowness)
 	visible_message("<span class = 'red'><b>[src]</b> crawls!</span>")
-	sleep(7*slowness)
-	Move(F)
+	var/nloc = loc
+	if (nloc == oloc)
+		Move(F)
 	scrambling = FALSE

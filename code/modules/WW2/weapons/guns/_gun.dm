@@ -75,7 +75,7 @@
 	var/stat = "rifle"
 	var/load_delay = 0
 
-	var/headshot_kill_chance = 50 // if we have enough damage. See projectile.dm if you want to know why this needs to be set to 50 for all guns - Kachnov
+	var/headshot_kill_chance = 40 // if we have enough damage. See projectile.dm if you want to know why this needs to be set to 40 for all guns - Kachnov
 	var/KO_chance = 33 // even if we fail to kill with a headshot, chance to make the target go unconscious
 
 	// does not need to include all organs

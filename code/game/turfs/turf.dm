@@ -444,9 +444,9 @@ var/const/enterloopsanity = 100
 					playsound(src, footstepsound, 100, TRUE)
 					switch (H.m_intent)
 						if ("run")
-							H.next_footstep_sound_at_movement_tick = movementMachine.ticks + (movementMachine.interval*40)
+							H.next_footstep_sound_at_movement_tick = movementMachine.ticks + (movementMachine.interval*40*(0.3/movementMachine.interval))
 						if ("walk")
-							H.next_footstep_sound_at_movement_tick = movementMachine.ticks + (movementMachine.interval*53)
+							H.next_footstep_sound_at_movement_tick = movementMachine.ticks + (movementMachine.interval*53*(0.3/movementMachine.interval))
 		if (wet)
 
 			if (M.buckled || (wet == TRUE && M.m_intent == "walk"))

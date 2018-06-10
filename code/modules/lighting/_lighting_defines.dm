@@ -7,9 +7,9 @@
 */
 
 
-#define LIGHTING_FALLOFF        TRUE    // Type of falloff to use for lighting; TRUE for circular, 2 for square.
+#define LIGHTING_FALLOFF        1    // Type of falloff to use for lighting; 1 for circular, 2 for square.
 #define LIGHTING_LAMBERTIAN     FALSE    // Use lambertian shading for light sources.
-#define LIGHTING_HEIGHT         TRUE    // Height off the ground of light sources on the pseudo-z-axis, you should probably leave this alone.
+#define LIGHTING_HEIGHT         1    // Height off the ground of light sources on the pseudo-z-axis, you should probably leave this alone.
 
 #define LIGHTING_LAYER          10   // Drawing layer for lighting overlays.
 

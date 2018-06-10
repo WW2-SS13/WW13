@@ -415,9 +415,9 @@ var/global/processScheduler/processScheduler
 		if (PROCESS_PRIORITY_MEDIUM)
 			. *= 0.15
 		if (PROCESS_PRIORITY_HIGH)
-			. *= 0.20
+			. *= 0.25
 		if (PROCESS_PRIORITY_VERY_HIGH)
-			. *= 0.40
+			. *= 0.35
 		if (PROCESS_PRIORITY_IRRELEVANT)
 			. *= 0.10
 	. /= priorityToProcessMap[num2text(priority)]:len

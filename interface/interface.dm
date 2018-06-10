@@ -54,8 +54,8 @@ Any-Mode: (hotkey doesn't need to be on)\n  \
 	set name = "website"
 	set desc = "Visit the website"
 	set hidden = TRUE
-	if ( config.websiteurl )
-		if (alert("This will open the website in your browser. Are you sure?",,"Yes","No")=="No")
+	if (config.websiteurl)
+		if (WWinput(src, "This will open the website in your browser. Are you sure?", "Website", "Yes", list("Yes", "No")) == "No")
 			return
 		src << link(config.websiteurl)
 	else
@@ -66,8 +66,8 @@ Any-Mode: (hotkey doesn't need to be on)\n  \
 	set name = "wiki"
 	set desc = "Visit the wiki"
 	set hidden = TRUE
-	if ( config.wikiurl )
-		if (alert("This will open the wiki in your browser. Are you sure?",,"Yes","No")=="No")
+	if (config.wikiurl)
+		if (WWinput(src, "This will open the wiki in your browser. Are you sure?", "Wiki", "Yes", list("Yes", "No")) == "No")
 			return
 		src << link(config.wikiurl)
 	else
@@ -78,8 +78,8 @@ Any-Mode: (hotkey doesn't need to be on)\n  \
 	set name = "forum"
 	set desc = "Visit the forum"
 	set hidden = TRUE
-	if ( config.forumurl )
-		if (alert("This will open the forum in your browser. Are you sure?",,"Yes","No")=="No")
+	if (config.forumurl)
+		if (WWinput(src, "This will open the forum in your browser. Are you sure?", "Forum", "Yes", list("Yes", "No")) == "No")
 			return
 		src << link(config.forumurl)
 	else
@@ -90,8 +90,8 @@ Any-Mode: (hotkey doesn't need to be on)\n  \
 	set name = "donate"
 	set desc = "Support the server via paypal."
 	set hidden = TRUE
-	if ( config.donationurl )
-		if (alert("This will open Paypal in your browser. Are you sure?",,"Yes","No")=="No")
+	if (config.donationurl)
+		if (WWinput(src, "This will open the donation link in your browser. Are you sure?", "Donations", "Yes", list("Yes", "No")) == "No")
 			return
 		src << link(config.donationurl)
 	else
@@ -102,8 +102,8 @@ Any-Mode: (hotkey doesn't need to be on)\n  \
 	set name = "Github"
 	set desc = "Visit the Github"
 	set hidden = TRUE
-	if ( config.githuburl )
-		if (alert("This will open the Github in your browser. Are you sure?",,"Yes","No")=="No")
+	if (config.githuburl)
+		if (WWinput(src, "This will open the Github in your browser. Are you sure?", "Github", "Yes", list("Yes", "No")) == "No")
 			return
 		src << link(config.githuburl)
 	else
@@ -114,8 +114,8 @@ Any-Mode: (hotkey doesn't need to be on)\n  \
 	set name = "discord"
 	set desc = "Visit the discord"
 	set hidden = TRUE
-	if ( config.discordurl )
-		if (alert("This will open the Discord in your browser. Are you sure?",,"Yes","No")=="No")
+	if (config.discordurl)
+		if (WWinput(src, "This will open the Discord in your browser. Are you sure?", "Discord", "Yes", list("Yes", "No")) == "No")
 			return
 		src << link(config.discordurl)
 	else
@@ -127,8 +127,8 @@ Any-Mode: (hotkey doesn't need to be on)\n  \
 	set name = "Rules"
 	set desc = "Show Server Rules"
 	set hidden = TRUE
-	if ( config.rulesurl )
-		if (alert("This will open the rules in your browser. Are you sure?",,"Yes","No")=="No")
+	if (config.rulesurl)
+		if (WWinput(src, "This will open the rules in your browser. Are you sure?", "Rules", "Yes", list("Yes", "No")) == "No")
 			return
 		src << link(config.rulesurl)
 	else

@@ -457,7 +457,6 @@
 	icon_state = "green3"
 	location = AREA_INSIDE
 
-
 /area/prishtina/german/resting_area_4
 	name = "Resting Area #4"
 	icon_state = "green4"
@@ -480,21 +479,26 @@
 
 /area/prishtina/german/armory/room1
 	icon_state = "green1"
+	location = AREA_INSIDE
 
 /area/prishtina/german/armory/room2
 	icon_state = "green2"
+	location = AREA_INSIDE
 
 /area/prishtina/german/armory/room3
 	icon_state = "green3"
+	location = AREA_INSIDE
 
 /area/prishtina/german/mparea
 	name = "MP Area"
 	icon_state = "green1"
+	location = AREA_INSIDE
 
 /area/prishtina/german/prison
 	name = "Prison"
 	icon_state = "green2"
 	capturable = FALSE
+	location = AREA_INSIDE
 
 /area/prishtina/german/armory/train
 	name = "Armory"

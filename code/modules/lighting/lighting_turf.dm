@@ -174,6 +174,9 @@
 
 // disables this buggy :mistake: - Kachnov
 #define DAYLIGHT_LIGHTING_DISABLED
+
+// cache some type info for speed
+/turf/var/iswall_check_cache = -1
 /turf/proc/calculate_window_coeff()
 
 	var/area/src_area = get_area(src)
@@ -182,7 +185,9 @@
 	. = 1.00
 	if (src_area && src_area.location == AREA_INSIDE)
 		. = 0.0
-		if ((iswall(src) && type != /turf/wall/rockwall) || locate_dense_type(contents, /obj/structure) || locate_type(contents, /obj/structure/window/classic))
+		if (iswall_check_cache == -1)
+			iswall_check_cache = (iswall(src) && type != /turf/wall/rockwall)
+		if (iswall_check_cache || locate_dense_type(contents, /obj/structure) || locate_type(contents, /obj/structure/window/classic))
 			var/counted = 0
 			for (var/turf/T in orange(1, src))
 				var/area/T_area = get_area(T)

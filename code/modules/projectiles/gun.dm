@@ -82,6 +82,8 @@
 	var/gibs = FALSE
 	var/crushes = FALSE
 
+	var/next_shoot_owner = -1
+
 /obj/item/weapon/gun/New()
 	..()
 	if (!firemodes.len)
@@ -472,6 +474,8 @@
 		return
 	if (!special_check(user))
 		return
+	if (world.time < next_shoot_owner)
+		return
 
 	var/_burst = 1
 	var/datum/firemode/firemode = firemodes[sel_mode]
@@ -508,6 +512,7 @@
 				user << "<span class = 'notice'>Ow...</span>"
 				user.apply_effect(110,AGONY,0)
 			qdel(in_chamber)
+			next_shoot_owner = world.time + 5 // fixes rare bug where you can shoot yourself multiple times with one bullet
 		else
 			handle_click_empty(user)
 			return
@@ -614,7 +619,7 @@
 //weight check stuff
 
 /obj/item/weapon/gun/projectile/get_weight()
-	.=..()
+	. = ..()
 	if (ammo_magazine)
 		.+= ammo_magazine.get_weight()
 	return .

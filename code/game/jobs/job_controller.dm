@@ -498,7 +498,6 @@ var/global/datum/controller/occupations/job_master
 
 		// get our new real name based on jobspecific language ( and more
 		job.update_character(H)
-		job.apply_fingerprints(H)
 
 		if (names_used[H.real_name])
 			job.give_random_name(H)
@@ -510,6 +509,7 @@ var/global/datum/controller/occupations/job_master
 			H.real_name = "[job.rank_abbreviation]. [H.real_name]"
 			H.name = H.real_name
 
+		job.apply_fingerprints(H)
 		job.assign_faction(H)
 
 		if (!game_started)
@@ -778,7 +778,7 @@ var/global/datum/controller/occupations/job_master
 	var/max_partisans = INFINITY
 
 	// see job_data.dm
-	var/relevant_clients = processes.job_data.get_relevant_clients_safe()
+	var/relevant_clients = clients.len
 
 	if (map && !map.faction_distribution_coeffs.Find(INFINITY))
 		if (map.faction_distribution_coeffs.Find(GERMAN))

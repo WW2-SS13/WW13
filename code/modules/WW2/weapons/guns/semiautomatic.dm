@@ -52,7 +52,7 @@
 	load_delay = 5
 	aim_miss_chance_divider = 2.50
 
-	headshot_kill_chance = 45
+	headshot_kill_chance = 35
 	KO_chance = 30
 
 	var/jammed_until = -1

@@ -6,7 +6,7 @@
 	start_delay = 1 SECOND
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	priority = PROCESS_PRIORITY_HIGH
-	always_runs = TRUE
+	always_runs = TRUE // hacky stuff, but this is a very expensive process and it needs this
 	processes.lighting_sources = src
 
 /process/lighting_sources/fire()
