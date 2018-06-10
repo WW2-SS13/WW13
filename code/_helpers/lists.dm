@@ -12,7 +12,7 @@
 // "locate() in list" tends not to work, so here's a version that works for both objects and lists - Kachnov
 // interesting to note, istype() works even when the first argument isn't an object. We use this to bypass some type checking, making these fairly-common procs faster
 
-/proc/locate_type(var/list/L, var/type)
+/proc/locate_type(var/L, var/type)
 	if (isatom(L))
 		var/atom/A = L
 		L = A.contents
@@ -21,7 +21,7 @@
 			return D
 	return FALSE
 
-/proc/locate_dense_type(var/list/L, var/type)
+/proc/locate_dense_type(var/L, var/type)
 	if (isatom(L))
 		var/atom/A = L
 		L = A.contents
@@ -30,7 +30,7 @@
 			return A
 	return FALSE
 
-/proc/locate_opaque_type(var/list/L, var/type)
+/proc/locate_opaque_type(var/L, var/type)
 	if (isatom(L))
 		var/atom/A = L
 		L = A.contents
