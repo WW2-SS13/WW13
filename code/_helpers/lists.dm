@@ -26,7 +26,7 @@
 		var/atom/A = L
 		L = A.contents
 	for (var/A in L)
-		if (istype(A, type) && A.density)
+		if (istype(A, type) && A:density)
 			return A
 	return FALSE
 
@@ -35,7 +35,7 @@
 		var/atom/A = L
 		L = A.contents
 	for (var/A in L)
-		if (istype(A, type) && A.opacity)
+		if (istype(A, type) && A:opacity)
 			return A
 	return FALSE
 
