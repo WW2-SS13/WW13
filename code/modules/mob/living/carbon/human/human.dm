@@ -540,7 +540,7 @@ var/list/rank_prefix = list(\
 		b_eyes = hex2num(copytext(new_eyes, 6, 8))
 		update_eyes()
 
-	var/new_tone = input("Please select skin tone level: TRUE-220 (1=albino, 35=caucasian, 150=black, 220='very' black)", "Character Generation", "[35-s_tone]")  as text
+	var/new_tone = input("Please select skin tone level: 1-220 (1=albino, 35=caucasian, 150=black, 220='very' black)", "Character Generation", "[35-s_tone]")  as text
 
 	if (!new_tone)
 		new_tone = 35
@@ -557,7 +557,7 @@ var/list/rank_prefix = list(\
 		hairs.Add(H.name) // add hair name to hairs
 		qdel(H) // delete the hair after it's all done
 
-	var/new_style = input("Please select hair style", "Character Generation",h_style)  as null|anything in hairs
+	var/new_style = input("Please select a hair style.", "Character Generation",h_style)  as null|anything in hairs
 
 	// if new style selected (not cancel)
 	if (new_style)
@@ -572,12 +572,12 @@ var/list/rank_prefix = list(\
 		fhairs.Add(H.name)
 		qdel(H)
 
-	new_style = input("Please select facial style", "Character Generation",f_style)  as null|anything in fhairs
+	new_style = input("Please select a facial hair style.", "Character Generation",f_style)  as null|anything in fhairs
 
 	if (new_style)
 		f_style = new_style
 
-	var/new_gender = alert(usr, "Please select gender.", "Character Generation", "Male", "Female")
+	var/new_gender = WWinput(usr, "Please select a gender.", "Character Generation", "Male", list("Male", "Female"))
 	if (new_gender)
 		if (new_gender == "Male")
 			gender = MALE

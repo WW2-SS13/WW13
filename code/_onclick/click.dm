@@ -98,7 +98,7 @@
 			var/obj/item/ammo_magazine/maxim/hand = get_active_hand()
 			var/exit_tank = FALSE
 			if (l_hand && r_hand && istype(l_hand, /obj/item/ammo_magazine/maxim) && istype(r_hand, /obj/item/ammo_magazine/maxim))
-				if ((WWinput(src, "Exit the tank or replace the MG belt?", "Exit", "Replace MG Belt", list("Exit", "Replace MG Belt"))) == "Exit")
+				if ((WWinput(src, "Exit the tank or replace the MG belt?", "Choose", "Replace MG Belt", list("Exit", "Replace MG Belt"))) == "Exit")
 					exit_tank = TRUE
 			// reloading the tank MG
 			if (hand && istype(hand) && !exit_tank)

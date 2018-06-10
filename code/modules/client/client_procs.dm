@@ -118,7 +118,7 @@
 
 	if (key != world.host)
 		if (!config.guests_allowed && IsGuestKey(key))
-			alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.","Guest","OK")
+			WWalert(src, "This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.", "Guest Account Detected")
 			del(src)
 			return
 

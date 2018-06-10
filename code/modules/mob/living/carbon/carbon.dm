@@ -435,7 +435,7 @@
 	if (usr.sleeping)
 		usr << "<span class = 'red'>You are already sleeping.</span>"
 		return
-	if (alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
+	if (WWinput(src, "Are you sure you want to sleep for a while?", "Sleep", "Yes", list("Yes","No")) == "Yes")
 		usr.sleeping = 20 //Short nap
 
 /mob/living/carbon/Bump(var/atom/movable/AM, yes)

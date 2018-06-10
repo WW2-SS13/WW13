@@ -103,7 +103,7 @@ var/list/vocal_emotes = list(
 				var/input = sanitize(input("Choose an emote to display.") as text|null)
 				if (!input)
 					return
-				var/input2 = input("Is this a visible or hearable emote?") in list("Visible","Hearable")
+				var/input2 = WWinput(src, "Is this a visible or hearable emote?", "Emote", "Visible", list("Visible", "Hearable"))
 				if (input2 == "Visible")
 					m_type = 1
 				else if (input2 == "Hearable")

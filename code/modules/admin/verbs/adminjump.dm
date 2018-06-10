@@ -16,7 +16,7 @@
 
 		var/turf/new_location = safepick(get_area_turfs(A))
 		if (!new_location)
-			alert("Admin jump failed due to missing [A] area turfs.")
+			WWalert(src, "Admin jump failed due to missing [A] area turfs.", "Admin Jump")
 			return
 		var/tries = 0
 		while (new_location.density || locate(/obj/structure) in new_location)
@@ -33,7 +33,7 @@
 
 
 	else
-		alert("Admin jumping disabled")
+		WWalert(src, "Admin jumping is disabled", "Admin Jump")
 
 /client/proc/jumptoturf(var/turf/T in turfs)
 	set name = "Jump to Turf"
@@ -47,8 +47,7 @@
 		usr.loc = T
 
 	else
-		alert("Admin jumping disabled")
-	return
+		WWalert(src, "Admin jumping is disabled", "Admin Jump")
 
 /client/proc/jumptomob(var/mob/M in mob_list)
 	set category = "Admin"
@@ -70,7 +69,7 @@
 			else
 				A << "This mob is not located in the game world."
 	else
-		alert("Admin jumping disabled")
+		WWalert(src, "Admin jumping is disabled", "Admin Jump")
 
 /client/proc/jumptocoord(tx as num, ty as num, tz as num)
 	set category = "Admin"
@@ -90,7 +89,7 @@
 		message_admins("[key_name_admin(usr)] jumped to coordinates [tx], [ty], [tz]")
 
 	else
-		alert("Admin jumping disabled")
+		WWalert(src, "Admin jumping is disabled", "Admin Jump")
 
 /client/proc/jumptokey()
 	set category = "Admin"
@@ -114,7 +113,7 @@
 		usr.loc = M.loc
 
 	else
-		alert("Admin jumping disabled")
+		WWalert(src, "Admin jumping is disabled", "Admin Jump")
 
 /client/proc/Getmob(var/mob/M in mob_list)
 	set category = "Admin"
@@ -129,7 +128,7 @@
 		M.loc = get_turf(usr)
 
 	else
-		alert("Admin jumping disabled")
+		WWalert(src, "Admin jumping is disabled", "Admin Jump")
 
 var/turf/default_adminzone_turf = null
 
@@ -193,7 +192,7 @@ var/turf/default_adminzone_turf = null
 			M.loc = get_turf(usr)
 
 	else
-		alert("Admin jumping disabled")
+		WWalert(src, "Admin jumping is disabled", "Admin Jump")
 
 /client/proc/sendmob(var/mob/M in sortmobs())
 	set category = "Admin"
@@ -210,4 +209,4 @@ var/turf/default_adminzone_turf = null
 			log_admin("[key_name(usr)] teleported [key_name(M)] to [A]")
 			message_admins("[key_name_admin(usr)] teleported [key_name_admin(M)] to [A]", TRUE)
 		else
-			alert("Admin jumping disabled")
+			WWalert(src, "Admin jumping is disabled", "Admin Jump")

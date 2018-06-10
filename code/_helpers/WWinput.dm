@@ -15,6 +15,9 @@
 
 /proc/WWinput(client, message, title, default, toc1, toc2)
 
+	if (!title)
+		title = "Lebensraum"
+
 	. = FALSE
 
 	if (!isclient(client))
@@ -31,7 +34,7 @@
 	C.stopmovingright()
 
 	if (!toc1 && !toc2)
-		alert(C, message, title)
+		alert(C, message, title, "Continue")
 		. = TRUE
 	else
 		// no, this is bad

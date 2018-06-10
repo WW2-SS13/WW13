@@ -5,92 +5,7 @@
 		log_admin("[key_name(usr)] tried to use the admin panel without authorization.")
 		message_admins("[usr.key] has attempted to override the admin panel!")
 		return
-/*
-	if (ticker.mode && ticker.mode.check_antagonists_topic(href, href_list))
-		check_antagonists()
-		return*/
-/*
-	if (href_list["dbsearchckey"] || href_list["dbsearchadmin"])
 
-		var/adminckey = href_list["dbsearchadmin"]
-		var/playerckey = href_list["dbsearchckey"]
-		var/playerip = href_list["dbsearchip"]
-		var/playercid = href_list["dbsearchcid"]
-		var/dbbantype = text2num(href_list["dbsearchbantype"])
-		var/match = FALSE
-
-		if ("dbmatch" in href_list)
-			match = TRUE
-
-		DB_ban_panel(playerckey, adminckey, playerip, playercid, dbbantype, match)
-		return
-
-	else if (href_list["dbbanedit"])
-		var/banedit = href_list["dbbanedit"]
-		var/banid = text2num(href_list["dbbanid"])
-		if (!banedit || !banid)
-			return
-
-		DB_ban_edit(banid, banedit)
-		return
-
-	else if (href_list["dbbanaddtype"])
-
-		var/bantype = text2num(href_list["dbbanaddtype"])
-		var/banckey = href_list["dbbanaddckey"]
-		var/banip = href_list["dbbanaddip"]
-		var/bancid = href_list["dbbanaddcid"]
-		var/banduration = text2num(href_list["dbbaddduration"])
-		var/banjob = href_list["dbbanaddjob"]
-		var/banreason = href_list["dbbanreason"]
-
-		banckey = ckey(banckey)
-
-		switch(bantype)
-			if (BANTYPE_PERMA)
-				if (!banckey || !banreason)
-					usr << "Not enough parameters (Requires ckey and reason)"
-					return
-				banduration = null
-				banjob = null
-			if (BANTYPE_TEMP)
-				if (!banckey || !banreason || !banduration)
-					usr << "Not enough parameters (Requires ckey, reason and duration)"
-					return
-				banjob = null
-			if (BANTYPE_JOB_PERMA)
-				if (!banckey || !banreason || !banjob)
-					usr << "Not enough parameters (Requires ckey, reason and job)"
-					return
-				banduration = null
-			if (BANTYPE_JOB_TEMP)
-				if (!banckey || !banreason || !banjob || !banduration)
-					usr << "Not enough parameters (Requires ckey, reason and job)"
-					return
-
-		var/mob/playermob
-
-		for (var/mob/M in player_list)
-			if (M.ckey == banckey)
-				playermob = M
-				break
-
-		banreason = "(MANUAL BAN) "+banreason
-
-		if (!playermob)
-			if (banip)
-				banreason = "[banreason] (CUSTOM IP)"
-			if (bancid)
-				banreason = "[banreason] (CUSTOM CID)"
-		else
-			message_admins("Ban process: A mob matching [playermob.ckey] was found at location [playermob.x], [playermob.y], [playermob.z]. Custom ip and computer id fields replaced with the ip and computer id from the located mob")
-
-		notes_add(banckey,banreason,usr)
-		var/reason = DB_ban_record(bantype, playermob, banduration, banreason, banjob, null, banckey, banip, bancid )
-		if (playermob && playermob.client)
-			playermob << "<span class = 'danger'>You've been banned. Reason: [reason].</span>"
-			qdel(playermob.client)
-*/
 	else if (href_list["editrights"])
 		if (!check_rights(R_PERMISSIONS))
 			message_admins("[key_name_admin(usr)] attempted to edit the admin permissions without sufficient rights.")
@@ -117,7 +32,7 @@
 		var/datum/admins/D = admin_datums[adm_ckey]
 
 		if (task == "remove")
-			if (alert("Are you sure you want to remove [adm_ckey]?","Message","Yes","Cancel") == "Yes")
+			if (WWinput(usr, "Are you sure you want to remove [adm_ckey]?", "Remove Admin", "Yes", list("Yes","No")) == "Yes")
 				if (!D)	return
 				admin_datums -= adm_ckey
 				D.disassociate()
@@ -208,7 +123,7 @@
 		var/orig_client = M.client
 
 		var/delmob = FALSE
-		switch(alert("Delete old mob?","Message","Yes","No","Cancel"))
+		switch(WWinput(usr, "Delete old mob?", "Delete Mob", "Yes", list("Yes","No","Cancel")))
 			if ("Cancel")	return
 			if ("Yes")		delmob = TRUE
 
@@ -342,72 +257,7 @@
 		if (!isnum(mute_type))	return
 
 		cmd_admin_mute(M, mute_type)
-/*
-	else if (href_list["c_mode"])
-		if (!check_rights(R_ADMIN))	return
 
-		if (ticker && ticker.mode)
-			return alert(usr, "The game has already started.", null, null, null, null)
-		var/dat = {"<b>What mode do you wish to play?</b><HR>"}
-		for (var/mode in config.modes)
-			dat += {"<A href='?src=\ref[src];c_mode2=[mode]'>[config.mode_names[mode]]</A><br>"}
-		dat += {"<A href='?src=\ref[src];c_mode2=secret'>Secret</A><br>"}
-		dat += {"<A href='?src=\ref[src];c_mode2=random'>Random</A><br>"}
-		dat += {"Now: [master_mode]"}
-		usr << browse(dat, "window=c_mode")
-
-	else if (href_list["f_secret"])
-		if (!check_rights(R_ADMIN))	return
-
-		if (ticker && ticker.mode)
-			return alert(usr, "The game has already started.", null, null, null, null)
-		if (master_mode != "secret")
-			return alert(usr, "The game mode has to be secret!", null, null, null, null)
-		var/dat = {"<b>What game mode do you want to force secret to be? Use this if you want to change the game mode, but want the players to believe it's secret. This will only work if the current game mode is secret.</b><HR>"}
-		for (var/mode in config.modes)
-			dat += {"<A href='?src=\ref[src];f_secret2=[mode]'>[config.mode_names[mode]]</A><br>"}
-		dat += {"<A href='?src=\ref[src];f_secret2=secret'>Random (default)</A><br>"}
-		dat += {"Now: [secret_force_mode]"}
-		usr << browse(dat, "window=f_secret")
-
-	else if (href_list["c_mode2"])
-		if (!check_rights(R_ADMIN|R_SERVER))	return
-
-		if (ticker && ticker.mode)
-			return alert(usr, "The game has already started.", null, null, null, null)
-		master_mode = href_list["c_mode2"]
-		log_admin("[key_name(usr)] set the mode as [master_mode].")
-		message_admins("<span class = 'notice'>[key_name_admin(usr)] set the mode as [master_mode].</span>", TRUE)
-		world << "<span class = 'notice'><b>The mode is now: [master_mode]</b></span>"
-		game_panel() // updates the main game menu
-		world.save_mode(master_mode)
-		.(href, list("c_mode"=1))
-
-	else if (href_list["f_secret2"])
-		if (!check_rights(R_ADMIN|R_SERVER))	return
-
-		if (ticker && ticker.mode)
-			return alert(usr, "The game has already started.", null, null, null, null)
-		if (master_mode != "secret")
-			return alert(usr, "The game mode has to be secret!", null, null, null, null)
-		secret_force_mode = href_list["f_secret2"]
-		log_admin("[key_name(usr)] set the forced secret mode as [secret_force_mode].")
-		message_admins("<span class = 'notice'>[key_name_admin(usr)] set the forced secret mode as [secret_force_mode].</span>", TRUE)
-		game_panel() // updates the main game menu
-		.(href, list("f_secret"=1))
-
-	else if (href_list["monkeyone"])
-		if (!check_rights(R_SPAWN))	return
-
-		var/mob/living/carbon/human/H = locate(href_list["monkeyone"])
-		if (!istype(H))
-			usr << "This can only be used on instances of type /mob/living/carbon/human"
-			return
-
-		log_admin("[key_name(usr)] attempting to monkeyize [key_name(H)]")
-		message_admins("\blue [key_name_admin(usr)] attempting to monkeyize [key_name_admin(H)]", TRUE)
-		H.monkeyize()
-*/
 	else if (href_list["corgione"])
 		if (!check_rights(R_SPAWN))	return
 
@@ -448,17 +298,7 @@
 			log_admin("[key_name(usr)] healed / Rrvived [key_name(L)]")
 		else
 			usr << "Admin Rejuvinates have been disabled"
-/*
-	else if (href_list["makeslime"])
-		if (!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makeslime"])
-		if (!istype(H))
-			usr << "This can only be used on instances of type /mob/living/carbon/human"
-			return
-
-		usr.client.cmd_admin_slimeize(H)
-*/
 	else if (href_list["makeanimal"])
 		if (!check_rights(R_SPAWN))	return
 
@@ -468,19 +308,6 @@
 			return
 
 		usr.client.cmd_admin_animalize(M)
-
-	else if (href_list["togmutate"])
-		if (!check_rights(R_SPAWN))	return
-
-		var/mob/living/carbon/human/H = locate(href_list["togmutate"])
-		if (!istype(H))
-			usr << "This can only be used on instances of type /mob/living/carbon/human"
-			return
-		var/block=text2num(href_list["block"])
-		//testing("togmutate([href_list["block"]] -> [block])")
-		usr.client.cmd_admin_toggle_block(H,block)
-		show_player_panel(H)
-		//H.regenerate_icons()
 
 	else if (href_list["adminplayeropts"])
 		var/mob/M = locate(href_list["adminplayeropts"])
@@ -597,7 +424,7 @@
 	else if (href_list["getmob"])
 		if (!check_rights(R_ADMIN))	return
 
-		if (alert(usr, "Confirm?", "Message", "Yes", "No") != "Yes")	return
+		if (WWinput(usr, "Confirm?", "Message", "Yes", list("Yes", "No")) != "Yes")	return
 		var/mob/M = locate(href_list["getmob"])
 		usr.client.Getmob(M)
 
@@ -618,20 +445,7 @@
 
 		var/mob/M = locate(href_list["subtlemessage"])
 		usr.client.cmd_admin_subtle_message(M)
-/*
-	else if (href_list["traitor"])
-		if (!check_rights(R_ADMIN|R_MOD))	return
 
-		if (!ticker || !ticker.mode)
-			alert("The game hasn't started yet!")
-			return
-
-		var/mob/M = locate(href_list["traitor"])
-		if (!ismob(M))
-			usr << "This can only be used on instances of type /mob."
-			return
-		show_traitor_panel(M)
-*/
 	else if (href_list["create_object"])
 		if (!check_rights(R_SPAWN))	return
 		return create_object(usr)
@@ -733,10 +547,10 @@
 			paths += path
 
 		if (!paths)
-			alert("The path list you sent is empty")
+			WWalert(usr, "The path list you sent is empty", "Error")
 			return
 		if (length(paths) > 5)
-			alert("Select fewer object types, (max 5)")
+			WWalert(usr, "Select fewer object types, (max 5)", "Error")
 			return
 
 		var/list/offset = splittext(href_list["offset"],",")
