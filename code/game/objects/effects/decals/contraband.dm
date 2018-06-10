@@ -48,7 +48,7 @@
 	if (ruined)
 		return
 
-	switch(alert("Do I want to rip the poster from the wall?","You think...","Yes","No"))
+	switch(WWinput(user, "Do I want to rip the poster from the wall?", "You think...", "Yes", list("Yes", "No")))
 		if ("Yes")
 			if (!Adjacent(user))
 				return

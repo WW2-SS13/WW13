@@ -144,7 +144,7 @@
 
 /datum/mind/proc/edit_memory()
 	if (!ticker)
-		alert("Not before round-start!", "Alert")
+		WWalert(current, "Not before round-start!", "Alert")
 		return
 
 	var/out = "<b>[name]</b>[(current&&(current.real_name!=name))?" (as [current.real_name])":""]<br>"
