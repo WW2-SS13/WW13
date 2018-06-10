@@ -60,6 +60,11 @@
 							. = input(C, message, title, default) as num
 						else
 							. = input(C, message, title) as num
+					if ("color")
+						if (default)
+							. = input(C, message, title, default) as color
+						else
+							. = input(C, message, title) as color
 
 		else if (toc1 && toc2)
 			switch (toc1)
