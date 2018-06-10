@@ -42,18 +42,22 @@
 				choice = TRUE
 
 			if (choice)
-				. = input(C, message, title, default) in toc1
+				if (default)
+					. = input(C, message, title, default) in toc1
+				else
+					. = input(C, message, title) in toc1
 			else
 				switch (toc1)
 					if ("text")
-						. = input(C, message, title, default) as text
-					if ("num")
-						. = input(C, message, title, default) as num
-					else
-						if (istext(toc1))
+						if (default)
 							. = input(C, message, title, default) as text
-						if (isnum(toc1))
+						else
+							. = input(C, message, title) as text
+					if ("num")
+						if (default)
 							. = input(C, message, title, default) as num
+						else
+							. = input(C, message, title) as num
 
 		else if (toc1 && toc2)
 			switch (toc1)
@@ -79,7 +83,10 @@
 							else
 								toc2 -= toc1
 
-			. = input(C, message, title, default) in toc2
+			if (default)
+				. = input(C, message, title, default) in toc2
+			else
+				. = input(C, message, title) in toc2
 
 	C.using_WWinput = FALSE
 	return .
