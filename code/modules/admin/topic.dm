@@ -652,7 +652,7 @@
 		if (!check_rights(R_DEBUG))	return
 		var/client/C = isclient(usr) ? usr : usr.client
 		var/somevar = input(usr, "Debug what global variable?") as text
-		if (global.vars[somevar])
+		if (global.vars.Find(somevar)) // prevents runtimes
 			var/thing = global.vars[somevar]
 			if (isdatum(thing) || isclient(thing))
 				C.debug_variables(thing)
@@ -674,7 +674,7 @@
 	else if (href_list["modify_global"])
 		if (!check_rights(R_DEBUG))	return
 		var/somevar = input(usr, "Modify what global variable?") as text
-		if (global.vars[somevar])
+		if (global.vars.Find(somevar)) // prevents runtimes
 			var/thing = global.vars[somevar]
 			if (isdatum(thing) || isclient(thing) || islist(thing))
 				usr << "[somevar] is a datum, client, or list. You can't edit it here. For datums & clients, use the 'View/Debug a global' to edit their variables."
@@ -692,7 +692,7 @@
 	else if (href_list["modify_world_var"])
 		if (!check_rights(R_DEBUG))	return
 		var/somevar = input(usr, "Modify what world variable?") as text
-		if (world.vars[somevar])
+		if (world.vars.Find(somevar)) // prevents runtimes
 			var/thing = world.vars[somevar]
 			if (isdatum(thing) || isclient(thing) || islist(thing))
 				usr << "[somevar] is a datum, client, or list. You can't edit it here. For datums & clients, use the 'View/Debug a global' to edit their variables."
