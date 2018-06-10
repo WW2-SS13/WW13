@@ -151,14 +151,14 @@
 			usr << "You can't delete all of this type."
 			return
 
-		var/action_type = alert("Strict type ([AM.type]) or type and all subtypes?",,"Strict type","Type and subtypes","Cancel")
+		var/action_type = WWinput(src, "Strict type ([AM.type]) or type and all subtypes?", "Mass-deletion", "Strict type", list("Strict type","Type and subtypes","Cancel"))
 		if (action_type == "Cancel" || !action_type)
 			return
 
-		if (alert("Are you really sure you want to delete all objects of type [AM.type]?",,"Yes","No") != "Yes")
+		if (WWinput(src, "Are you really sure you want to delete all objects of type [AM.type]?", "Mass-deletion", "Yes", list("Yes","No")) != "Yes")
 			return
 
-		if (alert("Second confirmation required. Delete?",,"Yes","No") != "Yes")
+		if (WWinput(src, "Second confirmation required. Delete??", "Mass-deletion", "Yes", list("Yes","No")) != "Yes")
 			return
 
 		var/AM_type = AM.type
@@ -240,7 +240,9 @@
 			usr << "This can only be done to instances of type /mob/living/carbon/human"
 			return
 
-		if (alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
+		if (WWinput(usr, "Confirm mob type change?", "Transform", "Transform", list("Transform","Cancel")) != "Transform")
+			return
+
 		if (!H)
 			usr << "Mob doesn't exist anymore"
 			return
@@ -254,10 +256,13 @@
 			usr << "This can only be done to instances of type /mob/living/carbon/human"
 			return
 
-		if (alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
+		if (WWinput(usr, "Confirm mob type change?", "Transform", "Transform", list("Transform","Cancel")) != "Transform")
+			return
+
 		if (!H)
 			usr << "Mob doesn't exist anymore"
 			return
+
 		holder.Topic(href, list("makerobot"=href_list["makerobot"]))
 
 	else if (href_list["makeslime"])
@@ -268,7 +273,9 @@
 			usr << "This can only be done to instances of type /mob/living/carbon/human"
 			return
 
-		if (alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
+		if (WWinput(usr, "Confirm mob type change?", "Transform", "Transform", list("Transform","Cancel")) != "Transform")
+			return
+
 		if (!H)
 			usr << "Mob doesn't exist anymore"
 			return
@@ -282,7 +289,9 @@
 			usr << "This can only be done to instances of type /mob/living/carbon/human"
 			return
 
-		if (alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
+		if (WWinput(usr, "Confirm mob type change?", "Transform", "Transform", list("Transform","Cancel")) != "Transform")
+			return
+
 		if (!H)
 			usr << "Mob doesn't exist anymore"
 			return

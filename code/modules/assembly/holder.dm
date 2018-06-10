@@ -171,7 +171,7 @@
 				user << "<span class = 'red'>Assembly part missing!</span>"
 				return
 			if (istype(a_left,a_right.type))//If they are the same type it causes issues due to window code
-				switch(alert("Which side would you like to use?",,"Left","Right"))
+				switch(WWinput(user, "Which side would you like to use?", "Assembly", "Left", list("Left","Right")))
 					if ("Left")	a_left.attack_self(user)
 					if ("Right")	a_right.attack_self(user)
 				return

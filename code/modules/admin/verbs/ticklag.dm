@@ -15,7 +15,7 @@
 		world.tick_lag = newtick
 
 
-		switch(alert("Enable Tick Compensation?","Tick Comp is currently: [config.Tickcomp]","Yes","No"))
+		switch(WWinput(src, "Enable Tick Compensation?", "Tick Compensation is currently: [config.Tickcomp]", "Yes", list("Yes","No")))
 			if ("Yes")	config.Tickcomp = TRUE
 			else		config.Tickcomp = FALSE
 	else

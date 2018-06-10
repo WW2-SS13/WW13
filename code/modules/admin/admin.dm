@@ -533,7 +533,7 @@ proc/admin_notice(var/message, var/rights)
 	set desc="Start the round immediately"
 	set name="Start Now"
 	if (!ticker)
-		alert(usr, "Unable to start the game as it is not set up.", "Error")
+		WWalert(usr, "Unable to start the game as it is not set up.", "Error")
 		return
 	if (ticker.current_state == GAME_STATE_PREGAME)
 		if (!round_progressing)
@@ -607,7 +607,7 @@ proc/admin_notice(var/message, var/rights)
 		ticker.delay_end = !ticker.delay_end
 		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
 		message_admins("<span class = 'notice'>[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].</span>", TRUE)
-		return //alert("Round end delayed", null, null, null, null, null)
+		return
 	round_progressing = !round_progressing
 	if (!round_progressing)
 		if ((input(usr, "Delay the round indefinitely or temporarily?") in list("Indefinitely", "Temporarily")) == "Temporarily")
@@ -652,16 +652,10 @@ proc/admin_notice(var/message, var/rights)
 	set desc="Reboots the server post haste"
 	set name="Immediate Reboot"
 	if (!usr.client.holder)	return
-	if (WWinput(usr, "Reboot the server?", "Reboot", "No", list("Yes","No")) == "No")
+	if (WWinput(usr, "Reboot the server?", "Reboot", "Yes", list("Yes","No")) == "No")
 		return
 	world << "<span class = 'red'><b>Rebooting world!</b> <span class = 'notice'>Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!</span></span>"
 	log_admin("[key_name(usr)] initiated an immediate reboot.")
-
-
-
-
-
-
 	world.Reboot()
 
 /datum/admins/proc/unprison(var/mob/M in mob_list)
@@ -673,9 +667,9 @@ proc/admin_notice(var/message, var/rights)
 			message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]", TRUE)
 			log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
 		else
-			alert(usr, "Admin jumping is disabled.", "Denied")
+			WWalert(usr, "Admin jumping is disabled.", "Denied")
 	else
-		alert(usr, "[M.name] is not prisoned.", "Unprison")
+		WWalert(usr, "[M.name] is not prisoned.", "Unprison")
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
@@ -930,7 +924,7 @@ var/list/atom_types = null
 	if (tomob.ckey)
 		question = "This mob already has a user ([tomob.key]) in control of it! "
 	question += "Are you sure you want to place [frommob.name]([frommob.key]) in control of [tomob.name]?"
-	var/ask = WWinput(usr, question, "Place ghost in control of mob?", null, list("Yes", "No"))
+	var/ask = WWinput(usr, question, "Place ghost in control of mob?", "Yes", list("Yes", "No"))
 	if (ask != "Yes")
 		return TRUE
 	if (!frommob || !tomob) //make sure the mobs don't go away while we waited for a response
@@ -1001,3 +995,12 @@ var/list/atom_types = null
 			H.paralysis = FALSE
 			msg = "has unparalyzed [key_name(H)]."
 		log_and_message_admins(msg)
+
+/client/proc/reload_admins()
+	set name = "Reload Admins"
+	set category = "Debug"
+
+	if (!check_rights(R_SERVER))	return
+
+	message_admins("[key_name(usr)] manually reloaded admins")
+	load_admins(1)

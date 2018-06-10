@@ -18,13 +18,13 @@
 			char = input("Enter a single special character.\nYou may re-select the same characters.\nThe following characters are already in use by radio: ; : .\nThe following characters are already in use by special say commands: ! * ^", "Enter Character - [3 - keys.len] remaining") as null|text
 			if (char)
 				if (length(char) > 1)
-					alert(user, "Only single characters allowed.", "Error", "Ok")
+					WWalert(user, "Only single characters allowed.", "Error")
 				else if (char in list(";", ":", "."))
-					alert(user, "Radio character. Rejected.", "Error", "Ok")
+					WWalert(user, "Radio character. Rejected.", "Error")
 				else if (char in list("!","*", "^"))
-					alert(user, "Say character. Rejected.", "Error", "Ok")
+					WWalert(user, "Say character. Rejected.", "Error")
 				else if (contains_az09(char))
-					alert(user, "Non-special character. Rejected.", "Error", "Ok")
+					WWalert(user, "Non-special character. Rejected.", "Error")
 				else
 					keys.Add(char)
 		while (char && keys.len < 3)

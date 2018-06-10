@@ -197,7 +197,7 @@
 			src << "<span class = 'danger'>You're banned from observing.</span>"
 			return TRUE
 
-		if (alert(src,"Are you sure you wish to observe?","Player Setup","Yes","No") == "Yes")
+		if (WWinput(src, "Are you sure you wish to observe?", "Player Setup", "Yes", list("Yes","No")) == "Yes")
 			if (!client)	return TRUE
 			var/mob/observer/ghost/observer = new(150, 317, 1)
 
@@ -289,31 +289,21 @@
 		if (!ticker || ticker.current_state != GAME_STATE_PLAYING)
 			src << "<span class = 'red'>The round is either not ready, or has already finished.</span>"
 			return
-/*
-		if (!check_rights(R_ADMIN, FALSE))
-			var/datum/species/S = all_species[client.prefs.species]
 
-			if (!(S.spawn_flags & CAN_JOIN))
-				alert(src, "Your current species, [client.prefs.species], is not available for play on the station.")
-				return FALSE
-*/
 		if (client.next_normal_respawn > world.realtime && !config.no_respawn_delays)
 			var/wait = ceil((client.next_normal_respawn-world.realtime)/600)
 			if (check_rights(R_ADMIN, FALSE, src))
-				if ((input(src, "If you were a normal player, you would have to wait [wait] more minutes to respawn. Do you want to bypass this? You can still join as a reinforcement.") in list("Yes", "No")) == "Yes")
+				if ((WWinput(src, "If you were a normal player, you would have to wait [wait] more minutes to respawn. Do you want to bypass this? You can still join as a reinforcement.", "Admin Respawn", "Yes", list("Yes", "No"))) == "Yes")
 					var/msg = "[key_name(src)] bypassed a [wait] minute wait to respawn."
 					log_admin(msg)
 					message_admins(msg)
 					LateChoices()
 					return TRUE
-			alert(src, "Because you died in combat, you must wait [wait] more minutes to respawn. You can still join as a reinforcement.")
+			WWalert(src, "Because you died in combat, you must wait [wait] more minutes to respawn. You can still join as a reinforcement.", "Error")
 			return FALSE
 		LateChoices()
 		return TRUE
 
-/*
-	if (href_list["manifest"])
-		ViewManifest()*/
 
 	if (href_list["SelectedJob"])
 
@@ -353,19 +343,9 @@
 			usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
 			return
 
-/*		else if (ticker && ticker.mode && ticker.mode.explosion_in_progress)
-			usr << "<span class='danger'>The station is currently exploding. Joining would go poorly.</span>"
-			return*/
-
 		if (map && map.has_occupied_base(job_flag))
 			usr << "<span class = 'danger'>The enemy is currently occupying your base! You can't be deployed right now."
 			return
-
-		var/datum/species/S = all_species[client.prefs.species]
-
-		if (!(S.spawn_flags & CAN_JOIN))
-			alert(src, "Your current species, [client.prefs.species], is not available for play on the station.")
-			return FALSE
 
 		if (actual_job.is_officer)
 			if ((input(src, "This is an officer position. Are you sure you want to join in as a [actual_job.title]?") in list("Yes", "No")) == "No")
@@ -386,62 +366,7 @@
 			client.prefs.process_link(src, href_list)
 	else if (!href_list["late_join"])
 		new_player_panel()
-/*
-	if (href_list["showpoll"])
 
-		handle_player_polling()
-		return*/
-/*
-	if (href_list["pollid"])
-
-		var/pollid = href_list["pollid"]
-		if (istext(pollid))
-			pollid = text2num(pollid)
-		if (isnum(pollid))
-			poll_player(pollid)
-		return
-
-	if (href_list["votepollid"] && href_list["votetype"])
-		var/pollid = text2num(href_list["votepollid"])
-		var/votetype = href_list["votetype"]
-		switch(votetype)
-			if ("OPTION")
-				var/optionid = text2num(href_list["voteoptionid"])
-				vote_on_poll(pollid, optionid)
-			if ("TEXT")
-				var/replytext = href_list["replytext"]
-				log_text_poll_reply(pollid, replytext)
-			if ("NUMVAL")
-				var/id_min = text2num(href_list["minid"])
-				var/id_max = text2num(href_list["maxid"])
-
-				if ( (id_max - id_min) > 100 )	//Basic exploit prevention
-					usr << "The option ID difference is too big. Please contact administration or the database admin."
-					return
-
-				for (var/optionid = id_min; optionid <= id_max; optionid++)
-					if (!isnull(href_list["o[optionid]"]))	//Test if this optionid was replied to
-						var/rating
-						if (href_list["o[optionid]"] == "abstain")
-							rating = null
-						else
-							rating = text2num(href_list["o[optionid]"])
-							if (!isnum(rating))
-								return
-
-						vote_on_numval_poll(pollid, optionid, rating)
-			if ("MULTICHOICE")
-				var/id_min = text2num(href_list["minoptionid"])
-				var/id_max = text2num(href_list["maxoptionid"])
-
-				if ( (id_max - id_min) > 100 )	//Basic exploit prevention
-					usr << "The option ID difference is too big. Please contact administration or the database admin."
-					return
-
-				for (var/optionid = id_min; optionid <= id_max; optionid++)
-					if (!isnull(href_list["option_[optionid]"]))	//Test if this optionid was selected
-						vote_on_poll(pollid, optionid, TRUE)
-*/
 /mob/new_player/proc/IsJobAvailable(rank, var/list/restricted_choices = list())
 	var/datum/job/job = job_master.GetJob(rank)
 	if (!job)	return FALSE
@@ -505,7 +430,7 @@
 		return FALSE
 	if (!IsJobAvailable(rank))
 		if (!nomsg)
-			alert(src, "[rank] has already been taken by someone else.")
+			WWalert(src, "'[rank]' has already been taken by someone else.", "Error")
 		return FALSE
 
 	var/datum/job/job = job_master.GetJob(rank)

@@ -9,7 +9,7 @@
 	var/target = null
 	var/targetselected = FALSE
 
-	switch(alert("Proc owned by something?",, "Yes", "No", "Cancel"))
+	switch(alert(src, "Is the proc owned by something?", "Advanced Callproc", null, list("Yes", "No", "Cancel")))
 		if ("Yes")
 			targetselected=1
 			switch(input("Proc owned by...", "Owner", null) as null|anything in list("Obj", "Mob", "Area or Turf", "Client"))
@@ -118,7 +118,7 @@
 				if (!M) return
 				current = get_area(M)
 				if (!current)
-					switch(alert("\The [M] appears to not have an area; do you want to pass null instead?",, "Yes", "Cancel"))
+					switch(WWinput(src, "\The [M] appears to not have an area; do you want to pass null instead?", "Callproc", "Yes", list("Yes", "Cancel")))
 						if ("Yes")
 							; // do nothing
 						if ("Cancel")
@@ -127,7 +127,7 @@
 			if ("marked datum")
 				current = holder.marked_datum()
 				if (!current)
-					switch(alert("You do not currently have a marked datum; do you want to pass null instead?",, "Yes", "Cancel"))
+					switch(WWinput(src, "You do not currently have a marked datum; do you want to pass null instead?", "Callproc", "Yes", list("Yes", "Cancel")))
 						if ("Yes")
 							; // do nothing
 						if ("Cancel")

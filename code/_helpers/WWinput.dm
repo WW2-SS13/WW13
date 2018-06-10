@@ -34,7 +34,7 @@
 	C.stopmovingright()
 
 	if (!toc1 && !toc2)
-		alert(C, message, title)
+		alert(C, message, title, "Continue")
 		. = TRUE
 	else
 		// no, this is bad

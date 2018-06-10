@@ -25,7 +25,7 @@
 		if (path != root)
 			choices.Insert(1,"/")
 
-		var/choice = WWinput(src, "Choose a file to access:", "Download" ,null, choices|list("Cancel"))
+		var/choice = WWinput(src, "Choose a file to access:", "Download" , WWinput_first_choice(choices), choices|list("Cancel"))
 		switch(choice)
 			if ("Cancel")
 				return

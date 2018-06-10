@@ -12,7 +12,7 @@
 
 /obj/structure/window/sandbag/attack_hand(var/mob/user as mob)
 	if (locate(src) in get_step(user, user.dir))
-		if (alert(user, "Dismantle the sandbag?", "", "Continue", "Stop") == "Continue")
+		if (WWinput(user, "Dismantle this sandbag?", "Dismantle Sandbag", "Yes", list("Yes", "No")) == "Yes")
 			visible_message("<span class='danger'>[user] starts dismantling the sandbag wall.</span>", "<span class='danger'>You start dismantling the sandbag wall.</span>")
 			if (do_after(user, 200, src))
 				visible_message("<span class='danger'>[user] finishes dismantling the sandbag wall.</span>", "<span class='danger'>You finish dismantling the sandbag wall.</span>")
