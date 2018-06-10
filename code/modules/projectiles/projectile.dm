@@ -338,7 +338,7 @@
 		helmet_protection = 15
 
 	// less damage, no headgibs
-	if (target_mob.takes_less_damage || prob((100 - mygun.headshot_kill_chance)+helmet_protection))
+	if (target_mob.takes_less_damage || (prob((100 - mygun.headshot_kill_chance)+helmet_protection) && target_mob.stat == CONSCIOUS))
 		switch (damage)
 			if (DAMAGE_LOW-5 to DAMAGE_LOW+5)
 				damage = DAMAGE_LOW - 6
