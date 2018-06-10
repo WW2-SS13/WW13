@@ -36,7 +36,7 @@ var/movementMachine/movementMachine = null
 			// this try-catch block is here now because apparently client can be something that isn't a client, causing the game to crash
 			try
 
-				if (client && client:type == /client && !isDeleted(client))
+				if (client && client:type == /client && !client:movement_busy && !isDeleted(client))
 
 					var/mob/M = client:mob
 
@@ -60,13 +60,13 @@ var/movementMachine/movementMachine = null
 							// hack to let other clients Move() earlier
 							spawn (0)
 								if (M && M.client)
+									M.client.movement_busy = TRUE
 									M.client.Move(get_step(M, movedir), movedir, diag)
-									M.client.canmove = FALSE
 									// remove this client from movementMachine_clients until it needs to be in it again. This makes the amount of loops to be done the absolute minimum
 									movementMachine_clients -= M.client
 									spawn ((M.client.move_delay - world.time))
 										if (M && M.client)
-											M.client.canmove = TRUE
+											M.client.movement_busy = FALSE
 											movementMachine_clients += M.client
 					else
 						mob_list -= M
