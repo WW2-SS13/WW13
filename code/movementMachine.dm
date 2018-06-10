@@ -36,7 +36,7 @@ var/movementMachine/movementMachine = null
 			// this try-catch block is here now because apparently client can be something that isn't a client, causing the game to crash
 			try
 
-				if (client && client:type == /client && !isDeleted(client))
+				if (client && client:type == /client && !client:using_WWinput && !isDeleted(client))
 
 					var/mob/M = client:mob
 
