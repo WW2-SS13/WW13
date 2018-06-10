@@ -653,6 +653,6 @@ var/list/vocal_emotes = list(
 				custom_emote(m_type,message)
 
 		if (vocal_emotes.Find(act))
-			next_emote["vocal"] = world.time + 50
+			next_emote["vocal"] = world.time + 30
 		else
 			next_emote["normal"] = world.time + 30
