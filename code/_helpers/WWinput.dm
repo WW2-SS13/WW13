@@ -4,8 +4,6 @@
  	* 2. Stopping mob movement while an alert/input window is active
 */
 
-/client/var/using_WWinput = FALSE
-
 /* Note the toc1, toc2 args here. These are short for "type_or_choices". When neither are defined, we just go to alert().
  * When both are defined, toc1 will be the type argument, toc2 will be the choices (list) argument, mimicing the traditional BYOND input construct of "as type in list".
  * toc2 should never be defined unless toc1 is also defined, or the proc will return FALSE and do nothing. When toc1 is the only argument of the two
@@ -26,7 +24,11 @@
 			client = client:client
 
 	var/client/C = client
-	C.using_WWinput = TRUE
+
+	C.stopmovingup()
+	C.stopmovingdown()
+	C.stopmovingleft()
+	C.stopmovingright()
 
 	if (!toc1 && !toc2)
 		alert(C, message, title)
@@ -88,7 +90,6 @@
 			else
 				. = input(C, message, title) in toc2
 
-	C.using_WWinput = FALSE
 	return .
 
 // alias for WWinput that only accepts the first three arguments. Use it for giving informative popups. Unlike BYOND's alert(), it may not be used for getting user input.
