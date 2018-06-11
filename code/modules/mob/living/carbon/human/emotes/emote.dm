@@ -22,6 +22,12 @@ var/list/vocal_emotes = list(
 	else if (vocal_emotes.Find(act) && world.time < next_emote["vocal"])
 		return
 
+	// putting this here stops spam screaming
+	if (vocal_emotes.Find(act))
+		next_emote["vocal"] = world.time + 30
+	else
+		next_emote["normal"] = world.time + 30
+
 	// no more screaming when you shoot yourself
 	var/do_after = 0
 	if (act == "scream")
@@ -651,8 +657,3 @@ var/list/vocal_emotes = list(
 				custom_emote(m_type,message,"userdanger")
 			else
 				custom_emote(m_type,message)
-
-		if (vocal_emotes.Find(act))
-			next_emote["vocal"] = world.time + 30
-		else
-			next_emote["normal"] = world.time + 30
