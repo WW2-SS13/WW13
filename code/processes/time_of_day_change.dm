@@ -28,7 +28,7 @@
 
 	var/turfs_len = my_turfs.len // this makes things faster and it works because single-threadedness
 
-	#define DIVISOR 150 // less lag
+	#define DIVISOR 100 // less lag
 
 	for (var/v in 1 to turfs_len)
 		spawn (ceil(v/DIVISOR)) // 100,000 turfs = 50 seconds (when DIVISOR = 200)
