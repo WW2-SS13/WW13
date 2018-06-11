@@ -207,11 +207,10 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 							default = map
 						map = capitalize(lowertext(map))
 						choices.Add(map)
-						if (clients.len < processes.mapswap.maps[map])
-							disabled[map] = "[processes.mapswap.maps[map]] players"
 						choices[map] = 0
-	//			if ("gamemode")
-	//				choices = mapswap.modes[mapswap.next_map]
+					for (var/map in processes.mapswap.maps)
+						if (clients.len < processes.mapswap.maps[map])
+							disabled[capitalize(lowertext(map))] = "[processes.mapswap.maps[map]] players needed"
 				if ("custom")
 					question = cp1251_to_utf8(rhtml_encode(input(usr,"What is the vote for?") as text|null))
 					if (!question)	return FALSE
@@ -266,7 +265,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 			. += "<table width = '100%'><tr><td align = 'center'><b>Choices</b></td><td align = 'center'><b>Votes</b></td>"
 			if (capitalize(mode) == "Gamemode") .+= "<td align = 'center'><b>Minimum Players</b></td></tr>"
 
-			for (var/i = TRUE, i <= choices.len, i++)
+			for (var/i = 1, i <= choices.len, i++)
 				var/votes = choices[choices[i]]
 				if (!votes)	votes = 0
 				. += "<tr>"

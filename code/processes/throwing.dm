@@ -24,8 +24,9 @@
 								if (AM.error < 0)
 									var/atom/step = get_step(AM, AM.dy)
 									if (!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
-										break
-									if (map.check_prishtina_block(AM.thrower, get_turf(step)) && !map.allow_bullets_through_blocks.Find(get_area(step):type))
+										thrown_list -= AM
+										continue
+									if (map.check_prishtina_block(AM.thrower, get_turf(step)) && (!map.allow_bullets_through_blocks.Find(get_area(step):type) || ismob(AM)))
 										if (istype(AM, /obj/item/weapon/grenade))
 											var/obj/item/weapon/grenade/G = AM
 											G.active = FALSE
@@ -33,7 +34,8 @@
 											var/obj/item/weapon/reagent_containers/food/drinks/bottle/B = AM
 											if (B.rag)
 												B.rag.on_fire = FALSE
-										break
+										thrown_list -= AM
+										continue
 
 									var/canMove = TRUE
 									for (var/obj/structure/S in step)
@@ -51,12 +53,14 @@
 								else
 									var/atom/step = get_step(AM, AM.dx)
 									if (!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
-										break
-									if (map.check_prishtina_block(AM.thrower, get_turf(step)) && !map.allow_bullets_through_blocks.Find(get_area(step):type))
+										thrown_list -= AM
+										continue
+									if (map.check_prishtina_block(AM.thrower, get_turf(step)) && (!map.allow_bullets_through_blocks.Find(get_area(step):type) || ismob(AM)))
 										if (istype(AM, /obj/item/weapon/grenade))
 											var/obj/item/weapon/grenade/G = AM
 											G.active = FALSE
-										break
+										thrown_list -= AM
+										continue
 									var/canMove = TRUE
 									for (var/obj/structure/S in step)
 										if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
@@ -78,12 +82,14 @@
 								if (AM.error < 0)
 									var/atom/step = get_step(AM, AM.dx)
 									if (!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
-										break
-									if (map.check_prishtina_block(AM.thrower, get_turf(step)) && !map.allow_bullets_through_blocks.Find(get_area(step):type))
+										thrown_list -= AM
+										continue
+									if (map.check_prishtina_block(AM.thrower, get_turf(step)) && (!map.allow_bullets_through_blocks.Find(get_area(step):type) || ismob(AM)))
 										if (istype(AM, /obj/item/weapon/grenade))
 											var/obj/item/weapon/grenade/G = AM
 											G.active = FALSE
-										break
+										thrown_list -= AM
+										continue
 									var/canMove = TRUE
 									for (var/obj/structure/S in step)
 										if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
@@ -99,12 +105,14 @@
 								else
 									var/atom/step = get_step(AM, AM.dy)
 									if (!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
-										break
-									if (map.check_prishtina_block(AM.thrower, get_turf(step)) && !map.allow_bullets_through_blocks.Find(get_area(step):type))
+										thrown_list -= AM
+										continue
+									if (map.check_prishtina_block(AM.thrower, get_turf(step)) && (!map.allow_bullets_through_blocks.Find(get_area(step):type) || ismob(AM)))
 										if (istype(AM, /obj/item/weapon/grenade))
 											var/obj/item/weapon/grenade/G = AM
 											G.active = FALSE
-										break
+										thrown_list -= AM
+										continue
 									var/canMove = TRUE
 									for (var/obj/structure/S in step)
 										if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
@@ -124,6 +132,10 @@
 
 				catch (var/exception/e)
 					catchException(e, AM)
+					if (AM)
+						AM.finished_throwing()
+			else
+				thrown_list -= AM
 		else
 			catchBadType(AM)
 			thrown_list -= AM

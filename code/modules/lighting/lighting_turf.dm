@@ -185,18 +185,20 @@
 	. = 1.00
 	if (src_area && src_area.location == AREA_INSIDE)
 		. = 0.0
+
 		if (iswall_check_cache == -1)
 			iswall_check_cache = (iswall(src) && type != /turf/wall/rockwall)
-		if (iswall_check_cache || locate_dense_type(contents, /obj/structure) || locate_type(contents, /obj/structure/window/classic))
+
+		if (iswall_check_cache || locate_type(contents, /obj/structure/window/classic) || locate_dense_type(contents, /obj/structure))
 			var/counted = 0
+			// a turf found in range() of another turf can only be contained in an area: so don't use expensive get_area() checks. if (T.loc) is probably unneeded but oh well
 			for (var/turf/T in orange(1, src))
-				var/area/T_area = get_area(T)
-				if (T_area.location == AREA_OUTSIDE || T_area.type == /area/prishtina/void)
+				if (T.loc && (T.loc:location == AREA_OUTSIDE || T.loc.type == /area/prishtina/void))
 					. += 0.25
 				++counted
 			// count null turfs as outside
 			. += ((8-counted) * 0.25)
-		if (!istype(src, /turf/wall/rockwall))
+		if (type != /turf/wall/rockwall)
 			. = max(., 0.25) // more natural than pure darkness - only lag-free solution
 	window_coeff = min(., 1.00)
 	return window_coeff
