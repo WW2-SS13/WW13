@@ -322,6 +322,7 @@
 #include "code\game\objects\map_metadata\forest.dm"
 #include "code\game\objects\map_metadata\pillar.dm"
 #include "code\game\objects\map_metadata\test.dm"
+#include "code\game\objects\map_metadata\tower.dm"
 #include "code\game\objects\structures\barricades.dm"
 #include "code\game\objects\structures\bedsheet_bin.dm"
 #include "code\game\objects\structures\bookcase.dm"
