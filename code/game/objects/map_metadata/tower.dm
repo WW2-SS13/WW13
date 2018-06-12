@@ -1,7 +1,7 @@
 /obj/map_metadata/tower
 	ID = MAP_TOWER
 	title = "Tower (100x100x1)"
-	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall)
+	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall/inside)
 	respawn_delay = 1200
 	squad_spawn_locations = FALSE
 	supply_points_per_tick = list(
