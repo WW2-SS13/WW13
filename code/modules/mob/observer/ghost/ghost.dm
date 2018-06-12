@@ -181,7 +181,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else
 		var/response
 		if (client && client.holder)
-			response = alert(src, "You have the ability to Admin-Ghost. The regular Ghost verb will announce your presence to dead chat. Both variants will allow you to return to your body using 'aghost'.\n\nWhat do you wish to do?", "Are you sure you want to ghost?", "Ghost", "Admin Ghost", "Stay in body")
+			response = WWinput(src, "You have the ability to Admin-Ghost. The regular Ghost verb will announce your presence to dead chat. Both variants will allow you to return to your body using 'aghost'.\n\nWhat do you wish to do?", "Are you sure you want to ghost?", "Ghost", list("Ghost", "Admin Ghost", "Stay in body"))
 			if (response == "Admin Ghost")
 				if (!client)
 					return
@@ -190,7 +190,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 					H.handle_zoom_stuff(TRUE)
 				client.admin_ghost()
 		else
-			response = alert(src, "Are you sure you want to ghost?\n(You may respawn with the 'Respawn' verb in the IC tab)", "Are you sure you want to ghost?", "Ghost", "Stay in body")
+			response = WWinput(src, "Are you sure you want to ghost?\n(You may respawn with the 'Respawn' verb in the IC tab)", "Are you sure you want to ghost?", "Ghost", list("Ghost", "Stay in body"))
 		if (response != "Ghost")
 			return
 		if (getTotalLoss() < 100 || restrained())
@@ -260,35 +260,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else
 		medHUD = TRUE
 		src << "<span class = 'notice'><b>Medical HUD Enabled</b></span>"
-/*
-/mob/observer/ghost/verb/toggle_antagHUD()
-	set category = "Ghost"
-	set name = "Toggle AntagHUD"
-	set desc = "Toggles AntagHUD allowing you to see who is the antagonist"
 
-	if (!client)
-		return
-	var/mentor = is_mentor(usr.client)
-	if (!config.antag_hud_allowed && (!client.holder || mentor))
-		src << "\red Admins have disabled this for this round."
-		return
-	var/mob/observer/ghost/M = src
-	if (jobban_isbanned(M, "AntagHUD"))
-		src << "\red <b>You have been banned from using this feature</b>"
-		return
-	if (config.antag_hud_restricted && !M.has_enabled_antagHUD && (!client.holder || mentor))
-		var/response = alert(src, "If you turn this on, you will not be able to take any part in the round.","Are you sure you want to turn this feature on?","Yes","No")
-		if (response == "No") return
-		M.can_reenter_corpse = FALSE
-	if (!M.has_enabled_antagHUD && (!client.holder || mentor))
-		M.has_enabled_antagHUD = TRUE
-	if (M.antagHUD)
-		M.antagHUD = FALSE
-		src << "\blue <b>AntagHUD Disabled</b>"
-	else
-		M.antagHUD = TRUE
-		src << "\blue <b>AntagHUD Enabled</b>"
-*/
 /mob/observer/ghost/proc/dead_tele(A in ghostteleportlocs)
 	set category = "Ghost"
 	set name = "Teleport"
@@ -621,7 +593,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		src << "<span class='warning'>You may not spawn as a mouse on this Z-level.</span>"
 		return
 
-	var/response = alert(src, "Are you -sure- you want to become a mouse?","Are you sure you want to squeek?","Squeek!","Nope!")
+	var/response = WWinput(src, "Are you sure you want to become a mouse?", "Become Mouse", "Yes", list("Yes", "No"))
 	if (response != "Squeek!") return  //Hit the wrong key...again.
 
 

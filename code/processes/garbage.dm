@@ -266,7 +266,7 @@ var/list/delayed_garbage = list()
 		usr.client.running_find_references = null
 		return
 
-	if (alert("Running this will create a lot of lag until it finishes.  You can cancel it by running it again.  Would you like to begin the search?", "Find References", "Yes", "No") == "No")
+	if (WWinput(usr, "Running this will create a lot of lag until it finishes.  You can cancel it by running it again.  Would you like to begin the search?", "Find References", "Yes", list("Yes", "No")) == "No")
 		return
 
 	// Remove this object from the list of things to be auto-deleted.

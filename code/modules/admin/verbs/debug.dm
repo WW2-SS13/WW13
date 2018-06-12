@@ -46,15 +46,15 @@
 	set name = "Make Simple Animal"
 
 	if (!ticker)
-		alert("Wait until the game starts")
+		WWalert(src, "Wait until the game starts.", "Make Simple Animal")
 		return
 
 	if (!M)
-		alert("That mob doesn't seem to exist, close the panel and try again.")
+		WWalert(src, "That mob doesn't seem to exist; please close the panel and try again.", "Make Simple Animal")
 		return
 
 	if (istype(M, /mob/new_player))
-		alert("The mob must not be a new_player.")
+		WWalert(src, "The mob must not be a new_player.", "Make Simple Animal")
 		return
 
 	log_admin("[key_name(src)] has animalized [M.key].")
@@ -100,7 +100,7 @@
 
 	if (!check_rights(R_DEBUG|R_ADMIN))	return
 	if (M.ckey)
-		if (alert("This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.",,"Yes","No") != "Yes")
+		if (WWinput(src, "This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.", "Assume Direct Control", "Yes", list("Yes","No")) != "Yes")
 			return
 		else
 			var/mob/observer/ghost/ghost = new/mob/observer/ghost(M,1)
@@ -408,23 +408,6 @@
 		if ("Clients")
 			usr << jointext(clients,",")
 
-// DNA2 - Admin Hax
-/client/proc/cmd_admin_toggle_block(var/mob/M,var/block)
-	return
-/*	if (!ticker)
-		alert("Wait until the game starts")
-		return
-	if (istype(M, /mob/living/carbon))
-		M.dna.SetSEState(block,!M.dna.GetSEState(block))
-		domutcheck(M,null,MUTCHK_FORCED)
-		M.update_mutations()
-		var/state="[M.dna.GetSEState(block)?"on":"off"]"
-		var/blockname=assigned_blocks[block]
-		message_admins("[key_name_admin(src)] has toggled [M.key]'s [blockname] block [state]!")
-		log_admin("[key_name(src)] has toggled [M.key]'s [blockname] block [state]!")
-	else
-		alert("Invalid mob")
-*/
 /client/proc/removeEmptyCases()
 	set category = "Debug"
 	set name = "Remove empty bullet casings"

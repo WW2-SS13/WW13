@@ -111,35 +111,26 @@
 	visual = "gold"
 	// desc: todo
 
-/obj/item/weapon/storage/fancy/medalcase_german
+/obj/item/weapon/storage/medal_case
 	name = "Medal case"
+	desc = "A case full of medals granted to the bravest soldiers."
+	icon = 'icons/obj/cigarettes.dmi'
+	icon_state = "cigarcase"
+	item_state = "cigarcase"
+	w_class = 2
+	max_w_class = 2
+	storage_slots = 50
+	max_storage_space = 100
+	can_hold = list(/obj/item/clothing/accessory/medal/WW2)
+	throwforce = WEAPON_FORCE_HARMLESS
+
+/obj/item/weapon/storage/medal_case/New()
+	..()
+	spawn (5)
+		for (var/obj/item/clothing/accessory/medal/WW2/medal in loc)
+			medal.loc = src
+
+/obj/item/weapon/storage/medal_case/german
 	desc = "A case full of medals granted to the bravest Wehrmacht soldiers."
-	icon_state = "cigarcase"
-	item_state = "cigarcase"
-	icon_type = "cigar"
-	icon = 'icons/obj/cigarettes.dmi'
-	w_class = 2
-	throwforce = WEAPON_FORCE_HARMLESS
-	storage_slots = 50
-	can_hold = list(/obj/item/clothing/accessory/medal/WW2)
-
-/obj/item/weapon/storage/fancy/medalcase_german/New()
-	..()
-	for (var/obj/item/clothing/accessory/medal/WW2/medal in loc)
-		medal.loc = src
-
-/obj/item/weapon/storage/fancy/medalcase_soviet
-	name = "Medal case"
+/obj/item/weapon/storage/medal_case/soviet
 	desc = "A case full of medals granted to the bravest Red Army soldiers."
-	icon_state = "cigarcase"
-	item_state = "cigarcase"
-	icon = 'icons/obj/cigarettes.dmi'
-	w_class = 2
-	throwforce = WEAPON_FORCE_HARMLESS
-	storage_slots = 50
-	can_hold = list(/obj/item/clothing/accessory/medal/WW2)
-
-/obj/item/weapon/storage/fancy/medalcase_soviet/New()
-	..()
-	for (var/obj/item/clothing/accessory/medal/WW2/medal in loc)
-		medal.loc = src

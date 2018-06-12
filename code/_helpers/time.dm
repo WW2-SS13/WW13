@@ -14,9 +14,9 @@
 #define TimeOfTick (world.tick_usage*0.01*world.tick_lag)
 
 /proc/get_game_time()
-	var/global/time_offset = FALSE
-	var/global/last_time = FALSE
-	var/global/last_usage = FALSE
+	var/global/time_offset = 0
+	var/global/last_time = 0
+	var/global/last_usage = 0
 
 	var/wtime = world.time
 	var/wusage = world.tick_usage * 0.01

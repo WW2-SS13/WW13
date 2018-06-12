@@ -15,6 +15,9 @@
 
 /proc/WWinput(client, message, title, default, toc1, toc2)
 
+	if (!title)
+		title = "Lebensraum"
+
 	. = FALSE
 
 	if (!isclient(client))
@@ -31,7 +34,7 @@
 	C.stopmovingright()
 
 	if (!toc1 && !toc2)
-		alert(C, message, title)
+		alert(C, message, title, "Continue")
 		. = TRUE
 	else
 		// no, this is bad
@@ -60,6 +63,11 @@
 							. = input(C, message, title, default) as num
 						else
 							. = input(C, message, title) as num
+					if ("color")
+						if (default)
+							. = input(C, message, title, default) as color
+						else
+							. = input(C, message, title) as color
 
 		else if (toc1 && toc2)
 			switch (toc1)

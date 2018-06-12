@@ -14,7 +14,7 @@
 		return
 
 	if (!showed_mentorhelp_popup)
-		alert(src, "Before asking for help, please click each of the buttons at the top right of your screen.")
+		WWalert(src, "Before asking for help, please click each of the buttons at the top right of your screen.", "Mentorhelp")
 		showed_mentorhelp_popup = TRUE
 
 	mentorhelped = TRUE //Determines if they get the message to reply by clicking the name.

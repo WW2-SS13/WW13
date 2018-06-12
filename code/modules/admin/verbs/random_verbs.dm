@@ -5,7 +5,7 @@
 		src << "Only administrators may use this command."
 		return
 
-	var/confirm = alert(src, "Make [M] drop everything?", "Message", "Yes", "No")
+	var/confirm = WWinput(src, "Make [M] drop everything?", null, "Yes", list("Yes", "No"))
 	if (confirm != "Yes")
 		return
 
@@ -14,33 +14,7 @@
 
 	log_admin("[key_name(usr)] made [key_name(M)] drop everything!")
 	message_admins("[key_name_admin(usr)] made [key_name_admin(M)] drop everything!", TRUE)
-/*
-/client/proc/cmd_admin_prison(mob/M as mob in mob_list)
-	set category = "Admin"
-	set name = "Prison"
-	if (!holder)
-		src << "Only administrators may use this command."
-		return
-	if (ismob(M))
-		if (istype(M, /mob/living/silicon/ai))
-			alert("The AI can't be sent to prison you jerk!", null, null, null, null, null)
-			return
-		//strip their stuff before they teleport into a cell :downs:
-		for (var/obj/item/W in M)
-			M.drop_from_inventory(W)
-		//teleport person to cell
-		M.Paralyse(5)
-		sleep(5)	//so they black out before warping
-		M.loc = pick(prisonwarp)
-		if (istype(M, /mob/living/carbon/human))
-			var/mob/living/carbon/human/prisoner = M
-			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), slot_w_uniform)
-			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/color/orange(prisoner), slot_shoes)
-		spawn(50)
-			M << "<span class = 'red'>You have been sent to the prison station!</span>"
-		log_admin("[key_name(usr)] sent [key_name(M)] to the prison station.")
-		message_admins("<span class = 'notice'>[key_name_admin(usr)] sent [key_name_admin(M)] to the prison station.</span>", TRUE)
-*/
+
 
 /client/proc/cmd_admin_subtle_message(mob/M as mob in mob_list)
 	set category = "Special"
@@ -70,7 +44,7 @@
 	if (!holder)
 		src << "Only staff members may use this command."
 
-	var/age = alert(src, "Age check", "Show accounts yonger then _____ days","7", "30" , "All")
+	var/age = WWinput(src, "Age check", "Show accounts yonger then ___ days", "7", list("7", "30" , "All"))
 
 	if (age == "All")
 		age = 9999999
@@ -246,7 +220,7 @@ Ccomp's first proc.
 
 	var/mob/observer/ghost/G = ghosts[target]
 	if (G.has_enabled_antagHUD && config.antag_hud_restricted)
-		var/response = alert(src, "Are you sure you wish to allow this individual to play?","Ghost has used AntagHUD","Yes","No")
+		var/response = WWinput(src, "Are you sure you wish to allow this individual to play?", "Ghost has used AntagHUD", "No", list("Yes","No"))
 		if (response == "No") return
 	G.timeofdeath=-19999						/* time of death is checked in /mob/verb/abandon_mob() which is the Respawn verb.
 									   timeofdeath is used for bodies on autopsy but since we're messing with a ghost I'm pretty sure
@@ -348,24 +322,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	var/mob/living/carbon/human/new_character = new(pick(latejoin))//The mob being spawned.
 
-//	var/datum/data/record/record_found			//Referenced to later to either randomize or not randomize the character.
-
-/*	if (G_found.mind && !G_found.mind.active)	//mind isn't currently in use by someone/something
-		/*Try and locate a record for the person being respawned through data_core.
-		This isn't an exact science but it does the trick more often than not.*/
-		var/id = md5("[G_found.real_name][G_found.mind.assigned_role]")
-		for (var/datum/data/record/t in data_core.locked)
-			if (t.fields["id"]==id)
-				record_found = t//We shall now reference the record.
-				break
-*/
-/*
-	if (record_found)//If they have a record we can determine a few things.
-		new_character.real_name = record_found.fields["name"]
-		new_character.gender = record_found.fields["sex"]
-		new_character.age = record_found.fields["age"]
-		new_character.b_type = record_found.fields["b_type"]
-	else*/
 
 	new_character.gender = pick(MALE,FEMALE)
 	var/datum/preferences/A = new()
@@ -387,18 +343,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if (!new_character.mind.assigned_role)	new_character.mind.assigned_role = "Assistant"//If they somehow got a null assigned role.
 
 	//DNA
-	/*
-	if (record_found)//Pull up their name from database records if they did have a mind.
-		new_character.dna = new()//Let's first give them a new DNA.
-		new_character.dna.unique_enzymes = record_found.fields["b_dna"]//Enzymes are based on real name but we'll use the record for conformity.
-
-		// I HATE BYOND.  HATE.  HATE. - N3X
-		var/list/newSE= record_found.fields["enzymes"]
-		var/list/newUI = record_found.fields["identity"]
-		new_character.dna.SE = newSE.Copy() //This is the default of enzymes so I think it's safe to go with.
-		new_character.dna.UpdateSE()
-		new_character.UpdateAppearance(newUI.Copy())//Now we configure their appearance based on their unique identity, same as with a DNA machine or somesuch.
-	else*///If they have no records, we just do a random DNA for them, based on their random appearance/savefile.
 	new_character.dna.ready_dna(new_character)
 
 	new_character.key = G_found.key
@@ -413,24 +357,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/admin = key_name_admin(src)
 	var/player_key = G_found.key
 
-/*	//Now for special roles and equipment.
-	var/datum/antagonist/antag_data = get_antag_data(new_character.mind.special_role)
-	if (antag_data)
-		antag_data.add_antagonist(new_character.mind)
-		antag_data.place_mob(new_character)
-	else*/
 	job_master.EquipRank(new_character, new_character.mind.assigned_role, TRUE)
-/*
-	//Announces the character on all the systems, based on the record.
-	if (!issilicon(new_character))//If they are not a cyborg/AI.
-		if (!record_found && !player_is_antag(new_character.mind, only_offstation_roles = TRUE)) //If there are no records for them. If they have a record, this info is already in there. MODE people are not announced anyway.
-			//Power to the user!
-			/*if (alert(new_character,"Warning: No data core entry detected. Would you like to announce the arrival of this character by adding them to various databases, such as medical records?",,"No","Yes")=="Yes")
-				data_core.manifest_inject(new_character)*/
 
-			if (alert(new_character,"Would you like an active AI to announce this character?",,"No","Yes")=="Yes")
-				call(/proc/AnnounceArrival)(new_character, new_character.mind.assigned_role)
-*/
 	message_admins("<span class = 'notice'>[admin] has respawned [player_key] as [new_character.real_name].</span>", TRUE)
 
 	new_character << "You have been fully respawned. Enjoy the game."
@@ -447,14 +375,14 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if (!mob)
 		return
 	if (!istype(M))
-		alert("Cannot revive a ghost")
+		WWalert(src, "Cannot revive a ghost", "Rejuvenate - Error")
 		return
 	if (config.allow_admin_rev)
 		M.revive()
 		log_admin("[key_name(usr)] healed / revived [key_name(M)]")
 		message_admins("<span class = 'red'>Admin [key_name_admin(usr)] healed / revived [key_name_admin(M)]!</span>", TRUE)
 	else
-		alert("Admin revive disabled")
+		WWalert(src, "Admin rejuvenation is disabled.", "Admin Rejuvenation")
 
 
 /client/proc/cmd_admin_create_centcom_report()
@@ -470,7 +398,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		src << "Only administrators may use this command."
 		return
 
-	if (alert(src, "Are you sure you want to delete:\n[O]\nat ([O.x], [O.y], [O.z])?", "Confirmation", "Yes", "No") == "Yes")
+	if (WWinput(src, "Are you sure you want to delete:\n[O]\nat ([O.x], [O.y], [O.z])?", "Deletion Confirmation", "Yes", list("Yes", "No")) == "Yes")
 		log_admin("[key_name(usr)] deleted [O] at ([O.x],[O.y],[O.z])")
 		message_admins("[key_name_admin(usr)] deleted [O] at ([O.x],[O.y],[O.z])", TRUE)
 
@@ -488,7 +416,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		src << "You need a mob to get something."
 		return
 
-	if (alert(src, "Are you sure you want to get:\n[O]\nat ([O.x], [O.y], [O.z])?", "Confirmation", "Yes", "No") == "Yes")
+	if (WWinput(src, "Are you sure you want to get:\n[O]\nat ([O.x], [O.y], [O.z])?", "Get Confirmation", "Yes", list("Yes", "No")) == "Yes")
 		O.loc = get_turf(mob)
 
 /client/proc/cmd_admin_list_open_jobs()
@@ -520,7 +448,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if ((devastation != -1) || (heavy != -1) || (light != -1) || (flash != -1))
 		if ((devastation > 20) || (heavy > 20) || (light > 20))
-			if (alert(src, "Are you sure you want to do this? It will laaag.", "Confirmation", "Yes", "No") == "No")
+			if (WWinput(src, "Are you sure you want to do this? It will laaag.", "Confirmation", "No", list("Yes", "No")) == "No")
 				return
 
 		explosion(O, devastation, heavy, light, flash)
@@ -559,7 +487,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if (!check_rights(R_ADMIN|R_FUN))	return
 
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
+	var/confirm = WWinput(src, "Are you sure?", "Gib Confirmation", "Yes", list("Yes", "No"))
 	if (confirm != "Yes") return
 	//Due to the delay here its easy for something to have happened to the mob
 	if (!M)	return
@@ -579,7 +507,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if (!check_rights(R_ADMIN|R_FUN))	return
 
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
+	var/confirm = WWinput(src, "Are you sure?", "Crush Confirmation", "Yes", list("Yes", "No"))
 	if (confirm != "Yes") return
 	//Due to the delay here its easy for something to have happened to the mob
 	if (!M)	return
@@ -597,7 +525,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Gibself"
 	set category = "Fun"
 
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
+	var/confirm = WWinput(src, "Are you sure?", "Gibself Confirmation", "Yes", list("Yes", "No"))
 	if (confirm == "Yes")
 		if (isobserver(mob)) // so they don't spam gibs everywhere
 			return
@@ -611,7 +539,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Crushself"
 	set category = "Fun"
 
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
+	var/confirm = WWinput(src, "Are you sure?", "Crushself Confirmation", "Yes", list("Yes", "No"))
 	if (confirm == "Yes")
 		if (isobserver(mob)) // so they don't spam gibs everywhere
 			return
@@ -708,56 +636,3 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	usr << text("<span class = 'red'><b>Attack Log for []</b></span>", mob)
 	for (var/t in M.attack_log)
 		usr << t
-/*
-
-/client/proc/everyone_random()
-	set category = "Fun"
-	set name = "Make Everyone Random"
-	set desc = "Make everyone have a random appearance. You can only use this before rounds!"
-
-	if (!check_rights(R_FUN))	return
-
-	if (ticker && ticker.mode)
-		usr << "Nope you can't do this, the game's already started. This only works before rounds!"
-		return
-
-	if (ticker.random_players)
-		ticker.random_players = FALSE
-		message_admins("Admin [key_name_admin(usr)] has disabled \"Everyone is Special\" mode.", TRUE)
-		usr << "Disabled."
-		return
-
-
-	var/notifyplayers = alert(src, "Do you want to notify the players?", "Options", "Yes", "No", "Cancel")
-	if (notifyplayers == "Cancel")
-		return
-
-	log_admin("Admin [key_name(src)] has forced the players to have random appearances.")
-	message_admins("Admin [key_name_admin(usr)] has forced the players to have random appearances.", TRUE)
-
-	if (notifyplayers == "Yes")
-		world << "<span class = 'notice'><b>Admin [usr.key] has forced the players to have completely random identities!</b></span>"
-
-	usr << "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>."
-
-	ticker.random_players = TRUE
-*/
-
-/*
-/client/proc/toggle_random_events()
-	set category = "Server"
-	set name = "Toggle random events on/off"
-
-	set desc = "Toggles random events such as meteors, black holes, blob (but not space dust) on/off"
-	if (!check_rights(R_SERVER))	return
-
-	if (!config.allow_random_events)
-		config.allow_random_events = TRUE
-		usr << "Random events enabled"
-		message_admins("Admin [key_name_admin(usr)] has enabled random events.", TRUE)
-	else
-		config.allow_random_events = FALSE
-		usr << "Random events disabled"
-		message_admins("Admin [key_name_admin(usr)] has disabled random events.", TRUE)
-
-*/

@@ -56,7 +56,7 @@
 			sandbag_time /= (H.getStatCoeff("engineering") * H.getStatCoeff("engineering"))
 
 		if (src == get_step(user, user.dir))
-			if (alert(user, "This will start building a sandbag [your_dir] of you.", "", "Continue", "Stop") == "Continue")
+			if (WWinput(user, "This will start building a sandbag [your_dir] of you.", "Sandbag Construction", "Continue", list("Continue", "Stop")) == "Continue")
 				visible_message("<span class='danger'>[user] starts constructing the base of a sandbag wall.</span>", "<span class='danger'>You start constructing the base of a sandbag wall.</span>")
 				if (do_after(user, sandbag_time, user.loc))
 					var/obj/item/weapon/sandbag/bag = C

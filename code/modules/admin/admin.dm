@@ -533,7 +533,7 @@ proc/admin_notice(var/message, var/rights)
 	set desc="Start the round immediately"
 	set name="Start Now"
 	if (!ticker)
-		alert("Unable to start the game as it is not set up.")
+		WWalert(usr, "Unable to start the game as it is not set up.", "Error")
 		return
 	if (ticker.current_state == GAME_STATE_PREGAME)
 		if (!round_progressing)
@@ -607,7 +607,7 @@ proc/admin_notice(var/message, var/rights)
 		ticker.delay_end = !ticker.delay_end
 		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
 		message_admins("<span class = 'notice'>[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].</span>", TRUE)
-		return //alert("Round end delayed", null, null, null, null, null)
+		return
 	round_progressing = !round_progressing
 	if (!round_progressing)
 		if ((input(usr, "Delay the round indefinitely or temporarily?") in list("Indefinitely", "Temporarily")) == "Temporarily")
@@ -652,16 +652,10 @@ proc/admin_notice(var/message, var/rights)
 	set desc="Reboots the server post haste"
 	set name="Immediate Reboot"
 	if (!usr.client.holder)	return
-	if ( alert("Reboot server?",,"Yes","No") == "No")
+	if (WWinput(usr, "Reboot the server?", "Reboot", "Yes", list("Yes","No")) == "No")
 		return
 	world << "<span class = 'red'><b>Rebooting world!</b> <span class = 'notice'>Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!</span></span>"
 	log_admin("[key_name(usr)] initiated an immediate reboot.")
-
-
-
-
-
-
 	world.Reboot()
 
 /datum/admins/proc/unprison(var/mob/M in mob_list)
@@ -673,9 +667,9 @@ proc/admin_notice(var/message, var/rights)
 			message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]", TRUE)
 			log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
 		else
-			alert("Admin jumping disabled")
+			WWalert(usr, "Admin jumping is disabled.", "Denied")
 	else
-		alert("[M.name] is not prisoned.")
+		WWalert(usr, "[M.name] is not prisoned.", "Unprison")
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
@@ -803,89 +797,6 @@ var/list/atom_types = null
 		var/msg = "[key_name(usr)] assigned the new mob [H] the job '[J]'."
 		message_admins(msg)
 		log_admin(msg)
-/*
-
-/datum/admins/proc/show_traitor_panel(var/mob/M in mob_list)
-	set category = "Admin"
-	set desc = "Edit mobs's memory and role"
-	set name = "Show Traitor Panel"
-
-	if (!istype(M))
-		usr << "This can only be used on instances of type /mob"
-		return
-	if (!M.mind)
-		usr << "This mob has no mind!"
-		return
-
-	M.mind.edit_memory()
-*/
-/*
-/datum/admins/proc/show_game_mode()
-	set category = "Admin"
-	set desc = "Show the current round configuration."
-	set name = "Show Game Mode"
-
-	if (!ticker || !ticker.mode)
-		alert("Not before roundstart!", "Alert")
-		return
-
-	var/out = "<font size=3><b>Current mode: [ticker.mode.name] (<a href='?src=\ref[ticker.mode];debug_antag=self'>[ticker.mode.config_tag]</a>)</b></font><br/>"
-	out += "<hr>"
-
-	if (ticker.mode.deny_respawn)
-		out += "<b>Respawning:</b> <a href='?src=\ref[ticker.mode];toggle=respawn'>disallowed</a>"
-	else
-		out += "<b>Respawning:</b> <a href='?src=\ref[ticker.mode];toggle=respawn'>allowed</a>"
-	out += "<br/>"
-
-	out += "<b>Shuttle delay multiplier:</b> <a href='?src=\ref[ticker.mode];set=shuttle_delay'>[ticker.mode.shuttle_delay]</a><br/>"
-
-	if (ticker.mode.auto_recall_shuttle)
-		out += "<b>Shuttle auto-recall:</b> <a href='?src=\ref[ticker.mode];toggle=shuttle_recall'>enabled</a>"
-	else
-		out += "<b>Shuttle auto-recall:</b> <a href='?src=\ref[ticker.mode];toggle=shuttle_recall'>disabled</a>"
-	out += "<br/><br/>"
-
-	if (ticker.mode.event_delay_mod_moderate)
-		out += "<b>Moderate event time modifier:</b> <a href='?src=\ref[ticker.mode];set=event_modifier_moderate'>[ticker.mode.event_delay_mod_moderate]</a><br/>"
-	else
-		out += "<b>Moderate event time modifier:</b> <a href='?src=\ref[ticker.mode];set=event_modifier_moderate'>unset</a><br/>"
-
-	if (ticker.mode.event_delay_mod_major)
-		out += "<b>Major event time modifier:</b> <a href='?src=\ref[ticker.mode];set=event_modifier_severe'>[ticker.mode.event_delay_mod_major]</a><br/>"
-	else
-		out += "<b>Major event time modifier:</b> <a href='?src=\ref[ticker.mode];set=event_modifier_severe'>unset</a><br/>"
-
-	out += "<hr>"
-
-	if (ticker.mode.antag_tags && ticker.mode.antag_tags.len)
-		out += "<b>Core antag templates:</b></br>"
-		for (var/antag_tag in ticker.mode.antag_tags)
-			out += "<a href='?src=\ref[ticker.mode];debug_antag=[antag_tag]'>[antag_tag]</a>.</br>"
-
-	if (ticker.mode.round_autoantag)
-		out += "<b>Autotraitor <a href='?src=\ref[ticker.mode];toggle=autotraitor'>enabled</a></b>."
-		if (ticker.mode.antag_scaling_coeff > 0)
-			out += " (scaling with <a href='?src=\ref[ticker.mode];set=antag_scaling'>[ticker.mode.antag_scaling_coeff]</a>)"
-		else
-			out += " (not currently scaling, <a href='?src=\ref[ticker.mode];set=antag_scaling'>set a coefficient</a>)"
-		out += "<br/>"
-	else
-		out += "<b>Autotraitor <a href='?src=\ref[ticker.mode];toggle=autotraitor'>disabled</a></b>.<br/>"
-
-	out += "<b>All antag ids:</b>"
-	if (ticker.mode.antag_templates && ticker.mode.antag_templates.len).
-		for (var/datum/antagonist/antag in ticker.mode.antag_templates)
-			antag.update_current_antag_max()
-			out += " <a href='?src=\ref[ticker.mode];debug_antag=[antag.id]'>[antag.id]</a>"
-			out += " ([antag.get_antag_count()]/[antag.cur_max]) "
-			out += " <a href='?src=\ref[ticker.mode];remove_antag_type=[antag.id]'>\[-\]</a><br/>"
-	else
-		out += " None."
-	out += " <a href='?src=\ref[ticker.mode];add_antag_type=1'>\[+\]</a><br/>"
-
-	usr << browse(out, "window=edit_mode[src]")
-*/
 
 /*
 /datum/admins/proc/toggletintedweldhelmets()
@@ -901,6 +812,7 @@ var/list/atom_types = null
 	message_admins("[key_name_admin(usr)] toggled welder vision.", TRUE)
 
 */
+
 /datum/admins/proc/toggleguests()
 	set category = "Server"
 	set desc="Guests can't enter"
@@ -1012,7 +924,7 @@ var/list/atom_types = null
 	if (tomob.ckey)
 		question = "This mob already has a user ([tomob.key]) in control of it! "
 	question += "Are you sure you want to place [frommob.name]([frommob.key]) in control of [tomob.name]?"
-	var/ask = alert(question, "Place ghost in control of mob?", "Yes", "No")
+	var/ask = WWinput(usr, question, "Place ghost in control of mob?", "Yes", list("Yes", "No"))
 	if (ask != "Yes")
 		return TRUE
 	if (!frommob || !tomob) //make sure the mobs don't go away while we waited for a response
@@ -1083,3 +995,12 @@ var/list/atom_types = null
 			H.paralysis = FALSE
 			msg = "has unparalyzed [key_name(H)]."
 		log_and_message_admins(msg)
+
+/client/proc/reload_admins()
+	set name = "Reload Admins"
+	set category = "Debug"
+
+	if (!check_rights(R_SERVER))	return
+
+	message_admins("[key_name(usr)] manually reloaded admins")
+	load_admins(1)

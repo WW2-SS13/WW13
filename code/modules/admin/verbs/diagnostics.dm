@@ -80,14 +80,7 @@
 	return FALSE
 */
 
-/client/proc/reload_admins()
-	set name = "Reload Admins"
-	set category = "Debug"
 
-	if (!check_rights(R_SERVER))	return
-
-	message_admins("[key_name(usr)] manually reloaded admins")
-	load_admins(1)
 
 /*
 /client/proc/reload_mentors()

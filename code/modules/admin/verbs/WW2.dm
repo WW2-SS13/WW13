@@ -242,7 +242,7 @@
 	var/public = "Yes"
 
 	if (shower && !private)
-		public = alert(shower, "Show it to the entire server?",,"Yes", "No")
+		public = WWinput(shower, "Show the report to the entire server?", "Battle Report", "Yes", list("Yes", "No"))
 	else if (private)
 		public = "No"
 

@@ -555,7 +555,7 @@ var/list/admin_verbs_host = list(
 	set category = "Fun"
 	set name = "OOC Text Color"
 	if (!holder)	return
-	var/response = alert(src, "Please choose a distinct color that is easy to read and doesn't mix with all the other chat and radio frequency colors.", "Change own OOC color", "Pick new color", "Reset to default", "Cancel")
+	var/response = WWinput(src, "Please choose a distinct color that is easy to read and doesn't mix with all the other chat and radio frequency colors.", "Change own OOC color", "Pick new color", list("Pick new color", "Reset to default", "Cancel"))
 	if (response == "Pick new color")
 		prefs.ooccolor = input(src, "Please select your OOC colour.", "OOC colour") as color
 	else if (response == "Reset to default")
@@ -713,7 +713,7 @@ var/list/admin_verbs_host = list(
 	set category = "Admin"
 
 	if (holder)
-		if (alert("Confirm self-deadmin for the round? You can re-admin yourself at any time.",,"Yes","No") == "Yes")
+		if (WWinput(src, "Confirm self-deadmin for the round? You can re-admin yourself at any time.", "Deadmin Self", "Yes", list("Yes","No")) == "Yes")
 			log_admin("[src] deadmined themself.")
 			message_admins("[src] deadmined themself.", TRUE)
 			deadmin()
@@ -775,7 +775,7 @@ var/list/admin_verbs_host = list(
 		usr << "Only mobs with clients can alter their own appearance."
 		return
 
-	switch(alert("Do you wish for [H] to be allowed to select non-whitelisted races?","Alter Mob Appearance","Yes","No","Cancel"))
+	switch(WWinput(src, "Do you wish for [H] to be allowed to select whitelisted races?", "Alter Mob Appearance", "No", list("Yes","No","Cancel")))
 		if ("Yes")
 			log_and_message_admins("has allowed [H] to change \his appearance, including races that requires whitelisting")
 			H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = FALSE)
@@ -783,21 +783,6 @@ var/list/admin_verbs_host = list(
 			log_and_message_admins("has allowed [H] to change \his appearance, excluding races that requires whitelisting.")
 			H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = TRUE)
 
-
-/client/proc/change_security_level()
-	set name = "Set security level"
-	set desc = "Sets the station security level"
-	set category = "Admin"
-	return
-/*	if (!check_rights(R_ADMIN))	return
-	var sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green","blue","red","delta")-get_security_level())
-	if (!sec_level)
-		return
-
-	if (alert("Switch from code [get_security_level()] to code [sec_level]?","Change security level?","Yes","No") == "Yes")
-		set_security_level(sec_level)
-		log_admin("[key_name(usr)] changed the security level to code [sec_level].")
-*/
 
 //---- bs12 verbs ----
 
@@ -815,50 +800,51 @@ var/list/admin_verbs_host = list(
 
 	if (!check_rights(R_FUN))	return
 
-	var/mob/living/carbon/human/M = input("Select mob.", "Edit Appearance") as null|anything in human_mob_list
+	var/mob/living/carbon/human/M = WWinput(src, "Select a mob.", "Edit Appearance", WWinput_first_choice(human_mob_list), human_mob_list|list("Cancel"))
 
 	if (!istype(M, /mob/living/carbon/human))
 		usr << "<span class = 'red'>You can only do this to humans!</span>"
 		return
-	switch(alert("Are you sure you wish to edit this mob's appearance?",,"Yes","No"))
+
+	switch(WWinput(src, "Are you sure you wish to edit this mob's appearance?", "Edit Appearance", "Yes", list("Yes","No")))
 		if ("No")
 			return
-	var/new_facial = input("Please select facial hair color.", "Character Generation") as color
+	var/new_facial = WWinput(src, "Please select a facial hair color.", "Character Generation", null, "color")
 	if (new_facial)
 		M.r_facial = hex2num(copytext(new_facial, 2, 4))
 		M.g_facial = hex2num(copytext(new_facial, 4, 6))
 		M.b_facial = hex2num(copytext(new_facial, 6, 8))
 
-	var/new_hair = input("Please select hair color.", "Character Generation") as color
+	var/new_hair = WWinput(src, "Please select a hair color.", "Character Generation", null, "color")
 	if (new_facial)
 		M.r_hair = hex2num(copytext(new_hair, 2, 4))
 		M.g_hair = hex2num(copytext(new_hair, 4, 6))
 		M.b_hair = hex2num(copytext(new_hair, 6, 8))
 
-	var/new_eyes = input("Please select eye color.", "Character Generation") as color
+	var/new_eyes = WWinput(src, "Please select an eye color.", "Character Generation", null, "color")
 	if (new_eyes)
 		M.r_eyes = hex2num(copytext(new_eyes, 2, 4))
 		M.g_eyes = hex2num(copytext(new_eyes, 4, 6))
 		M.b_eyes = hex2num(copytext(new_eyes, 6, 8))
 		M.update_eyes()
 
-	var/new_tone = input("Please select skin tone level: 1-220 (1=albino, 35=caucasian, 150=black, 220='very' black)", "Character Generation")  as text
+	var/new_tone = WWinput(src, "Please select a skin tone level: 1-220 (1=albino, 35=caucasian, 150=black, 220='very' black)", "Character Generation", null, "text")
 
 	if (new_tone)
 		M.s_tone = max(min(round(text2num(new_tone)), 220), 1)
 		M.s_tone =  -M.s_tone + 35
 
 	// hair
-	var/new_hstyle = input(usr, "Select a hair style", "Grooming")  as null|anything in hair_styles_list
+	var/new_hstyle = WWinput(usr, "Please select a hair style.", "Grooming", WWinput_first_choice(hair_styles_list), hair_styles_list|list("Cancel"))
 	if (new_hstyle)
 		M.h_style = new_hstyle
 
 	// facial hair
-	var/new_fstyle = input(usr, "Select a facial hair style", "Grooming")  as null|anything in facial_hair_styles_list
+	var/new_fstyle = WWinput(usr, "Please select a facial hair style.", "Grooming", WWinput_first_choice(facial_hair_styles_list), facial_hair_styles_list|list("Cancel"))
 	if (new_fstyle)
 		M.f_style = new_fstyle
 
-	var/new_gender = alert(usr, "Please select gender.", "Character Generation", "Male", "Female")
+	var/new_gender = WWinput(usr, "Please select a gender.", "Character Generation", "Male", list("Male", "Female"))
 	if (new_gender)
 		if (new_gender == "Male")
 			M.gender = MALE
@@ -873,7 +859,6 @@ var/list/admin_verbs_host = list(
 	set category = "Admin"
 	if (holder)
 		holder.PlayerNotes()
-	return
 
 /client/proc/free_slot()
 	set name = "Free Job Slot"

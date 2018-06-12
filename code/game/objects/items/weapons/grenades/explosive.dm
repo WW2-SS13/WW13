@@ -55,14 +55,9 @@
 				P.shot_from = name
 				P.launch_fragment(TT)
 
-				//Make sure to hit any mobs in the source turf
-				for (var/mob/living/L in TT)
-					//lying on a frag grenade while the grenade is on the ground causes you to absorb most of the shrapnel.
-					//you will most likely be dead, but others nearby will be spared the fragments that hit you instead.
-					if (L.lying)
-						P.attack_mob(L, FALSE, FALSE)
-					else if (prob(40))
-						P.attack_mob(L, FALSE, 100) //otherwise, allow a decent amount of fragments to pass
+				// any mob on the source turf, lying or not, absorbs 100% of shrapnel now
+				for (var/mob/living/L in T)
+					P.attack_mob(L, 0, 0)
 
 		spawn (5)
 			qdel(src)

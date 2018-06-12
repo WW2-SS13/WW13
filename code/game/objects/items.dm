@@ -575,6 +575,4 @@ var/list/global/slot_flags_enumeration = list(
 	return FALSE // Process Kill
 
 /obj/item/proc/get_weight()
-	. = 0
-	.+= weight
-	return .
+	return weight

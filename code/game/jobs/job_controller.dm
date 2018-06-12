@@ -498,7 +498,6 @@ var/global/datum/controller/occupations/job_master
 
 		// get our new real name based on jobspecific language ( and more
 		job.update_character(H)
-		job.apply_fingerprints(H)
 
 		if (names_used[H.real_name])
 			job.give_random_name(H)
@@ -510,6 +509,7 @@ var/global/datum/controller/occupations/job_master
 			H.real_name = "[job.rank_abbreviation]. [H.real_name]"
 			H.name = H.real_name
 
+		job.apply_fingerprints(H)
 		job.assign_faction(H)
 
 		if (!game_started)
@@ -592,7 +592,7 @@ var/global/datum/controller/occupations/job_master
 			if (isgermansquadleader(H))
 				++german_squad_leaders
 				german_squad_info[current_german_squad] = "<b>The leader of your squad (#[current_german_squad]) is [H.real_name]. He has a golden HUD.</b>"
-				if (!istype(get_area(H), /area/prishtina/admin))
+				if (!istype(get_area(H), /area/prishtina/admin) && ticker.current_state != GAME_STATE_PREGAME) // first check fails due to bad location, fix
 					world << "<b>The leader of Wehrmacht Squad #[current_german_squad] is [H.real_name]!</b>"
 				german_officer_squad_info[current_german_squad] = "<b><i>The leader of squad #[current_german_squad] is [H.real_name].</i></b>"
 			else
@@ -609,7 +609,7 @@ var/global/datum/controller/occupations/job_master
 		else if (issovietsquadmember_or_leader(H))
 			if (issovietsquadleader(H))
 				soviet_squad_info[current_soviet_squad] = "<b>The leader of your squad (#[current_soviet_squad]) is [H.real_name]. He has a golden HUD.</b>"
-				if (!istype(get_area(H), /area/prishtina/admin))
+				if (!istype(get_area(H), /area/prishtina/admin) && ticker.current_state != GAME_STATE_PREGAME) // first check fails due to bad location, fix
 					world << "<b>The leader of Soviet Squad #[current_soviet_squad] is [H.real_name]!</b>"
 				soviet_officer_squad_info[current_soviet_squad] = "<b><i>The leader of squad #[current_soviet_squad] is [H.real_name].</i></b>"
 				++soviet_squad_leaders
@@ -778,7 +778,7 @@ var/global/datum/controller/occupations/job_master
 	var/max_partisans = INFINITY
 
 	// see job_data.dm
-	var/relevant_clients = processes.job_data.get_relevant_clients_safe()
+	var/relevant_clients = clients.len
 
 	if (map && !map.faction_distribution_coeffs.Find(INFINITY))
 		if (map.faction_distribution_coeffs.Find(GERMAN))

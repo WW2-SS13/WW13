@@ -127,7 +127,7 @@ var/list/VVckey_edit = list("key", "ckey")
 
 	if (!var_value) return
 
-	switch(alert("Would you like to associate a var with the list entry?",,"Yes","No"))
+	switch(WWinput(src, "Would you like to associate a var with the list entry?", "View Variables", "No", list("Yes","No")))
 		if ("Yes")
 			L += var_value
 			L[var_value] = mod_list_add_ass() //haha
@@ -142,7 +142,7 @@ var/list/VVckey_edit = list("key", "ckey")
 	if (!istype(L,/list)) src << "Not a List."
 
 	if (L.len > 1000)
-		var/confirm = alert(src, "The list you're trying to edit is very long, continuing may crash the server.", "Warning", "Continue", "Abort")
+		var/confirm = alert(src, "The list you're trying to edit is very long; continuing may crash the server.", "Warning", "Abort", list("Continue", "Abort"))
 		if (confirm != "Continue")
 			return
 
