@@ -1,0 +1,121 @@
+"aa" = (/obj/skybox,/turf/wall/indestructable/black,/area/prishtina/void)
+"ab" = (/turf/wall/indestructable/black,/area/prishtina/void)
+"cR" = (/turf/wall/indestructable/black,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"cS" = (/turf/wall/sandstone,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"cT" = (/obj/structure/window_frame,/obj/structure/barricade/steel,/turf/wall/wood,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"cU" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTHWEST)"; icon_state = "spline_fancy"; dir = 9},/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"cV" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTH)"; icon_state = "spline_fancy"; dir = 1},/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"cW" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTH)"; icon_state = "spline_fancy"; dir = 1},/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"cX" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTH)"; icon_state = "spline_fancy"; dir = 1},/obj/structure/table/glass,/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"cY" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTH)"; icon_state = "spline_fancy"; dir = 1},/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"cZ" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTHEAST)"; icon_state = "spline_fancy"; dir = 5},/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"da" = (/obj/item/weapon/mop,/obj/item/weapon/reagent_containers/glass/bucket,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"db" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dc" = (/obj/structure/bed/chair/wood,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dd" = (/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"de" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/obj/structure/bed/chair/wood,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"df" = (/obj/item/clothing/suit/chef/classic,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dg" = (/obj/structure/sink/kitchen,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dh" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/obj/structure/sink/kitchen,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"di" = (/obj/item/clothing/suit/chef,/obj/item/clothing/suit/chef,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dj" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/turf/floor/wood,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dk" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/obj/structure/multiz/ladder/ww2{area_id = "floor0"},/turf/floor/wood,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dl" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (WEST)"; icon_state = "spline_fancy"; dir = 8},/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dm" = (/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dn" = (/obj/structure/table/glass,/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"do" = (/obj/structure/bed/chair/wood/red{icon_state = "wooden_chair_red"; dir = 4},/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dp" = (/obj/structure/table/marble,/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dq" = (/obj/structure/bed/chair/wood/red{dir = 8},/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dr" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (EAST)"; icon_state = "spline_fancy"; dir = 4},/obj/structure/light/small{dir = 4},/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"ds" = (/obj/structure/sink{dir = 8; icon_state = "sink"; pixel_x = -14},/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"du" = (/obj/structure/table/wood,/obj/item/weapon/material/kitchen/utensil/knife,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dv" = (/obj/structure/table/wood,/obj/item/trash/candle,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dw" = (/obj/structure/table/wood,/obj/item/weapon/material/ashtray/bronze,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dy" = (/obj/structure/table/wood,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dz" = (/obj/structure/table/wood,/obj/item/weapon/material/kitchen/utensil/fork,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dA" = (/obj/structure/table/wood,/obj/item/weapon/flame/candle,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dB" = (/obj/structure/table/wood,/obj/item/trash/plate,/obj/item/weapon/material/kitchen/utensil/spoon,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dC" = (/obj/skybox,/turf/wall/brick,/area/prishtina/void)
+"dD" = (/obj/structure/table/wood,/obj/item/trash/plate,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dE" = (/obj/structure/table/iron,/obj/item/weapon/reagent_containers/glass/bucket,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dF" = (/obj/structure/closet/crate/rations/soviet_alcohol,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dG" = (/turf/floor/wood,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dH" = (/obj/structure/multiz/ladder/ww2{area_id = "floor0"},/turf/floor/wood,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dI" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (WEST)"; icon_state = "spline_fancy"; dir = 8},/obj/structure/light/small{dir = 8},/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dJ" = (/obj/structure/table/glass,/obj/item/weapon/paper,/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dK" = (/obj/structure/bed/chair/wood/red,/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dL" = (/obj/structure/filingcabinet,/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dM" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (EAST)"; icon_state = "spline_fancy"; dir = 4},/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dN" = (/obj/structure/simple_door/key_door/anyone{name = "Canteen"},/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dO" = (/obj/structure/bed/chair/wood{dir = 1},/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dP" = (/obj/structure/pot,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dQ" = (/obj/structure/closet/crate/rations/soviet_liquids,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dR" = (/obj/structure/simple_door/key_door/italian/command_high{unique_door_name = "Lobby"},/turf/wall/sandstone,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dS" = (/obj/structure/table/glass,/obj/item/weapon/paper,/obj/item/weapon/pen,/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dT" = (/obj/structure/light/small{dir = 4},/obj/structure/bed/chair/wood,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dU" = (/obj/structure/table/iron,/obj/effect/decal/cleanable/flour,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dV" = (/obj/effect/decal/cleanable/flour,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dW" = (/obj/structure/light/small{dir = 4},/obj/structure/closet/crate/rations/german_meat,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dX" = (/obj/structure/table/glass,/obj/item/weapon/pen,/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dY" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (EAST)"; icon_state = "spline_fancy"; dir = 4},/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (EAST)"; icon_state = "spline_fancy"; dir = 4},/obj/structure/light/small{dir = 4},/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"dZ" = (/obj/structure/light/small{dir = 4},/obj/structure/table/wood,/obj/item/weapon/material/kitchen/utensil/knife,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"ea" = (/obj/structure/oven,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"eb" = (/obj/effect/decal/cleanable/tomato_smudge,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"ec" = (/obj/structure/light/small{dir = 4},/obj/structure/closet/crate/rations/german_solids,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"ed" = (/obj/structure/closet/crate/rations/soviet_solids,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"ee" = (/obj/structure/light/small{dir = 4},/turf/floor/wood,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"ef" = (/obj/item/weapon/storage/box/matches,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"eg" = (/obj/item/weapon/storage/box/drinkingglasses,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"eh" = (/obj/structure/light/small,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"ei" = (/obj/structure/table/wood,/obj/item/trash/plate,/obj/item/trash/plate,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"ej" = (/obj/structure/table/wood,/obj/item/weapon/material/kitchen/utensil/spoon,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"ek" = (/obj/structure/light/small,/obj/structure/table/wood,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"el" = (/obj/structure/light/small,/obj/structure/table/wood,/obj/item/weapon/flame/candle,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"em" = (/obj/structure/closet/crate/rations/water,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"en" = (/obj/structure/closet/anchored,/obj/item/trash/plate,/obj/item/trash/plate,/obj/item/trash/plate,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"eo" = (/obj/structure/light/small,/obj/structure/closet/anchored,/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"ep" = (/obj/structure/light/small,/obj/structure/closet/anchored,/obj/item/weapon/material/kitchen/utensil/fork,/obj/item/weapon/material/kitchen/utensil/fork,/obj/item/weapon/material/kitchen/utensil/fork,/obj/item/weapon/material/kitchen/utensil/fork,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"eq" = (/obj/structure/closet/anchored,/obj/item/weapon/material/kitchen/utensil/knife,/obj/item/weapon/material/kitchen/utensil/knife,/obj/item/weapon/material/kitchen/utensil/knife,/obj/item/weapon/material/kitchen/utensil/knife,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"er" = (/obj/structure/closet/anchored,/obj/item/weapon/material/kitchen/utensil/spoon,/obj/item/weapon/material/kitchen/utensil/spoon,/obj/item/weapon/material/kitchen/utensil/spoon,/obj/item/weapon/material/kitchen/utensil/spoon,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"es" = (/obj/structure/bed/chair/wood/red{icon_state = "wooden_chair_red"; dir = 1},/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"et" = (/obj/structure/multiz/ladder/ww2/up{area_id = "floor1"},/turf/floor/wood,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"eu" = (/obj/structure/simple_door/key_door/anyone,/turf/floor/wood,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"ev" = (/obj/structure/bed/chair/wood/red{icon_state = "wooden_chair_red"; dir = 4},/turf/floor/wood,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"ew" = (/obj/structure/table/marble,/turf/floor/wood,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"ex" = (/obj/structure/bed/chair/wood/red{dir = 8},/turf/floor/wood,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"ey" = (/obj/structure/light/small,/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (SOUTHWEST)"; icon_state = "spline_fancy"; dir = 10},/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"ez" = (/obj/structure/light/small,/obj/effect/floor_decal/spline/fancy/wood,/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"eA" = (/obj/effect/floor_decal/spline/fancy/wood,/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"eB" = (/obj/effect/floor_decal/spline/fancy/wood,/obj/structure/table/glass,/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"eC" = (/obj/effect/floor_decal/spline/fancy/wood,/obj/structure/light/small,/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"eD" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (SOUTHEAST)"; icon_state = "spline_fancy"; dir = 6},/turf/floor/carpet,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"eE" = (/obj/structure/light/small,/turf/floor/wood,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+"eF" = (/obj/structure/light/small,/obj/structure/multiz/ladder/ww2/up{area_id = "floor1"},/turf/floor/wood,/area/prishtina/houses/nml_two{base_turf = /turf/floor/wood_broken; name = "Lobby"})
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabab
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabab
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabab
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabab
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabab
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaabab
+aaaaaaaacRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRaaaaaaaaaaaaabababab
+aaaaaaaacRcScScScScTcScScScScTcScScScScTcScScScScTcScScScScTcScScScScTcScScScScTcScScScScTcScScScScRaaaaaaaaaaaaabababab
+aaaaaaaacRcScUcVcWcWcXcWcVcWcWcWcWcVcYcZcSdadbdcdcdcdddedcdcdddcdedcdddcdcdecSdfdgdhdhdgdicSdjdkcScRaaaaaaaaaaaaabababab
+aaaaaaaacRcSdldmdmdmdndmdmdmdmdmdodpdqdrcSdsdddudvdwdddudvdydddzdAdydddBdAdDcSdEdddddddddFcSdGdHcScRaaaaaaaaaaaaabababab
+aaaaaaaacRcSdIdmdmdmdJdKdKdLdmdmdodpdqdMdNdddddOdOdOdddOdOdOdddOdOdOdddOdOdOcSdEdddPdPdddQcSdGdHcScRaaaaaaaaaaaaabababab
+aaaaaaaacRdRdldmdmdmdJdSdndndmdmdmdmdmdMdNdddddcdcdcdddcdcdcdddcdcdcdddcdcdTcSdUdddPdPdVdWcSdGdGcScRaaaadCdCdCaaabababab
+aaaaaaaacRdRdldmdmdmdndndndXdmdmdmdmdmdYcSdddddydAdzdddydvdBdddzdAdudddudvdZcSeaebddddddeccSdGdGcScRaaaadCaadCaaabababab
+aaaaaaaacRdRdldmdmdmdmdmdmdmdmdmdmdmdmdMdNdddddOdOdOdddOdOdOdddOdOdOdddOdOdOcSeadddddVddedcSdGeecScRaaaadCaadCaaabababab
+aaaaaaaacRdRdldmdmdmdmdmdmdmdmdmdmdmdmdMdNdddddcdcdcdddcdcdcdddcdcdcddddddddcSefddddddddegcSdGdGcScRaaaadCaadCababababab
+aaaaaaaacRdRdldmdmdmdndndndndmdodpdqdmdrcSdseheidvejddekdAdzdddwelduddememehdNddeneoepeqercSdGdGcScRaaaadCdCdCaaabababab
+aaaaaaaacRcSdIdmdmdmdJdJdXdXdmdmesdmdmdMcScScScScScScScScScScScScScScScScScScScScScScScScScSdGetcScRaaaaaaaaaaaaabababab
+aaaaaaaacRcSdldmdmdmdnesesdLdmdmdmdmdmdMeudGdGdGdGevewexdGdGevewexdGdGevewexdGdGevewexdGdGdGdGetcScRaaaaaaaaaaaaabababab
+aaaaaaaacRcSeyezeAeAeBeAezeAeAeAeAezeCeDeudGeEdGdGdGdGeEdGdGdGdGeEdGdGdGdGeEdGdGdGdGeEdGdGdGeEeFcScRaaaaaaaaaaaaabababab
+aaaaaaaacRcScScScScTcScScScScTcScScScScTcScScScScTcScScScScTcScScScScTcScScScScTcScScScScTcScScScScRaaaaaaaaaaaaabababab
+aaaaaaaacRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRcRaaaaaaaaaaaaabababab
+aaaaaaababababababababababababababababababababababababababababababababababababababababababababababababababababababababab
+aaaaabababababababababababababababababababababababababababababababababababababababababababababababababaaaaaaaaaaaaababab
+aaaaabababababababababababababababababababababababababababababababababababababababababababababababababaaaaaaaaaaaaababab
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababab
+"}

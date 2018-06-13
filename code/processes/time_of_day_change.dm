@@ -35,7 +35,7 @@
 			var/turf/T = my_turfs[v]
 			if (!T)
 				continue
-			if (T.z <= max_lighting_z)
+			if (T.z <= max_lighting_z())
 				var/area/a = get_area(T)
 
 				var/areacheck = TRUE

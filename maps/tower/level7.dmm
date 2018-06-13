@@ -1,0 +1,92 @@
+"aa" = (/obj/skybox,/turf/wall/indestructable/black,/area/prishtina/void)
+"ab" = (/turf/wall/indestructable/black,/area/prishtina/void)
+"ac" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/freezer,/obj/item/weapon/reagent_containers/blood/APlus,/obj/item/weapon/reagent_containers/blood/APlus,/obj/item/weapon/reagent_containers/blood/APlus,/obj/item/weapon/reagent_containers/blood/APlus,/obj/item/weapon/reagent_containers/blood/APlus,/obj/item/weapon/reagent_containers/blood/BMinus,/obj/item/weapon/reagent_containers/blood/BMinus,/obj/item/weapon/reagent_containers/blood/BMinus,/obj/item/weapon/reagent_containers/blood/BMinus,/obj/item/weapon/reagent_containers/blood/BMinus,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/item/weapon/reagent_containers/blood/AMinus,/obj/item/weapon/reagent_containers/blood/AMinus,/obj/item/weapon/reagent_containers/blood/AMinus,/obj/item/weapon/reagent_containers/blood/AMinus,/obj/item/weapon/reagent_containers/blood/AMinus,/obj/item/weapon/reagent_containers/blood/BPlus,/obj/item/weapon/reagent_containers/blood/BPlus,/obj/item/weapon/reagent_containers/blood/BPlus,/obj/item/weapon/reagent_containers/blood/BPlus,/obj/item/weapon/reagent_containers/blood/BPlus,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"ad" = (/obj/item/weapon/pill_pack/antitox,/obj/item/weapon/pill_pack/antitox,/obj/item/weapon/pill_pack/antitox,/obj/item/weapon/pill_pack/bicaridine,/obj/item/weapon/pill_pack/bicaridine,/obj/item/weapon/pill_pack/bicaridine,/obj/item/weapon/pill_pack/dexalin,/obj/item/weapon/pill_pack/dexalin,/obj/item/weapon/pill_pack/dexalin,/obj/item/weapon/pill_pack/inaprovaline,/obj/item/weapon/pill_pack/inaprovaline,/obj/item/weapon/pill_pack/inaprovaline,/obj/item/weapon/pill_pack/tramadol,/obj/item/weapon/pill_pack/tramadol,/obj/item/weapon/pill_pack/pervitin,/obj/structure/closet,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"ae" = (/obj/item/clothing/gloves/latex,/obj/item/clothing/mask/surgical,/obj/item/weapon/storage/box/syringes,/obj/structure/closet,/obj/item/weapon/storage/belt/medical,/obj/item/weapon/storage/backpack/satchel_med,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"dC" = (/obj/skybox,/turf/wall/brick,/area/prishtina/void)
+"jK" = (/turf/wall/indestructable/black,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"jL" = (/turf/wall/wood,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"jM" = (/obj/structure/window_frame,/obj/structure/barricade/steel,/obj/structure/curtain/open/privacy,/turf/wall/wood,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"jN" = (/obj/structure/sign/nosmoking_1,/turf/wall/wood,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"jO" = (/obj/structure/closet/medical_wall,/turf/wall/wood,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"jP" = (/obj/structure/window_frame,/obj/structure/barricade/steel,/obj/structure/curtain/black,/turf/wall/wood,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"jQ" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/turf/floor/wood,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"jR" = (/turf/floor/wood,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"jS" = (/obj/structure/table/glass,/obj/item/weapon/reagent_containers/food/drinks/bottle/water,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"jT" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/obj/structure/table/glass,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"jU" = (/obj/structure/table/glass,/obj/item/weapon/storage/box/cups,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"jV" = (/obj/structure/table/glass,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"jW" = (/obj/structure/bed/chair/wood/red,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"jX" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"jY" = (/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"jZ" = (/obj/structure/closet/anchored,/obj/item/clothing/gloves/latex,/obj/item/clothing/mask/surgical,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"ka" = (/obj/structure/closet/anchored,/obj/item/clothing/under/rank/medical,/obj/item/weapon/reagent_containers/food/snacks/muffin,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kb" = (/obj/structure/bed/chair/wheelchair,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kc" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/obj/structure/bed/chair/wheelchair,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kd" = (/obj/structure/bed/chair/wood{dir = 4},/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"ke" = (/obj/structure/table/glass,/obj/item/weapon/pen,/obj/item/weapon/paper,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kf" = (/obj/structure/table/glass,/obj/item/weapon/clipboard,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kg" = (/obj/item/weapon/storage/pill_bottle/dermaline,/obj/structure/table/glass,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kh" = (/obj/structure/sign/redcross,/turf/wall/wood,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"ki" = (/obj/item/weapon/bedsheet/medical,/obj/structure/bed/padded,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kj" = (/obj/structure/light/small{dir = 4},/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kk" = (/obj/structure/table/reinforced,/obj/item/weapon/bonegel,/obj/item/weapon/cautery,/obj/item/weapon/reagent_containers/glass/bottle/stoxin,/obj/item/weapon/reagent_containers/glass/bottle/stoxin,/obj/item/weapon/reagent_containers/glass/bottle/stoxin,/obj/item/weapon/reagent_containers/glass/bottle/stoxin,/obj/item/weapon/reagent_containers/syringe,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kl" = (/obj/structure/table/reinforced,/obj/item/weapon/bone_saw,/obj/item/weapon/hemostat,/obj/item/weapon/reagent_containers/glass/rag,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"km" = (/obj/structure/table/reinforced,/obj/item/weapon/FixOVein,/obj/item/weapon/bonesetter,/obj/item/weapon/retractor,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kn" = (/obj/structure/table/reinforced,/obj/item/weapon/scalpel,/obj/item/weapon/surgicaldrill,/obj/item/weapon/reagent_containers/spray/sterilizine,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"ko" = (/obj/structure/light/small{dir = 8},/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kp" = (/obj/structure/curtain/medical,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kq" = (/obj/structure/sign/examroom,/turf/wall/wood,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kr" = (/obj/effect/decal/cleanable/blood/drip,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"ks" = (/obj/structure/curtain/black,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kt" = (/obj/structure/multiz/ladder/ww2{area_id = "floor4"},/turf/floor/wood,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"ku" = (/obj/structure/simple_door/key_door/anyone,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kv" = (/obj/effect/decal/cleanable/blood,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kw" = (/obj/structure/optable,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kx" = (/obj/structure/multiz/ladder/ww2/up{area_id = "floor5"},/turf/floor/wood,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"ky" = (/obj/structure/iv_drip,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kz" = (/obj/structure/light/small/red,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kA" = (/obj/structure/light/small,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kB" = (/obj/effect/decal/cleanable/blood/splatter,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kC" = (/obj/item/weapon/storage/pill_bottle/tramadol,/obj/structure/table/glass,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kD" = (/obj/structure/table/glass,/obj/item/weapon/pen,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kE" = (/obj/structure/table/glass,/obj/item/weapon/paper,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kI" = (/obj/structure/closet/crate/medical,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kJ" = (/obj/item/roller,/obj/item/roller,/obj/item/roller,/obj/item/roller,/obj/item/roller,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kK" = (/obj/item/weapon/storage/firstaid/adv,/obj/item/weapon/storage/firstaid/combat,/obj/item/weapon/storage/firstaid/fire,/obj/item/weapon/storage/firstaid/injectorpack,/obj/item/weapon/storage/firstaid/o2,/obj/item/weapon/storage/firstaid/regular,/obj/item/weapon/storage/firstaid/surgery,/obj/item/weapon/storage/firstaid/toxin,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kL" = (/obj/structure/light/small,/turf/floor/wood,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kM" = (/obj/structure/table/glass,/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kN" = (/obj/structure/light/small,/obj/structure/table/glass,/obj/item/stack/medical/bruise_pack/gauze,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kO" = (/obj/structure/table/glass,/obj/item/stack/medical/bruise_pack/gauze,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kP" = (/obj/structure/bed/chair/wood/red{icon_state = "wooden_chair_red"; dir = 1},/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kQ" = (/obj/structure/closet/anchored,/obj/item/clothing/gloves/latex,/obj/item/clothing/head/surgery,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"kV" = (/obj/structure/closet/anchored,/obj/item/clothing/mask/surgical,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"ld" = (/obj/structure/simple_door/wood,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+
+(1,1,1) = {"
+abababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababababababab
+abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab
+abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab
+ababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababab
+abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab
+ababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababab
+ababaaaajKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKaaaaaaaaaaaaabababab
+ababaaaajKjLjLjLjLjMjLjLjNjLjMjLjLjOjLjPjLjLjOjLjPjLjLjLjLjPjLjLjLjLjPjLjLjLjLjPjLjLjLjLjPjLjLjLjLjKaaababababaaabababab
+ababaaaajKjLjQjQjRjLjSjSjTjUjVjLjWjXjYjZjLjWjXjYkajLjYjXjYjYjYjYjXjYjYjYjYjXjYjYjYkbkckbjLjRjQjQjLjKaaababababaaabababab
+ababaaaajKjLjRjRjRjLjYkdkdkdjYjLkekfjYjYjLjVkgjYjYjLjYjYjYjLjLjLjNjLjLjLjLjNjLjLjYjYjYjYjLjRjRjRjLjKaaababababaaabababab
+ababaaaajKjLjRjRjRkhjYjYjYjYjYjLjYjYjYkijLjYjYjYkijLjYjYkjjLkkklkmknjLkkklkmknjLkojYjYjYkhjRjRjRjLjKaaabaaaaaaaaabababab
+ababaaaajKjLjRjRjRjLjYkdkdkdjYjLjLkpkqjLjNjLkpkqjLjLjYkrjYksjYkrjYjYkpjYjYkrjYksjYjYjYjYjLjRjRjRjLjKaaabdCaadCaaabababab
+ababaaaajKjLktjRjRkujYjYjYjYkjjLjYjYjYjYjXjYjYjYjYjVjYkvjYksjYkwkwjYkpjYkwkwjYksjYjYjYjYkujRjRkxjLjKaaabdCaadCaaabababab
+ababaaaajKjLktjRjRkujYjYjYjYjYksjYjYjYjYjYjYjYkrjYjYjYjYkjjLkykzkzkyjLkykzkzkyjLkojYjYjYkujRjRkxjLjKaaabdCdCdCaaabababab
+ababaaaajKjLktjRjRkujYjYjYjYkjjLjYjYjYjYkAkBjYjYjYjVjYjYjYjLjLjLjLjLjLjLjLjLjLjLjYjYjYjYkujRjRkxjLjKaaabaaaadCaaabababab
+ababaaaajKjLjRjRjRjLjYkdkdkdjYjLjLkpkqjLjNjLkpkqjLjLjYjYjYjYjYjYjYjYjYjYjYjYjYjYjYjYjYjYjLjRjRjRjLjKaaabaaaadCaaabababab
+aaaaaaaajKjLjRjRjRkhjYjYjYjYjYjLjYjYjYkijLjYjYjYkijLkrjYjLjLjLjLjLjLjLjLjLjLjLjLjLjYkvjYkhjRjRjRjLjKaaabaaaaaaaaabababab
+aaaaaaaajKjLjRjRjRjLjYkdkdkdjYjLkCjVjYjYjLkDkEjYjYjLjYjYjLacadadaeaeaekIkykJkbkKjLjYjYjYjLjRjRjRjLjKaaaaaaaaaaaaabababab
+aaaaaaaajKjLkLkLjRjLkMjVkNkOjVjLkPkAjYkQjLkPkAjYkVjLjYkAldjYjYjYkAjYjYjYjYkAjYjYldjYkAjYjLjRkLkLjLjKaaaaaaaaaaaaabababab
+aaaaaaaajKjLjLjLjLjMjLjLjNjLjMjLjLjOjLjPjLjLjOjLjPjLjLjLjLjPjLjLjLjLjPjLjLjLjLjPjLjLjLjLjPjLjLjLjLjKaaaaaaaaaaaaabababab
+ababaaaajKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKaaaaaaaaaaaaabababab
+abababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababababababab
+abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab
+abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab
+ababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababab
+"}

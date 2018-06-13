@@ -26,6 +26,7 @@
 		SCHUTZSTAFFEL = 25,
 		ITALIAN = 25)
 	faction_distribution_coeffs = list(GERMAN = 0.42, SOVIET = 0.58)
+	zlevels_without_lighting = list(2, 3)
 	battle_name = "Battle of Brest"
 
 /obj/map_metadata/forest/germans_can_cross_blocks()
