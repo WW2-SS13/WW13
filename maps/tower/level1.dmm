@@ -11,7 +11,7 @@
 "ak" = (/obj/structure/closet/crate/mp40kammo,/turf/floor/wood,/area/prishtina/german/armory{base_turf = /turf/floor/wood_broken})
 "al" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/obj/structure/closet/crate/mauserammo,/turf/floor/wood,/area/prishtina/german/armory{base_turf = /turf/floor/wood_broken})
 "am" = (/obj/structure/barbwire,/turf/floor/wood,/area/prishtina/german/base_defenses{base_turf = /turf/floor/wood_broken; location = 0})
-"an" = (/obj/structure/barricade,/obj/structure/barbwire{dir = 4; icon_state = "barbwire"; pixel_y = 0; tag = "icon-barbwire (EAST)"},/turf/floor/wood,/area/prishtina/german/base_defenses{base_turf = /turf/floor/wood_broken; location = 0})
+"an" = (/obj/structure/barbwire{dir = 4; icon_state = "barbwire"; pixel_y = 0; tag = "icon-barbwire (EAST)"},/turf/floor/wood,/area/prishtina/german/base_defenses{base_turf = /turf/floor/wood_broken; location = 0})
 "ao" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/storage/fancy/cigarettes,/turf/floor/wood,/area/prishtina/german/base_defenses{base_turf = /turf/floor/wood_broken; location = 0})
 "ap" = (/obj/item/weapon/storage/fancy/candle_box,/obj/item/weapon/storage/fancy/candle_box,/turf/floor/wood,/area/prishtina/german/resting_area_1{base_turf = /turf/floor/wood_broken})
 "aq" = (/obj/item/weapon/flame/lighter,/obj/item/weapon/flame/lighter,/obj/item/weapon/flame/lighter,/obj/item/weapon/flame/lighter,/turf/floor/wood,/area/prishtina/german/resting_area_1{base_turf = /turf/floor/wood_broken})

@@ -12,7 +12,8 @@
 		SOVIET)
 	available_subfactions = list()
 	faction_distribution_coeffs = list(GERMAN = 0.5, SOVIET = 0.5)
-	battle_name = "City Battle"
+	battle_name = "NKVD Headquarters"
+	times_of_day = list("Night")
 
 /obj/map_metadata/tower/germans_can_cross_blocks()
 	return (processes.ticker.playtime_elapsed >= 4800 || admin_ended_all_grace_periods)
