@@ -37,7 +37,6 @@
 "ga" = (/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/wood,/area/prishtina/no_mans_land/invisible_wall/inside)
 "gb" = (/obj/structure/closet,/turf/floor/wood,/area/prishtina/houses/nml_four{base_turf = /turf/floor/wood_broken; name = "2nd - Destroyed Office"})
 "gc" = (/obj/structure/bed/chair/wood/red{dir = 8},/turf/floor/wood,/area/prishtina/houses/nml_four{base_turf = /turf/floor/wood_broken; name = "2nd - Destroyed Office"})
-"gd" = (/turf/wall/brick,/area/prishtina/houses/nml_four{base_turf = /turf/floor/wood_broken; name = "2nd - Destroyed Office"})
 "ge" = (/obj/effect/decal/cleanable/blood/splatter,/turf/floor/wood,/area/prishtina/houses/nml_four{base_turf = /turf/floor/wood_broken; name = "2nd - Destroyed Office"})
 "gf" = (/obj/structure/bookcase,/turf/floor/wood,/area/prishtina/houses/nml_four{base_turf = /turf/floor/wood_broken; name = "2nd - Destroyed Office"})
 "gg" = (/obj/effect/decal/cleanable/ash,/turf/floor/wood,/area/prishtina/houses/nml_four{base_turf = /turf/floor/wood_broken; name = "2nd - Destroyed Office"})
@@ -158,7 +157,7 @@ ababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 ababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababab
 abababaafJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJaaababababaaaaababab
 abababaafJfKfKfKfKfLfKfKfKfKfLfKfKfKfKfLfKdxdxdxfMdxdxfNfKfLfKfKfKfKfLfKfKfKfPfLfKfKfKfKfLfKfKfKfKfJaaababababaaaaababab
-abababaafJfKfQfRfSfTfKfUfVfWfRfRfKfYfYfRgbfOfXfZgaglgnfOgcfRgdfRgefKfRfRgffRfRgIfRggghacgigjgkgcfKfJaaababababaaaaababab
+abababaafJfKfQfRfSfTfKfUfVfWfRfRfKfYfYfRgbfOfXfZgaglgnfOgcfRfKfRgefKfRfRgffRfRgIfRggghacgigjgkgcfKfJaaababababaaaaababab
 abababaafJfKfRgmgigjgIfRfRfRfRgqfKgrfYgfgfgogpgzfXgAgagEgsfRfKfRgqgIgtgufRfRfRgIgvfRgwgIgigxgygcgBfJaaabababababaaababab
 abababaafJgCgDgGgHgjgIgJfRfRgfgffKfRgIfYfYgFgLgMgRgTgUhcfRgKadfKgIgIgNfRfRgfgffKfRfRgwaegigjgPfRgQfJaaabaaaaaaaaaaababab
 abababaafJgSfRgVgWgXgIfRfYfYfYgYafhahbfRgfgogngUhdhegahcfRgIhgfRfRgIhhgqgZfYfYhihlhgfRgIgHhmfRfRgBfJaaabdCdCdCaaaaababab
@@ -168,7 +167,7 @@ abababaafJgChnfRgegihAfRfRgIhBfRgfgIfYgZfRkUkWkXgngRgzkYgXgIfRfRgfgffRfRhrfRfRfK
 abababaafJgShDhEgIgigXfRfRgIhggIfRfKfRgwhFfXkZfXgRfOfOkRgIalamgIgIfKgvgNhGhHfRhggIfRfRggfYfRfRfRgBfJaaabdCdCdCaaaaababab
 abababaafJgChIhJfRhKgjfRhLagfKfKfKadgNgtfRfXlalblcfXgnnganfRfRhMhiaofYhOhPfYgYfYhQfRfRgHhRfRhSfRgQfJaaabaaaaaaaaaaababab
 abababaafJfKhTgghUhVfRgwfRaggvfRgqgIgefRgIkZgantgRgLgUgaapgqgKgffRfKgefRfRgfgfgthphWfUhXfRhghSfRgBfJaaaaaaaaaaaaaaababab
-abababaafJfKhTghghghhYfYfYhihhfRfRajgvhgfRhffOgUgngngUgaaqfRfRgqgJfKhggegefRgfgtgvfRgehZfRgdfWfRfKfJaaaaaaaaaaaaaaababab
+abababaafJfKhTghghghhYfYfYhihhfRfRajgvhgfRhffOgUgngngUgaaqfRfRgqgJfKhggegefRgfgtgvfRgehZfRfKfWfRfKfJaaaaaaaaaaaaaaababab
 abababaafJfKfKfKfKfLfKfKfKfKfLfKfKfKfKfLfKdxdxdxfMdxdxdxfKfLfKfKfKfKfLfPfKfKfKfLfKfKfKfKfLfKfKfKfKfJaaaaaaaaaaaaaaababab
 abababaafJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJfJaaababababababababab
 abababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababababababab
