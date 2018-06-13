@@ -479,14 +479,14 @@
 		..()
 		reagents.add_reagent("cognac", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac/empty_cognac
+/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac/empty
 	name = "Chateau De Baton Premium Cognac"
 	desc = "A sweet and strongly alchoholic drink, made after numerous distillations and years of maturing. You might as well not scream 'SHITCURITY' this time."
 	icon_state = "cognacbottle"
 	center_of_mass = list("x"=16, "y"=6)
 	New()
 		..()
-		reagents.add_reagent("cognac", 0)
+		reagents.add_reagent()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/wine
 	name = "Doublebeard Bearded Special Wine"
@@ -497,7 +497,7 @@
 		..()
 		reagents.add_reagent("wine", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/wine/empty_wine
+/obj/item/weapon/reagent_containers/food/drinks/bottle/wine/empty
 	name = "Doublebeard Bearded Special Wine"
 	desc = "A faint aura of unease and asspainery surrounds the bottle."
 	icon_state = "winebottle"
@@ -515,7 +515,7 @@
 		..()
 		reagents.add_reagent("absinthe", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe/empty_absinthe
+/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe/empty
 	name = "Jailbreaker Verte"
 	desc = "One sip of this and you just know you're gonna have a good time."
 	icon_state = "absinthebottle"
@@ -533,7 +533,7 @@
 		..()
 		reagents.add_reagent("melonliquor", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor/empty_melonliquer
+/obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor/empty
 	name = "Emeraldine Melon Liquor"
 	desc = "A bottle of 46 proof Emeraldine Melon Liquor. Sweet and light."
 	icon_state = "alco-green" //Placeholder.
@@ -551,14 +551,14 @@
 		..()
 		reagents.add_reagent("bluecuracao", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/bluecuracao/empty_bluecuracao
+/obj/item/weapon/reagent_containers/food/drinks/bottle/bluecuracao/empty
 	name = "Miss Blue Curacao"
 	desc = "A fruity, exceptionally azure drink. Does not allow the imbiber to use the fifth magic."
 	icon_state = "alco-blue" //Placeholder.
 	center_of_mass = list("x"=16, "y"=6)
 	New()
 		..()
-		reagents.add_reagent("bluecuracao", 0)
+		reagents.add_reagent()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/grenadine
 	name = "Briar Rose Grenadine Syrup"
@@ -569,14 +569,14 @@
 		..()
 		reagents.add_reagent("grenadine", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/grenadine/empty_grenadine
+/obj/item/weapon/reagent_containers/food/drinks/bottle/grenadine/empty
 	name = "Briar Rose Grenadine Syrup"
 	desc = "Sweet and tangy, a bar syrup used to add color or flavor to drinks."
 	icon_state = "grenadinebottle"
 	center_of_mass = list("x"=16, "y"=6)
 	New()
 		..()
-		reagents.add_reagent("grenadine", 0)
+		reagents.add_reagent()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cola
 	name = "\improper Cola"
@@ -587,14 +587,14 @@
 		..()
 		reagents.add_reagent("cola", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/cola/empty_cola
+/obj/item/weapon/reagent_containers/food/drinks/bottle/cola/empty
 	name = "\improper Cola"
 	desc = "Cola a good sweet drink wiht a pop "
 	icon_state = "colabottle"
 	center_of_mass = list("x"=16, "y"=6)
 	New()
 		..()
-		reagents.add_reagent("cola", 0)
+		reagents.add_reagent()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/space_up
 	name = "\improper Space-Up"
@@ -636,7 +636,7 @@
 		..()
 		reagents.add_reagent("orangejuice", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice/empty_orangejuice
+/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice/empty
 	name = "Orange Juice"
 	desc = "Full of vitamins and deliciousness!"
 	icon_state = "orangejuice"
@@ -645,7 +645,7 @@
 	isGlass = FALSE
 	New()
 		..()
-		reagents.add_reagent("orangejuice", 0)
+		reagents.add_reagent()
 
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cream
@@ -660,7 +660,7 @@
 		..()
 		reagents.add_reagent("cream", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/cream/empty_cream
+/obj/item/weapon/reagent_containers/food/drinks/bottle/cream/empty
 	name = "Milk Cream"
 	desc = "It's cream. Made from milk. What else did you think you'd find in there?"
 	icon_state = "cream"
@@ -670,7 +670,7 @@
 	dropsound = 'sound/effects/drop_default.ogg'
 	New()
 		..()
-		reagents.add_reagent("cream", 0)
+		reagents.add_reagent()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/tomatojuice
 	name = "Tomato Juice"
@@ -683,7 +683,7 @@
 		..()
 		reagents.add_reagent("tomatojuice", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/tomatojuice/empty_tomatojuice
+/obj/item/weapon/reagent_containers/food/drinks/bottle/tomatojuice/empty
 	name = "Tomato Juice"
 	desc = "Well, at least it LOOKS like tomato juice. You can't tell with all that redness."
 	icon_state = "tomatojuice"
@@ -692,7 +692,7 @@
 	isGlass = FALSE
 	New()
 		..()
-		reagents.add_reagent("tomatojuice", 0)
+		reagents.add_reagent()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/limejuice
 	name = "Lime Juice"
@@ -705,7 +705,7 @@
 		..()
 		reagents.add_reagent("limejuice", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/limejuice/empty_limejuice
+/obj/item/weapon/reagent_containers/food/drinks/bottle/limejuice/empty
 	name = "Lime Juice"
 	desc = "Sweet-sour goodness."
 	icon_state = "limejuice"
@@ -714,7 +714,7 @@
 	isGlass = FALSE
 	New()
 		..()
-		reagents.add_reagent("limejuice", 0)
+		reagents.add_reagent()
 
 //Small bottles
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small
