@@ -1,14 +1,20 @@
-/var/max_lighting_z = 1
+/proc/max_lighting_z()
+	. = world.maxz
+	if (map)
+		while (map.zlevels_without_lighting.Find(.))
+			--.
+	. = max(., 1)
+
 /var/lighting_corners_initialised = FALSE
 
 /proc/create_all_lighting_overlays()
-	for (var/zlevel = 1 to max_lighting_z)
+	for (var/zlevel = 1 to max_lighting_z())
 		create_lighting_overlays_zlevel(zlevel)
 
 /proc/create_lighting_overlays_zlevel(var/zlevel)
 	ASSERT(zlevel)
 
-	for (var/turf/T in block(locate(1, TRUE, zlevel), locate(world.maxx, world.maxy, zlevel)))
+	for (var/turf/T in block(locate(1, 1, zlevel), locate(world.maxx, world.maxy, zlevel)))
 		if (T.supports_lighting_overlays())
 
 			var/area/T_area = get_area(T)
@@ -27,12 +33,12 @@
 			PoolOrNew(/atom/movable/lighting_overlay, T, TRUE)
 
 /proc/create_all_lighting_corners()
-	for (var/zlevel = 1 to max_lighting_z)
+	for (var/zlevel = 1 to max_lighting_z())
 		create_lighting_corners_zlevel(zlevel)
 	global.lighting_corners_initialised = TRUE
 
 /proc/create_lighting_corners_zlevel(var/zlevel)
-	for (var/turf/T in block(locate(1, TRUE, zlevel), locate(world.maxx, world.maxy, zlevel)))
+	for (var/turf/T in block(locate(1, 1, zlevel), locate(world.maxx, world.maxy, zlevel)))
 
 		if (!T.supports_lighting_overlays())
 			continue
