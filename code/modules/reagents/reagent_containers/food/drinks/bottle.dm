@@ -285,7 +285,7 @@
 	center_of_mass = list("x"=16, "y"=4)
 	New()
 		..()
-		reagents.remove_reagents()
+		reagents.del_reagents()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey
 	name = "Uncle Git's Special Reserve"
@@ -303,7 +303,7 @@
 	center_of_mass = list("x"=16, "y"=3)
 	New()
 		..()
-		reagents.remove_reagents()
+		reagents.del_reagents()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/water
 	name = "Bottle of Water"
@@ -342,7 +342,7 @@
 	center_of_mass = list("x"=17, "y"=3)
 	New()
 		..()
-		reagents.remove_reagents()
+		reagents.del_reagents()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/tequilla
 	name = "Caccavo Guaranteed Quality Tequilla"
@@ -359,7 +359,7 @@
 	center_of_mass = list("x"=16, "y"=3)
 	New()
 		..()
-		reagents.remove_reagents()
+		reagents.del_reagents()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing
 	name = "Bottle of Nothing"
@@ -386,7 +386,7 @@
 	center_of_mass = list("x"=16, "y"=6)
 	New()
 		..()
-		reagents.remove_reagents()
+		reagents.del_reagents()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/rum
 	name = "Captain Pete's Cuban Spiced Rum"
@@ -404,7 +404,7 @@
 	center_of_mass = list("x"=16, "y"=8)
 	New()
 		..()
-		reagents.remove_reagents()
+		reagents.del_reagents()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/holywater
 	name = "Flask of Holy Water"
@@ -431,7 +431,7 @@
 	center_of_mass = list("x"=17, "y"=3)
 	New()
 		..()
-		reagents.remove_reagents()
+		reagents.del_reagents()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua
 	name = "Robert Robust's Coffee Liqueur"
@@ -449,7 +449,7 @@
 	center_of_mass = list("x"=17, "y"=3)
 	New()
 		..()
-		reagents.remove_reagents()
+		reagents.del_reagents()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/goldschlager
 	name = "College Girl Goldschlager"
@@ -467,7 +467,7 @@
 	center_of_mass = list("x"=15, "y"=3)
 	New()
 		..()
-		reagents.add_reagents()
+		reagents.del_reagents()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cognac
 	name = "Chateau De Baton Premium Cognac"
@@ -485,7 +485,7 @@
 	center_of_mass = list("x"=16, "y"=6)
 	New()
 		..()
-		reagents.remove_reagent()
+		reagents.del_reagent()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/wine
 	name = "Doublebeard Bearded Special Wine"
@@ -503,7 +503,7 @@
 	center_of_mass = list("x"=16, "y"=4)
 	New()
 		..()
-		reagents.remove_reagents()
+		reagents.del_reagents()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe
 	name = "Jailbreaker Verte"
@@ -521,7 +521,7 @@
 	center_of_mass = list("x"=16, "y"=6)
 	New()
 		..()
-		reagents.remove_reagents()
+		reagents.del_reagents()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor
 	name = "Emeraldine Melon Liquor"
@@ -539,7 +539,7 @@
 	center_of_mass = list("x"=16, "y"=6)
 	New()
 		..()
-		reagents.remove_reagents()
+		reagents.del_reagents()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/bluecuracao
 	name = "Miss Blue Curacao"
@@ -557,7 +557,7 @@
 	center_of_mass = list("x"=16, "y"=6)
 	New()
 		..()
-		reagents.remove_reagents()
+		reagents.del_reagents()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/grenadine
 	name = "Briar Rose Grenadine Syrup"
@@ -575,7 +575,7 @@
 	center_of_mass = list("x"=16, "y"=6)
 	New()
 		..()
-		reagents.remove_reagents()
+		reagents.del_reagents()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cola
 	name = "\improper Cola"
@@ -593,7 +593,7 @@
 	center_of_mass = list("x"=16, "y"=6)
 	New()
 		..()
-		reagents.remove_reagents()
+		reagents.del_reagents()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/space_up
 	name = "\improper Space-Up"
@@ -644,7 +644,7 @@
 	isGlass = FALSE
 	New()
 		..()
-		reagents.remove_reagents()
+		reagents.del_reagents()
 
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cream
@@ -669,7 +669,7 @@
 	dropsound = 'sound/effects/drop_default.ogg'
 	New()
 		..()
-		reagents.remove_reagents()
+		reagents.del_reagents()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/tomatojuice
 	name = "Tomato Juice"
@@ -691,7 +691,7 @@
 	isGlass = FALSE
 	New()
 		..()
-		reagents.remove_reagents()
+		reagents.del_reagents()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/limejuice
 	name = "Lime Juice"
@@ -713,7 +713,7 @@
 	isGlass = FALSE
 	New()
 		..()
-		reagents.remove_reagents()
+		reagents.del_reagents()
 
 //Small bottles
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small
