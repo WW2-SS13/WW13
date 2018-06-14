@@ -43,12 +43,16 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_casing/a792x57
 	desc = "A 7.92x57mm bullet casing."
+	icon_state = "kclip-bullet"
+	spent_icon = "kclip-casing"
 	caliber = "a792x57"
 	weight = 0.0127
 	projectile_type = /obj/item/projectile/bullet/rifle/a792x57
 
 /obj/item/ammo_casing/a792x57_weaker
 	desc = "A 7.92x57mm bullet casing."
+	icon_state = "kclip-bullet"
+	spent_icon = "kclip-casing"
 	caliber = "a792x57"
 	weight = 0.011
 	projectile_type = /obj/item/projectile/bullet/rifle/a792x57_weaker
@@ -62,11 +66,15 @@ WW 2 WEAPONS MAGS N AMMO
 /obj/item/ammo_casing/a9_parabellum
 	desc = "A 9mm parabellum bullet casing."
 	caliber = "9x19mm"
+	icon_state = "pistol_bullet_anykind"
+	spent_icon = "pistol_bullet_casing"
 	weight = 0.0095
 	projectile_type = /obj/item/projectile/bullet/rifle/a9_parabellum
 
 /obj/item/ammo_casing/a9_parabellum_luger
 	desc = "A 9mm parabellum bullet casing."
+	icon_state = "pistol_bullet_anykind"
+	spent_icon = "pistol_bullet_casing"
 	caliber = "a9mm_para_luger"
 	weight = 0.0095
 	projectile_type = /obj/item/projectile/bullet/rifle/a9_parabellum_luger
@@ -79,11 +87,15 @@ WW 2 WEAPONS MAGS N AMMO
 /obj/item/ammo_casing/c762mm_tokarev
 	desc = "A 7.62mm pistol bullet casing."
 	caliber = "7.62mm"
+	icon_state = "pistol_bullet_anykind"
+	spent_icon = "pistol_bullet_casing"
 	weight = 0.00557
 	projectile_type = /obj/item/projectile/bullet/rifle/c762mm_tokarev
 
 /obj/item/ammo_casing/c763x25mm_mauser
 	desc = "A 7.63x25mm pistol bullet casing."
+	icon_state = "7.63x25mm-bullet"
+	spent_icon = "7.63x25mm-casing"
 	caliber = "7.63x25mm"
 	weight = 0.0039
 	projectile_type = /obj/item/projectile/bullet/rifle/c763x25mm_mauser
@@ -97,6 +109,8 @@ WW 2 WEAPONS MAGS N AMMO
 /obj/item/ammo_casing/c762x38mmR
 	desc = "A 7.62x38mmR bullet casing."
 	caliber = "7.62x38mmR"
+	icon_state = "7.62x38mmR-1"
+	spent_icon = "7.62x38mmR-casing"
 	weight = 0.00635
 	projectile_type = /obj/item/projectile/bullet/rifle/c762x38mmR
 
@@ -121,12 +135,16 @@ WW 2 WEAPONS MAGS N AMMO
 /obj/item/ammo_casing/p9x19mm
 	desc = "A 9x19mm Parabellum bullet casing."
 	caliber = "9x19mm"
+	icon_state = "pistol_bullet_anykind"
+	spent_icon = "pistol_bullet_casing"
 	weight = 0.00952
 	projectile_type = /obj/item/projectile/bullet/rifle/p9x19mm
 
 /obj/item/ammo_casing/s9x19mm
 	desc = "A 9x19mm Parabellum bullet casing."
 	caliber = "9x19mm"
+	icon_state = "pistol_bullet_anykind"
+	spent_icon = "pistol_bullet_casing"
 	weight = 0.00952
 	projectile_type = /obj/item/projectile/bullet/rifle/s9x19mm
 
@@ -216,6 +234,6 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_casing/flare
 	name = "flare shell"
-	icon_state = ""
+	icon_state = "flare_casing"
 	projectile_type = /obj/item/projectile/flare
 	caliber = "flare"

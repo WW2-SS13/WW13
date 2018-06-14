@@ -314,14 +314,36 @@
 		tank.receive_command_from(mob, direct)
 		return TRUE
 
-	var/turf/t1 = n
+	// prevent passing the invisible wall: now supports diagonals :agony:
+	var/list/dirs = list()
 
-	if (t1 && map.check_prishtina_block(mob, t1))
-		mob.dir = direct
-		if (world.time >= mob.next_gracewall_message)
-			mob << "<span class = 'warning'>You cannot pass the invisible wall until the Grace Period has ended.</span>"
-			mob.next_gracewall_message = world.time + 10
-		return FALSE
+	switch (direct)
+		if (NORTHEAST)
+			dirs += NORTH
+			dirs += EAST
+		if (NORTHWEST)
+			dirs += NORTH
+			dirs += WEST
+		if (SOUTHEAST)
+			dirs += SOUTH
+			dirs += EAST
+		if (SOUTHWEST)
+			dirs += SOUTH
+			dirs += WEST
+		else
+			dirs += direct
+
+	for (var/refdir in dirs)
+		var/turf/ref = get_step(mob, refdir)
+
+		if (ref && map.check_prishtina_block(mob, ref))
+			mob.dir = direct
+			if (world.time >= mob.next_gracewall_message)
+				mob << "<span class = 'warning'>You cannot pass the invisible wall until the Grace Period has ended.</span>"
+				mob.next_gracewall_message = world.time + 10
+			return FALSE
+
+	var/turf/t1 = n
 
 	if (mob_is_observer && t1 && locate(/obj/noghost) in t1)
 		if (!mob.client.holder || !check_rights(R_MOD, user = mob))
@@ -714,7 +736,13 @@
 
 	return
 
-/mob/proc/lastMovedRecently(threshold)
+#define NO_ACCURACY_MOVEMENT_CHECKS
+/mob/proc/lastMovedRecently(threshold, accuracy_check = FALSE)
+	if (accuracy_check)
+		#ifdef NO_ACCURACY_MOVEMENT_CHECKS
+		return FALSE
+		#endif
+
 	var/default_threshold = movement_delay()
 	if (ishuman(src))
 		default_threshold = get_walk_delay()
@@ -723,6 +751,7 @@
 	if (abs(world.time - last_movement) <= (threshold ? threshold+0.1 : default_threshold+0.1))
 		return TRUE
 	return FALSE
+#undef NO_ACCURACY_MOVEMENT_CHECKS
 
 /mob/proc/SelfMove(turf/n, direct)
 	return Move(n, direct)
