@@ -1,0 +1,86 @@
+"aa" = (/obj/skybox,/turf/wall/indestructable/black,/area/prishtina/void)
+"ab" = (/turf/wall/indestructable/black,/area/prishtina/void)
+"ac" = (/turf/wall/indestructable/black,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"ad" = (/obj/structure/window_frame,/obj/structure/barricade/steel,/turf/wall/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"ae" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"af" = (/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"ag" = (/obj/item/clothing/glasses/monocle,/obj/structure/closet/anchored,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"ah" = (/obj/item/clothing/glasses/eyepatch,/obj/structure/closet/anchored,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"ai" = (/obj/structure/simple_door/wood{name = "Office"},/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aj" = (/obj/structure/window/classic,/obj/structure/curtain/open/bed,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"ak" = (/obj/structure/simple_door/key_door/anyone/wood{icon_state = "wood"; name = "Bathroom"},/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"al" = (/obj/structure/closet/anchored,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"am" = (/obj/item/clothing/head/bowler,/obj/structure/closet/anchored,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"an" = (/obj/item/weapon/storage/briefcase,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"ao" = (/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"ap" = (/obj/item/weapon/reagent_containers/food/snacks/flatbread,/obj/structure/closet/anchored,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aq" = (/obj/item/clothing/head/collectable/beret,/obj/structure/closet/anchored,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"ar" = (/obj/structure/table/wood,/obj/item/weapon/phone,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"as" = (/obj/structure/table/wood,/obj/item/weapon/folder/red,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"at" = (/obj/structure/table/wood,/obj/item/weapon/stamp,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"au" = (/obj/structure/table/wood,/obj/item/weapon/paper,/obj/item/weapon/pen,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"av" = (/obj/structure/table/wood,/obj/item/weapon/pen,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aw" = (/obj/structure/table/wood,/obj/item/weapon/folder/white,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"ax" = (/obj/structure/table/wood,/obj/item/weapon/folder,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"ay" = (/obj/structure/table/wood,/obj/item/trash/candle,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"az" = (/obj/structure/table/wood,/obj/item/weapon/storage/fancy/crayons,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aA" = (/obj/structure/table/wood,/obj/item/weapon/storage/bible,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aB" = (/obj/structure/table/wood,/obj/item/weapon/newspaper,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aC" = (/obj/structure/table/wood,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aD" = (/obj/structure/sink{dir = 8; icon_state = "sink"; pixel_x = -14},/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aE" = (/obj/structure/light/small{dir = 4},/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aF" = (/obj/item/violin,/obj/structure/closet/anchored,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aG" = (/obj/item/weapon/reagent_containers/food/snacks/grown/apple,/obj/structure/closet/anchored,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aH" = (/obj/structure/multiz/ladder/ww2/up{area_id = "floor2"},/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aI" = (/obj/item/clothing/under/gentlesuit,/obj/structure/closet/anchored,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aJ" = (/obj/structure/filingcabinet,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aK" = (/obj/structure/light/small,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aL" = (/obj/structure/bed/chair/wood{dir = 1},/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aM" = (/obj/structure/toilet{tag = "icon-toilet00 (EAST)"; icon_state = "toilet00"; dir = 4},/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aN" = (/obj/item/weapon/mop,/obj/item/weapon/reagent_containers/glass/bucket,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aO" = (/obj/item/megaphone,/obj/structure/closet/anchored,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aP" = (/obj/structure/multiz/ladder/ww2{area_id = "floor1"},/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aQ" = (/obj/item/clothing/under/civ1,/obj/structure/closet/anchored,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aR" = (/obj/structure/bed/chair/wood,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aS" = (/obj/structure/urinal,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aT" = (/obj/item/clothing/suit/storage/civjacket,/obj/structure/closet/anchored,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aU" = (/obj/item/clothing/suit/storage/coat/civilian,/obj/structure/closet/anchored,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aV" = (/obj/structure/table/wood,/obj/item/weapon/material/ashtray/glass,/obj/item/weapon/paper,/obj/item/weapon/pen,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aW" = (/obj/structure/table/wood,/obj/item/weapon/paper,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aX" = (/obj/structure/table/wood,/obj/item/weapon/flame/candle,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aY" = (/obj/structure/table/wood,/obj/item/weapon/flame/lighter,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"aZ" = (/obj/item/weapon/storage/toolbox/mechanical,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"ba" = (/obj/item/clothing/head/collectable/flatcap,/obj/structure/closet/anchored,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"bb" = (/obj/item/clothing/mask/balaclava,/obj/structure/closet/anchored,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"bc" = (/obj/item/clothing/under/civ2,/obj/structure/closet/anchored,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"bd" = (/obj/item/clothing/under/civ3,/obj/structure/closet/anchored,/turf/floor/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"bf" = (/turf/wall/wood,/area/prishtina/houses/nml_three{base_turf = /turf/floor/wood_broken; luminosity = 1; name = "1st - Offices"})
+"dC" = (/obj/skybox,/turf/wall/brick,/area/prishtina/void)
+
+(1,1,1) = {"
+aaaaaaababababababababababababababababababababababababababababababababababababababababababababababababababababababababab
+aaaaabababababababababababababababababababababababababababababababababababababababababababababababababaaaaaaaaaaaaabaaab
+aaaaaaababababababababababababababababababababababababababababababababababababababababababababababababababababababababab
+aaaaabababababababababababababababababababababababababababababababababababababababababababababababababaaaaaaaaaaaaabaaab
+aaaaabababababababababababababababababababababababababababababababababababababababababababababababababaaaaaaaaaaaaabaaab
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaab
+aaaaaaaaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaaaaaaaaaaaaaabaaab
+aaaaaaaaacbfbfbfbfadbfbfbfbfadbfbfbfbfadbfbfbfbfadbfbfbfbfadbfbfbfbfadbfbfbfbfadbfbfbfbfadbfbfbfbfacaaababababaaaaabaaab
+aaaaaaaaacbfaeaeafafafafaeafafafafaeafafafafaeafafafafaeafafafafaeafafafafaeafafafafaeafafafaeaebfacaaababababaaaaabaaab
+aaaaaaaaacbfagafahafbfaibfajbfbfaibfajbfbfaibfajbfbfaibfajbfbfaibfajbfbfaibfajbfbfakakbfafalafalbfacaaababababaaaaabaaab
+aaaaaaaaacbfalafamafbfafafafafbfafafafafbfafafafafbfafafafafbfafafafanbfafafafafbfaoaobfafalafalbfacaaabaaaaaaaaaaabaaab
+aaaaaaaaacbfapafaqafajafafarasbfafafataubfafafavawbfafafaxaybfafafazaAbfafafaBaCbfaDaEbfafaFafaGbfacaaabaadCaaaaaaabaaab
+aaaaaaaaacbfaHafaIafbfaJaKafaLbfaJaKanaLbfaJaKafaLbfaJaKafaLbfaJaKafaLbfaJaKafaLbfaMaNbfafaOafaPbfacaaabdCdCaaaaaaabaaab
+aaaaaaaaacbfaHafafafbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfafafafaPbfacaaabaadCaaaaaaabaaab
+aaaaaaaaacbfaHafaQafbfaRafaeaJbfaRafaeaJbfaRafaeaJbfaRafaeaJbfaRafaeaJbfaRafaeaJbfaMaSbfafaTafaPbfacaaabaadCaaaaaaabaaab
+aaaaaaaaacbfaUafalafajaxayafafbfataVafafbfaWaXafafbfaBasafafbfavaYafafbfavaxaZafbfaDaEbfafalafbabfacaaabdCdCdCaaaaabaaab
+aaaaaaaaacbfbbafaGafbfafafafafbfafafafafbfafafafafbfafafafafbfafafafafbfafafafafbfaoaobfafbcafalbfacaaabaaaaaaaaaaabaaab
+aaaaaaaaacbfalafbdafbfbfajbfaibfbfajbfaibfbfajbfaibfbfajbfaibfbfajbfaibfbfajbfaibfakakbfafalafalbfacaaaaaaaaaaaaaaabaaab
+aaaaaaaaacbfaKaKafafafafaKafafafafaKafafafafaKafafafafaKafafafafaKafafafafaKafafafafaKafafafaKaKbfacaaaaaaaaaaaaaaabaaab
+aaaaaaaaacbfbfbfbfadbfbfbfbfadbfbfbfbfadbfbfbfbfadbfbfbfbfadbfbfbfbfadbfbfbfbfadbfbfbfbfadbfbfbfbfacaaaaaaaaaaaaaaabaaab
+aaaaaaaaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaaaaaaaaaaaaaabaaab
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaab
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaab
+ababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaab
+ababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaab
+"}

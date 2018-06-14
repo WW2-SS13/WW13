@@ -1,7 +1,7 @@
 /obj/map_metadata/tower
 	ID = MAP_TOWER
-	title = "Tower (100x100x1)"
-	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall)
+	title = "Tower (60x25x8)"
+	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall/inside)
 	respawn_delay = 1200
 	squad_spawn_locations = FALSE
 	supply_points_per_tick = list(
@@ -11,8 +11,9 @@
 		GERMAN,
 		SOVIET)
 	available_subfactions = list()
-	faction_distribution_coeffs = list(GERMAN = 0.42, SOVIET = 0.58)
-	battle_name = "City Battle"
+	faction_distribution_coeffs = list(GERMAN = 0.5, SOVIET = 0.5)
+	battle_name = "NKVD Headquarters"
+	times_of_day = list("Night")
 
 /obj/map_metadata/tower/germans_can_cross_blocks()
 	return (processes.ticker.playtime_elapsed >= 4800 || admin_ended_all_grace_periods)
