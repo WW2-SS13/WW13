@@ -714,7 +714,13 @@
 
 	return
 
-/mob/proc/lastMovedRecently(threshold)
+#define NO_ACCURACY_MOVEMENT_CHECKS
+/mob/proc/lastMovedRecently(threshold, accuracy_check = FALSE)
+	if (accuracy_check)
+		#ifdef NO_ACCURACY_MOVEMENT_CHECKS
+		return FALSE
+		#endif
+
 	var/default_threshold = movement_delay()
 	if (ishuman(src))
 		default_threshold = get_walk_delay()
@@ -723,6 +729,7 @@
 	if (abs(world.time - last_movement) <= (threshold ? threshold+0.1 : default_threshold+0.1))
 		return TRUE
 	return FALSE
+#undef NO_ACCURACY_MOVEMENT_CHECKS
 
 /mob/proc/SelfMove(turf/n, direct)
 	return Move(n, direct)
