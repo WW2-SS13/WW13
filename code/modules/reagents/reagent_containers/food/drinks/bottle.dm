@@ -278,14 +278,14 @@
 		..()
 		reagents.add_reagent("gin", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/gin/empty_gin
+/obj/item/weapon/reagent_containers/food/drinks/bottle/gin/empty
 	name = "Griffeater Gin"
 	desc = "A bottle of high quality gin, produced in the New London Station."
 	icon_state = "ginbottle"
 	center_of_mass = list("x"=16, "y"=4)
 	New()
 		..()
-		reagents.add_reagent("gin", 0)
+		reagents.add_reagent()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey
 	name = "Uncle Git's Special Reserve"
@@ -303,7 +303,7 @@
 	center_of_mass = list("x"=16, "y"=3)
 	New()
 		..()
-		reagents.add_reagent("whiskey", 0)
+		reagents.add_reagent()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/water
 	name = "Bottle of Water"
@@ -335,14 +335,14 @@
 		..()
 		reagents.add_reagent("vodka", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka/empty_vodka
+/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka/empty
 	name = "Tunguska Triple Distilled"
 	desc = "Aah, vodka. Prime choice of drink AND fuel by Russians worldwide."
 	icon_state = "vodkabottle"
 	center_of_mass = list("x"=17, "y"=3)
 	New()
 		..()
-		reagents.add_reagent("vodka", 0)
+		reagents.add_reagent()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/tequilla
 	name = "Caccavo Guaranteed Quality Tequilla"
@@ -352,15 +352,14 @@
 	New()
 		..()
 		reagents.add_reagent("tequilla", 100)
-
-/obj/item/weapon/reagent_containers/food/drinks/bottle/tequilla/empty_tequilla
+/obj/item/weapon/reagent_containers/food/drinks/bottle/tequilla/empty
 	name = "Caccavo Guaranteed Quality Tequilla"
 	desc = "Made from premium petroleum distillates, pure thalidomide and other fine quality ingredients!"
 	icon_state = "tequillabottle"
 	center_of_mass = list("x"=16, "y"=3)
 	New()
 		..()
-		reagents.add_reagent("tequilla", 0)
+		reagents.add_reagent()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing
 	name = "Bottle of Nothing"
@@ -380,14 +379,14 @@
 		..()
 		reagents.add_reagent("patron", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/patron/empty_patron
+/obj/item/weapon/reagent_containers/food/drinks/bottle/patron/empty
 	name = "Wrapp Artiste Patron"
 	desc = "Silver laced tequilla, served in night clubs across the earth."
 	icon_state = "patronbottle"
 	center_of_mass = list("x"=16, "y"=6)
 	New()
 		..()
-		reagents.add_reagent("patron", 0)
+		reagents.add_reagent()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/rum
 	name = "Captain Pete's Cuban Spiced Rum"
@@ -398,14 +397,14 @@
 		..()
 		reagents.add_reagent("rum", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/rum/empty_rum
+/obj/item/weapon/reagent_containers/food/drinks/bottle/rum/empty
 	name = "Captain Pete's Cuban Spiced Rum"
 	desc = "This isn't just rum, oh no. It's practically GRIFF in a bottle."
 	icon_state = "rumbottle"
 	center_of_mass = list("x"=16, "y"=8)
 	New()
 		..()
-		reagents.add_reagent("rum", 0)
+		reagents.add_reagent()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/holywater
 	name = "Flask of Holy Water"
@@ -425,14 +424,14 @@
 		..()
 		reagents.add_reagent("vermouth", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/vermouth/empty_vermouth
+/obj/item/weapon/reagent_containers/food/drinks/bottle/vermouth/empty
 	name = "Goldeneye Vermouth"
 	desc = "Sweet, sweet dryness~"
 	icon_state = "vermouthbottle"
 	center_of_mass = list("x"=17, "y"=3)
 	New()
 		..()
-		reagents.add_reagent("vermouth", 0)
+		reagents.add_reagent()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua
 	name = "Robert Robust's Coffee Liqueur"
@@ -443,14 +442,14 @@
 		..()
 		reagents.add_reagent("kahlua", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua/empty_kahlua
+/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua/empty
 	name = "Robert Robust's Coffee Liqueur"
 	desc = "A widely known, Mexican coffee-flavoured liqueur. In production since 1936, HONK"
 	icon_state = "kahluabottle"
 	center_of_mass = list("x"=17, "y"=3)
 	New()
 		..()
-		reagents.add_reagent("kahlua", 0)
+		reagents.add_reagent()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/goldschlager
 	name = "College Girl Goldschlager"
@@ -461,14 +460,14 @@
 		..()
 		reagents.add_reagent("goldschlager", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/goldschlager/empty_goldschlager
+/obj/item/weapon/reagent_containers/food/drinks/bottle/goldschlager/empty
 	name = "College Girl Goldschlager"
 	desc = "Because they are the only ones who will drink 100 proof cinnamon schnapps."
 	icon_state = "goldschlagerbottle"
 	center_of_mass = list("x"=15, "y"=3)
 	New()
 		..()
-		reagents.add_reagent("goldschlager", 0)
+		reagents.add_reagent()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cognac
 	name = "Chateau De Baton Premium Cognac"
@@ -504,7 +503,7 @@
 	center_of_mass = list("x"=16, "y"=4)
 	New()
 		..()
-		reagents.add_reagent("wine", 0)
+		reagents.add_reagent()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe
 	name = "Jailbreaker Verte"
@@ -522,7 +521,7 @@
 	center_of_mass = list("x"=16, "y"=6)
 	New()
 		..()
-		reagents.add_reagent("absinthe", 0)
+		reagents.add_reagent()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor
 	name = "Emeraldine Melon Liquor"
