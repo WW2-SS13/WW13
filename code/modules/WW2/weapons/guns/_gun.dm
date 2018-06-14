@@ -182,7 +182,7 @@
 	return .
 
 /obj/item/weapon/gun/projectile/proc/get_base_miss_chance(var/accuracy_sublist, var/mob/target)
-	var/moving_target = target.lastMovedRecently(target.get_run_delay())
+	var/moving_target = target.lastMovedRecently(target.get_run_delay(), TRUE)
 	var/abs_x = abs(firer.x - target.x)
 	var/abs_y = abs(firer.y - target.y)
 	var/pythag = round((abs_x + abs_y)/2)
@@ -229,7 +229,7 @@
 					zone = nzone
 		return zone
 	// We didn't hit, and the target is running. Give us a chance to hit something in adjacent_redirections[zone]
-	else if (target.lastMovedRecently(target.get_run_delay()))
+	else if (target.lastMovedRecently(target.get_run_delay(), TRUE))
 
 		var/hitchance_still = round((accuracy_list["small"][SHORT_RANGE_STILL]/accuracy_list["small"][SHORT_RANGE_MOVING]) * hit_chance)
 		var/hitchance_delta = hitchance_still - hit_chance

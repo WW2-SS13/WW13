@@ -122,7 +122,7 @@ bullet_act
 					++graze_chance_multiplier
 				graze_chance_multiplier += (1 * getStatCoeff("survival"))
 
-				if (lastMovedRecently())
+				if (lastMovedRecently(accuracy_check = TRUE))
 					if (prob(graze_chance_multiplier * max(distcheck - 7, 0)))
 						visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
 						adjustBruteLoss(pick(14,15))
