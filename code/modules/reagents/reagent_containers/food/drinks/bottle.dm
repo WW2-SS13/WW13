@@ -467,7 +467,7 @@
 	center_of_mass = list("x"=15, "y"=3)
 	New()
 		..()
-		reagents.del_reagents
+		reagents.del_reagents()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cognac
 	name = "Chateau De Baton Premium Cognac"
