@@ -318,6 +318,7 @@
 #include "code\game\objects\items\weapons\tanks\tank_types.dm"
 #include "code\game\objects\items\weapons\tanks\tanks.dm"
 #include "code\game\objects\map_metadata\_map_metadata.dm"
+#include "code\game\objects\map_metadata\camp.dm"
 #include "code\game\objects\map_metadata\city.dm"
 #include "code\game\objects\map_metadata\forest.dm"
 #include "code\game\objects\map_metadata\pillar.dm"
@@ -354,6 +355,7 @@
 #include "code\game\objects\structures\tank_dispenser.dm"
 #include "code\game\objects\structures\target_stake.dm"
 #include "code\game\objects\structures\under_wardrobe.dm"
+#include "code\game\objects\structures\underground.dm"
 #include "code\game\objects\structures\vending.dm"
 #include "code\game\objects\structures\wall.dm"
 #include "code\game\objects\structures\watercloset.dm"
@@ -921,5 +923,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\city\level1.dmm"
+#include "maps\camp.dmm"
 // END_INCLUDE
