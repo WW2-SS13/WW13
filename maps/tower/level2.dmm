@@ -1,5 +1,6 @@
 "aa" = (/obj/skybox,/turf/wall/indestructable/black,/area/prishtina/void)
 "ab" = (/turf/wall/indestructable/black,/area/prishtina/void)
+"ac" = (/obj/structure/multiz/ladder/ww2{area_id = "floor_u"},/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "ae" = (/turf/wall/brick,/area/prishtina/void)
 "ch" = (/turf/wall/indestructable/black,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "ci" = (/turf/wall/brick,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
@@ -20,7 +21,6 @@
 "cx" = (/obj/item/weapon/paper/crumpled/bloody,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "cy" = (/obj/item/weapon/book/convention,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "cz" = (/obj/item/weapon/book/manual/chef_recipes,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
-"cA" = (/obj/structure/multiz/ladder/ww2{area_id = "basement"},/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "cB" = (/obj/item/weapon/doctor_handbook,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "cC" = (/obj/effect/decal/cleanable/ash,/obj/item/flashlight/flare/nighttime,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "cD" = (/obj/item/weapon/paper,/obj/item/weapon/paper,/turf/floor/wood_broken,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
@@ -49,9 +49,9 @@ aaaaaaaachcicjckclckclckcmckcncocockcpcpckckcqckcrcichababababababababababababab
 aaaaaaaachcickckcsckckckctckcucucpckcsckcvcuckckckcichababababababababaaabababababababababababababababababababababababab
 aaaaaaaachcickckckckcpckckcwckckckcqcmcxcsckcmclckcichababababababababaaabababababababababababababababababababababababab
 aaaaaaaachcickclckcqckcocycpczcuckckcuckckcpckckckcichabababababaeababababababababababababababababababababababababababab
-aaaaaaaachcicAckckckcpckcmcpcBcpckcCcpcmckcucDckcEcichababababaeaeababababababababababababababababababababababababababab
-aaaaaaaachcicAckcmcHcuctcscpckcpcmcscucIckcpckcocEcichabaeaeababaeababababababababababababababababababababababababababab
-aaaaaaaachcicAckcmckcpckcmcpcmcuckcqcuckcmcuckckcEcichabababababaeababababababababababababababababababababababababababab
+aaaaaaaachciacckckckcpckcmcpcBcpckcCcpcmckcucDckcEcichababababaeaeababababababababababababababababababababababababababab
+aaaaaaaachciacckcmcHcuctcscpckcpcmcscucIckcpckcocEcichabaeaeababaeababababababababababababababababababababababababababab
+aaaaaaaachciacckcmckcpckcmcpcmcuckcqcuckcmcuckckcEcichabababababaeababababababababababababababababababababababababababab
 aaaaaaaachcickcIckcJcpcqcKcLcxclclckckcqcmckckcqckcichababababaeaeaeabababababababababababababababababababababababababab
 aaaaaaaachcickckclckclckcpcpckcpckckcucocKcucxcmckcichabababababababababababaaaaabababababababababababababababababababab
 aaaaaaaachcicMckclckckclckcpckcucmcwckckcNclcsclcmcichabababababababababababaaaaabababababababababababababababababababab
