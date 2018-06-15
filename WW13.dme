@@ -923,5 +923,12 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\camp.dmm"
+#include "maps\tower\level1.dmm"
+#include "maps\tower\level2.dmm"
+#include "maps\tower\level3.dmm"
+#include "maps\tower\level4.dmm"
+#include "maps\tower\level5.dmm"
+#include "maps\tower\level6.dmm"
+#include "maps\tower\level7.dmm"
+#include "maps\tower\level8.dmm"
 // END_INCLUDE
