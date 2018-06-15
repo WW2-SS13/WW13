@@ -26,6 +26,8 @@
 /datum/job/var/spawn_delay = FALSE
 /datum/job/var/delayed_spawn_message = ""
 /datum/job/var/is_SS = FALSE
+/datum/job/var/is_SS_TV = FALSE
+/datum/job/var/is_prisoner = FALSE
 /datum/job/var/is_primary = TRUE
 /datum/job/var/is_secondary = FALSE
 /datum/job/var/is_paratrooper = FALSE
@@ -71,7 +73,10 @@
 			if (!is_SS)
 				. = GERMAN
 			else
-				. = SCHUTZSTAFFEL
+				if (!is_SS_TV)
+					. = SCHUTZSTAFFEL
+				else
+					. = SS_TV
 	else if (istype(src, /datum/job/italian))
 		. = ITALIAN
 	else if (istype(src, /datum/job/pillarman))

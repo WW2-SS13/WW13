@@ -860,3 +860,83 @@ var/first_guard = FALSE
 
 /datum/job/soviet/chef/get_keys()
 	return list(new/obj/item/weapon/key/soviet)
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/job/soviet/squad_leader_pris
+	title = "Offizier Kriegsgefangener"
+	en_meaning = "Officer POW"
+	rank_abbreviation = "KG"
+	head_position = FALSE
+	selection_color = "#770e0e"
+	spawn_location = "JoinLateRASL"
+	additional_languages = list( "German" = 100 )
+	is_officer = TRUE
+	is_squad_leader = TRUE
+	SL_check_independent = TRUE
+	is_prisoner = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 4
+
+/datum/job/soviet/squad_leader_pris/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/officer(H), slot_w_uniform)
+	H.add_note("Role", "You are a <b>[title]</b>. Your job is to lead the other prisioners and organize the escape or takeover of the prison camp.")
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_HIGH)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_MEDIUM_LOW)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/soviet/soldier_pris
+	title = "Soldat Kriegsgefangener"
+	en_meaning = "Soldier POW"
+	rank_abbreviation = "KG"
+	selection_color = "#770e0e"
+	spawn_location = "JoinLateRA"
+	additional_languages = list( "German" = 33 )
+	allow_spies = TRUE
+	is_prisoner = TRUE
+
+	// AUTOBALANCE
+	min_positions = 2
+	max_positions = 60
+
+/datum/job/soviet/soldier_pris/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
+	H.add_note("Role", "You are a <b>[title]</b>, a captured soviet soldier. Escape the camp, coordinating with the officers present!")
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+
+	return TRUE
