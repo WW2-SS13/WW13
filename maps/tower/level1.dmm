@@ -86,7 +86,7 @@
 "bH" = (/turf/floor/wood_broken,/area/prishtina/german/armory{base_turf = /turf/floor/wood_broken})
 "bI" = (/obj/structure/closet/crate/rations/german_solids,/turf/floor/wood_broken,/area/prishtina/german/kitchen{base_turf = /turf/floor/wood_broken})
 "bJ" = (/obj/effect/landmark{name = "JoinLateHeerChef"},/turf/floor/wood,/area/prishtina/german/kitchen{base_turf = /turf/floor/wood_broken})
-"bK" = (/obj/structure/simple_door/wood,/obj/structure/simple_door/key_door/anyone/wood{name = "Shop"; icon_state = "wood"},/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; name = "German Base"})
+"bK" = (/obj/structure/simple_door/key_door/anyone/wood{icon_state = "wood"; name = "Bathroom"},/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; name = "German Base"})
 "bL" = (/turf/floor/wood_broken,/area/prishtina/german/mparea{base_turf = /turf/floor/wood_broken})
 "bM" = (/obj/structure/closet/crate/german_grenade,/turf/floor/wood,/area/prishtina/german/armory{base_turf = /turf/floor/wood_broken})
 "bN" = (/obj/structure/closet/crate/german_grenade2,/turf/floor/wood,/area/prishtina/german/armory{base_turf = /turf/floor/wood_broken})
