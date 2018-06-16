@@ -19,7 +19,7 @@
 	available_subfactions = list(
 		SS_TV)
 	battle_name = "Prisioner's Camp"
-	times_of_day = list("Night")
+	custom_loadout = FALSE // so people do not spawn with guns!
 	var/modded_num_of_SSTV = FALSE
 	var/modded_num_of_prisoners = FALSE
 	faction_distribution_coeffs = list(GERMAN = 0.2, SOVIET = 0.8)
@@ -58,22 +58,6 @@
 				J.total_positions = max(1, round(clients.len*0.05*3))
 				modded_num_of_prisoners = TRUE
 	return .
-
-// 	if (istype(J, /datum/job/german))
-// 		if (!J.is_SS_TV)
-// 			. = FALSE
-// 		else
-// 			if ((istype(J, /datum/job/german/squad_leader_sstv) && !modded_num_of_SSTV))
-// 				J.total_positions = 3
-// /obj/map_metadata/camp/job_enabled_specialcheck(var/datum/job/J)
-// 	. = TRUE
-// 	if (istype(J, /datum/job/german))
-// 		if (!J.is_SS_TV)
-// 			. = FALSE
-// 		else
-// 			if ((istype(J, /datum/job/german/commander_sstv) && !modded_num_of_SSTV))
-// 				J.total_positions = 1
-// 				modded_num_of_SSTV = TRUE
 
 /obj/map_metadata/camp/announce_mission_start(var/preparation_time)
 	world << "<font size=4>All factions have <b>5 minutes</b> to prepare before the ceasefire ends!<br>The Germans will win if they hold out for 80 minutes without any escapes. The Soviets will win if a prisoner manages to escape.</font>"
