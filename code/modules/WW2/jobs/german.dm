@@ -1282,7 +1282,8 @@ var/first_fallschirm = TRUE
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/luger, slot_belt)
 
-	H.add_note("Role", "You are a <b>[title]</b>, and this camp's director. Keep the prisioners in order!")
+	H.add_note("Role", "You are a <b>[title]</b>, and this camp's director. Keep the prisioners (and the guards) in order!")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start shooting at the prisoners without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave.")
 	H.give_radio()
 	if (secret_ladder_message)
 		H << "<br>[secret_ladder_message]"
@@ -1343,6 +1344,7 @@ var/first_fallschirm = TRUE
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german/SSTV(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>, a squad leader for an elite Totenkopfverbande unit. Your job is to follow the Camp Director's orders.")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start shooting at the prisoners without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave.")
 	H.give_radio()
 	if (secret_ladder_message)
 		H << "<br>[secret_ladder_message]"
@@ -1398,6 +1400,7 @@ var/first_fallschirm = TRUE
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german/SSTV(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>, a soldier for the SS Camp management division (Totenkopfverbande). Follow the rules of your <b>SS-Untersharffuhrer</b>.")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start shooting at the prisoners without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave.")
 
 	// glorious SS stats
 	H.setStat("strength", STAT_VERY_HIGH)
@@ -1447,6 +1450,7 @@ var/first_fallschirm = TRUE
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
 	H.add_note("Role", "You are a <b>[title]</b>, the camp doctor. Heal your comrades first, follow the orders of the <b>SS-Untersharfuhrer</b>, and maybe help some prisioners.")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start shooting at the prisoners without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave.")
 	H.give_radio()
 
 	// glorious SS stats
