@@ -23,13 +23,13 @@
 	custom_loadout = FALSE // so people do not spawn with guns!
 	var/modded_num_of_SSTV = FALSE
 	var/modded_num_of_prisoners = FALSE
-	faction_distribution_coeffs = list(GERMAN = 0.2, SOVIET = 0.8)
+	faction_distribution_coeffs = list(GERMAN = 0.3, SOVIET = 0.70)
 
 /obj/map_metadata/camp/germans_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 3000 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 600 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/camp/soviets_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 3000 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 1800 || admin_ended_all_grace_periods)
 
 
 /obj/map_metadata/camp/job_enabled_specialcheck(var/datum/job/J)
@@ -61,16 +61,16 @@
 	return .
 
 /obj/map_metadata/camp/announce_mission_start(var/preparation_time)
-	world << "<font size=4>All factions have <b>5 minutes</b> to prepare before the ceasefire ends!<br>The Germans will win if they hold out for 80 minutes without any escapes. The Soviets will win if a prisoner manages to escape.</font>"
+	world << "<font size=4>Soviets have <b>5 minutes</b> to prepare before the ceasefire ends! Germans can cross after <b>1 minute</b>. <br>The Germans will win if they hold out for 80 minutes without any escapes. The Soviets will win if a prisoner manages to escape.</font>"
 
 /obj/map_metadata/camp/reinforcements_ready()
 	return (germans_can_cross_blocks() && soviets_can_cross_blocks())
 
 /obj/map_metadata/camp/short_win_time(faction)
-	return 1200
+	return 3000
 
 /obj/map_metadata/camp/long_win_time(faction)
-	return 1200
+	return 3000
 
 
 /obj/map_metadata/camp/update_win_condition()
