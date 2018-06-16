@@ -86,6 +86,7 @@
 		win_condition_spam_check = TRUE
 		return FALSE
 	if (current_winner && current_loser && world.time > next_win)
+		ticker.finished = TRUE
 		var/message = "A prisoner has escaped! The Soviet prisoners have won the round!"
 		world << "<font size = 4><span class = 'notice'>[message]</span></font>"
 		show_global_battle_report(null)
