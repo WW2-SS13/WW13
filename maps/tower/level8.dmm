@@ -4,6 +4,13 @@
 "ad" = (/obj/structure/barbwire{dir = 4; icon_state = "barbwire"; tag = "icon-barbwire (EAST)"},/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
 "ae" = (/turf/wall/brick,/area/prishtina/void)
 "af" = (/obj/structure/barbwire{dir = 4; icon_state = "barbwire"; tag = "icon-barbwire (EAST)"},/turf/floor/wood_broken,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
+"ag" = (/turf/wall/indestructable/black,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
+"ah" = (/turf/wall/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
+"ai" = (/obj/structure/sign/portrait/propaganda/sov1,/turf/wall/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
+"aj" = (/obj/structure/window_frame,/obj/structure/barricade/steel,/turf/wall/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
+"ak" = (/obj/structure/sign/flag/soviet,/turf/wall/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
+"al" = (/obj/structure/sign/portrait/stalin,/turf/wall/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
+"am" = (/obj/structure/multiz/ladder/ww2{area_id = "floor5"},/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
 "ch" = (/turf/wall/indestructable/black,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "ci" = (/turf/wall/brick,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "cj" = (/obj/item/stack/material/wood,/obj/effect/decal/cleanable/cobweb,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
@@ -620,21 +627,21 @@ abababababababababababababababababababababababababababababababababababababababab
 ababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababab
 abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab
 ababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababab
-ababaaaaleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleaaaaaaaaaaaaabababab
-ababaaaalelflglflflglflflflflhlflglflflglflglflflglflglflflglflglflflglflflflflhlflflilflhlflilflfleaaababababababababab
-ababaaaalelfljlklllmlklflnlolplqlrlsltlrlqlulvlvlulflwlvlvlwlflxlvlvlxlflylzlflAlAlBlClBlBlBlklklDleaaababababababababab
-ababaaaalelElFlGlHlHlGlIlJlKlplqlLlMlMlNlqlOlPlPlOlflQlPlPlQlflRlPlPlRlflSlTlflAcFlUlBcGadlBlGlGlEleaaababababaaabababab
-ababaaaalelflWlXlXlXlGlflYlJlplqlrlMlMlZlqlulPmalulflwlPmblwlflxlPmclxlfmdmdlfcFcFmelBafcGlBmglGlDleaaababababaaabababab
-ababaaaalelflflflflflflfmhlJmilqlqmjlqlqlqlflIlflflflflIlflflflflIlflflfacaclfmlcFlBlBcGadlBlGlGlEleaaabaeaeaeaaabababab
-ababaaaalelDmmmnmnmnmolfmplJlJmqmrmsmtmumvlGlGlGlklGlGlGlGlkmwlGlGlGlklGlGlGlGcFmxmymzadcGmelGmAlDleaaabdCaaaaaaabababab
-ababaaaalelEmBmCmDmCmClIlJmElJlGlGlGlGlGmglGmFmFmFmFmFmGlGlGmHlGlGlGmImglGlGlGcFcFmJmzcGadlBlGmAlEleaaabdCdCdCaaabababab
-ababaaaalelDmmmCmKmCmolfmLlJlJmMlGlGlGmNlGmOlGmOmMmglGlGmPmNlGlGlGlGmNlGlGlGlGcFmQmRmSadcGlBlGmAlDleaaabaaaadCaaabababab
-ababaaaalelflflflflflflfmTlJlJmUmUmVmUmUmUmWmXmWmWmWmYmZmYmYmYlflIlflflfacaclfmlcFlBmecGadlBlGlGlEleaaabdCdCdCaaabababab
-ababaaaalelflWnananalGlfnblJncmUndnenfndmUnhninjnkmWnlnmnmnlmYnnlPnonnlfmdmdlfcFcFlBlBadcGlBlGlGlDleaaabaaaaaaaaabababab
-ababaaaalelElFlGnpnplGlIlJlKncmUnqnenenrmUnhninsnumWnvnmnmnvmYnwlPlPnwlflSlTlfnxnynzlBcGadmelGlGlEleaaabaaaaaaaaabababab
-ababaaaalelfnAmNllnBmNlfnCnDncmUndnEnEndmUnhnFnGnHmWnInJnKnImYnnnLnLnnlflynMlfnNnOnPnQlBnRlBmNmNlDleaaaaaaaaaaaaabababab
-ababaaaalelflglflflglflflflflhlflglflflglflglflflglflglflflglflglflflglflflflflhlflflilflhlflflflfleaaaaaaaaaaaaabababab
-ababaaaaleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleaaaaaaaaaaaaabababab
+ababaaaaleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleagagagagagagagagagaaaaaaaaaaaaabababab
+ababaaaalelflglflflglflflflflhlflglflflglflglflflglflglflflglflglflflglflflflflhlfahaiahajahaiahahagaaababababababababab
+ababaaaalelfljlklllmlklflnlolplqlrlsltlrlqlulvlvlulflwlvlvlwlflxlvlvlxlflylzlflAlAlBlClBlBlBlClCakagaaababababababababab
+ababaaaalelElFlGlHlHlGlIlJlKlplqlLlMlMlNlqlOlPlPlOlflQlPlPlQlflRlPlPlRlflSlTlflAcFlUlBcGadlBlBlBalagaaababababaaabababab
+ababaaaalelflWlXlXlXlGlflYlJlplqlrlMlMlZlqlulPmalulflwlPmblwlflxlPmclxlfmdmdlfcFcFmelBafcGlBmelBakagaaababababaaabababab
+ababaaaalelflflflflflflfmhlJmilqlqmjlqlqlqlflIlflflflflIlflflflflIlflflfacaclfmlcFlBlBcGadlBlBlBalagaaabaeaeaeaaabababab
+ababaaaalelDmmmnmnmnmolfmplJlJmqmrmsmtmumvlGlGlGlklGlGlGlGlkmwlGlGlGlklGlGlGlGcFmxmymzadcGmelBamakagaaabdCaaaaaaabababab
+ababaaaalelEmBmCmDmCmClIlJmElJlGlGlGlGlGmglGmFmFmFmFmFmGlGlGmHlGlGlGmImglGlGlGcFcFmJmzcGadlBlBamalagaaabdCdCdCaaabababab
+ababaaaalelDmmmCmKmCmolfmLlJlJmMlGlGlGmNlGmOlGmOmMmglGlGmPmNlGlGlGlGmNlGlGlGlGcFmQmRmSadcGlBlBamakagaaabaaaadCaaabababab
+ababaaaalelflflflflflflfmTlJlJmUmUmVmUmUmUmWmXmWmWmWmYmZmYmYmYlflIlflflfacaclfmlcFlBmecGadlBlBlBalagaaabdCdCdCaaabababab
+ababaaaalelflWnananalGlfnblJncmUndnenfndmUnhninjnkmWnlnmnmnlmYnnlPnonnlfmdmdlfcFcFlBlBadcGlBlBlBakagaaabaaaaaaaaabababab
+ababaaaalelElFlGnpnplGlIlJlKncmUnqnenenrmUnhninsnumWnvnmnmnvmYnwlPlPnwlflSlTlfnxnynzlBcGadmelBlBalagaaabaaaaaaaaabababab
+ababaaaalelfnAmNllnBmNlfnCnDncmUndnEnEndmUnhnFnGnHmWnInJnKnImYnnnLnLnnlflynMlfnNnOnPnQlBnRlBnQnQakagaaaaaaaaaaaaabababab
+ababaaaalelflglflflglflflflflhlflglflflglflglflflglflglflflglflglflflglflflflflhlfahaiahajahahahahagaaaaaaaaaaaaabababab
+ababaaaaleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleleagagagagagagagagagaaaaaaaaaaaaabababab
 ababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababab
 abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab
 abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab

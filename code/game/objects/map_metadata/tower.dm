@@ -15,6 +15,10 @@
 	battle_name = "NKVD Headquarters"
 	times_of_day = list("Night")
 
+	roundend_condition_sides = list(
+		list(GERMAN) = /area/prishtina/german/bunker,
+		list(SOVIET) = /area/prishtina/soviet/bunker)
+
 /obj/map_metadata/tower/germans_can_cross_blocks()
 	return (processes.ticker.playtime_elapsed >= 4800 || admin_ended_all_grace_periods)
 
