@@ -1246,3 +1246,223 @@ var/first_fallschirm = TRUE
 	is_officer = FALSE
 	is_commander = FALSE
 	faction = "trainsystem"
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////
+/datum/job/german/commander_sstv
+	title = "SS-TV-Hauptsturmfuhrer"
+	en_meaning = "SS Camp Director"
+	rank_abbreviation = "Hstuf"
+	head_position = TRUE
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateSS-Officer"
+	is_SS_TV = TRUE
+	additional_languages = list( "Russian" = 100, "Ukrainian" = 75)
+	is_officer = TRUE
+	is_commander = TRUE // not a squad leader despite the title
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+	player_threshold = PLAYER_THRESHOLD_HIGHEST - 15
+
+/datum/job/german/commander_sstv/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssformalofc(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/luger, slot_belt)
+
+	H.add_note("Role", "You are a <b>[title]</b>, and this camp's director. Keep the prisioners in order!")
+	H.give_radio()
+	if (secret_ladder_message)
+		H << "<br>[secret_ladder_message]"
+
+	// glorious SS stats
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_HIGH)
+	H.setStat("smg", STAT_VERY_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
+	return TRUE
+
+/datum/job/german/commander_sstv/update_character(var/mob/living/carbon/human/H)
+	..()
+
+	H.make_artillery_officer()
+
+/datum/job/german/commander_sstv/get_keys()
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/command_high,
+		new/obj/item/weapon/key/german/SS)
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////
+/datum/job/german/squad_leader_sstv
+	title = "SS-TV-Unterscharfuhrer"
+	en_meaning = "SS Totenkopfverbände Squad Leader"
+	rank_abbreviation = "uscharf"
+	head_position = TRUE
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateSS-Officer"
+	is_SS_TV = TRUE
+	additional_languages = list( "Russian" = 100, "Ukrainian" = 75)
+	is_officer = TRUE
+	is_squad_leader = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 3
+	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
+
+/datum/job/german/squad_leader_sstv/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german/SSTV(H), slot_belt)
+	H.add_note("Role", "You are a <b>[title]</b>, a squad leader for an elite Totenkopfverbande unit. Your job is to follow the Camp Director's orders.")
+	H.give_radio()
+	if (secret_ladder_message)
+		H << "<br>[secret_ladder_message]"
+
+	// glorious SS stats
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_HIGH)
+	H.setStat("smg", STAT_VERY_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
+	return TRUE
+
+/datum/job/german/squad_leader_sstv/update_character(var/mob/living/carbon/human/H)
+	..()
+
+	H.make_artillery_officer()
+
+/datum/job/german/squad_leader_sstv/get_keys()
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/command_intermediate,
+		new/obj/item/weapon/key/german/SS)
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/german/soldier_sstv
+	title = "SS-TV-Schutze"
+	en_meaning = "SS Totenkopfverbände Soldier"
+	rank_abbreviation = "schtz"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateSS"
+	additional_languages = list( "Russian" = 40, "Ukrainian" = 20)
+	is_SS_TV = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 4
+	max_positions = 20
+	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
+
+/datum/job/german/soldier_sstv/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german/SSTV(H), slot_belt)
+	H.add_note("Role", "You are a <b>[title]</b>, a soldier for the SS Camp management division (Totenkopfverbande). Follow the rules of your <b>SS-Untersharffuhrer</b>.")
+
+	// glorious SS stats
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("survival", STAT_VERY_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
+	return TRUE
+
+/datum/job/german/soldier_sstv/get_keys()
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/SS)
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/german/medic_sstv
+	title = "SS-TV-Sanitäter"
+	en_meaning = "SS Totenkopfverbände Medic"
+	rank_abbreviation = "rott" // oGftr for normal medics
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateSS"
+	is_SS_TV = TRUE
+	SL_check_independent = TRUE
+	additional_languages = list( "Russian" = 60, "Ukrainian" = 25)
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 2
+	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
+
+/datum/job/german/medic_sstv/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german/SSTV(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
+	H.add_note("Role", "You are a <b>[title]</b>, the camp doctor. Heal your comrades first, follow the orders of the <b>SS-Untersharfuhrer</b>, and maybe help some prisioners.")
+	H.give_radio()
+
+	// glorious SS stats
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_VERY_HIGH)
+	H.setStat("survival", STAT_VERY_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
+	return TRUE
+
+/datum/job/german/medic_sstv/get_keys()
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/SS)
+

@@ -2,6 +2,8 @@
 #define MAP_CITY "CITY"
 #define MAP_FOREST "FOREST"
 #define MAP_PILLAR "PILLAR"
+#define MAP_LANDING "LANDING"
+#define MAP_CAMP "CAMP"
 
 #define MODE_WAR 1
 #define MODE_GERMAN_OCCUPATION 2

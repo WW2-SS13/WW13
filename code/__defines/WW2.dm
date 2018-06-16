@@ -9,6 +9,8 @@
 // there are things with 'SS' in their type path, thats why the const isn't SS
 // this is only used for a few circumstances right now, like faction bans
 #define SCHUTZSTAFFEL "SS"
+#define SS_TV "SS_TV"
+#define SOVIET_PRISONER "SOVIET_PRISONER"
 
 // used for languages only
 #define RUSSIAN "RUSSIAN"
