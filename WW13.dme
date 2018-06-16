@@ -50,6 +50,7 @@
 #include "code\__defines\weather.dm"
 #include "code\__defines\WW2.dm"
 #include "code\__defines\WWinput.dm"
+#include "code\__defines\zoom.dm"
 #include "code\_helpers\areas.dm"
 #include "code\_helpers\atmospherics.dm"
 #include "code\_helpers\datum_pool.dm"
