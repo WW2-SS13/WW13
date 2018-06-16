@@ -46,7 +46,7 @@ Parts of code courtesy of Super3222
 /obj/item/weapon/attachment/scope/adjustable/binoculars
 	name = "binoculars"
 	desc = "A pair of binoculars."
-	max_zoom = 21
+	max_zoom = ZOOM_CONSTANT*3
 	attachable = FALSE
 
 /obj/item/weapon/attachment/scope/adjustable/verb/adjust_scope_verb()
