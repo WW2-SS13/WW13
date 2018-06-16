@@ -8,8 +8,8 @@
 	anchored = TRUE
 
 	density = TRUE
-	var/health = 80
-	var/maxhealth = 80
+	var/health = 350
+	var/maxhealth = 350
 
 
 /obj/structure/underground/attackby(obj/item/W as obj, mob/user as mob)
