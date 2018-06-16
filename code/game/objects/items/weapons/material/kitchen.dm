@@ -94,7 +94,7 @@
 
 // Identical to the tactical knife but nowhere near as stabby.
 // Kind of like the toy esword compared to the real thing.
-/obj/item/weapon/material/kitchen/utensil/knife_bowie/boot
+/obj/item/weapon/material/kitchen/utensil/knife/boot
 	name = "boot knife"
 	desc = "A small fixed-blade knife for putting inside a boot."
 	icon = 'icons/obj/weapons.dmi'
@@ -105,37 +105,46 @@
 	drawsound = 'sound/items/unholster_knife.ogg'
 	force_divisor = 0.3
 
+/obj/item/weapon/material/kitchen/utensil/knife/makeshift_knife
+	name = "makeshift knife"
+	desc = "A small self-made knife, made out of iron and wooden handel."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "makeshift_knife"
+	item_state = "knife"
+	applies_material_colour = FALSE
+	unbreakable = TRUE
+	drawsound = 'sound/items/unholster_knife.ogg'
+	force_divisor = 0.3
 
 
-
-/obj/item/weapon/material/kitchen/utensil/knife_bowie/boot
+/obj/item/weapon/material/kitchen/utensil/knife/knife_bowie
 	name = "bowie knife"
 	desc = "A small fixed-blade knife for putting inside a boot."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "bowie_knife"
-	item_state = "knife_bowie"
+	item_state = "knife"
 	applies_material_colour = FALSE
 	unbreakable = TRUE
 	drawsound = 'sound/items/unholster_knife.ogg'
 	force_divisor = 0.3
 
-/obj/item/weapon/material/kitchen/utensil/knife_nr40/boot
+/obj/item/weapon/material/kitchen/utensil/knife/knife_nr40
 	name = "nr40 knife"
 	desc = "A small fixed-blade knife for putting inside a boot."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "nr40_knife"
-	item_state = "knife_nr40"
+	item_state = "knife"
 	applies_material_colour = FALSE
 	unbreakable = TRUE
 	drawsound = 'sound/items/unholster_knife.ogg'
 	force_divisor = 0.3
 
-	/obj/item/weapon/material/kitchen/utensil/knife_SS/boot
+	/obj/item/weapon/material/kitchen/utensil/knife/knife_SS
 	name = "SS knife"
-	desc = "A small fixed-blade knife for putting inside a boot."
+	desc = "My loyalty is my honor."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "nr40_knife_SS"
-	item_state = "knife_nr40_SS"
+	item_state = "knife"
 	applies_material_colour = FALSE
 	unbreakable = TRUE
 	drawsound = 'sound/items/unholster_knife.ogg'

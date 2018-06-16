@@ -73,7 +73,7 @@
 	desc = "Basic equip for German soldiers."
 	icon_state = "equipment_german"
 	products = list(
-		/obj/item/weapon/material/kitchen/utensil/knife_nr40/boot = 25,
+		/obj/item/weapon/material/kitchen/utensil/knife/knife_nr40 = 25,
 		/obj/item/weapon/attachment/bayonet/german = 25,
 		/obj/item/weapon/gauze_pack/gauze = 25,
 		/obj/item/flashlight = 25,
@@ -102,7 +102,7 @@
 		/obj/item/clothing/suit/storage/coat/german/ghillie = 5,
 		/obj/item/clothing/under/geruni/ghillie = 5,
 
-		/obj/item/weapon/material/kitchen/utensil/knife/boot = 10,
+		/obj/item/weapon/material/kitchen/utensil/knife/knife_SS = 10,
 		/obj/item/weapon/attachment/bayonet/german = 10,
 		/obj/item/weapon/gauze_pack/gauze = 10,
 		/obj/item/flashlight = 10,
@@ -178,7 +178,7 @@
 		/obj/item/weapon/grenade/smokebomb/german = 21,
 
 		/obj/item/weapon/shovel/spade/russia = 10,
-		/obj/item/weapon/material/kitchen/utensil/knife_SS/boot = 10,
+		/obj/item/weapon/material/kitchen/utensil/knife_SS = 10,
 
 	)
 
@@ -187,7 +187,7 @@
 	desc = "Basic equip for Soviet soldiers."
 	icon_state = "equipment_soviet"
 	products = list(
-		/obj/item/weapon/material/kitchen/utensil/knife_bowie/boot = 25,
+		/obj/item/weapon/material/kitchen/utensil/knife/knife_bowie = 25,
 		/obj/item/weapon/attachment/bayonet/soviet = 25,
 		/obj/item/weapon/gauze_pack/bint = 25,
 		/obj/item/flashlight = 25,
