@@ -186,7 +186,7 @@
 	var/abs_x = abs(firer.x - target.x)
 	var/abs_y = abs(firer.y - target.y)
 	var/pythag = round((abs_x + abs_y)/2)
-	var/distance = min(abs_x, abs_y, pythag)
+	var/distance = max(abs_x, abs_y, pythag)
 	// note: the screen is 15 tiles wide by default, so a person more than 7 tiles (ZOOM_CONSTANT) away from you x/y won't be on screen
 	// . = miss chance
 	switch (distance)
