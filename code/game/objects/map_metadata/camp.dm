@@ -5,7 +5,7 @@
 	title = "POW Camp (50x50x2)"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall,
 	/area/prishtina/no_mans_land/invisible_wall/inside) // above and underground
-	respawn_delay = 0
+	respawn_delay = 1800
 	squad_spawn_locations = FALSE
 	reinforcements = FALSE
 	faction_organization = list(
@@ -55,13 +55,17 @@
 		else
 			if (istype(J, /datum/job/soviet/soldier_pris))
 				J.total_positions = max(5, round(clients.len*0.75*3))
+			if (istype(J, /datum/job/soviet/medic_pris))
+				J.total_positions = max(1, round(clients.len*0.05*3))
+			if (istype(J, /datum/job/soviet/chef_pris))
+				J.total_positions = max(1, round(clients.len*0.05*3))
 			if (istype(J, /datum/job/soviet/squad_leader_pris) && !modded_num_of_prisoners)
-				J.total_positions = max(1, round(clients.len*0.15*3))
+				J.total_positions = max(1, round(clients.len*0.1*3))
 				modded_num_of_prisoners = TRUE
 	return .
 
 /obj/map_metadata/camp/announce_mission_start(var/preparation_time)
-	world << "<font size=4>Soviets have <b>5 minutes</b> to prepare before the ceasefire ends! Germans can cross after <b>1 minute</b>. <br>The Germans will win if they hold out for 80 minutes without any escapes. The Soviets will win if a prisoner manages to escape.</font>"
+	world << "<font size=4>Soviets have <b>3 minutes</b> to prepare before the ceasefire ends! Germans can cross after <b>1 minute</b>. <br>The Germans will win if they hold out for 50 minutes without any escapes. The Soviets will win if a prisoner manages to escape.</font>"
 
 /obj/map_metadata/camp/reinforcements_ready()
 	return (germans_can_cross_blocks() && soviets_can_cross_blocks())
@@ -71,12 +75,12 @@
 
 /obj/map_metadata/camp/long_win_time(faction)
 	return 3000
-
+var/no_loop = FALSE
 
 /obj/map_metadata/camp/update_win_condition()
 	if (!win_condition_specialcheck())
 		return FALSE
-	if (world.time >= 48000)
+	if (world.time >= 30000)
 		if (win_condition_spam_check)
 			return FALSE
 		ticker.finished = TRUE
@@ -85,12 +89,13 @@
 		show_global_battle_report(null)
 		win_condition_spam_check = TRUE
 		return FALSE
-	if (current_winner && current_loser && world.time > next_win)
+	if ((current_winner && current_loser && world.time > next_win) && no_loop == FALSE)
 		ticker.finished = TRUE
 		var/message = "A prisoner has escaped! The Soviet prisoners have won the round!"
 		world << "<font size = 4><span class = 'notice'>[message]</span></font>"
 		show_global_battle_report(null)
 		win_condition_spam_check = TRUE
+		no_loop = TRUE
 		return FALSE
 	// German major
 	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.33, TRUE))

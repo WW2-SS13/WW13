@@ -1327,7 +1327,6 @@ var/first_fallschirm = TRUE
 	is_SS_TV = TRUE
 	additional_languages = list( "Russian" = 100, "Ukrainian" = 75)
 	is_officer = TRUE
-	is_squad_leader = TRUE
 	SL_check_independent = TRUE
 
 	// AUTOBALANCE
