@@ -22,7 +22,6 @@
 				catch (var/exception/e)
 					catchException(e, P)
 					log_debug("Hey a bullet just froze! If this starts occuring alot please notify Harcourt or Kachnov!")
-					projectile_list -= P
 					qdel(P)
 		else
 			catchBadType(P)

@@ -74,7 +74,7 @@
 
 	var/useless = FALSE
 
-/obj/item/projectile/Del()
+/obj/item/projectile/Destroy()
 	projectile_list -= src
 	..()
 
