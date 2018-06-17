@@ -924,12 +924,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\towermap\level1.dmm"
-#include "maps\towermap\level2.dmm"
-#include "maps\towermap\level3.dmm"
-#include "maps\towermap\level4.dmm"
-#include "maps\towermap\level5.dmm"
-#include "maps\towermap\level6.dmm"
-#include "maps\towermap\level7.dmm"
-#include "maps\towermap\level8.dmm"
+#include "maps\camp.dmm"
 // END_INCLUDE

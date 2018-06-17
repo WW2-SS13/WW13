@@ -1,4 +1,4 @@
-#define MAP_TOWERMAP "TOWERMAP"
+#define MAP_TOWER "TOWER"
 #define MAP_CITY "CITY"
 #define MAP_FOREST "FOREST"
 #define MAP_PILLAR "PILLAR"
