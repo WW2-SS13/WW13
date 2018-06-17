@@ -877,7 +877,6 @@ var/first_guard = FALSE
 	spawn_location = "JoinLateRASL"
 	additional_languages = list( "German" = 100 )
 	is_officer = TRUE
-	is_squad_leader = TRUE
 	SL_check_independent = TRUE
 	is_prisoner = TRUE
 

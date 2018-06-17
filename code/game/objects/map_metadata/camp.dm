@@ -56,12 +56,12 @@
 			if (istype(J, /datum/job/soviet/soldier_pris))
 				J.total_positions = max(5, round(clients.len*0.75*3))
 			if (istype(J, /datum/job/soviet/squad_leader_pris) && !modded_num_of_prisoners)
-				J.total_positions = max(1, round(clients.len*0.15*3))
+				J.total_positions = max(1, round(clients.len*0.2*3))
 				modded_num_of_prisoners = TRUE
 	return .
 
 /obj/map_metadata/camp/announce_mission_start(var/preparation_time)
-	world << "<font size=4>Soviets have <b>5 minutes</b> to prepare before the ceasefire ends! Germans can cross after <b>1 minute</b>. <br>The Germans will win if they hold out for 80 minutes without any escapes. The Soviets will win if a prisoner manages to escape.</font>"
+	world << "<font size=4>Soviets have <b>3 minutes</b> to prepare before the ceasefire ends! Germans can cross after <b>1 minute</b>. <br>The Germans will win if they hold out for 50 minutes without any escapes. The Soviets will win if a prisoner manages to escape.</font>"
 
 /obj/map_metadata/camp/reinforcements_ready()
 	return (germans_can_cross_blocks() && soviets_can_cross_blocks())
@@ -76,7 +76,7 @@
 /obj/map_metadata/camp/update_win_condition()
 	if (!win_condition_specialcheck())
 		return FALSE
-	if (world.time >= 48000)
+	if (world.time >= 30000)
 		if (win_condition_spam_check)
 			return FALSE
 		ticker.finished = TRUE
