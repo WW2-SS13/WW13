@@ -51,7 +51,7 @@
 		var/turf/ref = get_step(user, refdir)
 
 		if (ref && map.check_prishtina_block(user, ref))
-			user.dir = direct
+			user.dir = direction
 			return
 
 	// Redundant check?
