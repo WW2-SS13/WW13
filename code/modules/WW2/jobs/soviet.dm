@@ -918,6 +918,7 @@ var/first_guard = FALSE
 	additional_languages = list( "German" = 33 )
 	allow_spies = TRUE
 	is_prisoner = TRUE
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 2
