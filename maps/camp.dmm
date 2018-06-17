@@ -39,7 +39,7 @@
 "aM" = (/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/bunker{capturable = 0; location = 1; name = "Outside Guard's Area"})
 "aN" = (/obj/effect/landmark{name = "JoinLateHeerSL"},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/bunker{capturable = 0; location = 1; name = "Outside Guard's Area"})
 "aO" = (/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/turf/floor/dirt,/area/prishtina/german/base_defenses/wall{location = 1})
-"aP" = (/obj/structure/simple_door/key_door/german/command_intermediate{name = "Camp"; unique_door_name = "Intermediate Command Access"},/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/borderfloor{dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/base_defenses/wall{location = 1})
+"aP" = (/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/simple_door/key_door/german{name = "Camp"},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/base_defenses/wall{location = 1})
 "aQ" = (/turf/wall/brick,/area/prishtina/german/medical{base_turf = /turf/floor/dirt; capturable = 0})
 "aR" = (/obj/structure/sign/nosmoking_1,/turf/wall/brick,/area/prishtina/german/medical{base_turf = /turf/floor/dirt; capturable = 0})
 "aS" = (/obj/structure/window/classic,/obj/structure/curtain/open/bed,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical{base_turf = /turf/floor/dirt; capturable = 0})
