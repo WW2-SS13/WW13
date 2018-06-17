@@ -55,8 +55,12 @@
 		else
 			if (istype(J, /datum/job/soviet/soldier_pris))
 				J.total_positions = max(5, round(clients.len*0.75*3))
+			if (istype(J, /datum/job/soviet/medic_pris))
+				J.total_positions = max(1, round(clients.len*0.05*3))
+			if (istype(J, /datum/job/soviet/chef_pris))
+				J.total_positions = max(1, round(clients.len*0.05*3))
 			if (istype(J, /datum/job/soviet/squad_leader_pris) && !modded_num_of_prisoners)
-				J.total_positions = max(1, round(clients.len*0.2*3))
+				J.total_positions = max(1, round(clients.len*0.1*3))
 				modded_num_of_prisoners = TRUE
 	return .
 
