@@ -105,62 +105,6 @@
 	drawsound = 'sound/items/unholster_knife.ogg'
 	force_divisor = 0.3
 
-/obj/item/weapon/material/kitchen/utensil/knife/boot/makeshift_knife
-	name = "makeshift knife"
-	desc = "A small self-made knife, made out of iron and wooden handel."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "makeshift_knife"
-	item_state = "knife"
-	applies_material_colour = FALSE
-	unbreakable = TRUE
-	drawsound = 'sound/items/unholster_knife.ogg'
-	force_divisor = 0.3
-
-
-/obj/item/weapon/material/kitchen/utensil/knife/boot/knife_bowie
-	name = "bowie knife"
-	desc = "A small fixed-blade knife for putting inside a boot. charge with your knife"
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "bowie_knife"
-	item_state = "knife"
-	applies_material_colour = FALSE
-	unbreakable = TRUE
-	drawsound = 'sound/items/unholster_knife.ogg'
-	force_divisor = 0.3
-
-/obj/item/weapon/material/kitchen/utensil/knife/boot/knife_nr40
-	name = "nr40 knife"
-	desc = "A small fixed-blade knife for putting inside a boot. time to slice some necks"
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "nr40_knife"
-	item_state = "knife"
-	applies_material_colour = FALSE
-	unbreakable = TRUE
-	drawsound = 'sound/items/unholster_knife.ogg'
-	force_divisor = 0.3
-
-	/obj/item/weapon/material/kitchen/utensil/knife/boot/knife_SS
-	name = "SS knife"
-	desc = "My loyalty is my honor. dis is a small SS knife is almost the smae as Nr40 but with a red swastika"
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "nr40_knife_SS"
-	item_state = "knife"
-	applies_material_colour = FALSE
-	unbreakable = TRUE
-	drawsound = 'sound/items/unholster_knife.ogg'
-	force_divisor = 0.3
-
-/obj/item/weapon/material/kitchen/utensil/knife/boot/trench_bowie
-	name = "trench knife"
-	desc = "italys best weapon. dis knife is good at killing and slicing some pepperoni"
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "trench_knife"
-	item_state = "knife"
-	applies_material_colour = FALSE
-	unbreakable = TRUE
-	drawsound = 'sound/items/unholster_knife.ogg'
-	force_divisor = 0.3
-
 /obj/item/weapon/material/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << "<span class='warning'>You accidentally cut yourself with \the [src].</span>"
