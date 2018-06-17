@@ -23,6 +23,7 @@ var/global/obj/map_metadata/map = null
 	var/respawn_delay = 3000
 	var/list/valid_weather_types = list(WEATHER_RAIN, WEATHER_SNOW)
 	var/reinforcements = TRUE
+	var/custom_loadout = TRUE // set to false to prevent people to spawn with guns and ammo on POW Camp map
 	var/squad_spawn_locations = TRUE
 	var/list/supply_points_per_tick = list(
 		GERMAN = 1.00,

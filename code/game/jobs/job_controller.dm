@@ -401,7 +401,7 @@ var/global/datum/controller/occupations/job_master
 								if (H.r_store)
 									continue
 						var/other_slot_num = (v == 1 ? 2 : 1)
-						if (H.client && H.client.prefs.pockets.len >= v)
+						if ((H.client && H.client.prefs.pockets.len >= v) && (map.custom_loadout == TRUE))
 							switch (lowertext(H.client.prefs.pockets[v]))
 								if (null, "Magazine")
 									continue
