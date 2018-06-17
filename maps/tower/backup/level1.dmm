@@ -1,6 +1,6 @@
 "aa" = (/obj/skybox,/turf/wall/indestructable/black,/area/prishtina/void)
 "ab" = (/turf/wall/indestructable/black,/area/prishtina/void)
-"ac" = (/obj/map_metadata/towermap,/turf/wall/indestructable/black,/area/prishtina/void)
+"ac" = (/obj/map_metadata/tower,/turf/wall/indestructable/black,/area/prishtina/void)
 "ad" = (/turf/wall/indestructable/black,/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; name = "German Base"})
 "ae" = (/turf/wall/brick,/area/prishtina/void)
 "af" = (/turf/wall/brick,/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; name = "German Base"})
