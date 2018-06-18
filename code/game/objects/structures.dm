@@ -221,9 +221,6 @@
 		return FALSE
 	if (user.stat || user.paralysis || user.sleeping || user.lying || user.weakened)
 		return FALSE
-	if (issilicon(user))
-		user << "<span class='notice'>You need hands for this.</span>"
-		return FALSE
 	return TRUE
 
 /obj/structure/attack_generic(var/mob/user, var/damage, var/attack_verb, var/wallbreaker)

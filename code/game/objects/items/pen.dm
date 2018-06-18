@@ -132,11 +132,11 @@
 		personnel_list.Add(t.fields["name"])
 	personnel_list.Add("Anonymous")
 
-	var/new_signature = input("Enter new signature pattern.", "New Signature") as null|anything in personnel_list
+	var/new_signature = WWinput(user, "Enter new signature pattern.", "New Signature", WWinput_first_choice(personnel_list), WWinput_list_or_null(personnel_list))
 	if (new_signature)
 		signature = new_signature
 	*/
-	signature = sanitize(input("Enter new signature. Leave blank for 'Anonymous'", "New Signature", signature))
+	signature = sanitize(WWinput(user, "Enter new signature. Leave blank for 'Anonymous'", "New Signature", signature, "text"))
 
 /obj/item/weapon/pen/proc/get_signature(var/mob/user)
 	return (user && user.real_name) ? user.real_name : "Anonymous"
@@ -148,8 +148,8 @@
 	set name = "Change Pen Colour"
 	set category = null
 
-	var/list/possible_colours = list ("Yellow", "Green", "Pink", "Blue", "Orange", "Cyan", "Red", "Invisible", "Black")
-	var/selected_type = input("Pick new colour.", "Pen Colour", null, null) as null|anything in possible_colours
+	var/list/possible_colors = list("Yellow", "Green", "Pink", "Blue", "Orange", "Cyan", "Red", "Invisible", "Black")
+	var/selected_type = WWinput(usr, "Pick new colour.", "Pen Colour", possible_colors[1], WWinput_list_or_null(possible_colors))
 
 	if (selected_type)
 		switch(selected_type)

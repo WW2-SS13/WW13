@@ -98,6 +98,13 @@
 			else
 				. = input(C, message, title) in toc2
 
+	// if we picked the Cancel choice, return null
+	if (. == "Cancel")
+		if (toc1 && islist(toc1) && toc1:len && toc1[toc1:len] == .)
+			. = null
+		else if (toc2 && islist(toc2) && toc2:len && toc2[toc2:len] == .)
+			. = null
+
 	return .
 
 // alias for WWinput that only accepts the first three arguments. Use it for giving informative popups. Unlike BYOND's alert(), it may not be used for getting user input.

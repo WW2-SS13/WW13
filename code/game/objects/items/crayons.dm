@@ -61,24 +61,25 @@
 	uses = FALSE
 
 /obj/item/weapon/pen/crayon/rainbow/attack_self(mob/living/user as mob)
-	colour = input(user, "Please select the main colour.", "Crayon colour") as color
-	shadeColour = input(user, "Please select the shade colour.", "Crayon colour") as color
+	colour = WWinput(user, "Please select the main colour.", "Crayon color", null, "color")
+	shadeColour = WWinput(user, "Please select the shade colour.", "Crayon color", null, "color")
 	return
 
 /obj/item/weapon/pen/crayon/afterattack(atom/target, mob/user as mob, proximity)
 	if (!proximity) return
 	if (istype(target,/turf/floor))
-		var/drawtype = input("Choose what you'd like to draw.", "Crayon scribbles") in list("graffiti","rune","letter","arrow")
+		var/scribbles = list("graffiti","rune","letter","arrow")
+		var/drawtype = WWinput(user, "Choose what you'd like to draw.", "Crayon scribbles", scribbles[1], scribbles)
 		switch(drawtype)
 			if ("letter")
-				drawtype = input("Choose the letter.", "Crayon scribbles") in list("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z")
+				drawtype = WWinput(user, "Choose the letter.", "Crayon scribbles", alphabet_lowercase[1], alphabet_lowercase)
 				user << "You start drawing a letter on the [target.name]."
 			if ("graffiti")
 				user << "You start drawing graffiti on the [target.name]."
 			if ("rune")
 				user << "You start drawing a rune on the [target.name]."
 			if ("arrow")
-				drawtype = input("Choose the arrow.", "Crayon scribbles") in list("left", "right", "up", "down")
+				drawtype = WWinput(user, "Choose the arrow.", "Crayon scribbles", "left", list("left", "right", "up", "down"))
 				user << "You start drawing an arrow on the [target.name]."
 		if (instant || do_after(user, 50))
 			new /obj/effect/decal/cleanable/crayon(target,colour,shadeColour,drawtype)

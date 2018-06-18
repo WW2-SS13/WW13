@@ -441,56 +441,6 @@
 	..()
 	M.add_chemical_effect(CE_PULSE, TRUE)
 
-/* Transformations */
-
-/datum/reagent/slimetoxin
-	name = "Mutation Toxin"
-	id = "mutationtoxin"
-	description = "A corruptive toxin produced by slimes."
-	taste_description = "sludge"
-	reagent_state = LIQUID
-	color = "#13BC5E"
-
-/datum/reagent/slimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if (ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if (H.species.name != "Slime")
-			M << "<span class='danger'>Your flesh rapidly mutates!</span>"
-			H.set_species("Slime")
-
-/datum/reagent/aslimetoxin
-	name = "Advanced Mutation Toxin"
-	id = "amutationtoxin"
-	description = "An advanced corruptive toxin produced by slimes."
-	taste_description = "sludge"
-	reagent_state = LIQUID
-	color = "#13BC5E"
-
-/datum/reagent/aslimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed) // TODO: check if there's similar code anywhere else
-	if (M.transforming)
-		return
-	M << "<span class='danger'>Your flesh rapidly mutates!</span>"
-	M.transforming = TRUE
-	M.canmove = FALSE
-	M.icon = null
-	M.overlays.Cut()
-	M.invisibility = 101
-	for (var/obj/item/W in M)
-/*		if (istype(W, /obj/item/weapon/implant)) //TODO: Carn. give implants a dropped() or something
-			qdel(W)
-			continue*/
-		W.layer = initial(W.layer)
-		W.loc = M.loc
-		W.dropped(M)
-	var/mob/living/carbon/slime/new_mob = new /mob/living/carbon/slime(M.loc)
-	new_mob.a_intent = "hurt"
-	new_mob.universal_speak = TRUE
-	if (M.mind)
-		M.mind.transfer_to(new_mob)
-	else
-		new_mob.key = M.key
-	qdel(M)
-
 /datum/reagent/nanites
 	name = "Nanomachines"
 	id = "nanites"

@@ -166,8 +166,6 @@
 	return TRUE // update UIs attached to this object
 
 /obj/structure/chemical_dispenser/attackby(var/obj/item/weapon/reagent_containers/B as obj, var/mob/user as mob)
-	if (isrobot(user))
-		return
 	if (beaker)
 		user << "Something is already loaded into the machine."
 		return

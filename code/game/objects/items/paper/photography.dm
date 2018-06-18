@@ -135,7 +135,7 @@ var/global/photo_count = FALSE
 /obj/item/camera/verb/change_size()
 	set name = "Set Photo Focus"
 	set category = null
-	var/nsize = input("Photo Size","Pick a size of resulting photo.") as null|anything in list(1,3,5,7)
+	var/nsize = WWinput(usr, "Pick the size of the resulting photo.", "Photo Size", 1, WWinput_list_or_null(list(1,3,5,7)))
 	if (nsize)
 		size = nsize
 		usr << "<span class='notice'>Camera will now take [size]x[size] photos.</span>"

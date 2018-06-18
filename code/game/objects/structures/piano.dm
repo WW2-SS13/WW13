@@ -327,7 +327,7 @@
 
 /obj/structure/device/piano/Topic(href, href_list)
 
-	if (!in_range(src, usr) || issilicon(usr) || !anchored || !usr.canmove || usr.restrained())
+	if (!in_range(src, usr) || !anchored || !usr.canmove || usr.restrained())
 		usr << browse(null, "window=piano;size=700x300")
 		onclose(usr, "piano")
 		return
@@ -337,12 +337,7 @@
 	else if (song)
 		if (href_list["repeat"]) //Changing this from a toggle to a number of repeats to avoid infinite loops.
 			if (playing) return //So that people cant keep adding to repeat. If the do it intentionally, it could result in the server crashing.
-			var/tempnum = input("How many times do you want to repeat this piece? (max:10)") as num|null
-			if (tempnum > 10)
-				tempnum = 10
-			if (tempnum < 0)
-				tempnum = FALSE
-			repeat = round(tempnum)
+			repeat = round(Clamp(WWinput(usr, "How many times do you want to repeat this piece? (maximum of 5 times)", "Repeats", 1, "num"), 0, 5))
 
 		else if (href_list["tempo"])
 			song.tempo += round(text2num(href_list["tempo"]))
@@ -398,13 +393,13 @@
 					return
 
 				if (lentext(t) >= MAX_CHARS_TOTAL)
-					var/cont = input(usr, "Your message is too long! Would you like to continue editing it?", "", "yes") in list("yes", "no")
-					if (cont == "no")
+					var/cont = WWinput(usr, "Your message is too long! Would you like to continue editing it?", "Error", "Yes", list("Yes", "No"))
+					if (cont == "No")
 						break
 			while (lentext(t) > MAX_CHARS_TOTAL)
 
 			//split into lines
-			spawn()
+			spawn (0)
 				var/list/lines = splittext(t, "\n")
 				var/tempo = 5
 				if (copytext(lines[1],1,6) == "BPM: ")

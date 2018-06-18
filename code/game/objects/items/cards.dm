@@ -117,7 +117,7 @@
 			players += player
 	//players -= usr
 
-	var/mob/living/M = input("Who do you wish to deal a card?") as null|anything in players
+	var/mob/living/M = WWinput(usr, "Who do you wish to deal a card?", "Deael a Card", WWinput_first_choice(players), WWinput_list_or_null(players))
 	if (!usr || !src || !M) return
 
 	deal_at(usr, M)
@@ -210,7 +210,7 @@
 	var/list/to_discard = list()
 	for (var/datum/playingcard/P in cards)
 		to_discard[P.name] = P
-	var/discarding = input("Which card do you wish to put down?") as null|anything in to_discard
+	var/discarding = WWinput(usr, "Which card do you wish to put down?", "Discard a Card", WWinput_first_choice(to_discard), WWinput_list_or_null(to_discard))
 
 	if (!discarding || !to_discard[discarding] || !usr || !src) return
 

@@ -13,7 +13,7 @@
 	var/deployed = FALSE
 
 /obj/item/weapon/beartrap/proc/can_use(mob/user)
-	return (user.IsAdvancedToolUser() && !issilicon(user) && !user.stat && !user.restrained())
+	return (user.IsAdvancedToolUser() && !user.stat && !user.restrained())
 
 /obj/item/weapon/beartrap/attack_self(mob/user as mob)
 	..()

@@ -46,7 +46,7 @@
 		if (!keys.len)
 			return
 		else
-			var/obj/item/weapon/key/which = input("Take out which key?") as null|anything in keys
+			var/obj/item/weapon/key/which = WWinput(user, "Take out which key?", "Keychain", keys[1], keys)
 			if (which && which.loc == src && (loc == user || locate(src) in get_step(user, user.dir) || locate(src) in get_turf(user)))
 				user.put_in_hands(which)
 				keys -= which
