@@ -56,7 +56,7 @@
 
 	switch(M.a_intent)
 		if (I_HELP)
-			if (istype(H) && health < config.health_threshold_crit && health > config.health_threshold_dead)
+			if (H != src && istype(H) && health < config.health_threshold_crit && health > config.health_threshold_dead)
 				if (!H.check_has_mouth())
 					H << "<span class='danger'>You don't have a mouth, you cannot perform CPR!</span>"
 					return
