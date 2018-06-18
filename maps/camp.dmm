@@ -202,7 +202,7 @@
 "dT" = (/obj/structure/closet/crate/rations/german_solids,/obj/structure/light/small{dir = 4},/turf/floor/wood,/area/prishtina/german/kitchen{base_turf = /turf/floor/dirt; capturable = 0; name = "Kitchen Storage"})
 "dU" = (/obj/structure/sink{dir = 8; pixel_x = -12},/turf/floor/wood,/area/prishtina/german/resting_area_2{base_turf = /turf/floor/dirt; capturable = 0})
 "dV" = (/turf/floor/wood,/area/prishtina/german/resting_area_2{base_turf = /turf/floor/dirt; capturable = 0})
-"dW" = (/obj/structure/closet/crate/freezer/rations,/turf/floor/wood,/area/prishtina/german/kitchen{base_turf = /turf/floor/dirt; capturable = 0; name = "Kitchen Storage"})
+"dW" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (EAST)"; icon_state = "spline_fancy"; dir = 4},/obj/structure/table/glass,/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,/obj/item/trash/money,/obj/item/trash/money,/obj/item/trash/money,/turf/floor/carpet,/area/prishtina/german/command{base_turf = /turf/floor/wood_broken; capturable = 0; name = "Commander's Office"})
 "dX" = (/obj/structure/closet/crate/rations/german_solids,/turf/floor/wood,/area/prishtina/german/kitchen{base_turf = /turf/floor/dirt; capturable = 0; name = "Kitchen Storage"})
 "dY" = (/obj/item/weapon/reagent_containers/glass/bucket,/obj/item/weapon/mop,/turf/floor/wood,/area/prishtina/german/resting_area_2{base_turf = /turf/floor/dirt; capturable = 0})
 "dZ" = (/obj/structure/toilet{tag = "icon-toilet00 (WEST)"; icon_state = "toilet00"; dir = 8},/turf/floor/wood,/area/prishtina/german/resting_area_2{base_turf = /turf/floor/dirt; capturable = 0})
@@ -484,7 +484,6 @@
 "jp" = (/obj/structure/simple_door/key_door/german{name = "Solitaire Block"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/prison{base_turf = /turf/floor/dirt})
 "jq" = (/obj/structure/bed/chair/wood/red{tag = "icon-wooden_chair_red (EAST)"; icon_state = "wooden_chair_red"; dir = 4},/turf/floor/carpet,/area/prishtina/german/command{base_turf = /turf/floor/wood_broken; capturable = 0; name = "Commander's Office"})
 "jr" = (/obj/structure/closet/crate/empty{alpha = 255; anchored = 1; density = 0; desc = "A regular prisoner bed."; icon = 'icons/obj/bed_chair.dmi'; icon_closed = "bed"; icon_opened = "bed"; icon_state = "bed"; layer = 2; name = "Prisoner bed"; opacity = 0; storage_capacity = 3},/obj/item/weapon/material/kitchen/utensil/knife{name = "kitchen knife"},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/resting_area{base_turf = /turf/floor/dirt; capturable = 0; name = "#3 Barracks"})
-"js" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (EAST)"; icon_state = "spline_fancy"; dir = 4},/obj/structure/table/glass,/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,/turf/floor/carpet,/area/prishtina/german/command{base_turf = /turf/floor/wood_broken; capturable = 0; name = "Commander's Office"})
 "jt" = (/obj/structure/bed/roller,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/medical{base_turf = /turf/floor/dirt})
 "ju" = (/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/medical{base_turf = /turf/floor/dirt})
 "jv" = (/obj/snow_maker,/obj/structure/multiz/ladder/ww2{alpha = 0; area_id = "tunnel8"; desc = "That's a wild grass."; icon = 'icons/turf/floors.dmi'; icon_state = "grass_dark"; name = "wild grass"},/turf/floor/plating/grass/wild,/area/prishtina/farm1{name = "Escape Area 2"})
@@ -580,7 +579,7 @@
 "lh" = (/obj/item/weapon/stool/prison,/turf/floor/dirt,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
 "li" = (/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka{name = "Moonshine Vodka"},/turf/floor/dirt,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
 "lj" = (/obj/item/weapon/flame/candle,/turf/floor/dirt,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
-"lk" = (/obj/item/weapon/dice{name = "Gambling Dice"},/obj/structure/table/wood,/turf/floor/dirt,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
+"lk" = (/obj/structure/table/wood,/obj/item/weapon/dice,/turf/floor/dirt,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
 "ll" = (/obj/item/weapon/storage/fancy/candle_box,/turf/floor/dirt,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
 "lm" = (/obj/structure/table/wood,/obj/item/clothing/mask/smokable/cigarette,/obj/item/clothing/mask/smokable/cigarette,/turf/floor/dirt,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
 "ln" = (/obj/structure/table/wood,/obj/item/clothing/mask/smokable/cigarette,/obj/item/weapon/flame/candle,/turf/floor/dirt,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
@@ -646,8 +645,8 @@ aaacafaaaaacaaafaaacaaafaaacaaaCbdaCbxaLcOcRcVcVcWaMaMaMaMaMaMaMaMaMaMaMaMaMaMaM
 aaaaaaaaaaacaaaaaaaaaaaaaaaaaaaCbdaCbxaLcOcXcVcTcOcYaMaMdndndndndodndpdodqdqdodndpdodndnaMaMaLaCbdaCcgcgcgdbdsdsglglglglglgqgqglglglglgldsdAgrgrgrgrgrgsgsgrgrgrgrgrdsdccgcgaCaCiehddhacafaaaaaaaaacafaa
 aaaaaaacaaaaaaaaaaacaaaaaaaaaaaCbdaCbxaLcOcXcVcTcOaLaMaMdndrdydndEdFdGdFdEdGdQdRdGdRdQdnaMaMaLaCbdaCcgcgcgdbdsdsglgtgugtgtgvgwgtiTgtgtgldsdsgrgKgKjrgLgMgNgLgKjHgUgrdsdccgcgaCaCiehddhaaacacaaaaaaaaaaaa
 aaaaaaafafaaaaaaafacaaaaaaacaaaCbdaCbxaLcOdScVdTcOaLaMaMdndUdydndFdFdVdFdFdVdRdRdVdRdRdnaMaMaLaCbdaCcgcgcgdbdsdsgqgugtgukggwgwgtgtkhgugqdsdsgVgKkigUedgNgNgKgUkjgKgVdsdccgcgaCaCiehddhaaaaaaaaaaaaaaafaa
-aaaaaaaaaaaaaaaaacaaaaafaaaaaaaCbdaCbxaLcOdWcVdXcOaLaMaMdndYdZdnekeldVemememememdVenendnaMaMaLaCbdaCcgcgcgdbdsdsglgWgwgwgXgwgYgZgwgwhagldsdsgrhbgMhchehhhchchcgNhigrdsdccgcgaCaCiehddhaaaaaaaaaaaaaaaaaa
-acacaaaaaaaaaaaaaaaaaaaaaaaaaaaCbdaCbxaLcOdWcVeocOcUaMaMdndVdZdneqdVewexeFhjeReWeXdVeYdnaMaMaLaCbdaCcgcgcgdbigeDglglglglglhkhkglglglglgleDdsgrgrgrgrgrgVgVgrgrgrgrgrdsdccgcgaCaCiehddhaaaaacacaaafacaaaa
+aaaaaaaaaaaaaaaaacaaaaafaaaaaaaCbdaCbxaLcOcXcVdXcOaLaMaMdndYdZdnekeldVemememememdVenendnaMaMaLaCbdaCcgcgcgdbdsdsglgWgwgwgXgwgYgZgwgwhagldsdsgrhbgMhchehhhchchcgNhigrdsdccgcgaCaCiehddhaaaaaaaaaaaaaaaaaa
+acacaaaaaaaaaaaaaaaaaaaaaaaaaaaCbdaCbxaLcOcXcVeocOcUaMaMdndVdZdneqdVewexeFhjeReWeXdVeYdnaMaMaLaCbdaCcgcgcgdbigeDglglglglglhkhkglglglglgleDdsgrgrgrgrgrgVgVgrgrgrgrgrdsdccgcgaCaCiehddhaaaaacacaaafacaaaa
 aaaaacacaaaaafaaacaaaaaaaaaaaaaCbdaCbxaLcOeZcVcVcWaMaMaMdnfadndndnfbdndodndndodndnfbdndnaMaMaLbxbxbxkakakakakSkYdsdsdsdseQdsdseQdsdsdsdshldsdsdsdsdsdsdsdsdsdsdsdseSdsdccgcgaCaCiehddhaaaaacaaaaaaaaaaaa
 aaaaaaaaafaaaaaaaaaaaaafaaacaaaCbdaCbxaLcOfhfqcVcOfraMaMaMaMaMaMbWaMbVaMaMaMaMaMbWaMbVaMaMaMaMimdmimcgcgcgcgdbkYhlhlhmhlhlhlhohlhodsdsdsdsdshnhnhnhnhnhnhnhnhnhnhndsdsdccgcgaCaCiehddhaaacaaaaaaaaaaaaaa
 acaaaaacaaaaacacaaaaaaaaaaaaaaaCbdaCbxaLfsfsfsfyfsaLaMaMaMaMaMaMaMaMaMaMaMaMaMaMaMaMaMaMaMaMaMimdmimcgcgcgcgdbkYinhlhljohlhohokQhodsjohpdsdshqhrhshrhrhrhrhthshuhndsdsdccgcgaCaCiehddhaaaaaaaaaaaaaaafaa
@@ -661,7 +660,7 @@ aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaCbdaCbxaLfsfsfsfsfsaLaMaMaMaMaMaMbWaMbVaMlraMaMaM
 acaaaaacaaacafaaaaacaaaaaaacaaaCbdaCbxaLaLaLaLaLaLhYaMaMaMjEaMjEaMaMaMaMaMaMaMaMaMaMaMaMaMaMaLaCbdaCcgcgcgdbeSeSdsdsdsdsdsdsdsdsdsdsdsdseSdsijikikikikikikikikikildsdsdccgcgaCaCiehddhaaacaaaaaaaaaaafaa
 aaaaaaaaaaaaaaaaaaacaaacafaaaaaCbdaCbxaLaLaLaLaLaLkoixixixkpiMkpixixixkoaLaLaLaLaLaLaLaMaMaLaLaCbdaCcgcgcgdbeSeSdsdsdsdsdsdsdsdsdsdsdsdseSdsdsdsdsdsdsdsdsdsdsdsdsdsdsdccgcgaCaCiehddhaaaaaaafaaaaaaaaaa
 afaaaaacaaaaaaacaaaaaaaaaaaaaaaCbdaCbxbxbxbxbxbxbxaLkHktivkqiSiSiSkukHaLbxbxbxbxbxbxbxaPaPbxbxjfbdaCcgcgcgdbdsdsiyiyiyiyiziAiAiziyiyiyiydsiUiUiUiUiUiUjpiUiUiUiUiUiUdsdccgcgaCaCiehddhaaaaaaaaaaacacaaaa
-aaaaacaaaaaaacaaaaafaaaaaaacaaaCbdaCaCaCaCaCaCaCbxaLkrjBjqksjCjCjCjsixaLbxaCaCaCaCaCbxkvkxbxbxjfbdaCcgcgcgdbdsdsiyjtjujwjGjIjIjUjwjJjKiydsiUjLjMjMjMjNjMjMjMjOjMjLiUdsdccgcgaCaCiehddhaaaaaaaaaaaaaaaaaa
+aaaaacaaaaaaacaaaaafaaaaaaacaaaCbdaCaCaCaCaCaCaCbxaLkrjBjqksjCjCjCdWixaLbxaCaCaCaCaCbxkvkxbxbxjfbdaCcgcgcgdbdsdsiyjtjujwjGjIjIjUjwjJjKiydsiUjLjMjMjMjNjMjMjMjOjMjLiUdsdccgcgaCaCiehddhaaaaaaaaaaaaaaaaaa
 aaaaacaaaaaaaaaaaaaaaaaaaaaaaaaCaKaOaOaOaOaOdiaCbxaLixjBkykzjCjPjPjDixaLbxaCdiaOaOaObxbYbYbYaPdgioaCcgcgcgdbdsdsjQjtjRjtjGlajTlbjRjVjWjQeSiUjXiUjXiUjXiUjXiUjXiUjXiUdsdccgcgaCaCiehddhaaafaaaaaaaaaaaaaa
 afaaacaaafaaacaaaaaaaaaaaaaaaaaCaCaCaCaCaCaCbdaCbxaLkHkAjFjFjFjYjZkBkHaLbxaCbdaCaCaCbxaPaPbxbxipioaCcgcgcgdbdsdsiyjtjIjtlfjIlcjTldjSkZiydsiUkbiUkciUkciUkciUkciUkciUdsdccgcgaCaCiehddhaaaaaaaaacaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaacaaaaacaaaaaaaaaaaaaCbdaCbxaLixixixixkHixixixixaLbxaCbdaCacaadhaaaadhdhipioaCcgcgcgdbdsdsiyjtjujwjGjRjRjIjIlgleiydsiUkdiUkeiUkeiUkeiUkfiUkeiUdsdccgcgaCaCiehddhaaaaacaaaaacaaaaaa

@@ -89,7 +89,7 @@
 "bK" = (/obj/structure/simple_door/key_door/anyone/wood{icon_state = "wood"; name = "Bathroom"},/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; name = "German Base"})
 "bL" = (/obj/effect/landmark{name = "JoinLateHeerChef"},/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; icon_state = "green2"; name = "German Kitchen"})
 "bM" = (/obj/structure/oven,/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; icon_state = "green2"; name = "German Kitchen"})
-"bN" = (/obj/structure/light/small,/obj/item/stack/material/barbwire,/obj/item/stack/material/barbwire,/turf/floor/wood,/area/prishtina/german/engineering{base_turf = /turf/floor/wood_broken; capturable = 0})
+"bN" = (/obj/item/stack/material/barbwire{amount = 10},/obj/item/stack/material/barbwire{amount = 10},/turf/floor/wood,/area/prishtina/soviet/bunker/engineering{base_turf = /turf/floor/wood_broken; name = "Inside Engineering"})
 "bO" = (/obj/item/weapon/plastique/german,/obj/item/weapon/plastique/german,/obj/item/weapon/plastique/german,/turf/floor/wood,/area/prishtina/german/engineering{base_turf = /turf/floor/wood_broken; capturable = 0})
 "bP" = (/obj/structure/sink{dir = 8; icon_state = "sink"; pixel_x = -14},/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; name = "German Base"})
 "bQ" = (/obj/structure/light/small,/turf/floor/wood,/area/prishtina/german/engineering{base_turf = /turf/floor/wood_broken; capturable = 0})
@@ -226,7 +226,7 @@
 "er" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/rd,/obj/effect/landmark{name = "JoinLateRA-S4"},/turf/floor/wood,/area/prishtina/soviet/bunker/resting_area{base_turf = /turf/floor/wood_broken; name = "Inside Resting Area"})
 "es" = (/obj/effect/landmark{name = "JoinLateRA-S4-Leader"},/turf/floor/wood,/area/prishtina/soviet/bunker/resting_area{base_turf = /turf/floor/wood_broken; name = "Inside Resting Area"})
 "et" = (/obj/structure/bed/chair/wood/red,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
-"eu" = (/obj/item/stack/material/barbwire,/obj/item/stack/material/barbwire,/turf/floor/wood,/area/prishtina/soviet/bunker/engineering{base_turf = /turf/floor/wood_broken; name = "Inside Engineering"})
+"eu" = (/obj/structure/light/small,/obj/item/stack/material/barbwire{amount = 10},/obj/item/stack/material/barbwire{amount = 10},/turf/floor/wood,/area/prishtina/german/engineering{base_turf = /turf/floor/wood_broken; capturable = 0})
 "ev" = (/obj/structure/closet/crate/sandbags,/turf/floor/wood,/area/prishtina/soviet/bunker/engineering{base_turf = /turf/floor/wood_broken; name = "Inside Engineering"})
 "ew" = (/obj/effect/landmark{name = "JoinLateRAMedic"},/turf/floor/wood,/area/prishtina/soviet/bunker/medical{base_turf = /turf/floor/wood_broken; name = "Inside Medical Area"})
 "ex" = (/obj/structure/closet/crate/medical,/turf/floor/wood,/area/prishtina/soviet/bunker/medical{base_turf = /turf/floor/wood_broken; name = "Inside Medical Area"})
@@ -283,7 +283,7 @@
 "fw" = (/obj/structure/table/reinforced,/obj/item/weapon/bone_saw,/obj/item/weapon/hemostat,/obj/item/weapon/reagent_containers/glass/rag,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
 "fx" = (/obj/structure/table/reinforced,/obj/item/weapon/FixOVein,/obj/item/weapon/bonesetter,/obj/item/weapon/retractor,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
 "fy" = (/obj/structure/table/reinforced,/obj/item/weapon/scalpel,/obj/item/weapon/surgicaldrill,/obj/item/weapon/reagent_containers/spray/sterilizine,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
-"fz" = (/obj/structure/light/small{dir = 8},/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"fz" = (/obj/structure/light/small{dir = 4},/obj/structure/sink{tag = "icon-sink (EAST)"; icon_state = "sink"; dir = 4; step_x = 0; step_y = 0; pixel_x = 14},/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
 "fA" = (/obj/structure/curtain/medical,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
 "fB" = (/obj/structure/sign/examroom,/turf/wall/wood,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
 "fC" = (/obj/effect/decal/cleanable/blood/drip,/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
@@ -732,6 +732,7 @@
 "od" = (/obj/item/weapon/book/manual/barman_recipes,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "oe" = (/obj/item/weapon/paper_bundle,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "of" = (/obj/item/weapon/book/manual/medical_diagnostics_manual,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
+"og" = (/obj/structure/light/small{dir = 8},/obj/structure/sink{dir = 8; pixel_x = -12},/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
 
 (1,1,1) = {"
 abababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababababababab
@@ -751,7 +752,7 @@ ababaaaabZcEdFdGdHdGdGcIcJdIcJcGcGcGcGcGdJcGdKdKdKdKdKdLcGcGdMcGcGcGdNdJcGcGcGcU
 ababaaaabZdodpdGdPdGdrcbdQcJcJdRcGcGcGdScGdTcGdTdRdJcGcGdUdScGcGcGcGdScGcGcGcGcUdVdWdXcXcWcBcBdDcDcaaaabaaaadEaaabababab
 ababaaaabZcbcbcbcbcbcbcbdYcJcJdZdZeadZdZdZebecebebebedeeedededcbcIcbcbcbdmdmcbdncUcBdhcWcXcBcBcBcYcaaaabdEdEdEaaabababab
 ababaaaabZcbcZefefefcGcbegcJehdZeiejekeidZelemeneoebepeqeqepedercPesercbdgdgcbcUcUcBcBcXcWcBcBcBcDcaaaabaaaaaaaaabababab
-ababaaaabZcEcFcGetetcGcIcJcKehdZeuejejevdZelemewexebeyeqeqeyedezcPcPezcbcScTcbeAeBeCcBcWcXdhcBcBcYcaaaabaaaaaaaaabababab
+ababaaaabZcEcFcGetetcGcIcJcKehdZbNejejevdZelemewexebeyeqeqeyedezcPcPezcbcScTcbeAeBeCcBcWcXdhcBcBcYcaaaabaaaaaaaaabababab
 ababaaaabZcbeDdScleEdScbeFeGehdZeieHeHeidZeleIeJeKebeLeMeNeLedereOeOercbcyePcbeQeReSeTcBeUcBeTeTcDcaaaaaaaaaaaaaabababab
 ababaaaabZcbcccbcbcccbcbcbcbcdcbcccbcbcccbcccbcbcccbcccbcbcccbcccbcbcccbcbcbcbcdcbcechcecicececececaaaaaaaaaaaaaabababab
 ababaaaabZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZcacacacacacacacacaaaaaaaaaaaaaabababab
@@ -769,10 +770,10 @@ ababaaaaeVeVeVeVeVeVeVeVeVeVeVeVeVeVeVeVeVeVeVeVeVeVeVeVeVeVeVeVeVeVeVeVeVeVeVeV
 ababaaaaeVeWeWeWeWeXeWeWeYeWeXeWeWeZeWfaeWeWeZeWfaeWeWeWeWfaeWeWeWeWfaeWeWeWeWfaeWeWeWeWfaeWeWeWeWeVaaababababaaabababab
 ababaaaaeVeWfbfbfceWfdfdfefffgeWfhfifjfkeWfhfifjfleWfjfifjfjfjfjfifjfjfjfjfifjfjfjfmfnfmeWfcfbfbeWeVaaababababaaabababab
 ababaaaaeVeWfcfcfceWfjfofofofjeWfpfqfjfjeWfgfrfjfjeWfjfjfjeWeWeWeYeWeWeWeWeYeWeWfjfjfjfjeWfcfcfceWeVaaababababaaabababab
-ababaaaaeVeWfcfcfcfsfjfjfjfjfjeWfjfjfjfteWfjfjfjfteWfjfjfueWfvfwfxfyeWfvfwfxfyeWfzfjfjfjfsfcfcfceWeVaaabaaaaaaaaabababab
+ababaaaaeVeWfcfcfcfsfjfjfjfjfjeWfjfjfjfteWfjfjfjfteWfjfjfzeWfvfwfxfyeWfvfwfxfyeWogfjfjfjfsfcfcfceWeVaaabaaaaaaaaabababab
 ababaaaaeVeWfcfcfceWfjfofofofjeWeWfAfBeWeYeWfAfBeWeWfjfCfjfDfjfCfjfjfAfjfjfCfjfDfjfjfjfjeWfcfcfceWeVaaabdEaadEaaabababab
 ababaaaaeVeWfEfcfcfFfjfjfjfjfueWfjfjfjfjfifjfjfjfjfgfjfGfjfDfjfHfHfjfAfjfHfHfjfDfjfjfjfjfFfcfcfIeWeVaaabdEaadEaaabababab
-ababaaaaeVeWfEfcfcfFfjfjfjfjfjfDfjfjfjfjfjfjfjfCfjfjfjfjfueWfJfKfKfJeWfJfKfKfJeWfzfjfjfjfFfcfcfIeWeVaaabdEdEdEaaabababab
+ababaaaaeVeWfEfcfcfFfjfjfjfjfjfDfjfjfjfjfjfjfjfCfjfjfjfjfzeWfJfKfKfJeWfJfKfKfJeWogfjfjfjfFfcfcfIeWeVaaabdEdEdEaaabababab
 ababaaaaeVeWfEfcfcfFfjfjfjfjfueWfjfjfjfjfLfMfjfjfjfgfjfjfjeWeWeWeWeWeWeWeWeWeWeWfjfjfjfjfFfcfcfIeWeVaaabaaaadEaaabababab
 ababaaaaeVeWfcfcfceWfjfofofofjeWeWfAfBeWeYeWfAfBeWeWfjfjfjfjfjfjfLfjfjfjfjfLfjfjfjfjfjfjeWfcfcfceWeVaaabaaaadEaaabababab
 aaaaaaaaeVeWfcfcfcfsfjfjfjfjfjeWfjfjfjfteWfjfjfjfteWfCfjeWeWeWeWeWeWeWeWeWeWeWeWeWfjfGfjfsfcfcfceWeVaaabaaaaaaaaabababab
@@ -927,7 +928,7 @@ aaaaaaaaadafbcaCaCamanamaPaOawarawarbnaSaTbhbobpbqagadababababaeabababababababab
 aaaaaaaaadafbrbsaCanamanbBbtaXaraGaGbuaSaTbhbobwbxafadababababaeaeaeababababababababababababababababaaaaaaaaaaaaaaababab
 aaaaaaaaadafaCbyaCbzbzbzbzawbfarawafafbKafbAbCbDbEafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
 aaaaaaaaadafbFbGbybHaCaCbzarbfawawafbPbUbIafbJbLbMafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
-aaaaaaaaadafbNbObQbHbHbRbSawawbTbVafbPcfcgbUbWbXbYafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
+aaaaaaaaadafeubObQbHbHbRbSawawbTbVafbPcfcgbUbWbXbYafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
 aaaaaaaaadafafafafafafafafagafafafafafafafafafafafafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
 aaaaaaaaadadadadadadadadadadadadadadadadadadadadadadadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabab
