@@ -78,5 +78,10 @@
 	name = "bread tube"
 	icon_state = "tastybread"
 
+/obj/item/trash/money
+	name = "Money"
+	desc = "A pile of banknotes."
+	icon_state = "money"
+
 /obj/item/trash/attack(mob/M as mob, mob/living/user as mob)
 	return
