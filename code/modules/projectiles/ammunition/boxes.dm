@@ -22,22 +22,7 @@
 /obj/item/ammo_magazine/c38/rubber
 	name = "speed loader (.38 rubber)"
 	ammo_type = /obj/item/ammo_casing/c38r
-/*
-/obj/item/ammo_magazine/c45m/empty
-	initial_ammo = FALSE
 
-/obj/item/ammo_magazine/c45m/rubber
-	name = "magazine (.45 rubber)"
-	ammo_type = /obj/item/ammo_casing/c45r
-
-/obj/item/ammo_magazine/c45m/practice
-	name = "magazine (.45 practice)"
-	ammo_type = /obj/item/ammo_casing/c45p
-
-/obj/item/ammo_magazine/c45m/flash
-	name = "magazine (.45 flash)"
-	ammo_type = "/obj/item/ammo_casing/c45f"
-*/
 /obj/item/ammo_magazine/mc9mm
 	name = "magazine (9mm)"
 	icon_state = "9x19p"

@@ -100,12 +100,3 @@
 		new /obj/item/weapon/book/manual/engineering_construction(src)
 		new /obj/item/weapon/book/manual/engineering_guide(src)
 		update_icon()
-/*
-/obj/structure/bookcase/manuals/research_and_development
-	name = "R&D Manuals bookcase"
-
-	New()
-		..()
-		new /obj/item/weapon/book/manual/research_and_development(src)
-		update_icon()
-*/

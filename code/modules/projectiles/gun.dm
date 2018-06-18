@@ -82,8 +82,6 @@
 	var/gibs = FALSE
 	var/crushes = FALSE
 
-	var/next_shoot_owner = -1
-
 /obj/item/weapon/gun/New()
 	..()
 	if (!firemodes.len)
@@ -188,7 +186,12 @@
 			handle_shoot_self(user)
 		return
 
-	if (user.a_intent != I_HELP && !bayonet) //point blank shooting
+	var/list/loaded = list()
+	if (istype(src, /obj/item/weapon/gun/projectile))
+		var/obj/item/weapon/gun/projectile/proj = src
+		loaded = proj.loaded
+
+	if (user.a_intent != I_HELP && !bayonet && loaded.len && loaded[1]) // point blank shooting
 		Fire(A, user, pointblank=1)
 	else
 		if (bayonet && isliving(A))
@@ -208,7 +211,7 @@
 				var/obj/item/weapon/attachment/bayonet/a = bayonet
 				playsound(get_turf(src), a.attack_sound, rand(90,100))
 		else
-			..() //Pistolwhipping - now help intent only
+			..() //Pistolwhipping - now help intent only (or when the gun is empty)
 
 // only update our in-hands icon if we aren't using a scope (invisible)
 /obj/item/weapon/gun/update_held_icon()
@@ -437,7 +440,7 @@
 		mouthshoot = FALSE
 		return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()
-	if (istype(in_chamber))
+	if (in_chamber && istype(in_chamber))
 		user.visible_message("<span class = 'warning'>[user] pulls the trigger.</span>")
 		if (silenced)
 			playsound(user, fire_sound, 10, TRUE)
@@ -461,7 +464,15 @@
 		else
 			user << "<span class = 'notice'>Ow...</span>"
 			user.apply_effect(110,AGONY,0)
-		qdel(in_chamber)
+
+		if (istype(src, /obj/item/weapon/gun/projectile))
+			var/obj/item/weapon/gun/projectile/proj = src
+			if (proj.chambered)
+				proj.chambered.expend()
+				proj.process_chambered()
+		else
+			qdel(in_chamber)
+
 		mouthshoot = FALSE
 		return
 	else
@@ -474,8 +485,6 @@
 		return
 	if (!special_check(user))
 		return
-	if (world.time < next_shoot_owner)
-		return
 
 	var/_burst = 1
 	var/datum/firemode/firemode = firemodes[sel_mode]
@@ -486,7 +495,7 @@
 
 		var/obj/item/projectile/in_chamber = consume_next_projectile()
 
-		if (istype(in_chamber))
+		if (in_chamber && istype(in_chamber))
 
 			var/damage_multiplier = 1.33 // so legs and arms don't explode - Kachnov
 			var/organ_name = replacetext(replacetext(user.targeted_organ, "l_", "left "), "r_", "right ")
@@ -511,11 +520,19 @@
 			else
 				user << "<span class = 'notice'>Ow...</span>"
 				user.apply_effect(110,AGONY,0)
-			qdel(in_chamber)
-			next_shoot_owner = world.time + 5 // fixes rare bug where you can shoot yourself multiple times with one bullet
+
+
+			if (istype(src, /obj/item/weapon/gun/projectile))
+				var/obj/item/weapon/gun/projectile/proj = src
+				if (proj.chambered)
+					proj.chambered.expend()
+					proj.process_chambered()
+			else
+				qdel(in_chamber)
+
 		else
 			handle_click_empty(user)
-			return
+			break
 
 /obj/item/weapon/gun/examine(mob/user)
 	..()

@@ -646,38 +646,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Point To"
 	usr.visible_message("<span class='deadsay'><b>[src]</b> points to [A]</span>")
 	return TRUE
-/*
-/mob/observer/ghost/proc/manifest(mob/user)
-	var/is_manifest = FALSE
-	if (!is_manifest)
-		is_manifest = TRUE
-		verbs += /mob/observer/ghost/proc/toggle_visibility
 
-	if (invisibility != FALSE)
-		user.visible_message( \
-			"<span class='warning'>\The [user] drags ghost, [src], to our plane of reality!</span>", \
-			"<span class='warning'>You drag [src] to our plane of reality!</span>" \
-		)
-		toggle_visibility(1)
-	else
-		user.visible_message ( \
-			"<span class='warning'>\The [user] just tried to smash \his book into that ghost!  It's not very effective.</span>", \
-			"<span class='warning'>You get the feeling that the ghost can't become any more visible.</span>" \
-		)
-
-/mob/observer/ghost/proc/toggle_icon(var/icon)
-	if (!client)
-		return
-
-	var/iconRemoved = FALSE
-	for (var/image/I in client.images)
-		if (I.icon_state == icon)
-			iconRemoved = TRUE
-			qdel(I)
-
-	if (!iconRemoved)
-		var/image/J = image('icons/mob/mob.dmi', loc = src, icon_state = icon)
-		client.images += J*/
 
 /mob/observer/ghost/verb/toggle_anonsay()
 	set category = "Ghost"

@@ -124,6 +124,7 @@
 	can_hold = list(/obj/item/clothing/accessory/medal/WW2)
 	throwforce = WEAPON_FORCE_HARMLESS
 
+// todo, make this spawn with some medals by default
 /obj/item/weapon/storage/medal_case/New()
 	..()
 	spawn (5)

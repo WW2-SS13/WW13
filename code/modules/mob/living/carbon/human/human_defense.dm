@@ -160,7 +160,7 @@ bullet_act
 					if (slammed_into.density)
 						spawn (1)
 							visible_message("<span class = 'danger'>[src] flies back from the force of the blast and slams into \the [slammed_into]!</span>")
-						Weaken(rand(4,5))
+						Weaken(3)
 						adjustBruteLoss(rand(20,30))
 						if (client)
 							shake_camera(src, rand(2,3), rand(2,3))
@@ -175,7 +175,7 @@ bullet_act
 
 		// get weakened too
 		if (prob(P.KD_chance))
-			Weaken(rand(3,4))
+			Weaken(2)
 			stats["stamina"][1] = max(stats["stamina"][1] - 50, 0)
 			if (client)
 				shake_camera(src, rand(2,3), rand(2,3))
@@ -472,7 +472,7 @@ bullet_act
 		if (istype(AM, /obj/item))
 			var/obj/item/I = AM
 			if (I.throwforce >= 15 && prob(I.throwforce * 5))
-				Weaken(ceil(I.throwforce/5))
+				Weaken(ceil(I.throwforce/6))
 
 		O.throwing = FALSE		//it hit, so stop moving
 

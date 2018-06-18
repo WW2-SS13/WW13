@@ -13,3 +13,4 @@
 	amount = 20
 	max_amount = 500
 	attack_verb = list("hit", "bludgeoned", "whacked")
+	w_class = 2.0 // fits in pockets

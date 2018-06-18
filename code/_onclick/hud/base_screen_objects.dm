@@ -41,16 +41,6 @@
 /obj/screen/Click(location, control, params)
 	if (!usr)	return TRUE
 	switch(name)
-/*		if ("toggle")
-			//if (usr.hud_used.inventory_shown)
-			//	usr.hud_used.inventory_shown = FALSE
-			//	usr.client.screen -= usr.hud_used.other
-			//else
-			//	usr.hud_used.inventory_shown = TRUE
-			//	usr.client.screen += usr.hud_used.other
-
-			//usr.hud_used.hidden_inventory_update()
-			return*/
 
 		if ("equip")
 			if (ishuman(usr))
@@ -59,101 +49,9 @@
 
 		if ("Reset Machine")
 			usr.unset_using_object()
-//		if ("act_intent")
-//			usr.a_intent_change("right")
-		/*if (I_HELP)
-			usr.a_intent = I_HELP
-			usr.hud_used.action_intent.icon_state = "intent_help"
-		if (I_HURT)
-			usr.a_intent = I_HURT
-			usr.hud_used.action_intent.icon_state = "intent_harm"
-		if (I_GRAB)
-			usr.a_intent = I_GRAB
-			usr.hud_used.action_intent.icon_state = "intent_grab"
-		if (I_DISARM)
-			usr.a_intent = I_DISARM
-			usr.hud_used.action_intent.icon_state = "intent_disarm"*/
-
-/*		if ("module")
-			if (isrobot(usr))
-				var/mob/living/silicon/robot/R = usr
-//				if (R.module)
-//					R.hud_used.toggle_show_robot_modules()
-//					return TRUE
-				R.pick_module()
-
-		if ("inventory")
-			if (isrobot(usr))
-				var/mob/living/silicon/robot/R = usr
-				if (R.module)
-//					R.hud_used.toggle_show_robot_modules()
-					return TRUE
-				else
-					R << "You haven't selected a module yet."*/
-
-/*		if ("radio")
-			if (issilicon(usr))
-				usr:radio_menu()
-		if ("panel")
-			if (issilicon(usr))
-				usr:installed_modules()
-
-		if ("store")
-			if (isrobot(usr))
-				var/mob/living/silicon/robot/R = usr
-				if (R.module)
-					R.uneq_active()
-//					R.hud_used.update_robot_modules_display()
-				else
-					R << "You haven't selected a module yet."
-
-		if ("module1")
-			if (istype(usr, /mob/living/silicon/robot))
-				usr:toggle_module(1)
-
-		if ("module2")
-			if (istype(usr, /mob/living/silicon/robot))
-				usr:toggle_module(2)
-
-		if ("module3")
-			if (istype(usr, /mob/living/silicon/robot))
-				usr:toggle_module(3)*/
 		else
 			return FALSE
 	return TRUE
-
-/*/obj/screen/resist
-	name = "resist"
-	icon = 'icons/mob/screen/WW13Style.dmi'
-	icon_state = "act_resist"
-	screen_loc = "1,10"
-
-/obj/screen/resist/Click(location, control, params)
-	..(location, control, params)
-	if (isliving(usr))
-		var/mob/living/L = usr
-		L.resist()*/
-
-
-/*/obj/screen/TEST
-	name = "TESTICON!"
-	icon = 'icons/mob/screen/WW13Style.dmi'
-	icon_state = "block"
-	var/clicks = FALSE
-	appearance_flags=RESET_COLOR
-	var/image/A
-	var/image/B
-
-/obj/screen/TEST/Click(location, control, params)
-	A=image(icon ='icons/mob/screen/ErisStyleHolo.dmi', icon_state ="harm")
-	B=image(icon ='icons/mob/screen/ErisStyleHolo.dmi', icon_state ="grab")
-	A.override = TRUE
-	B.appearance_flags=RESET_COLOR
-	overlays.Cut()
-	clicks = !clicks
-//	overlays += clicks ? image(icon = 'icons/mob/screen/WW13Style.dmi', icon_state ="harm",override  = TRUE) : image(icon ='icons/mob/screen/WW13Style.dmi', icon_state ="grab",override  = TRUE)
-	overlays += clicks ? A : B*/
-
 
 
 //--------------------------------------------------close---------------------------------------------------------
@@ -1069,30 +967,6 @@
 		if (G.active && G.overlay)//check here need if someone want call this func directly
 			overlays |= G.overlay
 
-
-/*	if (owner.gun_move_icon)
-		if (!(target_permissions & TARGET_CAN_MOVE))
-			owner.gun_move_icon.icon_state = "no_walk0"
-			owner.gun_move_icon.name = "Allow Movement"
-		else
-			owner.gun_move_icon.icon_state = "no_walk1"
-			owner.gun_move_icon.name = "Disallow Movement"
-
-	if (owner.item_use_icon)
-		if (!(target_permissions & TARGET_CAN_CLICK))
-			owner.item_use_icon.icon_state = "no_item0"
-			owner.item_use_icon.name = "Allow Item Use"
-		else
-			owner.item_use_icon.icon_state = "no_item1"
-			owner.item_use_icon.name = "Disallow Item Use"
-
-	if (owner.radio_use_icon)
-		if (!(target_permissions & TARGET_CAN_RADIO))
-			owner.radio_use_icon.icon_state = "no_radio0"
-			owner.radio_use_icon.name = "Allow Radio Use"
-		else
-			owner.radio_use_icon.icon_state = "no_radio1"
-			owner.radio_use_icon.name = "Disallow Radio Use"*/
 //-----------------------Gun Mod------------------------------
 /obj/screen/gun
 	name = "gun"

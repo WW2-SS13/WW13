@@ -777,13 +777,7 @@ var/list/be_special_flags = list(
 #define EVENT_LEVEL_MUNDANE  TRUE
 #define EVENT_LEVEL_MODERATE 2
 #define EVENT_LEVEL_MAJOR    3
-/*
-// Suit sensor levels
-#define SUIT_SENSOR_OFF      FALSE
-#define SUIT_SENSOR_BINARY   TRUE
-#define SUIT_SENSOR_VITAL    2
-#define SUIT_SENSOR_TRACKING 3
-*/
+
 // NanoUI flags
 #define STATUS_INTERACTIVE 2 // GREEN Visability
 #define STATUS_UPDATE TRUE // ORANGE Visability
@@ -793,11 +787,6 @@ var/list/be_special_flags = list(
 //General-purpose life speed define for plants.
 #define HYDRO_SPEED_MULTIPLIER TRUE
 /*
-// Robot AI notifications
-#define ROBOT_NOTIFICATION_NEW_UNIT TRUE
-#define ROBOT_NOTIFICATION_NEW_NAME 2
-#define ROBOT_NOTIFICATION_NEW_MODULE 3
-#define ROBOT_NOTIFICATION_MODULE_RESET 4
 
 #define BOMBCAP_DVSTN_RADIUS (max_explosion_range/4)
 #define BOMBCAP_HEAVY_RADIUS (max_explosion_range/2)
@@ -872,96 +861,6 @@ var/list/be_special_flags = list(
 #define DROPLIMB_BLUNT TRUE
 #define DROPLIMB_BURN 2
 
-/*
-// Custom layer definitions, supplementing the default TURF_LAYER, MOB_LAYER, etc.
-#define DOOR_OPEN_LAYER 2.7		//Under all objects if opened. 2.7 due to tables being at 2.6
-#define DOOR_CLOSED_LAYER 3.1	//Above most items if closed
-#define LIGHTING_LAYER 11
-#define OBFUSCATION_LAYER 21	//Where images covering the view for eyes are put
-#define SCREEN_LAYER 22			//Mob HUD/effects layer
-*/
-
-/////////////////
-////WIZARD //////
-/////////////////
-/*
-/*		WIZARD SPELL FLAGS		*/
-#define GHOSTCAST		1	//can a ghost cast it?
-#define NEEDSCLOTHES	2	//does it need the wizard garb to cast? Nonwizard spells should not have this
-#define NEEDSHUMAN		4	//does it require the caster to be human?
-#define Z2NOCAST		8	//if this is added, the spell can't be cast at centcomm
-#define STATALLOWED		16	//if set, the user doesn't have to be conscious to cast. Required for ghost spells
-#define IGNOREPREV		32	//if set, each new target does not overlap with the previous one
-//The following flags only affect different types of spell, and therefore overlap
-//Targeted spells
-#define INCLUDEUSER		64	//does the spell include the caster in its target selection?
-#define SELECTABLE		128	//can you select each target for the spell?
-//AOE spells
-#define IGNOREDENSE		64	//are dense turfs ignored in selection?
-#define IGNORESPACE		128	//are space turfs ignored in selection?
-//End split flags
-#define CONSTRUCT_CHECK	256	//used by construct spells - checks for nullrods
-#define NO_BUTTON		512	//spell won't show up in the HUD with this
-*/
-/*
-//invocation
-#define SpI_SHOUT	"shout"
-#define SpI_WHISPER	"whisper"
-#define SpI_EMOTE	"emote"
-#define SpI_NONE	"none"
-*/
-/*
-//upgrading
-#define Sp_SPEED	"speed"
-#define Sp_POWER	"power"
-#define Sp_TOTAL	"total"
-*/
-/*
-//casting costs
-#define Sp_RECHARGE	"recharge"
-#define Sp_CHARGES	"charges"
-#define Sp_HOLDVAR	"holdervar"
-*/
-///////WIZ END/////////
-/*
-//singularity defines
-#define STAGE_ONE 	1
-#define STAGE_TWO 	3
-#define STAGE_THREE	5
-#define STAGE_FOUR	7
-#define STAGE_FIVE	9
-#define STAGE_SUPER	11
-
-// Camera networks
-#define NETWORK_CRESCENT "Crescent"
-#define NETWORK_CIVILIAN_EAST "Civilian East"
-#define NETWORK_CIVILIAN_WEST "Civilian West"
-#define NETWORK_COMMAND "Command"
-#define NETWORK_ENGINE "Engine"
-#define NETWORK_ENGINEERING "Engineering"
-#define NETWORK_ENGINEERING_OUTPOST "Engineering Outpost"
-#define NETWORK_ERT "ERT"
-#define NETWORK_EXODUS "Exodus"
-#define NETWORK_MEDICAL "Medical"
-#define NETWORK_MINE "MINE"
-#define NETWORK_RESEARCH "Research"
-#define NETWORK_RESEARCH_OUTPOST "Research Outpost"
-#define NETWORK_ROBOTS "Robots"
-#define NETWORK_PRISON "Prison"
-#define NETWORK_SECURITY "Security"
-#define NETWORK_TELECOM "Tcomsat"
-#define NETWORK_THUNDER "thunder"
-*/
-// Languages
-/*
-#define LANGUAGE_SOL_COMMON "Sol Common"
-#define LANGUAGE_UNATHI "Sinta'unathi"
-#define LANGUAGE_SIIK_MAAS "Siik'maas"
-#define LANGUAGE_SIIK_TAJR "Siik'tajr"
-#define LANGUAGE_SKRELLIAN "Skrellian"
-#define LANGUAGE_ROOTSPEAK "Rootspeak"
-#define LANGUAGE_TRADEBAND "Tradeband"
-#define LANGUAGE_GUTTER "Gutter"*/
 
 #define WALL_CAN_OPEN TRUE
 #define WALL_OPENING 2
