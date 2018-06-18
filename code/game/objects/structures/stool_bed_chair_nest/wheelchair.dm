@@ -27,6 +27,33 @@
 	..()
 
 /obj/structure/bed/chair/wheelchair/relaymove(mob/user, direction)
+
+	// prevents being pushed over the invisible wall
+	var/list/dirs = list()
+
+	switch (direction)
+		if (NORTHEAST)
+			dirs += NORTH
+			dirs += EAST
+		if (NORTHWEST)
+			dirs += NORTH
+			dirs += WEST
+		if (SOUTHEAST)
+			dirs += SOUTH
+			dirs += EAST
+		if (SOUTHWEST)
+			dirs += SOUTH
+			dirs += WEST
+		else
+			dirs += direction
+
+	for (var/refdir in dirs)
+		var/turf/ref = get_step(user, refdir)
+
+		if (ref && map.check_prishtina_block(user, ref))
+			user.dir = direction
+			return
+
 	// Redundant check?
 	if (user.stat || user.stunned || user.weakened || user.paralysis || user.lying || user.restrained())
 		if (user==pulling)
