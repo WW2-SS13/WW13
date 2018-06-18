@@ -63,9 +63,9 @@ var/list/tier_2_officer_jobtypes = list(
 
 	var/obj/item/weapon/gun/projectile/G = null
 
-	if (istype(l_hand, /obj/item/weapon/gun/projectile))
+	if (istype(l_hand, /obj/item/weapon/gun/projectile) && !istype(l_hand, /obj/item/weapon/gun/projectile/pistol/luger/flaregun))
 		G = l_hand
-	else if (istype(r_hand, /obj/item/weapon/gun/projectile))
+	else if (istype(r_hand, /obj/item/weapon/gun/projectile) && !istype(r_hand, /obj/item/weapon/gun/projectile/pistol/luger/flaregun))
 		G = r_hand
 
 	if (!G)
