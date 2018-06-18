@@ -44,7 +44,7 @@
 
 /obj/structure/closet/body_bag/attackby(W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/pen))
-		var/t = input(user, "What would you like the label to be?", text("[]", name), null)  as text
+		var/t = WWinput(user, "What would you like the label to be?", text("[]", name), null, "text")
 		if (user.get_active_hand() != W)
 			return
 		if (!in_range(src, user) && loc != user)

@@ -262,7 +262,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 
 /proc/shake_camera(mob/M, duration, strength=1)
-	if (!M || !M.client || M.shakecamera || M.stat || isEye(M) || isAI(M))
+	if (!M || !M.client || M.shakecamera || M.stat || isEye(M))
 		return
 	M.shakecamera = TRUE
 	spawn(1)

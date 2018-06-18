@@ -557,7 +557,7 @@ var/list/admin_verbs_host = list(
 	if (!holder)	return
 	var/response = WWinput(src, "Please choose a distinct color that is easy to read and doesn't mix with all the other chat and radio frequency colors.", "Change own OOC color", "Pick new color", list("Pick new color", "Reset to default", "Cancel"))
 	if (response == "Pick new color")
-		prefs.ooccolor = input(src, "Please select your OOC colour.", "OOC colour") as color
+		prefs.ooccolor = WWinput(src, "Please select your OOC colour.", "OOC colour", null, "color")
 	else if (response == "Reset to default")
 		prefs.ooccolor = initial(prefs.ooccolor)
 	prefs.save_preferences()
@@ -596,7 +596,7 @@ var/list/admin_verbs_host = list(
 
 	var/turf/epicenter = mob.loc
 	var/list/choices = list("Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb")
-	var/choice = input("What size explosion would you like to produce?") in choices
+	var/choice = WWinput(src, "What size explosion would you like to produce?", "Drop Bomb", choices[1], choices)
 	switch(choice)
 		if (null)
 			return FALSE
@@ -607,50 +607,17 @@ var/list/admin_verbs_host = list(
 		if ("Big Bomb")
 			explosion(epicenter, 3, 5, 7, 5)
 		if ("Custom Bomb")
-			var/devastation_range = input("Devastation range (in tiles):") as num
-			var/heavy_impact_range = input("Heavy impact range (in tiles):") as num
-			var/light_impact_range = input("Light impact range (in tiles):") as num
-			var/flash_range = input("Flash range (in tiles):") as num
+			var/devastation_range = WWinput(src, "Devastation range (in tiles):", "Drop Bomb", 1, "num")
+			var/heavy_impact_range = WWinput(src, "Heavy impact range (in tiles):", "Drop Bomb", 1, "num")
+			var/light_impact_range = WWinput(src, "Light impact range (in tiles):", "Drop Bomb", 1, "num")
+			var/flash_range = WWinput(src, "Flash range (in tiles):", "Drop Bomb", 1, "num")
 			if (max(devastation_range, heavy_impact_range, light_impact_range, flash_range) >= 10)
 				if (!check_rights(R_PERMISSIONS, 0))
 					src << "<span class = 'danger'>You need Manager+ permissions to drop a custom bomb this big.</span>"
 					return
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 	message_admins("[key] creating an admin explosion at [epicenter.loc].")
-/*
 
-/client/proc/give_disease2(mob/T as mob in mob_list) // -- Giacom
-	set category = "Fun"
-	set name = "Give Disease"
-	set desc = "Gives a Disease to a mob."
-	return */
-/*
-	var/datum/disease2/disease/D = new /datum/disease2/disease()
-
-	var/severity = TRUE
-	var/greater = input("Is this a lesser, greater, or badmin disease?", "Give Disease") in list("Lesser", "Greater", "Badmin")
-	switch(greater)
-		if ("Lesser") severity = TRUE
-		if ("Greater") severity = 2
-		if ("Badmin") severity = 99
-
-	D.makerandom(severity)
-	D.infectionchance = input("How virulent is this disease? (1-100)", "Give Disease", D.infectionchance) as num
-
-	if (istype(T,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = T
-		if (H.species)
-			D.affected_species = list(H.species.get_bodytype())
-			if (H.species.primitive_form)
-				D.affected_species |= H.species.primitive_form
-			if (H.species.greater_form)
-				D.affected_species |= H.species.greater_form
-	infect_virus2(T,D,1)
-
-
-	log_admin("[key_name(usr)] gave [key_name(T)] a [greater] disease2 with infection chance [D.infectionchance].")
-	message_admins("\blue [key_name_admin(usr)] gave [key_name(T)] a [greater] disease2 with infection chance [D.infectionchance].", TRUE)
-*/
 /client/proc/make_sound(var/obj/O in range(world.view)) // -- TLE
 	set category = "Special"
 	set name = "Make Sound"
@@ -665,14 +632,6 @@ var/list/admin_verbs_host = list(
 		message_admins("<span class = 'notice'>[key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound.</span>", TRUE)
 
 
-/*
-/client/proc/togglebuildmodeself()
-	set name = "Toggle Build Mode Self"
-	set category = "Special"
-	if (mob)
-		togglebuildmode(mob)
-*/
-
 /client/proc/object_talk(var/msg as text) // -- TLE
 	set category = "Special"
 	set name = "oSay"
@@ -682,22 +641,7 @@ var/list/admin_verbs_host = list(
 			return
 		for (var/mob/V in hearers(mob.control_object))
 			V.show_message("<b>[mob.control_object.name]</b> says: \"" + msg + "\"", 2)
-/*
 
-/client/proc/kill_air() // -- TLE
-	set category = "Debug"
-	set name = "Kill Air"
-	set desc = "Toggle Air Processing"
-	if (air_processing_killed)
-		air_processing_killed = FALSE
-		usr << "<b>Enabled air processing.</b>"
-	else
-		air_processing_killed = TRUE
-		usr << "<b>Disabled air processing.</b>"
-
-	log_admin("[key_name(usr)] used 'kill air'.")
-	message_admins("\blue [key_name_admin(usr)] used 'kill air'.", TRUE)
-*/
 /client/proc/readmin_self()
 	set name = "Re-Admin self"
 	set category = "Admin"
@@ -800,7 +744,7 @@ var/list/admin_verbs_host = list(
 
 	if (!check_rights(R_FUN))	return
 
-	var/mob/living/carbon/human/M = WWinput(src, "Select a mob.", "Edit Appearance", WWinput_first_choice(human_mob_list), human_mob_list|list("Cancel"))
+	var/mob/living/carbon/human/M = WWinput(src, "Select a mob.", "Edit Appearance", WWinput_first_choice(human_mob_list), WWinput_list_or_null(human_mob_list))
 
 	if (!istype(M, /mob/living/carbon/human))
 		usr << "<span class = 'red'>You can only do this to humans!</span>"
@@ -835,12 +779,12 @@ var/list/admin_verbs_host = list(
 		M.s_tone =  -M.s_tone + 35
 
 	// hair
-	var/new_hstyle = WWinput(usr, "Please select a hair style.", "Grooming", WWinput_first_choice(hair_styles_list), hair_styles_list|list("Cancel"))
+	var/new_hstyle = WWinput(usr, "Please select a hair style.", "Grooming", WWinput_first_choice(hair_styles_list), WWinput_list_or_null(hair_styles_list))
 	if (new_hstyle)
 		M.h_style = new_hstyle
 
 	// facial hair
-	var/new_fstyle = WWinput(usr, "Please select a facial hair style.", "Grooming", WWinput_first_choice(facial_hair_styles_list), facial_hair_styles_list|list("Cancel"))
+	var/new_fstyle = WWinput(usr, "Please select a facial hair style.", "Grooming", WWinput_first_choice(facial_hair_styles_list), WWinput_list_or_null(facial_hair_styles_list))
 	if (new_fstyle)
 		M.f_style = new_fstyle
 

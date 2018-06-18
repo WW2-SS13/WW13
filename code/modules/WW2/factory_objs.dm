@@ -89,7 +89,6 @@
 		user << "<span class='notice'>You remove the conveyor belt.</span>"
 		qdel(src)
 		return
-	if (isrobot(user))	return //Carn: fix for borgs dropping their modules on conveyor belts
 	if (I.loc != user)	return // This should stop mounted modules ending up outside the module.
 
 	user.drop_item(get_turf(src))
@@ -330,9 +329,7 @@
 	layer = 4
 	explosion_resistance = 5
 	var/list/mobs_can_pass = list(
-		/mob/living/carbon/slime,
 		/mob/living/simple_animal/mouse
-//		/mob/living/silicon/robot/drone
 		)
 
 /obj/structure/plasticflaps/CanPass(atom/A, turf/T)

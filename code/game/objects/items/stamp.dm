@@ -68,7 +68,7 @@
 
 	var/list/show_stamps = list("EXIT" = null) + sortList(stamps) // the list that will be shown to the user to pick from
 
-	var/input_stamp = input(user, "Choose a stamp to disguise as.", "Choose a stamp.") in show_stamps
+	var/input_stamp = WWinput(user, "Choose a stamp to disguise as.", "Choose a stamp.", show_stamps[1], show_stamps)
 
 	if (user && src in user.contents)
 

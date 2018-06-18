@@ -72,8 +72,6 @@
 //return flags that should be added to the viewer's sight var.
 //Otherwise return a negative number to indicate that the view should be cancelled.
 /atom/proc/check_eye(user as mob)
-	if (istype(user, /mob/living/silicon/ai)) // WHYYYY
-		return FALSE
 	return -1
 
 /atom/proc/on_reagent_change()
@@ -299,7 +297,6 @@ its easier to just keep the beam vertical.
 
 /atom/proc/add_fingerprint(mob/living/M as mob, ignoregloves = FALSE)
 	if (isnull(M)) return
-	if (isAI(M)) return
 	if (isnull(M.key)) return
 	if (ishuman(M))
 		//Add the list if it does not exist.

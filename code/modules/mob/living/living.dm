@@ -197,8 +197,6 @@ default behaviour is:
 				H.UpdateDamageIcon()
 		H.updatehealth()
 		return TRUE
-	else if (istype(src, /mob/living/silicon/ai))
-		return FALSE
 
 /mob/living/proc/adjustBodyTemp(actual, desired, incrementboost)
 	var/temperature = actual

@@ -22,13 +22,13 @@ proc/get_base_turf_by_area(var/turf/T)
 
 	if (!check_rights(R_DEBUG)) return
 
-	var/choice = input("Which Z-level do you wish to set the base turf for?") as num|null
+	var/choice = WWinput(src, "Which Z-level do you wish to set the base turf for?", "Set Base Turf", 1, "num")
 	if (!choice)
 		return
 
-	var/new_base_path = input("Please select a turf path (cancel to reset to /turf/space).") as null|anything in typesof(/turf)
-	if (!new_base_path)
-		new_base_path = /turf/space
+	var/new_base_path = WWinput(src, "Please select a turf path (cancel to reset to /turf/space).", "Set Base Turf", WWinput_first_choice(typesof(/turf)), WWinput_list_or_null(typesof(/turf)))
+	if (!ispath(new_base_path))
+		new_base_path = /turf/floor/dirt
 	base_turf_by_z["[choice]"] = new_base_path
 	message_admins("[key_name_admin(usr)] has set the base turf for z-level [choice] to [get_base_turf(choice)].")
 	log_admin("[key_name(usr)] has set the base turf for z-level [choice] to [get_base_turf(choice)].")

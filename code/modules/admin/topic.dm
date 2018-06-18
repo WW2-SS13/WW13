@@ -136,11 +136,8 @@
 		var/mob/New = null
 		switch(href_list["simplemake"])
 			if ("observer")			New = M.change_mob_type( /mob/observer/ghost , null, null, delmob )
-			if ("larva")				New = M.change_mob_type( /mob/living/carbon/alien/larva , null, null, delmob )
 			if ("human")				New = M.change_mob_type( /mob/living/carbon/human , null, null, FALSE, href_list["species"])
-			if ("slime")				New = M.change_mob_type( /mob/living/carbon/slime , null, null, delmob )
 			if ("monkey")			New = M.change_mob_type( /mob/living/carbon/human/monkey , null, null, delmob )
-			if ("robot")				New = M.change_mob_type( /mob/living/silicon/robot , null, null, delmob )
 			if ("cat")				New = M.change_mob_type( /mob/living/simple_animal/cat , null, null, delmob )
 			if ("runtime")			New = M.change_mob_type( /mob/living/simple_animal/cat/fluff/Runtime , null, null, delmob )
 			if ("corgi")				New = M.change_mob_type( /mob/living/simple_animal/corgi , null, null, delmob )
@@ -149,10 +146,6 @@
 			if ("coffee")			New = M.change_mob_type( /mob/living/simple_animal/crab/Coffee , null, null, delmob )
 //			if ("parrot")			M.change_mob_type( /mob/living/simple_animal/parrot , null, null, delmob )
 	//		if ("polyparrot")		M.change_mob_type( /mob/living/simple_animal/parrot/Poly , null, null, delmob )
-			if ("constructarmoured")	New = M.change_mob_type( /mob/living/simple_animal/construct/armoured , null, null, delmob )
-			if ("constructbuilder")	New = M.change_mob_type( /mob/living/simple_animal/construct/builder , null, null, delmob )
-			if ("constructwraith")	New = M.change_mob_type( /mob/living/simple_animal/construct/wraith , null, null, delmob )
-			if ("shade")				New = M.change_mob_type( /mob/living/simple_animal/shade , null, null, delmob )
 			if ("mechahitler")		New = M.change_mob_type( /mob/living/carbon/human/mechahitler , null, null, delmob, href_list["species"])
 			if ("megastalin")		New = M.change_mob_type( /mob/living/carbon/human/megastalin , null, null, delmob, href_list["species"])
 			if ("pillarman")		New = M.change_mob_type( /mob/living/carbon/human/pillarman , null, null, delmob, href_list["species"])
@@ -572,7 +565,7 @@
 
 		switch(where)
 			if ("inhand")
-				if (!iscarbon(usr) && !isrobot(usr))
+				if (!iscarbon(usr))
 					usr << "Can only spawn in hand when you're a carbon mob or cyborg."
 					where = "onfloor"
 				target = usr

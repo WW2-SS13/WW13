@@ -373,7 +373,7 @@
 	// Have the customer punch in the PIN before checking if there's enough money. Prevents people from figuring out acct is
 	// empty at high security levels
 	if (customer_account.security_level != FALSE) //If card requires pin authentication (ie seclevel TRUE or 2)
-		var/attempt_pin = input("Enter pin code", "Vendor transaction") as num
+		var/attempt_pin = WWinput(usr, "Enter your pin code", "Vendor transaction", 0, "num")
 		customer_account = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
 		if (!customer_account)

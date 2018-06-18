@@ -87,7 +87,7 @@
 	if (!accessories.len) return
 	var/obj/item/clothing/accessory/A
 	if (accessories.len > 1)
-		A = input("Select an accessory to remove from [src]") as null|anything in accessories
+		A = WWinput(usr, "Select an accessory to remove from [src].", "Remove Accessory", accessories[1], accessories)
 	else
 		A = accessories[1]
 	remove_accessory(usr,A)
