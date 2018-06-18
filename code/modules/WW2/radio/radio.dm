@@ -564,6 +564,20 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	..()
 	internal_channels = all_channels.Copy()
 
+/obj/item/radio/feldfu/felfu2
+	name = "Feldfu.f44"
+	icon_state = "loudspeaker"
+	item_state = "feldfu"
+	frequency = DE_BASE_FREQ
+	canhear_range = 7
+	w_class = 4
+	speech_sound = 'sound/effects/roger_beep2.ogg'
+	faction = GERMAN
+	listening = TRUE
+	broadcasting = FALSE
+	layer = MOB_LAYER + 1
+	anchored = TRUE
+
 // partisan clone of german radios. Doesn't inherit from the feldfu for
 // callback meme reasons
 
