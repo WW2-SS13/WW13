@@ -184,7 +184,9 @@ var/list/delayed_garbage = list()
 		A.invisibility = 101
 		A.icon = null
 		// don't set A.icon_state to null, it's superflous - setting icon to null is all that's needed
-		A.loc = null // mostly for projectiles, hopefully this doesn't break anything for qdeleted turfs
+		if (ismovable(A))
+			var/atom/movable/AM = A
+			AM.loc = null
 
 /proc/qdel_list(var/list/L)
 	if (!L)
