@@ -75,6 +75,7 @@
 
 /obj/map_metadata/camp/long_win_time(faction)
 	return 3000
+
 var/no_loop = FALSE
 
 /obj/map_metadata/camp/update_win_condition()
