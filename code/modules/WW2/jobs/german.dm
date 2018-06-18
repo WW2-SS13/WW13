@@ -1400,7 +1400,7 @@ var/first_fallschirm = TRUE
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german/SSTV(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>, a soldier for the SS Camp management division (Totenkopfverbande). Follow the rules of your <b>SS-Untersharffuhrer</b>.")
 	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start shooting at the prisoners without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave.")
-
+	H.give_radio()
 	// glorious SS stats
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
