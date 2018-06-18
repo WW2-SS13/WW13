@@ -45,7 +45,7 @@
 		var/datum/category_group/underwear/UWC = global_underwear.categories_by_name[href_list["change_underwear"]]
 		if (!UWC)
 			return
-		var/datum/category_item/underwear/selected_underwear = input(H, "Choose underwear:", "Choose underwear", H.all_underwear[UWC.name]) as null|anything in UWC.items
+		var/datum/category_item/underwear/selected_underwear = WWinput(H, "Choose your underwear:", "Choose underwear", WWinput_first_choice(H.all_underwear[UWC.name]), WWinput_list_or_null(UWC.items))
 		if (selected_underwear && CanUseTopic(H, default_state))
 			H.all_underwear[UWC.name] = selected_underwear
 			. = TRUE

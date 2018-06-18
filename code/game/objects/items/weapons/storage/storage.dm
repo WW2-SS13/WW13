@@ -441,9 +441,6 @@
 /obj/item/weapon/storage/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
-	if (isrobot(user))
-		return //Robots can't interact with storage items.
-
 	if (!can_be_inserted(W))
 		return
 

@@ -406,11 +406,11 @@ proc/admin_notice(var/message, var/rights)
 	set desc="Restarts the world"
 	if (!usr.client.holder)
 		return
-	var/confirm = input(usr, "Restart the game world?", "Restart") in list("Yes", "Cancel")
+	var/confirm = WWinput(usr, "Restart the game world?", "Restart", "Yes", list("Yes", "Cancel"))
 	if (confirm == "Cancel")
 		return
 	if (processes.mapswap && ticker.restarting_is_very_bad && serverswap.Find("snext"))
-		var/unconfirm = input(usr, "Mapswap is in progress. Restarting now may break the linked server. Continue?") in list("No", "Yes")
+		var/unconfirm = WWinput(usr, "Mapswap is in progress. Restarting now may break the linked server. Continue?", "Warning", "No", list("No", "Yes"))
 		if (unconfirm == "No")
 			return
 	if (confirm == "Yes")
@@ -425,11 +425,11 @@ proc/admin_notice(var/message, var/rights)
 	set desc="Restarts the world with to be continued memes"
 	if (!usr.client.holder)
 		return
-	var/confirm = input(usr, "Restart the game world?", "Restart") in list("Yes", "Cancel")
+	var/confirm = WWinput(usr, "Restart the game world?", "Restart", "Yes", list("Yes", "Cancel"))
 	if (confirm == "Cancel")
 		return
 	if (processes.mapswap && ticker.restarting_is_very_bad && serverswap.Find("snext"))
-		var/unconfirm = input(usr, "Mapswap is in progress. Restarting now may break the linked server. Continue?") in list("No", "Yes")
+		var/unconfirm = WWinput(usr, "Mapswap is in progress. Restarting now may break the linked server. Continue?", "Warning", "No", list("No", "Yes"))
 		if (unconfirm == "No")
 			return
 	if (confirm == "Yes")
@@ -699,12 +699,12 @@ proc/admin_notice(var/message, var/rights)
 
 	if (!check_rights(R_SPAWN))	return
 
-	var/owner = input("Select a ckey.", "Spawn Custom Item") as null|anything in custom_items
+	var/owner = WWinput(usr, "Select a ckey.", "Spawn Custom Item", WWinput_first_choice(custom_items), WWinput_choice_or_null(custom_items))
 	if (!owner|| !custom_items[owner])
 		return
 
 	var/list/possible_items = custom_items[owner]
-	var/datum/custom_item/item_to_spawn = input("Select an item to spawn.", "Spawn Custom Item") as null|anything in possible_items
+	var/datum/custom_item/item_to_spawn = WWinput(usr, "Select an item to spawn.", "Spawn Custom Item", WWinput_first_choice(possible_items), WWinput_choice_or_null(possible_items))
 	if (!item_to_spawn)
 		return
 
@@ -757,7 +757,7 @@ var/list/atom_types = null
 	if (matches.len==1)
 		chosen = matches[1]
 	else
-		chosen = input("Select an atom type", "Spawn Atom", matches[1]) as null|anything in matches
+		chosen = WWinput(usr, "Select an atom type", "Spawn Atom", matches[1], WWinput_list_or_null(matches))
 		if (!chosen)
 			return
 
@@ -775,7 +775,7 @@ var/list/atom_types = null
 	set name = "Spawn Player"
 	if (!check_rights(R_SPAWN))	return
 
-	var/mob/observer/ghost/G = input(usr, "Which observer? Please note that unlike the Player Panel spawn, this will always send the observer to their spawnpoint.") in observer_mob_list + "Cancel"
+	var/mob/observer/ghost/G = WWinput(usr, "Which observer? Please note that unlike the Player Panel spawn, this will always send the observer to their spawnpoint.", "Spawn Player", WWinput_first_choice(observer_mob_list), WWinput_list_or_null(observer_mob_list))
 	if (G == "Cancel")
 		return
 	else if (!istype(G))
@@ -786,7 +786,7 @@ var/list/atom_types = null
 		if (J.title)
 			job_master_occupation_names[J.title] = J
 
-	var/J = input(usr, "Which job?") in (list("Cancel") | job_master_occupation_names)
+	var/J = WWinput(usr, "Which job?", "Spawn Player", WWinput_first_choice(job_master_occupation_names), WWinput_list_or_null(job_master_occupation_names))
 	if (J != "Cancel" && G)
 		var/mob_type = job2mobtype(J)
 		var/mob/living/carbon/human/H = new mob_type(G.loc)
@@ -937,49 +937,7 @@ var/list/atom_types = null
 	tomob.ckey = frommob.ckey
 	qdel(frommob)
 	return TRUE
-/*
-/datum/admins/proc/force_antag_latespawn()
-	set category = "Admin"
-	set name = "Force Template Spawn"
-	set desc = "Force an antagonist template to spawn."
 
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		usr << "Error: you are not an admin!"
-		return
-
-	if (!ticker || !ticker.mode)
-		usr << "Mode has not started."
-		return
-
-	var/antag_type = input("Choose a template.","Force Latespawn") as null|anything in all_antag_types
-	if (!antag_type || !all_antag_types[antag_type])
-		usr << "Aborting."
-		return
-
-	var/datum/antagonist/antag = all_antag_types[antag_type]
-	message_admins("[key_name(usr)] attempting to force latespawn with template [antag.id].")
-	antag.attempt_auto_spawn()
-
-/datum/admins/proc/force_mode_latespawn()
-	set category = "Admin"
-	set name = "Force Mode Spawn"
-	set desc = "Force autotraitor to proc."
-
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins) || !check_rights(R_ADMIN))
-		usr << "Error: you are not an admin!"
-		return
-
-	if (!ticker || !ticker.mode)
-		usr << "Mode has not started."
-		return
-
-	log_and_message_admins("attempting to force mode autospawn.")
-	ticker.mode.process_autoantag()
-*/
 /datum/admins/proc/paralyze_mob(mob/living/H as mob)
 	set category = "Admin"
 	set name = "Toggle Paralyze"

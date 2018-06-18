@@ -44,20 +44,6 @@
 #define ismouse(A) istype(A, /mob/living/simple_animal/mouse)
 //---------------------------------------------------
 
-#define issilicon(A) istype(A, /mob/living/silicon)
-
-#define isAI(A) istype(A, /mob/living/silicon/ai)
-
-#define ispAI(A) istype(A, /mob/living/silicon/pai)
-
-#define isrobot(A) istype(A, /mob/living/silicon/robot)
-
-#define isdrone(A) istype(A, /mob/living/silicon/robot/drone)
-
-
-//---------------------------------------------------
-
-
 //OBJECT LEVEL
 #define isobj(A) istype(A, /obj)
 

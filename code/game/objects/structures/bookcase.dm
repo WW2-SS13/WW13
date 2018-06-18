@@ -42,7 +42,7 @@
 
 /obj/structure/bookcase/attack_hand(var/mob/user as mob)
 	if (contents.len)
-		var/obj/item/weapon/book/choice = input("Which book would you like to remove from the shelf?") as null|obj in contents
+		var/obj/item/weapon/book/choice = WWinput(user, "Which book would you like to remove from the shelf?", "Bookcase", WWinput_first_choice(contents), WWinput_list_or_null(contents))
 		if (choice)
 			if (!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 				return
