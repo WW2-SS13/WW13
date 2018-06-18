@@ -186,7 +186,12 @@
 			handle_shoot_self(user)
 		return
 
-	if (user.a_intent != I_HELP && !bayonet) //point blank shooting
+	var/list/loaded = list()
+	if (istype(src, /obj/item/weapon/gun/projectile))
+		var/obj/item/weapon/gun/projectile/proj = src
+		loaded = proj.loaded
+
+	if (user.a_intent != I_HELP && !bayonet && loaded.len && loaded[1]) // point blank shooting
 		Fire(A, user, pointblank=1)
 	else
 		if (bayonet && isliving(A))
@@ -206,7 +211,7 @@
 				var/obj/item/weapon/attachment/bayonet/a = bayonet
 				playsound(get_turf(src), a.attack_sound, rand(90,100))
 		else
-			..() //Pistolwhipping - now help intent only
+			..() //Pistolwhipping - now help intent only (or when the gun is empty)
 
 // only update our in-hands icon if we aren't using a scope (invisible)
 /obj/item/weapon/gun/update_held_icon()
