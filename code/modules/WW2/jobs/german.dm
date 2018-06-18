@@ -1258,7 +1258,7 @@ var/first_fallschirm = TRUE
 /datum/job/german/commander_sstv
 	title = "SS-TV-Hauptsturmfuhrer"
 	en_meaning = "SS Camp Director"
-	rank_abbreviation = "Hstuf"
+	rank_abbreviation = "Hstf"
 	head_position = TRUE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateSS-Officer"
@@ -1320,7 +1320,7 @@ var/first_fallschirm = TRUE
 /datum/job/german/squad_leader_sstv
 	title = "SS-TV-Unterscharfuhrer"
 	en_meaning = "SS Totenkopfverbände Squad Leader"
-	rank_abbreviation = "uscharf"
+	rank_abbreviation = "uscha"
 	head_position = TRUE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateSS-Officer"
@@ -1376,9 +1376,9 @@ var/first_fallschirm = TRUE
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/soldier_sstv
-	title = "SS-TV-Schutze"
+	title = "SS-TV-Sturmmann"
 	en_meaning = "SS Totenkopfverbände Soldier"
-	rank_abbreviation = "schtz"
+	rank_abbreviation = "strm"
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateSS"
 	additional_languages = list( "Russian" = 40, "Ukrainian" = 20)
@@ -1400,7 +1400,7 @@ var/first_fallschirm = TRUE
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german/SSTV(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>, a soldier for the SS Camp management division (Totenkopfverbande). Follow the rules of your <b>SS-Untersharffuhrer</b>.")
 	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start shooting at the prisoners without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave.")
-
+	H.give_radio()
 	// glorious SS stats
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
@@ -1427,7 +1427,7 @@ var/first_fallschirm = TRUE
 /datum/job/german/medic_sstv
 	title = "SS-TV-Sanitäter"
 	en_meaning = "SS Totenkopfverbände Medic"
-	rank_abbreviation = "rott" // oGftr for normal medics
+	rank_abbreviation = "rttf" // oGftr for normal medics
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateSS"
 	is_SS_TV = TRUE
