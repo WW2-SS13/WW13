@@ -107,23 +107,7 @@
 		new /obj/item/weapon/reagent_containers/syringe( src )
 		new /obj/item/weapon/reagent_containers/syringe( src )
 		new /obj/item/weapon/reagent_containers/syringe( src )
-/*
-/obj/item/weapon/storage/box/syringegun
-	name = "box of syringe gun cartridges"
-	desc = "A box full of compressed gas cartridges."
-	icon_state = "syringe"
 
-	New()
-		..()
-		new /obj/item/weapon/syringe_cartridge( src )
-		new /obj/item/weapon/syringe_cartridge( src )
-		new /obj/item/weapon/syringe_cartridge( src )
-		new /obj/item/weapon/syringe_cartridge( src )
-		new /obj/item/weapon/syringe_cartridge( src )
-		new /obj/item/weapon/syringe_cartridge( src )
-		new /obj/item/weapon/syringe_cartridge( src )
-
-*/
 /obj/item/weapon/storage/box/beakers
 	name = "box of beakers"
 	icon_state = "beaker"
@@ -151,20 +135,6 @@
 		new /obj/item/weapon/reagent_containers/glass/beaker/large( src )
 		new /obj/item/weapon/reagent_containers/glass/beaker/large( src )
 		new /obj/item/weapon/reagent_containers/glass/beaker/large( src )
-/*
-/obj/item/weapon/storage/box/injectors
-	name = "box of DNA injectors"
-	desc = "This box contains injectors it seems."
-
-	New()
-		..()
-		new /obj/item/weapon/dnainjector/h2m(src)
-		new /obj/item/weapon/dnainjector/h2m(src)
-		new /obj/item/weapon/dnainjector/h2m(src)
-		new /obj/item/weapon/dnainjector/m2h(src)
-		new /obj/item/weapon/dnainjector/m2h(src)
-		new /obj/item/weapon/dnainjector/m2h(src)
-*/
 
 /obj/item/weapon/storage/box/blanks
 	name = "box of blank shells"
@@ -221,21 +191,7 @@
 		new /obj/item/ammo_casing/shotgun/pellet(src)
 		new /obj/item/ammo_casing/shotgun/pellet(src)
 		new /obj/item/ammo_casing/shotgun/pellet(src)
-/*
-/obj/item/weapon/storage/box/flashshells
-	name = "box of illumination shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
 
-	New()
-		..()
-		new /obj/item/ammo_casing/shotgun/flash(src)
-		new /obj/item/ammo_casing/shotgun/flash(src)
-		new /obj/item/ammo_casing/shotgun/flash(src)
-		new /obj/item/ammo_casing/shotgun/flash(src)
-		new /obj/item/ammo_casing/shotgun/flash(src)
-		new /obj/item/ammo_casing/shotgun/flash(src)
-		new /obj/item/ammo_casing/shotgun/flash(src)
-*/
 /obj/item/weapon/storage/box/stunshells
 	name = "box of stun shells"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
@@ -339,15 +295,6 @@
 	name = "box of anti-photon grenades"
 	desc = "A box containing 5 experimental photon disruption grenades."
 	icon_state = "flashbang"
-/*
-/obj/item/weapon/storage/box/anti_photons/New()
-		..()
-		new /obj/item/weapon/grenade/anti_photon(src)
-		new /obj/item/weapon/grenade/anti_photon(src)
-		new /obj/item/weapon/grenade/anti_photon(src)
-		new /obj/item/weapon/grenade/anti_photon(src)
-		new /obj/item/weapon/grenade/anti_photon(src)
-*/
 
 /obj/item/weapon/storage/box/rxglasses
 	name = "box of prescription glasses"
@@ -404,48 +351,6 @@
 		new /obj/item/weapon/reagent_containers/food/drinks/sillycup( src )
 		new /obj/item/weapon/reagent_containers/food/drinks/sillycup( src )
 		new /obj/item/weapon/reagent_containers/food/drinks/sillycup( src )
-/*
-
-/obj/item/weapon/storage/box/donkpockets
-	name = "box of donk-pockets"
-	desc = "<b>Instructions:</b> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
-	icon_state = "donk_kit"
-
-	New()
-		..()
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
-
-/obj/item/weapon/storage/box/sinpockets
-	name = "box of sin-pockets"
-	desc = "<b>Instructions:</b> <I>Crush bottom of package to initiate chemical heating. Wait for 20 seconds before consumption. Product will cool if not eaten within seven minutes.</I>"
-	icon_state = "donk_kit"
-
-	New()
-		..()
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket(src)
-
-/obj/item/weapon/storage/box/monkeycubes
-	name = "monkey cube box"
-	desc = "Drymate brand monkey cubes. Just add water!"
-	icon = 'icons/obj/food.dmi'
-	icon_state = "monkeycubebox"
-	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube)
-	New()
-		..()
-		if (type == /obj/item/weapon/storage/box/monkeycubes)
-			for (var/i = TRUE; i <= 5; i++)
-				new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped(src)
-*/
 
 /obj/item/weapon/storage/box/handcuffs
 	name = "box of spare handcuffs"

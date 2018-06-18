@@ -423,62 +423,8 @@ BLIND     // can't see anything
 
 /obj/item/clothing/under/examine(mob/user)
 	..(user)
-/*	switch(sensor_mode)
-		if (0)
-			user << "Its sensors appear to be disabled."
-		if (1)
-			user << "Its binary life sensors appear to be enabled."
-		if (2)
-			user << "Its vital tracker appears to be enabled."
-		if (3)
-			user << "Its vital tracker and tracking beacon appear to be enabled."
-*/
-/*
-/obj/item/clothing/under/proc/set_sensors(var/mob/M)
-	if (has_sensor >= 2)
-		usr << "The controls are locked."
-		return FALSE
-	if (has_sensor <= 0)
-		usr << "This suit does not have any sensors."
-		return FALSE
 
-	if (sensor_mode == 3)
-		sensor_mode = FALSE
-	else
-		sensor_mode++
-
-	if (loc == usr)
-		switch(sensor_mode)
-			if (0)
-				usr << "You disable your suit's remote sensing equipment."
-			if (1)
-				usr << "Your suit will now report whether you are live or dead."
-			if (2)
-				usr << "Your suit will now report your vital lifesigns."
-			if (3)
-				usr << "Your suit will now report your vital lifesigns as well as your coordinate position."
-	else if (istype(loc, /mob))
-		switch(sensor_mode)
-			if (0)
-				for (var/mob/V in viewers(usr, TRUE))
-					V.show_message("<span class = 'red'>[usr] disables [loc]'s remote sensing equipment.</span>", TRUE)
-			if (1)
-				for (var/mob/V in viewers(usr, TRUE))
-					V.show_message("[usr] turns [loc]'s remote sensors to binary.", TRUE)
-			if (2)
-				for (var/mob/V in viewers(usr, TRUE))
-					V.show_message("[usr] sets [loc]'s sensors to track vitals.", TRUE)
-			if (3)
-				for (var/mob/V in viewers(usr, TRUE))
-					V.show_message("[usr] sets [loc]'s sensors to maximum.", TRUE)
-*/
 
 /obj/item/clothing/under/rank/New()
 //	sensor_mode = 3
 	..()
-/*
-/obj/item/clothing/under/rank/attackby(var/obj/item/I, var/mob/U)
-	if (istype(I, /obj/item/weapon/screwdriver) && istype(U, /mob/living/carbon/human))
-		set_sensors(U)
-	else
-		return ..()*/

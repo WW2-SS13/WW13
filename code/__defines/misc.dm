@@ -58,45 +58,6 @@
 #define COLOR_PURPLE_GRAY      "#a2819e"
 #define COLOR_SUN              "#ec8b2f"
 
-//	Shuttles.
-/*
-// These define the time taken for the shuttle to get to the space station, and the time before it leaves again.
-#define SHUTTLE_PREPTIME                300 // 5 minutes = 300 seconds - after this time, the shuttle departs centcom and cannot be recalled.
-#define SHUTTLE_LEAVETIME               180 // 3 minutes = 180 seconds - the duration for which the shuttle will wait at the station after arriving.
-#define SHUTTLE_TRANSIT_DURATION        300 // 5 minutes = 300 seconds - how long it takes for the shuttle to get to the station.
-#define SHUTTLE_TRANSIT_DURATION_RETURN 120 // 2 minutes = 120 seconds - for some reason it takes less time to come back, go figure.
-
-// Shuttle moving status.
-#define SHUTTLE_IDLE      0
-#define SHUTTLE_WARMUP    1
-#define SHUTTLE_INTRANSIT 2
-
-// Ferry shuttle processing status.
-#define IDLE_STATE   0
-#define WAIT_LAUNCH  1
-#define FORCE_LAUNCH 2
-#define WAIT_ARRIVE  3
-#define WAIT_FINISH  4
-*/
-/* Already defined in setup.dm
-// Setting this much higher than 1024 could allow spammers to DOS the server easily.
-#define MAX_MESSAGE_LEN       1024
-#define MAX_PAPER_MESSAGE_LEN 3072
-#define MAX_BOOK_MESSAGE_LEN  9216
-#define MAX_LNAME_LEN         64
-#define MAX_NAME_LEN          45
-*/
-
-// Event defines.
-/*
-#define EVENT_LEVEL_MUNDANE  1
-#define EVENT_LEVEL_MODERATE 2
-#define EVENT_LEVEL_MAJOR    3
-*/
-//General-purpose life speed define for plants.
-/*
-#define HYDRO_SPEED_MULTIPLIER 1
-*/
 #define DEFAULT_JOB_TYPE /datum/job/assistant
 /*
 //Area flags, possibly more to come
@@ -152,33 +113,7 @@
 #define WEAPON_FORCE_DANGEROUS   20
 #define WEAPON_FORCE_ROBUST      26
 #define WEAPON_FORCE_LETHAL      51
-/*
-									// NTNet module-configuration values. Do not change these. If you need to add another use larger number (5..6..7 etc)
-#define NTNET_SOFTWAREDOWNLOAD 1 	// Downloads of software from NTNet
-#define NTNET_PEERTOPEER 2			// P2P transfers of files between devices
-#define NTNET_COMMUNICATION 3		// Communication (messaging)
-#define NTNET_SYSTEMCONTROL 4		// Control of various systems, RCon, air alarm control, etc.
 
-// NTNet transfer speeds, used when downloading/uploading a file/program.
-#define NTNETSPEED_LOWSIGNAL 0.025	// GQ/s transfer speed when the device is wirelessly connected and on Low signal
-#define NTNETSPEED_HIGHSIGNAL 0.1	// GQ/s transfer speed when the device is wirelessly connected and on High signal
-#define NTNETSPEED_ETHERNET 0.5		// GQ/s transfer speed when the device is using wired connection
-
-// Program bitflags
-#define PROGRAM_ALL 7
-#define PROGRAM_CONSOLE 1
-#define PROGRAM_LAPTOP 2
-#define PROGRAM_TABLET 4
-
-#define PROGRAM_STATE_KILLED 0
-#define PROGRAM_STATE_BACKGROUND 1
-#define PROGRAM_STATE_ACTIVE 2
-
-// Caps for NTNet logging. Less than 10 would make logging useless anyway, more than 500 may make the log browser too laggy. Defaults to 100 unless user changes it.
-#define MAX_NTNET_LOGS 500
-#define MIN_NTNET_LOGS 10
-
-*/
 // Special return values from bullet_act(). Positive return values are already used to indicate the blocked level of the projectile.
 #define PROJECTILE_CONTINUE   -1 //if the projectile should continue flying after calling bullet_act()
 #define PROJECTILE_FORCE_MISS -2 //if the projectile should treat the attack as a miss (suppresses attack and admin logs) - only applies to mobs.
@@ -192,6 +127,3 @@
 //HUD element hidings flags
 #define F12_FLAG 1 // 0001
 #define TOGGLE_INVENTORY_FLAG 2 //0010
-/*
-//ANNOUNSER! I THINK YOU MEAN ANNOUNCER!
-#define ANNOUNSER_NAME "CEV Eris System Announcer"*/
