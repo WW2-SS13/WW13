@@ -72,6 +72,7 @@
 		if (gun_type == GUN_TYPE_SHOTGUN)
 			return new /obj/item/projectile/bullet/shotgun/murder
 		return new /obj/item/projectile/bullet/rifle/murder
+
 	//get the next casing
 	if (loaded.len)
 		chambered = loaded[1] //load next casing.
