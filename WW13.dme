@@ -253,6 +253,7 @@
 #include "code\game\objects\items\paper\photography.dm"
 #include "code\game\objects\items\stacks\matter_synth.dm"
 #include "code\game\objects\items\stacks\medical.dm"
+#include "code\game\objects\items\stacks\money.dm"
 #include "code\game\objects\items\stacks\nanopaste.dm"
 #include "code\game\objects\items\stacks\recipe.dm"
 #include "code\game\objects\items\stacks\rods.dm"
@@ -924,5 +925,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\city\level1.dmm"
+#include "maps\camp.dmm"
 // END_INCLUDE
