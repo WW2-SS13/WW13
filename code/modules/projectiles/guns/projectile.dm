@@ -125,7 +125,7 @@
 		if (EJECT_CASINGS) //eject casing onto ground.
 			#ifndef DISABLE_CASINGS
 			var/area/src_area = get_area(src)
-			if (!istype(src_area, /area/prishtina/soviet/lift) && !istype(src_area, /area/prishtina/german/lift))
+			if (!src_area.lift_master())
 				chambered.loc = get_turf(src)
 			#endif
 			playsound(loc, casing_sound, 50, TRUE)
