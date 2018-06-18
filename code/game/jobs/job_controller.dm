@@ -388,7 +388,7 @@ var/global/datum/controller/occupations/job_master
 		#define SAFE_SPAWN_TIME 4
 		// Add loadout items. spawn(SAFE_SPAWN_TIME) so it happens after our pockets are filled with default job items
 		spawn (SAFE_SPAWN_TIME)
-			if (!findtext("[H.original_job.type]", "doctor"))
+			if (map.custom_loadout && !findtext("[H.original_job.type]", "doctor"))
 				if (!list(CIVILIAN).Find(H.original_job.base_type_flag()))
 					for (var/v in 1 to 2)
 						var/slot = (v == 1 ? slot_l_store : slot_r_store)
@@ -401,7 +401,7 @@ var/global/datum/controller/occupations/job_master
 								if (H.r_store)
 									continue
 						var/other_slot_num = (v == 1 ? 2 : 1)
-						if ((H.client && H.client.prefs.pockets.len >= v) && (map.custom_loadout == TRUE))
+						if (H.client && H.client.prefs.pockets.len >= v)
 							switch (lowertext(H.client.prefs.pockets[v]))
 								if (null, "Magazine")
 									continue
