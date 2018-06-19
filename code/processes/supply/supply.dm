@@ -250,7 +250,7 @@
 			if (H.original_job && H.original_job.is_officer)
 				if (H.original_job.base_type_flag() == GERMAN)
 					H.replace_memory(original_code, codes[GERMAN])
-		radio2germans("The supply passcode has been changed to [codes[GERMAN]] for security reasons.", "High Command Private Announcements")
+		radio2germans("The supply passcode has been changed to [codes[GERMAN]] due to security concerns.", "High Command Private Announcements")
 		tmpTime1 = 0
 
 	else if (prob(10) && tmpTime2 >= 6000)
@@ -260,5 +260,5 @@
 			if (H.original_job && H.original_job.is_officer)
 				if (H.original_job.base_type_flag() == SOVIET)
 					H.replace_memory(original_code, codes[SOVIET])
-		radio2soviets("The supply passcode has been changed to [codes[SOVIET]] for security reasons.", "High Command Private Announcements")
+		radio2soviets("The supply passcode has been changed to [codes[SOVIET]] due to security concerns.", "High Command Private Announcements")
 		tmpTime2 = 0
