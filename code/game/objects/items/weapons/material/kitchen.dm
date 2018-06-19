@@ -118,7 +118,7 @@
 
 /obj/item/weapon/material/kitchen/utensil/knife/boot/trench_knife
 	name = "trench knife"
-	desc = "dis knife is good wen your charging, stabbing, cutting heads and good at slicing yours mothers pepperoni."
+	desc = "this knife is good when your charging, stabbing, cutting heads and good at slicing yours mothers pepperoni."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "trench_knife"
 	item_state = "knife"
