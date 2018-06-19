@@ -186,12 +186,13 @@
 			handle_shoot_self(user)
 		return
 
-	var/list/loaded = list()
+	var/fire = TRUE
 	if (istype(src, /obj/item/weapon/gun/projectile))
 		var/obj/item/weapon/gun/projectile/proj = src
-		loaded = proj.loaded
+		if (!proj.has_next_projectile())
+			fire = FALSE
 
-	if (user.a_intent != I_HELP && !bayonet && loaded.len && loaded[1]) // point blank shooting
+	if (user.a_intent != I_HELP && !bayonet && fire) // point blank shooting
 		Fire(A, user, pointblank=1)
 	else
 		if (bayonet && isliving(A))
