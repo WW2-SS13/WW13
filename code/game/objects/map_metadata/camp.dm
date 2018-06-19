@@ -71,10 +71,10 @@
 	return (germans_can_cross_blocks() && soviets_can_cross_blocks())
 
 /obj/map_metadata/camp/short_win_time(faction)
-	return 3000
+	return 1200
 
 /obj/map_metadata/camp/long_win_time(faction)
-	return 3000
+	return 1200
 
 var/no_loop = FALSE
 
