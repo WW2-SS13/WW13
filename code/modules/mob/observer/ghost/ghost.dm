@@ -193,7 +193,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			response = WWinput(src, "Are you sure you want to ghost?\n(You may respawn with the 'Respawn' verb in the IC tab)", "Are you sure you want to ghost?", "Ghost", list("Ghost", "Stay in body"))
 		if (response != "Ghost")
 			return
-		if (getTotalLoss() < 100 || restrained())
+		if (getTotalLoss() < (DAMAGE_HIGH*2) || restrained() || stat == CONSCIOUS)
 			src << "<span class = 'warning'>You can't ghost right now.</span>"
 			return
 		resting = TRUE
