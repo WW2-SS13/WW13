@@ -54,6 +54,10 @@
 			user.dir = direction
 			return
 
+	// bug abusers btfo
+	if (map.check_prishtina_block(user, get_turf(user))
+		return
+
 	// Redundant check?
 	if (user.stat || user.stunned || user.weakened || user.paralysis || user.lying || user.restrained())
 		if (user==pulling)
