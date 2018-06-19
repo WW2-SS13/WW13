@@ -55,7 +55,7 @@
 			return
 
 	// bug abusers btfo
-	if (map.check_prishtina_block(user, get_turf(user))
+	if (map.check_prishtina_block(user, get_turf(user)))
 		return
 
 	// Redundant check?
