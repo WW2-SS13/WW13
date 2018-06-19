@@ -26,6 +26,8 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_casing/c4mm
 	name = "a 4mm bullet casing"
+	icon_state = "pistol_bullet_anykind"
+	spent_icon = "pistol_bullet_casing"
 	projectile_type = /obj/item/projectile/bullet/rifle/c4mm
 	caliber = "c4mm"
 
@@ -38,6 +40,8 @@ WW 2 WEAPONS MAGS N AMMO
 /obj/item/ammo_casing/a762x54
 	desc = "A 7.62x54mm bullet casing."
 	caliber = "a762x54"
+	icon_state = "kclipe-bullet"
+	spent_icon = "kclipe-casing"
 	weight = 0.012
 	projectile_type = /obj/item/projectile/bullet/rifle/a762x54
 
@@ -103,6 +107,8 @@ WW 2 WEAPONS MAGS N AMMO
 /obj/item/ammo_casing/c9x19mm_stenmk2
 	desc = "A 9x19mm bullet casing."
 	caliber = "9x19mm"
+	icon_state = "pistol_bullet_anykind"
+	spent_icon = "pistol_bullet_casing"
 	weight = 0.0095
 	projectile_type = /obj/item/projectile/bullet/rifle/c9x19mm_stenmk3
 
