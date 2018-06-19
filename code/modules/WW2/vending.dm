@@ -55,7 +55,7 @@
 		/obj/item/ammo_magazine/s9x19mm = 20,
 		/obj/item/weapon/gauze_pack/gauze = 15,
 		/obj/item/weapon/attachment/bayonet/german = 15,
-		/obj/item/weapon/material/kitchen/utensil/knife/boot = 15,
+		/obj/item/weapon/material/kitchen/utensil/knife/boot/trench_knife = 15,
 		/obj/item/weapon/grenade/explosive/l2a2 = 10,
 		/obj/item/weapon/grenade/explosive/stgnade = 10,
 		/obj/item/weapon/grenade/smokebomb/german = 20,
@@ -73,7 +73,7 @@
 	desc = "Basic equip for German soldiers."
 	icon_state = "equipment_german"
 	products = list(
-		/obj/item/weapon/material/kitchen/utensil/knife/boot = 25,
+		/obj/item/weapon/material/kitchen/utensil/knife/boot/nr40_knife = 25,
 		/obj/item/weapon/attachment/bayonet/german = 25,
 		/obj/item/weapon/gauze_pack/gauze = 25,
 		/obj/item/flashlight = 25,
@@ -102,7 +102,7 @@
 		/obj/item/clothing/suit/storage/coat/german/ghillie = 5,
 		/obj/item/clothing/under/geruni/ghillie = 5,
 
-		/obj/item/weapon/material/kitchen/utensil/knife/boot = 10,
+		/obj/item/weapon/material/kitchen/utensil/knife/boot/nr40_knife_SS = 10,
 		/obj/item/weapon/attachment/bayonet/german = 10,
 		/obj/item/weapon/gauze_pack/gauze = 10,
 		/obj/item/flashlight = 10,
@@ -187,7 +187,7 @@
 	desc = "Basic equip for Soviet soldiers."
 	icon_state = "equipment_soviet"
 	products = list(
-		/obj/item/weapon/material/kitchen/utensil/knife/boot = 25,
+		/obj/item/weapon/material/kitchen/utensil/knife/boot/bowie_knife = 25,
 		/obj/item/weapon/attachment/bayonet/soviet = 25,
 		/obj/item/weapon/gauze_pack/bint = 25,
 		/obj/item/flashlight = 25,

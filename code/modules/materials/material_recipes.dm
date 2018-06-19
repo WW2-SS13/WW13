@@ -24,6 +24,7 @@ var/list/engineer_exclusive_recipe_types = list(/obj/structure/girder, /obj/stru
 		recipes += new/datum/stack_recipe("[display_name] fork", /obj/item/weapon/material/kitchen/utensil/fork/plastic, TRUE, _on_floor = TRUE, _supplied_material = "[name]")
 		recipes += new/datum/stack_recipe("[display_name] knife", /obj/item/weapon/material/kitchen/utensil/knife/plastic, TRUE, _on_floor = TRUE, _supplied_material = "[name]")
 		recipes += new/datum/stack_recipe("[display_name] blade", /obj/item/weapon/material/butterflyblade, 2, _time = 15, _one_per_turf = FALSE, _on_floor = TRUE, _supplied_material = "[name]")
+		recipes += new/datum/stack_recipe("makeshift knife blade", /obj/item/weapon/material/makeshift_knife_blade, TRUE, _on_floor = TRUE, _supplied_material = "[name]")
 
 /material/steel/generate_recipes()
 	..()
@@ -50,7 +51,6 @@ var/list/engineer_exclusive_recipe_types = list(/obj/structure/girder, /obj/stru
 	recipes += new/datum/stack_recipe("table", /obj/structure/table, 4, _time = 7, _one_per_turf = TRUE, _on_floor = TRUE)
 	recipes += new/datum/stack_recipe("rack", /obj/structure/table/rack, 2, _time = 5, _one_per_turf = TRUE, _on_floor = TRUE)
 	recipes += new/datum/stack_recipe("closet", /obj/structure/closet, 3, _time = 10, _one_per_turf = TRUE, _on_floor = TRUE)
-
 	recipes += new/datum/stack_recipe("metal rod", /obj/item/stack/rods, TRUE, 2, 60)
 	recipes += new/datum/stack_recipe("wall girders", /obj/structure/girder, 3, _time = 50, _one_per_turf = TRUE, _on_floor = TRUE)
 	recipes += new/datum/stack_recipe("railing", /obj/structure/railing, 2, _time = 50, _one_per_turf = FALSE, _on_floor = TRUE)
@@ -70,7 +70,7 @@ var/list/engineer_exclusive_recipe_types = list(/obj/structure/girder, /obj/stru
 	recipes += new/datum/stack_recipe("door", /obj/structure/simple_door/key_door/anyone/wood, 5, _time = 30, _one_per_turf = TRUE, _on_floor = TRUE)
 	recipes += new/datum/stack_recipe("table", /obj/structure/table/wood, 4, _time = 7, _one_per_turf = TRUE, _on_floor = TRUE)
 	recipes += new/datum/stack_recipe("window frame", /obj/structure/window_frame, 3, _time = 30, _one_per_turf = TRUE, _on_floor = TRUE)
-
+	recipes += new/datum/stack_recipe("makeshift knife grip", /obj/item/weapon/material/makeshift_knife_grip, TRUE, _on_floor = TRUE, _supplied_material = "[name]")
 
 /material/barbedwire/generate_recipes()
 	recipes = list(new/datum/stack_recipe("barbwire", /obj/structure/barbwire, _time = 20))
