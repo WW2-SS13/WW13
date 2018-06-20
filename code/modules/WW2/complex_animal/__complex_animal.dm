@@ -178,3 +178,4 @@ called after H added to knows_about_mobs() */
 /mob/living/simple_animal/complex_animal/death(gibbed, deathmessage = "dies!")
 	..(gibbed, deathmessage)
 	walk(src, FALSE)
+	lying = TRUE
