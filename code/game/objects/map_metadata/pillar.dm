@@ -73,5 +73,8 @@
 /obj/map_metadata/pillar/long_win_time(faction)
 	return 300
 
+// avoid checking this too often, alive_n_of_side is expensive-ish
 /obj/map_metadata/pillar/win_condition_specialcheck()
-	return (!alive_n_of_side(PILLARMEN) || !alive_n_of_side(GERMAN))
+	if (processes.ticker.ticks % 5 == 0)
+		return (!alive_n_of_side(PILLARMEN) || !alive_n_of_side(GERMAN))
+	return FALSE
