@@ -262,11 +262,12 @@
 	return
 
 /obj/structure/closet/relaymove(mob/user as mob)
-	if (user.stat || !isturf(loc))
-		return
+	if (..(user))
+		if (user.stat || !isturf(loc))
+			return
 
-	if (!open())
-		user << "<span class='notice'>It won't budge!</span>"
+		if (!open())
+			user << "<span class='notice'>It won't budge!</span>"
 
 /obj/structure/closet/attack_hand(mob/user as mob)
 	add_fingerprint(user)

@@ -104,22 +104,23 @@
 	return
 
 /obj/structure/morgue/relaymove(mob/user as mob)
-	if (user.stat)
+	if (..(user))
+		if (user.stat)
+			return
+		connected = new /obj/structure/m_tray( loc )
+		step(connected, EAST)
+		connected.layer = OBJ_LAYER
+		var/turf/T = get_step(src, EAST)
+		if (T.contents.Find(connected))
+			connected.connected = src
+			icon_state = "morgue0"
+			for (var/atom/movable/A as mob|obj in src)
+				A.forceMove(connected.loc)
+			connected.icon_state = "morguet"
+		else
+			qdel(connected)
+			connected = null
 		return
-	connected = new /obj/structure/m_tray( loc )
-	step(connected, EAST)
-	connected.layer = OBJ_LAYER
-	var/turf/T = get_step(src, EAST)
-	if (T.contents.Find(connected))
-		connected.connected = src
-		icon_state = "morgue0"
-		for (var/atom/movable/A as mob|obj in src)
-			A.forceMove(connected.loc)
-		connected.icon_state = "morguet"
-	else
-		qdel(connected)
-		connected = null
-	return
 
 
 /*
@@ -288,22 +289,23 @@
 	return
 
 /obj/structure/crematorium/relaymove(mob/user as mob)
-	if (user.stat || locked)
+	if (..(user))
+		if (user.stat || locked)
+			return
+		connected = new /obj/structure/c_tray( loc )
+		step(connected, SOUTH)
+		connected.layer = OBJ_LAYER
+		var/turf/T = get_step(src, SOUTH)
+		if (T.contents.Find(connected))
+			connected.connected = src
+			icon_state = "crema0"
+			for (var/atom/movable/A as mob|obj in src)
+				A.forceMove(connected.loc)
+			connected.icon_state = "cremat"
+		else
+			qdel(connected)
+			connected = null
 		return
-	connected = new /obj/structure/c_tray( loc )
-	step(connected, SOUTH)
-	connected.layer = OBJ_LAYER
-	var/turf/T = get_step(src, SOUTH)
-	if (T.contents.Find(connected))
-		connected.connected = src
-		icon_state = "crema0"
-		for (var/atom/movable/A as mob|obj in src)
-			A.forceMove(connected.loc)
-		connected.icon_state = "cremat"
-	else
-		qdel(connected)
-		connected = null
-	return
 
 /obj/structure/crematorium/proc/cremate(atom/A, mob/user as mob)
 //	for (var/obj/machinery/crema_switch/O in src) //trying to figure a way to call the switch, too drunk to sort it out atm
