@@ -1,6 +1,5 @@
 "a" = (/turf/wall/rockwall,/area/prishtina/german/bunker)
 "b" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/effect/landmark{name = "JoinLateSS"},/turf/floor/wood,/area/prishtina/german/bunker)
-"c" = (/obj/structure/bed/roller,/turf/floor/wood,/area/prishtina/german/bunker)
 "d" = (/turf/floor/wood,/area/prishtina/german/bunker)
 "e" = (/obj/structure/simple_door/key_door/german/SS,/turf/floor/wood,/area/prishtina/german/bunker)
 "f" = (/obj/item/weapon/gun/projectile/pistol/luger,/obj/item/ammo_magazine/luger,/obj/structure/closet/anchored,/obj/item/ammo_magazine/luger,/obj/item/ammo_magazine/luger,/obj/item/ammo_magazine/luger,/obj/item/ammo_magazine/luger,/obj/item/ammo_magazine/luger,/obj/item/ammo_magazine/luger,/obj/item/ammo_magazine/luger,/turf/floor/wood,/area/prishtina/german/bunker)
@@ -86,7 +85,7 @@ aaaaaaaaaaaaaaasbdbzbdbdsaBduvvvvvvvvvvvudDadPdPzPdPdlaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaMddddddddGadduuuuuuuuuuuuuddaBddddddddHaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaasbdbzbdbdsaddzdzdzdzdzdzdzddadPdPzPdPdlaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaMddddddddGaBdddddddddddddddDaBddddddddHaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaasbybzbybdsadydydyddyddydydydadcyczcycdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaasbybzbybdsadydydyddyddydydydadPyPzPyPdlaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

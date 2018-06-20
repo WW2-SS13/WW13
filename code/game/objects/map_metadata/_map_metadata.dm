@@ -178,7 +178,7 @@ var/global/obj/map_metadata/map = null
 /obj/map_metadata/proc/specialfaction_can_cross_blocks()
 	return TRUE
 
-/obj/map_metadata/proc/announce_mission_start(var/preparation_time = FALSE)
+/obj/map_metadata/proc/announce_mission_start(var/preparation_time = 0)
 	return TRUE
 
 /obj/map_metadata/proc/game_really_started()
