@@ -102,15 +102,15 @@
 "bX" = (/obj/effect/landmark{name = "JoinLateHeerChef"},/obj/item/weapon/reagent_containers/glass/bucket,/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; icon_state = "green2"; name = "German Kitchen"})
 "bY" = (/obj/structure/pot,/obj/structure/light/small,/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; icon_state = "green2"; name = "German Kitchen"})
 "bZ" = (/turf/wall/indestructable/black,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
-"ca" = (/turf/wall/indestructable/black,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
+"ca" = (/turf/wall/indestructable/black,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
 "cb" = (/turf/wall/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
 "cc" = (/obj/structure/window_frame,/obj/structure/barricade/steel,/obj/structure/curtain/open/bed,/turf/wall/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
 "cd" = (/obj/structure/window_frame,/obj/structure/barricade/steel,/turf/wall/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
-"ce" = (/turf/wall/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
+"ce" = (/turf/wall/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
 "cf" = (/obj/effect/landmark{name = "JoinLateHeer"},/obj/structure/light/small,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; name = "German Base"})
 "cg" = (/obj/structure/toilet{tag = "icon-toilet00 (EAST)"; icon_state = "toilet00"; dir = 4},/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; name = "German Base"})
-"ch" = (/obj/structure/sign/portrait/propaganda/sov1,/turf/wall/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
-"ci" = (/obj/structure/window_frame,/obj/structure/barricade/steel,/turf/wall/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
+"ch" = (/obj/structure/sign/portrait/propaganda/sov1,/turf/wall/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
+"ci" = (/obj/structure/window_frame,/obj/structure/barricade/steel,/turf/wall/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
 "cj" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/obj/structure/bed/chair/comfy{dir = 4},/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
 "ck" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
 "cl" = (/obj/structure/table/wood/poker,/obj/item/weapon/phone/tohighcommand/soviet,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
@@ -129,9 +129,9 @@
 "cy" = (/obj/structure/toilet{tag = "icon-toilet00 (EAST)"; icon_state = "toilet00"; dir = 4},/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/soviet/bunker/janitor{base_turf = /turf/floor/tiled/steel; name = "Bathroom"})
 "cz" = (/obj/structure/urinal,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/soviet/bunker/janitor{base_turf = /turf/floor/tiled/steel; name = "Bathroom"})
 "cA" = (/obj/structure/bedsheetbin,/turf/floor/wood,/area/prishtina/soviet/bunker/resting_area{base_turf = /turf/floor/wood})
-"cB" = (/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
-"cC" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
-"cD" = (/obj/structure/sign/flag/soviet,/turf/wall/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
+"cB" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
+"cC" = (/obj/structure/sign/flag/soviet,/turf/wall/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
+"cD" = (/obj/item/weapon/newspaper,/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
 "cE" = (/obj/structure/sign/portrait/stalin,/turf/wall/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
 "cF" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/blue,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
 "cG" = (/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
@@ -149,10 +149,10 @@
 "cS" = (/obj/structure/sink{dir = 8; icon_state = "sink"; pixel_x = -14},/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/soviet/bunker/janitor{base_turf = /turf/floor/tiled/steel; name = "Bathroom"})
 "cT" = (/obj/structure/light/small{dir = 4},/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/soviet/bunker/janitor{base_turf = /turf/floor/tiled/steel; name = "Bathroom"})
 "cU" = (/turf/floor/wood,/area/prishtina/soviet/bunker/resting_area{base_turf = /turf/floor/wood})
-"cV" = (/obj/item/weapon/newspaper,/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
-"cW" = (/obj/structure/barbwire,/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
-"cX" = (/obj/structure/barbwire{dir = 4; icon_state = "barbwire"; tag = "icon-barbwire (EAST)"},/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
-"cY" = (/obj/structure/sign/portrait/stalin,/turf/wall/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
+"cV" = (/obj/structure/barbwire,/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
+"cW" = (/obj/structure/sign/portrait/stalin,/turf/wall/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
+"cX" = (/turf/floor/wood_broken,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
+"cY" = (/obj/structure/barbwire{dir = 4; icon_state = "barbwire"; tag = "icon-barbwire (EAST)"},/turf/floor/wood_broken,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
 "cZ" = (/obj/structure/bed/chair/comfy{dir = 4},/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
 "da" = (/obj/effect/landmark{name = "JoinLateRACO"},/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
 "db" = (/obj/structure/closet/crate/flares,/turf/floor/wood,/area/prishtina/soviet/bunker/armory{base_turf = /turf/floor/wood_broken})
@@ -161,8 +161,8 @@
 "de" = (/obj/effect/landmark{name = "JoinLateRA-S2-Leader"},/turf/floor/wood,/area/prishtina/soviet/bunker/resting_area{base_turf = /turf/floor/wood_broken; name = "Inside Resting Area"})
 "df" = (/obj/effect/landmark{name = "JoinLateRA-S3-Leader"},/turf/floor/wood,/area/prishtina/soviet/bunker/resting_area{base_turf = /turf/floor/wood_broken; name = "Inside Resting Area"})
 "dg" = (/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/soviet/bunker/janitor{base_turf = /turf/floor/tiled/steel; name = "Bathroom"})
-"dh" = (/turf/floor/wood_broken,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
-"di" = (/obj/structure/barbwire{dir = 4; icon_state = "barbwire"; tag = "icon-barbwire (EAST)"},/turf/floor/wood_broken,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
+"dh" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
+"di" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
 "dj" = (/obj/structure/light/small{dir = 8},/obj/structure/closet/crate/nagantrevolverammo,/turf/floor/wood,/area/prishtina/soviet/bunker/armory{base_turf = /turf/floor/wood_broken})
 "dk" = (/obj/item/weapon/flame/lighter,/obj/item/weapon/flame/lighter,/obj/item/weapon/flame/lighter,/obj/item/weapon/storage/fancy/candle_box,/obj/item/weapon/storage/fancy/candle_box,/turf/floor/wood,/area/prishtina/soviet/bunker/armory{base_turf = /turf/floor/wood_broken})
 "dl" = (/obj/structure/simple_door/key_door/anyone/wood,/turf/floor/wood,/area/prishtina/soviet/bunker/kitchen{base_turf = /turf/floor/wood_broken; name = "Inside Kitchen"})
@@ -181,9 +181,9 @@
 "dy" = (/obj/structure/table/wood,/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/turf/floor/wood,/area/prishtina/soviet/bunker/kitchen{base_turf = /turf/floor/wood_broken; name = "Inside Kitchen"})
 "dz" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
 "dA" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 1},/turf/floor/wood,/area/prishtina/soviet/bunker/resting_area{base_turf = /turf/floor/wood})
-"dB" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
-"dC" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
-"dD" = (/obj/structure/multiz/ladder/ww2{area_id = "floor5"},/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
+"dB" = (/obj/structure/barbwire{dir = 4; icon_state = "barbwire"; tag = "icon-barbwire (EAST)"},/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
+"dC" = (/obj/structure/multiz/ladder/ww2{area_id = "floor5"},/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
+"dD" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/obj/structure/flag/soviet,/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
 "dE" = (/obj/skybox,/turf/wall/brick,/area/prishtina/void)
 "dF" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/blue,/turf/floor/wood,/area/prishtina/soviet/bunker/command/office{base_turf = /turf/floor/wood_broken; name = "Sov Command"})
 "dG" = (/turf/floor/wood,/area/prishtina/soviet/bunker/command/office{base_turf = /turf/floor/wood_broken; name = "Sov Command"})
@@ -194,7 +194,7 @@
 "dL" = (/obj/effect/landmark{name = "JoinLateRASL"},/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
 "dM" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
 "dN" = (/obj/item/weapon/paper,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
-"dO" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/obj/structure/flag/soviet,/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
+"dO" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag,/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
 "dP" = (/obj/structure/table/wood/poker,/obj/item/weapon/phone/tohighcommand/soviet,/turf/floor/wood,/area/prishtina/soviet/bunker/command/office{base_turf = /turf/floor/wood_broken; name = "Sov Command"})
 "dQ" = (/obj/structure/closet/crate/mosinammo,/turf/floor/wood,/area/prishtina/soviet/bunker/armory{base_turf = /turf/floor/wood_broken})
 "dR" = (/obj/structure/light/small,/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
@@ -202,8 +202,8 @@
 "dT" = (/obj/item/weapon/bedsheet/medical,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
 "dU" = (/obj/item/weapon/newspaper,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
 "dV" = (/obj/structure/window/sandbag,/turf/floor/wood,/area/prishtina/soviet/bunker/resting_area{base_turf = /turf/floor/wood})
-"dW" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag,/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
-"dX" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
+"dW" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
+"dX" = (/obj/item/weapon/bedsheet/blue,/turf/floor/wood_broken,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
 "dY" = (/obj/structure/light/small{dir = 8},/obj/structure/closet/crate/dpammo,/turf/floor/wood,/area/prishtina/soviet/bunker/armory{base_turf = /turf/floor/wood_broken})
 "dZ" = (/turf/wall/wood,/area/prishtina/soviet/bunker/engineering{base_turf = /turf/floor/wood_broken; name = "Inside Engineering"})
 "ea" = (/obj/structure/simple_door/key_door/anyone/wood,/turf/floor/wood,/area/prishtina/soviet/bunker/engineering{base_turf = /turf/floor/wood_broken; name = "Inside Engineering"})
@@ -234,7 +234,7 @@
 "ez" = (/obj/structure/closet/cabinet,/turf/floor/wood,/area/prishtina/soviet/bunker/resting_area{base_turf = /turf/floor/wood_broken; name = "Inside Resting Area"})
 "eA" = (/obj/item/weapon/bedsheet/rd,/obj/item/weapon/bedsheet/rd,/turf/floor/wood,/area/prishtina/soviet/bunker/resting_area{base_turf = /turf/floor/wood})
 "eB" = (/obj/structure/bed/padded,/turf/floor/wood,/area/prishtina/soviet/bunker/resting_area{base_turf = /turf/floor/wood})
-"eC" = (/obj/item/weapon/bedsheet/blue,/turf/floor/wood_broken,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
+"eC" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/blue,/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
 "eD" = (/obj/structure/light/small,/obj/structure/bed/chair/comfy{dir = 4},/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
 "eE" = (/obj/structure/light/small,/obj/structure/table/wood/poker,/obj/item/weapon/paper,/obj/item/weapon/pen,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
 "eF" = (/obj/structure/light/small,/obj/structure/closet/crate/soviet_smoke_grenade,/turf/floor/wood,/area/prishtina/soviet/bunker/armory{base_turf = /turf/floor/wood_broken})
@@ -250,9 +250,8 @@
 "eP" = (/obj/item/weapon/mop,/obj/item/weapon/reagent_containers/glass/bucket,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/soviet/bunker/janitor{base_turf = /turf/floor/tiled/steel; name = "Bathroom"})
 "eQ" = (/obj/structure/bed,/turf/floor/wood,/area/prishtina/soviet/bunker/resting_area{base_turf = /turf/floor/wood})
 "eR" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/blue,/turf/floor/wood,/area/prishtina/soviet/bunker/resting_area{base_turf = /turf/floor/wood})
-"eS" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/blue,/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
-"eT" = (/obj/structure/light/small,/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
-"eU" = (/obj/item/weapon/paper,/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; name = "Sov base defenses"; weather = 0})
+"eS" = (/obj/structure/light/small,/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
+"eT" = (/obj/item/weapon/paper,/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
 "eV" = (/turf/wall/indestructable/black,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
 "eW" = (/turf/wall/wood,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
 "eX" = (/obj/structure/window_frame,/obj/structure/barricade/steel,/obj/structure/curtain/open/privacy,/turf/wall/wood,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
@@ -733,6 +732,9 @@
 "oe" = (/obj/item/weapon/paper_bundle,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "of" = (/obj/item/weapon/book/manual/medical_diagnostics_manual,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "og" = (/obj/structure/light/small{dir = 8},/obj/structure/sink{dir = 8; pixel_x = -12},/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
+"oh" = (/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
+"oi" = (/turf/floor/wood_broken,/area/prishtina/german/base_defenses{base_turf = /turf/floor/wood_broken; location = 0})
+"oj" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/turf/floor/wood_broken,/area/prishtina/german/base_defenses{base_turf = /turf/floor/wood_broken; location = 0})
 
 (1,1,1) = {"
 abababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababababababab
@@ -743,17 +745,17 @@ abababababababababababababababababababababababababababababababababababababababab
 ababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababab
 ababaaaabZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZcacacacacacacacacaaaaaaaaaaaaaabababab
 ababaaaabZcbcccbcbcccbcbcbcbcdcbcccbcbcccbcccbcbcccbcccbcbcccbcccbcbcccbcbcbcbcdcbcechcecicechcececaaaababababababababab
-ababaaaabZcbcjckclcmckcbcncocpcqcrcsctcrcqcucvcvcucbcwcvcvcwcbcxcvcvcxcbcyczcbcAcAcBcCcBcBcBcCcCcDcaaaababababababababab
-ababaaaabZcEcFcGcHcHcGcIcJcKcpcqcLcMcMcNcqcOcPcPcOcbcQcPcPcQcbcRcPcPcRcbcScTcbcAcUcVcBcWcXcBcBcBcYcaaaababababaaabababab
-ababaaaabZcbcZdadadacGcbdbcJcpcqcrcMcMdccqcucPddcucbcwcPdecwcbcxcPdfcxcbdgdgcbcUcUdhcBdicWcBdhcBcDcaaaababababaaabababab
-ababaaaabZcbcbcbcbcbcbcbdjcJdkcqcqdlcqcqcqcbcIcbcbcbcbcIcbcbcbcbcIcbcbcbdmdmcbdncUcBcBcWcXcBcBcBcYcaaaabaeaeaeaaabababab
-ababaaaabZdodpdqdqdqdrcbdscJcJdtdudvdwdxdycGcGcGckcGcGcGcGckdzcGcGcGckcGcGcGcGcUdAdBdCcXcWdhcBdDcDcaaaabdEaaaaaaabababab
-ababaaaabZcEdFdGdHdGdGcIcJdIcJcGcGcGcGcGdJcGdKdKdKdKdKdLcGcGdMcGcGcGdNdJcGcGcGcUcUdOdCcWcXcBcBdDcYcaaaabdEdEdEaaabababab
-ababaaaabZdodpdGdPdGdrcbdQcJcJdRcGcGcGdScGdTcGdTdRdJcGcGdUdScGcGcGcGdScGcGcGcGcUdVdWdXcXcWcBcBdDcDcaaaabaaaadEaaabababab
-ababaaaabZcbcbcbcbcbcbcbdYcJcJdZdZeadZdZdZebecebebebedeeedededcbcIcbcbcbdmdmcbdncUcBdhcWcXcBcBcBcYcaaaabdEdEdEaaabababab
-ababaaaabZcbcZefefefcGcbegcJehdZeiejekeidZelemeneoebepeqeqepedercPesercbdgdgcbcUcUcBcBcXcWcBcBcBcDcaaaabaaaaaaaaabababab
-ababaaaabZcEcFcGetetcGcIcJcKehdZbNejejevdZelemewexebeyeqeqeyedezcPcPezcbcScTcbeAeBeCcBcWcXdhcBcBcYcaaaabaaaaaaaaabababab
-ababaaaabZcbeDdScleEdScbeFeGehdZeieHeHeidZeleIeJeKebeLeMeNeLedereOeOercbcyePcbeQeReSeTcBeUcBeTeTcDcaaaaaaaaaaaaaabababab
+ababaaaabZcbcjckclcmckcbcncocpcqcrcsctcrcqcucvcvcucbcwcvcvcwcbcxcvcvcxcbcyczcbcAcAohcBohohohcBcBcCcaaaababababababababab
+ababaaaabZcEcFcGcHcHcGcIcJcKcpcqcLcMcMcNcqcOcPcPcOcbcQcPcPcQcbcRcPcPcRcbcScTcbcAcUcDohcVohohohohcWcaaaababababaaabababab
+ababaaaabZcbcZdadadacGcbdbcJcpcqcrcMcMdccqcucPddcucbcwcPdecwcbcxcPdfcxcbdgdgcbcUcUcXohcYohohcXohcCcaaaababababaaabababab
+ababaaaabZcbcbcbcbcbcbcbdjcJdkcqcqdlcqcqcqcbcIcbcbcbcbcIcbcbcbcbcIcbcbcbdmdmcbdncUohohcVohohohohcWcaaaabaeaeaeaaabababab
+ababaaaabZdodpdqdqdqdrcbdscJcJdtdudvdwdxdycGcGcGckcGcGcGcGckdzcGcGcGckcGcGcGcGcUdAdhdidBohcXohdCcCcaaaabdEaaaaaaabababab
+ababaaaabZcEdFdGdHdGdGcIcJdIcJcGcGcGcGcGdJcGdKdKdKdKdKdLcGcGdMcGcGcGdNdJcGcGcGcUcUdDdicVcXohohdCcWcaaaabdEdEdEaaabababab
+ababaaaabZdodpdGdPdGdrcbdQcJcJdRcGcGcGdScGdTcGdTdRdJcGcGdUdScGcGcGcGdScGcGcGcGcUdVdOdWdBcXohohdCcCcaaaabaaaadEaaabababab
+ababaaaabZcbcbcbcbcbcbcbdYcJcJdZdZeadZdZdZebecebebebedeeedededcbcIcbcbcbdmdmcbdncUohcXcVohohohohcWcaaaabdEdEdEaaabababab
+ababaaaabZcbcZefefefcGcbegcJehdZeiejekeidZelemeneoebepeqeqepedercPesercbdgdgcbcUcUohohdBohohohohcCcaaaabaaaaaaaaabababab
+ababaaaabZcEcFcGetetcGcIcJcKehdZbNejejevdZelemewexebeyeqeqeyedezcPcPezcbcScTcbeAeBdXohcVohcXohohcWcaaaabaaaaaaaaabababab
+ababaaaabZcbeDdScleEdScbeFeGehdZeieHeHeidZeleIeJeKebeLeMeNeLedereOeOercbcyePcbeQeReCeSoheToheSeScCcaaaaaaaaaaaaaabababab
 ababaaaabZcbcccbcbcccbcbcbcbcdcbcccbcbcccbcccbcbcccbcccbcbcccbcccbcbcccbcbcbcbcdcbcechcecicececececaaaaaaaaaaaaaabababab
 ababaaaabZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZbZcacacacacacacacacaaaaaaaaaaaaaabababab
 ababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababab
@@ -918,15 +920,15 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababab
 aaaaaaaaadadadadadadadadadadadadadadadadadadadadadadadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
 aaaaaaaaadafafafafafafafafagafafafafafagafafahaiafafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
-aaaaaaaaadafajakalamanamaoapaqarasatauavawaxayazaAafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
-aaaaaaaaadafaBaBaCanamanaDawaEaraFaGawawaHaIaJaKaLafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
-aaaaaaaaadafaMaNaCamanamaPaOawaraQaRaOaSaTaUaJaJaVafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
-aaaaaaaaadafaWaWaCanamanaZaOaraXaOaGaOaSaTaYbabbaLafadababababaeaeaeababababababababababababababababaaaaaaaaaaaaaaababab
-aaaaaaaaadafbcaCaCamanamaDbdbeawbfaGbgaSaTbhbibibjagadababababababaeababababababababababababababababaaaaaaaaaaaaaaababab
-aaaaaaaaadafbcaCaCanamanaPaOawawbeaGbkaSaTbhbiblbmbvadabaeaeabaeaeaeababababababababababababababababaaaaaaaaaaaaaaababab
-aaaaaaaaadafbcaCaCamanamaPaOawarawarbnaSaTbhbobpbqagadababababaeababababababababababababababababababaaaaaaaaaaaaaaababab
-aaaaaaaaadafbrbsaCanamanbBbtaXaraGaGbuaSaTbhbobwbxafadababababaeaeaeababababababababababababababababaaaaaaaaaaaaaaababab
-aaaaaaaaadafaCbyaCbzbzbzbzawbfarawafafbKafbAbCbDbEafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
+aaaaaaaaadafajakalamaobzbzapaqarasatauavawaxayazaAafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
+aaaaaaaaadafaBaBaCanaDbzoiawaEaraFaGawawaHaIaJaKaLafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
+aaaaaaaaadafaMaNaCamaPbzbzaOawaraQaRaOaSaTaUaJaJaVafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
+aaaaaaaaadafaWaWaCanaZbzbzaOaraXaOaGaOaSaTaYbabbaLafadababababaeaeaeababababababababababababababababaaaaaaaaaaaaaaababab
+aaaaaaaaadafbcaCaCamojbzbzbdbeawbfaGbgaSaTbhbibibjagadababababababaeababababababababababababababababaaaaaaaaaaaaaaababab
+aaaaaaaaadafbcaCaCanaPoibzaOawawbeaGbkaSaTbhbiblbmbvadabaeaeabaeaeaeababababababababababababababababaaaaaaaaaaaaaaababab
+aaaaaaaaadafbcaCaCamaPbzbzaOawarawarbnaSaTbhbobpbqagadababababaeababababababababababababababababababaaaaaaaaaaaaaaababab
+aaaaaaaaadafbrbsaCanbBbzbzbtaXaraGaGbuaSaTbhbobwbxafadababababaeaeaeababababababababababababababababaaaaaaaaaaaaaaababab
+aaaaaaaaadafaCbyaCbzbzoibzbfbfarawafafbKafbAbCbDbEafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
 aaaaaaaaadafbFbGbybHaCaCbzarbfawawafbPbUbIafbJbLbMafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
 aaaaaaaaadafeubObQbHbHbRbSawawbTbVafbPcfcgbUbWbXbYafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
 aaaaaaaaadafafafafafafafafagafafafafafafafafafafafafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
