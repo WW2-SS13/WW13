@@ -259,6 +259,7 @@
 	desc = GERMAN_HELMET_DESC
 	icon_state = GERMAN_HELMET_STATE
 	item_state = GERMAN_HELMET_STATE
+	armor = list (melee = 50, bullet = TRUE,)
 
 /obj/item/clothing/head/helmet/gerhelm/proc/transform2soviet()
 	name = SOVIET_HELMET_NAME
@@ -274,12 +275,14 @@
 	desc =  "A metal helmet issued to SS soldiers, camouflaged for autumn operations."
 	icon_state = "sshelm"
 	item_state = "sshelm"
+	armor = list (melee = 50, bullet = TRUE,)
 
 /obj/item/clothing/head/helmet/gerhelm/MP
 	name = "German MP helmet"
 	desc =  "A fancy metal helmet issued to German military police."
 	icon_state = "gerhelm_MP"
 	item_state = "gerhelm_MP"
+	armor = list (melee = 50, bullet = TRUE,)
 
 /obj/item/clothing/head/helmet/gerhelm/ghillie
 	name = "Ghilie Suit Hood"
@@ -292,12 +295,14 @@
 	desc =  "A standard metal helmet issued to German combat medics."
 	icon_state = "gerhelm_CM"
 	item_state = "gerhelm_CM"
+	armor = list (melee = 50, bullet = TRUE,)
 
 /obj/item/clothing/head/helmet/sovhelm
 	name = SOVIET_HELMET_NAME
 	desc = SOVIET_HELMET_DESC
 	icon_state = SOVIET_HELMET_STATE
 	item_state = SOVIET_HELMET_STATE
+	armor = list (melee = 50, bullet = TRUE,)
 
 /obj/item/clothing/head/helmet/sovhelm/proc/transform2german()
 	name = GERMAN_HELMET_NAME
@@ -313,30 +318,34 @@
 	desc =  "A fancy metal helmet issued to Soviet military police."
 	icon_state = "sovhelm_MP"
 	item_state = "sovhelm_MP"
+	armor = list (melee = 50, bullet = TRUE,)
 
 /obj/item/clothing/head/helmet/sovhelm/medic
 	name = "Soviet medic's helmet"
 	desc =  "A standard metal helmet issued to Soviet combat medics."
 	icon_state = "sovhelm_CM"
 	item_state = "sovhelm_CM"
+	armor = list (melee = 50, bullet = TRUE,)
 
 /obj/item/clothing/head/helmet/itahelm
 	name = ITALIAN_HELMET_NAME
 	desc = ITALIAN_HELMET_DESC
 	icon_state = ITALIAN_HELMET_STATE
 	item_state = ITALIAN_HELMET_STATE
+	armor = list (melee = 50, bullet = TRUE,)
 
 /obj/item/clothing/head/helmet/itahelm/medic
 	name = "Italian medic's helmet"
 	desc =  "A standard metal helmet issued to Italian combat medics."
 	icon_state = "itahelm_CM"
 	item_state = "itahelm_CM"
+	armor = list (melee = 50, bullet = TRUE,)
 
 /obj/item/clothing/suit/armor/cn42
 	name = "CN-42 bulletproof vest"
 	desc = "A heavy vest used by Soviet Sturmoviks. Used for deflecting shrapnel and some bullets."
 	icon_state = "cn42"
-	armor = list(melee = 50)
+	armor = list (melee = 50, bullet = TRUE,)
 	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
 
 /obj/item/weapon/storage/belt/soviet
