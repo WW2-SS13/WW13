@@ -200,7 +200,8 @@ var/list/delayed_garbage = list()
 		crash_with("qdel_list() passed non-list object [L]. qdel_list() can only handle /list types.")
 	for (var/D in L)
 		L -= D
-		qdel(D)
+		if (!isnum(D) && !istext(D))
+			qdel(D)
 	L = null // del(L) breaks observing and probably other stuff I have no idea why - Kachnov
 
 // helper for testing
