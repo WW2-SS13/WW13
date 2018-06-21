@@ -57,22 +57,22 @@
 	desc = "An armband, worn by prisoners to indicate what job they were assigned."
 	icon_state = "med"
 
-	/obj/item/clothing/accessory/armband/col_pris
+/obj/item/clothing/accessory/armband/col_pris
 	name = "collaborator armband"
 	desc = "An armband, worn by prisoners to indicate what job they were assigned."
 	icon_state = "engie"
 
-	/obj/item/clothing/accessory/armband/min_pris
+/obj/item/clothing/accessory/armband/min_pris
 	name = "miner armband"
 	desc = "An armband, worn by prisoners to indicate what job they were assigned."
 	icon_state = "cargo"
 
-	/obj/item/clothing/accessory/armband/jan_pris
+/obj/item/clothing/accessory/armband/jan_pris
 	name = "janitor armband"
 	desc = "An armband, worn by prisoners to indicate what job they were assigned."
 	icon_state = "rnd"
 
-	/obj/item/clothing/accessory/armband/chef_pris
+/obj/item/clothing/accessory/armband/chef_pris
 	name = "kitchen armband"
 	desc = "An armband, worn by prisoners to indicate what job they were assigned."
 	icon_state = "hydro"
