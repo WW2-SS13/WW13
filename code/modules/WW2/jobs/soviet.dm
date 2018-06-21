@@ -975,6 +975,7 @@ var/first_guard = FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef/classic(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/weapon/material/kitchen/utensil/knife(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/stack/money(H), slot_r_store)
+	H.equip_to_slot_or_del(new /obj/item/clothing/accessory/armband/chef_pris(H), slot_l_hand)
 	H.add_note("Role", "You are a <b>[title]</b>, a captured soviet chef. Escape the camp, but first keep your comrades well fed!")
 	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start attacking the guards without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave. Your objective is to escape and reach one of the corners of the map. Dig tunnels, destroy the fence, and do anything to escape, but be realistic.")
 	H.setStat("strength", STAT_MEDIUM_LOW)
@@ -1018,6 +1019,7 @@ var/first_guard = FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/surgical(H), slot_wear_mask)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(H), slot_gloves)
 	H.equip_to_slot_or_del(new /obj/item/stack/money(H), slot_r_store)
+	H.equip_to_slot_or_del(new /obj/item/clothing/accessory/armband/med_pris(H), slot_l_hand)
 	H.add_note("Role", "You are a <b>[title]</b>, a captured soviet field medic. Escape the camp, but first keep your comrades healthy!")
 	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start attacking the guards without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave. Your objective is to escape and reach one of the corners of the map. Dig tunnels, destroy the fence, and do anything to escape, but be realistic.")
 	H.setStat("strength", STAT_MEDIUM_LOW)
@@ -1052,12 +1054,13 @@ var/first_guard = FALSE
 	min_positions = 2
 	max_positions = 60
 
-/datum/job/soviet/soldier_pris/equip(var/mob/living/carbon/human/H)
+/datum/job/soviet/janitor_pris/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/stack/money(H), slot_r_store)
+	H.equip_to_slot_or_del(new /obj/item/clothing/accessory/armband/jan_pris(H), slot_l_hand)
 	H.add_note("Role", "You are a <b>[title]</b>, a captured soviet soldier. Your job is to keep the camp clean. Escape the camp, coordinating with the officers present!")
 	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start attacking the guards without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave. Your objective is to escape and reach one of the corners of the map. Dig tunnels, destroy the fence, and do anything to escape, but be realistic.")
 	H.setStat("strength", STAT_NORMAL)
@@ -1098,12 +1101,14 @@ var/first_guard = FALSE
 	min_positions = 2
 	max_positions = 60
 
-/datum/job/soviet/soldier_pris/equip(var/mob/living/carbon/human/H)
+/datum/job/soviet/miner_pris/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/stack/money(H), slot_r_store)
+	H.equip_to_slot_or_del(new /obj/item/clothing/accessory/armband/min_pris(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/brown(H), slot_gloves)
 	H.add_note("Role", "You are a <b>[title]</b>, a captured soviet soldier. Your job is to work in the mines. Escape the camp, coordinating with the officers present!")
 	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start attacking the guards without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave. Your objective is to escape and reach one of the corners of the map. Dig tunnels, destroy the fence, and do anything to escape, but be realistic.")
 	H.setStat("strength", STAT_HIGH)
@@ -1144,11 +1149,12 @@ var/first_guard = FALSE
 	min_positions = 2
 	max_positions = 60
 
-/datum/job/soviet/soldier_pris/equip(var/mob/living/carbon/human/H)
+/datum/job/soviet/collaborator_pris/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/accessory/armband/col_pris(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/stack/money(H), slot_r_store)
 	H.add_note("Role", "You are a <b>[title]</b>, a captured soviet soldier who is collaborating with the Germans. Help the guards keep the order in the camp, but be careful about your comrades!")
 	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start attacking the guards without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave. Your objective is to escape and reach one of the corners of the map. Dig tunnels, destroy the fence, and do anything to escape, but be realistic.")
