@@ -1,6 +1,5 @@
 "a" = (/turf/wall/rockwall,/area/prishtina/german/bunker)
 "b" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/effect/landmark{name = "JoinLateSS"},/turf/floor/wood,/area/prishtina/german/bunker)
-"c" = (/obj/structure/bed/roller,/turf/floor/wood,/area/prishtina/german/bunker)
 "d" = (/turf/floor/wood,/area/prishtina/german/bunker)
 "e" = (/obj/structure/simple_door/key_door/german/SS,/turf/floor/wood,/area/prishtina/german/bunker)
 "f" = (/obj/item/weapon/gun/projectile/pistol/luger,/obj/item/ammo_magazine/luger,/obj/structure/closet/anchored,/obj/item/ammo_magazine/luger,/obj/item/ammo_magazine/luger,/obj/item/ammo_magazine/luger,/obj/item/ammo_magazine/luger,/obj/item/ammo_magazine/luger,/obj/item/ammo_magazine/luger,/obj/item/ammo_magazine/luger,/turf/floor/wood,/area/prishtina/german/bunker)
@@ -39,6 +38,7 @@
 "M" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 8},/obj/structure/closet/crate/rations/water,/turf/floor/wood,/area/prishtina/german/bunker)
 "N" = (/obj/item/weapon/storage/backpack/german,/turf/floor/wood,/area/prishtina/german/bunker)
 "O" = (/obj/item/weapon/storage/belt/german,/turf/floor/wood,/area/prishtina/german/bunker)
+"P" = (/obj/structure/bed/roller,/obj/effect/landmark{name = "JoinLateSS"},/turf/floor/wood,/area/prishtina/german/bunker)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -69,23 +69,23 @@ aaaaaaaaaaaaaaaddddAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdddddiaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaddddddddddddddddddddddddddddddddddddddIaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaeeeaaaaaaaaaaaeeeaaaaaaaaaaaeeeaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaapdAdddddAdadAdAdAdddddAdAdAdadAdddddAdlaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaanbdbzbdbdnaBdzdzdzuuuzdzdzdDadcdczcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaanbdbzbdbdnaBdzdzdzuuuzdzdzdDadPdPzPdPdlaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaKddddddddEadduuuuuutuuuuuuddaBddddddddHaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaanbdbzbdbdnadduvvvvvvvvvvvuddadcdczcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaanbdbzbdbdnadduvvvvvvvvvvvuddadPdPzPdPdlaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaKddddddddEaBduvvvvvvvvvvvudDaBddddddddHaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaanbdbzbdbdnadduvvvvvvvvvvvuddadcdczcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaanbdbzbdbdnadduvvvvvvvvvvvuddadPdPzPdPdlaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaBddddddddDadduvvvvvvvvvvvuddaBddddddddHaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaarbdbzbdbdraBduvvvvvvvvvvvudDadcdczcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaarbdbzbdbdraBduvvvvvvvvvvvudDadPdPzPdPdlaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaLddddddddFadduvvvvvxvvvvvuddaBddddddddHaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaarbdbzbdbdradduvvvvvvvvvvvuddadcdczcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaarbdbzbdbdradduvvvvvvvvvvvuddadPdPzPdPdlaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaLddddddddFaBduvvvvvvvvvvvudDaBddddddddHaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaarbdbzbdbdradduvvvvvvvvvvvuddadcdczcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaarbdbzbdbdradduvvvvvvvvvvvuddadPdPzPdPdlaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaBddddddddDadduvvvvvvvvvvvuddaBddddddddHaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaasbdbzbdbdsaBduvvvvvvvvvvvudDadcdczcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaasbdbzbdbdsaBduvvvvvvvvvvvudDadPdPzPdPdlaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaMddddddddGadduuuuuuuuuuuuuddaBddddddddHaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaasbdbzbdbdsaddzdzdzdzdzdzdzddadcdczcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaasbdbzbdbdsaddzdzdzdzdzdzdzddadPdPzPdPdlaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaMddddddddGaBdddddddddddddddDaBddddddddHaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaasbybzbybdsadydydyddyddydydydadcyczcycdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaasbybzbybdsadydydyddyddydydydadPyPzPyPdlaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

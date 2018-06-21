@@ -435,7 +435,7 @@
 		mob.lastarea = get_area(mob_loc)
 
 	if (isobj(mob_loc) || ismob(mob_loc)) //Inside an object, tell it we moved
-		var/atom/O = mob_loc
+		var/atom/movable/O = mob_loc
 		if (!istype(O, /obj/tank))
 			return O.relaymove(mob, direct)
 

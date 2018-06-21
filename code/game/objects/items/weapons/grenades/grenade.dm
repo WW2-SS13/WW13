@@ -118,25 +118,14 @@
 	..()
 	return
 
-var/list/tile2grenades = list()
+
+// grenades set off other grenades, but only ones on the same turf
 /obj/item/weapon/grenade/ex_act(severity)
 	switch (severity)
 		if (1.0)
-			if (tile2grenades[loc] >= 5)
-				return
 			fast_activate()
-			if (!tile2grenades.Find(loc))
-				tile2grenades[loc] = 0
-			++tile2grenades[loc]
-			spawn (50)
-				if (tile2grenades[loc])
-					tile2grenades[loc] = 0
-		if (2.0)
-			if (prob(50))
-				return ex_act(1.0)
-		if (3.0)
-			if (prob(5))
-				return ex_act(1.0)
+		if (2.0, 3.0)
+			return // infinite recursive grenades are gone
 
 /obj/item/weapon/grenade/bullet_act(var/obj/item/projectile/proj)
 	if (proj && !proj.nodamage)

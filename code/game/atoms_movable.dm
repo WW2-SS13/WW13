@@ -58,6 +58,42 @@
 		pulledby = null
 
 
+// called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
+// see code/modules/mob/mob_movement.dm for more.
+/atom/movable/proc/relaymove(var/mob/mob, direction)
+
+	if (direction)
+		// prevents going over the invisible wall
+		var/list/dirs = list()
+
+		switch (direction)
+			if (NORTHEAST)
+				dirs += NORTH
+				dirs += EAST
+			if (NORTHWEST)
+				dirs += NORTH
+				dirs += WEST
+			if (SOUTHEAST)
+				dirs += SOUTH
+				dirs += EAST
+			if (SOUTHWEST)
+				dirs += SOUTH
+				dirs += WEST
+			else
+				dirs += direction
+
+		for (var/refdir in dirs)
+			var/turf/ref = get_step(mob, refdir)
+
+			if (ref && map.check_prishtina_block(mob, ref))
+				mob.dir = direction
+				return FALSE
+
+	// bug abusers btfo
+	if (map.check_prishtina_block(mob, get_turf(mob)))
+		return FALSE
+
+	return TRUE
 
 //Convenience function for atoms to update turfs they occupy
 /atom/movable/proc/update_nearby_tiles(need_rebuild)
