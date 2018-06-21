@@ -20,6 +20,9 @@
 		SCHUTZSTAFFEL)
 	battle_name = "Reichstag"
 	times_of_day = list("Early Morning")
+	songs = list(
+		"Russian Theme:1" = 'sound/music/wow_russian_theme.ogg',
+		"Brave Soldat:1" = 'sound/music/wow_brave_soldat.ogg')
 	faction_distribution_coeffs = list(GERMAN = 0.35, SOVIET = 0.65)
 
 /obj/map_metadata/reichstag/germans_can_cross_blocks()
