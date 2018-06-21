@@ -1054,7 +1054,7 @@ var/first_guard = FALSE
 	min_positions = 2
 	max_positions = 60
 
-/datum/job/soviet/soldier_pris/equip(var/mob/living/carbon/human/H)
+/datum/job/soviet/janitor_pris/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
@@ -1101,7 +1101,7 @@ var/first_guard = FALSE
 	min_positions = 2
 	max_positions = 60
 
-/datum/job/soviet/soldier_pris/equip(var/mob/living/carbon/human/H)
+/datum/job/soviet/miner_pris/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
@@ -1149,7 +1149,7 @@ var/first_guard = FALSE
 	min_positions = 2
 	max_positions = 60
 
-/datum/job/soviet/soldier_pris/equip(var/mob/living/carbon/human/H)
+/datum/job/soviet/collaborator_pris/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
