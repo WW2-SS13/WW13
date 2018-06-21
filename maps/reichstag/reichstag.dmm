@@ -1198,6 +1198,7 @@
 "xb" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
 "xc" = (/obj/structure/table/wood,/obj/item/weapon/storage/firstaid/surgery,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "xd" = (/obj/structure/table/wood,/obj/structure/bed/chair/wood{dir = 8},/obj/structure/light/small,/obj/item/weapon/storage/firstaid/surgery,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
+"xe" = (/obj/structure/multiz/ladder/ww2/manhole{area_id = "sewer2"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
 
 (1,1,1) = {"
 abababababababacadaeafafafagahacababababababepaoaiaiaiaiaiaiaiaiaiaiaoaoaiaiaiaiaiaiaoaiaiaiaiaiaoaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaoczajajajajajajajajajajajajaiaiaiaiaiaieqaiaiaiaiaiai
@@ -1249,7 +1250,7 @@ amerababeramamanarafafafafafasaEaEaEaFaErDrErErFaEfnaEaEaEaEaEaEaEaEaEaEaEaEaEaE
 amamrterrsamamanarafafafafafasaEaEaEaEaEaEaEaFaEaEfnaEaEaEaEaEaEeCeDeDfvfveDeDeDeDeDeDeDeDeDeDeEaEaEaEfnaEfnaEaEjraVrzjrjraEaEaEfqarafdxafafafasanananananananananananananananananananananananananananan
 amamameramamamanarafafafafafasevaEaEaEaEaEaEaEaEaEaEfnaEaEaEaEaEeFaGaGaGfwaGaGaGaGaGaGaGaGaGaGeGaEaEaEfnaEaEaEaEaFaEfpaEaEftaEaEfqaHafafafafafeHaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaq
 amamrwamamamamanarafafafafafasaEaEaFaEaEaEaEaEaEaEftaEaEaEaFaEaEeIaGaGaGaGaGjujujujuaGaGaGaGaGeJaEaEaEfnaEaFaEaEaErHrIrJaEaEaEaEfqarafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
-amamamryamrtamanarafafafafafasevaEaEaEfpaEaEaEaEaEaEaEfnaEaEaEaEeIaGaGaGaGjujujujujujuaGaGaGaGeJaEaEaEfnaEaEaEaEaEheheheaEaEaEaFaEarafafmOafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
+amamamryamrtamanarafafafafafasevaEaEaEfpaEaEaEaEaEaEaEfnaEaEaEaEeIaGaGaGaGjujujujujujuaGaGaGaGeJaEaEaEfnaEaEaEaEaEheheheaEaEaEaFaEarafafxeafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
 amambnamamamamanarafafmOafafasevaEaEaEaEaEaEaFaEaEaEaEfnfnaEaEaEeIaGaGaGaGjujujujujujuaGaGaGaGeJaEaEaEfnaEaEaEaEaEaEaEaEaEaEaEaEfqarafafafafdxafafafafafafafafafafafdxafafafafafafafafdxafafafafafafafaf
 amamamamrsamamanarafafafafafasaEaEaEaEaEaEaEaEaEaEaEaEftfnaEaEaEeIaGaGaGaGjujujujujujvaGaGaGaGeJaEaEaEaEaEaEaEftaEaEaEfxaEaEaEaEaEarafdxafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
 amamamabamamamanaHafafafafafeBaEaEaEaEaEaEaEaEaEaEaEaEaEfnaEaEfreIaGaGaGaGaGjujujujuaGaGaGaGaGeJaEaEaEfnaFaEaEaEaEaEfraEaEaEaEaEaEarafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
