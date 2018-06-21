@@ -6,7 +6,7 @@
 	lobby_icon_state = "reichstag"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall,
 	/area/prishtina/no_mans_land/invisible_wall/inside)
-	respawn_delay = 0
+	respawn_delay = 2400
 	squad_spawn_locations = FALSE
 	faction_organization = list(
 		GERMAN,
@@ -24,16 +24,16 @@
 	songs = list(
 		"Russian Theme:1" = 'sound/music/wow_russian_theme.ogg',
 		"Brave Soldat:1" = 'sound/music/wow_brave_soldat.ogg')
-	faction_distribution_coeffs = list(GERMAN = 0.35, SOVIET = 0.65)
+	faction_distribution_coeffs = list(GERMAN = 0.30, SOVIET = 0.7)
 
 /obj/map_metadata/reichstag/germans_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 6000 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 4800 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/reichstag/soviets_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 6000 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 4800 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/reichstag/announce_mission_start(var/preparation_time)
-	world << "<font size=4>All factions have <b>10 minutes</b> to prepare before the ceasefire ends!<br>The Germans will win if they hold out for 45 minutes. The Soviets will win if they manage to reach the top of the Reichstag.</font>"
+	world << "<font size=4>All factions have <b>8 minutes</b> to prepare before the ceasefire ends!<br>The Germans will win if they hold out for 50 minutes. The Soviets will win if they manage to reach the top of the Reichstag.</font>"
 
 /obj/map_metadata/reichstag/reinforcements_ready()
 	return (germans_can_cross_blocks() && soviets_can_cross_blocks())
@@ -49,7 +49,7 @@ var/no_loop_r = FALSE
 /obj/map_metadata/reichstag/update_win_condition()
 	if (!win_condition_specialcheck())
 		return FALSE
-	if (world.time >= 27000)
+	if (world.time >= 30000)
 		if (win_condition_spam_check)
 			return FALSE
 		ticker.finished = TRUE
