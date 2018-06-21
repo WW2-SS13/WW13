@@ -662,7 +662,7 @@
 "mL" = (/obj/structure/simple_door/wood,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - Ground Floor"})
 "mM" = (/obj/structure/table/wood,/obj/item/weapon/material/ashtray,/obj/item/weapon/reagent_containers/food/snacks/stew{desc = "Imported from Brazil. Uma Delícia."; name = "Sopa de Macaco"; nutriment_desc = list("food" = 1)},/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - Ground Floor"})
 "mN" = (/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"mO" = (/obj/structure/multiz/ladder/ww2/manhole,/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"mO" = (/obj/structure/multiz/ladder/ww2/manhole{area_id = "sewer1"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
 "mP" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/structure/window/sandbag,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - Ground Floor"})
 "mQ" = (/obj/structure/window/sandbag{tag = "icon-sandbag_66%"; icon_state = "sandbag_66%"; dir = 2},/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - Ground Floor"})
 "mR" = (/obj/structure/multiz/ladder/ww2{area_id = "basement"; name = "to Basement"},/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - Ground Floor"})
@@ -1199,6 +1199,7 @@
 "xc" = (/obj/structure/table/wood,/obj/item/weapon/storage/firstaid/surgery,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "xd" = (/obj/structure/table/wood,/obj/structure/bed/chair/wood{dir = 8},/obj/structure/light/small,/obj/item/weapon/storage/firstaid/surgery,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "xe" = (/obj/structure/multiz/ladder/ww2/manhole{area_id = "sewer2"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"xf" = (/obj/structure/multiz/ladder/ww2/manhole{area_id = "sewer3"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
 
 (1,1,1) = {"
 abababababababacadaeafafafagahacababababababepaoaiaiaiaiaiaiaiaiaiaiaoaoaiaiaiaiaiaiaoaiaiaiaiaiaoaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaoczajajajajajajajajajajajajaiaiaiaiaiaieqaiaiaiaiaiai
@@ -1251,7 +1252,7 @@ amamrterrsamamanarafafafafafasaEaEaEaEaEaEaEaFaEaEfnaEaEaEaEaEaEeCeDeDfvfveDeDeD
 amamameramamamanarafafafafafasevaEaEaEaEaEaEaEaEaEaEfnaEaEaEaEaEeFaGaGaGfwaGaGaGaGaGaGaGaGaGaGeGaEaEaEfnaEaEaEaEaFaEfpaEaEftaEaEfqaHafafafafafeHaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaq
 amamrwamamamamanarafafafafafasaEaEaFaEaEaEaEaEaEaEftaEaEaEaFaEaEeIaGaGaGaGaGjujujujuaGaGaGaGaGeJaEaEaEfnaEaFaEaEaErHrIrJaEaEaEaEfqarafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
 amamamryamrtamanarafafafafafasevaEaEaEfpaEaEaEaEaEaEaEfnaEaEaEaEeIaGaGaGaGjujujujujujuaGaGaGaGeJaEaEaEfnaEaEaEaEaEheheheaEaEaEaFaEarafafxeafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
-amambnamamamamanarafafmOafafasevaEaEaEaEaEaEaFaEaEaEaEfnfnaEaEaEeIaGaGaGaGjujujujujujuaGaGaGaGeJaEaEaEfnaEaEaEaEaEaEaEaEaEaEaEaEfqarafafafafdxafafafafafafafafafafafdxafafafafafafafafdxafafafafafafafaf
+amambnamamamamanarafafxfafafasevaEaEaEaEaEaEaFaEaEaEaEfnfnaEaEaEeIaGaGaGaGjujujujujujuaGaGaGaGeJaEaEaEfnaEaEaEaEaEaEaEaEaEaEaEaEfqarafafafafdxafafafafafafafafafafafdxafafafafafafafafdxafafafafafafafaf
 amamamamrsamamanarafafafafafasaEaEaEaEaEaEaEaEaEaEaEaEftfnaEaEaEeIaGaGaGaGjujujujujujvaGaGaGaGeJaEaEaEaEaEaEaEftaEaEaEfxaEaEaEaEaEarafdxafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
 amamamabamamamanaHafafafafafeBaEaEaEaEaEaEaEaEaEaEaEaEaEfnaEaEfreIaGaGaGaGaGjujujujuaGaGaGaGaGeJaEaEaEfnaFaEaEaEaEaEfraEaEaEaEaEaEarafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
 amamamereramamanarafafafafafasevaEaEaEftaEaEaEfpaEaEaEaFfnaEaEaEeIaGaGaGaGaGaGaGaGaGaGaGaGaGaGeJaEaEaEaEfnfnaEaEaEaEaEaEaEaEaEaEfqaHafafafafafeKawawawawawawawawawawawawawawawawawawawawawawawawawawawaw
