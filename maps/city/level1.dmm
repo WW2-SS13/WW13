@@ -1863,7 +1863,7 @@
 "Mo" = (/obj/structure/closet/crate/lugers,/turf/floor/wood,/area/prishtina/german/ss_armory)
 "Mp" = (/obj/structure/closet/crate/lugerammo,/turf/floor/wood,/area/prishtina/german/ss_armory)
 "Mq" = (/obj/structure/table/rack,/obj/item/weapon/flammenwerfer_fueltank,/obj/item/weapon/flammenwerfer_fueltank,/obj/item/weapon/flammenwerfer_fueltank,/obj/item/weapon/storage/backpack/flammenwerfer,/turf/floor/wood,/area/prishtina/german/ss_armory)
-"Ms" = (/obj/structure/light/small,/obj/structure/closet,/obj/item/weapon/material/kitchen/utensil/knife/boot,/obj/item/weapon/wirecutters,/turf/floor/wood,/area/prishtina/german/ss_armory)
+"Ms" = (/obj/structure/light/small,/obj/structure/closet,/obj/item/weapon/material/knife/boot,/obj/item/weapon/wirecutters,/turf/floor/wood,/area/prishtina/german/ss_armory)
 "Mt" = (/obj/item/weapon/gun/projectile/boltaction/kar98k,/obj/item/weapon/attachment/scope/adjustable/sniper_scope,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/structure/closet,/turf/floor/wood,/area/prishtina/german/ss_armory)
 "Mu" = (/obj/structure/closet,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/weapon/gun/projectile/submachinegun/mp40,/turf/floor/wood,/area/prishtina/german/ss_armory)
 "Mv" = (/obj/item/weapon/stool/padded,/obj/structure/light/small,/turf/floor/carpet,/area/prishtina/german/ss_armory)
