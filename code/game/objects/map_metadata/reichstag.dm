@@ -3,6 +3,7 @@
 /obj/map_metadata/reichstag
 	ID = MAP_REICHSTAG
 	title = "Reichstag (100x100x5)"
+	lobby_icon_state = "reichstag"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall,
 	/area/prishtina/no_mans_land/invisible_wall/inside)
 	respawn_delay = 0
@@ -43,7 +44,7 @@
 /obj/map_metadata/reichstag/long_win_time(faction)
 	return 3000
 
-var/no_loop = FALSE
+var/no_loop_r = FALSE
 
 /obj/map_metadata/reichstag/update_win_condition()
 	if (!win_condition_specialcheck())
@@ -57,11 +58,12 @@ var/no_loop = FALSE
 		show_global_battle_report(null)
 		win_condition_spam_check = TRUE
 		return FALSE
-	if ((current_winner && current_loser && world.time > next_win) && no_loop == FALSE)
+	if ((current_winner && current_loser && world.time > next_win) && no_loop_r == FALSE)
 		var/message = "The <b>Soviets</b> have captured the Reichstag! The battle for Berlin is over!"
 		world << "<font size = 4><span class = 'notice'>[message]</span></font>"
 		show_global_battle_report(null)
 		win_condition_spam_check = TRUE
+		no_loop_r = TRUE
 		return FALSE
 	// German major
 	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.33, TRUE))
