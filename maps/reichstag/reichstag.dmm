@@ -1,26 +1,26 @@
 "aa" = (/turf/wall/stone,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - Ground Floor"})
-"ab" = (/turf/floor/plating/beach/water,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"ac" = (/turf/wall/stone,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"ad" = (/obj/effect/floor_decal/borderfloor{dir = 4},/turf/wall/stone,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"ae" = (/obj/structure/railing{dir = 8},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"af" = (/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"ag" = (/obj/structure/railing{dir = 4},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"ah" = (/obj/effect/floor_decal/borderfloor{dir = 8},/turf/wall/stone,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"ai" = (/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"aj" = (/turf/wall/sandstone,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"ak" = (/obj/effect/floor_decal/borderfloor{dir = 4},/turf/floor/plating/beach/water,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"al" = (/obj/effect/floor_decal/borderfloor{dir = 8},/turf/floor/plating/beach/water,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"am" = (/turf/floor/dirt,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"an" = (/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"ao" = (/obj/structure/wild/tree,/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"ap" = (/obj/structure/light/floor/streetlight,/obj/effect/floor_decal/borderfloor/corner,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"aq" = (/obj/effect/floor_decal/borderfloor,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"ar" = (/obj/effect/floor_decal/borderfloor{dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"as" = (/obj/effect/floor_decal/borderfloor{dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"ab" = (/turf/floor/plating/beach/water,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"ac" = (/turf/wall/stone,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"ad" = (/obj/effect/floor_decal/borderfloor{dir = 4},/turf/wall/stone,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"ae" = (/obj/structure/railing{dir = 8},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"af" = (/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"ag" = (/obj/structure/railing{dir = 4},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"ah" = (/obj/effect/floor_decal/borderfloor{dir = 8},/turf/wall/stone,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"ai" = (/turf/floor/plating/dirt,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"aj" = (/obj/structure/wild/tree,/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"ak" = (/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"al" = (/obj/structure/grille/fence{icon_state = "1"; dir = 1},/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"am" = (/turf/wall/sandstone,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"an" = (/obj/structure/wild/bush/tame/big,/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"ao" = (/obj/effect/floor_decal/borderfloor{dir = 4},/turf/floor/plating/beach/water,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"ap" = (/obj/effect/floor_decal/borderfloor{dir = 8},/turf/floor/plating/beach/water,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"aq" = (/obj/structure/wild/bush,/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"ar" = (/turf/floor/dirt,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"as" = (/turf/floor/plating/grass/wild,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "at" = (/turf/wall/stone,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 1st Floor"})
 "au" = (/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 1st Floor"})
-"av" = (/obj/effect/floor_decal/borderfloor,/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"aw" = (/obj/effect/floor_decal/borderfloor{dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"av" = (/obj/structure/grille/fence{icon_state = "1"; dir = 1},/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"aw" = (/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "ax" = (/turf/wall/sandstone,/area/prishtina/houses/ger_one)
 "ay" = (/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/houses/ger_one)
 "az" = (/obj/structure/window/classic/reinforced,/turf/wall/wood,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - Ground Floor"})
@@ -31,9 +31,9 @@
 "aE" = (/turf/floor/plating/grass,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
 "aF" = (/obj/structure/wild/bush/tame,/turf/floor/plating/grass,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
 "aG" = (/turf/floor/plating/cobblestone/vertical,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
-"aH" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"aI" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"aJ" = (/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"aH" = (/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/obj/structure/grille/fence{icon_state = "1"; dir = 1},/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"aI" = (/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"aJ" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/structure/grille/fence{icon_state = "1"; dir = 1},/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/turf/floor/plating/dirt,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "aK" = (/turf/floor/dirt,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue1"; location = 1; name = "German Front"})
 "aL" = (/turf/floor/plating/cobblestone/vertical,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue1"; location = 1; name = "German Front"})
 "aM" = (/obj/effect/floor_decal/borderfloor{dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue1"; location = 1; name = "German Front"})
@@ -63,7 +63,7 @@
 "bk" = (/obj/effect/floor_decal/borderfloor{dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/soviet{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red1"; name = "Soviet Front"})
 "bl" = (/turf/floor/plating/road,/area/prishtina/soviet{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red1"; name = "Soviet Front"})
 "bm" = (/obj/effect/floor_decal/borderfloor{dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/soviet{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red1"; name = "Soviet Front"})
-"bn" = (/obj/structure/sink/puddle,/turf/floor/dirt,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"bn" = (/obj/structure/light/floor/streetlight,/obj/effect/floor_decal/borderfloor/corner,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "bo" = (/obj/structure/barbwire{dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/soviet{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red1"; name = "Soviet Front"})
 "bp" = (/obj/structure/window/sandbag,/obj/structure/barbwire{dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/soviet{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red1"; name = "Soviet Front"})
 "bq" = (/obj/structure/window/sandbag{tag = "icon-sandbag_66%"; icon_state = "sandbag_66%"; dir = 2},/obj/structure/barbwire{dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/soviet{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red1"; name = "Soviet Front"})
@@ -103,11 +103,13 @@
 "bY" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/road,/area/prishtina/soviet{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red1"; name = "Soviet Front"})
 "bZ" = (/obj/structure/closet/crate/mortar_shells,/turf/floor/plating/road,/area/prishtina/soviet{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red1"; name = "Soviet Front"})
 "ca" = (/obj/effect/decal/cleanable/blood/oil,/turf/floor/plating/road,/area/prishtina/soviet{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red1"; name = "Soviet Front"})
+"cb" = (/obj/effect/floor_decal/borderfloor,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "cc" = (/obj/effect/floor_decal/borderfloorblack/corner2,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue1"; location = 1; name = "Reichstag Entrance"})
-"cd" = (/obj/structure/closet/crate/mosinammo,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"cf" = (/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"cg" = (/obj/structure/wild/tree/anchored,/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"ch" = (/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/obj/structure/grille/fence{icon_state = "1"; dir = 1},/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"cd" = (/obj/effect/floor_decal/borderfloor,/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"ce" = (/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"cf" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"cg" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/obj/structure/grille/fence{icon_state = "1"; dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"ch" = (/obj/effect/floor_decal/borderfloor{dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "ci" = (/obj/effect/decal/cleanable/dirt,/turf/floor/wood_broken,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
 "cj" = (/turf/wall/brick,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
 "ck" = (/obj/structure/simple_door/key_door/anyone/wood{name = "Home"},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
@@ -124,8 +126,8 @@
 "cv" = (/obj/structure/simple_door/key_door/anyone/wood{name = "Home"},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
 "cw" = (/obj/effect/decal/cleanable/dirt,/turf/floor/wood_broken,/area/prishtina/soviet/small_map/inside/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
 "cx" = (/obj/effect/decal/cleanable/dirt,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 1},/turf/floor/wood_broken,/area/prishtina/soviet/small_map/inside/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
-"cy" = (/obj/structure/wild/tree/anchored,/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"cz" = (/obj/structure/grille/fence{icon_state = "1"; dir = 1},/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"cy" = (/obj/effect/floor_decal/borderfloor{dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"cz" = (/obj/structure/multiz/ladder/ww2/manhole{area_id = "sewer1"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "cA" = (/turf/floor/plating/dirt,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
 "cB" = (/turf/floor/wood,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
 "cC" = (/obj/structure/table/wood,/obj/item/trash/candle,/turf/floor/wood_broken,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
@@ -175,7 +177,7 @@
 "du" = (/obj/structure/sink{dir = 8; pixel_x = -12},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
 "dv" = (/obj/effect/decal/cleanable/blood/drip,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
 "dw" = (/obj/effect/floor_decal/borderfloorblack{dir = 1},/obj/effect/landmark{name = "JoinLateSS-Officer"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue1"; location = 1; name = "Reichstag Entrance"})
-"dx" = (/obj/effect/landmark{name = "JoinLateCivilian"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"dx" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "dy" = (/obj/effect/decal/cleanable/blood,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/medical{base_turf = /turf/floor/dirt})
 "dz" = (/obj/effect/decal/cleanable/blood/drip,/turf/floor/wood_broken,/area/prishtina/soviet/small_map/inside/medical{base_turf = /turf/floor/dirt})
 "dA" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/blue,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/medical{base_turf = /turf/floor/dirt})
@@ -188,7 +190,7 @@
 "dH" = (/obj/structure/table/wood,/obj/item/radio/intercom/a7b,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/command_post)
 "dI" = (/obj/effect/landmark{name = "Observer-Start"},/turf/floor/plating/road,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue1"; location = 1; name = "German Front"})
 "dJ" = (/obj/structure/pot,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
-"dK" = (/obj/effect/landmark{name = "JoinLateRA-S4"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"dK" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "dL" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/condiment/flour,/obj/item/weapon/reagent_containers/food/condiment/flour,/obj/item/weapon/reagent_containers/food/condiment/flour,/obj/item/weapon/storage/fancy/egg_box,/obj/item/weapon/storage/fancy/egg_box,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
 "dM" = (/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/turf/floor/plating/dirt,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
 "dN" = (/obj/effect/decal/cleanable/blood,/turf/floor/wood_broken,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
@@ -196,7 +198,7 @@
 "dP" = (/obj/structure/bed/chair/wood/wings,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/medical{base_turf = /turf/floor/dirt})
 "dQ" = (/obj/effect/decal/cleanable/blood/drip,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/armory)
 "dR" = (/obj/effect/decal/cleanable/blood,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/armory)
-"dS" = (/obj/effect/landmark{name = "soviet_supplydrop_spot"},/obj/effect/floor_decal/industrial/outline/yellow,/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"dS" = (/obj/effect/floor_decal/borderfloor{dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "dT" = (/obj/structure/bed/chair/wood{dir = 1},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/command_post)
 "dU" = (/obj/item/weapon/bedsheet,/obj/structure/bed,/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
 "dV" = (/obj/structure/closet/crate/rations/soviet_meat,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
@@ -216,13 +218,13 @@
 "ej" = (/obj/structure/closet/crate/rations/soviet_solids,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
 "ek" = (/obj/structure/closet/crate/rations/soviet_alcohol,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
 "el" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/blue,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
-"em" = (/obj/map_metadata/reichstag,/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"en" = (/obj/structure/wild/bush,/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"eo" = (/obj/structure/grille/fence{icon_state = "1"; dir = 1},/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"ep" = (/turf/floor/plating/dirt,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"eq" = (/obj/structure/wild/bush/tame/big,/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"er" = (/turf/floor/plating/grass/wild,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"es" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/structure/grille/fence{icon_state = "1"; dir = 1},/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/turf/floor/plating/dirt,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"em" = (/obj/effect/decal/cleanable/blood/oil,/turf/floor/dirt,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"en" = (/obj/structure/wild/tree/anchored,/turf/floor/dirt,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"eo" = (/obj/structure/sink/puddle,/turf/floor/dirt,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"ep" = (/turf/floor/plating/beach/water/sewage,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"eq" = (/obj/item/stack/material/wood,/turf/floor/plating/beach/water/sewage,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"er" = (/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"es" = (/obj/structure/wild/tree/anchored,/turf/floor/plating/grass/wild,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "et" = (/obj/structure/closet/crate/mortar_shells,/turf/floor/plating/grass,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
 "eu" = (/obj/structure/window/classic/reinforced,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 1st Floor"})
 "ev" = (/obj/structure/grille/fence,/turf/floor/plating/grass,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
@@ -231,16 +233,16 @@
 "ey" = (/obj/effect/floor_decal/borderfloorblack,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue1"; location = 1; name = "Reichstag Entrance"})
 "ez" = (/obj/structure/light/floor/streetlight,/obj/effect/floor_decal/borderfloorblack{dir = 8},/obj/effect/floor_decal/borderfloorblack/corner,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue1"; location = 1; name = "Reichstag Entrance"})
 "eA" = (/obj/effect/floor_decal/borderfloorblack{dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue1"; location = 1; name = "Reichstag Entrance"})
-"eB" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"eB" = (/obj/structure/flag/german,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "eC" = (/obj/effect/floor_decal/borderfloorwhite{dir = 9},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
 "eD" = (/obj/effect/floor_decal/borderfloorwhite{dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
 "eE" = (/obj/effect/floor_decal/borderfloorwhite{dir = 1},/obj/effect/floor_decal/borderfloorwhite{dir = 5},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
 "eF" = (/obj/structure/light/floor/streetlight,/obj/effect/floor_decal/borderfloorwhite{dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
 "eG" = (/obj/structure/light/floor/streetlight,/obj/effect/floor_decal/borderfloorwhite{dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
-"eH" = (/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/borderfloor{dir = 8},/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"eH" = (/obj/structure/flag/german,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "eI" = (/obj/effect/floor_decal/borderfloorwhite{dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
 "eJ" = (/obj/effect/floor_decal/borderfloorwhite{dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
-"eK" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/effect/floor_decal/borderfloor{dir = 8},/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"eK" = (/obj/structure/light/small{dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "eL" = (/obj/structure/light/floor/streetlight,/obj/effect/floor_decal/borderfloorwhite{dir = 10},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
 "eM" = (/obj/effect/floor_decal/borderfloorwhite,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
 "eN" = (/obj/structure/light/floor/streetlight,/obj/effect/floor_decal/borderfloorwhite{dir = 6},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
@@ -265,7 +267,7 @@
 "fg" = (/obj/structure/anti_tank,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/no_mans_land{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "yellow1"})
 "fh" = (/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/borderfloor{dir = 4},/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/soviet{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red1"; name = "Soviet Front"})
 "fi" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/soviet{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red1"; name = "Soviet Front"})
-"fj" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/effect/floor_decal/borderfloor{dir = 4},/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"fj" = (/obj/structure/light/small,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "fk" = (/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/turf/floor/plating/grass,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
 "fl" = (/obj/structure/wild/bush/tame,/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/turf/floor/plating/grass,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
 "fm" = (/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/turf/floor/plating/grass,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
@@ -283,7 +285,7 @@
 "fy" = (/obj/structure/wild/bush/tame,/turf/floor/dirt,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
 "fz" = (/obj/item/mortar_shell,/turf/floor/dirt,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
 "fA" = (/obj/structure/mortar/spade{desc = "A german-made mortar."; name = "8 cm Granatwerfer 34"},/turf/floor/dirt,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
-"fB" = (/obj/effect/decal/cleanable/dirt,/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"fB" = (/obj/item/stack/material/wood,/turf/floor/dirt,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "fC" = (/obj/item/weapon/gun/projectile/automatic/stationary/kord/mg34,/turf/floor/dirt,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
 "fD" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/dirt,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
 "fE" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/turf/floor/dirt,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
@@ -430,13 +432,13 @@
 "ip" = (/obj/structure/table/rack,/obj/item/weapon/gun/projectile/semiautomatic/stg,/obj/item/weapon/gun/projectile/semiautomatic/stg,/turf/floor/plating/cobblestone/vertical,/area/prishtina/houses/ger_three{base_turf = /turf/floor/dirt; capturable = 0; name = "German Shacks"})
 "iq" = (/obj/structure/closet/crate/mp43ammo,/turf/floor/plating/cobblestone/vertical,/area/prishtina/houses/ger_three{base_turf = /turf/floor/dirt; capturable = 0; name = "German Shacks"})
 "ir" = (/turf/floor/plating/cobblestone/vertical,/area/prishtina/houses/ger_three{base_turf = /turf/floor/dirt; capturable = 0; name = "German Shacks"})
-"is" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/effect/landmark{name = "JoinLateRA-S4"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"is" = (/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "it" = (/obj/effect/landmark{name = "JoinLateRASL"},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
 "iu" = (/obj/effect/landmark{name = "JoinLateRAQM"},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/armory)
-"iv" = (/obj/effect/floor_decal/industrial/outline/yellow,/obj/effect/landmark{name = "soviet_supplydrop_spot"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"iw" = (/obj/effect/landmark{name = "JoinLateRA-S3"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"ix" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/effect/landmark{name = "JoinLateRA-S3"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"iy" = (/obj/effect/landmark{name = "JoinLateRA-S3"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"iv" = (/obj/item/weapon/broken_bottle,/turf/floor/dirt,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"iw" = (/obj/item/weapon/cigbutt,/turf/floor/dirt,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"ix" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"iy" = (/obj/effect/decal/cleanable/ash,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "iz" = (/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
 "iA" = (/obj/item/weapon/bedsheet,/obj/structure/bed,/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/wood_broken,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
 "iB" = (/obj/item/weapon/bedsheet,/obj/structure/bed,/obj/item/weapon/cigbutt,/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
@@ -448,19 +450,19 @@
 "iH" = (/obj/effect/decal/cleanable/blood/oil,/obj/effect/landmark{name = "JoinLateRAEng"},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/armory)
 "iI" = (/obj/structure/bed/chair/wood{dir = 1},/obj/effect/landmark{name = "JoinLateRACO"},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/command_post)
 "iJ" = (/obj/structure/bed/chair/wood{dir = 1},/obj/effect/landmark{name = "JoinLateRAXO"},/turf/floor/wood_broken,/area/prishtina/soviet/small_map/inside/command_post)
-"iK" = (/obj/effect/landmark{name = "JoinLateRA-S4-Leader"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"iL" = (/obj/effect/landmark{name = "JoinLateRA-S3-Leader"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"iM" = (/obj/effect/landmark{name = "JoinLateRA-S2-Leader"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"iN" = (/obj/effect/landmark{name = "JoinLateRA-S1-Leader"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"iK" = (/obj/effect/landmark{name = "JoinLateCivilian"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"iL" = (/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/borderfloor{dir = 8},/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"iM" = (/obj/structure/multiz/ladder/ww2/manhole{area_id = "sewer2"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"iN" = (/obj/structure/multiz/ladder/ww2/manhole{area_id = "sewer3"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "iO" = (/obj/item/weapon/cigbutt,/obj/item/weapon/cigbutt,/obj/effect/landmark{name = "JoinLateRASL"},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
-"iP" = (/obj/effect/landmark{name = "JoinLateRA-S1"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"iQ" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/effect/landmark{name = "JoinLateRA-S1"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"iR" = (/obj/effect/landmark{name = "JoinLateRA-S1"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"iS" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/effect/landmark{name = "JoinLateRA-S1"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"iT" = (/obj/effect/landmark{name = "JoinLateRA-S2"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"iU" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/effect/landmark{name = "JoinLateRA-S2"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"iV" = (/obj/effect/landmark{name = "JoinLateRA-S2"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"iW" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/effect/landmark{name = "JoinLateRA-S2"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"iP" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/effect/floor_decal/borderfloor{dir = 8},/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"iQ" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"iR" = (/obj/structure/window/sandbag,/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"iS" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"iT" = (/obj/effect/decal/cleanable/dirt,/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"iU" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"iV" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"iW" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/effect/floor_decal/borderfloor{dir = 4},/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "iX" = (/obj/effect/landmark{name = "JoinLateHeer-S2-Leader"},/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
 "iY" = (/obj/effect/landmark{name = "JoinLateHeer-S2"},/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
 "iZ" = (/obj/effect/landmark{name = "JoinLateHeer-S1-Leader"},/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
@@ -482,7 +484,7 @@
 "jp" = (/obj/structure/barricade,/obj/structure/window/sandbag,/turf/floor/plating/cobblestone/vertical,/area/prishtina/houses/ger_three{base_turf = /turf/floor/dirt; capturable = 0; name = "German Shacks"})
 "jq" = (/obj/structure/barricade,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag,/turf/floor/plating/cobblestone/vertical,/area/prishtina/houses/ger_three{base_turf = /turf/floor/dirt; capturable = 0; name = "German Shacks"})
 "jr" = (/obj/structure/barricade,/turf/floor/plating/grass,/area/prishtina/houses/ger_three{base_turf = /turf/floor/dirt; capturable = 0; name = "German Shacks"})
-"js" = (/obj/item/weapon/broken_bottle,/turf/floor/dirt,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"js" = (/obj/item/ammo_casing/a762x51,/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "jt" = (/obj/structure/grille/fence{icon_state = "1"; dir = 8},/obj/structure/sign/flag/germany,/turf/floor/plating/grass,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
 "ju" = (/turf/wall/silver,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
 "jv" = (/obj/effect/decal/cleanable/dirt,/turf/wall/silver,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green1"; location = 1; name = "Reichstag Park"})
@@ -505,7 +507,7 @@
 "jM" = (/obj/structure/table/wood,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - Ground Floor"})
 "jN" = (/obj/structure/table/wood,/obj/item/weapon/folder/red,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - Ground Floor"})
 "jO" = (/obj/structure/simple_door/key_door/german{health = 350; name = "Reichstag"},/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - Ground Floor"})
-"jP" = (/obj/structure/closet/crate/flares,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"jP" = (/obj/structure/closet/crate/mosinammo,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "jQ" = (/obj/structure/light/small{dir = 1},/obj/structure/vending/sovietapparel,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
 "jR" = (/obj/item/weapon/cigbutt,/obj/structure/vending/sovietapparel,/turf/floor/plating/dirt,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
 "jS" = (/obj/structure/vending/sovietequipment,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
@@ -659,8 +661,8 @@
 "mK" = (/obj/structure/sign/clock,/turf/wall/stone,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - Ground Floor"})
 "mL" = (/obj/structure/simple_door/wood,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - Ground Floor"})
 "mM" = (/obj/structure/table/wood,/obj/item/weapon/material/ashtray,/obj/item/weapon/reagent_containers/food/snacks/stew{desc = "Imported from Brazil. Uma Delícia."; name = "Sopa de Macaco"; nutriment_desc = list("food" = 1)},/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - Ground Floor"})
-"mN" = (/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"mO" = (/obj/structure/multiz/ladder/ww2/manhole{area_id = "sewer1"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"mN" = (/obj/structure/closet/crate/flares,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"mO" = (/obj/structure/wild/tree/anchored,/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "mP" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/structure/window/sandbag,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - Ground Floor"})
 "mQ" = (/obj/structure/window/sandbag{tag = "icon-sandbag_66%"; icon_state = "sandbag_66%"; dir = 2},/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - Ground Floor"})
 "mR" = (/obj/structure/multiz/ladder/ww2{area_id = "basement"; name = "to Basement"},/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - Ground Floor"})
@@ -897,14 +899,14 @@
 "ro" = (/obj/structure/light/small/red,/turf/floor/wood,/area/prishtina/void/caves{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
 "rp" = (/obj/item/weapon/paper,/obj/structure/light/small/red,/turf/floor/wood,/area/prishtina/void/caves{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
 "rq" = (/obj/structure/barbwire{dir = 4},/turf/floor/wood,/area/prishtina/void/caves{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
-"rr" = (/obj/effect/decal/cleanable/blood/oil,/turf/floor/dirt,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"rs" = (/obj/structure/wild/tree/anchored,/turf/floor/dirt,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"rt" = (/turf/floor/plating/beach/water/sewage,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"ru" = (/obj/item/stack/material/wood,/turf/floor/plating/beach/water/sewage,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"rv" = (/obj/structure/wild/tree/anchored,/turf/floor/plating/grass/wild,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"rw" = (/obj/item/stack/material/wood,/turf/floor/dirt,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"rr" = (/obj/effect/landmark{name = "JoinLateRA-S4"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"rs" = (/obj/effect/landmark{name = "soviet_supplydrop_spot"},/obj/effect/floor_decal/industrial/outline/yellow,/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"rt" = (/obj/structure/wild/tree/anchored,/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"ru" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/effect/landmark{name = "JoinLateRA-S4"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"rv" = (/obj/effect/floor_decal/industrial/outline/yellow,/obj/effect/landmark{name = "soviet_supplydrop_spot"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"rw" = (/obj/effect/landmark{name = "JoinLateRA-S3"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "rx" = (/obj/effect/decal/cleanable/blood/oil,/turf/floor/dirt,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue1"; location = 1; name = "German Front"})
-"ry" = (/obj/item/weapon/cigbutt,/turf/floor/dirt,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"ry" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/effect/landmark{name = "JoinLateRA-S3"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "rz" = (/turf/floor/dirt,/area/prishtina/houses/ger_three{base_turf = /turf/floor/dirt; capturable = 0; name = "German Shacks"})
 "rA" = (/obj/item/weapon/attachment/scope/adjustable/binoculars,/obj/structure/table/iron,/turf/floor/dirt,/area/prishtina/houses/ger_three{base_turf = /turf/floor/dirt; capturable = 0; name = "German Shacks"})
 "rB" = (/obj/structure/table/iron,/obj/item/weapon/phone/tohighcommand/german,/turf/floor/dirt,/area/prishtina/houses/ger_three{base_turf = /turf/floor/dirt; capturable = 0; name = "German Shacks"})
@@ -920,13 +922,13 @@
 "rL" = (/obj/structure/table/rack,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/turf/floor/dirt,/area/prishtina/houses/ger_three{base_turf = /turf/floor/dirt; capturable = 0; name = "German Shacks"})
 "rM" = (/obj/structure/barricade,/obj/structure/sign/flag/germany,/obj/structure/window/sandbag,/turf/floor/plating/grass,/area/prishtina/houses/ger_three{base_turf = /turf/floor/dirt; capturable = 0; name = "German Shacks"})
 "rN" = (/obj/item/weapon/broken_bottle,/turf/floor/dirt,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue1"; location = 1; name = "German Front"})
-"rO" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"rP" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/obj/structure/grille/fence{icon_state = "1"; dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"rQ" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"rR" = (/obj/structure/window/sandbag,/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"rS" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"rT" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"rU" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"rO" = (/obj/effect/landmark{name = "JoinLateRA-S3"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"rP" = (/obj/effect/landmark{name = "JoinLateRA-S4-Leader"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"rQ" = (/obj/effect/landmark{name = "JoinLateRA-S3-Leader"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"rR" = (/obj/effect/landmark{name = "JoinLateRA-S2-Leader"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"rS" = (/obj/effect/landmark{name = "JoinLateRA-S1-Leader"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"rT" = (/obj/effect/landmark{name = "JoinLateRA-S1"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"rU" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/effect/landmark{name = "JoinLateRA-S1"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "rV" = (/turf/floor/dirt,/area/prishtina/houses/ger_two)
 "rW" = (/obj/structure/filingcabinet,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/ger_two)
 "rX" = (/obj/structure/bed/chair/wood,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/ger_two)
@@ -986,8 +988,8 @@
 "sZ" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/soviet{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red1"; name = "Soviet Front"})
 "ta" = (/obj/structure/simple_door/gold,/turf/floor/plating/grass/wild,/area/prishtina/houses/sov_one)
 "tb" = (/obj/structure/simple_door/key_door/anyone/wood,/turf/floor/plating/grass/wild,/area/prishtina/houses/sov_one)
-"tc" = (/obj/structure/flag/german,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"td" = (/obj/structure/flag/german,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"tc" = (/obj/effect/landmark{name = "JoinLateRA-S1"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"td" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/effect/landmark{name = "JoinLateRA-S1"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "te" = (/obj/effect/decal/cleanable/dirt,/obj/structure/light/small{dir = 1},/turf/floor/plating/concrete,/area/prishtina/houses/ger_one)
 "tf" = (/turf/floor/wood,/area/prishtina/houses/ger_two)
 "tg" = (/obj/effect/decal/cleanable/dirt,/turf/wall/sandstone,/area/prishtina/houses/ger_one)
@@ -1047,7 +1049,7 @@
 "ui" = (/obj/structure/bed/chair/wood/red,/turf/floor/dirt,/area/prishtina/houses/sov_one)
 "uj" = (/obj/structure/bed/chair/wood/red,/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/houses/sov_one)
 "uk" = (/obj/structure/filingcabinet,/turf/floor/dirt,/area/prishtina/houses/sov_one)
-"ul" = (/obj/item/ammo_casing/a762x51,/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"ul" = (/obj/map_metadata/reichstag,/turf/floor/plating/grass,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "um" = (/obj/item/weapon/paper/crumpled/bloody,/turf/floor/wood,/area/prishtina/houses/sov_one)
 "un" = (/obj/item/ammo_casing/a762x51,/turf/floor/wood,/area/prishtina/houses/sov_one)
 "uo" = (/obj/structure/table/wood,/obj/item/weapon/paper_bin,/turf/floor/wood,/area/prishtina/houses/sov_one)
@@ -1141,13 +1143,13 @@
 "vY" = (/obj/structure/light/small{dir = 4},/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/houses/ger_one)
 "vZ" = (/obj/effect/decal/cleanable/generic,/turf/floor/plating/concrete,/area/prishtina/houses/ger_one)
 "wa" = (/obj/effect/decal/cleanable/ash,/turf/floor/plating/concrete,/area/prishtina/houses/ger_one)
-"wb" = (/obj/structure/light/small{dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"wc" = (/obj/structure/light/small,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"wb" = (/obj/effect/landmark{name = "JoinLateRA-S2"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"wc" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/effect/landmark{name = "JoinLateRA-S2"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "wd" = (/obj/structure/table/iron,/obj/item/weapon/paper{name = "ticket"},/obj/item/weapon/paper{name = "ticket"},/obj/item/weapon/stamp,/turf/floor/plating/concrete,/area/prishtina/houses/ger_one)
 "we" = (/obj/structure/table/iron,/obj/item/weapon/stamp,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/concrete,/area/prishtina/houses/ger_one)
 "wf" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/generic,/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/houses/ger_one)
 "wg" = (/obj/effect/decal/cleanable/blood/oil,/obj/effect/decal/cleanable/ash,/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/houses/ger_one)
-"wh" = (/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"wh" = (/obj/effect/landmark{name = "JoinLateRA-S2"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "wi" = (/obj/effect/decal/cleanable/dirt,/obj/structure/simple_door/key_door/anyone/wood{name = "Office"},/turf/floor/plating/concrete,/area/prishtina/houses/ger_one)
 "wj" = (/obj/structure/bed/chair/wood/red{icon_state = "wooden_chair_red"; dir = 1},/turf/floor/plating/concrete,/area/prishtina/houses/ger_one)
 "wk" = (/obj/structure/filingcabinet,/obj/item/weapon/paper{name = "ticket"},/turf/floor/plating/concrete,/area/prishtina/houses/ger_one)
@@ -1160,7 +1162,7 @@
 "wr" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/generic,/turf/wall/sandstone,/area/prishtina/houses/ger_one)
 "ws" = (/obj/structure/simple_door/key_door/anyone/wood{name = "Office"},/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "wt" = (/obj/structure/simple_door/key_door/anyone/wood{name = "Bathroom"},/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
-"wu" = (/obj/effect/decal/cleanable/ash,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
+"wu" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/effect/landmark{name = "JoinLateRA-S2"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "wv" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/generic,/turf/floor/wood,/area/prishtina/houses/ger_two)
 "ww" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/ash,/turf/floor/wood,/area/prishtina/houses/ger_two)
 "wx" = (/obj/effect/decal/cleanable/generic,/turf/floor/wood,/area/prishtina/houses/ger_two)
@@ -1196,73 +1198,71 @@
 "xb" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
 "xc" = (/obj/structure/table/wood,/obj/item/weapon/storage/firstaid/surgery,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "xd" = (/obj/structure/table/wood,/obj/structure/bed/chair/wood{dir = 8},/obj/structure/light/small,/obj/item/weapon/storage/firstaid/surgery,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
-"xe" = (/obj/structure/multiz/ladder/ww2/manhole{area_id = "sewer2"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
-"xf" = (/obj/structure/multiz/ladder/ww2/manhole{area_id = "sewer3"},/turf/floor/plating/road,/area/prishtina/void{base_turf = /turf/floor/dirt; name = "Streets"})
 
 (1,1,1) = {"
-abababababababacadaeafafafagahacababababababepaoaiaiaiaiaiaiaiaiaiaiaoaoaiaiaiaiaiaiaoaiaiaiaiaiaoaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaoczajajajajajajajajajajajajaiaiaiaiaiaieqaiaiaiaiaiai
-ababababababababakaeafafafagalababababababepaiaiaiaoaoaiaiaiaoaiaiaoaiaiaiaoaiaiaiaiaiaiaoaiaiaiaiaiaiaiaiaoaienaiaiaiaoaiaiaoaiaoaiaienaiaiaoaiaiaiczajamamamamamamamamamamajaiaiaieqaieqaiaiaieqeqerai
-abababababababacadaeafafafagahacababababepepaoaiaiaiaiaiaiaiaiepaiaiaiaiaiaiaiaiaienenaiaiaiaiaiaiaiaiaiaieraiaiaiaoaiaiaiaiaiaiaiaiaiaoaoaiaienaiaiaiajamamamamamamamamamamajaieqaieraiaiaiaiaiaiamaieq
-ababababababababakaeafafafagalababababepaoaiaoaiaiaiaoaiaiaoaiaiaiaoaiaienaiaoaiaiaoaienenaiaiaiaieraiaoaiaiaiaoaiaiaiaiaiaoaienaiaiaoaoenaiaoaiaiaoczajamamamamamamamamamamajaiaiaieqaiaieqameqaiaiaiai
-ababababababababakaeafafafagalabababepepaiaiaiaiaienaiaiaiaoamaierenaiaiaoaiaiaiaiaiaienenaiaiaoaiaoaiaiaiamaiaiaiaiaoaiaiaiaiaiaiaiaiaoaoaiaiaoaoaiczajamamamamamamamamamamajaiaiameraiaiaiaieraieqaiai
-abababababababacadaeafafafagahacabepaiaiaiaiaiaoaiaiaiaiaiaiaiaiaiaiaoaiaiaiaierenaoaiaiaiaiepaiaiaiaieraiaoaiaienenaiaiaoaiaiaoaiaiaiaiaiaiaiaiaiaiczajamamamamamamamamamamajaiaieqaieqaieqaiaieqaiaieq
-ababababababababakaeafafafagalabepepaiaoaiaiaiaiaiaiaiaoaiaiepenaiaiaiaiaiaiaiaiaoaoaiaiaiaoaiaiaiaienaiaiaiaoaoaiaiaiaiaiaiaieocfaicfaicfaicfaicfcfchajajajajajajajajajajajajcfcfcfcfcfaiaicfaicfercfcf
-ababababababababakaeafafafagalepaiaiaoaiaiaoaiaiaoaiaiaiaiaiaiaoaiaoaiaiaiaoaiaiaiaiaiaiaiaiaiaoaiaiaoaiaiaiaiaiaiaiaiaoaiaiaiczanananananananananananananananananananananananananananananananananananan
-ababababababababakaeafafafagescfcfaocfaiaicfcfaiaiaicfcfcfaiaiaicfaicfaiaiaicfaiaiaicfcfaicfaicfcfcfaiaiaicfcfcfaicfaiaicfaicfchanapaqaqaqaqaqavaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaq
-abababababababmNrOafafafafafrPananananananananananananananananananananananananananananananananananananananananananananananananananarafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
-ababababababamanarafafafafafasaaaaaaazazaaaaazazaaaaaaaaaaazazaaaaazazaaaaaaaaaaaaaaaaaaaaazazaaaaazazaaaaaaaaaaazazaaaaazazaaaaaaarafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
-abababababamamanarafafafafafasaafUfUfUfUfUfUfUfUfUlmfVfVfVfVfVaafVfVjMjNfVjMkrfVjMkzfVltjMfVfVfVfVfVfVlFlNlOlPfVfVfVfVfVfVfVfVmJaaarafafafafafafafafafafafafafafafafafafafafafafmOafafafafafafafafafafaf
-ababababamamamanarafafafafafasaafVfVfVfVfVfVfVfVfVfVfVfVfVfVfVaafVfVlJjNfVkrlKfVlJlLfVjMlKfVfVfVfVfVlFlFmFlMfVfVfVfVwMfVfVfVfVfVaaarafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
-ababababamamamanarafafafafafasaafVfVfVfVfVfVfVfVfVfVfVfVfVfVfVaafVfVfVfVfVfVfVfVfVfVfVfVfVfVfVhkhkfVfVlFgmmGmHmIwNfVwMfVjMwOwPwQaaaHafafafafafaIawawawawawawawawawawawawawawawawawawawawawawawawawawawaw
-abababamamamamanarafafafafafasaaaaaagvgvaaaaaaaaaamKmKaaaaaaaaaaaafVjMjMfVkzlLfVjMjMfVlQltfVcEaaaalRlSlTlUfVgnfVlVgkaaaaaaaaaaaaaaarafafafafafasananananananananananananananananananamamanananananananan
-ababamamamrramanarafafafafafasaafVlWfVfVaaaalnlolololololololpaaaafVjMlKfVlJltfVlXlKfVlJkrfVjKaaaafVfVfVlYfVlZgkfVfVaaaamamambmcaaarafafafafafasanaxaxaxtwaxaxuwuwtwaxaxaxaxtwaxaxaxaxaxaxaxtwtwtwaxaxax
-abamamamamamamanarafafafafafasaafVlWfVfVgvlololqlolqlolqlolrlraafVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVmdfVfVmefVfVfVfVfVfVmbfVfVmfmfaaarafafafafafasanaxmVmVmVoopymVmVmVpAmVpApAmVtevAmVmVaxayshshayayayvGax
-amamamamamamamanarafafafafafasgLlumgfVfVgvlololqlolqlolqlolvlwaafVfWfVfVlylylyfVlslslsfVfVfVfXfYfZmhmimemefVgrmMgkfVfVmbfVfVmbmcaaarafafafafafasanaxpApApymVmVmVmVmVmVmVmVmVmVmVmVmVmVaxayayayayayayvGax
-amamrsbnrtamamanarafafafafafasaafVlOgkfVgLaalolqlolqlolqlolxloaaaagafVfVfVfVfVfVfVfVfVfVfVfVgbaaaafVfVfVfVfVfVgofVfVaaaalufVmfmfaaarafafafafafasanuwmVvBvBtgaxvDpApApAmVaxtgvCvCvBvAvBtgayayayayayayvGax
-amamamamamamamanarafafafafafasaafVmLfVfVgLaalolqlolqlolqlolzlwaaaagcfVfVfVjLfVfVfVfVfVfVjLfVgdaaaagefVfVfVfVfVfVgnfVaaaalufVmbmcaaarafafafafafasanuwmVvApyaxuwuwpymVmVmVvEaxmVmVpymVmVaxvJvKayayayayvGax
-amrramamamamamanarafafafafafasgLlumjfVfVgvlololqlolqlolqlololoaagfggfVfVfVfVfVfVfVfVfVfVfVfVghfZfZgifVfVfVfVfVfVlZfVfVmbfVfVmfmfaaarafafafafafasantwmVmVmVmVvFmVvBvBvEmVpymVmVvEmVmVmVaxayayayayayayvGax
-amamamruamamamanarafafafafafasaafVlWfVfVgvlolololololololololohlfVfVfVfVfVfVfVfVfVgjfVfVgjfVfVfVfVfVfVfVfVfVfVfVgofVfVmbfVfVmbmkaaarafafafafafasanaxpAmVpAvBvBpAvBpAmVpAmVpAmVmVpymVuwaxvKayayayayayvGax
-amamamamamamrsanarafafafafafasaafVlWfVfVaaaalnlolololAlAlAlAlBaaaagkfVfVfVmlgmfVfVgjfVfVmTfVfVaaaafVfVfVfVfVgCfVfVfVaaaammmmmfmfaaarafafafafafasanaxmVmVmVmVvBvBvBvBmVmVvHmVvImVmVaxuwayvKayayayvOayayax
-amamamameramamanarafafafafafasaagvaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagnfVgofVgpgqfVfVgjmnmnmTfVfVkNaagDlCfVgCgCgCgCfVfVaaaaaaaaaaaaaaarafafafafafasansiaxaxaxaxaxaxaxvLvMvNtgaxvBmVaxaxayayayayshshvOayayax
-amamamamamamamanarafafafafafasaafVfVfVjMfVgvjMfVjMjMfVgmmojMgrgogngofVfVfVgFgFfVfVgjgjgjgjfVfVfVfVfVgDgElDlEgGgGgCfVgmlMfVfVgvfVaaarafafafafafasanaJaJaJaJaJaJaJaxvPvQvRaxaxvLvSaxayayayayayayayshshayax
-amamrramrvamamanarafafafafafasaajMfVfVfVfVgvfVfVjMfVfVgmmofVfVgrfVgrgnfVfVfVfVfVfVgFgFgFgFfVmpglfVfVfVgDgFfVlCgFgCfVgmmPmQfVaafVaaarafafafafafasanaJaJaJaJaJaJaJaxmVmVvBvTmVmVvEvwayayshshayvXayayshvYax
-amamamamameramanarafafafafafasaajMjMfVjMfVgvfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVmqlGgsfVfVfVfVfVfVgDgDfVfVfVfVfVaamRaaarafafafafafastcajajtdajajtdaJsivUvUvUvUvUvVmVaxvJayvKshayayayuwuwayax
-rtamamrtameramanarafafafafafasaaaaaaazazaaaaazazaaaaaaaaaaazazaaaafVfVfVaaaafVfVfVfVaaaafVfVfVaaaaazazaaaaaaaaaaazazaaaaazazaaaaaaarafafafafafasanaJaJaJwbwbaJaJvWvBvBmVmVmVmVmVvWayayshayayayayayayayax
-amamamerbnamamanarafafafafafasaaaaaaazazaaaaazazaaaaaaaaaaazazaagLjOjOjOgLgLjOjOjOjOgLgLjOjOjOgLaaazazaaaaaaaaaaazazaaaaazazaaaaaaarafafafafafasanaJaJaJwcwcaJaJvWvBvZvBvBvZwamVvWayayayayayayayayayayax
-amamrwamamamamanarafafafafafasaAaAaAaQaTaBaBaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaBaBbCccaAaAaAarafafafafafastcajajtdajajtdaJsivUvUvUvUvUvVmVaxvJayayaywfayaywgayayax
-rvamamamamrramanarafafafafafasewaAaQaTaBaBaCaCaCaCaCaCaCaCaCaCaCgMgtgugMaCaCgMgugwgMaCaCgMgugugMaCaCaCaCaCaCaCaCaCaCaCaBaBbCccaAewarafafafafafasanaJaJaJaJaJaJaJaxmVmVvBvHmVmVmVvwayayayayvKvKayayvKvYax
-amamamamamamamanarafafafafafasaAaQaTaBaBaDaCaCaCaCaCaCaCaCaCaCaCaCgxgygxaCaCgxgxgxgxaCaCgygxgxaCaCaCaCaCaCaCaCaCaCaCaCaCaBaBbCccaAarafafafafafasanaJaJaJwhaJaJamuwwdvQweaxaxvLwiaxayayayayuwvKayayayayax
-eramamerrtamamanarafafafafafasaQaTaBaBaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaBaBbCccarafafafafafasansiaxaxwltgaxaxaxvLwjmVtgaxmVmVtgaxayuwayayayayayayayax
-amamrsamrteramanarafafafafafasexeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeycGeycGeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyezarafafafafafasanaxwkmVwmmVmVwmvEvZvBwaoomVmVmVmVaxaxuwayaywlvOayayayax
-amrterereramamanarafafafafafaseAeAeAeAeAeAeAcXeAdwdwcXgzeAeAeAeAeAeAeAeAcXeAeAgAeAeAgBeAeAeAeAeAcXeAcXeAeAcXeAeAeAeAeAeAeAeAeAeAeAarafafafafafasanaxwkmVwnmVmVwomVmVvBmVmVmVwmvBvBvBwraxayayayshayayvGax
-amamameramamamanarafafafafafasaAaAaAaAaAaAaAaAgNipiqirjmjnaAaAaAaAaAgHgIgIgIgJgIgIgKaAaAaAaAaAgHgJgIgIgJgIgIaAaAaAaAaAaAaAaAaAaAaAarafafafafafasamtwwpvBwqvBmVwmmVmVvZmVmVmVwmvBvBvBuwaxayayayayayayvGax
-amamamrramamamanarafafafafafasewaAaAaAaAaAaAaAjojpjpjpjpjqaAaAaAaAaAgOaAaAaAgOaAaAgOaAaAaAaAaAgOaAaAgOaAaAgOaAaAaAaAaAaAaAaAaAaAewarafafafafafasamtwwkmVwkaxaxwomVmVvFmVaxtgwpmVvEmVmVaxvJuwayayayayvGax
-amjsamamamrsamanarafafafafafasevfkfkfkfkfkfkfkfkaEaFaEaEaEfkaEaEaEflfkfmfmfkfkfkaEaEaEfkaEfkaEfkfkfnfkfkfkfkfkfnfkfkfkfkfkfkaEfkfoarafafafafafasantwwmmVwmaxaxmVmVmVmVmVaxaxwmmVvFmVmVaxayayayayayayvGax
-amambnamamamamanarafafafafafasaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEfnfnaEaEaEaFaEaEaEaEarafafafafafasanaxwmmVwkmVmVwmmVvFmVmVmVmVmVmVmVmVmVaxayayayayayayvGax
-amamamamryamamanarafafafafafasaEaEaFaEaEaEaEaEaEaEaEaEaEaEaEaEaEfpaEaEaEaEaEaEaFaEaEaEaEaEaFaEaEaEfnaFaEaEaEaEaEfnfnaEfnaEaEaEaFfqarafafafafafasanaxwmmVmVvHvEmVmVmVvEvEmVvEmVvHmVmVmVaxayayayayayayvGax
-amrtameramamamanarafafafafafasaEaEaEaEaEaEaEaEaEaEaEaEfnfnaEaEfnaEaEaEaEaEaEaEaEaEaEaEfpaEaEaEaEaEfnaEaEaEaEaEaEaEfnfnaEaEaEaEaEaEarafafafafafasanaxaxuwtwaxaxaxuwtwaxaxaxuwtwaxaxaxaxaxaxuwtwtwtwaxaxax
-amamamrramrtamanaHafafafafafeBevaEaEaEaEaEfrfsaEaEftaEfnaEaEaEaEaEaFaEaEfnaEaEaEaEaEaEaEaEaEaEaEaEfnaEaEaEaEaEaEaEftfnfnaEaEaEaEfqarafafafafafasanaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJ
-amamamamamamamanarafafafafafasevaEaEaEaEaEaEaEaEaEaEaEfnaEaFaEaEaEaEaEaEaEaEaEfraEaEaFaEaEaEaEaFaEaEaEfnfnfnaEaFaEaEfnaEaEaEaEaEfqarafafafafafasanaJaJaJaJaJaJaJaJaJaJaJwuaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJ
-amrseramamjsamanarafafafafafasevaEaEaEfpjrrzrzjraEaEfnaEaEaEaEaEaEaEaEaEaFaEaEfrfpaEaEaEaEaEaEfnaEfnaEaEaEfuaEaEjrjrrzjrjrfuaFaEfqarafafdxafafasanaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJ
-amerabrteramamanarafafafafafasaEaEaEaEaEjrrArBjraEaEfnaFaEaEaEftaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEftfnaEaFaEaEaEaEjrrCrzrCjraEaEaEfqarafafafafafasanaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJwuwuaJaJaJaJaJaJaJaJ
-amerababeramamanarafafafafafasaEaEaEaFaErDrErErFaEfnaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEfnfnaEaEaEaEaEjrrCrGrCjraEaEaEaEarafafafafafasanaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJ
-amamrterrsamamanarafafafafafasaEaEaEaEaEaEaEaFaEaEfnaEaEaEaEaEaEeCeDeDfvfveDeDeDeDeDeDeDeDeDeDeEaEaEaEfnaEfnaEaEjraVrzjrjraEaEaEfqarafdxafafafasanananananananananananananananananananananananananananan
-amamameramamamanarafafafafafasevaEaEaEaEaEaEaEaEaEaEfnaEaEaEaEaEeFaGaGaGfwaGaGaGaGaGaGaGaGaGaGeGaEaEaEfnaEaEaEaEaFaEfpaEaEftaEaEfqaHafafafafafeHaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaq
-amamrwamamamamanarafafafafafasaEaEaFaEaEaEaEaEaEaEftaEaEaEaFaEaEeIaGaGaGaGaGjujujujuaGaGaGaGaGeJaEaEaEfnaEaFaEaEaErHrIrJaEaEaEaEfqarafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
-amamamryamrtamanarafafafafafasevaEaEaEfpaEaEaEaEaEaEaEfnaEaEaEaEeIaGaGaGaGjujujujujujuaGaGaGaGeJaEaEaEfnaEaEaEaEaEheheheaEaEaEaFaEarafafxeafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
-amambnamamamamanarafafxfafafasevaEaEaEaEaEaEaFaEaEaEaEfnfnaEaEaEeIaGaGaGaGjujujujujujuaGaGaGaGeJaEaEaEfnaEaEaEaEaEaEaEaEaEaEaEaEfqarafafafafdxafafafafafafafafafafafdxafafafafafafafafdxafafafafafafafaf
-amamamamrsamamanarafafafafafasaEaEaEaEaEaEaEaEaEaEaEaEftfnaEaEaEeIaGaGaGaGjujujujujujvaGaGaGaGeJaEaEaEaEaEaEaEftaEaEaEfxaEaEaEaEaEarafdxafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
-amamamabamamamanaHafafafafafeBaEaEaEaEaEaEaEaEaEaEaEaEaEfnaEaEfreIaGaGaGaGaGjujujujuaGaGaGaGaGeJaEaEaEfnaFaEaEaEaEaEfraEaEaEaEaEaEarafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
-amamamereramamanarafafafafafasevaEaEaEftaEaEaEfpaEaEaEaFfnaEaEaEeIaGaGaGaGaGaGaGaGaGaGaGaGaGaGeJaEaEaEaEfnfnaEaEaEaEaEaEaEaEaEaEfqaHafafafafafeKawawawawawawawawawawawawawawawawawawawawawawawawawawawaw
-amrramamabamamanarafafafafafasevaEaEaEaEaEfpaEaEaEaEaEaEfnaEaEfpeIaGaGaGaGaGaGaGaGaGaGaGaGaGaGeJaEfnfyaEaEfnaEaEfpaEaEfnaEaEaEaEaEarafafafafafasanananananananananananananananananananananananananananan
-amrtamamamamamanarafafafafafasevaEaEaEaEaEaEaEaEfnaEftaEfnaEaEaEeLeMeMeMeMeMeMeMeMeMeMeMeMeMeMeNfnfnaEfraEfnaEaEaEaEaEfnaEaFaEaEaEarafafafafafasanjwjwjwtjjwjwjwvxjwjwtjjwjwjwvyjwjwaZaZjwjwvyjwjwaZjwaZ
-amamamamamamamanarafafafafafasevaEaEaEaFaEaEaEaEaEaEaEfnfnaEaEgPaEaEaEgQgQaEaEaEgRfDgSgTaEgPaEaEaEetaEaEaEfnaFaEaEaEaEaEaEaEaEaEfqarafafafafafasanjwtftftfaZuRjwtftftftftfuSjwtftftfuTuTtfjwuUtftftfuVjw
-amamamamabrsamanarafafafafafasevaEjrjrrzrzjrjraEaEaEfnfnaFaEfngPgUaEftaEgQaEaEaFgSfDgVgWftaEaEaEfnaEgXaEaEfnaEfnaEaEaEftaEaEaEaEfqarafafafafafasanvytfuWaZwvtfjwtftfuXtfuYtfaZtftfaZuZuTvajwtftftftftfjw
-amrsabamamamamanarafafafafafasevaEjrrKrzrzrLjraEaEaEfnfzfnetaEaEaEaEfraEaEaEaEaEfEgYgZfDaEaEfrgTfAfzhaaFaEfnaEaEaEaEaEaEaEaEaEaEfqarafafafafafasanjwtfvbvcuUuUjwvdtfvaveaZtfjwtftfvftfuUuUjwtftfvcvgtfjw
-amerrterrwamamanarafafafafafasevaErErErzrzrErEaEfraEaFhbfAfEaEaEaEaEaEaEaEaEfpfngRhchchdaEaEaEhehfheheaEaEaEaEaEaEaEaEaEaEaEaEaEfqarafafafafafasanjwtftftftfuUrVtftfvhvivjwwvktftfvztfwxtfjwtfaZtftftfjw
-amamababeramamanarafafafafafasevaEaEgRrErMhdaEaEaEaEaEhehehgaEaEaEaEaFaEaEaEaEfnaEaEaEaEaEaEaEaEaFaEaEaEaEaEaEaFaEaEaEaEaFaEaEaEfqarrQafafrRrSasanjwjwjwaZjwjwvlrVtfvmwxwxwxjwrVtfvctftfvnrVtftftfuSvojw
-amamereramrramanaraffBafafafasevaEfnaEfnaEaEfnaEaEaEaEaEaEaEaEaEaEaEaEaEaEfnfCfnfnaEaEaEaEaEaEaEaEaEaEfDfCfEaEaEaEfnfnfnaEfnfnaEfqarafrTrUafafasanjwtfaZtftftfuTtfuUtfvpuUwvjwtfuWvqrVtfvrvltfvstfvmtfjw
-amamamamamamamanaHafafafafafeBfFfGaEaEfGfGfGaEaEaEfGfGfGfGaEaEfnaEaEfGaEfGfHfIfJfKfGjtaEaEfnfnfGfGfGaEfLfIfMfGfGfGaEfGfGfGfNfGfGfOarafrQrSafafasanjwtftfvzaZwxjwwyuUuUvttftfaZtftfrVvutftfvlvavarVtfwyjw
+abababababababacadaeafafafagahacababababababaiajakakakakakakakakakakajajakakakakakakajakakakakakajakakakakakakakakakakakakakakakakakakakakakakakakajalamamamamamamamamamamamamakakakakakakanakakakakakak
+ababababababababaoaeafafafagapababababababaiakakakajajakakakajakakajakakakajakakakakakakajakakakakakakakakajakaqakakakajakakajakajakakaqakakajakakakalamararararararararararamakakakanakanakakakananasak
+abababababababacadaeafafafagahacababababaiaiajakakakakakakakakaiakakakakakakakakakaqaqakakakakakakakakakakasakakakajakakakakakakakakakajajakakaqakakakamararararararararararamakanakasakakakakakakarakan
+ababababababababaoaeafafafagapababababaiajakajakakakajakakajakakakajakakaqakajakakajakaqaqakakakakasakajakakakajakakakakakajakaqakakajajaqakajakakajalamararararararararararamakakakanakakanaranakakakak
+ababababababababaoaeafafafagapabababaiaiakakakakakaqakakakajarakasaqakakajakakakakakakaqaqakakajakajakakakarakakakakajakakakakakakakakajajakakajajakalamararararararararararamakakarasakakakakasakanakak
+abababababababacadaeafafafagahacabaiakakakakakajakakakakakakakakakakajakakakakasaqajakakakakaiakakakakasakajakakaqaqakakajakakajakakakakakakakakakakalamararararararararararamakakanakanakanakakanakakan
+ababababababababaoaeafafafagapabaiaiakajakakakakakakakajakakaiaqakakakakakakakakajajakakakajakakakakaqakakakajajakakakakakakakavawakawakawakawakawawaHamamamamamamamamamamamamawawawawawakakawakawasawaw
+ababababababababaoaeafafafagapaiakakajakakajakakajakakakakakakajakajakakakajakakakakakakakakakajakakajakakakakakakakakajakakakalaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaI
+ababababababababaoaeafafafagaJawawajawakakawawakakakawawawakakakawakawakakakawakakakawawakawakawawawakakakawawawakawakakawakawaHaIbncbcbcbcbcbcdcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcb
+abababababababcecfafafafafafcgaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIchafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
+ababababababaraIchafafafafafcyaaaaaaazazaaaaazazaaaaaaaaaaazazaaaaazazaaaaaaaaaaaaaaaaaaaaazazaaaaazazaaaaaaaaaaazazaaaaazazaaaaaachafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
+abababababararaIchafafafafafcyaafUfUfUfUfUfUfUfUfUlmfVfVfVfVfVaafVfVjMjNfVjMkrfVjMkzfVltjMfVfVfVfVfVfVlFlNlOlPfVfVfVfVfVfVfVfVmJaachafafafafafafafafafafafafafafafafafafafafafafczafafafafafafafafafafaf
+ababababarararaIchafafafafafcyaafVfVfVfVfVfVfVfVfVfVfVfVfVfVfVaafVfVlJjNfVkrlKfVlJlLfVjMlKfVfVfVfVfVlFlFmFlMfVfVfVfVwMfVfVfVfVfVaachafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
+ababababarararaIchafafafafafcyaafVfVfVfVfVfVfVfVfVfVfVfVfVfVfVaafVfVfVfVfVfVfVfVfVfVfVfVfVfVfVhkhkfVfVlFgmmGmHmIwNfVwMfVjMwOwPwQaadxafafafafafdKdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdS
+abababararararaIchafafafafafcyaaaaaagvgvaaaaaaaaaamKmKaaaaaaaaaaaafVjMjMfVkzlLfVjMjMfVlQltfVcEaaaalRlSlTlUfVgnfVlVgkaaaaaaaaaaaaaachafafafafafcyaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIararaIaIaIaIaIaIaIaI
+ababarararemaraIchafafafafafcyaafVlWfVfVaaaalnlolololololololpaaaafVjMlKfVlJltfVlXlKfVlJkrfVjKaaaafVfVfVlYfVlZgkfVfVaaaamamambmcaachafafafafafcyaIaxaxaxtwaxaxuwuwtwaxaxaxaxtwaxaxaxaxaxaxaxtwtwtwaxaxax
+abararararararaIchafafafafafcyaafVlWfVfVgvlololqlolqlolqlolrlraafVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVmdfVfVmefVfVfVfVfVfVmbfVfVmfmfaachafafafafafcyaIaxmVmVmVoopymVmVmVpAmVpApAmVtevAmVmVaxayshshayayayvGax
+arararararararaIchafafafafafcygLlumgfVfVgvlololqlolqlolqlolvlwaafVfWfVfVlylylyfVlslslsfVfVfVfXfYfZmhmimemefVgrmMgkfVfVmbfVfVmbmcaachafafafafafcyaIaxpApApymVmVmVmVmVmVmVmVmVmVmVmVmVmVaxayayayayayayvGax
+arareneoepararaIchafafafafafcyaafVlOgkfVgLaalolqlolqlolqlolxloaaaagafVfVfVfVfVfVfVfVfVfVfVfVgbaaaafVfVfVfVfVfVgofVfVaaaalufVmfmfaachafafafafafcyaIuwmVvBvBtgaxvDpApApAmVaxtgvCvCvBvAvBtgayayayayayayvGax
+arararararararaIchafafafafafcyaafVmLfVfVgLaalolqlolqlolqlolzlwaaaagcfVfVfVjLfVfVfVfVfVfVjLfVgdaaaagefVfVfVfVfVfVgnfVaaaalufVmbmcaachafafafafafcyaIuwmVvApyaxuwuwpymVmVmVvEaxmVmVpymVmVaxvJvKayayayayvGax
+aremarararararaIchafafafafafcygLlumjfVfVgvlololqlolqlolqlololoaagfggfVfVfVfVfVfVfVfVfVfVfVfVghfZfZgifVfVfVfVfVfVlZfVfVmbfVfVmfmfaachafafafafafcyaItwmVmVmVmVvFmVvBvBvEmVpymVmVvEmVmVmVaxayayayayayayvGax
+ararareqarararaIchafafafafafcyaafVlWfVfVgvlolololololololololohlfVfVfVfVfVfVfVfVfVgjfVfVgjfVfVfVfVfVfVfVfVfVfVfVgofVfVmbfVfVmbmkaachafafafafafcyaIaxpAmVpAvBvBpAvBpAmVpAmVpAmVmVpymVuwaxvKayayayayayvGax
+ararararararenaIchafafafafafcyaafVlWfVfVaaaalnlolololAlAlAlAlBaaaagkfVfVfVmlgmfVfVgjfVfVmTfVfVaaaafVfVfVfVfVgCfVfVfVaaaammmmmfmfaachafafafafafcyaIaxmVmVmVmVvBvBvBvBmVmVvHmVvImVmVaxuwayvKayayayvOayayax
+ararararasararaIchafafafafafcyaagvaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagnfVgofVgpgqfVfVgjmnmnmTfVfVkNaagDlCfVgCgCgCgCfVfVaaaaaaaaaaaaaachafafafafafcyaIsiaxaxaxaxaxaxaxvLvMvNtgaxvBmVaxaxayayayayshshvOayayax
+arararararararaIchafafafafafcyaafVfVfVjMfVgvjMfVjMjMfVgmmojMgrgogngofVfVfVgFgFfVfVgjgjgjgjfVfVfVfVfVgDgElDlEgGgGgCfVgmlMfVfVgvfVaachafafafafafcyaIerererererereraxvPvQvRaxaxvLvSaxayayayayayayayshshayax
+araremaresararaIchafafafafafcyaajMfVfVfVfVgvfVfVjMfVfVgmmofVfVgrfVgrgnfVfVfVfVfVfVgFgFgFgFfVmpglfVfVfVgDgFfVlCgFgCfVgmmPmQfVaafVaachafafafafafcyaIerererererereraxmVmVvBvTmVmVvEvwayayshshayvXayayshvYax
+arararararasaraIchafafafafafcyaajMjMfVjMfVgvfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVfVmqlGgsfVfVfVfVfVfVgDgDfVfVfVfVfVaamRaachafafafafafcyeBamameHamameHersivUvUvUvUvUvVmVaxvJayvKshayayayuwuwayax
+eparareparasaraIchafafafafafcyaaaaaaazazaaaaazazaaaaaaaaaaazazaaaafVfVfVaaaafVfVfVfVaaaafVfVfVaaaaazazaaaaaaaaaaazazaaaaazazaaaaaachafafafafafcyaIererereKeKerervWvBvBmVmVmVmVmVvWayayshayayayayayayayax
+arararaseoararaIchafafafafafcyaaaaaaazazaaaaazazaaaaaaaaaaazazaagLjOjOjOgLgLjOjOjOjOgLgLjOjOjOgLaaazazaaaaaaaaaaazazaaaaazazaaaaaachafafafafafcyaIerererfjfjerervWvBvZvBvBvZwamVvWayayayayayayayayayayax
+ararfBararararaIchafafafafafcyaAaAaAaQaTaBaBaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaBaBbCccaAaAaAchafafafafafcyeBamameHamameHersivUvUvUvUvUvVmVaxvJayayaywfayaywgayayax
+esararararemaraIchafafafafafcyewaAaQaTaBaBaCaCaCaCaCaCaCaCaCaCaCgMgtgugMaCaCgMgugwgMaCaCgMgugugMaCaCaCaCaCaCaCaCaCaCaCaBaBbCccaAewchafafafafafcyaIerererererereraxmVmVvBvHmVmVmVvwayayayayvKvKayayvKvYax
+arararararararaIchafafafafafcyaAaQaTaBaBaDaCaCaCaCaCaCaCaCaCaCaCaCgxgygxaCaCgxgxgxgxaCaCgygxgxaCaCaCaCaCaCaCaCaCaCaCaCaCaBaBbCccaAchafafafafafcyaIerererisereraruwwdvQweaxaxvLwiaxayayayayuwvKayayayayax
+asararasepararaIchafafafafafcyaQaTaBaBaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaBaBbCccchafafafafafcyaIsiaxaxwltgaxaxaxvLwjmVtgaxmVmVtgaxayuwayayayayayayayax
+ararenarepasaraIchafafafafafcyexeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeycGeycGeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyezchafafafafafcyaIaxwkmVwmmVmVwmvEvZvBwaoomVmVmVmVaxaxuwayaywlvOayayayax
+arepasasasararaIchafafafafafcyeAeAeAeAeAeAeAcXeAdwdwcXgzeAeAeAeAeAeAeAeAcXeAeAgAeAeAgBeAeAeAeAeAcXeAcXeAeAcXeAeAeAeAeAeAeAeAeAeAeAchafafafafafcyaIaxwkmVwnmVmVwomVmVvBmVmVmVwmvBvBvBwraxayayayshayayvGax
+arararasarararaIchafafafafafcyaAaAaAaAaAaAaAaAgNipiqirjmjnaAaAaAaAaAgHgIgIgIgJgIgIgKaAaAaAaAaAgHgJgIgIgJgIgIaAaAaAaAaAaAaAaAaAaAaAchafafafafafcyartwwpvBwqvBmVwmmVmVvZmVmVmVwmvBvBvBuwaxayayayayayayvGax
+arararemarararaIchafafafafafcyewaAaAaAaAaAaAaAjojpjpjpjpjqaAaAaAaAaAgOaAaAaAgOaAaAgOaAaAaAaAaAgOaAaAgOaAaAgOaAaAaAaAaAaAaAaAaAaAewchafafafafafcyartwwkmVwkaxaxwomVmVvFmVaxtgwpmVvEmVmVaxvJuwayayayayvGax
+arivarararenaraIchafafafafafcyevfkfkfkfkfkfkfkfkaEaFaEaEaEfkaEaEaEflfkfmfmfkfkfkaEaEaEfkaEfkaEfkfkfnfkfkfkfkfkfnfkfkfkfkfkfkaEfkfochafafafafafcyaItwwmmVwmaxaxmVmVmVmVmVaxaxwmmVvFmVmVaxayayayayayayvGax
+arareoararararaIchafafafafafcyaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEfnfnaEaEaEaFaEaEaEaEchafafafafafcyaIaxwmmVwkmVmVwmmVvFmVmVmVmVmVmVmVmVmVaxayayayayayayvGax
+arararariwararaIchafafafafafcyaEaEaFaEaEaEaEaEaEaEaEaEaEaEaEaEaEfpaEaEaEaEaEaEaFaEaEaEaEaEaFaEaEaEfnaFaEaEaEaEaEfnfnaEfnaEaEaEaFfqchafafafafafcyaIaxwmmVmVvHvEmVmVmVvEvEmVvEmVvHmVmVmVaxayayayayayayvGax
+areparasarararaIchafafafafafcyaEaEaEaEaEaEaEaEaEaEaEaEfnfnaEaEfnaEaEaEaEaEaEaEaEaEaEaEfpaEaEaEaEaEfnaEaEaEaEaEaEaEfnfnaEaEaEaEaEaEchafafafafafcyaIaxaxuwtwaxaxaxuwtwaxaxaxuwtwaxaxaxaxaxaxuwtwtwtwaxaxax
+arararemareparaIdxafafafafafixevaEaEaEaEaEfrfsaEaEftaEfnaEaEaEaEaEaFaEaEfnaEaEaEaEaEaEaEaEaEaEaEaEfnaEaEaEaEaEaEaEftfnfnaEaEaEaEfqchafafafafafcyaIererererererererererererererererererererererererererer
+arararararararaIchafafafafafcyevaEaEaEaEaEaEaEaEaEaEaEfnaEaFaEaEaEaEaEaEaEaEaEfraEaEaFaEaEaEaEaFaEaEaEfnfnfnaEaFaEaEfnaEaEaEaEaEfqchafafafafafcyaIerererererererererereriyererererererererererererererer
+arenasararivaraIchafafafafafcyevaEaEaEfpjrrzrzjraEaEfnaEaEaEaEaEaEaEaEaEaFaEaEfrfpaEaEaEaEaEaEfnaEfnaEaEaEfuaEaEjrjrrzjrjrfuaFaEfqchafafiKafafcyaIererererererererererererererererererererererererererer
+arasabepasararaIchafafafafafcyaEaEaEaEaEjrrArBjraEaEfnaFaEaEaEftaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEftfnaEaFaEaEaEaEjrrCrzrCjraEaEaEfqchafafafafafcyaIerererererererererererererererereriyiyerererererererer
+arasababasararaIchafafafafafcyaEaEaEaFaErDrErErFaEfnaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEfnfnaEaEaEaEaEjrrCrGrCjraEaEaEaEchafafafafafcyaIererererererererererererererererererererererererererer
+ararepasenararaIchafafafafafcyaEaEaEaEaEaEaEaFaEaEfnaEaEaEaEaEaEeCeDeDfvfveDeDeDeDeDeDeDeDeDeDeEaEaEaEfnaEfnaEaEjraVrzjrjraEaEaEfqchafiKafafafcyaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaI
+arararasarararaIchafafafafafcyevaEaEaEaEaEaEaEaEaEaEfnaEaEaEaEaEeFaGaGaGfwaGaGaGaGaGaGaGaGaGaGeGaEaEaEfnaEaEaEaEaFaEfpaEaEftaEaEfqdxafafafafafiLcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcb
+ararfBararararaIchafafafafafcyaEaEaFaEaEaEaEaEaEaEftaEaEaEaFaEaEeIaGaGaGaGaGjujujujuaGaGaGaGaGeJaEaEaEfnaEaFaEaEaErHrIrJaEaEaEaEfqchafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
+ararariwareparaIchafafafafafcyevaEaEaEfpaEaEaEaEaEaEaEfnaEaEaEaEeIaGaGaGaGjujujujujujuaGaGaGaGeJaEaEaEfnaEaEaEaEaEheheheaEaEaEaFaEchafafiMafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
+arareoararararaIchafafiNafafcyevaEaEaEaEaEaEaFaEaEaEaEfnfnaEaEaEeIaGaGaGaGjujujujujujuaGaGaGaGeJaEaEaEfnaEaEaEaEaEaEaEaEaEaEaEaEfqchafafafafiKafafafafafafafafafafafiKafafafafafafafafiKafafafafafafafaf
+ararararenararaIchafafafafafcyaEaEaEaEaEaEaEaEaEaEaEaEftfnaEaEaEeIaGaGaGaGjujujujujujvaGaGaGaGeJaEaEaEaEaEaEaEftaEaEaEfxaEaEaEaEaEchafiKafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
+arararabarararaIdxafafafafafixaEaEaEaEaEaEaEaEaEaEaEaEaEfnaEaEfreIaGaGaGaGaGjujujujuaGaGaGaGaGeJaEaEaEfnaFaEaEaEaEaEfraEaEaEaEaEaEchafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
+arararasasararaIchafafafafafcyevaEaEaEftaEaEaEfpaEaEaEaFfnaEaEaEeIaGaGaGaGaGaGaGaGaGaGaGaGaGaGeJaEaEaEaEfnfnaEaEaEaEaEaEaEaEaEaEfqdxafafafafafiPdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdS
+aremararabararaIchafafafafafcyevaEaEaEaEaEfpaEaEaEaEaEaEfnaEaEfpeIaGaGaGaGaGaGaGaGaGaGaGaGaGaGeJaEfnfyaEaEfnaEaEfpaEaEfnaEaEaEaEaEchafafafafafcyaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaI
+areparararararaIchafafafafafcyevaEaEaEaEaEaEaEaEfnaEftaEfnaEaEaEeLeMeMeMeMeMeMeMeMeMeMeMeMeMeMeNfnfnaEfraEfnaEaEaEaEaEfnaEaFaEaEaEchafafafafafcyaIjwjwjwtjjwjwjwvxjwjwtjjwjwjwvyjwjwaZaZjwjwvyjwjwaZjwaZ
+arararararararaIchafafafafafcyevaEaEaEaFaEaEaEaEaEaEaEfnfnaEaEgPaEaEaEgQgQaEaEaEgRfDgSgTaEgPaEaEaEetaEaEaEfnaFaEaEaEaEaEaEaEaEaEfqchafafafafafcyaIjwtftftfaZuRjwtftftftftfuSjwtftftfuTuTtfjwuUtftftfuVjw
+ararararabenaraIchafafafafafcyevaEjrjrrzrzjrjraEaEaEfnfnaFaEfngPgUaEftaEgQaEaEaFgSfDgVgWftaEaEaEfnaEgXaEaEfnaEfnaEaEaEftaEaEaEaEfqchafafafafafcyaIvytfuWaZwvtfjwtftfuXtfuYtfaZtftfaZuZuTvajwtftftftftfjw
+arenabararararaIchafafafafafcyevaEjrrKrzrzrLjraEaEaEfnfzfnetaEaEaEaEfraEaEaEaEaEfEgYgZfDaEaEfrgTfAfzhaaFaEfnaEaEaEaEaEaEaEaEaEaEfqchafafafafafcyaIjwtfvbvcuUuUjwvdtfvaveaZtfjwtftfvftfuUuUjwtftfvcvgtfjw
+arasepasfBararaIchafafafafafcyevaErErErzrzrErEaEfraEaFhbfAfEaEaEaEaEaEaEaEaEfpfngRhchchdaEaEaEhehfheheaEaEaEaEaEaEaEaEaEaEaEaEaEfqchafafafafafcyaIjwtftftftfuUrVtftfvhvivjwwvktftfvztfwxtfjwtfaZtftftfjw
+ararababasararaIchafafafafafcyevaEaEgRrErMhdaEaEaEaEaEhehehgaEaEaEaEaFaEaEaEaEfnaEaEaEaEaEaEaEaEaFaEaEaEaEaEaEaFaEaEaEaEaFaEaEaEfqchiQafafiRiScyaIjwjwjwaZjwjwvlrVtfvmwxwxwxjwrVtfvctftfvnrVtftftfuSvojw
+ararasasaremaraIchafiTafafafcyevaEfnaEfnaEaEfnaEaEaEaEaEaEaEaEaEaEaEaEaEaEfnfCfnfnaEaEaEaEaEaEaEaEaEaEfDfCfEaEaEaEfnfnfnaEfnfnaEfqchafiUiVafafcyaIjwtfaZtftftfuTtfuUtfvpuUwvjwtfuWvqrVtfvrvltfvstfvmtfjw
+arararararararaIdxafafafafafixfFfGaEaEfGfGfGaEaEaEfGfGfGfGaEaEfnaEaEfGaEfGfHfIfJfKfGjtaEaEfnfnfGfGfGaEfLfIfMfGfGfGaEfGfGfGfNfGfGfOchafiQiSafafcyaIjwtftfvzaZwxjwwyuUuUvttftfaZtftfrVvutftfvlvavarVtfwyjw
 aKaKaKrNaKaKaKaLaMaNaNaNaNaNaOaPaPaPaPaPaPaPeOaPaPaPaPfPfPaPaPaPaPeOaPaPaPhhhhhhhhaPaPaPaPeOaPaPaPaPaPhhhhhhaPeOaPaPaPaPaPaPaPaPaPePaNaNaNaNaNeQaLvytftftftftfaZtftftftftftfjwtftftftfrVvvjwtftftftfvdjw
 aKaKaKaKaKaKaKaLaMaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaKaNaNaRaLjwjwjwaZjwrVjwvyjwaZaZaZrVjwvyjwrVaZjwjwjwvyjwjwtjaZjw
 aKrxaKaKaKaKaKaLaMfQfRfRfRfRfRfRfRfQaNaNaNaNfSfRfRfRfRfRfQaNaNaNaNaNaNaNfQfRfRfRfRfQaNaNaNaNaNaNfTfTfQfRfRfRfQaNaNaNfQfRfRfRfRfRfQaNaNaNaNaNaNthaLjxjxjxjxjxjxjxjxjxjxjxjxjxjxjxjxjxjxjxjxjxjxjxaKjxjxjx
@@ -1291,15 +1291,15 @@ blblblblblblblblblblblblblblblblblbQblblblbRblblbSblblblblblblblblblblblblhiblbQ
 blblblblblblblblblblblblblblblblblbQblblblblblblbVblblblblblblblblblblblblblblblblblblblblblblblblblblblbLbQblblblblblblblbXbYblblblblblblblblbmbjbgbgbgbgbgtBtBbgbgbguabgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbg
 blblblblblblblblblblblblblblblblblblblblblblblblblhiblblblblblblblblblblblblblblblblblblblblblblblblblblblbZbZbZblblblblblblblblblblblblblblblubbjjAjAtAjAucjAjAjAjAtAucjAjAucucjAjAjAjAtAjAjAjAsUudjAjA
 blblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblcablblblblblblblblblblblblblblblblblbZbZblblblblblblblblblblblblblblblblbmbjjAjHjHjHuejHsUsUjHufugjAsUjHueuhsUuijHjHugjAjHujueukjA
-awawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawawfjafafafafuleBantbjHucumueunjAsUuoupuqjAucjHurupjAupusjHucjAutupucjHjA
-ananananananananananananananananananananananananananananananananananananananananananananancdcdancdcdjPananananananananananananananarafafafafafasanjAjHjHuuueuvjAsUjHjHjHucjHjHwEuxjAjHjHunjHjAueunuyjHjA
-cfcfcgcfcfcfcfcgcfcfchcicicicjcicjckckcjcjcjcjcjamamamclclclclclcmcncncmjIclclcoclamamamcpcqcqcrcqcqcsctcscsctcscscucvjJcucwcucxdKarafdSdSdSafasanwFucwGjHuejHsUjAjAjAsUjAjAjAuzucjAsUjAjAuAsUtVjAuBjAjA
-cyaiaicyaicyaiaicycyczcicAcBcCcAcDcBcAjQcFdUcHcjamamamcIcJcKcLocoicJcJcMcNcNcOcOcPamamamcqcQcRcScTcUcscVeacWcWikuCcYcZdadbcZcZdcdKisafdSdSdSafasantbjHucjHuDuEsUjHwHucjHuuuxjHuFumjHjHucjHjHjHjHjHjHjHtA
-aiaicyaiaiaiaiamaiaiczcjcHdditdecBdUcBitdfcBjRcjamamamcldhcJdidjdicJcJcJdkdkdlcOcIamamamcplHcSiudmdncscWdodpdqdrctcZcZcZdsdtcZcwdKisafiviviviwixiysUjHjHsUjHuetVjAjAjAjAjAjAjAjAtVsUjAwFjAjAjAjAjAsUjAjA
-aicyaiercyaicyaicyaiczcjducBdUdgizdvdgiAcBiBdeciamamamcIcJcJdicJdycJiCdjdzcJdAcJclamamamcpdBcSdCdDdEcscWdFdGdHiDcscZdJiEiFdLcZcwdKisafafafafiwixiyucjHsUjHjHjHuzjHsUsUjHjAjHjHueuGtVuHjHjHjHjAjHjHjHuIjA
-aiaicyaiaicyaieraiaiczcjdMdvcBdgdvdUcBdNcAdfdOcjamamamcIdPcJdidldiiCiGiCdAcJcJcJclamamamcpdQdRiHcScSctcWiIiJcWcWcsdVcZiEdWcZdXcudKisiKiLiMiNiwixiysUsUjHumjHjHjAugjHuJupjAuKupsUuIuLupuMupsUjAupuNsUuOjA
-aicyaiamcyaicyaicycyczcjdYjSdUcBdZiOcBdUcBiBdOciamamamclcNdycJcJdiiGiGiGcJcJebcJclamamamcqecedeeefegctcWcWcWcWdTcteheicZejekelcuiPiQiRiRiRiRiRiSiPjAjHjHjHjHjHjAugjHuPucjAjHuQjHjHjAjHuPunsUjAuPuuucuIjA
-emaiaiaiaiaiaiaiaiaiczcjcjcjcjcjcjcjcjcjcjcicjciamamamclclclclclclclclclclclclclclamamamcqcqcqcqcqcqctcsctcscscscscucucucucucucuiTiUiViViViViViWiTjAjAtAjAtAjAjAjAjAtAjAjAjAjAtAjAjAjAucucjAjAjAjAtAjAjA
+dSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSiWafafafafjsixaItbjHucumueunjAsUuoupuqjAucjHurupjAupusjHucjAutupucjHjA
+aIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIjPjPaIjPjPmNaIaIaIaIaIaIaIaIaIaIaIaIaIaIchafafafafafcyaIjAjHjHuuueuvjAsUjHjHjHucjHjHwEuxjAjHjHunjHjAueunuyjHjA
+awawmOawawawawmOawawaHcicicicjcicjckckcjcjcjcjcjarararclclclclclcmcncncmjIclclcoclarararcpcqcqcrcqcqcsctcscsctcscscucvjJcucwcucxrrchafrsrsrsafcyaIwFucwGjHuejHsUjAjAjAsUjAjAjAuzucjAsUjAjAuAsUtVjAuBjAjA
+rtakakrtakrtakakrtrtalcicAcBcCcAcDcBcAjQcFdUcHcjarararcIcJcKcLocoicJcJcMcNcNcOcOcParararcqcQcRcScTcUcscVeacWcWikuCcYcZdadbcZcZdcrrruafrsrsrsafcyaItbjHucjHuDuEsUjHwHucjHuuuxjHuFumjHjHucjHjHjHjHjHjHjHtA
+akakrtakakakakarakakalcjcHdditdecBdUcBitdfcBjRcjarararcldhcJdidjdicJcJcJdkdkdlcOcIarararcplHcSiudmdncscWdodpdqdrctcZcZcZdsdtcZcwrrruafrvrvrvrwryrOsUjHjHsUjHuetVjAjAjAjAjAjAjAjAtVsUjAwFjAjAjAjAjAsUjAjA
+akrtakasrtakrtakrtakalcjducBdUdgizdvdgiAcBiBdeciarararcIcJcJdicJdycJiCdjdzcJdAcJclarararcpdBcSdCdDdEcscWdFdGdHiDcscZdJiEiFdLcZcwrrruafafafafrwryrOucjHsUjHjHjHuzjHsUsUjHjAjHjHueuGtVuHjHjHjHjAjHjHjHuIjA
+akakrtakakrtakasakakalcjdMdvcBdgdvdUcBdNcAdfdOcjarararcIdPcJdidldiiCiGiCdAcJcJcJclarararcpdQdRiHcScSctcWiIiJcWcWcsdVcZiEdWcZdXcurrrurPrQrRrSrwryrOsUsUjHumjHjHjAugjHuJupjAuKupsUuIuLupuMupsUjAupuNsUuOjA
+akrtakarrtakrtakrtrtalcjdYjSdUcBdZiOcBdUcBiBdOciarararclcNdycJcJdiiGiGiGcJcJebcJclarararcqecedeeefegctcWcWcWcWdTcteheicZejekelcurTrUtctctctctctdrTjAjHjHjHjHjHjAugjHuPucjAjHuQjHjHjAjHuPunsUjAuPuuucuIjA
+ulakakakakakakakakakalcjcjcjcjcjcjcjcjcjcjcicjciarararclclclclclclclclclclclclclclarararcqcqcqcqcqcqctcsctcscscscscucucucucucucuwbwcwhwhwhwhwhwuwbjAjAtAjAtAjAjAjAjAtAjAjAjAjAtAjAjAjAucucjAjAjAjAtAjAjA
 "}
 
 (1,1,2) = {"
