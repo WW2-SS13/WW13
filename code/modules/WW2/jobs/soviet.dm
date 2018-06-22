@@ -1140,7 +1140,7 @@ var/first_guard = FALSE
 	rank_abbreviation = "KG"
 	selection_color = "#770e0e"
 	spawn_location = "JoinLatePOW_col"
-	additional_languages = list( "German" = 33 )
+	additional_languages = list( "German" = 100 )
 	allow_spies = TRUE
 	is_prisoner = TRUE
 	SL_check_independent = TRUE
