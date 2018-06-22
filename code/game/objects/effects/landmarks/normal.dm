@@ -449,6 +449,54 @@ var/area/partisan_stockpile = null
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
+		// PRISONER
+
+		if ("JoinLatePOW")
+			if (!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if ("JoinLatePOW_off")
+			if (!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+
+		if ("JoinLatePOW_chef")
+			if (!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if ("JoinLatePOW_med")
+			if (!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+		if ("JoinLatePOW_col")
+			if (!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+		if ("JoinLatePOW_jan")
+			if (!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+		if ("JoinLatePOW_min")
+			if (!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
 
 		if ("TownStockpile")
 

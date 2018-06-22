@@ -215,7 +215,7 @@
 "eg" = (/obj/structure/closet/crate/soviet_grenade2,/turf/floor/wood,/area/prishtina/soviet/bunker/armory{base_turf = /turf/floor/wood_broken})
 "eh" = (/obj/structure/vending/sovietequipment,/turf/floor/wood,/area/prishtina/soviet/bunker/armory{base_turf = /turf/floor/wood_broken})
 "ei" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/rd,/turf/floor/wood,/area/prishtina/soviet/bunker/engineering{base_turf = /turf/floor/wood_broken; name = "Inside Engineering"})
-"ej" = (/turf/floor/wood,/area/prishtina/soviet/bunker/engineering{base_turf = /turf/floor/wood_broken; name = "Inside Engineering"})
+"ej" = (/obj/effect/landmark{name = "JoinLateRAEng"},/turf/floor/wood,/area/prishtina/soviet/bunker/engineering{base_turf = /turf/floor/wood_broken; name = "Inside Engineering"})
 "ek" = (/obj/item/weapon/plastique/russian,/obj/item/weapon/plastique/russian,/obj/item/weapon/plastique/russian,/obj/item/weapon/plastique/russian,/turf/floor/wood,/area/prishtina/soviet/bunker/engineering{base_turf = /turf/floor/wood_broken; name = "Inside Engineering"})
 "el" = (/obj/structure/bed/roller,/turf/floor/wood,/area/prishtina/soviet/bunker/medical{base_turf = /turf/floor/wood_broken; name = "Inside Medical Area"})
 "em" = (/obj/structure/bed/roller,/obj/effect/landmark{name = "JoinLateRAMedic"},/turf/floor/wood,/area/prishtina/soviet/bunker/medical{base_turf = /turf/floor/wood_broken; name = "Inside Medical Area"})
