@@ -162,45 +162,43 @@ var/list/delayed_garbage = list()
 
 // Should be treated as a replacement for the 'del' keyword.
 // Datums passed to this will be given a chance to clean up references to allow the GC to collect them.
-/proc/qdel(var/datum/D)
-	// D doesn't exist, return FALSE
-	if (!D)
-		return FALSE
-	// D does exist but isn't a datum, delete it and return TRUE - yes, this makes qdel() an alias for del(), for non-datums - Kachnov
-	else if (!istype(D))
-		del(D)
+/proc/qdel(var/datum/A)
+	if (!A)
+		return
+	if (!istype(A))
+		warning("qdel() passed object of type [A.type]. qdel() can only handle /datum types.")
+		crash_with("qdel() passed object of type [A.type]. qdel() can only handle /datum types.")
+		del(A)
 		if (processes.garbage)
 			processes.garbage.total_dels++
 			processes.garbage.hard_dels++
-		return TRUE
-	else if (!D.gcDestroyed)
+	else if (!A.gcDestroyed)
 		// Let our friend know they're about to get collected
-		. = !D.Destroy()
-		if (. && D)
-			D.finalize_qdel()
-	// if we're still here, and we're an atom
-	if (D && isatom(D))
-		var/atom/A = D
-		A.invisibility = 101
-		A.icon = null
-		// don't set A.icon_state to null, it's superflous - setting icon to null is all that's needed
+		. = !A.Destroy()
+		if (. && A)
+			A.finalize_qdel()
+	if (A && isatom(A))
+		var/atom/AT = A
+		AT.invisibility = 101
+		AT.icon = null
+		AT.icon_state = null
 		if (ismovable(A))
 			var/atom/movable/AM = A
-			AM.loc = null
+			AM.loc = null // maybe fixes projectiles, hopefully doesn't break anything - Kachnov
 
 /proc/qdel_list(var/list/L)
 	if (!L)
 		return
-	else if (!islist(L))
+	if (!islist(L))
+		warning("qdel_list() passed non-list object [L]. qdel_list() can only handle /list types.")
+		crash_with("qdel_list() passed non-list object [L]. qdel_list() can only handle /list types.")
 		del(L)
 		if (processes.garbage)
 			processes.garbage.total_dels++
 			processes.garbage.hard_dels++
-		warning("qdel_list() passed non-list object [L]. qdel_list() can only handle /list types.")
-		crash_with("qdel_list() passed non-list object [L]. qdel_list() can only handle /list types.")
 	for (var/D in L)
 		L -= D
-		if (!isnum(D) && !istext(D))
+		if (isdatum(D))
 			qdel(D)
 	L = null // del(L) breaks observing and probably other stuff I have no idea why - Kachnov
 
