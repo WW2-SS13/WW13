@@ -72,8 +72,6 @@
 //return flags that should be added to the viewer's sight var.
 //Otherwise return a negative number to indicate that the view should be cancelled.
 /atom/proc/check_eye(user as mob)
-	if (istype(user, /mob/living/silicon/ai)) // WHYYYY
-		return FALSE
 	return -1
 
 /atom/proc/on_reagent_change()
@@ -244,11 +242,6 @@ its easier to just keep the beam vertical.
 
 	return distance == -1 || (get_dist(src, user) <= distance)
 
-// called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
-// see code/modules/mob/mob_movement.dm for more.
-/atom/proc/relaymove()
-	return
-
 //called to set the atom's dir and used to add behaviour to dir-changes
 /atom/proc/set_dir(new_dir)
 	var/old_dir = dir
@@ -299,7 +292,6 @@ its easier to just keep the beam vertical.
 
 /atom/proc/add_fingerprint(mob/living/M as mob, ignoregloves = FALSE)
 	if (isnull(M)) return
-	if (isAI(M)) return
 	if (isnull(M.key)) return
 	if (ishuman(M))
 		//Add the list if it does not exist.

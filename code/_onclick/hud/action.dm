@@ -96,6 +96,7 @@
 	if (check_flags & AB_CHECK_INSIDE)
 		if (!(target in owner))
 			return FALSE
+	return TRUE
 
 /datum/action/proc/UpdateName()
 	return name

@@ -122,7 +122,7 @@ bullet_act
 					++graze_chance_multiplier
 				graze_chance_multiplier += (1 * getStatCoeff("survival"))
 
-				if (lastMovedRecently())
+				if (lastMovedRecently(accuracy_check = TRUE))
 					if (prob(graze_chance_multiplier * max(distcheck - 7, 0)))
 						visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
 						adjustBruteLoss(pick(14,15))
@@ -160,7 +160,7 @@ bullet_act
 					if (slammed_into.density)
 						spawn (1)
 							visible_message("<span class = 'danger'>[src] flies back from the force of the blast and slams into \the [slammed_into]!</span>")
-						Weaken(rand(4,5))
+						Weaken(3)
 						adjustBruteLoss(rand(20,30))
 						if (client)
 							shake_camera(src, rand(2,3), rand(2,3))
@@ -175,7 +175,7 @@ bullet_act
 
 		// get weakened too
 		if (prob(P.KD_chance))
-			Weaken(rand(3,4))
+			Weaken(2)
 			stats["stamina"][1] = max(stats["stamina"][1] - 50, 0)
 			if (client)
 				shake_camera(src, rand(2,3), rand(2,3))
@@ -382,7 +382,7 @@ bullet_act
 					visible_message("<span class='danger'>[src] has been knocked down!</span>")
 					apply_effect(6, WEAKEN, blocked)
 	var/obj/item/organ/external/head/O = locate(/obj/item/organ/external/head) in organs
-	if (prob(I.force * (hit_zone == "mouth" ? 5 : FALSE)) && O) //Will the teeth fly out?
+	if (prob(I.force * (hit_zone == "mouth" ? 5 : 0)) && O) //Will the teeth fly out?
 		if (O.knock_out_teeth(get_dir(user, src), round(rand(28, 38) * ((I.force*1.5)/100))))
 			visible_message("<span class='danger'>Some of [src]'s teeth sail off in an arc!</span>", \
 								"<span class='userdanger'>Some of [src]'s teeth sail off in an arc!</span>")
@@ -472,7 +472,7 @@ bullet_act
 		if (istype(AM, /obj/item))
 			var/obj/item/I = AM
 			if (I.throwforce >= 15 && prob(I.throwforce * 5))
-				Weaken(ceil(I.throwforce/5))
+				Weaken(ceil(I.throwforce/6))
 
 		O.throwing = FALSE		//it hit, so stop moving
 

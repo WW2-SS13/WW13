@@ -44,6 +44,14 @@
 /obj/map_metadata/pillar/announce_mission_start(var/preparation_time)
 	world << "<font size=4>The <b>Waffen SS</b> may attack after 7 minutes. The <b>Pillar Men</b> and <b>Vampires</b> may not attack until after 15 minutes.</font>"
 
+	// for every 15 clients, increase the amount of shotgunammo by the original amount
+	for (var/obj/item/weapon/storage/box/shotgunammo/S in world)
+		if (S.z == 1)
+			var/factor = round(clients.len/15)
+			if (factor)
+				for (var/v in 1 to factor)
+					new S.type (get_turf(S))
+
 /obj/map_metadata/pillar/job_enabled_specialcheck(var/datum/job/J)
 	. = TRUE
 	if (istype(J, /datum/job/german))
@@ -73,5 +81,8 @@
 /obj/map_metadata/pillar/long_win_time(faction)
 	return 300
 
+// avoid checking this too often, alive_n_of_side is expensive-ish
 /obj/map_metadata/pillar/win_condition_specialcheck()
-	return (!alive_n_of_side(PILLARMEN) || !alive_n_of_side(GERMAN))
+	if (processes.ticker.ticks % 5 == 0)
+		return (!alive_n_of_side(PILLARMEN) || !alive_n_of_side(GERMAN))
+	return FALSE

@@ -142,7 +142,7 @@ var/list/VVckey_edit = list("key", "ckey")
 	if (!istype(L,/list)) src << "Not a List."
 
 	if (L.len > 1000)
-		var/confirm = alert(src, "The list you're trying to edit is very long; continuing may crash the server.", "Warning", "Abort", list("Continue", "Abort"))
+		var/confirm = WWinput(src, "The list you're trying to edit is very long; continuing may crash the server.", "Warning", "Abort", list("Continue", "Abort"))
 		if (confirm != "Continue")
 			return
 

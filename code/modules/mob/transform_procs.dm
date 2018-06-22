@@ -157,18 +157,6 @@
 //Bad mobs! - Remember to add a comment explaining what's wrong with the mob
 	if (!MP)
 		return FALSE	//Sanity, this should never happen.
-/*
-	if (ispath(MP, /mob/living/simple_animal/space_worm))
-		return FALSE //Unfinished. Very buggy, they seem to just spawn additional space worms everywhere and eating your own tail results in new worms spawning.
-*/
-	if (ispath(MP, /mob/living/simple_animal/construct/armoured))
-		return FALSE //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
-
-	if (ispath(MP, /mob/living/simple_animal/construct/wraith))
-		return FALSE //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
-
-	if (ispath(MP, /mob/living/simple_animal/construct/builder))
-		return FALSE //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
 
 //Good mobs!
 	if (ispath(MP, /mob/living/simple_animal/cat))
@@ -178,8 +166,6 @@
 	if (ispath(MP, /mob/living/simple_animal/crab))
 		return TRUE
 	if (ispath(MP, /mob/living/simple_animal/hostile/carp))
-		return TRUE
-	if (ispath(MP, /mob/living/simple_animal/shade))
 		return TRUE
 	if (ispath(MP, /mob/living/simple_animal/tomato))
 		return TRUE

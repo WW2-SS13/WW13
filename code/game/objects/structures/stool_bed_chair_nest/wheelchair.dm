@@ -27,6 +27,10 @@
 	..()
 
 /obj/structure/bed/chair/wheelchair/relaymove(mob/user, direction)
+
+	if (!..(user, direction))
+		return
+
 	// Redundant check?
 	if (user.stat || user.stunned || user.weakened || user.paralysis || user.lying || user.restrained())
 		if (user==pulling)

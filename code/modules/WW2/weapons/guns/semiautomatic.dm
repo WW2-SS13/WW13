@@ -1,4 +1,5 @@
 /obj/item/weapon/gun/projectile/semiautomatic
+
 	// pistol accuracy, rifle skill & decent KD chance
 	accuracy_list = list(
 

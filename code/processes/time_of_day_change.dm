@@ -28,14 +28,14 @@
 
 	var/turfs_len = my_turfs.len // this makes things faster and it works because single-threadedness
 
-	#define DIVISOR 100 // less lag
+	#define DIVISOR 50 // less lag, approx 200 seconds on forest though
 
 	for (var/v in 1 to turfs_len)
 		spawn (ceil(v/DIVISOR)) // 100,000 turfs = 50 seconds (when DIVISOR = 200)
 			var/turf/T = my_turfs[v]
 			if (!T)
 				continue
-			if (T.z <= max_lighting_z)
+			if (T.z <= max_lighting_z())
 				var/area/a = get_area(T)
 
 				var/areacheck = TRUE

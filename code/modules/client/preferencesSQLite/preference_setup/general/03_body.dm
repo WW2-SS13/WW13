@@ -3,51 +3,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 /datum/category_item/player_setup_item/general/body
 	name = "Body"
 	sort_order = 3
-/*
-/datum/category_item/player_setup_item/general/body/load_character()
-	S["species"]			>> pref.species
-	S["hair_red"]			>> pref.r_hair
-	S["hair_green"]			>> pref.g_hair
-	S["hair_blue"]			>> pref.b_hair
-	S["facial_red"]			>> pref.r_facial
-	S["facial_green"]		>> pref.g_facial
-	S["facial_blue"]		>> pref.b_facial
-	S["skin_tone"]			>> pref.s_tone
-	S["skin_red"]			>> pref.r_skin
-	S["skin_green"]			>> pref.g_skin
-	S["skin_blue"]			>> pref.b_skin
-	S["hair_style_name"]	>> pref.h_style
-	S["facial_style_name"]	>> pref.f_style
-	S["eyes_red"]			>> pref.r_eyes
-	S["eyes_green"]			>> pref.g_eyes
-	S["eyes_blue"]			>> pref.b_eyes
-	S["b_type"]				>> pref.b_type
-	S["disabilities"]		>> pref.disabilities
-	S["organ_data"]			>> pref.organ_data
-	S["rlimb_data"]			>> pref.rlimb_data
 
-/datum/category_item/player_setup_item/general/body/save_character()
-	S["species"]			<< pref.species
-	S["hair_red"]			<< pref.r_hair
-	S["hair_green"]			<< pref.g_hair
-	S["hair_blue"]			<< pref.b_hair
-	S["facial_red"]			<< pref.r_facial
-	S["facial_green"]		<< pref.g_facial
-	S["facial_blue"]		<< pref.b_facial
-	S["skin_tone"]			<< pref.s_tone
-	S["skin_red"]			<< pref.r_skin
-	S["skin_green"]			<< pref.g_skin
-	S["skin_blue"]			<< pref.b_skin
-	S["hair_style_name"]	<< pref.h_style
-	S["facial_style_name"]	<< pref.f_style
-	S["eyes_red"]			<< pref.r_eyes
-	S["eyes_green"]			<< pref.g_eyes
-	S["eyes_blue"]			<< pref.b_eyes
-	S["b_type"]				<< pref.b_type
-	S["disabilities"]		<< pref.disabilities
-	S["organ_data"]			<< pref.organ_data
-	S["rlimb_data"]			<< pref.rlimb_data
-*/
 /datum/category_item/player_setup_item/general/body/sanitize_character()
 	if (!pref.species || !(pref.species in playable_species))
 		pref.species = "Human"
@@ -328,24 +284,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				if (second_limb)
 					pref.organ_data[second_limb] = "amputated"
 					pref.rlimb_data[second_limb] = null
-/*
-			if ("Prosthesis")
-				var/list/usable_manufacturers = list()
-				for (var/company in chargen_robolimbs)
-					var/datum/robolimb/M = chargen_robolimbs[company]
-					usable_manufacturers[company] = M
-				if (!usable_manufacturers.len)
-					return
-				var/choice = input(user, "Which manufacturer do you wish to use for this limb?") as null|anything in usable_manufacturers
-				if (!choice)
-					return
-				pref.rlimb_data[limb] = choice
-				pref.organ_data[limb] = "cyborg"
-				if (second_limb)
-					pref.rlimb_data[second_limb] = choice
-					pref.organ_data[second_limb] = "cyborg"
-				if (third_limb && pref.organ_data[third_limb] == "amputated")
-					pref.organ_data[third_limb] = null*/
+
 		return TOPIC_REFRESH
 
 	else if (href_list["organs"])
@@ -365,10 +304,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		switch(new_state)
 			if ("Normal")
 				pref.organ_data[organ] = null
-	/*		if ("Assisted")
-				pref.organ_data[organ] = "assisted"
-			if ("Mechanical")
-				pref.organ_data[organ] = "mechanical"*/
 		return TOPIC_REFRESH
 
 	else if (href_list["disabilities"])

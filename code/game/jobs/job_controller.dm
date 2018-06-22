@@ -91,6 +91,14 @@ var/global/datum/controller/occupations/job_master
 				if (!map.available_subfactions.Find(SCHUTZSTAFFEL))
 					J.total_positions = 0
 					continue
+			if (J.is_SS_TV)
+				if (!map.available_subfactions.Find(SS_TV))
+					J.total_positions = 0
+					continue
+			if (J.is_prisoner)
+				if (!map.available_subfactions.Find(SOVIET_PRISONER))
+					J.total_positions = 0
+					continue
 			else if (J.base_type_flag() == ITALIAN)
 				if (!map.available_subfactions.Find(ITALIAN))
 					J.total_positions = 0
@@ -261,14 +269,10 @@ var/global/datum/controller/occupations/job_master
 
 	var/list/turfs = latejoin_turfs[spawn_location]
 
-	if (turfs && turfs.len > 0)
-		H.loc = pick(turfs)
-
-		if (!locate(H.loc) in turfs)
-			var/tries = 0
-			while (tries <= 5 && !locate(H.loc) in turfs)
-				++tries
-				H.loc = pick(turfs)
+	for (var/spawnpoint in turfs)
+		if (!locate(/mob) in spawnpoint && !locate(/obj/structure) in spawnpoint)
+			H.loc = spawnpoint
+			break
 
 	// make sure we have the right ambience for our new location
 	spawn (1)
@@ -380,7 +384,7 @@ var/global/datum/controller/occupations/job_master
 		#define SAFE_SPAWN_TIME 4
 		// Add loadout items. spawn(SAFE_SPAWN_TIME) so it happens after our pockets are filled with default job items
 		spawn (SAFE_SPAWN_TIME)
-			if (!findtext("[H.original_job.type]", "doctor"))
+			if (map.custom_loadout && !findtext("[H.original_job.type]", "doctor"))
 				if (!list(CIVILIAN).Find(H.original_job.base_type_flag()))
 					for (var/v in 1 to 2)
 						var/slot = (v == 1 ? slot_l_store : slot_r_store)

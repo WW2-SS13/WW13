@@ -42,7 +42,7 @@
 
 /obj/structure/bookcase/attack_hand(var/mob/user as mob)
 	if (contents.len)
-		var/obj/item/weapon/book/choice = input("Which book would you like to remove from the shelf?") as null|obj in contents
+		var/obj/item/weapon/book/choice = WWinput(user, "Which book would you like to remove from the shelf?", "Bookcase", WWinput_first_choice(contents), WWinput_list_or_null(contents))
 		if (choice)
 			if (!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 				return
@@ -100,12 +100,3 @@
 		new /obj/item/weapon/book/manual/engineering_construction(src)
 		new /obj/item/weapon/book/manual/engineering_guide(src)
 		update_icon()
-/*
-/obj/structure/bookcase/manuals/research_and_development
-	name = "R&D Manuals bookcase"
-
-	New()
-		..()
-		new /obj/item/weapon/book/manual/research_and_development(src)
-		update_icon()
-*/

@@ -45,7 +45,7 @@
 	if (F)
 		var/_ckey
 		if (check_rights(R_SERVER,0))	//high ranking admins can delete other admin's memos
-			_ckey = input(src,"Whose memo shall we remove?","Remove Memo",null) as null|anything in F.dir
+			_ckey = WWinput(src, "Whose memo shall we remove?", "Remove Memo", WWinput_first_choice(F.dir), WWinput_list_or_null(F.dir))
 		else
 			_ckey = ckey
 		if (_ckey)

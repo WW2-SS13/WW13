@@ -119,7 +119,7 @@
 	S.maptext = "Snap"
 	S.maptext_width = 64
 
-	var/screen_l = input(usr,"Where on the screen? (Formatted as 'X,Y' e.g: '1,1' for bottom left)","Spawn Snap UI Object") as text
+	var/screen_l = WWinput(src, "Where on the screen? (Formatted as 'X,Y' e.g: '1,1' for bottom left)", "Spawn Snap UI Object", "1,1", "text")
 	if (!screen_l)
 		return
 

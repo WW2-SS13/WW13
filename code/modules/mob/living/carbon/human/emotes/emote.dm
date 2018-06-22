@@ -577,7 +577,6 @@ var/list/vocal_emotes = list(
 							message = "holds out [g.his] hand to [M]."
 
 			if ("scream")
-	//			log_debug(lastMovedRecently())
 				if (miming)
 					message = "acts out a scream!"
 					m_type = 1

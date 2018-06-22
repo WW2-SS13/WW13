@@ -258,8 +258,6 @@
 	..()
 	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
 		return
-	if (isrobot(user))
-		return
 	if (!user.drop_item())
 		return
 	if (O.loc != loc)

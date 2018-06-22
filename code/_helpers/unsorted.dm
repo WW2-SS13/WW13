@@ -402,16 +402,13 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 /proc/get_sorted_mobs()
 	var/list/old_list = getmobs()
-	var/list/AI_list = list()
 	var/list/Dead_list = list()
 	var/list/keyclient_list = list()
 	var/list/key_list = list()
 	var/list/logged_list = list()
 	for (var/named in old_list)
 		var/mob/M = old_list[named]
-		if (issilicon(M))
-			AI_list |= M
-		else if (isghost(M) || M.stat == DEAD)
+		if (isghost(M) || M.stat == DEAD)
 			Dead_list |= M
 		else if (M.key && M.client)
 			keyclient_list |= M
@@ -421,7 +418,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			logged_list |= M
 		old_list.Remove(named)
 	var/list/new_list = list()
-	new_list += AI_list
 	new_list += keyclient_list
 	new_list += key_list
 	new_list += logged_list

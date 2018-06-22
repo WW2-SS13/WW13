@@ -10,8 +10,7 @@ var/GRACE_PERIOD_LENGTH = 7
 	if (locate_type(landmarks_list, /obj/effect/landmark/train/german_train_start) || train_checked)
 		train_checked = TRUE
 		return TRUE
-	else
-		return FALSE
+	return FALSE
 
 /hook/roundstart/proc/game_start()
 
@@ -74,9 +73,6 @@ var/GRACE_PERIOD_LENGTH = 7
 
 		if (prob(nature_chance))
 			G.plant()
-
-	if (!WW2_train_check())
-		callHook("train_move")
 
 	return TRUE
 
@@ -193,6 +189,12 @@ var/GRACE_PERIOD_LENGTH = 7
 		spawn (600)
 			show_global_battle_report(null)
 	return TRUE
+
+// calls the train_move hook on maps without a train, which does map.announce_mission_start() among other things
+/hook/roundstart/proc/automatic_train_move_hook()
+	spawn (20)
+		if (!WW2_train_check())
+			callHook("train_move")
 
 var/mission_announced = FALSE
 var/mapcheck_train_arrived = FALSE

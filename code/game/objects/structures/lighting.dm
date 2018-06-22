@@ -195,6 +195,11 @@
 	density = TRUE
 	layer = MOB_LAYER + 0.5
 
+/obj/structure/light/floor/streetlight/New()
+	..()
+	if (prob(40) && (!map || !istype(map, /obj/map_metadata/camp)))
+		broken(TRUE)
+
 /obj/structure/light/floor/streetlight/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if (istype(mover, /obj/effect/effect/smoke))
 		return TRUE
@@ -611,6 +616,7 @@
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(3, TRUE, src)
 			s.start()
+
 	status = LIGHT_BROKEN
 	update()
 

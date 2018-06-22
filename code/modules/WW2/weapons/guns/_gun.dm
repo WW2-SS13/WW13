@@ -182,32 +182,32 @@
 	return .
 
 /obj/item/weapon/gun/projectile/proc/get_base_miss_chance(var/accuracy_sublist, var/mob/target)
-	var/moving_target = target.lastMovedRecently(target.get_run_delay())
+	var/moving_target = target.lastMovedRecently(target.get_run_delay(), TRUE)
 	var/abs_x = abs(firer.x - target.x)
 	var/abs_y = abs(firer.y - target.y)
 	var/pythag = round((abs_x + abs_y)/2)
 	var/distance = max(abs_x, abs_y, pythag)
-	// note: the screen is 15 tiles wide by default, so a person more than 7 tiles away from you x/y won't be on screen
+	// note: the screen is 15 tiles wide by default, so a person more than 7 tiles (ZOOM_CONSTANT) away from you x/y won't be on screen
 	// . = miss chance
 	switch (distance)
 		if (0 to 1)
 			. = 0
-		if (2 to 3)
+		if (2 to 4)
 			if (!moving_target)
 				. =  (100 - accuracy_sublist[SHORT_RANGE_STILL])
 			else
 				. =  (100 - accuracy_sublist[SHORT_RANGE_MOVING])
-		if (4 to 5)
+		if (4 to ZOOM_CONSTANT)
 			if (!moving_target)
 				. =  (100 - accuracy_sublist[MEDIUM_RANGE_STILL])
 			else
 				. =  (100 - accuracy_sublist[MEDIUM_RANGE_MOVING])
-		if (6 to 7)
+		if (ZOOM_CONSTANT to ZOOM_CONSTANT*2)
 			if (!moving_target)
 				. =  (100 - accuracy_sublist[LONG_RANGE_STILL])
 			else
 				. =  (100 - accuracy_sublist[LONG_RANGE_MOVING])
-		if (7 to INFINITY)
+		if (ZOOM_CONSTANT*2 to INFINITY)
 			if (!moving_target)
 				. =  (100 - accuracy_sublist[VERY_LONG_RANGE_STILL])
 			else
@@ -229,7 +229,7 @@
 					zone = nzone
 		return zone
 	// We didn't hit, and the target is running. Give us a chance to hit something in adjacent_redirections[zone]
-	else if (target.lastMovedRecently(target.get_run_delay()))
+	else if (target.lastMovedRecently(target.get_run_delay(), TRUE))
 
 		var/hitchance_still = round((accuracy_list["small"][SHORT_RANGE_STILL]/accuracy_list["small"][SHORT_RANGE_MOVING]) * hit_chance)
 		var/hitchance_delta = hitchance_still - hit_chance

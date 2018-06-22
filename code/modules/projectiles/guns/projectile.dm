@@ -67,11 +67,26 @@
 		sleep(3)
 		if (user && loc) playsound(loc, cocked_sound, 75, TRUE)
 
-/obj/item/weapon/gun/projectile/consume_next_projectile()
+
+/obj/item/weapon/gun/projectile/proc/has_next_projectile()
+
+	// get the next casing
+	if (loaded.len)
+		return TRUE
+
+	// get the ammo mag's next casing
+	else if (ammo_magazine && ammo_magazine.stored_ammo.len)
+		return TRUE
+
+	return FALSE
+
+
+/obj/item/weapon/gun/projectile/consume_next_projectile(var/check = FALSE)
 	if (executing)
 		if (gun_type == GUN_TYPE_SHOTGUN)
 			return new /obj/item/projectile/bullet/shotgun/murder
 		return new /obj/item/projectile/bullet/rifle/murder
+
 	//get the next casing
 	if (loaded.len)
 		chambered = loaded[1] //load next casing.
@@ -124,7 +139,7 @@
 		if (EJECT_CASINGS) //eject casing onto ground.
 			#ifndef DISABLE_CASINGS
 			var/area/src_area = get_area(src)
-			if (!istype(src_area, /area/prishtina/soviet/lift) && !istype(src_area, /area/prishtina/german/lift))
+			if (!src_area.lift_master())
 				chambered.loc = get_turf(src)
 			#endif
 			playsound(loc, casing_sound, 50, TRUE)

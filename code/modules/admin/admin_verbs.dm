@@ -25,13 +25,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/enable_disable_server_whitelist,
 	/client/proc/player_panel_new,		//shows an interface for all players, with links to various panels,
 	/client/proc/invisimin,				//allows our mob to go invisible/visible,
-//	/datum/admins/proc/show_traitor_panel,	//interface which shows a mob's mind, -Removed due to rare practical use. Moved to debug verbs ~Errorage,
-//	/datum/admins/proc/show_game_mode,  //Configuration window for the current game mode.,
-//	/datum/admins/proc/force_mode_latespawn, //Force the mode to try a latespawn proc,
-//	/datum/admins/proc/force_antag_latespawn, //Force a specific template to try a latespawn proc,
 	/datum/admins/proc/toggleenter,		//toggles whether people can join the current game,
 	/datum/admins/proc/toggleguests,	//toggles whether guests can join the current game,
-//	/client/proc/colorooc,				//allows us to set a custom colour for everythign we say in ooc,
 	/client/proc/admin_ghost,			//allows us to ghost/reenter body at will,
 	/client/proc/toggle_view_range,		//changes how far we can see,
 	/datum/admins/proc/view_txt_log,	//shows the server log (diary) for today,
@@ -43,11 +38,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_check_contents,	//displays the contents of an instance,
 	/client/proc/Getmob,				//teleports a mob to our location,
 	/client/proc/Getkey,				//teleports a mob with a certain ckey to our location,
-//	/client/proc/sendmob,				//sends a mob somewhere, -Removed due to it needing two sorting procs to work, which were executed every time an admin right-clicked. ~Errorage,
-	//allows us to cancel the emergency shuttle, sending it back to centcomm,
 	/client/proc/cmd_admin_direct_narrate,	//send text directly to a player with no padding. Useful for narratives and fluff-text,
 	/client/proc/cmd_admin_world_narrate,	//sends text to all players with no padding,
-//	/client/proc/check_antagonists,
 	/client/proc/admin_memo,			//admin memo system. show/delete/write. +SERVER needed to delete admin memos of others,
 	/client/proc/player_memo,
 	/client/proc/dsay,					//talk in deadchat using our ckey/fakekey,
@@ -65,11 +57,9 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_change_custom_event,
 	///client/proc/check_customitem_activity,
 	/client/proc/allow_character_respawn,    // Allows a ghost to respawn ,
-//	/client/proc/aooc,
 
 	/client/proc/change_human_appearance_admin,	// Allows an admin to change the basic appearance of human-based mobs ,
 	/client/proc/change_human_appearance_self,	// Allows the human-based mob itself change its basic appearance ,
-//	/client/proc/change_security_level,
 	/client/proc/view_chemical_reaction_logs,
 	/client/proc/allow_join_ruforce,
 	/client/proc/allow_join_geforce,
@@ -77,7 +67,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/see_battle_report,
 	/client/proc/end_all_grace_periods,
 	/client/proc/reset_all_grace_periods,
-//	/client/proc/generate_hit_table, // REALLY FUCKING LAGGY WARNING
 	/datum/admins/proc/paralyze_mob,
 	/client/proc/removeEmptyCases,
 	/client/proc/removeHalfEmptyCases,
@@ -90,8 +79,6 @@ var/list/admin_verbs_admin = list(
 var/list/admin_verbs_ban = list(
 	/client/proc/quickBan_search,
 	/client/proc/quickBan_person
-//	/client/proc/ban_panel,
-//	/client/proc/jobbans
 	)
 
 var/list/admin_verbs_sounds = list(
@@ -105,23 +92,14 @@ var/list/admin_verbs_fun = list(
 	/client/proc/cmd_admin_gib_self,
 	/client/proc/cmd_admin_crush_self,
 	/client/proc/drop_bomb,
-//	/client/proc/everyone_random,
-//	/client/proc/cinematic,
-//	/datum/admins/proc/toggle_aliens,
 	/client/proc/make_sound,
-//	/client/proc/toggle_random_events,
 	/client/proc/editappear,
-//	/client/proc/roll_dices,
 	/client/proc/randomize_lobby_music,
-//	/datum/admins/proc/call_supply_drop,
-//	/datum/admins/proc/call_drop_pod
 	/client/proc/show_custom_roundstart_tip,
 	/client/proc/reset_custom_roundstart_tip
 	)
 
 var/list/admin_verbs_spawn = list(
-//	/datum/admins/proc/spawn_custom_item,
-//	/datum/admins/proc/check_custom_items,
 	/datum/admins/proc/spawn_atom,		// allows us to spawn instances,
 	/datum/admins/proc/spawn_player_as_job,
 	/client/proc/respawn_character
@@ -134,40 +112,27 @@ var/list/admin_verbs_server = list(
 	/datum/admins/proc/restart,
 	/datum/admins/proc/jojorestart,
 	/datum/admins/proc/delay,
-//	/datum/admins/proc/toggleaban,
 	/client/proc/trigger_roundend,
 	/client/proc/toggle_round_ending,
 	/client/proc/toggle_log_hrefs,
 	/datum/admins/proc/immreboot,
-//	/client/proc/everyone_random,
-//	/datum/admins/proc/toggleAI,
 	/client/proc/cmd_admin_delete,		// delete an instance/object/mob/etc,
 	/client/proc/cmd_debug_del_all,
 	/datum/admins/proc/adrev,
 	/datum/admins/proc/adspawn,
 	/datum/admins/proc/adjump,
-//	/client/proc/toggle_random_events,
 //	/client/proc/check_customitem_activity,
 	/client/proc/nanomapgen_DumpImage
 	)
 var/list/admin_verbs_debug = list(
 	/client/proc/cmd_admin_list_open_jobs,
 	/client/proc/Debug2,
-//	/client/proc/cmd_debug_make_powernets,
 	/client/proc/debug_controller,
-//	/client/proc/debug_antagonist_template,
 	/client/proc/cmd_debug_mob_lists,
 	/client/proc/cmd_admin_delete,
 	/client/proc/cmd_debug_del_all,
-//	/client/proc/cmd_debug_tog_aliens,
 	/client/proc/reload_admins,
-	///client/proc/reload_mentors,
 	/client/proc/restart_controller,
-//	/client/proc/print_random_map,
-//	/client/proc/create_random_map,
-//	/client/proc/apply_random_map,
-//	/client/proc/overlay_random_map,
-//	/client/proc/delete_random_map,
 	/client/proc/enable_debug_verbs,
 	/client/proc/callproc,
 	/client/proc/callproc_target,
@@ -205,7 +170,6 @@ var/list/admin_verbs_rejuv = list(
 var/list/admin_verbs_hideable = list(
 	/client/proc/deadmin_self,
 //	/client/proc/deadchat,
-//	/datum/admins/proc/show_traitor_panel,
 	/datum/admins/proc/toggleenter,
 	/datum/admins/proc/toggleguests,
 	/datum/admins/proc/announce,
@@ -227,10 +191,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/cmd_admin_gib_self,
 	/client/proc/cmd_admin_crush_self,
 	/client/proc/drop_bomb,
-//	/client/proc/cinematic,
-//	/datum/admins/proc/toggle_aliens,
 	/client/proc/make_sound,
-//	/client/proc/toggle_random_events,
 	/client/proc/ToRban,
 	/datum/admins/proc/startnow,
 	/datum/admins/proc/restart,
@@ -238,7 +199,6 @@ var/list/admin_verbs_hideable = list(
 	/datum/admins/proc/toggleaban,
 	/client/proc/toggle_log_hrefs,
 	/datum/admins/proc/immreboot,
-//	/client/proc/everyone_random,
 	/datum/admins/proc/toggleAI,
 	/datum/admins/proc/adrev,
 	/datum/admins/proc/adspawn,
@@ -249,12 +209,9 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/callproc_target,
 	/client/proc/Debug2,
 	/client/proc/reload_admins,
-//	/client/proc/cmd_debug_make_powernets,
 	/client/proc/debug_controller,
 	/client/proc/cmd_debug_mob_lists,
 	/client/proc/cmd_debug_del_all,
-//	/client/proc/cmd_debug_tog_aliens,
-//	/client/proc/air_report,
 	/client/proc/enable_debug_verbs,
 //	/client/proc/roll_dices,
 	/proc/possess,
@@ -279,8 +236,6 @@ var/list/admin_verbs_mod = list(
 	/client/proc/dsay,
 	/datum/admins/proc/announce,		//priority announce something to all clients.,
 	/datum/admins/proc/show_player_panel,
-//	/client/proc/check_antagonists,
-//	/client/proc/jobbans,
 	/client/proc/cmd_admin_subtle_message, // send an message to somebody as a 'voice in their head',
 	/datum/admins/proc/paralyze_mob,
 	/client/proc/admin_memo,			//admin memo system. show/delete/write. +SERVER needed to delete admin memos of others,
@@ -506,35 +461,7 @@ var/list/admin_verbs_host = list(
 		holder.player_panel_new()
 
 	return
-/*
-/client/proc/check_antagonists()
-	set name = "Check Antagonists"
-	set category = "Admin"
-	if (holder)
-		holder.check_antagonists()
-		log_admin("[key_name(usr)] checked antagonists.")	//for tsar~
 
-	return
-/**/
-/client/proc/jobbans()
-	set name = "Display Job bans"
-	set category = "Admin"
-	if (holder)/*
-		if (config.ban_legacy_system)
-			holder.Jobbans()
-		else*/
-		holder.DB_ban_panel()
-
-	return*/
-/*
-/client/proc/ban_panel()
-	set name = "Ban Panel"
-	set category = "Admin"
-	if (holder)
-		holder.DB_ban_panel()
-
-	return
-*/
 /client/proc/game_panel()
 	set name = "Game Panel"
 	set category = "Admin"
@@ -557,7 +484,7 @@ var/list/admin_verbs_host = list(
 	if (!holder)	return
 	var/response = WWinput(src, "Please choose a distinct color that is easy to read and doesn't mix with all the other chat and radio frequency colors.", "Change own OOC color", "Pick new color", list("Pick new color", "Reset to default", "Cancel"))
 	if (response == "Pick new color")
-		prefs.ooccolor = input(src, "Please select your OOC colour.", "OOC colour") as color
+		prefs.ooccolor = WWinput(src, "Please select your OOC colour.", "OOC colour", null, "color")
 	else if (response == "Reset to default")
 		prefs.ooccolor = initial(prefs.ooccolor)
 	prefs.save_preferences()
@@ -596,7 +523,7 @@ var/list/admin_verbs_host = list(
 
 	var/turf/epicenter = mob.loc
 	var/list/choices = list("Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb")
-	var/choice = input("What size explosion would you like to produce?") in choices
+	var/choice = WWinput(src, "What size explosion would you like to produce?", "Drop Bomb", choices[1], choices)
 	switch(choice)
 		if (null)
 			return FALSE
@@ -607,50 +534,17 @@ var/list/admin_verbs_host = list(
 		if ("Big Bomb")
 			explosion(epicenter, 3, 5, 7, 5)
 		if ("Custom Bomb")
-			var/devastation_range = input("Devastation range (in tiles):") as num
-			var/heavy_impact_range = input("Heavy impact range (in tiles):") as num
-			var/light_impact_range = input("Light impact range (in tiles):") as num
-			var/flash_range = input("Flash range (in tiles):") as num
+			var/devastation_range = WWinput(src, "Devastation range (in tiles):", "Drop Bomb", 1, "num")
+			var/heavy_impact_range = WWinput(src, "Heavy impact range (in tiles):", "Drop Bomb", 1, "num")
+			var/light_impact_range = WWinput(src, "Light impact range (in tiles):", "Drop Bomb", 1, "num")
+			var/flash_range = WWinput(src, "Flash range (in tiles):", "Drop Bomb", 1, "num")
 			if (max(devastation_range, heavy_impact_range, light_impact_range, flash_range) >= 10)
 				if (!check_rights(R_PERMISSIONS, 0))
 					src << "<span class = 'danger'>You need Manager+ permissions to drop a custom bomb this big.</span>"
 					return
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 	message_admins("[key] creating an admin explosion at [epicenter.loc].")
-/*
 
-/client/proc/give_disease2(mob/T as mob in mob_list) // -- Giacom
-	set category = "Fun"
-	set name = "Give Disease"
-	set desc = "Gives a Disease to a mob."
-	return */
-/*
-	var/datum/disease2/disease/D = new /datum/disease2/disease()
-
-	var/severity = TRUE
-	var/greater = input("Is this a lesser, greater, or badmin disease?", "Give Disease") in list("Lesser", "Greater", "Badmin")
-	switch(greater)
-		if ("Lesser") severity = TRUE
-		if ("Greater") severity = 2
-		if ("Badmin") severity = 99
-
-	D.makerandom(severity)
-	D.infectionchance = input("How virulent is this disease? (1-100)", "Give Disease", D.infectionchance) as num
-
-	if (istype(T,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = T
-		if (H.species)
-			D.affected_species = list(H.species.get_bodytype())
-			if (H.species.primitive_form)
-				D.affected_species |= H.species.primitive_form
-			if (H.species.greater_form)
-				D.affected_species |= H.species.greater_form
-	infect_virus2(T,D,1)
-
-
-	log_admin("[key_name(usr)] gave [key_name(T)] a [greater] disease2 with infection chance [D.infectionchance].")
-	message_admins("\blue [key_name_admin(usr)] gave [key_name(T)] a [greater] disease2 with infection chance [D.infectionchance].", TRUE)
-*/
 /client/proc/make_sound(var/obj/O in range(world.view)) // -- TLE
 	set category = "Special"
 	set name = "Make Sound"
@@ -665,14 +559,6 @@ var/list/admin_verbs_host = list(
 		message_admins("<span class = 'notice'>[key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound.</span>", TRUE)
 
 
-/*
-/client/proc/togglebuildmodeself()
-	set name = "Toggle Build Mode Self"
-	set category = "Special"
-	if (mob)
-		togglebuildmode(mob)
-*/
-
 /client/proc/object_talk(var/msg as text) // -- TLE
 	set category = "Special"
 	set name = "oSay"
@@ -682,22 +568,7 @@ var/list/admin_verbs_host = list(
 			return
 		for (var/mob/V in hearers(mob.control_object))
 			V.show_message("<b>[mob.control_object.name]</b> says: \"" + msg + "\"", 2)
-/*
 
-/client/proc/kill_air() // -- TLE
-	set category = "Debug"
-	set name = "Kill Air"
-	set desc = "Toggle Air Processing"
-	if (air_processing_killed)
-		air_processing_killed = FALSE
-		usr << "<b>Enabled air processing.</b>"
-	else
-		air_processing_killed = TRUE
-		usr << "<b>Disabled air processing.</b>"
-
-	log_admin("[key_name(usr)] used 'kill air'.")
-	message_admins("\blue [key_name_admin(usr)] used 'kill air'.", TRUE)
-*/
 /client/proc/readmin_self()
 	set name = "Re-Admin self"
 	set category = "Admin"
@@ -800,7 +671,7 @@ var/list/admin_verbs_host = list(
 
 	if (!check_rights(R_FUN))	return
 
-	var/mob/living/carbon/human/M = WWinput(src, "Select a mob.", "Edit Appearance", WWinput_first_choice(human_mob_list), human_mob_list|list("Cancel"))
+	var/mob/living/carbon/human/M = WWinput(src, "Select a mob.", "Edit Appearance", WWinput_first_choice(human_mob_list), WWinput_list_or_null(human_mob_list))
 
 	if (!istype(M, /mob/living/carbon/human))
 		usr << "<span class = 'red'>You can only do this to humans!</span>"
@@ -835,12 +706,12 @@ var/list/admin_verbs_host = list(
 		M.s_tone =  -M.s_tone + 35
 
 	// hair
-	var/new_hstyle = WWinput(usr, "Please select a hair style.", "Grooming", WWinput_first_choice(hair_styles_list), hair_styles_list|list("Cancel"))
+	var/new_hstyle = WWinput(usr, "Please select a hair style.", "Grooming", WWinput_first_choice(hair_styles_list), WWinput_list_or_null(hair_styles_list))
 	if (new_hstyle)
 		M.h_style = new_hstyle
 
 	// facial hair
-	var/new_fstyle = WWinput(usr, "Please select a facial hair style.", "Grooming", WWinput_first_choice(facial_hair_styles_list), facial_hair_styles_list|list("Cancel"))
+	var/new_fstyle = WWinput(usr, "Please select a facial hair style.", "Grooming", WWinput_first_choice(facial_hair_styles_list), WWinput_list_or_null(facial_hair_styles_list))
 	if (new_fstyle)
 		M.f_style = new_fstyle
 

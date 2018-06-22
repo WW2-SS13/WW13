@@ -860,3 +860,317 @@ var/first_guard = FALSE
 
 /datum/job/soviet/chef/get_keys()
 	return list(new/obj/item/weapon/key/soviet)
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/job/soviet/squad_leader_pris
+	title = "Offizier Kriegsgefangener"
+	en_meaning = "Officer POW"
+	rank_abbreviation = "KGO"
+	head_position = FALSE
+	selection_color = "#770e0e"
+	spawn_location = "JoinLatePOW_off"
+	additional_languages = list( "German" = 100 )
+	is_officer = TRUE
+	SL_check_independent = TRUE
+	is_prisoner = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 4
+
+/datum/job/soviet/squad_leader_pris/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/officer(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/stack/money(H), slot_l_store)
+	H.equip_to_slot_or_del(new /obj/item/stack/money(H), slot_r_store)
+
+	H.add_note("Role", "You are a <b>[title]</b>. Your job is to lead the other prisioners and organize the escape or takeover of the prison camp.")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start attacking the guards without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave. Your objective is to escape and reach one of the corners of the map. Dig tunnels, destroy the fence, and do anything to escape, but be realistic.")
+	H.setStat("strength", STAT_LOW)
+	H.setStat("engineering", STAT_HIGH)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_MEDIUM_LOW)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/soviet/soldier_pris
+	title = "Soldat Kriegsgefangener"
+	en_meaning = "Soldier POW"
+	rank_abbreviation = "KG"
+	selection_color = "#770e0e"
+	spawn_location = "JoinLatePOW"
+	additional_languages = list( "German" = 33 )
+	allow_spies = TRUE
+	is_prisoner = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 2
+	max_positions = 60
+
+/datum/job/soviet/soldier_pris/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/stack/money(H), slot_r_store)
+	H.add_note("Role", "You are a <b>[title]</b>, a captured soviet soldier. Escape the camp, coordinating with the officers present!")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start attacking the guards without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave. Your objective is to escape and reach one of the corners of the map. Dig tunnels, destroy the fence, and do anything to escape, but be realistic.")
+	H.setStat("strength", STAT_LOW)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/job/soviet/chef_pris
+	title = "Kuechenchef Kriegsgefangener"
+	en_meaning = "Chef POW"
+	rank_abbreviation = "KGK"
+	selection_color = "#770e0e"
+	spawn_location = "JoinLatePOW_chef"
+	additional_languages = list( "German" = 33 )
+	allow_spies = TRUE
+	SL_check_independent = TRUE
+	is_prisoner = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 8
+
+/datum/job/soviet/chef_pris/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef/classic(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/weapon/material/kitchen/utensil/knife(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/stack/money(H), slot_r_store)
+	H.equip_to_slot_or_del(new /obj/item/clothing/accessory/armband/chef_pris(H), slot_l_hand)
+	H.add_note("Role", "You are a <b>[title]</b>, a captured soviet chef. Escape the camp, but first keep your comrades well fed!")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start attacking the guards without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave. Your objective is to escape and reach one of the corners of the map. Dig tunnels, destroy the fence, and do anything to escape, but be realistic.")
+	H.setStat("strength", STAT_LOW)
+	H.setStat("engineering", STAT_MEDIUM_LOW)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_LOW)
+	H.setStat("smg", STAT_MEDIUM_LOW)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_VERY_LOW)
+	H.setStat("medical", STAT_MEDIUM_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/soviet/medic_pris
+	title = "Sanitär Kriegsgefangener"
+	en_meaning = "Medic POW"
+	rank_abbreviation = "KGS"
+	selection_color = "#770e0e"
+	spawn_location = "JoinLatePOW_med"
+	additional_languages = list( "German" = 100 )
+	allow_spies = TRUE
+	SL_check_independent = TRUE
+	is_prisoner = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 8
+
+/datum/job/soviet/medic_pris/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
+	H.equip_to_slot_or_del(new /obj/item/clothing/mask/surgical(H), slot_wear_mask)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(H), slot_gloves)
+	H.equip_to_slot_or_del(new /obj/item/stack/money(H), slot_r_store)
+	H.equip_to_slot_or_del(new /obj/item/clothing/accessory/armband/med_pris(H), slot_l_hand)
+	H.add_note("Role", "You are a <b>[title]</b>, a captured soviet field medic. Escape the camp, but first keep your comrades healthy!")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start attacking the guards without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave. Your objective is to escape and reach one of the corners of the map. Dig tunnels, destroy the fence, and do anything to escape, but be realistic.")
+	H.setStat("strength", STAT_LOW)
+	H.setStat("engineering", STAT_LOW)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
+	H.setStat("medical", STAT_MEDIUM_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/soviet/janitor_pris
+	title = "Hausmeister Kriegsgefangener"
+	en_meaning = "Janitor POW"
+	rank_abbreviation = "KG"
+	selection_color = "#770e0e"
+	spawn_location = "JoinLatePOW_jan"
+	additional_languages = list( "German" = 33 )
+	allow_spies = TRUE
+	is_prisoner = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 2
+	max_positions = 60
+
+/datum/job/soviet/janitor_pris/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/stack/money(H), slot_r_store)
+	H.equip_to_slot_or_del(new /obj/item/clothing/accessory/armband/jan_pris(H), slot_l_hand)
+	H.add_note("Role", "You are a <b>[title]</b>, a captured soviet soldier. Your job is to keep the camp clean. Escape the camp, coordinating with the officers present!")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start attacking the guards without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave. Your objective is to escape and reach one of the corners of the map. Dig tunnels, destroy the fence, and do anything to escape, but be realistic.")
+	H.setStat("strength", STAT_LOW)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/soviet/miner_pris
+	title = "Soldat Bergarbeiter"
+	en_meaning = "Miner POW"
+	rank_abbreviation = "KG"
+	selection_color = "#770e0e"
+	spawn_location = "JoinLatePOW_min"
+	additional_languages = list( "German" = 33 )
+	allow_spies = TRUE
+	is_prisoner = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 2
+	max_positions = 60
+
+/datum/job/soviet/miner_pris/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/stack/money(H), slot_r_store)
+	H.equip_to_slot_or_del(new /obj/item/clothing/accessory/armband/min_pris(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/brown(H), slot_gloves)
+	H.add_note("Role", "You are a <b>[title]</b>, a captured soviet soldier. Your job is to work in the mines. Escape the camp, coordinating with the officers present!")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start attacking the guards without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave. Your objective is to escape and reach one of the corners of the map. Dig tunnels, destroy the fence, and do anything to escape, but be realistic.")
+	H.setStat("strength", STAT_MEDIUM_LOW)
+	H.setStat("engineering", STAT_HIGH)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/soviet/collaborator_pris
+	title = "Hilfswillinge"
+	en_meaning = "Collaborator POW"
+	rank_abbreviation = "KG"
+	selection_color = "#770e0e"
+	spawn_location = "JoinLatePOW_col"
+	additional_languages = list( "German" = 100 )
+	allow_spies = TRUE
+	is_prisoner = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 2
+	max_positions = 60
+
+/datum/job/soviet/collaborator_pris/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/accessory/armband/col_pris(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/stack/money(H), slot_r_store)
+	H.add_note("Role", "You are a <b>[title]</b>, a captured soviet soldier who is collaborating with the Germans. Help the guards keep the order in the camp, but be careful about your comrades!")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start attacking the guards without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave. Your objective is to escape and reach one of the corners of the map. Dig tunnels, destroy the fence, and do anything to escape, but be realistic.")
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////

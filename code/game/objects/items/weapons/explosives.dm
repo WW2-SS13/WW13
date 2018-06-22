@@ -34,7 +34,7 @@
 		..()
 
 /obj/item/weapon/plastique/attack_self(mob/user as mob)
-	var/newtime = input(usr, "Please set the timer.", "Timer", 5) as num
+	var/newtime = WWinput(usr, "Please set the timer.", "Timer", 5, "num")
 	if (user.get_active_hand() == src)
 		newtime = Clamp(newtime, 3, 60000)
 		timer = newtime

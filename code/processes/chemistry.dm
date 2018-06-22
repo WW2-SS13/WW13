@@ -10,7 +10,7 @@
 	chemical_reactions = chemical_reactions_list
 	chemical_reagents = chemical_reagents_list
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
-	priority = PROCESS_PRIORITY_MEDIUM
+	priority = PROCESS_PRIORITY_HIGH
 	processes.chemistry = src
 
 /process/chemistry/fire()

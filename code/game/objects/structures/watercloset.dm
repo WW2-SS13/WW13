@@ -87,7 +87,7 @@
 			else
 				user << "<span class='notice'>You need a tighter grip.</span>"
 
-	if (cistern && !istype(user,/mob/living/silicon/robot)) //STOP PUTTING YOUR MODULES IN THE TOILET.
+	if (cistern)
 		if (I.w_class > 3)
 			user << "<span class='notice'>\The [I] does not fit.</span>"
 			return
@@ -208,7 +208,7 @@
 //	if (I.type == /obj/item/analyzer)
 	//	user << "<span class='notice'>The water temperature seems to be [watertemp].</span>"
 	if (istype(I, /obj/item/weapon/wrench))
-		var/newtemp = input(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve") in temperature_settings
+		var/newtemp = WWinput(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve", WWinput_first_choice(temperature_settings), WWinput_list_or_null(temperature_settings))
 		user << "<span class='notice'>You begin to adjust the temperature valve with \the [I].</span>"
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, TRUE)
 		if (do_after(user, 50, src))
@@ -429,9 +429,6 @@
 		if (temp && !temp.is_usable())
 			user << "<span class='notice'>You try to move your [temp.name], but cannot!</span>"
 			return
-
-	if (isrobot(user) || isAI(user))
-		return
 
 	if (!Adjacent(user))
 		return

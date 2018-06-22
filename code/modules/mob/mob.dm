@@ -557,7 +557,6 @@
 	if (M != usr) return
 	if (usr == src) return
 	if (!Adjacent(usr)) return
-	if (istype(M,/mob/living/silicon/ai)) return
 	show_inv(usr)
 
 
@@ -940,12 +939,6 @@ mob/proc/yank_out_object()
 		if (ishuman(U))
 			var/mob/living/carbon/human/human_user = U
 			human_user.bloody_hands(H)
-
-	else if (issilicon(src))
-		var/mob/living/silicon/robot/R = src
-		R.embedded -= selection
-		R.adjustBruteLoss(5)
-		R.adjustFireLoss(10)
 
 	selection.forceMove(get_turf(src))
 	if (!(U.l_hand && U.r_hand))

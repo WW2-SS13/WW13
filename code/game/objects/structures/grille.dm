@@ -181,32 +181,6 @@
 				return
 	return
 
-// shock user with probability prb (if all connections & power are working)
-// returns TRUE if shocked, FALSE otherwise
-/*
-/obj/structure/grille/proc/shock(mob/user as mob, prb)
-
-	if (!anchored || destroyed)		// anchored/destroyed grilles are never connected
-		return FALSE
-	if (!prob(prb))
-		return FALSE
-	if (!in_range(src, user))//To prevent TK and mech users from getting shocked
-		return FALSE
-	var/turf/T = get_turf(src)
-	var/obj/structure/cable/C = T.get_cable_node()
-	if (C)
-		if (electrocute_mob(user, C, src))
-			if (C.powernet)
-				C.powernet.trigger_warning()
-			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-			s.set_up(3, TRUE, src)
-			s.start()
-			if (user.stunned)
-				return TRUE
-		else
-			return FALSE
-	return FALSE
-*/
 /obj/structure/grille/fire_act(temperature)
 	if (prob((temperature/500) * 30))
 		visible_message("<span class = 'warning'>[src] melts.</span>")

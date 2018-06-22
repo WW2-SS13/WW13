@@ -384,7 +384,7 @@ var/obj/human_fire_overlay_lying = null
 		client.screen += hud_used.hide_actions_toggle
 		return
 */
-	var/button_number = FALSE
+	var/button_number = 0
 	for (var/datum/action/A in actions)
 		button_number++
 		if (A.button == null)

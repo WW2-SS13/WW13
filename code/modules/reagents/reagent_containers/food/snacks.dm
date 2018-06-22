@@ -748,208 +748,7 @@
 		reagents.add_reagent("protein", 6)
 		bitesize = 2
 
-/*
-/obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket
-	name = "\improper Sin-pocket"
-	desc = "The food of choice for the veteran. Do <b>NOT</b> overconsume."
-	filling_color = "#6D6D00"
-	heated_reagents = list("doctorsdelight" = 5, "hyperzine" = 0.75, "synaptizine" = 0.25)
-	var/has_been_heated = FALSE
 
-/obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket/attack_self(mob/user)
-	if (has_been_heated)
-		user << "<span class='notice'>The heating chemicals have already been spent.</span>"
-		return
-	has_been_heated = TRUE
-	user.visible_message("<span class='notice'>[user] crushes \the [src] package.</span>", "You crush \the [src] package and feel a comfortable heat build up.")
-	spawn(200)
-		user << "You think \the [src] is ready to eat about now."
-		heat()
-
-/obj/item/weapon/reagent_containers/food/snacks/donkpocket
-	name = "Donk-pocket"
-	desc = "The food of choice for the seasoned traitor."
-	icon_state = "donkpocket"
-	filling_color = "#DEDEAB"
-	center_of_mass = list("x"=16, "y"=10)
-	nutriment_desc = list("heartiness" = 1, "dough" = 2)
-	nutriment_amt = 2
-	New()
-		..()
-		reagents.add_reagent("protein", 2)
-
-	var/warm = FALSE
-	var/list/heated_reagents = list("tricordrazine" = 5)
-	proc/heat()
-		warm = TRUE
-		for (var/reagent in heated_reagents)
-			reagents.add_reagent(reagent, heated_reagents[reagent])
-		bitesize = 6
-		name = "Warm " + name
-		cooltime()
-
-	proc/cooltime()
-		if (warm)
-			spawn(4200)
-				warm = FALSE
-				for (var/reagent in heated_reagents)
-					reagents.del_reagent(reagent)
-				name = initial(name)
-		return
-
-/obj/item/weapon/reagent_containers/food/snacks/brainburger
-	name = "brainburger"
-	desc = "A strange looking burger. It looks almost sentient."
-	icon_state = "brainburger"
-	filling_color = "#F2B6EA"
-	center_of_mass = list("x"=15, "y"=11)
-
-	New()
-		..()
-		reagents.add_reagent("protein", 6)
-		reagents.add_reagent("alkysine", 6)
-		bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/ghostburger
-	name = "Ghost Burger"
-	desc = "Spooky! It doesn't look very filling."
-	icon_state = "ghostburger"
-	filling_color = "#FFF2FF"
-	center_of_mass = list("x"=16, "y"=11)
-	nutriment_desc = list("buns" = 3, "spookiness" = 3)
-	nutriment_amt = 2
-	New()
-		..()
-		bitesize = 2
-
-
-/obj/item/weapon/reagent_containers/food/snacks/human
-	var/hname = ""
-	var/job = null
-	filling_color = "#D63C3C"
-
-/obj/item/weapon/reagent_containers/food/snacks/human/burger
-	name = "-burger"
-	desc = "A bloody burger."
-	icon_state = "hburger"
-	center_of_mass = list("x"=16, "y"=11)
-	New()
-		..()
-		reagents.add_reagent("protein", 6)
-		bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/cheeseburger
-	name = "cheeseburger"
-	desc = "The cheese adds a good flavor."
-	icon_state = "cheeseburger"
-	center_of_mass = list("x"=16, "y"=11)
-	nutriment_desc = list("cheese" = 2, "bun" = 2)
-	nutriment_amt = 2
-	New()
-		..()
-		reagents.add_reagent("protein", 2)
-
-/obj/item/weapon/reagent_containers/food/snacks/monkeyburger
-	name = "burger"
-	desc = "The cornerstone of every nutritious breakfast."
-	icon_state = "hburger"
-	filling_color = "#D63C3C"
-	center_of_mass = list("x"=16, "y"=11)
-	nutriment_desc = list("bun" = 2)
-	nutriment_amt = 3
-	New()
-		..()
-		reagents.add_reagent("protein", 3)
-		bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/fishburger
-	name = "Fillet -o- Carp Sandwich"
-	desc = "Almost like a carp is yelling somewhere... Give me back that fillet -o- carp, give me that carp."
-	icon_state = "fishburger"
-	filling_color = "#FFDEFE"
-	center_of_mass = list("x"=16, "y"=10)
-
-	New()
-		..()
-		reagents.add_reagent("protein", 6)
-		reagents.add_reagent("carpotoxin", 3)
-		bitesize = 3
-
-/obj/item/weapon/reagent_containers/food/snacks/tofuburger
-	name = "Tofu Burger"
-	desc = "What.. is that meat?"
-	icon_state = "tofuburger"
-	filling_color = "#FFFEE0"
-	center_of_mass = list("x"=16, "y"=10)
-	nutriment_desc = list("bun" = 2, "pseudo-soy meat" = 3)
-	nutriment_amt = 6
-	New()
-		..()
-		bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/roburger
-	name = "roburger"
-	desc = "The lettuce is the only organic component. Beep."
-	icon_state = "roburger"
-	filling_color = "#CCCCCC"
-	center_of_mass = list("x"=16, "y"=11)
-	nutriment_desc = list("bun" = 2, "metal" = 3)
-	nutriment_amt = 2
-	New()
-		..()
-		if (prob(5))
-			reagents.add_reagent("nanites", 2)
-		bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/roburgerbig
-	name = "roburger"
-	desc = "This massive patty looks like poison. Beep."
-	icon_state = "roburger"
-	filling_color = "#CCCCCC"
-	volume = 100
-	center_of_mass = list("x"=16, "y"=11)
-
-	New()
-		..()
-		reagents.add_reagent("nanites", 100)
-		bitesize = 0.1
-
-/obj/item/weapon/reagent_containers/food/snacks/xenoburger
-	name = "xenoburger"
-	desc = "Smells caustic. Tastes like heresy."
-	icon_state = "xburger"
-	filling_color = "#43DE18"
-	center_of_mass = list("x"=16, "y"=11)
-
-	New()
-		..()
-		reagents.add_reagent("protein", 8)
-		bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/clownburger
-	name = "Clown Burger"
-	desc = "This tastes funny..."
-	icon_state = "clownburger"
-	filling_color = "#FF00FF"
-	center_of_mass = list("x"=17, "y"=12)
-	nutriment_desc = list("bun" = 2, "clown shoe" = 3)
-	nutriment_amt = 6
-	New()
-		..()
-		bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/mimeburger
-	name = "Mime Burger"
-	desc = "Its taste defies language."
-	icon_state = "mimeburger"
-	filling_color = "#FFFFFF"
-	center_of_mass = list("x"=16, "y"=11)
-	nutriment_desc = list("bun" = 2, "mime paint" = 3)
-	nutriment_amt = 6
-	New()
-		..()
-		bitesize = 2
-*/
 /obj/item/weapon/reagent_containers/food/snacks/omelette
 	name = "Omelette Du Fromage"
 	desc = "That's all you can say!"
@@ -975,28 +774,6 @@
 	New()
 		..()
 		bitesize = 2
-/*
-/obj/item/weapon/reagent_containers/food/snacks/pie
-	name = "Banana Cream Pie"
-	desc = "Just like back home, on clown planet! HONK!"
-	icon_state = "pie"
-	trash = /obj/item/trash/plate
-	filling_color = "#FBFFB8"
-	center_of_mass = list("x"=16, "y"=13)
-	nutriment_desc = list("pie" = 3, "cream" = 2)
-	nutriment_amt = 4
-
-/obj/item/weapon/reagent_containers/food/snacks/pie/New()
-	..()
-	reagents.add_reagent("banana",5)
-	bitesize = 3
-
-/obj/item/weapon/reagent_containers/food/snacks/pie/throw_impact(atom/hit_atom)
-	..()
-	new/obj/effect/decal/cleanable/pie_smudge(loc)
-	visible_message("<span class='danger'>\The [name] splats.</span>","<span class='danger'>You hear a splat.</span>")
-	qdel(src)
-*/
 
 /obj/item/weapon/reagent_containers/food/snacks/berryclafoutis
 	name = "Berry Clafoutis"
@@ -1036,35 +813,7 @@
 	New()
 		..()
 		bitesize = 2
-/*
-/obj/item/weapon/reagent_containers/food/snacks/soylentgreen
-	name = "Soylent Green"
-	desc = "Not made of people. Honest." //Totally people.
-	icon_state = "soylent_green"
-	trash = /obj/item/trash/waffles
-	filling_color = "#B8E6B5"
-	center_of_mass = list("x"=15, "y"=11)
 
-	New()
-		..()
-		reagents.add_reagent("protein", 10)
-		bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/soylenviridians
-	name = "Soylen Virdians"
-	desc = "Not made of people. Honest." //Actually honest for once.
-	icon_state = "soylent_yellow"
-	trash = /obj/item/trash/waffles
-	filling_color = "#E6FA61"
-	center_of_mass = list("x"=15, "y"=11)
-
-	nutriment_desc = list("some sort of protein" = 10) //seasoned VERY well.
-	nutriment_amt = 10
-	New()
-		..()
-		bitesize = 2
-
-*/
 /obj/item/weapon/reagent_containers/food/snacks/meatpie
 	name = "Meat-pie"
 	icon_state = "meatpie"
@@ -1120,89 +869,7 @@
 			desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump pie!"
 			reagents.add_reagent("tricordrazine", 5)
 			bitesize = 2
-/*
-/obj/item/weapon/reagent_containers/food/snacks/xemeatpie
-	name = "Xeno-pie"
-	icon_state = "xenomeatpie"
-	desc = "A delicious meatpie. Probably heretical."
-	trash = /obj/item/trash/plate
-	filling_color = "#43DE18"
-	center_of_mass = list("x"=16, "y"=13)
 
-	New()
-		..()
-		reagents.add_reagent("protein", 10)
-		bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/wingfangchu
-	name = "Wing Fang Chu"
-	desc = "A savory dish of alien wing wang in soy."
-	icon_state = "wingfangchu"
-	trash = /obj/item/trash/snack_bowl
-	filling_color = "#43DE18"
-	center_of_mass = list("x"=17, "y"=9)
-
-	New()
-		..()
-		reagents.add_reagent("protein", 6)
-		bitesize = 2
-
-
-/obj/item/weapon/reagent_containers/food/snacks/human/kabob
-	name = "-kabob"
-	icon_state = "kabob"
-	desc = "A human meat, on a stick."
-	trash = /obj/item/stack/rods
-	filling_color = "#A85340"
-	center_of_mass = list("x"=17, "y"=15)
-
-	New()
-		..()
-		reagents.add_reagent("protein", 8)
-		bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/monkeykabob
-	name = "Meat-kabob"
-	icon_state = "kabob"
-	desc = "Delicious meat, on a stick."
-	trash = /obj/item/stack/rods
-	filling_color = "#A85340"
-	center_of_mass = list("x"=17, "y"=15)
-
-	New()
-		..()
-		reagents.add_reagent("protein", 8)
-		bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/tofukabob
-	name = "Tofu-kabob"
-	icon_state = "kabob"
-	desc = "Vegan meat, on a stick."
-	trash = /obj/item/stack/rods
-	filling_color = "#FFFEE0"
-	center_of_mass = list("x"=17, "y"=15)
-	nutriment_desc = list("tofu" = 3, "metal" = 1)
-	nutriment_amt = 8
-	New()
-		..()
-		bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/cubancarp
-	name = "Cuban Carp"
-	desc = "A sandwich that burns your tongue and then leaves it numb!"
-	icon_state = "cubancarp"
-	trash = /obj/item/trash/plate
-	filling_color = "#E9ADFF"
-	center_of_mass = list("x"=12, "y"=5)
-	nutriment_desc = list("toasted bread" = 3)
-	nutriment_amt = 3
-	New()
-		..()
-		reagents.add_reagent("protein", 3)
-		reagents.add_reagent("carpotoxin", 3)
-		reagents.add_reagent("capsaicin", 3)
-		bitesize = 3
-*/
 /obj/item/weapon/reagent_containers/food/snacks/popcorn
 	name = "Popcorn"
 	desc = "Now let's find some cinema."
@@ -1222,69 +889,6 @@
 			usr << "<span class='warning'>You bite down on an un-popped kernel!</span>"
 			unpopped = max(0, unpopped-1)
 		..()
-/*
-/obj/item/weapon/reagent_containers/food/snacks/sosjerky
-	name = "Scaredy's Private Reserve Beef Jerky"
-	icon_state = "sosjerky"
-	desc = "Beef jerky made from the finest space cows."
-	trash = /obj/item/trash/sosjerky
-	filling_color = "#631212"
-	center_of_mass = list("x"=15, "y"=9)
-
-	New()
-		..()
-		reagents.add_reagent("protein", 4)
-		bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/no_raisin
-	name = "4no Raisins"
-	icon_state = "4no_raisins"
-	desc = "Best raisins in the universe. Not sure why."
-	trash = /obj/item/trash/raisins
-	filling_color = "#343834"
-	center_of_mass = list("x"=15, "y"=4)
-	nutriment_desc = list("dried raisins" = 6)
-	nutriment_amt = 6
-
-/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie
-	name = "Space Twinkie"
-	icon_state = "space_twinkie"
-	desc = "Guaranteed to survive longer then you will."
-	filling_color = "#FFE591"
-	center_of_mass = list("x"=15, "y"=11)
-
-	New()
-		..()
-		reagents.add_reagent("sugar", 4)
-		bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers
-	name = "Cheesie Honkers"
-	icon_state = "cheesie_honkers"
-	desc = "Bite sized cheesie snacks that will honk all over your mouth"
-	trash = /obj/item/trash/cheesie
-	filling_color = "#FFA305"
-	center_of_mass = list("x"=15, "y"=9)
-	nutriment_desc = list("cheese" = 5, "chips" = 2)
-	nutriment_amt = 4
-	New()
-		..()
-		bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/syndicake
-	name = "Syndi-Cakes"
-	icon_state = "syndi_cakes"
-	desc = "An extremely moist snack cake that tastes just as good after being nuked."
-	filling_color = "#FF5D05"
-	center_of_mass = list("x"=16, "y"=10)
-	nutriment_desc = list("sweetness" = 3, "cake" = 1)
-	nutriment_amt = 4
-	trash = /obj/item/trash/syndi_cakes
-	New()
-		..()
-		reagents.add_reagent("doctorsdelight", 5)
-		bitesize = 3
-*/
 
 /obj/item/weapon/reagent_containers/food/snacks/loadedbakedpotato
 	name = "Loaded Baked Potato"
@@ -1312,21 +916,6 @@
 		..()
 		bitesize = 2
 
-/*
-/obj/item/weapon/reagent_containers/food/snacks/soydope
-	name = "Soy Dope"
-	desc = "Dope from a soy."
-	icon_state = "soydope"
-	trash = /obj/item/trash/plate
-	filling_color = "#C4BF76"
-	center_of_mass = list("x"=16, "y"=10)
-	nutriment_desc = list("slime" = 2, "soy" = 2)
-	nutriment_amt = 2
-	New()
-		..()
-		bitesize = 2
-*/
-
 /obj/item/weapon/reagent_containers/food/snacks/spaghetti
 	name = "Spaghetti"
 	desc = "A bundle of raw spaghetti."
@@ -1338,36 +927,6 @@
 	New()
 		..()
 		bitesize = 1
-
-/*
-/obj/item/weapon/reagent_containers/food/snacks/cheesyfries
-	name = "Cheesy Fries"
-	desc = "Fries. Covered in cheese. Duh."
-	icon_state = "cheesyfries"
-	trash = /obj/item/trash/plate
-	filling_color = "#EDDD00"
-	center_of_mass = list("x"=16, "y"=11)
-	nutriment_desc = list("fresh fries" = 3, "cheese" = 3)
-	nutriment_amt = 4
-	New()
-		..()
-		reagents.add_reagent("protein", 2)
-		bitesize = 2
-*/
-
-/*
-/obj/item/weapon/reagent_containers/food/snacks/fortunecookie
-	name = "Fortune cookie"
-	desc = "A true prophecy in each cookie!"
-	icon_state = "fortune_cookie"
-	filling_color = "#E8E79E"
-	center_of_mass = list("x"=15, "y"=14)
-	nutriment_desc = list("fortune cookie" = 2)
-	nutriment_amt = 3
-	New()
-		..()
-		bitesize = 2
-*/
 
 /obj/item/weapon/reagent_containers/food/snacks/badrecipe
 	name = "Burned mess"
@@ -1397,37 +956,6 @@
 		reagents.add_reagent("blackpepper", 1)
 		bitesize = 3
 
-/*
-/obj/item/weapon/reagent_containers/food/snacks/spacylibertyduff
-	name = "Spacy Liberty Duff"
-	desc = "Jello gelatin, from Alfred Hubbard's cookbook"
-	icon_state = "spacylibertyduff"
-	trash = /obj/item/trash/snack_bowl
-	filling_color = "#42B873"
-	center_of_mass = list("x"=16, "y"=8)
-	nutriment_desc = list("mushroom" = 6)
-	nutriment_amt = 6
-	New()
-		..()
-		reagents.add_reagent("psilocybin", 6)
-		bitesize = 3
-
-/obj/item/weapon/reagent_containers/food/snacks/amanitajelly
-	name = "Amanita Jelly"
-	desc = "Looks curiously toxic"
-	icon_state = "amanitajelly"
-	trash = /obj/item/trash/snack_bowl
-	filling_color = "#ED0758"
-	center_of_mass = list("x"=16, "y"=5)
-	nutriment_desc = list("jelly" = 3, "mushroom" = 3)
-	nutriment_amt = 6
-	New()
-		..()
-		reagents.add_reagent("amatoxin", 6)
-		reagents.add_reagent("psilocybin", 3)
-		bitesize = 3
-*/
-
 /obj/item/weapon/reagent_containers/food/snacks/poppypretzel
 	name = "Poppy pretzel"
 	desc = "It's all twisted up!"
@@ -1456,47 +984,7 @@
 		reagents.add_reagent("water", 15)
 		bitesize = 5
 
-/*
-/obj/item/weapon/reagent_containers/food/snacks/slimesoup
-	name = "slime soup"
-	desc = "If no water is available, you may substitute tears."
-	icon_state = "slimesoup" //nonexistant?
-	filling_color = "#C4DBA0"
 
-	New()
-		..()
-		reagents.add_reagent("slimejelly", 5)
-		reagents.add_reagent("water", 10)
-		bitesize = 5
-
-/obj/item/weapon/reagent_containers/food/snacks/bloodsoup
-	name = "Tomato soup"
-	desc = "Smells like copper."
-	icon_state = "tomatosoup"
-	filling_color = "#FF0000"
-	center_of_mass = list("x"=16, "y"=7)
-
-	New()
-		..()
-		reagents.add_reagent("protein", 2)
-		reagents.add_reagent("blood", 10)
-		reagents.add_reagent("water", 5)
-		bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/clownstears
-	name = "Clown's Tears"
-	desc = "Not very funny."
-	icon_state = "clownstears"
-	filling_color = "#C4FBFF"
-	center_of_mass = list("x"=16, "y"=7)
-	nutriment_desc = list("salt" = 1, "the worst joke" = 3)
-	nutriment_amt = 4
-	New()
-		..()
-		reagents.add_reagent("banana", 5)
-		reagents.add_reagent("water", 10)
-		bitesize = 5
-*/
 /obj/item/weapon/reagent_containers/food/snacks/vegetablesoup
 	name = "Vegetable soup"
 	desc = "A true vegan meal" //TODO
