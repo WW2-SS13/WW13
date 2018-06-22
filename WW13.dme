@@ -323,6 +323,7 @@
 #include "code\game\objects\map_metadata\city.dm"
 #include "code\game\objects\map_metadata\forest.dm"
 #include "code\game\objects\map_metadata\pillar.dm"
+#include "code\game\objects\map_metadata\reichstag.dm"
 #include "code\game\objects\map_metadata\test.dm"
 #include "code\game\objects\map_metadata\tower.dm"
 #include "code\game\objects\structures\barricades.dm"
@@ -350,6 +351,7 @@
 #include "code\game\objects\structures\safe.dm"
 #include "code\game\objects\structures\sign_flags.dm"
 #include "code\game\objects\structures\signs.dm"
+#include "code\game\objects\structures\siren.dm"
 #include "code\game\objects\structures\table.dm"
 #include "code\game\objects\structures\table_frames.dm"
 #include "code\game\objects\structures\table_rack.dm"
@@ -924,5 +926,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\camp.dmm"
+#include "maps\reichstag\reichstag.dmm"
 // END_INCLUDE

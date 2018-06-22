@@ -11,3 +11,4 @@ data/*
 SQL/*
 serverdata.txt
 
+sharedinfo/_closed.txt

@@ -5,7 +5,8 @@
 		MAP_FOREST = 0,
 		MAP_TOWER = 0,
 		MAP_CAMP = 10,
-		MAP_PILLAR = 20)
+		MAP_PILLAR = 20,
+		MAP_REICHSTAG = 0)
 
 	var/ready = TRUE
 	var/admin_triggered = FALSE

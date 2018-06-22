@@ -2,7 +2,7 @@
 
 /obj/map_metadata/camp
 	ID = MAP_CAMP
-	title = "POW Camp (150x150x2)"
+	title = "POW Camp (125x125x2)"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall,
 	/area/prishtina/no_mans_land/invisible_wall/inside) // above and underground
 	respawn_delay = 1800
@@ -54,11 +54,17 @@
 			. = FALSE
 		else
 			if (istype(J, /datum/job/soviet/soldier_pris))
-				J.total_positions = max(5, round(clients.len*0.75*3))
+				J.total_positions = max(5, round(clients.len*0.45*3))
 			if (istype(J, /datum/job/soviet/medic_pris))
 				J.total_positions = max(1, round(clients.len*0.05*3))
 			if (istype(J, /datum/job/soviet/chef_pris))
 				J.total_positions = max(1, round(clients.len*0.05*3))
+			if (istype(J, /datum/job/soviet/miner_pris))
+				J.total_positions = max(5, round(clients.len*0.15*3))
+			if (istype(J, /datum/job/soviet/janitor_pris))
+				J.total_positions = max(1, round(clients.len*0.05*3))
+			if (istype(J, /datum/job/soviet/collaborator_pris))
+				J.total_positions = max(2, round(clients.len*0.05*3))
 			if (istype(J, /datum/job/soviet/squad_leader_pris) && !modded_num_of_prisoners)
 				J.total_positions = max(1, round(clients.len*0.1*3))
 				modded_num_of_prisoners = TRUE

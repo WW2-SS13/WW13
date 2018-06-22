@@ -66,6 +66,11 @@
 	opened = FALSE
 	return TRUE
 
+/obj/structure/closet/crate/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if (istype(mover, /obj/item/projectile))
+		return TRUE
+	return !density
+
 /obj/structure/closet/crate/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (opened)
 		return ..()
