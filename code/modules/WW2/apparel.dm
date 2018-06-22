@@ -336,7 +336,6 @@
 	name = "CN-42 bulletproof vest"
 	desc = "A heavy vest used by Soviet Sturmovik. Used for deflecting shrapnel and some bullets."
 	icon_state = "cn42"
-	armor = list (melee = 50,)
 	armor = list(melee = 50)
 	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
 
