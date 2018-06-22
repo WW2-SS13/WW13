@@ -510,10 +510,11 @@
 /obj/item/weapon/storage/belt/german/SSTV/New()
 	..()
 	new /obj/item/weapon/melee/classic_baton/MP/SS(src)
-	new /obj/item/weapon/gun/projectile/pistol/waltherp38(src)
+~//	new /obj/item/weapon/gun/projectile/pistol/waltherp38(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/weapon/handcuffs(src)
-	new /obj/item/ammo_magazine/p9x19mm(src)
+	new /obj/item/weapon/handcuffs(src)
+//	new /obj/item/ammo_magazine/p9x19mm(src)
 
 /obj/item/weapon/storage/belt/italy
 	name = "Italian belt pouch"
