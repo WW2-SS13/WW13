@@ -60,7 +60,7 @@
 	if (!istype(mover, /obj/item/projectile))
 		if (air_group || (height==0 || wall_mounted)) return TRUE
 		return !density
-	if (prob(80))
+	if (prob(60))
 		return !density
 	else
 		return TRUE
