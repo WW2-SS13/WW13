@@ -473,6 +473,7 @@
 "je" = (/obj/item/weapon/sandbag,/obj/effect/landmark{name = "JoinLateHeer-S3"},/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
 "jf" = (/obj/effect/landmark{name = "JoinLateHeer-S4"},/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german/briefing{base_turf = /turf/floor/dirt; name = "Reichstag Rooftop Objective"})
 "jg" = (/obj/item/flashlight/flare/nighttime,/obj/effect/landmark{name = "JoinLateSS"},/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
+"jh" = (/obj/item/weapon/crowbar{desc = "A portable Soviet flag."; icon_state = "sov_flag"; item_icons = list("slot_l_hand" = 'icons/mob/items/lefthand_guns.dmi', "slot_r_hand" = 'icons/mob/items/lefthand_guns.dmi'); item_state = "sov_flag2"; name = "Soviet Flag"},/turf/floor/plating/road,/area/prishtina/soviet{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red1"; name = "Soviet Front"})
 "jm" = (/obj/structure/table/iron,/obj/item/weapon/phone/tohighcommand/german,/turf/floor/plating/cobblestone/vertical,/area/prishtina/houses/ger_three{base_turf = /turf/floor/dirt; capturable = 0; name = "German Shacks"})
 "jn" = (/obj/structure/barricade,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/houses/ger_three{base_turf = /turf/floor/dirt; capturable = 0; name = "German Shacks"})
 "jo" = (/obj/structure/barricade,/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/structure/window/sandbag,/turf/floor/plating/cobblestone/vertical,/area/prishtina/houses/ger_three{base_turf = /turf/floor/dirt; capturable = 0; name = "German Shacks"})
@@ -1060,7 +1061,6 @@
 "uy" = (/obj/item/ammo_casing/a792x57,/turf/floor/dirt,/area/prishtina/houses/sov_one)
 "uz" = (/obj/effect/decal/cleanable/dirt,/turf/wall/brick,/area/prishtina/houses/sov_one)
 "uA" = (/obj/item/ammo_casing/a792x57,/turf/floor/wood_broken,/area/prishtina/houses/sov_one)
-"uB" = (/obj/item/weapon/crowbar{desc = "A portable Soviet flag."; icon_state = "sov_flag"; item_icons = list("slot_l_hand" = 'icons/mob/items/righthand_guns.dmi', "slot_r_hand" = 'icons/mob/items/righthand_guns.dmi'); item_state = "sov_flag2"; name = "Soviet Flag"},/turf/floor/plating/road,/area/prishtina/soviet{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red1"; name = "Soviet Front"})
 "uC" = (/obj/item/weapon/paper/crumpled/bloody,/turf/wall/brick,/area/prishtina/houses/sov_one)
 "uD" = (/obj/effect/decal/cleanable/blood/oil,/turf/floor/wood,/area/prishtina/houses/sov_one)
 "uE" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood/oil,/turf/floor/wood,/area/prishtina/houses/sov_one)
@@ -1284,8 +1284,8 @@ brbrbrbrbrbrbrbrbrbrbrbrbrbrbrbrbsbrbsbrbsbrbsbrbsbrbsbrbrbrbrbrbrbtbtbrbrbrbrbr
 blblblblblblblblblblblblblblblbDblbEbFbEbGbHbGbEbFbDblbDblblblblblblblblblhiblbIbJbKblblblblblblblblblblbLbMbNbJblbUblbJbJbObPblblblblblbltZblbmbjsUjGjGjGjGtRjGjGjGjGjGjGjGjGjGjGjGjGtRtRjGjGjGjGtKjGjB
 blblblblblblblblblblblblblblblblblbQblblblbRblblbSblblblblblblblblblblblblhiblbQblbSblhiblblblblblblblblbLbTbUblblblblblbUbVbWblblblblbltzblblbmbjjBjBjBjBjBsUjBjBjBjBjBjBjBjBsUjBjBjBjBjBsUjBjBjBjBjBjB
 blblblblblblblblblblblblblblblblblbQblblblblblblbVblblblblblblblblblblblblblblblblblblblblblblblblblblblbLbQblblblblblblblbXbYblblblblblblblblbmbjbgbgbgbgbgtBtBbgbgbguabgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbg
-blblblblblblblblblblblblblblblblblblblblblblblblblhiblblblblblblblblblblblbluBuBuBuBblblblblblblblblblblblbZbZbZblblblblblblblblblblblblblblblubbjjAjAtAjAucjAjAjAjAtAucjAjAucucjAjAjAjAtAjAjAjAsUudjAjA
-blblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblcablbluBuBuBuBblblblblblblblblblblblbZbZblblblblblblblblblblblblblblblblbmbjjAjHjHjHuejHsUsUjHufugjAsUjHueuhsUuijHjHugjAjHujueukjA
+blblblblblblblblblblblblblblblblblblblblblblblblblhiblblblblblblblblblblblbljhjhjhjhblblblblblblblblblblblbZbZbZblblblblblblblblblblblblblblblubbjjAjAtAjAucjAjAjAjAtAucjAjAucucjAjAjAjAtAjAjAjAsUudjAjA
+blblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblcablbljhjhjhjhblblblblblblblblblblblbZbZblblblblblblblblblblblblblblblblbmbjjAjHjHjHuejHsUsUjHufugjAsUjHueuhsUuijHjHugjAjHujueukjA
 dSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSiWafafafafjsixaItbjHucumueunjAsUuoupuqjAucjHurupjAupusjHucjAutupucjHjA
 aIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIjPjPaIjPjPmNaIaIaIaIaIaIaIaIaIaIaIaIaIaIchafafafafafcyaIjAjHjHuuueuvjAsUjHjHjHucjHjHwEuxjAjHjHunjHjAueunuyjHjA
 awawmOawawawawmOawawaHcicicicjcicjckckcjcjcjcjcjarararclclclclclcmcncncmjIclclcoclarararcpcqcqcrcqcqcsctcscsctcscscucvjJcucwcucxrrchafrsrsrsafcyaIwFucwGjHuejHsUjAjAjAsUjAjAjAuzucjAsUjAjAuAsUtVjAuCjAjA
