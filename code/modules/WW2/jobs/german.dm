@@ -1760,7 +1760,7 @@ var/first_fallschirm = TRUE
 	else
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/det/grey(H), slot_head)
 	if (prob(50))
-		H.equip_to_slot_or_del(new /obj/item/weapon/gun/launcher/rocket/panzerfaust(H), slot_l_hand)
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/launcher/rocket/panzerfaust(H), slot_back)
 	var/obj/item/clothing/accessory/armband/volkssturm/volkssturm_a = new /obj/item/clothing/accessory/armband/volkssturm(null)
 	var/obj/item/clothing/under/uniform = H.w_uniform
 	uniform.attackby(volkssturm_a, H)
@@ -1776,12 +1776,12 @@ var/first_fallschirm = TRUE
 	H.setStat("medical", STAT_MEDIUM_LOW)
 	H.setStat("shotgun", STAT_VERY_LOW)
 	if (prob(50))
-		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_l_hand)
 	else
 		if (prob(50))
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_l_hand)
 		else
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/mauser(H), slot_l_hand)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/mauser(H), slot_belt)
 	return TRUE
 
 /datum/job/german/volkssturm/get_keys()
@@ -1822,12 +1822,12 @@ var/first_fallschirm = TRUE
 	H.setStat("medical", STAT_LOW)
 	H.setStat("shotgun", STAT_VERY_LOW)
 	if (prob(50))
-		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_l_hand)
 	else
 		if (prob(50))
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_l_hand)
 		else
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/mauser(H), slot_l_hand)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/mauser(H), slot_belt)
 	return TRUE
 
 /datum/job/german/kriegsmarine/get_keys()
@@ -1855,7 +1855,7 @@ var/first_fallschirm = TRUE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/hj_uni(H), slot_w_uniform)
 	if (prob(50))
-		H.equip_to_slot_or_del(new /obj/item/weapon/gun/launcher/rocket/panzerfaust(H), slot_l_hand)
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/launcher/rocket/panzerfaust(H), slot_back)
 	H.add_note("Role", "You are a <b>[title]</b>, a 16 year old member of the Hitler's Youth. You have been conscripted to fight alongside the Volkssturm and Wehrmacht. Do your best!")
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_LOW)
@@ -1868,12 +1868,12 @@ var/first_fallschirm = TRUE
 	H.setStat("medical", STAT_MEDIUM_LOW)
 	H.setStat("shotgun", STAT_VERY_LOW)
 	if (prob(50))
-		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_l_hand)
 	else
 		if (prob(50))
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_l_hand)
 		else
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/mauser(H), slot_l_hand)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/mauser(H), slot_belt)
 	return TRUE
 
 /datum/job/german/hitlerjugend/get_keys()
