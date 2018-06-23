@@ -1580,8 +1580,8 @@ var/first_fallschirm = TRUE
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/job/german/paratrooper_reichstag
-	title = "Fallschirmjäger"
-	en_meaning = "Paratrooper"
+	title = "Fallschirmjäger Schutze"
+	en_meaning = "Paratrooper Soldier"
 	rank_abbreviation = "schtz"
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
