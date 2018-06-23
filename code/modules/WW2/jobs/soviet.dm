@@ -1156,6 +1156,8 @@ var/first_guard = FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/accessory/armband/col_pris(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/stack/money(H), slot_r_store)
+//	H.equip_to_slot_or_del(new /obj/item/weapon/melee/classic_baton/MP/german(H), slot_r_hand)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/beret(H), slot_head)
 	H.add_note("Role", "You are a <b>[title]</b>, a captured soviet soldier who is collaborating with the Germans. Help the guards keep the order in the camp, but be careful about your comrades!")
 	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start attacking the guards without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave. Your objective is to escape and reach one of the corners of the map. Dig tunnels, destroy the fence, and do anything to escape, but be realistic.")
 	H.setStat("strength", STAT_NORMAL)

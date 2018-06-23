@@ -92,6 +92,75 @@
 	scoop_food = FALSE
 	slot_flags = SLOT_BELT|SLOT_POCKET
 
+// Identical to the tactical knife but nowhere near as stabby.
+// Kind of like the toy esword compared to the real thing.
+/obj/item/weapon/material/kitchen/utensil/knife/boot
+	name = "boot knife"
+	desc = "A small fixed-blade knife for putting inside a boot."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "tacknife"
+	item_state = "knife"
+	applies_material_colour = FALSE
+	unbreakable = TRUE
+	drawsound = 'sound/items/unholster_knife.ogg'
+	force_divisor = 0.3
+
+/obj/item/weapon/material/kitchen/utensil/knife/boot/makeshift_knife
+	name = "boot knife"
+	desc = "A small self made knife used a lot in jail."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "makeshift_knife"
+	item_state = "knife"
+	applies_material_colour = FALSE
+	unbreakable = TRUE
+	drawsound = 'sound/items/unholster_knife.ogg'
+	force_divisor = 0.3
+
+/obj/item/weapon/material/kitchen/utensil/knife/boot/trench_knife
+	name = "trench knife"
+	desc = "this knife is good when your charging, stabbing, cutting heads and good at slicing yours mothers pepperoni."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "trench_knife"
+	item_state = "knife"
+	applies_material_colour = FALSE
+	unbreakable = TRUE
+	drawsound = 'sound/items/unholster_knife.ogg'
+	force_divisor = 0.3
+
+/obj/item/weapon/material/kitchen/utensil/knife/boot/nr40_knife
+	name = "german knife"
+	desc = "standerd german knife that you can put into your boot."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "nr40_knife"
+	item_state = "knife"
+	applies_material_colour = FALSE
+	unbreakable = TRUE
+	drawsound = 'sound/items/unholster_knife.ogg'
+	force_divisor = 0.3
+
+/obj/item/weapon/material/kitchen/utensil/knife/boot/bowie_knife
+	name = "bowie knife"
+	desc = "every thing is bigger in mother russia."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "bowie_knife"
+	item_state = "knife"
+	applies_material_colour = FALSE
+	unbreakable = TRUE
+	drawsound = 'sound/items/unholster_knife.ogg'
+	force_divisor = 0.3
+
+/obj/item/weapon/material/kitchen/utensil/knife/boot/nr40_knife_SS
+	name = "SS dagger"
+	desc = "'My loyalty is my honor."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "nr40_knife_SS"
+	item_state = "knife"
+	applies_material_colour = FALSE
+	unbreakable = TRUE
+	drawsound = 'sound/items/unholster_knife.ogg'
+	force_divisor = 0.3
+
+
 /obj/item/weapon/material/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << "<span class='warning'>You accidentally cut yourself with \the [src].</span>"

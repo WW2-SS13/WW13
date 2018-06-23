@@ -76,3 +76,8 @@
 	name = "kitchen armband"
 	desc = "An armband, worn by prisoners to indicate what job they were assigned."
 	icon_state = "hydro"
+
+/obj/item/clothing/accessory/armband/volkssturm
+	name = "Volkssturm armband"
+	desc = "An armband, worn by the concripted into the Volkssturm."
+	icon_state = "volkssturm"
