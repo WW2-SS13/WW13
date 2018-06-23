@@ -74,6 +74,7 @@
 	is_commander = TRUE
 	whitelisted = TRUE
 	SL_check_independent = TRUE
+	is_reichstag = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -265,6 +266,7 @@
 	is_officer = TRUE
 	is_squad_leader = TRUE
 	SL_check_independent = TRUE
+	is_reichstag = TRUE
 
 	// AUTOBALANCE
 	min_positions = 4
@@ -1469,3 +1471,256 @@ var/first_fallschirm = TRUE
 /datum/job/german/medic_sstv/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/SS)
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////REICHSTAG///////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/german/soldier_ss_nordland
+	title = "SS-Div. Nordland Sturmmann"
+	en_meaning = "SS-Div. Nordland Soldier"
+	rank_abbreviation = "Strm"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateSS"
+	is_reichstag = TRUE
+	SL_check_independent = TRUE
+	additional_languages = list( "Russian" = 40)
+	// AUTOBALANCE
+	min_positions = 2
+	max_positions = 25
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+
+/datum/job/german/soldier_ss_nordland/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/sssmock(H), slot_wear_suit)
+	if (prob(75))
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm/sshelm(H), slot_head)
+	else
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm(H), slot_head)
+	if (prob(80))
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_back)
+	else
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/mp40(H), slot_back)
+	H.add_note("Role", "You are a <b>[title]</b>, a soldier o the 11th SS-Division Nordland, from Scandinavia. Your job is to defend the Reichstag to the last man, no surrender!")
+	H.give_radio()
+
+	// glorious SS stats
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("survival", STAT_VERY_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
+	return TRUE
+
+/datum/job/german/soldier_ss_nordland/get_keys()
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/SS)
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/job/german/soldier_ss_charlemagne
+	title = "SS-Div. Charlemagne Sturmmann"
+	en_meaning = "SS-Div. Charlemagne Soldier"
+	rank_abbreviation = "Strm"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateSS"
+	is_reichstag = TRUE
+	SL_check_independent = TRUE
+	additional_languages = list( "Russian" = 40)
+	// AUTOBALANCE
+	min_positions = 2
+	max_positions = 25
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+
+/datum/job/german/soldier_ss_charlemagne/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
+//	H.equip_to_slot_or_del(new /obj/item/clothing/suit/sssmock(H), slot_wear_suit)
+	if (prob(50))
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm/sshelm(H), slot_head)
+	else
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
+	if (prob(80))
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_back)
+	else
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/ppsh(H), slot_back)
+	H.add_note("Role", "You are a <b>[title]</b>, a soldier o the 33rd SS-Division Charlemagne, from France. Your job is to defend the Reichstag to the last man, no surrender!")
+	H.give_radio()
+
+	// glorious SS stats
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("survival", STAT_VERY_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
+	return TRUE
+
+/datum/job/german/soldier_ss_charlemagne/get_keys()
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/SS)
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/job/german/paratrooper_reichstag
+	title = "Fallschirmjäger"
+	en_meaning = "Paratrooper"
+	rank_abbreviation = "schtz"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateHeer"
+	additional_languages = list( "Russian" = 25)
+	is_reichstag = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 2
+	max_positions = 25
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+/datum/job/german/paratrooper_reichstag/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/falluni(H), slot_w_uniform)
+	var/obj/item/clothing/accessory/storage/webbing/webbing = new/obj/item/clothing/accessory/storage/webbing(null)
+	var/obj/item/clothing/under/uniform = H.w_uniform
+	uniform.attackby(webbing, H)
+	uniform.attackby(new /obj/item/ammo_magazine/kar98k(null), H)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/fallsparka(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/german/paratrooper(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_r_hand)
+	H.add_note("Role", "You are a <b>[title]</b>, a paratrooper from the 9th Fallschirmjäger Division. Your job is to help any other units that need assistance.")
+
+	H.give_radio()
+	// Paratroopers are elite so they have very nicu stats - Kachnov
+	H.setStat("strength", STAT_MEDIUM_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_HIGH)
+	H.setStat("smg", STAT_VERY_HIGH)
+	H.setStat("pistol", STAT_MEDIUM_HIGH)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_MEDIUM_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+
+/datum/job/german/paratrooper_reichstag/get_keys()
+	return list(new/obj/item/weapon/key/german)
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/job/german/volkssturm
+	title = "Volkssturmmann"
+	en_meaning = "Militia"
+	rank_abbreviation = "Vlkst"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateHeer"
+	is_reichstag = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 3
+	max_positions = 60
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+
+/datum/job/german/volkssturm/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	if (prob(50))
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/civ2(H), slot_w_uniform)
+	else
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/civ1(H), slot_w_uniform)
+	if (prob(50))
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/flatcap(H), slot_head)
+	else
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/det/grey(H), slot_head)
+	var/obj/item/clothing/accessory/armband/volkssturm/volkssturm_a = new /obj/item/clothing/accessory/armband/volkssturm(null)
+	var/obj/item/clothing/under/uniform = H.w_uniform
+	uniform.attackby(volkssturm_a, H)
+	H.add_note("Role", "You are a <b>[title]</b>, a member of the conscripted Volkssturm, a popular militia. Fight alongside the Wehrmacht units and defend the Reichstag!")
+	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_LOW)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_LOW)
+	H.setStat("mg", STAT_VERY_LOW)
+	H.setStat("smg", STAT_VERY_LOW)
+	H.setStat("pistol", STAT_LOW)
+	H.setStat("heavyweapon", STAT_VERY_LOW)
+	H.setStat("medical", STAT_MEDIUM_LOW)
+	H.setStat("shotgun", STAT_VERY_LOW)
+	if (prob(50))
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
+	else
+		if (prob(50))
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
+		else
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/mauser(H), slot_l_hand)
+	return TRUE
+
+/datum/job/german/volkssturm/get_keys()
+	return list(new/obj/item/weapon/key/german)
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/job/german/kriegsmarine
+	title = "Matrose"
+	en_meaning = "Sailor"
+	rank_abbreviation = "Mat"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateHeer"
+	is_reichstag = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 3
+	max_positions = 60
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+
+/datum/job/german/kriegsmarine/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/kriegsmarine(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/km_cap, slot_head)
+
+	H.add_note("Role", "You are a <b>[title]</b>, a member of the Kriegsmarine (Navy), conscripted to figbht in the pront. Fight alongside the Wehrmacht units and defend the Reichstag!")
+	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_LOW)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_VERY_LOW)
+	H.setStat("smg", STAT_VERY_LOW)
+	H.setStat("pistol", STAT_LOW)
+	H.setStat("heavyweapon", STAT_VERY_LOW)
+	H.setStat("medical", STAT_LOW)
+	H.setStat("shotgun", STAT_VERY_LOW)
+	if (prob(50))
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
+	else
+		if (prob(50))
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
+		else
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/mauser(H), slot_l_hand)
+	return TRUE
+
+/datum/job/german/kriegsmarine/get_keys()
+	return list(new/obj/item/weapon/key/german)

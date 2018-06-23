@@ -71,7 +71,7 @@
 	return .
 
 /obj/map_metadata/camp/announce_mission_start(var/preparation_time)
-	world << "<font size=4>Soviets have <b>3 minutes</b> to prepare before the ceasefire ends! Germans can cross after <b>1 minute</b>. <br>The Germans will win if they hold out for 50 minutes without any escapes. The Soviets will win if a prisoner manages to escape.</font>"
+	world << "<font size=4>Soviets have <b>3 minutes</b> to prepare before the ceasefire ends! Germans can cross after <b>1 minute</b>. <br>The Germans will win if they hold out for 50 minutes without any escapes. The Soviets will win if a prisoner manages to escape.</font><br><br><br><b>PLEASE READ THE WIKI FOR RULES! http://mechahitler.co.nf/wiki/media/index.php?title=Camp_guide</b><br>"
 
 /obj/map_metadata/camp/reinforcements_ready()
 	return (germans_can_cross_blocks() && soviets_can_cross_blocks())

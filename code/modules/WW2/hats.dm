@@ -41,3 +41,8 @@
 	name = "Panzer Crewman Cap"
 	icon_state = "gertankerhat"
 	item_state = "gertankerhat"
+
+/obj/item/clothing/head/caphat/km_cap
+	name = "Kriegsmarine Cap"
+	icon_state = "km_cap"
+	item_state = "km_cap"
