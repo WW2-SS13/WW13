@@ -18,7 +18,8 @@
 		list(SOVIET) = /area/prishtina/farm4 // in order to prevent them from winning by capture
 		)
 	available_subfactions = list(
-		SS_TV)
+
+		)
 	battle_name = "Prisioner's Camp"
 	custom_loadout = FALSE // so people do not spawn with guns!
 	var/modded_num_of_SSTV = FALSE
