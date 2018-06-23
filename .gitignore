@@ -7,6 +7,8 @@
 *.lk
 *.log
 
-Interstation-Two-WW2/data/*
-Interstation-Two-WW2/SQL/*
-Interstation-Two-WW2/serverdata.txt
+data/*
+SQL/*
+serverdata.txt
+
+sharedinfo/_closed.txt
