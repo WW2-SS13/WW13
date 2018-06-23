@@ -1552,6 +1552,7 @@ var/first_fallschirm = TRUE
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/civ4(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/civjacket(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/waltherp38(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/formal(H), slot_head)
 	var/obj/item/clothing/accessory/armband/nsdap/nsdap_a = new /obj/item/clothing/accessory/armband/nsdap(null)
 	var/obj/item/clothing/under/uniform = H.w_uniform
 	uniform.attackby(nsdap_a, H)
