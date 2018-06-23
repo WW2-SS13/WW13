@@ -128,7 +128,7 @@
 	force_divisor = 0.3
 
 /obj/item/weapon/material/kitchen/utensil/knife/boot/nr40_knife
-	name = "nr40 knife"
+	name = "german knife"
 	desc = "standerd german knife that you can put into your boot."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "nr40_knife"
@@ -150,7 +150,7 @@
 	force_divisor = 0.3
 
 /obj/item/weapon/material/kitchen/utensil/knife/boot/nr40_knife_SS
-	name = "SS knife"
+	name = "SS dagger"
 	desc = "'My loyalty is my honor."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "nr40_knife_SS"

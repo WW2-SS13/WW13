@@ -178,7 +178,41 @@
 		/obj/item/weapon/grenade/smokebomb/german = 21,
 
 		/obj/item/weapon/shovel/spade/russia = 10,
-		/obj/item/weapon/material/kitchen/utensil/knife/boot = 10,
+		/obj/item/weapon/material/kitchen/utensil/knife/boot/nr40_knife_SS = 10,
+
+	)
+/obj/structure/vending/guard_weaponrack
+	name = "Guard weapon rack"
+	desc = "Rack filled with weapons."
+	icon_state = "equipment_german"
+	products = list(
+		/obj/item/weapon/gun/projectile/boltaction/kar98k = 40,
+		/obj/item/weapon/gun/projectile/submachinegun/mp40 = 20,
+		/obj/item/weapon/attachment/bayonet/german = 10,
+
+		/obj/item/weapon/gun/projectile/pistol/mauser = 20,
+
+		/obj/item/ammo_magazine/kar98k = 50,
+		/obj/item/ammo_magazine/mp40 = 40,
+		/obj/item/ammo_magazine/a762/akm = 24,
+		/obj/item/ammo_magazine/c763x25mm_mauser = 24,
+
+		/obj/item/weapon/grenade/explosive/stgnade = 20,
+		/obj/item/weapon/grenade/explosive/l2a2 = 20,
+		/obj/item/weapon/grenade/smokebomb/german = 40,
+
+		/obj/item/weapon/melee/classic_baton/MP/SS = 20,
+		/obj/item/weapon/material/kitchen/utensil/knife/boot/nr40_knife_SS = 10,
+	)
+
+/obj/structure/vending/guard_equipment
+	name = "Guard equipment rack"
+	desc = "Basic equip for Guards."
+	icon_state = "equipment_german"
+	products = list(
+	/obj/item/clothing/mask/gas/german = 90,
+	/obj/item/flashlight = 40,
+	/obj/item/clothing/accessory/storage/webbing = 90,
 
 	)
 
