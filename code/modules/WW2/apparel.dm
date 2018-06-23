@@ -191,9 +191,9 @@
 /obj/item/clothing/under/geruni/sauni
 	name = "SA Uniform"
 	desc = "A uniform of the SturmAbteilung, used by NSAP party officials."
-	icon_state = "SAuniform"
-	item_state = "SAuniform"
-	worn_state = "SAuniform"
+	icon_state = "SAuni"
+	item_state = "SAuni"
+	worn_state = "SAuni"
 
 /obj/item/clothing/under/geruni/hj_uni
 	name = "Hitlerjugend Uniform"

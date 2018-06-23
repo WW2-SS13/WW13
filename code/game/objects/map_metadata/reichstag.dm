@@ -1,5 +1,4 @@
 #define NO_WINNER "The Reichstag is in German hands."
-
 /obj/map_metadata/reichstag
 	ID = MAP_REICHSTAG
 	title = "Reichstag (100x100x5)"
@@ -42,17 +41,17 @@
 			. = FALSE
 		else
 			if (istype(J, /datum/job/german/volkssturm))
-				J.min_positions = 25
-				J.max_positions = 25
-				J.total_positions = 25
+				J.min_positions = 32
+				J.max_positions = 32
+				J.total_positions = 32
 			if (istype(J, /datum/job/german/kriegsmarine))
-				J.min_positions = 16
-				J.max_positions = 16
-				J.total_positions = 16
+				J.min_positions = 20
+				J.max_positions = 20
+				J.total_positions = 20
 			if (istype(J, /datum/job/german/soldier_ss_reichstag))
-				J.min_positions = 19
-				J.max_positions = 19
-				J.total_positions = 19
+				J.min_positions = 23
+				J.max_positions = 23
+				J.total_positions = 23
 			if (istype(J, /datum/job/german/hitlerjugend))
 				J.min_positions = 15
 				J.max_positions = 15
@@ -219,3 +218,6 @@ var/no_loop_r = FALSE
 		win_condition.hash = 0
 	last_win_condition = win_condition.hash
 	return TRUE
+
+/obj/map_metadata/reichstag/proc/seasons()
+	season="SPRING"
