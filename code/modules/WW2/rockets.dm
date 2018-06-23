@@ -2,6 +2,7 @@
 	name = "Panzerfaust"
 	icon_state = "panzerfaust"
 	item_state = "panzerfaust"
+	slot_flags = SLOT_BACK
 	recoil = TRUE
 
 // panzerfaust takes 1.2 seconds to fire now
