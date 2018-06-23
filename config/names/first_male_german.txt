@@ -1,4 +1,4 @@
-Jens
+﻿Jens
 Adolph
 Adolf
 Henry
@@ -9,10 +9,10 @@ Silvester
 Helibert
 Eberhard
 Sven
-Rüdiger
+Rudiger
 Sigmund
 Siegfried
-Thaddäus
+Thaddaus
 Wolfgang
 Isaak
 Meik

@@ -926,6 +926,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\city\level1.dmm"
 #include "maps\reichstag\reichstag.dmm"
 // END_INCLUDE

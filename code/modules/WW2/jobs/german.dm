@@ -1495,7 +1495,7 @@ var/first_fallschirm = TRUE
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/sscamo(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/sssmock(H), slot_wear_suit)
 	if (prob(75))
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm/sshelm(H), slot_head)
