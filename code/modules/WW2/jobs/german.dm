@@ -1824,7 +1824,7 @@ var/first_fallschirm = TRUE
 	if (prob(50))
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_l_hand)
 	else
-		if (prob(50))
+		if (prob(75))
 			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_l_hand)
 		else
 			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/mauser(H), slot_belt)
