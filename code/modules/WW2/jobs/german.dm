@@ -1549,8 +1549,10 @@ var/first_fallschirm = TRUE
 /datum/job/german/subcommander_reichstag/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/leather(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket/charcoal(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/civ4(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/civjacket(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/waltherp38(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/formal(H), slot_head)
 	var/obj/item/clothing/accessory/armband/nsdap/nsdap_a = new /obj/item/clothing/accessory/armband/nsdap(null)
 	var/obj/item/clothing/under/uniform = H.w_uniform
 	uniform.attackby(nsdap_a, H)
@@ -1652,7 +1654,7 @@ var/first_fallschirm = TRUE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
-//	H.equip_to_slot_or_del(new /obj/item/clothing/suit/sssmock(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/sssmock(H), slot_wear_suit)
 	if (prob(50))
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm/sshelm(H), slot_head)
 	else

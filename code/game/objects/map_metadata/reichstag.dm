@@ -6,7 +6,7 @@
 	lobby_icon_state = "reichstag"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall,
 	/area/prishtina/no_mans_land/invisible_wall/inside)
-	respawn_delay = 2400
+	respawn_delay = 1800
 	min_autobalance_players = 100
 	var/modded_num_reichstag = FALSE
 	var/modded_num_reichstag_s = FALSE
