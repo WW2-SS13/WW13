@@ -7,6 +7,9 @@
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall,
 	/area/prishtina/no_mans_land/invisible_wall/inside)
 	respawn_delay = 2400
+	min_autobalance_players = 100
+	var/modded_num_reichstag = FALSE
+	var/modded_num_reichstag_s = FALSE
 	squad_spawn_locations = FALSE
 	faction_organization = list(
 		GERMAN,
@@ -17,8 +20,7 @@
 		list(GERMAN) = /area/prishtina/german/briefing,
 		list(SOVIET) = /area/prishtina/farm4 // area inexistent in this map, in order to prevent the germans from winning by capture
 		)
-	available_subfactions = list(
-		SCHUTZSTAFFEL)
+	available_subfactions = list()
 	battle_name = "Reichstag"
 	times_of_day = list("Early Morning")
 	songs = list(
@@ -31,6 +33,52 @@
 
 /obj/map_metadata/reichstag/soviets_can_cross_blocks()
 	return (processes.ticker.playtime_elapsed >= 4800 || admin_ended_all_grace_periods)
+
+/obj/map_metadata/reichstag/job_enabled_specialcheck(var/datum/job/J)
+	. = TRUE
+	if (istype(J, /datum/job/german))
+		if (!J.is_reichstag)
+			. = FALSE
+		else
+			if (istype(J, /datum/job/german/volkssturm) && !modded_num_reichstag)
+				J.total_positions = 30
+			if (istype(J, /datum/job/german/kriegsmarine) && !modded_num_reichstag)
+				J.total_positions = 26
+			if (istype(J, /datum/job/german/soldier_ss_charlemagne) && !modded_num_reichstag)
+				J.total_positions = 12
+			if (istype(J, /datum/job/german/soldier_ss_nordland) && !modded_num_reichstag)
+				J.total_positions = 12
+			if (istype(J, /datum/job/german/paratrooper_reichstag) && !modded_num_reichstag)
+				J.total_positions = 12
+			if (istype(J, /datum/job/german/squad_leader) && !modded_num_reichstag)
+				J.total_positions = 8
+			if (istype(J, /datum/job/german/commander) && !modded_num_reichstag)
+				J.total_positions = 1
+				modded_num_reichstag = TRUE
+
+	else if (istype(J, /datum/job/soviet))
+		if (istype(J, /datum/job/soviet/soldier) && !modded_num_reichstag_s)
+			J.total_positions = 100
+		if (istype(J, /datum/job/soviet/guard) && !modded_num_reichstag_s)
+			J.total_positions = 10
+		if (istype(J, /datum/job/soviet/sturmovik) && !modded_num_reichstag_s)
+			J.total_positions = 30
+		if (istype(J, /datum/job/soviet/heavy_weapon) && !modded_num_reichstag_s)
+			J.total_positions = 10
+		if (istype(J, /datum/job/soviet/sniper) && !modded_num_reichstag_s)
+			J.total_positions = 6
+		if (istype(J, /datum/job/soviet/medic) && !modded_num_reichstag_s)
+			J.total_positions = 14
+		if (istype(J, /datum/job/soviet/doctor) && !modded_num_reichstag_s)
+			J.total_positions = 10
+		if (istype(J, /datum/job/soviet/squad_leader) && !modded_num_reichstag_s)
+			J.total_positions = 20
+		if (istype(J, /datum/job/soviet/commander) && !modded_num_reichstag_s)
+			J.total_positions = 1
+		modded_num_reichstag_s = TRUE
+
+
+	return .
 
 /obj/map_metadata/reichstag/announce_mission_start(var/preparation_time)
 	world << "<font size=4>All factions have <b>8 minutes</b> to prepare before the ceasefire ends!<br>The Germans will win if they hold out for 50 minutes. The Soviets will win if they manage to reach the top of the Reichstag.</font>"

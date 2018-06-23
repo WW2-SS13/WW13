@@ -111,6 +111,13 @@
 	item_state = "geruniofficer"
 	worn_state = "geruniofficer"
 
+/obj/item/clothing/under/geruni/kriegsmarine
+	name = "Kriegsmarine sailor uniform"
+	desc = "A dark blue uniform of the Kriegsmarine."
+	icon_state = "kriegsmarine"
+	item_state = "kriegsmarine"
+	worn_state = "kriegsmarine"
+
 /obj/item/clothing/under/geruni/MP
 	name = "german MP's uniform"
 	desc = "A fancier, more pressed uniform of the Nazi Army, given to German military police."
