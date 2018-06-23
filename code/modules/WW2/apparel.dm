@@ -188,6 +188,20 @@
 	item_state = "ss_formal_ofc"
 	worn_state = "ss_formal_ofc"
 
+/obj/item/clothing/under/geruni/sauni
+	name = "SA Uniform"
+	desc = "A uniform of the SturmAbteilung, used by NSAP party officials."
+	icon_state = "SAuniform"
+	item_state = "SAuniform"
+	worn_state = "SAuniform"
+
+/obj/item/clothing/under/geruni/hj_uni
+	name = "Hitlerjugend Uniform"
+	desc = "A uniform of the Hitlerjugend, the Hitler's Youth."
+	icon_state = "hj_uni"
+	item_state = "hj_uni"
+	worn_state = "hj_uni"
+
 /obj/item/clothing/under/geruni/gertankeruni
 	name = "Panzer Crewman Uniform"
 	desc = "A dark gray jumpsuit with a brown belt. It has an insignia indicating that the wearer is a tank crewman."

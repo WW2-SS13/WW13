@@ -42,33 +42,41 @@
 			. = FALSE
 		else
 			if (istype(J, /datum/job/german/volkssturm))
-				J.min_positions = 30
-				J.max_positions = 30
-				J.total_positions = 30
+				J.min_positions = 25
+				J.max_positions = 25
+				J.total_positions = 25
 			if (istype(J, /datum/job/german/kriegsmarine))
-				J.min_positions = 26
-				J.max_positions = 26
-				J.total_positions = 26
-			if (istype(J, /datum/job/german/soldier_ss_charlemagne))
-				J.min_positions = 12
-				J.max_positions = 12
-				J.total_positions = 12
-			if (istype(J, /datum/job/german/soldier_ss_nordland))
-				J.min_positions = 12
-				J.max_positions = 12
-				J.total_positions = 12
+				J.min_positions = 16
+				J.max_positions = 16
+				J.total_positions = 16
+			if (istype(J, /datum/job/german/soldier_ss_reichstag))
+				J.min_positions = 19
+				J.max_positions = 19
+				J.total_positions = 19
+			if (istype(J, /datum/job/german/hitlerjugend))
+				J.min_positions = 15
+				J.max_positions = 15
+				J.total_positions = 15
 			if (istype(J, /datum/job/german/paratrooper_reichstag))
 				J.min_positions = 12
 				J.max_positions = 12
 				J.total_positions = 12
-			if (istype(J, /datum/job/german/squad_leader))
+			if (istype(J, /datum/job/german/squad_leader_reichstag))
 				J.min_positions = 8
 				J.max_positions = 8
 				J.total_positions = 8
-			if (istype(J, /datum/job/german/commander))
+			if (istype(J, /datum/job/german/commander_reichstag))
 				J.min_positions = 1
 				J.max_positions = 1
 				J.total_positions = 1
+			if (istype(J, /datum/job/german/subcommander_reichstag))
+				J.min_positions = 1
+				J.max_positions = 1
+				J.total_positions = 1
+			if (istype(J, /datum/job/german/medic_ss_reichstag))
+				J.min_positions = 4
+				J.max_positions = 4
+				J.total_positions = 4
 				modded_num_reichstag = TRUE
 
 	else if (istype(J, /datum/job/soviet))

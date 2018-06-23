@@ -99,6 +99,10 @@ var/global/datum/controller/occupations/job_master
 				if (!map.available_subfactions.Find(SOVIET_PRISONER))
 					J.total_positions = 0
 					continue
+			if (J.is_reichstag)
+				if (!map.available_subfactions.Find(GERMAN_REICHSTAG))
+					J.total_positions = 0
+					continue
 			else if (J.base_type_flag() == ITALIAN)
 				if (!map.available_subfactions.Find(ITALIAN))
 					J.total_positions = 0

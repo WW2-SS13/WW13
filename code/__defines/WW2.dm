@@ -11,6 +11,7 @@
 #define SCHUTZSTAFFEL "SS"
 #define SS_TV "SS_TV"
 #define SOVIET_PRISONER "SOVIET_PRISONER"
+#define GERMAN_REICHSTAG "GERMAN_REICHSTAG"
 
 // used for languages only
 #define RUSSIAN "RUSSIAN"
