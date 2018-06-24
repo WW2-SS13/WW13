@@ -80,7 +80,17 @@ var/datum/reinforcements/reinforcements_master = null
 	max_soviet_reinforcements = max(1, round(clients.len * 0.58))
 	reinforcement_add_limit_german = max(3, round(clients.len * 0.14))
 	reinforcement_add_limit_soviet = max(3, round(clients.len * 0.19))
-	reinforcement_spawn_req = max(1, round(clients.len * 0.06))
+	if (max_german_reinforcements - reinforcements_granted[GERMAN] < reinforcement_spawn_req)
+		reinforcement_spawn_req = 1
+	else
+		reinforcement_spawn_req = max(1, round(clients.len * 0.06))
+
+	if (max_soviet_reinforcements - reinforcements_granted[SOVIET] < reinforcement_spawn_req)
+		reinforcement_spawn_req = 1
+	else
+		reinforcement_spawn_req = max(1, round(clients.len * 0.06))
+//	reinforcement_spawn_req = max(1, round(clients.len * 0.06))
+//	reinforcement_spawn_req = 1 //to prevent bugs - Taislin
 	reinforcement_difference_cutoff = max(3, round(clients.len * 0.19))
 
 	world << "<span class = 'danger'>Reinforcements require <b>[reinforcement_spawn_req]</b> [reinforcement_spawn_req == 1 ? "person" : "people"] to fill a queue.</span>"
