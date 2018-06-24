@@ -85,8 +85,13 @@ var/GRACE_PERIOD_LENGTH = 7
 	if (map && istype(map, /obj/map_metadata/forest))
 		return TRUE
 
+	// forces Spring in Reichstag map
+	if (map && istype(map, /obj/map_metadata/reichstag))
+		(season = "SPRING")
+		return TRUE
+
 	// snow is disabled because it breaks the game
-	var/use_snow = FALSE
+	var/use_snow = TRUE
 
 	// first, make all water into ice if it's winter
 	if (season == "WINTER")
