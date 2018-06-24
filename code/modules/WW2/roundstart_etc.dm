@@ -91,7 +91,7 @@ var/GRACE_PERIOD_LENGTH = 7
 		return TRUE
 
 	// snow is disabled because it breaks the game
-	var/use_snow = TRUE
+	var/use_snow = FALSE
 
 	// first, make all water into ice if it's winter
 	if (season == "WINTER")

@@ -121,7 +121,7 @@
 	return .
 
 /obj/map_metadata/reichstag/announce_mission_start(var/preparation_time)
-	world << "<font size=4>All factions have <b>8 minutes</b> to prepare before the ceasefire ends!<br>The Germans will win if they hold out for <b>1 hour</b>. The Soviets will win if they manage to reach the top of the Reichstag.</font>"
+	world << "<font size=4>All factions have <b>15 minutes</b> to prepare before the ceasefire ends!<br>The Germans will win if they hold out for <b>1 hour</b>. The Soviets will win if they manage to reach the top of the Reichstag.</font>"
 
 /obj/map_metadata/reichstag/reinforcements_ready()
 	return (germans_can_cross_blocks() && soviets_can_cross_blocks())
@@ -219,7 +219,5 @@ var/no_loop_r = FALSE
 	last_win_condition = win_condition.hash
 	return TRUE
 
-/obj/map_metadata/reichstag/proc/seasons()
-	season="SPRING"
 
 	#undef NO_WINNER
