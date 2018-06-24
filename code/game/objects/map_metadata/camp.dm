@@ -3,6 +3,7 @@
 /obj/map_metadata/camp
 	ID = MAP_CAMP
 	title = "POW Camp (125x125x2)"
+	lobby_icon_state = "pow_camp"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall,
 	/area/prishtina/no_mans_land/invisible_wall/inside) // above and underground
 	respawn_delay = 1800

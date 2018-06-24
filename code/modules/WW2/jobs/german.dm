@@ -1624,7 +1624,7 @@ var/first_fallschirm = TRUE
 	..()
 	H.make_artillery_officer()
 
-/datum/job/german/squad_leader/get_keys()
+/datum/job/german/squad_leader_reichstag/get_keys()
 	return list(new/obj/item/weapon/key/german,
 		new/obj/item/weapon/key/german/command_intermediate,
 		new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer, new/obj/item/weapon/key/german/QM)
