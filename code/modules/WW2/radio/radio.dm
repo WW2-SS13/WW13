@@ -151,7 +151,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	if (!isturf(loc))
 		notyetmoved = FALSE
 
-	if (istype(src, /obj/item/radio/intercom) && !istype(src, /obj/item/radio/intercom/loudspeaker))
+	if (istype(src, /obj/item/radio/intercom) && !istype(src, /obj/item/radio/loudspeaker))
 		notyetmoved = FALSE
 		if (loc)
 			setup_announcement_system("Arrivals Announcements", (faction == GERMAN ? DE_BASE_FREQ : SO_BASE_FREQ))

@@ -56,6 +56,11 @@
 	icon_state = "beret"
 	body_parts_covered = FALSE
 
+/obj/item/clothing/head/caphat/km_cap
+	name = "Kriegsmarine cap"
+	desc = "A formal cap of the Kriegsmarine."
+	icon_state = "km_cap"
+
 //Security
 /obj/item/clothing/head/beret/sec/navy/officer
 	name = "Operative beret"

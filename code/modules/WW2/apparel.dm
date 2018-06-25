@@ -111,6 +111,13 @@
 	item_state = "geruniofficer"
 	worn_state = "geruniofficer"
 
+/obj/item/clothing/under/geruni/kriegsmarine
+	name = "Kriegsmarine sailor uniform"
+	desc = "A dark blue uniform of the Kriegsmarine."
+	icon_state = "kriegsmarine"
+	item_state = "kriegsmarine"
+	worn_state = "kriegsmarine"
+
 /obj/item/clothing/under/geruni/MP
 	name = "german MP's uniform"
 	desc = "A fancier, more pressed uniform of the Nazi Army, given to German military police."
@@ -180,6 +187,20 @@
 	icon_state = "ss_formal_ofc"
 	item_state = "ss_formal_ofc"
 	worn_state = "ss_formal_ofc"
+
+/obj/item/clothing/under/geruni/sauni
+	name = "SA Uniform"
+	desc = "A uniform of the SturmAbteilung, used by NSAP party officials."
+	icon_state = "SAuni"
+	item_state = "SAuni"
+	worn_state = "SAuni"
+
+/obj/item/clothing/under/geruni/hj_uni
+	name = "Hitlerjugend Uniform"
+	desc = "A uniform of the Hitlerjugend, the Hitler's Youth."
+	icon_state = "hj_uni"
+	item_state = "hj_uni"
+	worn_state = "hj_uni"
 
 /obj/item/clothing/under/geruni/gertankeruni
 	name = "Panzer Crewman Uniform"
@@ -334,7 +355,7 @@
 
 /obj/item/clothing/suit/armor/cn42
 	name = "CN-42 bulletproof vest"
-	desc = "A heavy vest used by Soviet Sturmoviks. Used for deflecting shrapnel and some bullets."
+	desc = "A heavy vest used by Soviet Sturmovik. Used for deflecting shrapnel and some bullets."
 	icon_state = "cn42"
 	armor = list(melee = 50)
 	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
@@ -379,6 +400,7 @@
 		/obj/item/ammo_magazine/luger,
 		/obj/item/weapon/gauze_pack,
 		/obj/item/weapon/shovel/spade/russia,
+			/obj/item/weapon/shovel/spade/german,
 		/obj/item/weapon/reagent_containers/food
 		)
 
@@ -445,6 +467,7 @@
 		/obj/item/ammo_magazine/c45m,
 		/obj/item/ammo_magazine/luger,
 		/obj/item/weapon/gauze_pack,
+		/obj/item/weapon/shovel/spade/german,
 		/obj/item/weapon/shovel/spade/russia,
 		/obj/item/weapon/reagent_containers/food
 		)
@@ -455,7 +478,7 @@
 /*	new /obj/item/weapon/gun/projectile/pistol/waltherp38(src)
 	new /obj/item/ammo_magazine/p9x19mm(src)
 	new /obj/item/ammo_magazine/p9x19mm(src)*/
-	new /obj/item/weapon/shovel/spade/russia(src)
+	new /obj/item/weapon/shovel/spade/german(src)
 
 /obj/item/weapon/storage/belt/german/anti_tank_crew
 /obj/item/weapon/storage/belt/german/anti_tank_crew/New()
@@ -510,10 +533,10 @@
 /obj/item/weapon/storage/belt/german/SSTV/New()
 	..()
 	new /obj/item/weapon/melee/classic_baton/MP/SS(src)
-//	new /obj/item/weapon/gun/projectile/pistol/waltherp38(src)
+	new /obj/item/weapon/gun/projectile/pistol/waltherp38(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/weapon/handcuffs(src)
-//	new /obj/item/ammo_magazine/p9x19mm(src)
+	new /obj/item/ammo_magazine/p9x19mm(src)
 
 /obj/item/weapon/storage/belt/italy
 	name = "Italian belt pouch"

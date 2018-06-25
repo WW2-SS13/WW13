@@ -11,12 +11,12 @@
 	var/maxhealth = 270
 
 
-/obj/structure/siren/interact(mob/user)
-	if (cooldown < world.time - 1200)
+/obj/structure/siren/attack_hand(mob/user)
+	if ((cooldown < world.time - 1200) || (world.time < 1200))
 		user << "<span class='notice'>You turn the [src], creating an ear-splitting noise!</span>"
-		playsound(user, 'sound/misc/siren.ogg', 20, TRUE)
+		playsound(user, 'sound/misc/siren.ogg', 100, TRUE)
 		cooldown = world.time
 	return //It's just a loudspeaker
 
-/obj/structure/siren/process()
-	return //to stop icon from changing
+///obj/structure/siren/process()
+//	return //to stop icon from changing

@@ -28,6 +28,7 @@
 /datum/job/var/is_SS = FALSE
 /datum/job/var/is_SS_TV = FALSE
 /datum/job/var/is_prisoner = FALSE
+/datum/job/var/is_reichstag = FALSE
 /datum/job/var/is_primary = TRUE
 /datum/job/var/is_secondary = FALSE
 /datum/job/var/is_paratrooper = FALSE

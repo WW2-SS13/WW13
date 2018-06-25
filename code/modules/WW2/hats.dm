@@ -41,3 +41,18 @@
 	name = "Panzer Crewman Cap"
 	icon_state = "gertankerhat"
 	item_state = "gertankerhat"
+
+/obj/item/clothing/head/caphat/km_cap
+	name = "Kriegsmarine Cap"
+	icon_state = "km_cap"
+	item_state = "km_cap"
+
+/obj/item/clothing/head/caphat/nsdap_cap
+	name = "NSDAP Cap"
+	icon_state = "nsdap_cap"
+	item_state = "nsdap_cap"
+
+/obj/item/clothing/head/caphat/gercap/fieldcap2
+	name = "German field cap"
+	icon_state = "fieldcap"
+	item_state = "fieldcap"
