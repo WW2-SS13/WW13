@@ -389,6 +389,12 @@
 		return TRUE
 	return FALSE
 
+//if the player is "Penal banned", he is reduced to play as a member of a penal battalion
+/mob/new_player/proc/penalBanned()
+	if (client && client.quickBan_isbanned("Penal"))
+		return TRUE
+	return FALSE
+
 /mob/new_player/proc/LateSpawnForced(rank, needs_random_name = FALSE, var/reinforcements = FALSE)
 
 	spawning = TRUE
@@ -443,6 +449,16 @@
 	if (officerBanned() && job.is_officer)
 		if (!nomsg)
 			usr << "<span class = 'warning'>You're banned from officer positions!</span>"
+		return FALSE
+
+	if (penalBanned() && !job.blacklisted)
+		if (!nomsg)
+			usr << "<span class = 'warning'>You're under a Penal Battalion ban, you can only play as that role!</span>"
+		return FALSE
+
+	if (!penalBanned() && job.blacklisted)
+		if (!nomsg)
+			usr << "<span class = 'warning'>This job is reserved as a punishment for those who break server rules.</span>"
 		return FALSE
 
 	if (job_master.is_side_locked(job.base_type_flag()))
