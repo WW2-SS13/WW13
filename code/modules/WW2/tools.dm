@@ -33,6 +33,11 @@
 	icon_state = "lopata"
 	item_state = "lopata"
 
+/obj/item/weapon/shovel/spade/german
+	name = "feldspaten"
+	icon_state = "lopata"
+	item_state = "lopata"
+
 /obj/item/weapon/shovel/spade/mortar
 	name = "spade mortar"
 	icon_state = "spade_mortar"

@@ -1173,6 +1173,49 @@ var/first_guard = FALSE
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////Penal Battalion/////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/soviet/penal
+	title = "Shtrafbat Soldat"
+	en_meaning = "Penal Unit Soldier"
+	rank_abbreviation = "Shtr"
+	selection_color = "#770e0e"
+	spawn_location = "JoinLateRA"
+	allow_spies = TRUE
+	SL_check_independent = TRUE
+	blacklisted = TRUE
+
+	// AUTOBALANCE
+	min_positions = 0
+	max_positions = 0 //we do not want too many of these guys
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+
+/datum/job/soviet/penal/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovcap/fieldcap(H), slot_head)
+	var/obj/item/clothing/accessory/armband/penal_ger/penal_ger_a = new /obj/item/clothing/accessory/armband/penal_ger(null)
+	var/obj/item/clothing/under/uniform = H.w_uniform
+	uniform.attackby(penal_ger_a, H)
+	H.add_note("Role", "You are a <b>[title]</b>, a criminal condemned to serve in a penal military unit. You are stripped of your ranks, and even below the average Soldat. Do not expect to be given priority on food and medical attention.")
+//	H.give_radio() no radio for criminals!
+	H.setStat("strength", STAT_MEDIUM_LOW)
+	H.setStat("engineering", STAT_MEDIUM_LOW)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_MEDIUM_LOW)
+	H.setStat("pistol", STAT_MEDIUM_LOW)
+	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
+	H.setStat("medical", STAT_MEDIUM_LOW)
+	H.setStat("shotgun", STAT_MEDIUM_LOW)
+
+// no weapons! go beg the QM for one. You are lucky to have a shovel
+	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
+	return TRUE
+
+/datum/job/soviet/penal/get_keys()
+	return list(new/obj/item/weapon/key/soviet)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

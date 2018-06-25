@@ -9,3 +9,4 @@
 	else if (config.use_job_whitelist)
 		return W.validate(np.client)
 	return TRUE
+/datum/job/var/blacklisted = FALSE
