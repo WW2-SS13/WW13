@@ -1954,6 +1954,8 @@ var/first_fallschirm = TRUE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap2(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/wirecutters(H), slot_l_hand)
+
 	var/obj/item/clothing/accessory/armband/penal_ger/penal_ger_a = new /obj/item/clothing/accessory/armband/penal_ger(null)
 	var/obj/item/clothing/under/uniform = H.w_uniform
 	uniform.attackby(penal_ger_a, H)
