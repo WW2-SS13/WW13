@@ -86,9 +86,10 @@ var/GRACE_PERIOD_LENGTH = 7
 		return TRUE
 
 	// forces Spring in Reichstag map
-	if (map && istype(map, /obj/map_metadata/reichstag))
-		(season = "SPRING")
-		return TRUE
+	//if (map && istype(map, /obj/map_metadata/reichstag))
+		//(season = "SPRING")
+		//return TRUE
+		// this breaks serb??? dunno testing
 
 	// snow is disabled because it breaks the game
 	var/use_snow = FALSE
