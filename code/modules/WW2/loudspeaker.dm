@@ -1,4 +1,4 @@
-/obj/item/radio/intercom/loudspeaker
+/obj/item/radio/loudspeaker
 	name = "base loudspeaker"
 	desc = "This is where your commandant shouts at you from."
 	icon_state = "loudspeaker"
@@ -8,7 +8,7 @@
 	layer = MOB_LAYER + 1
 	anchored = TRUE
 
-/obj/item/radio/intercom/loudspeaker/german
+/obj/item/radio/loudspeaker/german
 	frequency = DE_BASE_FREQ
 	name = "german base loudspeaker"
 	is_supply_radio = FALSE
@@ -16,7 +16,7 @@
 	internal_channels = list(
 	1004.0)
 
-/obj/item/radio/intercom/loudspeaker/russian
+/obj/item/radio/loudspeaker/russian
 	name = "soviet base loudspeaker"
 	frequency = SO_BASE_FREQ
 	is_supply_radio = FALSE
@@ -24,9 +24,9 @@
 	internal_channels = list(
 	1001.0)
 
-/obj/item/radio/intercom/loudspeaker/interact(mob/user)
+/obj/item/radio/loudspeaker/interact(mob/user)
 	return //It's just a loudspeaker
 
-/obj/item/radio/intercom/loudspeaker/process()
+/obj/item/radio/loudspeaker/process()
 	return //to stop icon from changing
 

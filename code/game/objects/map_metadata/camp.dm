@@ -8,6 +8,7 @@
 	/area/prishtina/no_mans_land/invisible_wall/inside) // above and underground
 	respawn_delay = 1800
 	squad_spawn_locations = FALSE
+	//min_autobalance_players = 50 // aparently less that this will fuck autobalance
 	reinforcements = FALSE
 	faction_organization = list(
 		GERMAN,
@@ -25,6 +26,9 @@
 	var/modded_num_of_SSTV = FALSE
 	var/modded_num_of_prisoners = FALSE
 	faction_distribution_coeffs = list(GERMAN = 0.3, SOVIET = 0.70)
+	songs = list(
+		"The Great Escape:1" = 'sound/music/the_great_escape.ogg',
+		)
 
 /obj/map_metadata/camp/germans_can_cross_blocks()
 	return (processes.ticker.playtime_elapsed >= 600 || admin_ended_all_grace_periods)
@@ -39,13 +43,13 @@
 		if (!J.is_SS_TV)
 			. = FALSE
 		else
-			if (istype(J, /datum/job/german/soldier_sstv) && !modded_num_of_SSTV)
+			if (istype(J, /datum/job/german/soldier_sstv))
 				J.total_positions = max(2, round(clients.len*0.25*3))
-			if (istype(J, /datum/job/german/commander_sstv) && !modded_num_of_SSTV)
+			if (istype(J, /datum/job/german/commander_sstv))
 				J.total_positions = 1
-			if (istype(J, /datum/job/german/squad_leader_sstv) && !modded_num_of_SSTV)
+			if (istype(J, /datum/job/german/squad_leader_sstv))
 				J.total_positions = max(1, round(clients.len*0.05*3))
-			if (istype(J, /datum/job/german/medic_sstv) && !modded_num_of_SSTV)
+			if (istype(J, /datum/job/german/medic_sstv))
 				J.total_positions = max(1, round(clients.len*0.05*3))
 				modded_num_of_SSTV = TRUE
 //	else if (istype(J, /datum/job/partisan/civilian))
