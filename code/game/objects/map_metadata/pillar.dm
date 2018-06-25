@@ -18,19 +18,12 @@
 		CIVILIAN,
 		PILLARMEN)
 	ambience = list()
-	times_of_day = list("Nigth")
+	times_of_day = list("Night")
 	zlevels_without_lighting = list(2)
 	areas_without_lighting = list(/area/prishtina/german/lift/down)
 	songs = list(
 		"Dark Part 3 Michael Meara:1" = 'sound/music/dark.ogg')
 	meme = FALSE
-	var/modded_num_of_SS = FALSE
-
-/obj/map_metadata/pillar/germans_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 4500 || admin_ended_all_grace_periods)
-
-/obj/map_metadata/pillar/soviets_can_cross_blocks()
-	return FALSE
 
 /obj/map_metadata/pillar/specialfaction_can_cross_blocks()
 	return (processes.ticker.playtime_elapsed >= 4500)
