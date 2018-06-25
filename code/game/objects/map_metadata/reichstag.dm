@@ -29,10 +29,10 @@
 	faction_distribution_coeffs = list(GERMAN = 0.30, SOVIET = 0.7)
 
 /obj/map_metadata/reichstag/germans_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 4800 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/reichstag/soviets_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 4800 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/reichstag/job_enabled_specialcheck(var/datum/job/J)
 	. = TRUE
@@ -121,7 +121,7 @@
 	return .
 
 /obj/map_metadata/reichstag/announce_mission_start(var/preparation_time)
-	world << "<font size=4>All factions have <b>8 minutes</b> to prepare before the ceasefire ends!<br>The Germans will win if they hold out for 50 minutes. The Soviets will win if they manage to reach the top of the Reichstag.</font>"
+	world << "<font size=4>All factions have <b>15 minutes</b> to prepare before the ceasefire ends!<br>The Germans will win if they hold out for <b>1 hour</b>. The Soviets will win if they manage to reach the top of the Reichstag.</font>"
 
 /obj/map_metadata/reichstag/reinforcements_ready()
 	return (germans_can_cross_blocks() && soviets_can_cross_blocks())
@@ -137,7 +137,7 @@ var/no_loop_r = FALSE
 /obj/map_metadata/reichstag/update_win_condition()
 	if (!win_condition_specialcheck())
 		return FALSE
-	if (world.time >= 30000)
+	if (world.time >= 36000)
 		if (win_condition_spam_check)
 			return FALSE
 		ticker.finished = TRUE
@@ -219,5 +219,5 @@ var/no_loop_r = FALSE
 	last_win_condition = win_condition.hash
 	return TRUE
 
-/obj/map_metadata/reichstag/proc/seasons()
-	season="SPRING"
+
+	#undef NO_WINNER
