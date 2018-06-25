@@ -35,7 +35,7 @@
 
 /obj/item/weapon/shovel/spade/german
 	name = "feldspaten"
-	icon_state = "lopata"
+	icon_state = "german_shovel2"
 	item_state = "lopata"
 
 /obj/item/weapon/shovel/spade/mortar
