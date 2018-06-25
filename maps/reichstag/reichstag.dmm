@@ -193,7 +193,7 @@
 "dK" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 "dL" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/condiment/flour,/obj/item/weapon/reagent_containers/food/condiment/flour,/obj/item/weapon/reagent_containers/food/condiment/flour,/obj/item/weapon/storage/fancy/egg_box,/obj/item/weapon/storage/fancy/egg_box,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
 "dM" = (/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/turf/floor/plating/dirt,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
-"dN" = (/obj/effect/decal/cleanable/blood,/turf/floor/wood_broken,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
+"dN" = (/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/plating/dirt,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
 "dO" = (/obj/item/weapon/storage/backpack/soviet,/obj/item/weapon/storage/backpack/soviet,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
 "dP" = (/obj/structure/bed/chair/wood/wings,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/medical{base_turf = /turf/floor/dirt})
 "dQ" = (/obj/effect/decal/cleanable/blood/drip,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/armory)
@@ -205,7 +205,7 @@
 "dW" = (/turf/floor/wood_broken,/area/prishtina/soviet/small_map/inside/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
 "dX" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/hos,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
 "dY" = (/obj/structure/bedsheetbin,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
-"dZ" = (/obj/item/weapon/cigbutt,/turf/floor/wood_broken,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
+"dZ" = (/obj/item/weapon/cigbutt,/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
 "ea" = (/obj/effect/landmark{name = "JoinLateRAMP"},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/command_post)
 "eb" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/green,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/medical{base_turf = /turf/floor/dirt})
 "ec" = (/obj/structure/closet/crate/soviet_grenade,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/armory)
@@ -1049,6 +1049,7 @@
 "ui" = (/obj/structure/bed/chair/wood/red,/turf/floor/dirt,/area/prishtina/houses/sov_one)
 "uj" = (/obj/structure/bed/chair/wood/red,/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/houses/sov_one)
 "uk" = (/obj/structure/filingcabinet,/turf/floor/dirt,/area/prishtina/houses/sov_one)
+"ul" = (/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/wood_broken,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
 "um" = (/obj/item/weapon/paper/crumpled/bloody,/turf/floor/wood,/area/prishtina/houses/sov_one)
 "un" = (/obj/item/ammo_casing/a762x51,/turf/floor/wood,/area/prishtina/houses/sov_one)
 "uo" = (/obj/structure/table/wood,/obj/item/weapon/paper_bin,/turf/floor/wood,/area/prishtina/houses/sov_one)
@@ -1197,6 +1198,12 @@
 "xb" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
 "xc" = (/obj/structure/table/wood,/obj/item/weapon/storage/firstaid/surgery,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "xd" = (/obj/structure/table/wood,/obj/structure/bed/chair/wood{dir = 8},/obj/structure/light/small,/obj/item/weapon/storage/firstaid/surgery,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
+"xe" = (/obj/item/weapon/cigbutt,/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/plating/dirt,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
+"xf" = (/obj/effect/decal/cleanable/blood/drip,/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
+"xg" = (/obj/effect/decal/cleanable/blood,/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/wood_broken,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
+"xh" = (/obj/item/weapon/cigbutt,/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/wood_broken,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
+"xi" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/bed/chair/wood{dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"xj" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/table/iron,/obj/item/weapon/handcuffs,/obj/item/weapon/handcuffs,/obj/item/weapon/legcuffs,/obj/item/weapon/legcuffs,/obj/item/weapon/melee/classic_baton/MP/soviet,/turf/floor/plating/cobblestone/vertical,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
 
 (1,1,1) = {"
 abababababababacadaeafafafagahacababababababaiajakakakakakakakakakakajajakakakakakakajakakakakakajakakakakakakakakakakakakakakakakakakakakakakakakajalamamamamamamamamamamamamakakakakakakanakakakakakak
@@ -1290,14 +1297,14 @@ blblblblblblblblblblblblblblblblblbQblblblbRblblbSblblblmCmEnUmEmCblblblblhiblbQ
 blblblblblblblblblblblblblblblblblbQblblblblblblbVblblblmCmEormEmCblblblblblblblblblblblblblblblblblblblbLbQblblblblblblblbXbYblblblblblblblblbmbjbgbgbgbgbgtBtBbgbgbguabgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbg
 blblblblblblblblblblblblblblblblblblblblblblblblblhiblblmCmEormEmCblblblblbljhjhjhjhblblblblblblblblblblblbZbZbZblblblblblblblblblblblblblblblubbjjAjAtAjAucjAjAjAjAtAucjAjAucucjAjAjAjAtAjAjAjAsUudjAjA
 blblblblblblblblblblblblblblblblblblblblblblblblblblblblmCmCuBmCmCblblcablbljhjhjhjhblblblblblblblblblblblbZbZblblblblblblblblblblblblblblblblbmbjjAjHjHjHuejHsUsUjHufugjAsUjHueuhsUuijHjHugjAjHujueukjA
-dSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSiWafafafafjsixaItbjHucumueunjAsUuoupuqjAucjHurupjAupusjHucjAutupucjHjA
+dSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSxixjdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSiWafafafafjsixaItbjHucumueunjAsUuoupuqjAucjHurupjAupusjHucjAutupucjHjA
 aIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIjPjPaIjPjPmNaIaIaIaIaIaIaIaIaIaIaIaIaIaIchafafafafafcyaIjAjHjHuuueuvjAsUjHjHjHucjHjHwEuxjAjHjHunjHjAueunuyjHjA
 awawmOawawawawmOawawaHcicicicjcicjckckcjcjcjcjcjarararclclclclclcmcncncmjIclclcoclarararcpcqcqcrcqcqcsctcscsctcscscucvjJcucwcucxrrchafrsrsrsafcyaIwFucwGjHuejHsUjAjAjAsUjAjAjAuzucjAsUjAjAuAsUtVjAuCjAjA
-rtakakrtakrtakakrtrtalcicAcBcCcAcDcBcAjQcFdUcHcjarararcIcJcKcLocoicJcJcMcNcNcOcOcParararcqcQcRcScTcUcscVeacWcWikcscYcZdadbcZcZdcrrruafrsrsrsafcyaItbjHucjHuDuEsUjHwHucjHuuuxjHuFumjHjHucjHjHjHjHjHjHjHtA
-akakrtakakakakarakakalcjcHdditdecBdUcBitdfcBjRcjarararcldhcJdidjdicJcJcJdkdkdlcOcIarararcplHcSiudmdncscWdodpdqdrctcZcZcZdsdtcZcwrrruafrvrvrvrwryrOsUjHjHsUjHuetVjAjAjAjAjAjAjAjAtVsUjAwFjAjAjAjAjAsUjAjA
-akrtakasrtakrtakrtakalcjducBdUdgizdvdgiAcBiBdeciarararcIcJcJdicJdycJiCdjdzcJdAcJclarararcpdBcSdCdDdEcscWdFdGdHiDcscZdJiEiFdLcZcwrrruafafafafrwryrOucjHsUjHjHjHuzjHsUsUjHjAjHjHueuGtVuHjHjHjHjAjHjHjHuIjA
-akakrtakakrtakasakakalcjdMdvcBdgdvdUcBdNcAdfdOcjarararcIdPcJdidldiiCiGiCdAcJcJcJclarararcpdQdRiHcScSctcWiIiJcWcWcsdVcZiEdWcZdXcurrrurPrQrRrSrwryrOsUsUjHumjHjHjAugjHuJupjAuKupsUuIuLupuMupsUjAupuNsUuOjA
-akrtakarrtakrtakrtrtalcjdYjSdUcBdZiOcBdUcBiBdOciarararclcNdycJcJdiiGiGiGcJcJebcJclarararcqecedeeefegctcWcWcWcWdTcteheicZejekelcurTrUtctctctctctdrTjAjHjHjHjHjHjAugjHuPucjAjHuQjHjHjAjHuPunsUjAuPuuucuIjA
+rtakakrtakrtakakrtrtalcicAizcCdNcDcBdNjQcFdUcHcjarararcIcJcKcLocoicJcJcMcNcNcOcOcParararcqcQcRcScTcUcscVeacWcWikcscYcZdadbcZcZdcrrruafrsrsrsafcyaItbjHucjHuDuEsUjHwHucjHuuuxjHuFumjHjHucjHjHjHjHjHjHjHtA
+akakrtakakakakarakakalcjcHdditdZizdUcBitulcBjRcjarararcldhcJdidjdicJcJcJdkdkdlcOcIarararcplHcSiudmdncscWdodpdqdrctcZcZcZdsdtcZcwrrruafrvrvrvrwryrOsUjHjHsUjHuetVjAjAjAjAjAjAjAjAtVsUjAwFjAjAjAjAjAsUjAjA
+akrtakasrtakrtakrtakalcjduizdUdgizdvxeiAcBiBdeciarararcIcJcJdicJdycJiCdjdzcJdAcJclarararcpdBcSdCdDdEcscWdFdGdHiDcscZdJiEiFdLcZcwrrruafafafafrwryrOucjHsUjHjHjHuzjHsUsUjHjAjHjHueuGtVuHjHjHjHjAjHjHjHuIjA
+akakrtakakrtakasakakalcjdMxfizxedvdUcBxgdNdfdOcjarararcIdPcJdidldiiCiGiCdAcJcJcJclarararcpdQdRiHcScSctcWiIiJcWcWcsdVcZiEdWcZdXcurrrurPrQrRrSrwryrOsUsUjHumjHjHjAugjHuJupjAuKupsUuIuLupuMupsUjAupuNsUuOjA
+akrtakarrtakrtakrtrtalcjdYjSdUcBxhiOcBdUcBiBdOciarararclcNdycJcJdiiGiGiGcJcJebcJclarararcqecedeeefegctcWcWcWcWdTcteheicZejekelcurTrUtctctctctctdrTjAjHjHjHjHjHjAugjHuPucjAjHuQjHjHjAjHuPunsUjAuPuuucuIjA
 akakakakakakakakakakalcjcjcjcjcjcjcjcjcjcjcicjciarararclclclclclclclclclclclclclclarararcqcqcqcqcqcqctcsctcscscscscucucucucucucuwbwcwhwhwhwhwhwuwbjAjAtAjAtAjAjAjAjAtAjAjAjAjAtAjAjAjAucucjAjAjAjAtAjAjA
 "}
 
