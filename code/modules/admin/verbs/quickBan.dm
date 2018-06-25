@@ -2,8 +2,8 @@
  * not nearly as fancy as old banning, and it wasn't worth making an interface
  * for this rather small amount of code, so its all done via BYOND's input() */
 
-// 7 ways to ban people
-var/list/ban_types = list("Job Ban", "Faction Ban", "Officer Ban", "Server Ban", "Observe Ban", "Playing Ban")
+// 7 ways to ban people (8 now - Taislin)
+var/list/ban_types = list("Job Ban", "Faction Ban", "Officer Ban", "Server Ban", "Observe Ban", "Playing Ban", "Penal Ban")
 
 /datum/quickBan_handler
 /datum/quickBan_handler/Topic(href,href_list[])
@@ -176,6 +176,8 @@ var/datum/quickBan_handler/quickBan_handler = null
 		if ("Faction")
 			var/faction = input("What faction?") in list(GERMAN, SOVIET, ITALIAN, UKRAINIAN, SCHUTZSTAFFEL, PARTISAN, CIVILIAN)
 			fields["type_specific_info"] = faction
+		if ("Penal")
+			fields["type_specific_info"] = "Penal"
 
 	reenter_bantime
 

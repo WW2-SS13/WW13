@@ -1186,8 +1186,8 @@ var/first_guard = FALSE
 	blacklisted = TRUE
 
 	// AUTOBALANCE
-	min_positions = 0
-	max_positions = 0 //we do not want too many of these guys
+	min_positions = 1
+	max_positions = 6 //we do not want too many of these guys
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/soviet/penal/equip(var/mob/living/carbon/human/H)
