@@ -400,7 +400,7 @@
 		/obj/item/ammo_magazine/luger,
 		/obj/item/weapon/gauze_pack,
 		/obj/item/weapon/shovel/spade/russia,
-			/obj/item/weapon/shovel/spade/german,
+		/obj/item/weapon/shovel/spade/german,
 		/obj/item/weapon/reagent_containers/food
 		)
 
