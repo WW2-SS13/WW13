@@ -5,7 +5,7 @@
 		MAP_FOREST = 0,
 		MAP_TOWER = 0,
 		MAP_CAMP = 10,
-//		MAP_PILLAR = 20, /buggy af
+		MAP_SURVIVAL = 0,
 		MAP_REICHSTAG = 0)
 
 	var/ready = TRUE
