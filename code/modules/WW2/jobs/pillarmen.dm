@@ -64,7 +64,7 @@
 	for (var/v in 1 to 5)
 		uniform.attackby(new /obj/item/ammo_casing/shotgun(null), H)
 
-	H.add_note("Role", "You are a <b>[title]</b>, a fucking VAMPIRE. Listen to the Pillar Men. Wryyy. <span class = 'danger'>Fear the sun's light.</span>")
+	H.add_note("Role", "You are a <b>[title]</b>, a fucking VAMPIRE.<span class = 'danger'>Fear the sun's light.</span>")
 	H.add_note("Abilities", "Attack (harm intent) - Blood Drain")
 
 	return TRUE
