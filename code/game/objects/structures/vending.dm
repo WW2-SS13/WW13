@@ -365,7 +365,6 @@
 	return FALSE
 
 /obj/structure/vending/attack_hand(mob/user as mob)
-	if (stat & BROKEN)
 		return
 /*
 	if (seconds_electrified != FALSE)
