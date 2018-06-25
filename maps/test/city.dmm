@@ -47,7 +47,6 @@
 "aU" = (/obj/effect/floor_decal/borderfloor{dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
 "aV" = (/obj/structure/bed,/obj/item/weapon/bedsheet/brown,/obj/effect/landmark{name = "JoinLateHeer"},/turf/floor/wood,/area/prishtina/german/gearing)
 "aW" = (/obj/effect/landmark{name = "JoinLateHeer"},/turf/floor/wood,/area/prishtina/german/gearing)
-"aX" = (/obj/item/radio/intercom/loudspeaker/german{dir = 4},/turf/floor/wood,/area/prishtina/german/kitchen)
 "aY" = (/obj/effect/decal/cleanable/dirt,/obj/effect/landmark{name = "JoinLateHeerChef"},/turf/floor/wood,/area/prishtina/german/kitchen)
 "aZ" = (/turf/floor/wood,/area/prishtina/german/kitchen)
 "ba" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (SOUTHWEST)"; icon_state = "spline_fancy"; dir = 10},/turf/floor/carpet,/area/prishtina/german/command/office)
@@ -57,7 +56,6 @@
 "be" = (/obj/structure/light/small{dir = 8},/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
 "bf" = (/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
 "bg" = (/obj/structure/table/reinforced,/obj/item/weapon/bonegel,/obj/item/weapon/cautery,/obj/item/weapon/reagent_containers/glass/bottle/stoxin,/obj/item/weapon/reagent_containers/syringe,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
-"bh" = (/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
 "bi" = (/obj/item/weapon/stool,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
 "bj" = (/obj/effect/floor_decal/borderfloor,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
 "bk" = (/obj/effect/floor_decal/borderfloor,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
@@ -71,11 +69,9 @@
 "bs" = (/obj/structure/simple_door/key_door/german/command_high{name = "Commander's Office"},/turf/floor/wood,/area/prishtina/german/command/office)
 "bt" = (/turf/wall/wood,/area/prishtina/german/command/office)
 "bu" = (/obj/structure/barricade,/obj/structure/window/classic,/turf/floor/wood,/area/prishtina/german/command/office)
-"bv" = (/obj/item/radio/intercom/loudspeaker/german{dir = 1},/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
 "bw" = (/obj/structure/closet/crate/freezer,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
-"bx" = (/obj/item/radio/intercom/loudspeaker/german{dir = 8},/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
+"bx" = (/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
 "by" = (/obj/effect/landmark{name = "JoinLatePartisan"},/obj/snow_maker,/turf/floor/plating/road,/area/prishtina/no_mans_land)
-"bz" = (/obj/item/radio/intercom/loudspeaker/german{dir = 4},/turf/floor/wood,/area/prishtina/german/gearing)
 "bA" = (/turf/floor/wood,/area/prishtina/german/gearing)
 "bB" = (/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/german/gearing)
 "bC" = (/obj/structure/curtain/black,/turf/floor/wood,/area/prishtina/german/kitchen)
@@ -90,7 +86,6 @@
 "bL" = (/obj/effect/landmark{name = "JoinLateCivilian"},/obj/effect/decal/cleanable/dirt,/obj/snow_maker,/turf/floor/plating/road,/area/prishtina/no_mans_land)
 "bM" = (/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
 "bN" = (/obj/structure/table/wood,/obj/item/ammo_magazine/maxim,/obj/structure/light/small{dir = 8},/turf/floor/wood,/area/prishtina/german/gearing)
-"bO" = (/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/german/command)
 "bP" = (/obj/structure/curtain/medical,/turf/floor/wood,/area/prishtina/german/medical)
 "bQ" = (/obj/structure/light/small{dir = 1},/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
 "bR" = (/obj/effect/landmark{name = "JoinLateHeerDr"},/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
@@ -109,7 +104,6 @@
 "ce" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/wood,/area/prishtina/german/command)
 "cf" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/wood,/area/prishtina/german/command)
 "cg" = (/obj/structure/sign/greencross{pixel_x = 30},/turf/floor/wood,/area/prishtina/german/command)
-"ch" = (/obj/structure/bed,/obj/item/weapon/bedsheet/medical,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
 "ci" = (/obj/structure/table/glass,/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
 "cj" = (/obj/structure/closet,/obj/item/weapon/pill_pack/tramadol,/obj/item/weapon/pill_pack/inaprovaline,/obj/item/weapon/pill_pack/inaprovaline,/obj/item/weapon/pill_pack/dexalin,/obj/item/weapon/pill_pack/bicaridine,/obj/item/weapon/pill_pack/antitox,/obj/item/weapon/storage/firstaid/combat,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
 "ck" = (/obj/effect/floor_decal/borderfloor{dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
@@ -122,12 +116,12 @@
 "cr" = (/obj/structure/table/wood,/obj/item/weapon/flame/candle,/obj/item/weapon/flame/lighter,/turf/floor/wood,/area/prishtina/german/kitchen)
 "cs" = (/obj/structure/bed/chair/wood{dir = 8},/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/german/kitchen)
 "ct" = (/obj/structure/table/wood,/obj/item/weapon/storage/box/matches,/obj/item/weapon/flame/lighter,/turf/floor/wood,/area/prishtina/german/kitchen)
-"cu" = (/obj/effect/decal/cleanable/dirt,/obj/item/radio/intercom/loudspeaker/german{dir = 4},/turf/floor/wood,/area/prishtina/german/command)
+"cu" = (/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/german/command)
 "cv" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/wood,/area/prishtina/german/command)
 "cw" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/wood,/area/prishtina/german/command)
-"cx" = (/obj/structure/bed,/obj/item/weapon/bedsheet/medical,/obj/item/radio/intercom/loudspeaker/german{dir = 4},/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
+"cx" = (/obj/structure/bed,/obj/item/weapon/bedsheet/medical,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
 "cy" = (/obj/structure/table/glass,/obj/item/weapon/storage/box/cups,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
-"cz" = (/obj/structure/closet/crate,/obj/item/stack/medical/splint,/obj/item/stack/medical/splint,/obj/item/stack/medical/splint,/obj/item/roller,/obj/item/roller,/obj/item/roller,/obj/item/radio/intercom/loudspeaker/german{dir = 4},/obj/structure/light/small{dir = 8},/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
+"cz" = (/obj/structure/closet/crate,/obj/item/stack/medical/splint,/obj/item/stack/medical/splint,/obj/item/stack/medical/splint,/obj/item/roller,/obj/item/roller,/obj/item/roller,/obj/structure/light/small{dir = 8},/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
 "cA" = (/obj/structure/light/small{dir = 4},/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
 "cC" = (/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
 "cD" = (/obj/structure/barbwire{tag = "icon-barbwire (WEST)"; icon_state = "barbwire"; dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
@@ -186,10 +180,9 @@
 "dG" = (/obj/structure/barricade,/turf/floor/wood,/area/prishtina/houses/nml_eleven)
 "dH" = (/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/wood,/area/prishtina/houses/nml_eleven)
 "dI" = (/obj/effect/floor_decal/borderfloor,/obj/effect/decal/cleanable/ash,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
-"dJ" = (/obj/effect/floor_decal/borderfloor,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/main_area)
 "dK" = (/obj/effect/floor_decal/borderfloor,/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/main_area)
 "dL" = (/obj/effect/floor_decal/borderfloor,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/main_area)
-"dM" = (/obj/effect/floor_decal/borderfloor,/obj/item/radio/intercom/loudspeaker/german{dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/main_area)
+"dM" = (/obj/effect/floor_decal/borderfloor,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/main_area)
 "dN" = (/obj/effect/floor_decal/borderfloor,/obj/structure/grille{icon_state = "fence4-8"; name = "fence"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/main_area)
 "dO" = (/obj/effect/floor_decal/borderfloor,/obj/structure/simple_door/key_door/german,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/main_area)
 "dP" = (/obj/effect/floor_decal/borderfloor,/obj/structure/window/sandbag,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/main_area)
@@ -806,16 +799,16 @@
 (1,1,1) = {"
 aaabababacabababababababacabababababababababacabababababacabababaaadaeiKiKiKagahaiaiaiaiaiaiajajajajajajakakakakakakalalalalalamamamamamamam
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadaeiKiRiKaoapaqarasatauavawaxayazaAawaBaCaDaEaFaGamaHaIaJaKamaLaMaNaOaPam
-aQaQaQaQaQaQaQaQaQaRaRaQaQaQaQaQaQaQaQaQaQaQaQaQaQaQaQaQaQaQaQaQaQaSaeiRiRaTaUapaiaVaWaWaWaVawaXaYaZaZawbabbbbbcbbbdambebfbfbgambhbhbibhbham
-bjbjbjbjbkblbjbjbkbjbjbkbjbjbjbjbjbjbjbjbjbjbjbjbjbmbjbjbjbjbjbjbnbjbmiRiKiKaUapaqbobpaWaWaVawbqbqbqbrawbsbtbubububtambvbhbfbfambwbhbhbhbxam
-iKbyiKiRiRiKiKiRiRiKiKiKiRiRiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiRiKiKaUapaibzbAbAbBbAbCaZaZaZaZbCbDbEbFbGbDbDamambHbIbIambHbJbKbHamam
-iKbLiRiRiKiKiKiRiKiKiKiKiKiRiKiKiKiKiKiKiKiKiKiRiKiKiKiRiKiKiKiKiKiKiKiRiKiKaUbMaibNbAbAbAbAbCaZaZaZaZbCbDbObDbObDbDbPbQbfbRbfbSbfbfbfbTbUal
-iRbViKiKiKiKiKiRiKiKiKiKiKiRiKiKiKiKiKiKiKiRiRiRiKiKiKiKiRiKiKiKiKiKiRiKiKiKagapbWbXbBbYbAbZawcacbcccdawbDbDcecfbDcgamchbfbRciamcjbfbfbfbfal
-ckckckckckbmclckckckckckckckckckckckclclclckckckckbmckckclclckckckckbliKiKiKaUcmcncobBbAbAcpcqcrcsccctawcubDcvcwbObDamcxbfbRcyamczbfbfbfcAal
-gpgpgpgpgpgpcCgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpcCgpgpgpgpaeiKhAiKaUcDbWcEcFcFbAcGawcHcIcIcJawbDcKcLbDcMbDamchcNcNcOamcPcQcRcScTal
+aQaQaQaQaQaQaQaQaQaRaRaQaQaQaQaQaQaQaQaQaQaQaQaQaQaQaQaQaQaQaQaQaQaSaeiRiRaTaUapaiaVaWaWaWaVawaZaYaZaZawbabbbbbcbbbdambebfbfbgambxbxbibxbxam
+bjbjbjbjbkblbjbjbkbjbjbkbjbjbjbjbjbjbjbjbjbjbjbjbjbmbjbjbjbjbjbjbnbjbmiRiKiKaUapaqbobpaWaWaVawbqbqbqbrawbsbtbubububtambxbxbfbfambwbxbxbxbxam
+iKbyiKiRiRiKiKiRiRiKiKiKiRiRiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiRiKiKaUapaibAbAbAbBbAbCaZaZaZaZbCbDbEbFbGbDbDamambHbIbIambHbJbKbHamam
+iKbLiRiRiKiKiKiRiKiKiKiKiKiRiKiKiKiKiKiKiKiKiKiRiKiKiKiRiKiKiKiKiKiKiKiRiKiKaUbMaibNbAbAbAbAbCaZaZaZaZbCbDcubDcubDbDbPbQbfbRbfbSbfbfbfbTbUal
+iRbViKiKiKiKiKiRiKiKiKiKiKiRiKiKiKiKiKiKiKiRiRiRiKiKiKiKiRiKiKiKiKiKiRiKiKiKagapbWbXbBbYbAbZawcacbcccdawbDbDcecfbDcgamcxbfbRciamcjbfbfbfbfal
+ckckckckckbmclckckckckckckckckckckckclclclckckckckbmckckclclckckckckbliKiKiKaUcmcncobBbAbAcpcqcrcsccctawcubDcvcwcubDamcxbfbRcyamczbfbfbfcAal
+gpgpgpgpgpgpcCgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpcCgpgpgpgpaeiKhAiKaUcDbWcEcFcFbAcGawcHcIcIcJawbDcKcLbDcMbDamcxcNcNcOamcPcQcRcScTal
 cUcUcVcVcUcUcUcUcUcUcVcVcUcUcWcWcXcXcXcXcXcXcXcXcXcYcXcXcXcXcXcXcXgpaeiKiKiKagahaiaiaqaqaiaicqajcZcZajajdadadbdbdadaalaldcdddededededddddede
 cUdfdgdgdgdgdgdgdgdgdgdhdgcUdidicXdjdjdjdjdjdjdjdjdkdjdjdjdjdjdjcXgpdliKiKiKaggpdmdnePePePePdpdqePdrdrdsePdtePePduePePdvdwdxdydzdydAdydBdydB
-cUdgeUdDdDdEdgeUdDdgdgdDdgcUdidicXdjdFdGdjdjdjdHdjdjdjdjdjdGdHdjcXgpdliRiKiRbmdIdJdKdJdJdLdMdsdNdOdNdNdsdJdJdPdQdJdJdRdSdTdUdVdWdVdXdYdZdVea
+cUdgeUdDdDdEdgeUdDdgdgdDdgcUdidicXdjdFdGdjdjdjdHdjdjdjdjdjdGdHdjcXgpdliRiKiRbmdIdMdKdMdMdLdMdsdNdOdNdNdsdMdMdPdQdMdMdRdSdTdUdVdWdVdXdYdZdVea
 ebdgdDecdDdDdDdDdDeddgeUdgcUdidicXdjeedjdjefegefefefefefdjdjdjdjcXgpaeiRiKiKiKiReheheheheiejeiehekelekemeneoenehepeqepemereseseseseseseseses
 ebdDdDeUeUdgdgdgeUeddgdgdgcUdidicXdjdjdjdjdjdjdjdjdjdjdkdjdjdjdHetgpaeiKiKiKiKiKeheheheheieueiehekekekemenenenehepepepemevesesesesewesesesex
 cUdgdgdgdgeddgeddgdgdgdgdgcUdidicXdHdjdjdHdjdjdjdHdjdjdHdjdjdjdHetgpaeiKiKiKaTiKeheheheheieieiehekekekehenenenehepepepeheyezeseseseseseseses
