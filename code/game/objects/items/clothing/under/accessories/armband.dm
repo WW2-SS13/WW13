@@ -81,3 +81,13 @@
 	name = "Volkssturm armband"
 	desc = "An armband, worn by the concripted into the Volkssturm."
 	icon_state = "volkssturm"
+
+/obj/item/clothing/accessory/armband/penal_ger
+	name = "Strafbattalion armband"
+	desc = "A white armband with a red triangle worn by a german penal unit. Identifies the scum of the Wehrmacht."
+	icon_state = "penal"
+
+/obj/item/clothing/accessory/armband/penal_sov
+	name = "Shtrafbat armband"
+	desc = "A white armband with a red triangle, worn by a soviet penal unit. Identifies the scum of the Red Army."
+	icon_state = "penal"

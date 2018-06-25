@@ -51,3 +51,8 @@
 	name = "NSDAP Cap"
 	icon_state = "nsdap_cap"
 	item_state = "nsdap_cap"
+
+/obj/item/clothing/head/caphat/gercap/fieldcap2
+	name = "German field cap"
+	icon_state = "fieldcap"
+	item_state = "fieldcap"

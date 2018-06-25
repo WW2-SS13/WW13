@@ -1971,7 +1971,7 @@
 "Mp" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag,/turf/wall/rockwall,/area/prishtina/soviet/bunker/tunnel)
 "Mq" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/structure/light/small{dir = 8},/turf/floor/dirt,/area/prishtina/soviet/forward_defenses)
 "Mr" = (/turf/floor/wood,/area/prishtina/soviet/bunker/engineering)
-"Ms" = (/obj/item/radio/loudspeaker/german{dir = 8},/obj/structure/closet/toolcloset,/turf/floor/wood,/area/prishtina/soviet/bunker/engineering)
+"Ms" = (/obj/item/radio/intercom/loudspeaker/german{dir = 8},/obj/structure/closet/toolcloset,/turf/floor/wood,/area/prishtina/soviet/bunker/engineering)
 "Mt" = (/obj/structure/bed/chair/wheelchair,/turf/floor/wood,/area/prishtina/soviet/bunker/medical)
 "Mu" = (/obj/item/weapon/bone_saw,/obj/item/weapon/hemostat,/obj/item/weapon/reagent_containers/glass/rag,/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/soviet/bunker/medical)
 "Mv" = (/obj/item/weapon/FixOVein,/obj/item/weapon/bonesetter,/obj/item/weapon/retractor,/obj/structure/table/wood,/obj/structure/light/small{dir = 1},/turf/floor/wood,/area/prishtina/soviet/bunker/medical)

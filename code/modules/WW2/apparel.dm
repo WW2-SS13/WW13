@@ -400,6 +400,7 @@
 		/obj/item/ammo_magazine/luger,
 		/obj/item/weapon/gauze_pack,
 		/obj/item/weapon/shovel/spade/russia,
+			/obj/item/weapon/shovel/spade/german,
 		/obj/item/weapon/reagent_containers/food
 		)
 
@@ -466,6 +467,7 @@
 		/obj/item/ammo_magazine/c45m,
 		/obj/item/ammo_magazine/luger,
 		/obj/item/weapon/gauze_pack,
+		/obj/item/weapon/shovel/spade/german,
 		/obj/item/weapon/shovel/spade/russia,
 		/obj/item/weapon/reagent_containers/food
 		)
@@ -476,7 +478,7 @@
 /*	new /obj/item/weapon/gun/projectile/pistol/waltherp38(src)
 	new /obj/item/ammo_magazine/p9x19mm(src)
 	new /obj/item/ammo_magazine/p9x19mm(src)*/
-	new /obj/item/weapon/shovel/spade/russia(src)
+	new /obj/item/weapon/shovel/spade/german(src)
 
 /obj/item/weapon/storage/belt/german/anti_tank_crew
 /obj/item/weapon/storage/belt/german/anti_tank_crew/New()
