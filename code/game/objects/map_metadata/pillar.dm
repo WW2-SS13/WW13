@@ -20,7 +20,6 @@
 	ambience = list()
 	times_of_day = list("Night")
 	zlevels_without_lighting = list(2)
-	areas_without_lighting = list(/area/prishtina/german/lift/down)
 	songs = list(
 		"Dark Part 3 Michael Meara:1" = 'sound/music/dark.ogg')
 	meme = FALSE
@@ -29,7 +28,7 @@
 	return (processes.ticker.playtime_elapsed >= 4500)
 
 /obj/map_metadata/pillar/announce_mission_start(var/preparation_time)
-	world << "<font size=4>This is a Survival Map, You are one <b>Civilian</b>, you got lost inside the forest when running from the front, but something very wrong is going on in this forest,<span class = 'danger'> try to survive.</span></font>"
+	world << "<font size=4>This is a Survival Map. You are a <b>Civilian</b>, who got lost inside the forest when running from the frontlines, but there is something very wrong going on here...<span class = 'danger'> Try to survive.</span></font>"
 
 /obj/map_metadata/pillar/job_enabled_specialcheck(var/datum/job/J)
 	. = TRUE
