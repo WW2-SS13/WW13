@@ -99,7 +99,7 @@
 		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Join Game!</a></p>"
 
 	var/height = 300
-	if (reinforcements_master && reinforcements_master.is_ready())
+	if (reinforcements_master && reinforcements_master.is_ready() && client && !client.quickBan_isbanned("Penal"))
 		height = 350
 		if (!reinforcements_master.has(src))
 			output += "<p><a href='byond://?src=\ref[src];re_german=1'>Join as a German reinforcement!</A></p>"
@@ -451,15 +451,17 @@
 			usr << "<span class = 'warning'>You're banned from officer positions!</span>"
 		return FALSE
 
-	if (penalBanned() && !job.blacklisted)
-		if (!nomsg)
-			usr << "<span class = 'warning'>You're under a Penal Battalion ban, you can only play as that role!</span>"
-		return FALSE
+	if (penalBanned())
+		if (job.blacklisted == FALSE)
+			if (!nomsg)
+				usr << "<span class = 'warning'>You're under a Penal Battalion ban, you can only play as that role!</span>"
+			return FALSE
 
-	if (!penalBanned() && job.blacklisted)
-		if (!nomsg)
-			usr << "<span class = 'warning'>This job is reserved as a punishment for those who break server rules.</span>"
-		return FALSE
+	else
+		if (job.blacklisted == TRUE)
+			if (!nomsg)
+				usr << "<span class = 'warning'>This job is reserved as a punishment for those who break server rules.</span>"
+			return FALSE
 
 	if (job_master.is_side_locked(job.base_type_flag()))
 		if (!nomsg)
@@ -551,6 +553,9 @@
 		var/job_is_available = job && IsJobAvailable(job.title)
 
 		if (!job.validate(src))
+			job_is_available = FALSE
+
+		if (!job.validate_s(src))
 			job_is_available = FALSE
 		//	unavailable_message = " <span class = 'color: rgb(255,215,0);'>{WHITELISTED}</span> "
 

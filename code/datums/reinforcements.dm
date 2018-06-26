@@ -157,6 +157,10 @@ var/datum/reinforcements/reinforcements_master = null
 		np << "<span class = 'danger'>Sorry, too many people are attempting to join this side already.</span>"
 		return
 
+	if (locked[side])
+		np << "<span class = 'danger'>This side is locked for joining.</span>"
+		return
+
 	//remove them from all pools, just in case
 	var/list/r = reinforcement_pool[SOVIET]
 	var/list/g = reinforcement_pool[GERMAN]

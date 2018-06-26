@@ -176,8 +176,6 @@ var/datum/quickBan_handler/quickBan_handler = null
 		if ("Faction")
 			var/faction = input("What faction?") in list(GERMAN, SOVIET, ITALIAN, UKRAINIAN, SCHUTZSTAFFEL, PARTISAN, CIVILIAN)
 			fields["type_specific_info"] = faction
-		if ("Penal")
-			fields["type_specific_info"] = "Penal"
 
 	reenter_bantime
 

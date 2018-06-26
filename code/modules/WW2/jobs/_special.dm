@@ -35,6 +35,7 @@
 /datum/job/var/is_sturmovik = FALSE
 /datum/job/var/is_guard = FALSE
 /datum/job/var/is_tankuser = FALSE
+/datum/job/var/blacklisted = FALSE
 /datum/job/var/rank_abbreviation = null
 
 // new autobalance stuff - Kachnov

@@ -1195,7 +1195,7 @@ var/first_guard = FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovcap/fieldcap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovcap/fieldcap2(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/wirecutters(H), slot_l_hand)
 
 	var/obj/item/clothing/accessory/armband/penal_ger/penal_ger_a = new /obj/item/clothing/accessory/armband/penal_ger(null)
@@ -1219,5 +1219,49 @@ var/first_guard = FALSE
 
 /datum/job/soviet/penal/get_keys()
 	return list(new/obj/item/weapon/key/soviet)
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////NKVD Officer///////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/soviet/NKVD
+	title = "NKVD Leytnant"
+	en_meaning = "Senior MP Officer"
+	rank_abbreviation = "Lyt"
+	selection_color = "#2d2d63"
+	spawn_location = "JoinLateRAMP"
+	additional_languages = list( "German" = 100, "Ukrainian" = 100 )
+	is_officer = TRUE
+	super_whitelisted = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+
+/datum/job/soviet/NKVD/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/nkvduni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/NKVDcap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/soviet/MP(H), slot_belt)
+	H.add_note("Role", "You are a <b>[title]</b>, a member of the Soviet Comissariat for Internal Affairs. You are responsible for keeping the order within the Red Army, and assuring the political education of the troops. Even tough you aren't the highest ranked officer present, you are able to discipline and punish even the Kapitan.")
+	H.give_radio()
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_MEDIUM_HIGH)
+	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("smg", STAT_VERY_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+
+///datum/job/german/NKVD/update_character(var/mob/living/carbon/human/H)
+//	..()
+//	H.make_senior_mp()
+
+/datum/job/soviet/NKVD/get_keys()
+	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/medic, new/obj/item/weapon/key/soviet/engineer,
+		new/obj/item/weapon/key/soviet/QM, new/obj/item/weapon/key/soviet/command_intermediate)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

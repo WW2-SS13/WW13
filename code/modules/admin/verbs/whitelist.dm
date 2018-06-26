@@ -19,6 +19,7 @@
 		src << "<span class = 'danger'>Something went wrong. This whitelist doesn't exist.</span>"
 		return
 
+
 	W.add(_ckey)
 	save_whitelist("server")
 

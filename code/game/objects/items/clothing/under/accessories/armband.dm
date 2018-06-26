@@ -91,3 +91,8 @@
 	name = "Shtrafbat armband"
 	desc = "A white armband with a red triangle, worn by a soviet penal unit. Identifies the scum of the Red Army."
 	icon_state = "penal"
+
+/obj/item/clothing/accessory/armband/fjk
+	name = "Feldjägerkorps armband"
+	desc = "A red armband with 'Oberkommando der Wehrmacht - Feldjäger' written on it."
+	icon_state = "fjk"
