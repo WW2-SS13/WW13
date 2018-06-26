@@ -99,7 +99,7 @@
 		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Join Game!</a></p>"
 
 	var/height = 300
-	if (reinforcements_master && reinforcements_master.is_ready())
+	if (reinforcements_master && reinforcements_master.is_ready() && client && !client.quickBan_isbanned("Penal"))
 		height = 350
 		if (!reinforcements_master.has(src))
 			output += "<p><a href='byond://?src=\ref[src];re_german=1'>Join as a German reinforcement!</A></p>"
@@ -553,6 +553,9 @@
 		var/job_is_available = job && IsJobAvailable(job.title)
 
 		if (!job.validate(src))
+			job_is_available = FALSE
+
+		if (!job.validate_s(src))
 			job_is_available = FALSE
 		//	unavailable_message = " <span class = 'color: rgb(255,215,0);'>{WHITELISTED}</span> "
 

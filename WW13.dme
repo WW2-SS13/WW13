@@ -468,6 +468,7 @@
 #include "code\modules\admin\verbs\warn.dm"
 #include "code\modules\admin\verbs\weather.dm"
 #include "code\modules\admin\verbs\whitelist.dm"
+#include "code\modules\admin\verbs\whitelist_super.dm"
 #include "code\modules\admin\verbs\whitelist_teststaff.dm"
 #include "code\modules\admin\verbs\world.dm"
 #include "code\modules\admin\verbs\WW2.dm"
@@ -926,5 +927,6 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\reichstag\reichstag.dmm"
+#include "maps\pillar\fort.dmm"
+#include "maps\pillar\sewers.dmm"
 // END_INCLUDE

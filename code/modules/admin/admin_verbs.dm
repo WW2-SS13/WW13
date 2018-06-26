@@ -19,6 +19,7 @@ var/list/admin_verbs_default = list(
 	)
 var/list/admin_verbs_admin = list(
 	/client/proc/add_to_server_whitelist,
+	/client/proc/add_to_super_whitelist,
 	/client/proc/remove_from_server_whitelist,
 	/client/proc/view_server_whitelist,
 	/client/proc/eject_unwhitelisted,
