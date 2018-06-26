@@ -1,7 +1,6 @@
 #define MAP_TOWER "TOWER"
 #define MAP_CITY "CITY"
 #define MAP_FOREST "FOREST"
-#define MAP_SURVIVAL "SURVIVAL"
 #define MAP_PILLAR "PILLAR"
 #define MAP_LANDING "LANDING"
 #define MAP_CAMP "CAMP"
