@@ -56,3 +56,13 @@
 	name = "German field cap"
 	icon_state = "fieldcap"
 	item_state = "fieldcap"
+
+/obj/item/clothing/head/caphat/NKVDcap
+	name = "NKVD Officer Cap"
+	icon_state = "NKVDcap"
+	item_state = "NKVDcap"
+
+/obj/item/clothing/head/caphat/sovcap/fieldcap2
+	name = "Soviet field cap"
+	icon_state = "fieldcap2"
+	item_state = "fieldcap2"

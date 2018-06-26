@@ -1979,3 +1979,47 @@ var/first_fallschirm = TRUE
 	return list(new/obj/item/weapon/key/german)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////FELDJAGERKORPS///////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/german/MP
+	title = "Feldjägerkorps Offizier"
+	en_meaning = "Senior MP Officer"
+	rank_abbreviation = "Lt"
+	selection_color = "#2d2d63"
+	spawn_location = "JoinLateHeerMP"
+	additional_languages = list( "Russian" = 100, "Ukrainian" = 100, "Italian" = 100)
+	is_officer = TRUE
+	super_whitelisted = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+
+
+/datum/job/german/MP/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/MP(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm/MP(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german/MP(H), slot_belt)
+	var/obj/item/clothing/accessory/armband/fjk/fjk_a = new /obj/item/clothing/accessory/armband/fjk(null)
+	var/obj/item/clothing/under/uniform = H.w_uniform
+	uniform.attackby(fjk_a, H)
+	H.add_note("Role", "You are a <b>[title]</b>, a military police officer. You are responsible for keeping the order within the Wehrmacht, and assuring the political education of the troops. Even tough you aren't the highest ranked officer present, you are able to discipline and punish even the Hauptmann and members of the SS.")
+	H.give_radio()
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_MEDIUM_HIGH)
+	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("smg", STAT_VERY_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+
+/datum/job/german/MP/get_keys()
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,
+		new/obj/item/weapon/key/german/QM, new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/train)
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////

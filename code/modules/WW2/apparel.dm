@@ -230,6 +230,13 @@
 	item_state = "sovuniofficer"
 	worn_state = "sovuniofficer"
 
+/obj/item/clothing/under/sovuni/nkvduni
+	name = "NKVD Officer's uniform"
+	desc = "A fancy uniform of the NKVD, give to the feared secret police officers."
+	icon_state = "nkvd_uniform"
+	item_state = "nkvd_uniform"
+	worn_state = "nkvd_uniform"
+
 /obj/item/clothing/under/sovuni/MP
 	name = "Soviet MP's uniform"
 	desc = "A fancier, more pressed uniform of the Red Army, given to Soviet military police."
