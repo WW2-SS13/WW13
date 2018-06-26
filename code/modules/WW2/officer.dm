@@ -16,6 +16,11 @@ var/global/list/valid_coordinates = list()
 	verbs += /mob/living/carbon/human/proc/Reset_Coordinates_Chump
 	can_check_distant_coordinates = TRUE
 
+///mob/living/carbon/human/proc/make_senior_mp()
+//	verbs += /mob/living/carbon/human/proc/add_to_penal
+//	verbs += /mob/living/carbon/human/proc/remove_from_penal
+
+
 // all officer jobs not listed in one of these lists are considered tier 3 officers
 // ie kanoniers, squad leaders, quartermasters, MPs
 
@@ -211,3 +216,20 @@ var/list/tier_2_officer_jobtypes = list(
 			var/mob/living/carbon/human/H = m
 			if (istype(H.mind.assigned_job, job_type))
 				return
+
+///////////////////////////////NKVD/FJK//////////////////////////
+///mob/living/carbon/human/proc/add_to_penal()
+//	set name = "Send to Penal Battalion"
+//	set category = "Officer"
+//	var/_ckey = input("What ckey?") as text
+//	_ckey = sanitizeSQL(_ckey, max_length = 50)
+//	if (!_ckey)
+//		return
+
+///mob/living/carbon/human/proc/remove_from_penal()
+//	set name = "Remove From Penal Battalion"
+//	set category = "Officer"
+//	var/_ckey = input("What ckey?") as text
+//	_ckey = sanitizeSQL(_ckey, max_length = 50)
+//	if (!_ckey)
+//		return

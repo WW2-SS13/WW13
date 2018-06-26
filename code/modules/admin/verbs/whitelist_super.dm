@@ -1,7 +1,7 @@
 // todo: merge this with the code in whitelist.dm
 
 /client/proc/add_to_super_whitelist()
-	set name = "Add To super Whitelist"
+	set name = "Add To Super Whitelist"
 	set category = "Server"
 
 	if (!check_rights(R_ADMIN))
@@ -28,7 +28,7 @@
 	message_admins(M)
 
 /client/proc/remove_from_super_whitelist()
-	set name = "Remove From super Whitelist"
+	set name = "Remove From Super Whitelist"
 	set category = "Server"
 
 	if (!check_rights(R_ADMIN))
@@ -56,7 +56,7 @@
 		src << "<span class = 'warning'>FAILED to remove '[_ckey]' from the 'super' whitelist. They weren't in it."
 
 /client/proc/view_super_whitelist()
-	set name = "See super Whitelist"
+	set name = "See Super Whitelist"
 	set category = "Server"
 
 	if (!check_rights(R_ADMIN))

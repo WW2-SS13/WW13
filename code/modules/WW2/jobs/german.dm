@@ -1981,7 +1981,7 @@ var/first_fallschirm = TRUE
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////FELDJAGERKORPS///////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/datum/job/german/MP
+/datum/job/german/FJK
 	title = "Feldjägerkorps Offizier"
 	en_meaning = "Senior MP Officer"
 	rank_abbreviation = "Lt"
@@ -1996,7 +1996,7 @@ var/first_fallschirm = TRUE
 	max_positions = 1
 
 
-/datum/job/german/MP/equip(var/mob/living/carbon/human/H)
+/datum/job/german/FJK/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/MP(H), slot_w_uniform)
@@ -2018,7 +2018,11 @@ var/first_fallschirm = TRUE
 	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
-/datum/job/german/MP/get_keys()
+///datum/job/german/FJK/update_character(var/mob/living/carbon/human/H)
+//	..()
+//	H.make_senior_mp()
+
+/datum/job/german/FJK/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,
 		new/obj/item/weapon/key/german/QM, new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/train)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

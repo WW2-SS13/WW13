@@ -1223,7 +1223,7 @@ var/first_guard = FALSE
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////NKVD Officer///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
-/datum/job/soviet/MP
+/datum/job/soviet/NKVD
 	title = "NKVD Leytnant"
 	en_meaning = "Senior MP Officer"
 	rank_abbreviation = "Lyt"
@@ -1237,7 +1237,7 @@ var/first_guard = FALSE
 	min_positions = 1
 	max_positions = 1
 
-/datum/job/soviet/MP/equip(var/mob/living/carbon/human/H)
+/datum/job/soviet/NKVD/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/nkvduni(H), slot_w_uniform)
@@ -1256,7 +1256,11 @@ var/first_guard = FALSE
 	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
-/datum/job/soviet/MP/get_keys()
+///datum/job/german/NKVD/update_character(var/mob/living/carbon/human/H)
+//	..()
+//	H.make_senior_mp()
+
+/datum/job/soviet/NKVD/get_keys()
 	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/medic, new/obj/item/weapon/key/soviet/engineer,
 		new/obj/item/weapon/key/soviet/QM, new/obj/item/weapon/key/soviet/command_intermediate)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
