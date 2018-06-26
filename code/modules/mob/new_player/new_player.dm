@@ -451,15 +451,17 @@
 			usr << "<span class = 'warning'>You're banned from officer positions!</span>"
 		return FALSE
 
-	if (penalBanned() && !job.blacklisted)
-		if (!nomsg)
-			usr << "<span class = 'warning'>You're under a Penal Battalion ban, you can only play as that role!</span>"
-		return FALSE
+	if (penalBanned())
+		if (job.blacklisted == FALSE)
+			if (!nomsg)
+				usr << "<span class = 'warning'>You're under a Penal Battalion ban, you can only play as that role!</span>"
+			return FALSE
 
-	if (!penalBanned() && job.blacklisted)
-		if (!nomsg)
-			usr << "<span class = 'warning'>This job is reserved as a punishment for those who break server rules.</span>"
-		return FALSE
+	else
+		if (job.blacklisted == TRUE)
+			if (!nomsg)
+				usr << "<span class = 'warning'>This job is reserved as a punishment for those who break server rules.</span>"
+			return FALSE
 
 	if (job_master.is_side_locked(job.base_type_flag()))
 		if (!nomsg)
