@@ -151,6 +151,6 @@
 //	unacidable = TRUE
 	anchored = FALSE
 
-/obj/item/mine/betty/New()
-	..()
-	qdel(src)
+///obj/item/mine/betty/New()
+//	..()
+//	qdel(src)

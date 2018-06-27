@@ -141,7 +141,7 @@ var/no_loop_r = FALSE
 		if (win_condition_spam_check)
 			return FALSE
 		ticker.finished = TRUE
-		var/message = "The <b>Wehrmacht</b> has sucessfuly defended the Reichstag! The Soviets retreat!"
+		var/message = "The <b>Wehrmacht</b> has sucessfuly defended the Reichstag! The Soviets halted the attack!"
 		world << "<font size = 4><span class = 'notice'>[message]</span></font>"
 		show_global_battle_report(null)
 		win_condition_spam_check = TRUE

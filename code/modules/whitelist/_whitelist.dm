@@ -15,10 +15,6 @@ var/list/global_whitelists[50]
 				return TRUE
 			else
 				return FALSE
-			if (W.validate_s(src, return_real_val_even_if_whitelist_disabled))
-				return TRUE
-			else
-				return FALSE
 
 	return TRUE // didn't find the whitelist? validate them anyway
 
@@ -112,23 +108,6 @@ var/list/global_whitelists[50]
 
 // check if a client or ckey is in the whitelist
 /datum/whitelist/proc/validate(_arg, return_real_val_even_if_whitelist_disabled = FALSE)
-	if (!enabled && !return_real_val_even_if_whitelist_disabled)
-		return TRUE
-	var/list/datalist = splittext(data, "&")
-	if (isclient(_arg))
-		var/client/C = _arg
-		for (var/ckey in datalist)
-			if (ckey == C.ckey)
-				return TRUE
-	else if (istext(_arg))
-		_arg = ckey(_arg)
-		for (var/ckey in datalist)
-			if (ckey == _arg)
-				return TRUE
-	return FALSE
-
-// check if a client or ckey is in the whitelist
-/datum/whitelist/proc/validate_s(_arg, return_real_val_even_if_whitelist_disabled = FALSE)
 	if (!enabled && !return_real_val_even_if_whitelist_disabled)
 		return TRUE
 	var/list/datalist = splittext(data, "&")

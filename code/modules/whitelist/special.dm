@@ -26,7 +26,7 @@
 /datum/whitelist/super
 	name = "super"
 
-/datum/whitelist/super/validate_s(_arg, var/desired_job_title)
+/datum/whitelist/super/validate(_arg, var/desired_job_title)
 	if (!enabled)
 		return TRUE
 	var/list/datalist = splittext(data, "&")
