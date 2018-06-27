@@ -4,7 +4,7 @@
 		MAP_CITY = 0,
 		MAP_FOREST = 0,
 		MAP_TOWER = 0,
-		MAP_CAMP = 10,
+		MAP_CAMP = 0,
 		MAP_SURVIVAL = 0,
 		MAP_REICHSTAG = 0)
 

@@ -25,6 +25,7 @@
 		/obj/item/clothing/accessory/storage/webbing = 50,
 		/obj/item/clothing/under/geruni = 50,
 		/obj/item/clothing/head/helmet/gerhelm = 50,
+		/obj/item/clothing/head/caphat/gercap/fieldcap2 = 50,
 		/obj/item/clothing/shoes/swat = 50,
 		/obj/item/clothing/mask/gas/german = 25
 	)
