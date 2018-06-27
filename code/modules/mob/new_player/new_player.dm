@@ -555,8 +555,6 @@
 		if (!job.validate(src))
 			job_is_available = FALSE
 
-		if (!job.validate_s(src))
-			job_is_available = FALSE
 		//	unavailable_message = " <span class = 'color: rgb(255,215,0);'>{WHITELISTED}</span> "
 
 		if (job_master.side_is_hardlocked(job.base_type_flag()))
