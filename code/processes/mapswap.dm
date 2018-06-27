@@ -6,7 +6,8 @@
 		MAP_TOWER = 0,
 		MAP_CAMP = 0,
 		MAP_SURVIVAL = 0,
-		MAP_REICHSTAG = 0)
+		MAP_REICHSTAG = 0,
+		MAP_PARTISAN = 0)
 
 	var/ready = TRUE
 	var/admin_triggered = FALSE
