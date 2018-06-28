@@ -1,7 +1,7 @@
 #define NO_WINNER "Neither side has captured the other's base."
 /obj/map_metadata/partisan
 	ID = MAP_PARTISAN
-	title = "Partisan (100x100x1)"
+	title = "Partisan (150x150x1)"
 	lobby_icon_state = "partisan"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall)
 	respawn_delay = 1800 //3 minutes
