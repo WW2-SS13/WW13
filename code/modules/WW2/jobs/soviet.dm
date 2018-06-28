@@ -125,6 +125,7 @@
 	spawn_location = "JoinLateRASO"
 	additional_languages = list( "German" = 100, "Ukrainian" = 50 )
 	is_officer = TRUE
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -170,6 +171,7 @@
 	spawn_location = "JoinLateRAMP"
 	additional_languages = list( "German" = 100, "Ukrainian" = 33 )
 	is_officer = TRUE
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -218,6 +220,7 @@
 	is_squad_leader = TRUE
 	SL_check_independent = TRUE
 
+
 	// AUTOBALANCE
 	min_positions = 4
 	max_positions = 4
@@ -261,6 +264,7 @@
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRAMedic"
 	additional_languages = list( "German" = 100, "Ukrainian" = 50, "Italian" = 25)
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -349,6 +353,7 @@
 	rank_abbreviation = "Efr"
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -392,6 +397,7 @@
 	rank_abbreviation = "Efr"
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRAEng"
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -436,6 +442,7 @@
 	rank_abbreviation = "Efr"
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -483,6 +490,7 @@
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
 	allow_spies = TRUE
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 5
@@ -584,6 +592,7 @@
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
 	is_tankuser = TRUE
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 2
@@ -630,6 +639,7 @@
 	rank_abbreviation = "Kras"
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 2
@@ -680,6 +690,7 @@
 	spawn_location = "JoinLateRA"
 	additional_languages = list( "German" = 100 )
 	is_guard = TRUE
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -783,6 +794,7 @@ var/first_guard = FALSE
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
 	is_sturmovik = TRUE
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -879,6 +891,7 @@ var/first_guard = FALSE
 	is_officer = TRUE
 	SL_check_independent = TRUE
 	is_prisoner = TRUE
+
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -1232,6 +1245,7 @@ var/first_guard = FALSE
 	additional_languages = list( "German" = 100, "Ukrainian" = 100 )
 	is_officer = TRUE
 	super_whitelisted = TRUE
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -1278,6 +1292,7 @@ var/first_guard = FALSE
 	title = "Soviet Partisan"
 	selection_color = "#530909"
 	spawn_location = "JoinLatePartisan"
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -1315,6 +1330,7 @@ var/first_guard = FALSE
 	is_officer = TRUE
 	is_commander = TRUE
 	head_position = TRUE
+	SL_check_independent = TRUE
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLatePartisanLeader"
 	additional_languages = list( "Russian" = 100, "German" = 100)

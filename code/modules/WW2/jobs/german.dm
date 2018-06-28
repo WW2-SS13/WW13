@@ -171,6 +171,7 @@
 	spawn_location = "JoinLateHeerSO"
 	additional_languages = list( "Russian" = 100, "Ukrainian" = 50, "Italian" = 100)
 	is_officer = TRUE
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -219,6 +220,7 @@
 	spawn_location = "JoinLateHeerMP"
 	additional_languages = list( "Russian" = 100, "Ukrainian" = 33, "Italian" = 100)
 	is_officer = TRUE
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -313,6 +315,7 @@
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
 	additional_languages = list( "Russian" = 100, "Ukrainian" = 25, "Italian" = 50)
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -401,6 +404,7 @@
 	rank_abbreviation = "gftr"
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -443,6 +447,7 @@
 	rank_abbreviation = "gftr"
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -485,6 +490,7 @@
 	rank_abbreviation = "gftr"
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -529,6 +535,7 @@
 	rank_abbreviation = "oGftr"
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -574,6 +581,7 @@
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
 	allow_spies = TRUE
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 5
@@ -672,6 +680,7 @@
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
 	is_tankuser = TRUE
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 2
@@ -718,6 +727,7 @@
 	rank_abbreviation = "schtz"
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 2
@@ -767,6 +777,7 @@ var/first_fallschirm = TRUE
 //	spawn_delay = 3000
 //	delayed_spawn_message = "<span class = 'danger'><big>You are parachuting behind Russian lines. You won't spawn for 5 minutes.</big>"
 	is_paratrooper = TRUE
+	SL_check_independent = TRUE
 	var/fallschirm_spawnzone = null
 	var/list/fallschirm_spawnpoints = list()
 
@@ -898,6 +909,7 @@ var/first_fallschirm = TRUE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerSO"
 	is_officer = TRUE
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -951,6 +963,7 @@ var/first_fallschirm = TRUE
 	rank_abbreviation = "schtz"
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
