@@ -7,14 +7,13 @@
 	respawn_delay = 1800 //3 minutes
 	squad_spawn_locations = FALSE
 	reinforcements = FALSE
-	event_faction = (PARTISAN)
 	faction_organization = list(
 		GERMAN,
-		PARTISAN)
+		SOVIET)
 	available_subfactions = list()
 	roundend_condition_sides = list(
 		list(GERMAN) = /area/prishtina/german/ss_armory,
-		list(PARTISAN) = /area/prishtina/houses)
+		list(SOVIET) = /area/prishtina/houses)
 	ambience = list()
 	times_of_day = list("Night","Evening","Early Morning")
 	faction_distribution_coeffs = list(GERMAN = 0.4, PARTISAN = 0.6)
@@ -26,10 +25,13 @@
 
 /obj/map_metadata/partisan/job_enabled_specialcheck(var/datum/job/J)
 	. = TRUE
-	if (istype(J, /datum/job/partisan/soldier))
-		J.total_positions = max(10, round(clients.len*1.4))
-	if (istype(J, /datum/job/partisan/commander))
-		J.total_positions = max(1, round(clients.len*0.1))
+	if (istype(J, /datum/job/soviet))
+		if (istype(J, /datum/job/soviet/partisan/soldier))
+			J.total_positions = max(10, round(clients.len*1.4))
+		if (istype(J, /datum/job/soviet/partisan/commander))
+			J.total_positions = max(1, round(clients.len*0.1))
+	else
+		. = FALSE
 	if (istype(J, /datum/job/german))
 		if (!J.is_dirlewanger)
 			. = FALSE
@@ -44,14 +46,14 @@
 /obj/map_metadata/partisan/germans_can_cross_blocks()
 	return (processes.ticker.playtime_elapsed >= 6000 || admin_ended_all_grace_periods)
 
-/obj/map_metadata/partisan/specialfaction_can_cross_blocks()
+/obj/map_metadata/partisan/soviets_can_cross_blocks()
 	return (processes.ticker.playtime_elapsed >= 6000 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/partisan/announce_mission_start(var/preparation_time)
 	world << "<font size=4>All factions have <b>10 minutes</b> to prepare for battle before combat will begin!</font>"
 
 /obj/map_metadata/partisan/reinforcements_ready()
-	return (germans_can_cross_blocks() && specialfaction_can_cross_blocks())
+	return (germans_can_cross_blocks() && soviets_can_cross_blocks())
 
 /obj/map_metadata/partisan/update_win_condition()
 	if (!win_condition_specialcheck())
@@ -71,7 +73,7 @@
 	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.33, TRUE))
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.33))
 			if (last_win_condition != win_condition.hash)
-				current_win_condition = "The [roundend_condition_def2army(roundend_condition_sides[1][1])] has captured the [roundend_condition_def2name(roundend_condition_sides[2][1])] base! They will win in {time} minute{s}."
+				current_win_condition = "The [roundend_condition_def2army(roundend_condition_sides[1][1])] has captured the partisan base! They will win in {time} minute{s}."
 				next_win = world.time + short_win_time(roundend_condition_sides[2][1])
 				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[1][1])
@@ -80,7 +82,7 @@
 	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.01, TRUE))
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.01))
 			if (last_win_condition != win_condition.hash)
-				current_win_condition = "The [roundend_condition_def2army(roundend_condition_sides[1][1])] has captured the [roundend_condition_def2name(roundend_condition_sides[2][1])] base! They will win in {time} minute{s}."
+				current_win_condition = "The [roundend_condition_def2army(roundend_condition_sides[1][1])] has captured the partisan base! They will win in {time} minute{s}."
 				next_win = world.time + long_win_time(roundend_condition_sides[2][1])
 				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[1][1])
@@ -89,7 +91,7 @@
 	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.33, TRUE))
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.33))
 			if (last_win_condition != win_condition.hash)
-				current_win_condition = "The [roundend_condition_def2army(roundend_condition_sides[2][1])] has captured the [roundend_condition_def2name(roundend_condition_sides[1][1])] base! They will win in {time} minute{s}."
+				current_win_condition = "The partisans have captured the [roundend_condition_def2name(roundend_condition_sides[1][1])] base! They will win in {time} minute{s}."
 				next_win = world.time + short_win_time(roundend_condition_sides[1][1])
 				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[2][1])
@@ -98,7 +100,7 @@
 	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.01, TRUE))
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.01))
 			if (last_win_condition != win_condition.hash)
-				current_win_condition = "The [roundend_condition_def2army(roundend_condition_sides[2][1])] has captured the [roundend_condition_def2name(roundend_condition_sides[1][1])] base! They will win in {time} minute{s}."
+				current_win_condition = "The partisans have captured the [roundend_condition_def2name(roundend_condition_sides[1][1])] base! They will win in {time} minute{s}."
 				next_win = world.time + long_win_time(roundend_condition_sides[1][1])
 				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[2][1])

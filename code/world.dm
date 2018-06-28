@@ -290,7 +290,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 #define COLOR_LIGHT_SEPIA "#D4C6B8"
 /world/proc/roundabout() // yes i know this is dumb - kachnov
-	if (config.jojoreference || (map && istype(map, /obj/map_metadata/pillar)))
+	if (config.jojoreference || (map && istype(map, /obj/map_metadata/survival)))
 		world << sound('sound/misc/roundabout.ogg')
 		spawn (40)
 			for (var/client/client in clients)
