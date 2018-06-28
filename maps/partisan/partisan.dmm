@@ -64,7 +64,7 @@
 "bl" = (/obj/structure/table/wood,/obj/item/trash/candle,/turf/floor/wood,/area/prishtina/houses/nml_two)
 "bm" = (/turf/floor/wood_broken,/area/prishtina/houses/nml_two)
 "bn" = (/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/houses/nml_two)
-"bo" = (/obj/structure/table/wood,/obj/item/weapon/material/kitchen/utensil/fork,/turf/floor/wood,/area/prishtina/houses/nml_two)
+"bo" = (/obj/item/weapon/beartrap,/obj/item/weapon/beartrap,/obj/item/weapon/beartrap,/turf/floor/plating/grass/wild,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "bp" = (/mob/living/simple_animal/mouse/brown,/turf/floor/plating/grass/wild,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "bq" = (/obj/item/stack/medical/bruise_pack/bint,/turf/floor/plating/grass/wild,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "br" = (/obj/item/weapon/storage/firstaid/surgery,/turf/floor/plating/grass/wild,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
@@ -112,7 +112,7 @@
 "ch" = (/obj/structure/oven,/turf/floor/wood,/area/prishtina/houses/nml_one)
 "ci" = (/obj/effect/landmark{name = "JoinLateCivilian"},/turf/floor/wood,/area/prishtina/houses/nml_one)
 "cj" = (/obj/structure/table/wood,/obj/item/trash/candle,/turf/floor/wood,/area/prishtina/houses/nml_one)
-"ck" = (/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/houses/nml_one)
+"ck" = (/obj/structure/table/wood,/obj/item/weapon/material/kitchen/utensil/fork,/obj/item/trash/snack_bowl,/turf/floor/wood,/area/prishtina/houses/nml_two)
 "cl" = (/obj/structure/sink{tag = "icon-sink (EAST)"; icon_state = "sink"; dir = 4; step_x = 0; step_y = 0; pixel_x = 14},/turf/floor/wood,/area/prishtina/houses/nml_one)
 "cm" = (/obj/structure/simple_door/key_door/anyone/wood{name = "House"},/turf/floor/wood,/area/prishtina/houses/nml_four)
 "cn" = (/obj/structure/simple_door/key_door/anyone/wood,/turf/floor/wood,/area/prishtina/houses/nml_four)
@@ -128,7 +128,7 @@
 "cx" = (/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/houses/nml_one)
 "cy" = (/obj/structure/bed/chair/wood{dir = 1},/turf/floor/wood,/area/prishtina/houses/nml_one)
 "cz" = (/obj/structure/table/wood,/obj/item/weapon/flame/candle,/turf/floor/wood,/area/prishtina/houses/nml_four)
-"cA" = (/obj/structure/table/wood,/obj/item/weapon/material/kitchen/utensil/knife/boot/makeshift_knife,/turf/floor/wood,/area/prishtina/houses/nml_four)
+"cA" = (/obj/structure/table/wood,/obj/item/trash/snack_bowl,/turf/floor/wood,/area/prishtina/houses/nml_one)
 "cB" = (/obj/structure/toilet{tag = "icon-toilet00 (WEST)"; icon_state = "toilet00"; dir = 8},/turf/floor/wood,/area/prishtina/houses/nml_four)
 "cC" = (/obj/item/violin,/turf/floor/wood_broken,/area/prishtina/houses/nml_one)
 "cD" = (/turf/floor/wood_broken,/area/prishtina/houses/nml_one)
@@ -221,6 +221,7 @@
 "em" = (/obj/item/flashlight,/obj/item/flashlight,/obj/item/flashlight,/obj/item/flashlight,/obj/item/flashlight,/obj/item/flashlight,/turf/floor/dirt,/area/prishtina/german/ss_armory{capturable = 1; icon_state = "blue1"; location = 1; name = "SS Base"})
 "en" = (/obj/item/weapon/flammenwerfer_fueltank,/obj/item/weapon/flammenwerfer_fueltank,/obj/item/weapon/flammenwerfer_fueltank,/turf/floor/plating/grass/wild,/area/prishtina/german/ss_armory{capturable = 1; icon_state = "blue1"; location = 1; name = "SS Base"})
 "eo" = (/obj/item/flashlight,/obj/item/flashlight,/obj/item/flashlight,/obj/item/flashlight,/obj/item/flashlight,/obj/item/flashlight,/turf/floor/plating/grass/wild,/area/prishtina/german/ss_armory{capturable = 1; icon_state = "blue1"; location = 1; name = "SS Base"})
+"ep" = (/obj/structure/table/wood,/obj/item/weapon/material/kitchen/utensil/knife/boot/makeshift_knife,/obj/item/trash/snack_bowl,/turf/floor/wood,/area/prishtina/houses/nml_four)
 "eq" = (/turf/floor/plating/grass/wild,/area/prishtina/german/ss_armory{capturable = 1; icon_state = "blue1"; location = 1; name = "SS Base"})
 
 (1,1,1) = {"
@@ -238,7 +239,7 @@ aaaaaaaaabaaaaaaaaaadgdgdgdgdgaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaadhaaaaaaaaaa
 aaaaaaabaaaaaaaaaaaadgaaaaaaaaanaaaaaaaaaaabaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaababaaaaababaaaaaaaaaaaaaeaeaeaaaaaaaaaabNbObsaYcacwbsafaYaYaYaYaYaYaYaYaYaYbLaYafafabaaaaaaaaaaaaaaaaaaaaaaanaa
 aaaaaaaaaaaaaaaaaaabdgdgdgdgdgaaaaaaaaaaaaaaaaaaanaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaababaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaaaaaeaaabafafcGaYcacTcUcVafafbebebebebfbebebeafafafafaaaaaaaaaaaaabaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaanabaaaaaaaaaaaaaaabaaaaaaaaaaaaabaaaaaaaaaaabaaaaaaaaaaaaabaaaaaaaaaaaaabaaaaaaaaaaanaaaaaaaaaeaeaeaeaeaaaaaaaaaaafafafaYcWcTafafaYafbebgbhbibjbkblbeafajafafaaaaaaaaanabaaaaaaaaaaaaaaab
-aaaaaaabaaaaaaaaaaaaaaababaaaaaaabacaaaaaaababaaaaaaaaaaaaaaaaababaaaaaaaaaaaaabaaaaaaaaabaaaaaaabaaaaaaaaaaaeaeaeaeaeaaababaaaaafafafaYcXcTaYaYaYaYbebjbmbjbnbmbobeafafafafabaaaaaaaaaaaaaaababaaaaaaab
+aaaaaaabaaaaaaaaaaaaaaababaaaaaaabacaaaaaaababaaaaaaaaaaaaaaaaababaaaaaaaaaaaaabaaaaaaaaabaaaaaaabaaaaaaaaaaaeaeaeaeaeaaababaaaaafboboaYcXcTaYaYaYaYbebjbmbjbnbmckbeafafafafabaaaaaaaaaaaaaaababaaaaaaab
 aaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaeaeaeaaaaaaabaaaaaaafcYcYaYaYcZdbdbdcaYbebibjbjbibjbjbeafajafajaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabaaaaaaanaaaaaaaaaaanaaaaaaaaaaaaaaaaaaaaabaaaaaaaaababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaeaeaeaeaaaaaaaaaaaaajafddaYaYdeafafdfaYbebubjbvbwbxbjbeafafafajaaaaaaanaaaaaaaaaaanaaaaaaaa
 aaaaabaaaaacaaaaabaaaaaaacaaababaaaaababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaeaeaeaeaaaaabababaaafafafaYaYdedididfaYbebebebebebebebeafafafajaaaaacaaaaabaaaaaaacaaababaa
@@ -253,9 +254,9 @@ aaaaaaaaacabaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaa
 aaaaaaaaababaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaadaaaaaaabaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaaaeaeaeababaaaaaaaYaYaYaYaYaYaYaYaYbbaYaYaYaYbPbQbRbSbTbUbVbPaaababaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaabaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaeaaaeaeaeabaabWaeaaaYaYaYbXbXbXbYbXbXbXbXaYaYaYbPbSbSbSbSbSbZbPaaaaaaaaaaaaaaaaaaabaaabaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadhaaaaaaaaaaadaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaabaaaaaaaaaaaaaaabaaaeaaaeaeaeaaaabWaeabaYdsaYbXcbcccccdbXcebXaYaYaYbPbSbZcfbScgbSbPaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaananaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaeaeaeaeaeabaeaeaaaYaYaYbXchcicjckbXclbXaYaYaYcmbSbSbTbSbPcnbPaaaaananaaaaabaaaaaaaaaaaaaa
+aaaaaaaaaaananaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaeaeaeaeaeabaeaeaaaYaYaYbXchcicjcAbXclbXaYaYaYcmbSbSbTbSbPcnbPaaaaananaaaaabaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaababaaaaaaaaaaanaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaanaaaaaaaaaaaaaaabaaaaaaaaaaaaaeaeaeaeaeaaaeaeaaaYaYaYbXcccocpcqbXcrbXaYaYaYbPcsctcubSbPcvbPaaabaaaaaaababaaaaaaaaaaanaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaabaaaaaaaaaaaaaaaaaaanaaaaababaaanaaaaababaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeaaabaaadaYaYdtbXcccxcycyccccbXaYaYaYbPczczcAdybPcBbPaaaaaaaaaaaaaaaaaaaaaaabaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaabaaaaaaaaaaaaaaaaaaanaaaaababaaanaaaaababaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeaaabaaadaYaYdtbXcccxcycyccccbXaYaYaYbPczczepdybPcBbPaaaaaaaaaaaaaaaaaaaaaaabaaaa
 aaaaaaaaaaanaaaaabaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaeaeaeaeaeaeaeaaabaYaYaYbXcCcicccDcccEbXaYaYaYbPbPbPbPbPbPbPbPaaaaanaaaaabaaaaaaaaaaabaaaa
 aaaaabaaaaaaaaaaaaaaaaaaabacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaabaaaaaaaaababaaaaaeaeaeaeaeaeaeadaeaYaYaYbXbXbXbXbXbXbXbXaYaYaYaYaYaYaYaYaYaYajaaaaaaaaaaaaaaaaaaabacabaaaa
 aaaaaaababaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaabaaaaaaababaaaaaaaaaaaaaaadaaaaaaaaaaaaaaaaaaaeaeaeaeaeaaaaaYaYaYaYaYaYaYaYduaYaYaYaYaYaYaYaYdsaYaYaYafababaaaaaaaaaaaaaaaaaaabaaaa
