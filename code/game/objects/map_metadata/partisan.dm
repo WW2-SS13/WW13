@@ -30,7 +30,7 @@
 			J.total_positions = max(10, round(clients.len*1.4))
 		if (istype(J, /datum/job/soviet/partisan/commander))
 			J.total_positions = max(1, round(clients.len*0.1))
-	else
+	else if (istype(J, /datum/job/soviet))
 		. = FALSE
 	if (istype(J, /datum/job/german))
 		if (!J.is_dirlewanger)
