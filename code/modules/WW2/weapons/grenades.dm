@@ -15,7 +15,7 @@
 	num_fragments = 37
 
 /obj/item/weapon/grenade/explosive/f1
-	name = "RGD-5"
+	name = "f1 grenade"
 	icon_state = "rgd5"
 	explosion_size = 3
 	num_fragments = 75

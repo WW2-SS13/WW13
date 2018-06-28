@@ -1042,7 +1042,7 @@ var/first_fallschirm = TRUE
 /datum/job/german/squad_leader_ss
 	title = "SS-Unterscharfuhrer"
 	en_meaning = "SS Squad Leader"
-	rank_abbreviation = "uffz"
+	rank_abbreviation = "uscha"
 	head_position = TRUE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateSS-Officer"
@@ -2027,3 +2027,105 @@ var/first_fallschirm = TRUE
 		new/obj/item/weapon/key/german/QM, new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/train)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////SS-Sturmbrigade "Dirlewanger"/////////////////////////////////
+
+/datum/job/german/soldier_ss_dirlewanger
+	title = "SS-Dirlewanger-Sturmmann"
+	en_meaning = "SS-Sturmbrigade Dirlewanger Soldier"
+	rank_abbreviation = "Strm"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateSS"
+	SL_check_independent = TRUE
+	additional_languages = list( "Russian" = 40)
+	is_dirlewanger = TRUE
+	// AUTOBALANCE
+	min_positions = 2
+	max_positions = 25
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+
+/datum/job/german/soldier_ss_dirlewanger/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/sssmock(H), slot_wear_suit)
+	if (prob(75))
+		H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/stgnade(H), slot_wear_mask)
+	if (prob(75))
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm/sshelm(H), slot_head)
+	else
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
+	if (prob(75))
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_back)
+	else
+		if (prob(80))
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/mp40(H), slot_back)
+		else
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/stg(H), slot_back)
+	H.add_note("Role", "You are a <b>[title]</b>, a soldier of the SS-Sturmbrigade Dirlewanger, an anti-partisan unit operating in Soviet territory. Destroy the partisans, leave no survivors!")
+	H.give_radio()
+
+	// glorious SS stats
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("survival", STAT_VERY_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
+	return TRUE
+
+/datum/job/german/soldier_ss_dirlewanger/get_keys()
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/SS)
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/job/german/squad_leader_ss_dirlewanger
+	title = "SS-Dirl.-Unterscharfuhrer"
+	en_meaning = "SS-Sturmbrigade Dirlewanger Squad Leader"
+	rank_abbreviation = "Uscha"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateSS-Officer"
+	SL_check_independent = TRUE
+	additional_languages = list( "Russian" = 40)
+	is_officer = TRUE
+	is_dirlewanger = TRUE
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 8
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+
+/datum/job/german/squad_leader_ss_dirlewanger/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
+	if (prob(75))
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/stg(H), slot_back)
+	else
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/mp40(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_belt)
+	H.add_note("Role", "You are a <b>[title]</b>, of the SS-Sturmbrigade Dirlewanger, an anti-partisan unit operating in Soviet territory. Command your soldiers to victory, and eleminate the partisans!")
+	H.give_radio()
+
+	// glorious SS stats
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_HIGH)
+	H.setStat("smg", STAT_VERY_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
+	return TRUE
+
+/datum/job/german/squad_leader_ss_dirlewanger/get_keys()
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/command_intermediate,
+		new/obj/item/weapon/key/german/SS)

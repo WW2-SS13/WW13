@@ -161,7 +161,7 @@
 "de" = (/obj/structure/grille/fence,/turf/floor/plating/grass/wild,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "df" = (/obj/structure/grille/fence{icon_state = "1"; dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "dg" = (/obj/structure/barricade,/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"dh" = (/mob/living/simple_animal/hostile/bear{icon_dead = "bear_dead"; icon_gib = "bear_gib"; icon_living = "bear"; icon_state = "bear"; name = "bear"},/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"dh" = (/mob/living/simple_animal/hostile/bear{icon_dead = "brownbear_dead"; icon_gib = "brownbear_gib"; icon_living = "brownbear"; icon_state = "brownbear"; name = "bear"},/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "di" = (/mob/living/simple_animal/cow,/turf/floor/plating/grass/wild,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "dj" = (/obj/structure/closet/crate/sandbags,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "dk" = (/obj/structure/closet/crate/barbwire,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})

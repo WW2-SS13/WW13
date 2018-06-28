@@ -380,6 +380,8 @@ var/global/obj/map_metadata/map = null
 			return "Soviet"
 		if (PILLARMEN)
 			return "Undead"
+		if (PARTISAN)
+			return "Partisan"
 
 /obj/map_metadata/proc/roundend_condition_def2army(define)
 	switch (define)
@@ -389,6 +391,8 @@ var/global/obj/map_metadata/map = null
 			return "Red Army"
 		if (PILLARMEN)
 			return "Undead"
+		if (PARTISAN)
+			return "Partisan Group"
 
 /obj/map_metadata/proc/army2name(army)
 	switch (army)
@@ -398,6 +402,8 @@ var/global/obj/map_metadata/map = null
 			return "Soviet"
 		if ("Undead")
 			return "Undead"
+		if ("UPartisan Army")
+			return "Partisan"
 
 /obj/map_metadata/proc/special_relocate(var/mob/M)
 	return FALSE
