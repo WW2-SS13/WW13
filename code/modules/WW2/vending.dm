@@ -82,7 +82,7 @@
 		/obj/item/weapon/attachment/bayonet/german = 25,
 		/obj/item/weapon/gauze_pack/gauze = 25,
 		/obj/item/flashlight = 25,
-		/obj/item/weapon/shovel/spade/russia = 25,
+		/obj/item/weapon/shovel/spade/german = 25,
 		/obj/item/weapon/gun/projectile/boltaction/kar98k = 25,
 		/obj/item/ammo_magazine/kar98k = 50,
 		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/german = 25

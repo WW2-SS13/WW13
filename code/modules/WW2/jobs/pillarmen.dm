@@ -15,8 +15,8 @@
 /datum/job/pillarman/pillarman/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/stone(H), slot_r_hand)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/pump/combat/winchester1897(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/clothing/mask/stone(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/pump/combat/winchester1897(H), slot_r_hand)
 	equip_random_civilian_clothing(H)
 
 	// give them webbing with shotgun shells
