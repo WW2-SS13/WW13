@@ -1293,6 +1293,7 @@ var/first_guard = FALSE
 	selection_color = "#530909"
 	spawn_location = "JoinLatePartisan"
 	SL_check_independent = TRUE
+	is_partisan = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -1334,6 +1335,7 @@ var/first_guard = FALSE
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLatePartisanLeader"
 	additional_languages = list( "Russian" = 100, "German" = 100)
+	is_partisan = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1

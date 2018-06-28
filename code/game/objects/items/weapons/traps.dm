@@ -92,17 +92,16 @@
 /obj/item/weapon/beartrap/Crossed(AM as mob|obj)
 	if (deployed && isliving(AM))
 		var/mob/living/L = AM
-		if (L.m_intent == "run")
-			L.visible_message(
-				"<span class='danger'>[L] steps on \the [src].</span>",
-				"<span class='danger'>You step on \the [src]!</span>",
-				"<b>You hear a loud metallic snap!</b>"
-				)
-			attack_mob(L)
-			if (!buckled_mob)
-				anchored = FALSE
-			deployed = FALSE
-			update_icon()
+		L.visible_message(
+			"<span class='danger'>[L] steps on \the [src].</span>",
+			"<span class='danger'>You step on \the [src]!</span>",
+			"<b>You hear a loud metallic snap!</b>"
+			)
+		attack_mob(L)
+		if (!buckled_mob)
+			anchored = FALSE
+		deployed = FALSE
+		update_icon()
 	..()
 
 /obj/item/weapon/beartrap/update_icon()
