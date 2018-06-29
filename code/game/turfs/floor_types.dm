@@ -452,6 +452,11 @@
 	icon_state = "seashallow"
 	move_delay = 3
 
+/turf/floor/plating/beach/water/deep
+	name = "Deep Water"
+	icon_state = "seadeep"
+	density = TRUE
+
 /turf/floor/plating/beach/water/get_move_delay()
 	if (locate(/obj/structure/catwalk) in contents)
 		return 0

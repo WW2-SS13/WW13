@@ -7,7 +7,7 @@
 		MAP_CAMP = 0,
 		MAP_SURVIVAL = 0,
 		MAP_REICHSTAG = 0,
-//		MAP_PARTISAN = 0
+		MAP_PARTISAN = 0
 	)
 
 	var/ready = TRUE
