@@ -18,9 +18,9 @@
 	item_state = "sovofficercap"
 
 /obj/item/clothing/head/caphat/sovcap/fieldcap
-	name = "Soviet officer cap"
-	icon_state = "fieldcap"
-	item_state = "fieldcap"
+	name = "Soviet officer field cap"
+	icon_state = "fieldcap2"
+	item_state = "fieldcap2"
 
 /obj/item/clothing/head/caphat/gerofficercap
 	name = "German commanding officer cap"
@@ -66,3 +66,8 @@
 	name = "Soviet field cap"
 	icon_state = "fieldcap2"
 	item_state = "fieldcap2"
+
+/obj/item/clothing/head/caphat/uia_cap
+	name = "Partisan cap"
+	icon_state = "uia_cap"
+	item_state = "uia_cap"

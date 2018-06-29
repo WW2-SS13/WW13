@@ -19,7 +19,7 @@
 /datum/job/partisan/soldier/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
-	equip_random_civilian_clothing(H)
+	equip_random_partisan_clothing(H)
 	if (prob(40))
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
 	else
@@ -58,7 +58,8 @@
 /datum/job/partisan/commander/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
-	equip_random_civilian_clothing(H)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/uia_cap(H), slot_head)
+	equip_random_partisan_clothing(H)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/flashlight(H), slot_r_hand)
 	if (map && map.ID == "FOREST")

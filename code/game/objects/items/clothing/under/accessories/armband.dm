@@ -96,3 +96,8 @@
 	name = "Feldjägerkorps armband"
 	desc = "A red armband with 'Oberkommando der Wehrmacht - Feldjäger' written on it."
 	icon_state = "fjk"
+
+/obj/item/clothing/accessory/armband/partisan
+	name = "partisan armband"
+	desc = "A white armband, worn by partisans to identify themselves."
+	icon_state = "med"

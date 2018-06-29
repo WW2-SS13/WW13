@@ -1304,12 +1304,17 @@ var/first_guard = FALSE
 /datum/job/soviet/partisan/soldier/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
-	equip_random_civilian_clothing(H)
+	equip_random_partisan_clothing(H)
 	if (prob(20))
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/material/knife/combat(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/flashlight(H), slot_l_hand)
+	if (prob(50))
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/flatcap(H), slot_head)
+	var/obj/item/clothing/accessory/armband/partisan_a = new /obj/item/clothing/accessory/armband/partisan(null)
+	var/obj/item/clothing/under/uniform = H.w_uniform
+	uniform.attackby(partisan_a, H)
 	H.give_radio()
 	H.add_note("Role", "You are a <b>[title]</b>, a Soviet partisan soldier. You take orders from the <b>Partisan Leader</b> alone.")
 	if (partisan_stockpile)
@@ -1345,11 +1350,15 @@ var/first_guard = FALSE
 /datum/job/soviet/partisan/commander/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
-	equip_random_civilian_clothing(H)
+	equip_random_partisan_clothing(H)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/flashlight(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/stenmk2(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/tokarev(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/uia_cap(H), slot_head)
+	var/obj/item/clothing/accessory/armband/partisan_b = new /obj/item/clothing/accessory/armband/partisan(null)
+	var/obj/item/clothing/under/uniform = H.w_uniform
+	uniform.attackby(partisan_b, H)
 
 	H.give_radio()
 
