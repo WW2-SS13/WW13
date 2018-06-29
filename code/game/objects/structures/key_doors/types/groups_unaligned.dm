@@ -16,5 +16,8 @@
 	..()
 	name = "Train Door"
 
+/obj/structure/simple_door/key_door/anyone/cell
+	material = "cell"
+
 #undef ANYONE_CODE
 
