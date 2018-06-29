@@ -13,6 +13,8 @@
 		/obj/item/clothing/head/ushanka = 25,
 		/obj/item/clothing/mask/gas/soviet = 25,
 		/obj/item/clothing/under/sovuni/camo = 5,
+		/obj/item/weapon/storage/belt/soviet_basic = 15,
+		/obj/item/weapon/storage/backpack/soviet = 15
 	)
 //	idle_power_usage = 0
 
@@ -25,8 +27,11 @@
 		/obj/item/clothing/accessory/storage/webbing = 50,
 		/obj/item/clothing/under/geruni = 50,
 		/obj/item/clothing/head/helmet/gerhelm = 50,
+		/obj/item/clothing/head/caphat/gercap/fieldcap2 = 50,
 		/obj/item/clothing/shoes/swat = 50,
-		/obj/item/clothing/mask/gas/german = 25
+		/obj/item/clothing/mask/gas/german = 25,
+		/obj/item/weapon/storage/belt/german_basic = 15,
+		/obj/item/weapon/storage/backpack/german = 15
 	)
 
 /obj/structure/vending/italian/apparel
@@ -77,7 +82,7 @@
 		/obj/item/weapon/attachment/bayonet/german = 25,
 		/obj/item/weapon/gauze_pack/gauze = 25,
 		/obj/item/flashlight = 25,
-		/obj/item/weapon/shovel/spade/russia = 25,
+		/obj/item/weapon/shovel/spade/german = 25,
 		/obj/item/weapon/gun/projectile/boltaction/kar98k = 25,
 		/obj/item/ammo_magazine/kar98k = 50,
 		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/german = 25

@@ -99,7 +99,7 @@
 	var/old_y = FALSE
 
 	var/shakecamera = FALSE
-	var/a_intent = I_DISARM//Living
+	var/a_intent = I_HELP//Living
 	var/m_intent = "walk"//Living
 	var/obj/buckled = null//Living
 	var/obj/item/l_hand = null//Living

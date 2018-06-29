@@ -349,6 +349,12 @@
 	required_reagents = list("sugar" = 1, "phosphorus" = 1, "sulfur" = 1)
 	result_amount = 3
 
+/datum/chemical_reaction/pervitin
+	name = "Pervitin"
+	result = "pervitin"
+	required_reagents = list("lithium" = 1, "acetone" = 1, "carbon" = 1)
+	result_amount = 3
+
 /datum/chemical_reaction/ryetalyn
 	name = "Ryetalyn"
 	id = "ryetalyn"

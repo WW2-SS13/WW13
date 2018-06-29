@@ -90,6 +90,11 @@ var/GRACE_PERIOD_LENGTH = 7
 		(season = "SPRING")
 		return TRUE
 
+	// forces Fall in Partisan map
+	if (map && istype(map, /obj/map_metadata/partisan))
+		(season = "FALL")
+		return TRUE
+
 	// snow is disabled because it breaks the game
 	var/use_snow = FALSE
 
