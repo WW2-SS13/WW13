@@ -59,3 +59,43 @@
 	name = "Soviet Union flag"
 	desc = "Soyuz nerushimy respublik svobodnyh!"
 	icon_state = "sov_flag"
+
+/obj/structure/sign/flag/germany2
+	name = "Third Reich flag"
+	desc = "Ein Volk, ein Reich, ein Fuhrer!"
+	icon_state = "ger_flag2"
+
+/obj/structure/sign/flag/soviet2
+	name = "Soviet Union flag"
+	desc = "Soyuz nerushimy respublik svobodnyh!"
+	icon_state = "sov_flag2"
+
+/obj/structure/sign/flag/germanybanner
+	name = "Third Reich banner"
+	desc = "Ein Volk, ein Reich, ein Fuhrer!"
+	icon_state = "ger_banner"
+
+/obj/structure/sign/flag/sovietbanner
+	name = "Soviet Union banner"
+	desc = "Soyuz nerushimy respublik svobodnyh!"
+	icon_state = "sov_banner"
+
+
+/obj/structure/sign/flag/germanycerflag
+	name = "Third Reich flag"
+	desc = "Ein Volk, ein Reich, ein Fuhrer!"
+	icon_state = "ger_cerflag"
+
+/obj/structure/sign/flag/sovietcerflag
+	name = "Soviet Union flag"
+	desc = "Soyuz nerushimy respublik svobodnyh!"
+	icon_state = "sov_cerflag"
+
+/obj/structure/sign/wide96
+	icon = 'icons/obj/decals_32x96.dmi'
+	bound_y = 48
+
+/obj/structure/sign/wide96/ger_bigbanner
+	name = "Big Third Reich banner"
+	desc = "A big Swastika banner."
+	icon_state = "ger_extbanner"

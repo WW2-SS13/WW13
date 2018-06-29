@@ -402,7 +402,7 @@ var/global/obj/map_metadata/map = null
 			return "Soviet"
 		if ("Undead")
 			return "Undead"
-		if ("UPartisan Army")
+		if ("Partisan Group")
 			return "Partisan"
 
 /obj/map_metadata/proc/special_relocate(var/mob/M)
