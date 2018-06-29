@@ -10,7 +10,7 @@
 /obj/item/weapon/storage/firstaid
 	name = "first-aid kit"
 	desc = "It's an emergency medical kit for general wounds."
-	icon_state = "firstaid2"
+	icon_state = "firstaid_2"
 	throw_speed = 2
 	throw_range = 8
 	var/empty = FALSE
@@ -19,14 +19,12 @@
 /obj/item/weapon/storage/firstaid/fire
 	name = "fire first-aid kit"
 	desc = "It's an emergency medical kit for burns."
-	icon_state = "ointment2"
-	item_state = "firstaid2"
+	icon_state = "firefirstaid2"
+	item_state = "firstaid_2"
 
 	New()
 		..()
 		if (empty) return
-
-		icon_state = pick("ointment","firefirstaid")
 
 		new /obj/item/stack/medical/ointment( src )
 		new /obj/item/stack/medical/ointment( src )
@@ -37,7 +35,7 @@
 
 
 /obj/item/weapon/storage/firstaid/regular
-	icon_state = "firstaid2"
+	icon_state = "firstaid_2"
 
 	New()
 		..()
@@ -53,13 +51,11 @@
 	name = "toxin first aid"
 	desc = "Used to treat high amounts of toxins in the body."
 	icon_state = "antitoxin2"
-	item_state = "firstaid2"
+	item_state = "firstaid_2"
 
 	New()
 		..()
 		if (empty) return
-
-		icon_state = pick("antitoxin","antitoxfirstaid","antitoxfirstaid2","antitoxfirstaid3")
 
 		new /obj/item/weapon/reagent_containers/syringe/antitoxin( src )
 		new /obj/item/weapon/reagent_containers/syringe/antitoxin( src )
@@ -73,7 +69,7 @@
 	name = "oxygen deprivation first aid"
 	desc = "A box full of tools and chemicals for treating oxygen deprivation."
 	icon_state = "o22"
-	item_state = "firstaid2"
+	item_state = "firstaid_2"
 
 	New()
 		..()
@@ -89,7 +85,7 @@
 	name = "advanced first-aid kit"
 	desc = "Contains advanced medical treatments."
 	icon_state = "advfirstaid2"
-	item_state = "firstaid2"
+	item_state = "firstaid_2"
 
 /obj/item/weapon/storage/firstaid/adv/New()
 	..()
@@ -106,7 +102,7 @@
 	name = "combat medicine kit"
 	desc = "Contains advanced medicine used in combat."
 	icon_state = "bezerk2"
-	item_state = "firstaid2"
+	item_state = "firstaid_2"
 
 /obj/item/weapon/storage/firstaid/combat/New()
 	..()
@@ -143,8 +139,8 @@
 /obj/item/weapon/storage/firstaid/injectorpack
 	name = "Pack of morphine injectors"
 	desc = "Contains five injectors of morphine"
-	icon_state = "medbriefcase"
-	item_state = "firstaid2"
+	icon_state = "firstaid2"
+	item_state = "firstaid_2"
 	storage_slots = 5
 	max_w_class = 2
 	can_hold = list(/obj/item/weapon/reagent_containers/syringe/morphine)
