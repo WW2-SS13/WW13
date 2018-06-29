@@ -212,7 +212,7 @@
 "ed" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/brown,/turf/floor/wood,/area/prishtina/houses/nml_two)
 "ee" = (/obj/item/roller,/obj/item/roller,/obj/item/roller,/turf/floor/plating/grass/wild,/area/prishtina/german/ss_armory{capturable = 1; icon_state = "blue1"; location = 1; name = "SS Base"})
 "ef" = (/obj/structure/bed/padded,/obj/effect/decal/cleanable/dirt,/obj/item/weapon/bedsheet/ce,/turf/floor/wood,/area/prishtina/houses/nml_two)
-"eg" = (/turf/floor/plating/beach/water{base_desc = "Just water."; density = 1; icon_state = "seadeep"; name = "Deep water"},/area/prishtina/forest)
+"eg" = (/turf/floor/plating/beach/water/deep,/area/prishtina/forest)
 "eh" = (/obj/item/flashlight/flare/nighttime,/turf/floor/dirt,/area/prishtina/german/ss_armory{capturable = 1; icon_state = "blue1"; location = 1; name = "SS Base"})
 "ei" = (/turf/floor/dirt,/area/prishtina/no_mans_land{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "green3"; location = 0; name = "Abandoned Houses"})
 "ej" = (/obj/structure/barricade,/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/dirt,/area/prishtina/german/ss_armory{capturable = 1; icon_state = "blue1"; location = 1; name = "SS Base"})
