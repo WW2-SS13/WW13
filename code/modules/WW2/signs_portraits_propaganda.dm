@@ -25,3 +25,16 @@
 /obj/structure/sign/portrait/propaganda/sov1
 	name = "Soviet Propaganda Poster"
 	icon_state = "soviet_prop_1"
+/obj/structure/sign/portrait/propaganda/sov2
+	name = "Soviet Propaganda Poster"
+	icon_state = "soviet_prop_2"
+/obj/structure/sign/portrait/propaganda/sov3
+	name = "Soviet Propaganda Poster"
+	icon_state = "soviet_prop_3"
+
+/obj/structure/sign/portrait/propaganda/ger1
+	name = "German Propaganda Poster"
+	icon_state = "ger_prop_1"
+/obj/structure/sign/portrait/propaganda/ger2
+	name = "German Propaganda Poster"
+	icon_state = "ger_prop_2"
