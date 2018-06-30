@@ -63,12 +63,12 @@
 /obj/structure/sign/flag/germany2
 	name = "Third Reich flag"
 	desc = "Ein Volk, ein Reich, ein Fuhrer!"
-	icon_state = "ger_flag2"
+	icon_state = "ger_flag"
 
 /obj/structure/sign/flag/soviet2
 	name = "Soviet Union flag"
 	desc = "Soyuz nerushimy respublik svobodnyh!"
-	icon_state = "sov_flag2"
+	icon_state = "sov_flag"
 
 /obj/structure/sign/flag/germanybanner
 	name = "Third Reich banner"

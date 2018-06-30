@@ -10,7 +10,8 @@
 /obj/item/weapon/storage/firstaid
 	name = "first-aid kit"
 	desc = "It's an emergency medical kit for general wounds."
-	icon_state = "firstaid_2"
+	icon_state = "firstaid2"
+	item_state = "firstaid_2"
 	throw_speed = 2
 	throw_range = 8
 	var/empty = FALSE
@@ -119,6 +120,8 @@
 /obj/item/weapon/storage/firstaid/surgery
 	name = "surgery kit"
 	desc = "Contains tools for surgery. Has precise foam fitting for safe transport."
+	icon_state = "firstaid2"
+	item_state = "firstaid_2"
 
 /obj/item/weapon/storage/firstaid/surgery/New()
 	..()
