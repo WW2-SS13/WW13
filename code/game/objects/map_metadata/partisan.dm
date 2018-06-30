@@ -16,7 +16,7 @@
 		list(SOVIET) = /area/prishtina/houses)
 	ambience = list()
 	times_of_day = list("Night","Evening","Early Morning")
-	faction_distribution_coeffs = list(GERMAN = 0.4, PARTISAN = 0.6)
+	faction_distribution_coeffs = list(GERMAN = 0.5, PARTISAN = 0.5)
 	battle_name = "Partisan Hunting"
 	songs = list(
 	 "Partisan's Song:1" = 'sound/music/partisans_song.ogg',
@@ -40,7 +40,7 @@
 			. = FALSE
 		else
 			if (istype(J, /datum/job/german/soldier_ss_dirlewanger))
-				J.total_positions = max(7, round(clients.len*0.9))
+				J.total_positions = max(10, round(clients.len*1.4))
 			if (istype(J, /datum/job/german/squad_leader_ss_dirlewanger))
 				J.total_positions = max(1, round(clients.len*0.1))
 	return .
@@ -76,7 +76,7 @@
 	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.33, TRUE))
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.33))
 			if (last_win_condition != win_condition.hash)
-				current_win_condition = "The [roundend_condition_def2army(roundend_condition_sides[1][1])] has captured the partisan base! They will win in {time} minute{s}."
+				current_win_condition = "The <b>Waffen-SS</b> has captured the <b>partisan</b> base! They will win in {time} minute{s}."
 				next_win = world.time + short_win_time(roundend_condition_sides[2][1])
 				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[1][1])
@@ -85,7 +85,7 @@
 	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.01, TRUE))
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.01))
 			if (last_win_condition != win_condition.hash)
-				current_win_condition = "The [roundend_condition_def2army(roundend_condition_sides[1][1])] has captured the partisan base! They will win in {time} minute{s}."
+				current_win_condition = "The <b>Waffen-SS</b> has captured the <b>partisan</b> base! They will win in {time} minute{s}."
 				next_win = world.time + long_win_time(roundend_condition_sides[2][1])
 				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[1][1])
@@ -94,7 +94,7 @@
 	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.33, TRUE))
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.33))
 			if (last_win_condition != win_condition.hash)
-				current_win_condition = "The partisans have captured the [roundend_condition_def2name(roundend_condition_sides[1][1])] base! They will win in {time} minute{s}."
+				current_win_condition = "The <b>partisans</b> have captured the <b>Waffen-SS</b> base! They will win in {time} minute{s}."
 				next_win = world.time + short_win_time(roundend_condition_sides[1][1])
 				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[2][1])
@@ -103,7 +103,7 @@
 	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.01, TRUE))
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.01))
 			if (last_win_condition != win_condition.hash)
-				current_win_condition = "The partisans have captured the [roundend_condition_def2name(roundend_condition_sides[1][1])] base! They will win in {time} minute{s}."
+				current_win_condition = "The <b>partisans</b> have captured the <b>Waffen-SS</b> base! They will win in {time} minute{s}."
 				next_win = world.time + long_win_time(roundend_condition_sides[1][1])
 				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[2][1])
