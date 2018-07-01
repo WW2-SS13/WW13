@@ -13,7 +13,8 @@
 	reinforcements = FALSE
 	faction_organization = list(
 		GERMAN,
-		SOVIET)
+		SOVIET,
+		CIVILIAN)
 	no_subfaction_chance = FALSE
 	subfaction_is_main_faction = FALSE
 	roundend_condition_sides = list(
@@ -116,7 +117,13 @@
 			J.max_positions = 1
 			J.total_positions = 1
 		modded_num_reichstag_s = TRUE
-
+	else if (istype(J, /datum/job/partisan/civilian))
+		if (!J.is_redcross)
+			. = FALSE
+		else
+			J.min_positions = 1
+			J.max_positions = 1
+			J.total_positions = 1
 
 	return .
 

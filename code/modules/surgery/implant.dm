@@ -106,8 +106,6 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			if(istype(user,/mob/living/silicon/robot))
-				return
 			if(affected && affected.cavity)
 				var/total_volume = tool.w_class
 				for(var/obj/item/I in affected.implants)
@@ -190,10 +188,6 @@
 				obj.loc = get_turf(target)
 				obj.add_blood(target)
 				obj.update_icon()
-				if(istype(obj,/obj/item/weapon/implant))
-					var/obj/item/weapon/implant/imp = obj
-					imp.imp_in = null
-					imp.implanted = FALSE
 				playsound(target.loc, 'sound/effects/squelch1.ogg', 50, TRUE)
 			else
 				user.visible_message("<span class = 'notice'>[user] removes \the [tool] from [target]'s [affected.name].</span>", \
@@ -209,9 +203,5 @@
 			var/fail_prob = 10
 			fail_prob += 100 - tool_quality(tool)
 			if (prob(fail_prob))
-				var/obj/item/weapon/implant/imp = affected.implants[1]
-				user.visible_message("<span class = 'red'>Something beeps inside [target]'s [affected.name]!</span>")
-				playsound(imp.loc, 'sound/items/countdown.ogg', 75, TRUE, -3)
-				spawn(25)
-					imp.activate()
+				user.visible_message("<span class = 'red'>Something makes a noise inside [target]'s [affected.name]!</span>")
 

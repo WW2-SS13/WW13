@@ -159,7 +159,9 @@
 	name = "advanced trauma kit"
 	singular_name = "advanced trauma kit"
 	desc = "An advanced trauma kit for severe injuries."
-	icon_state = "traumakit"
+	icon = 'icons/WW2/trauma_kit.dmi'
+	icon_state = "trauma_kit"
+	item_state = "trauma_kit"
 	heal_brute = 0
 //	origin_tech = list(TECH_BIO = TRUE)
 
@@ -227,7 +229,9 @@
 	name = "advanced burn kit"
 	singular_name = "advanced burn kit"
 	desc = "An advanced treatment kit for severe burns."
-	icon_state = "burnkit"
+	icon = 'icons/WW2/burn_kit.dmi'
+	icon_state = "burn_kit"
+	item_state = "burn_kit"
 	heal_burn = FALSE
 //	origin_tech = list(TECH_BIO = TRUE)
 

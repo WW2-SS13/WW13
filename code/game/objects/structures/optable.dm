@@ -1,7 +1,7 @@
 /obj/structure/optable
 	name = "Operating Table"
 	desc = "Used for advanced medical procedures."
-	icon = 'icons/obj/surgery.dmi'
+	icon = 'icons/WW2/ww2_operating_table.dmi'
 	icon_state = "table2-idle"
 	density = TRUE
 	anchored = 1.0

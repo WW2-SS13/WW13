@@ -1203,7 +1203,7 @@ var/first_guard = FALSE
 /datum/job/soviet/penal_pris/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/civ4(H), slot_w_uniform)
 	H.add_note("Role", "You are a <b>[title]</b>, the lowest scum of the POW Camp. You were a criminal before being captured by the Germans, so don't expect to be well treated by either the other POWs or the guards. You will be asked to do the worst jobs, like dragging bodies.")
 	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start attacking the guards without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave. Your objective is to escape and reach one of the corners of the map. Dig tunnels, destroy the fence, and do anything to escape, but be realistic.")
 	H.setStat("strength", STAT_LOW)
@@ -1244,9 +1244,9 @@ var/first_guard = FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovcap/fieldcap2(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/wirecutters(H), slot_l_hand)
 
-	var/obj/item/clothing/accessory/armband/penal_ger/penal_ger_a = new /obj/item/clothing/accessory/armband/penal_ger(null)
+	var/obj/item/clothing/accessory/armband/penal_sov/penal_sov_a = new /obj/item/clothing/accessory/armband/penal_sov(null)
 	var/obj/item/clothing/under/uniform = H.w_uniform
-	uniform.attackby(penal_ger_a, H)
+	uniform.attackby(penal_sov_a, H)
 	H.add_note("Role", "You are a <b>[title]</b>, a criminal condemned to serve in a penal military unit. You are stripped of your ranks, and even below the average Soldat. Do not expect to be given priority on food and medical attention.")
 //	H.give_radio() no radio for criminals!
 	H.setStat("strength", STAT_MEDIUM_LOW)

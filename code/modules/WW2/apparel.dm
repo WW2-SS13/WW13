@@ -617,6 +617,13 @@
 	item_state = "civuni3"
 	worn_state = "civuni3"
 
+/obj/item/clothing/under/redcross
+	name = "Red Cross Uniform"
+	desc = "A standard grey uniform of the Red Cross. Don't shoot!"
+	icon_state = "redcross_uniform"
+	item_state = "redcross_uniform"
+	worn_state = "redcross_uniform"
+
 /obj/item/weapon/storage/backpack/german
 	name = "german backpack"
 	desc = "You wear this on your back and put items into it."
