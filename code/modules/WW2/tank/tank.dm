@@ -254,9 +254,8 @@
 			next_spam_allowed = world.time + 300
 
 /obj/tank/proc/receive_backseat_command(x)
-	if (!truck)
-		#ifndef MG_TANKS
-		if (x == "FIRE")
-			if (!did_critical_damage)
-				Fire()
-		#endif
+	#ifndef MG_TANKS
+	if (x == "FIRE")
+		if (!did_critical_damage)
+			Fire()
+	#endif

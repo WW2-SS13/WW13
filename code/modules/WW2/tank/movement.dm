@@ -374,14 +374,104 @@
 						tank_message("<span class = 'danger'>The tank rams into [o]!</span>")
 						playsound(get_turf(src), 'sound/effects/clang.ogg', rand(60,70))
 						return FALSE
-
+	//trucks
 	else
-		// for trucks
-		tank_message("<span class = 'danger'>The truck hits an obstacle!</span>")
-		playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
-		damage += x_percent_of_max_damage(rand(1,2))
-		update_damage_status()
-		return FALSE
+		if (o == src)
+			return TRUE
+
+		if (istype(o))
+
+			if (istype(o, /obj/item/mine))
+				var/obj/item/mine/mine = o
+				mine.trigger(src)
+				damage += x_percent_of_max_damage(rand(40,70))
+				update_damage_status()
+				return FALSE // halt us too
+
+			else if (istype(o, /obj/item/weapon/grenade))
+				return TRUE // pass over it
+
+			else if (istype(o, /obj/train_lever))
+				return TRUE // pass over it
+
+			else if (istype(o, /obj/structure/window/sandbag))
+				if (prob(5))
+					tank_message("<span class = 'danger'>The truck plows through the sandbag wall!</span>")
+					qdel(o)
+					damage += x_percent_of_max_damage(rand(4,9))
+					update_damage_status()
+					return TRUE
+				else
+					tank_message("<span class = 'danger'>The truck smashes against the sandbag wall!</span>")
+					playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
+					damage += x_percent_of_max_damage(rand(3,7))
+					update_damage_status()
+					return FALSE
+
+			else if (istype(o, /obj/structure/anti_tank))
+				tank_message("<span class = 'danger'>The truck smashes against the anti-tank barrier!</span>")
+				playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
+				damage += x_percent_of_max_damage(rand(10,18))
+				update_damage_status()
+				return FALSE
+
+			else if (istype(o, /obj/structure/girder))
+				tank_message("<span class = 'danger'>The truck smashes against the wall girder!</span>")
+				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+				damage += x_percent_of_max_damage(rand(7,14))
+				update_damage_status()
+				return FALSE
+
+			else if (istype(o, /obj/structure/barricade))
+				tank_message("<span class = 'danger'>The truck smashes against the barricade!</span>")
+				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+				damage += x_percent_of_max_damage(rand(5,12))
+				update_damage_status()
+				return FALSE
+
+
+			else if (istype(o, /obj/train_pseudoturf))
+				if (o.density)
+					tank_message("<span class = 'danger'>The truck smashes against [o]!</span>")
+					playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+					return FALSE
+				else // you can no longer drive tanks in to or on to trains.
+					return FALSE
+
+			else if (istype(o, /obj/tank))
+				tank_message("<span class = 'danger'>The truck rams into \the [o]!</span>")
+				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+				damage += x_percent_of_max_damage(rand(14,18))
+				update_damage_status()
+				return FALSE
+
+				return FALSE
+
+			else if (istype(o, /obj/structure) && o.density)
+				tank_message("<span class = 'danger'>The truck smashes through [o]!</span>")
+				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+				qdel(o)
+				return TRUE
+			else
+				if (!o.density && !istype(o, /obj/item))
+					return TRUE
+				if ((istype(o, /obj/item) && o.w_class == TRUE) || (istype(o, /obj/item) && o.anchored) || istype(o, /obj/item/ammo_casing) || istype(o, /obj/item/ammo_magazine) || istype(o, /obj/item/organ))
+					return TRUE
+				else
+					tank_message("<span class = 'warning'>The truck crushes [o].</span>")
+					qdel(o)
+					return TRUE
+				if (istype(o, /obj/structure))
+					if (prob(10) || !o.density)
+						tank_message("<span class = 'danger'>The truck crushes [o]!</span>")
+						qdel(o)
+						return TRUE
+					else
+						tank_message("<span class = 'danger'>The truck rams into [o]!</span>")
+						playsound(get_turf(src), 'sound/effects/clang.ogg', rand(60,70))
+						damage += x_percent_of_max_damage(rand(3,8))
+						update_damage_status()
+						return FALSE
 
 	return TRUE
 
