@@ -1244,9 +1244,9 @@ var/first_guard = FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovcap/fieldcap2(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/wirecutters(H), slot_l_hand)
 
-	var/obj/item/clothing/accessory/armband/penal_ger/penal_ger_a = new /obj/item/clothing/accessory/armband/penal_ger(null)
+	var/obj/item/clothing/accessory/armband/penal_sov/penal_sov_a = new /obj/item/clothing/accessory/armband/penal_sov(null)
 	var/obj/item/clothing/under/uniform = H.w_uniform
-	uniform.attackby(penal_ger_a, H)
+	uniform.attackby(penal_sov_a, H)
 	H.add_note("Role", "You are a <b>[title]</b>, a criminal condemned to serve in a penal military unit. You are stripped of your ranks, and even below the average Soldat. Do not expect to be given priority on food and medical attention.")
 //	H.give_radio() no radio for criminals!
 	H.setStat("strength", STAT_MEDIUM_LOW)
