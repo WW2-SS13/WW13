@@ -1203,7 +1203,7 @@ var/first_guard = FALSE
 /datum/job/soviet/penal_pris/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/civ4(H), slot_w_uniform)
 	H.add_note("Role", "You are a <b>[title]</b>, the lowest scum of the POW Camp. You were a criminal before being captured by the Germans, so don't expect to be well treated by either the other POWs or the guards. You will be asked to do the worst jobs, like dragging bodies.")
 	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start attacking the guards without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave. Your objective is to escape and reach one of the corners of the map. Dig tunnels, destroy the fence, and do anything to escape, but be realistic.")
 	H.setStat("strength", STAT_LOW)

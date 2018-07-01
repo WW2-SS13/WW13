@@ -101,3 +101,8 @@
 	name = "partisan armband"
 	desc = "A white armband, worn by partisans to identify themselves."
 	icon_state = "med"
+
+/obj/item/clothing/accessory/armband/redcross
+	name = "Red Cross armband"
+	desc = "An armband, worn by members of the Red Cross Organization."
+	icon_state = "redcross"
