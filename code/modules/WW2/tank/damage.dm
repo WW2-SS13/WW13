@@ -48,6 +48,8 @@
 	else
 		if (P.firedfrom && istype(P.firedfrom, /obj/item/weapon/gun/projectile/heavy))
 			dam = (P.damage + (P.armor_penetration))
+		else if (istype(P.firedfrom, /obj/item/weapon/gun/launcher/rocket))
+			dam = 400
 		else
 			dam = (P.damage/3)/5
 
@@ -100,13 +102,18 @@
 
 /obj/tank/proc/critical_damage_chance()
 	var/damage_coeff = damage/max_damage
-	if (damage_coeff < 0.7)
-		return FALSE
-	else
-		if (damage_coeff >= 0.7 && damage_coeff <= 0.9)
-			return 5
+	if (!truck)
+		if (damage_coeff < 0.7)
+			return FALSE
 		else
+			if (damage_coeff >= 0.7 && damage_coeff <= 0.9)
+				return 5
+			else
+				return 25
+	else
+		if (damage_coeff >= 0.8)
 			return 25
+
 
 /obj/tank/proc/critical_damage()
 

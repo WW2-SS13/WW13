@@ -43,6 +43,8 @@
 				J.total_positions = max(10, round(clients.len*1.4))
 			if (istype(J, /datum/job/german/squad_leader_ss_dirlewanger))
 				J.total_positions = max(1, round(clients.len*0.1))
+			if (istype(J, /datum/job/german/penal_ss_dirlewanger))
+				J.total_positions = 8
 	return .
 
 

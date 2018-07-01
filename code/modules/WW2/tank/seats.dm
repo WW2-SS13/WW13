@@ -31,7 +31,7 @@
 		else if (fire_back_seat && drive_front_seat)
 			return FALSE
 	else
-		if (!drive_front_seat || !fire_back_seat || !truck_full)
+		if (!drive_front_seat || !fire_back_seat || !truck_full || !back_seat_1  || !back_seat_2  || !back_seat_3  || !back_seat_4  || !back_seat_5 || !back_seat_6)
 			return TRUE
 		else
 			return FALSE
@@ -71,7 +71,7 @@
 			set_eye_location(user) // unaffect by bound_x, bound_y (unlike src)
 		return TRUE
 	else
-		if (back_seat_1 == TRUE && back_seat_2 == TRUE && back_seat_3 == TRUE && back_seat_4 == TRUE && back_seat_5 == TRUE && back_seat_6 == TRUE)
+		if (back_seat_1 && back_seat_2 && back_seat_3 && back_seat_4 && back_seat_5 && back_seat_6)
 			truck_full = TRUE
 		else
 			truck_full = FALSE
@@ -95,7 +95,7 @@
 				back_seat_5 = user
 			else if (!truck_full && !back_seat_6)
 				back_seat_6 = user
-			else if (truck_full)
+			else if (back_seat_1 && back_seat_2 && back_seat_3 && back_seat_4 && back_seat_5 && back_seat_6 && drive_front_seat && fire_back_seat)
 				return FALSE
 		user.loc = src
 		spawn (1)

@@ -517,6 +517,8 @@
 	dat += "<br>"
 	dat += "<b>Current Autobalance Status</b>: [alive_germans.len] Germans, [alive_russians.len] Soviets, [alive_partisans.len] Partisans, and [alive_civilians.len] Civilians"
 	dat += "<br>"
+	dat += "<i>Jobs available for Penal banned players are marked with an *</i>"
+	dat += "<br>"
 
 //	var/list/restricted_choices = list()
 

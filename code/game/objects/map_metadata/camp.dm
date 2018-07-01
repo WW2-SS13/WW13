@@ -70,6 +70,8 @@
 				J.total_positions = max(1, round(clients.len*0.05*3))
 			if (istype(J, /datum/job/soviet/collaborator_pris))
 				J.total_positions = max(2, round(clients.len*0.05*3))
+			if (istype(J, /datum/job/soviet/penal_pris))
+				J.total_positions = 8
 			if (istype(J, /datum/job/soviet/squad_leader_pris) && !modded_num_of_prisoners)
 				J.total_positions = max(1, round(clients.len*0.1*3))
 				modded_num_of_prisoners = TRUE
