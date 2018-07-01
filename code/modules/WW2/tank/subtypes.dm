@@ -7,15 +7,34 @@
 	name = "German Panzer"
 
 /obj/tank/opelblitz //trucks are a subtype of tanks because they are basically the same except for the gun.
-	icon_state = "truck_opel_blitz"
+	icon_state = "opelblitz_truck"
 	name = "Opel Blitz Truck"
 	truck = TRUE
 	movement_delay = 1.25
 	slow_movement_delay = 1.25
 	fast_movement_delay = 2.5 // reversed because trucks are faster on asphalt and slower on dirt/grass
-	icon = 'icons/WW2/trucks.dmi' // I don't know why but we start out southfacing
-	horizontal_icon = 'icons/WW2/trucks.dmi'
-	vertical_icon = 'icons/WW2/trucks.dmi'
+	icon = 'icons/WW2/opel_blitz_v.dmi' // I don't know why but we start out southfacing
+	horizontal_icon = 'icons/WW2/opel_blitz_h.dmi'
+	vertical_icon = 'icons/WW2/opel_blitz_v.dmi'
+	locked = FALSE
+	truck_full = FALSE
+	back_seat_1 = FALSE
+	back_seat_2 = FALSE
+	back_seat_3 = FALSE
+	back_seat_4 = FALSE
+	back_seat_5 = FALSE
+	back_seat_6 = FALSE
+
+/obj/tank/studebacker //trucks are a subtype of tanks because they are basically the same except for the gun.
+	icon_state = "studebaker_truck"
+	name = "Studebaker Truck"
+	truck = TRUE
+	movement_delay = 1.25
+	slow_movement_delay = 1.25
+	fast_movement_delay = 2.5 // reversed because trucks are faster on asphalt and slower on dirt/grass
+	icon = 'icons/WW2/studebaker_v.dmi' // I don't know why but we start out southfacing
+	horizontal_icon = 'icons/WW2/studebaker_h.dmi'
+	vertical_icon = 'icons/WW2/studebaker_v.dmi'
 	locked = FALSE
 	truck_full = FALSE
 	back_seat_1 = FALSE
