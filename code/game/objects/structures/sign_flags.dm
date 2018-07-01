@@ -93,7 +93,6 @@
 
 /obj/structure/sign/wide96
 	icon = 'icons/obj/decals_32x96.dmi'
-	bound_y = 48
 
 /obj/structure/sign/wide96/ger_bigbanner
 	name = "Big Third Reich banner"

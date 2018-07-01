@@ -9,6 +9,8 @@
 /obj/tank/var/slow_movement_delay = 3.30
 /obj/tank/var/fast_movement_delay = 2.75
 
+
+
 /obj/tank/proc/set_eye_location(var/mob/m)
 	if (m.client)
 		m.client.perspective = EYE_PERSPECTIVE
@@ -70,10 +72,16 @@
 			return
 
 		if (hascall(target, "has_snow") && target:has_snow())
-			if (prob(25))
-				internal_tank_message("<span class = 'notice'><big>Your tank gets stuck in the snow.</big></span>")
+			if (!truck)
+				if (prob(25))
+					internal_tank_message("<span class = 'notice'><big>Your tank gets stuck in the snow.</big></span>")
+				else
+					next_movement = world.time + (movement_delay*1.5)
 			else
-				next_movement = world.time + (movement_delay*1.5)
+				if (prob(60))
+					internal_tank_message("<span class = 'notice'><big>Your truck gets stuck in the snow.</big></span>")
+				else
+					next_movement = world.time + (movement_delay*1.5)
 
 		if (direct != lastdir && lastdir != -1)
 			internal_tank_message("<span class = 'notice'><big>Turning...</big></span>")
@@ -184,168 +192,286 @@
 	return TRUE
 
 /obj/tank/proc/handle_passing_turf(var/turf/t)
-	if (!t.density)
-		return TRUE
-	if (!istype(t, /turf/wall))
-		return TRUE
-	if (istype(t,  /turf/wall/rockwall))
-		return FALSE
-	if (istype(t, /turf/wall))
-		var/turf/wall/wall = t
-		if (!wall.tank_destroyable)
-			return FALSE
-		var/wall_integrity = wall.material ? wall.material.integrity : 150
-		if (prob(min(95, (wall_integrity/5) + 40)))
-			tank_message("<span class = 'danger'>The tank smashes against [wall]!</span>")
-			playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
-			return FALSE
-		else // defenses [b]roke
-			tank_message("<span class = 'danger'>The tank smashes its way through [wall]!</span>")
-			qdel(wall)
+	if (!truck)
+		if (!t.density)
 			return TRUE
-	return TRUE
+		if (!istype(t, /turf/wall))
+			return TRUE
+		if (istype(t,  /turf/wall/rockwall))
+			return FALSE
+		if (istype(t, /turf/wall))
+			var/turf/wall/wall = t
+			if (!wall.tank_destroyable)
+				return FALSE
+			var/wall_integrity = wall.material ? wall.material.integrity : 150
+			if (prob(min(95, (wall_integrity/5) + 40)))
+				tank_message("<span class = 'danger'>The tank smashes against [wall]!</span>")
+				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+				return FALSE
+			else // defenses [b]roke
+				tank_message("<span class = 'danger'>The tank smashes its way through [wall]!</span>")
+				qdel(wall)
+				return TRUE
+		return TRUE
+	else
+		if (!t.density)
+			return TRUE
+		if (!istype(t, /turf/wall))
+			return TRUE
+		if (istype(t,  /turf/wall/rockwall))
+			return FALSE
+		if (istype(t, /turf/wall))
+			var/turf/wall/wall = t
+			if (!wall.tank_destroyable)
+				return FALSE
+			tank_message("<span class = 'danger'>The truck smashes against [wall]!</span>")
+			playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+			damage += x_percent_of_max_damage(rand(2,4))
+			update_damage_status()
+			return FALSE
+		return TRUE
 
 /obj/tank/proc/handle_passing_obj(var/obj/o)
 
-	if (o == src)
-		return TRUE
+	if (!truck)
 
-	if (istype(o))
+		if (o == src)
+			return TRUE
 
-		if (istype(o, /obj/item/mine))
-			var/obj/item/mine/mine = o
-			mine.trigger(src)
-			damage += x_percent_of_max_damage(rand(5,7))
-			update_damage_status()
-			return FALSE // halt us too
+		if (istype(o))
 
-		else if (istype(o, /obj/item/weapon/grenade))
-			return TRUE // pass over it
+			if (istype(o, /obj/item/mine))
+				var/obj/item/mine/mine = o
+				mine.trigger(src)
+				damage += x_percent_of_max_damage(rand(5,7))
+				update_damage_status()
+				return FALSE // halt us too
 
-		else if (istype(o, /obj/train_lever))
-			return TRUE // pass over it
+			else if (istype(o, /obj/item/weapon/grenade))
+				return TRUE // pass over it
 
-		else if (istype(o, /obj/structure/window/sandbag))
-			if (prob(15))
-				tank_message("<span class = 'danger'>The tank plows through the sandbag wall!</span>")
-				qdel(o)
-				return TRUE
-			else
-				tank_message("<span class = 'danger'>The tank smashes against the sandbag wall!</span>")
-				playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
-				return FALSE
+			else if (istype(o, /obj/train_lever))
+				return TRUE // pass over it
 
-		else if (istype(o, /obj/structure/anti_tank))
-			if (prob(4))
-				tank_message("<span class = 'danger'>The tank manages to plow through the anti-tank barrier!</span>")
-				qdel(o)
-				return TRUE
-			else
-				tank_message("<span class = 'danger'>The tank tries to push past the barrier!</span>")
-				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
-				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
-				playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
-				return FALSE
+			else if (istype(o, /obj/structure/window/sandbag))
+				if (prob(15))
+					tank_message("<span class = 'danger'>The tank plows through the sandbag wall!</span>")
+					qdel(o)
+					return TRUE
+				else
+					tank_message("<span class = 'danger'>The tank smashes against the sandbag wall!</span>")
+					playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
+					return FALSE
 
-		else if (istype(o, /obj/structure/girder))
-			if (prob(7))
-				tank_message("<span class = 'danger'>The tank plows through the wall girder!</span>")
-				qdel(o)
-				return TRUE
-			else
-				tank_message("<span class = 'danger'>The tank smashes against the wall girder!</span>")
-				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
-				return FALSE
+			else if (istype(o, /obj/structure/anti_tank))
+				if (prob(4))
+					tank_message("<span class = 'danger'>The tank manages to plow through the anti-tank barrier!</span>")
+					qdel(o)
+					return TRUE
+				else
+					tank_message("<span class = 'danger'>The tank tries to push past the barrier!</span>")
+					playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+					playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+					playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
+					return FALSE
 
-		else if (istype(o, /obj/structure/barricade))
-			var/obj/structure/barricade/B = o
-			if ((B.material && prob(max(3, 100 - (B.material.integrity/4) - 10))) || (!B.material && prob(80)))
-				tank_message("<span class = 'danger'>The tank plows through \the [B]!</span>")
-				qdel(o)
-				return TRUE
-			else
-				tank_message("<span class = 'danger'>The tank smashes against \the [B]!</span>")
-				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
-				return FALSE
-
-		else if (istype(o, /obj/structure/simple_door))
-			var/obj/structure/simple_door/S = o
-			if ((S.material && prob(max(5, 100 - (S.material.integrity/5) - 10))) || (!S.material && prob(80)))
-				tank_message("<span class = 'danger'>The tank plows through \the [S]!</span>")
-				qdel(o)
-				return TRUE
-			else
-				tank_message("<span class = 'danger'>The tank smashes against \the [S]!</span>")
-				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
-				return FALSE
-
-		else if (istype(o, /obj/train_pseudoturf))
-			if (o.density)
-				var/wall_integrity = 500 // trains are hard as fuck
-				if (prob(min(wall_integrity/2, 98)))
-					tank_message("<span class = 'danger'>The tank smashes against [o]!</span>")
+			else if (istype(o, /obj/structure/girder))
+				if (prob(7))
+					tank_message("<span class = 'danger'>The tank plows through the wall girder!</span>")
+					qdel(o)
+					return TRUE
+				else
+					tank_message("<span class = 'danger'>The tank smashes against the wall girder!</span>")
 					playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
 					return FALSE
-				else
-					tank_message("<span class = 'danger'>The tank smashes its way through [o]!</span>")
+
+			else if (istype(o, /obj/structure/barricade))
+				var/obj/structure/barricade/B = o
+				if ((B.material && prob(max(3, 100 - (B.material.integrity/4) - 10))) || (!B.material && prob(80)))
+					tank_message("<span class = 'danger'>The tank plows through \the [B]!</span>")
 					qdel(o)
 					return TRUE
-			else // you can no longer drive tanks in to or on to trains.
+				else
+					tank_message("<span class = 'danger'>The tank smashes against \the [B]!</span>")
+					playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+					return FALSE
+
+			else if (istype(o, /obj/structure/simple_door))
+				var/obj/structure/simple_door/S = o
+				if ((S.material && prob(max(5, 100 - (S.material.integrity/5) - 10))) || (!S.material && prob(80)))
+					tank_message("<span class = 'danger'>The tank plows through \the [S]!</span>")
+					qdel(o)
+					return TRUE
+				else
+					tank_message("<span class = 'danger'>The tank smashes against \the [S]!</span>")
+					playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+					return FALSE
+
+			else if (istype(o, /obj/train_pseudoturf))
+				if (o.density)
+					var/wall_integrity = 500 // trains are hard as fuck
+					if (prob(min(wall_integrity/2, 98)))
+						tank_message("<span class = 'danger'>The tank smashes against [o]!</span>")
+						playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+						return FALSE
+					else
+						tank_message("<span class = 'danger'>The tank smashes its way through [o]!</span>")
+						qdel(o)
+						return TRUE
+				else // you can no longer drive tanks in to or on to trains.
+					return FALSE
+
+			else if (istype(o, /obj/tank))
+				tank_message("<span class = 'danger'>The tank rams into [o]!</span>")
+				var/obj/tank/other = o
+				if (prob(50))
+					if (!did_critical_damage)
+						other.damage += other.x_percent_of_max_damage(2)
+					else
+						other.damage += other.x_percent_of_max_damage(0.5)
+				else
+					visible_message("<span class = 'danger'>The hit bounces off [other]!</span>")
+
+				if (prob(33))
+					damage += x_percent_of_max_damage(1) // we take some, but not much damage
+				else
+					visible_message("<span class = 'danger'>The hit bounces off [src]!</span>")
+
+				layer = initial(layer) + 0.01
+				other.layer = initial(layer)
+				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+
+				update_damage_status()
+				other.update_damage_status()
+
+				if (prob(critical_damage_chance()))
+					critical_damage()
+				if (prob(other.critical_damage_chance()))
+					other.critical_damage()
+
 				return FALSE
 
-		else if (istype(o, /obj/tank))
-			tank_message("<span class = 'danger'>The tank rams into [o]!</span>")
-			var/obj/tank/other = o
-			if (prob(50))
-				if (!did_critical_damage)
-					other.damage += other.x_percent_of_max_damage(2)
-				else
-					other.damage += other.x_percent_of_max_damage(0.5)
-			else
-				visible_message("<span class = 'danger'>The hit bounces off [other]!</span>")
-
-			if (prob(33))
-				damage += x_percent_of_max_damage(1) // we take some, but not much damage
-			else
-				visible_message("<span class = 'danger'>The hit bounces off [src]!</span>")
-
-			layer = initial(layer) + 0.01
-			other.layer = initial(layer)
-			playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
-
-			update_damage_status()
-			other.update_damage_status()
-
-			if (prob(critical_damage_chance()))
-				critical_damage()
-			if (prob(other.critical_damage_chance()))
-				other.critical_damage()
-
-			return FALSE
-
-		else if (istype(o, /obj/structure) && o.density)
-			tank_message("<span class = 'danger'>The tank smashes through [o]!</span>")
-			playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
-			qdel(o)
-			return TRUE
-		else
-			if (!o.density && !istype(o, /obj/item))
-				return TRUE
-			if ((istype(o, /obj/item) && o.w_class == TRUE) || (istype(o, /obj/item) && o.anchored) || istype(o, /obj/item/ammo_casing) || istype(o, /obj/item/ammo_magazine) || istype(o, /obj/item/organ))
-				return TRUE
-			else
-				tank_message("<span class = 'warning'>The tank crushes [o].</span>")
+			else if (istype(o, /obj/structure) && o.density)
+				tank_message("<span class = 'danger'>The tank smashes through [o]!</span>")
+				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
 				qdel(o)
 				return TRUE
-			if (istype(o, /obj/structure))
-				if (prob(40) || !o.density)
-					tank_message("<span class = 'danger'>The tank crushes [o]!</span>")
-					qdel(o)
+			else
+				if (!o.density && !istype(o, /obj/item))
+					return TRUE
+				if ((istype(o, /obj/item) && o.w_class == TRUE) || (istype(o, /obj/item) && o.anchored) || istype(o, /obj/item/ammo_casing) || istype(o, /obj/item/ammo_magazine) || istype(o, /obj/item/organ))
 					return TRUE
 				else
-					tank_message("<span class = 'danger'>The tank rams into [o]!</span>")
-					playsound(get_turf(src), 'sound/effects/clang.ogg', rand(60,70))
+					tank_message("<span class = 'warning'>The tank crushes [o].</span>")
+					qdel(o)
+					return TRUE
+				if (istype(o, /obj/structure))
+					if (prob(40) || !o.density)
+						tank_message("<span class = 'danger'>The tank crushes [o]!</span>")
+						qdel(o)
+						return TRUE
+					else
+						tank_message("<span class = 'danger'>The tank rams into [o]!</span>")
+						playsound(get_turf(src), 'sound/effects/clang.ogg', rand(60,70))
+						return FALSE
+	//trucks
+	else
+		if (o == src)
+			return TRUE
+
+		if (istype(o))
+
+			if (istype(o, /obj/item/mine))
+				var/obj/item/mine/mine = o
+				mine.trigger(src)
+				damage += x_percent_of_max_damage(rand(40,70))
+				update_damage_status()
+				return FALSE // halt us too
+
+			else if (istype(o, /obj/item/weapon/grenade))
+				return TRUE // pass over it
+
+			else if (istype(o, /obj/train_lever))
+				return TRUE // pass over it
+
+			else if (istype(o, /obj/structure/window/sandbag))
+				if (prob(5))
+					tank_message("<span class = 'danger'>The truck plows through the sandbag wall!</span>")
+					qdel(o)
+					damage += x_percent_of_max_damage(rand(4,9))
+					update_damage_status()
+					return TRUE
+				else
+					tank_message("<span class = 'danger'>The truck smashes against the sandbag wall!</span>")
+					playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
+					damage += x_percent_of_max_damage(rand(3,7))
+					update_damage_status()
 					return FALSE
+
+			else if (istype(o, /obj/structure/anti_tank))
+				tank_message("<span class = 'danger'>The truck smashes against the anti-tank barrier!</span>")
+				playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
+				damage += x_percent_of_max_damage(rand(10,18))
+				update_damage_status()
+				return FALSE
+
+			else if (istype(o, /obj/structure/girder))
+				tank_message("<span class = 'danger'>The truck smashes against the wall girder!</span>")
+				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+				damage += x_percent_of_max_damage(rand(7,14))
+				update_damage_status()
+				return FALSE
+
+			else if (istype(o, /obj/structure/barricade))
+				tank_message("<span class = 'danger'>The truck smashes against the barricade!</span>")
+				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+				damage += x_percent_of_max_damage(rand(5,12))
+				update_damage_status()
+				return FALSE
+
+
+			else if (istype(o, /obj/train_pseudoturf))
+				if (o.density)
+					tank_message("<span class = 'danger'>The truck smashes against [o]!</span>")
+					playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+					return FALSE
+				else // you can no longer drive tanks in to or on to trains.
+					return FALSE
+
+			else if (istype(o, /obj/tank))
+				tank_message("<span class = 'danger'>The truck rams into \the [o]!</span>")
+				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+				damage += x_percent_of_max_damage(rand(14,18))
+				update_damage_status()
+				return FALSE
+
+				return FALSE
+
+			else if (istype(o, /obj/structure) && o.density)
+				tank_message("<span class = 'danger'>The truck smashes through [o]!</span>")
+				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+				qdel(o)
+				return TRUE
+			else
+				if (!o.density && !istype(o, /obj/item))
+					return TRUE
+				if ((istype(o, /obj/item) && o.w_class == TRUE) || (istype(o, /obj/item) && o.anchored) || istype(o, /obj/item/ammo_casing) || istype(o, /obj/item/ammo_magazine) || istype(o, /obj/item/organ))
+					return TRUE
+				else
+					tank_message("<span class = 'warning'>The truck crushes [o].</span>")
+					qdel(o)
+					return TRUE
+				if (istype(o, /obj/structure))
+					if (prob(10) || !o.density)
+						tank_message("<span class = 'danger'>The truck crushes [o]!</span>")
+						qdel(o)
+						return TRUE
+					else
+						tank_message("<span class = 'danger'>The truck rams into [o]!</span>")
+						playsound(get_turf(src), 'sound/effects/clang.ogg', rand(60,70))
+						damage += x_percent_of_max_damage(rand(3,8))
+						update_damage_status()
+						return FALSE
 
 	return TRUE
 
@@ -368,7 +494,10 @@
 					return FALSE
 
 		next_gib = world.time + 5
-		tank_message("<span class = 'danger'>The tank runs over [m]!</span>")
+		if (!truck)
+			tank_message("<span class = 'danger'>The tank runs over [m]!</span>")
+		else
+			tank_message("<span class = 'danger'>The truck runs over [m]!</span>")
 		m.maim()
 
 	else if (istype(m))

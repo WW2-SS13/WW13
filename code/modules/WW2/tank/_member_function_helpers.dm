@@ -55,6 +55,14 @@
 				tank_message("<span class = 'danger'><big>[src] looks like its going to explode!!</big></span>")
 				displayed_damage_message["97-INFINITY"] = TRUE
 				examine_desc = "It looks like its going to explode!"
+				if (truck == TRUE)
+					tank_message("<span class = 'danger'><big>[src] explodes.</big></span>")
+					for (var/mob/m in src)
+						m.crush()
+					explosion(get_turf(src), TRUE, 3, 5, 6)
+					spawn (20)
+						qdel(src)
+						loc = null
 
 	// ramming a dying tank can now make it die faster
 	if (did_critical_damage && prob(5))
@@ -67,7 +75,10 @@
 
 /obj/tank/proc/tank_message(x)
 	var/ox = x
-	x = replacetext(x, "The tank", name)
+	if (!truck)
+		x = replacetext(x, "The tank", name)
+	else
+		x = replacetext(x, "The truck", name)
 	visible_message(x)
 	internal_tank_message(x)
 	for (var/obj/tank/other in range(10, src))
@@ -77,5 +88,5 @@
 
 /obj/tank/proc/internal_tank_message(x)
 	for (var/mob/m in src)
-		m << "<span class = 'notice'>(YOUR TANK)</span> <big>[x]</big>"
+		m << "<span class = 'notice'>(YOUR VEHICLE)</span> <big>[x]</big>"
 

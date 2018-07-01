@@ -6,35 +6,62 @@
 	// we can't be hit by our own bullets
 	if (P.firer == back_seat())
 		return
+	if (!truck)
 
-	if (istype(P, /obj/item/projectile/bullet/pellet))
-		tank_message("<span class = 'danger'>[P] bounces off the tank!</span>")
-		return
+		if (istype(P, /obj/item/projectile/bullet/pellet))
+			tank_message("<span class = 'danger'>[P] bounces off the tank!</span>")
+			return
 
-	if (istype(P, /obj/item/weapon/material/shard/shrapnel))
-		tank_message("<span class = 'danger'>[P] bounces off the tank!</span>")
-		return
+		if (istype(P, /obj/item/weapon/material/shard/shrapnel))
+			tank_message("<span class = 'danger'>[P] bounces off the tank!</span>")
+			return
+	else
+		if (istype(P, /obj/item/projectile/bullet/pellet))
+			tank_message("<span class = 'danger'>[P] bounces off the truck!</span>")
+			return
 
+		if (istype(P, /obj/item/weapon/material/shard/shrapnel))
+			tank_message("<span class = 'danger'>[P] bounces off the truck!</span>")
+			return
 	def_zone = check_zone(def_zone)
 
 	// MGs will no longer destroy tanks in a few shots - Kachnov
 
 	var/dam = 0
-	if (P.firedfrom && istype(P.firedfrom, /obj/item/weapon/gun/projectile/heavy))
-		dam = (P.damage/3 + (P.armor_penetration*20))/50
+	if (!truck)
+		if (P.firedfrom && istype(P.firedfrom, /obj/item/weapon/gun/projectile/heavy))
+			dam = (P.damage/3 + (P.armor_penetration*20))/50
+		else
+			dam = (P.damage/3)/50
+
+		if (P.armor_penetration < 50)
+			dam /= 8
+
+		dam += 0.25 // minimum damage
+		damage += dam
+		update_damage_status()
+		if (prob(critical_damage_chance()))
+			critical_damage()
+		tank_message("<span class = 'danger'>The tank is hit by [P]!</span>")
+
+
 	else
-		dam = (P.damage/3)/50
+		if (P.firedfrom && istype(P.firedfrom, /obj/item/weapon/gun/projectile/heavy))
+			dam = (P.damage + (P.armor_penetration))
+		else if (istype(P, /obj/item/weapon/gun/launcher/rocket))
+			dam = 400
+		else
+			dam = (P.damage/3)/5
 
-	if (P.armor_penetration < 50)
-		dam /= 8
+		if (P.armor_penetration < 50)
+			dam /= 2
+		dam += 1 // minimum damage
+		damage += dam
+		update_damage_status()
+		if (prob(critical_damage_chance()))
+			critical_damage()
+		tank_message("<span class = 'danger'>The truck is hit by [P]!</span>")
 
-	dam += 0.25 // minimum damage
-	damage += dam
-
-	update_damage_status()
-	if (prob(critical_damage_chance()))
-		critical_damage()
-	tank_message("<span class = 'danger'>The tank is hit by [P]!</span>")
 
 /obj/tank/ex_act(severity, var/forced = FALSE)
 
@@ -75,13 +102,18 @@
 
 /obj/tank/proc/critical_damage_chance()
 	var/damage_coeff = damage/max_damage
-	if (damage_coeff < 0.7)
-		return FALSE
-	else
-		if (damage_coeff >= 0.7 && damage_coeff <= 0.9)
-			return 5
+	if (!truck)
+		if (damage_coeff < 0.7)
+			return FALSE
 		else
+			if (damage_coeff >= 0.7 && damage_coeff <= 0.9)
+				return 5
+			else
+				return 25
+	else
+		if (damage_coeff >= 0.8)
 			return 25
+
 
 /obj/tank/proc/critical_damage()
 

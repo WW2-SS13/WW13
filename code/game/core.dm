@@ -45,7 +45,7 @@
 			if (clients.len <= TANK_LOWPOP_THRESHOLD)
 				if (locate(/obj/tank) in world)
 					for (var/obj/tank/T in world)
-						if (!T.admin)
+						if ((!T.admin) || (!T.truck))
 							qdel(T)
 					world << "<i>Due to lowpop, there are no tanks.</i>"
 

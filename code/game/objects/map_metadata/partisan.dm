@@ -1,7 +1,7 @@
 #define NO_WINNER "Neither side has captured the other's base."
 /obj/map_metadata/partisan
 	ID = MAP_PARTISAN
-	title = "Partisan (150x200x1)"
+	title = "Partisan (150x200x2)"
 	lobby_icon_state = "partisan"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall)
 	respawn_delay = 1800 //3 minutes
@@ -43,6 +43,8 @@
 				J.total_positions = max(10, round(clients.len*1.4))
 			if (istype(J, /datum/job/german/squad_leader_ss_dirlewanger))
 				J.total_positions = max(1, round(clients.len*0.1))
+			if (istype(J, /datum/job/german/penal_ss_dirlewanger))
+				J.total_positions = 8
 	return .
 
 

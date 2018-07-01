@@ -34,9 +34,14 @@
 	..()
 
 /obj/tank/examine(mob/user)
-	user << "<span class = 'notice'>That's a tank.</span>"
-	if (examine_desc)
-		user << "<span class = 'red'>[examine_desc]</span>"
+	if (!truck)
+		user << "<span class = 'notice'>That's a tank.</span>"
+		if (examine_desc)
+			user << "<span class = 'red'>[examine_desc]</span>"
+	else
+		user << "<span class = 'notice'>That's a truck.</span>"
+		if (examine_desc)
+			user << "<span class = 'red'>[examine_desc]</span>"
 	return TRUE
 
 /obj/tank/attack_hand(var/mob/user as mob)
@@ -55,9 +60,14 @@
 				return
 			if (!H.original_job.is_tankuser && !H.original_job.is_officer)
 				return
-		var/str = sanitizeSafe(input(user,"Name tank?","Set Tank Name",""), MAX_NAME_LEN)
-		if (str)
-			set_name(str)
+		if (!truck)
+			var/str = sanitizeSafe(input(user,"Name tank?","Set Tank Name",""), MAX_NAME_LEN)
+			if (str)
+				set_name(str)
+		else
+			var/str = sanitizeSafe(input(user,"Name truck?","Set Truck Name",""), MAX_NAME_LEN)
+			if (str)
+				set_name(str)
 	else
 		return ..()
 
@@ -186,13 +196,16 @@
 				tank_message("<span class = 'warning'>[user] gets in the [next_seat_name()] of [my_name()].")
 				assign_seat(user)
 				accepting_occupant = FALSE
-				#ifdef MG_TANKS
-				user << "<span class = 'notice'><big>To fire, click your target and be in the back seat.</big></span>"
-				user << "<span class = 'notice'><big>To reload, click the tank with an ammo belt in your active hand.</big></span>"
-				#else
-				user << "<span class = 'notice'><big>To fire, use SPACE and be in the back seat.</big></span>"
-				#endif
-				user << "<span class = 'notice'><big>To speak to others in this tank, use the prefix ':t'.</big></span>"
+				if (!truck)
+					#ifdef MG_TANKS
+					user << "<span class = 'notice'><big>To fire, click your target and be in the back seat.</big></span>"
+					user << "<span class = 'notice'><big>To reload, click the tank with an ammo belt in your active hand.</big></span>"
+					#else
+					user << "<span class = 'notice'><big>To fire, use SPACE and be in the back seat.</big></span>"
+					#endif
+					user << "<span class = 'notice'><big>To speak to others in this tank, use the prefix ':t'.</big></span>"
+				else
+					user << "<span class = 'notice'><big>To speak to others in this truck, use the prefix ':t'.</big></span>"
 				return TRUE
 			else
 				tank_message("<span class = 'warning'>[user] stops going in [my_name()].</span>")
@@ -228,10 +241,16 @@
 
 	if (moved && world.time > next_spam_allowed)
 		if (fuel/max_fuel < 0.2)
-			internal_tank_message("<span class = 'danger'><big>WARNING: tank fuel is less than 20%!</big></span>")
+			if (!truck)
+				internal_tank_message("<span class = 'danger'><big>WARNING: tank fuel is less than 20%!</big></span>")
+			else
+				internal_tank_message("<span class = 'danger'><big>WARNING: truck fuel is less than 20%!</big></span>")
 			next_spam_allowed = world.time + 100
 		else if (fuel/max_fuel < 0.5)
-			internal_tank_message("<span class = 'danger'><big>WARNING: tank fuel is less than 50%.</big></span>")
+			if (!truck)
+				internal_tank_message("<span class = 'danger'><big>WARNING: tank fuel is less than 50%.</big></span>")
+			else
+				internal_tank_message("<span class = 'danger'><big>WARNING: truck fuel is less than 20%!</big></span>")
 			next_spam_allowed = world.time + 300
 
 /obj/tank/proc/receive_backseat_command(x)

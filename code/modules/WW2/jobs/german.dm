@@ -1948,7 +1948,7 @@ var/first_fallschirm = TRUE
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/penal
 	title = "Straffbattalion Schutze"
-	en_meaning = "Penal Unit Soldier"
+	en_meaning = "Penal Unit Soldier <b>*</b>"
 	rank_abbreviation = "Straf"
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -2142,3 +2142,53 @@ var/first_fallschirm = TRUE
 /datum/job/german/squad_leader_ss_dirlewanger/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/command_intermediate,
 		new/obj/item/weapon/key/german/SS)
+
+//////////////////////////////////////////////////////////////////////////////
+/datum/job/german/penal_ss_dirlewanger
+	title = "SS-Dirlewanger-Flammenwerfer"
+	en_meaning = "SS-Sturmbrigade Dirlewanger Flamethrower <b>*</b>"
+	rank_abbreviation = "Strm"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateSS"
+	SL_check_independent = TRUE
+	additional_languages = list( "Russian" = 40)
+	is_dirlewanger = TRUE
+	blacklisted = TRUE
+	// AUTOBALANCE
+	min_positions = 8
+	max_positions = 8
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+
+/datum/job/german/penal_ss_dirlewanger/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/sssmock(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/german(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/flammenwerfer(H), slot_back)
+	var/obj/item/clothing/accessory/armband/penal_ger/penal_ger_c = new /obj/item/clothing/accessory/armband/penal_ger(null)
+	var/obj/item/clothing/under/uniform = H.w_uniform
+	uniform.attackby(penal_ger_c, H)
+	H.add_note("Role", "You are a <b>[title]</b>, a soldier of the SS-Sturmbrigade Dirlewanger, an anti-partisan unit operating in Soviet territory. As a pardoned death row prisoner, your job is to carry the flamethrower and demine the area!")
+	H.give_radio()
+
+	// glorious SS stats
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("survival", STAT_VERY_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
+	return TRUE
+
+/datum/job/german/penal_ss_dirlewanger/get_keys()
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/SS)
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
