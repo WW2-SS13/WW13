@@ -48,28 +48,29 @@
 	data.objects_with_immunity += src
 
 /obj/tank/proc/Fire()
+	if (!truck)
 
-	var/atom/target = get_x_steps_in_dir(rand(MIN_RANGE,MAX_RANGE))
+		var/atom/target = get_x_steps_in_dir(rand(MIN_RANGE,MAX_RANGE))
 
-	if (!target) return
+		if (!target) return
 
-	var/mob/user = back_seat() ? back_seat() : front_seat() // for debugging
+		var/mob/user = back_seat() ? back_seat() : front_seat() // for debugging
 
-	if (!user) return
+		if (!user) return
 
-	if (world.time - last_fire < fire_delay && last_fire != -1)
-		user << "<span class = 'danger'>You can't fire again so quickly!</span>"
-		return
+		if (world.time - last_fire < fire_delay && last_fire != -1)
+			user << "<span class = 'danger'>You can't fire again so quickly!</span>"
+			return
 
-	playsound(get_turf(src), 'sound/weapons/WW2/tank_fire.ogg', 100)
+		playsound(get_turf(src), 'sound/weapons/WW2/tank_fire.ogg', 100)
 
-	last_fire = world.time
+		last_fire = world.time
 
-	var/abs_dist = abs_dist(src, target)
+		var/abs_dist = abs_dist(src, target)
 
-	spawn (round((1 * abs_dist)/2))
-		if (target)
-			tank_explosion(target, 1, 2, 3, 4)
+		spawn (round((1 * abs_dist)/2))
+			if (target)
+				tank_explosion(target, 1, 2, 3, 4)
 
 #undef MIN_RANGE
 #undef MAX_RANGE

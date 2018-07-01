@@ -67,7 +67,10 @@
 
 /obj/tank/proc/tank_message(x)
 	var/ox = x
-	x = replacetext(x, "The tank", name)
+	if (!truck)
+		x = replacetext(x, "The tank", name)
+	else
+		x = replacetext(x, "The truck", name)
 	visible_message(x)
 	internal_tank_message(x)
 	for (var/obj/tank/other in range(10, src))
