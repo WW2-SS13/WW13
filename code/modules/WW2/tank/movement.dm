@@ -214,12 +214,16 @@
 				return TRUE
 		return TRUE
 	else
+		if (!t.density)
+			return TRUE
 	// for trucks
-		tank_message("<span class = 'danger'>The truck hits an obstacle!</span>")
-		playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
-		damage += x_percent_of_max_damage(rand(2,4))
-		update_damage_status()
-		return FALSE
+		if (istype(t, /turf/wall))
+			tank_message("<span class = 'danger'>The truck hits an obstacle!</span>")
+			playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+			damage += x_percent_of_max_damage(rand(2,4))
+			update_damage_status()
+			return FALSE
+		return TRUE
 
 /obj/tank/proc/handle_passing_obj(var/obj/o)
 
