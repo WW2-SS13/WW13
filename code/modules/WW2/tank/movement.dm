@@ -216,9 +216,15 @@
 	else
 		if (!t.density)
 			return TRUE
-	// for trucks
+		if (!istype(t, /turf/wall))
+			return TRUE
+		if (istype(t,  /turf/wall/rockwall))
+			return FALSE
 		if (istype(t, /turf/wall))
-			tank_message("<span class = 'danger'>The truck hits an obstacle!</span>")
+			var/turf/wall/wall = t
+			if (!wall.tank_destroyable)
+				return FALSE
+			tank_message("<span class = 'danger'>The truck smashes against [wall]!</span>")
 			playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
 			damage += x_percent_of_max_damage(rand(2,4))
 			update_damage_status()
