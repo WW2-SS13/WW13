@@ -48,7 +48,7 @@
 	else
 		if (P.firedfrom && istype(P.firedfrom, /obj/item/weapon/gun/projectile/heavy))
 			dam = (P.damage + (P.armor_penetration))
-		else if (istype(P.firedfrom, /obj/item/weapon/gun/launcher/rocket))
+		else if (istype(P, /obj/item/weapon/gun/launcher/rocket))
 			dam = 400
 		else
 			dam = (P.damage/3)/5
