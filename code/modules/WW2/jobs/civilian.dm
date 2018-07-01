@@ -46,7 +46,7 @@
 
 /datum/job/partisan/civilian/redcross/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/color/white(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/redcross(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_med(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(H), slot_gloves)
