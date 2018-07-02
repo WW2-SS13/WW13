@@ -14,11 +14,13 @@
 #define GERMAN_REICHSTAG "GERMAN_REICHSTAG"
 #define SOVIET_PARTISAN "SOVIET_PARTISAN"
 #define DIRLEWANGER "DIRLEWANGER"
+#define ESCORT "ESCORT"
 
 // used for languages only
 #define RUSSIAN "RUSSIAN"
 #define POLISH "POLISH"
 #define UKRAINIAN "UKRAINIAN"
+#define ENGLISH "ENGLISH"
 
 /proc/faction_const2name(constant)
 	if (constant == PILLARMEN)

@@ -1171,11 +1171,12 @@
 "wA" = (/obj/structure/window/sandbag,/obj/effect/decal/cleanable/generic,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_one)
 "wB" = (/obj/effect/decal/cleanable/generic,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/nml_one)
 "wC" = (/obj/item/ammo_casing/a9_parabellum,/obj/effect/decal/cleanable/generic,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/no_mans_land/invisible_wall/inside)
-"wD" = (/obj/effect/decal/cleanable/generic,/turf/floor/tiled/white,/area/prishtina/houses/sov_one)
+"wD" = (/obj/item/ammo_casing/a792x57,/obj/effect/landmark{name = "JoinLateRC"},/turf/floor/tiled/white,/area/prishtina/houses/sov_one)
 "wE" = (/obj/item/weapon/broken_bottle,/obj/effect/decal/cleanable/generic,/turf/floor/wood,/area/prishtina/houses/sov_one)
 "wF" = (/obj/effect/decal/cleanable/generic,/turf/wall/brick,/area/prishtina/houses/sov_one)
 "wG" = (/obj/effect/decal/cleanable/generic,/turf/floor/wood,/area/prishtina/houses/sov_one)
 "wH" = (/obj/effect/decal/cleanable/ash,/turf/floor/wood,/area/prishtina/houses/sov_one)
+"wI" = (/obj/effect/decal/cleanable/dirt,/obj/effect/landmark{name = "JoinLateRC"},/turf/floor/tiled/white,/area/prishtina/houses/sov_one)
 "wJ" = (/obj/structure/light/small{dir = 8},/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 1st Floor"})
 "wK" = (/obj/structure/light/small{dir = 4},/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 1st Floor"})
 "wL" = (/obj/effect/floor_decal/spline/fancy/wood,/obj/structure/light/small,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 1st Floor"})
@@ -1197,6 +1198,8 @@
 "xb" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
 "xc" = (/obj/structure/table/wood,/obj/item/weapon/storage/firstaid/surgery,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "xd" = (/obj/structure/table/wood,/obj/structure/bed/chair/wood{dir = 8},/obj/structure/light/small,/obj/item/weapon/storage/firstaid/surgery,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
+"xe" = (/obj/effect/landmark{name = "JoinLateRC"},/turf/floor/tiled/white,/area/prishtina/houses/sov_one)
+"xf" = (/obj/effect/decal/cleanable/generic,/obj/effect/landmark{name = "JoinLateRC"},/turf/floor/tiled/white,/area/prishtina/houses/sov_one)
 
 (1,1,1) = {"
 abababababababacadaeafafafagahacababababababaiajakakakakakakakakakakajajakakakakakakajakakakakakajakakakakakakakakakakakakakakakakakakakakakakakakajalamamamamamamamamamamamamakakakakakakanakakakakakak
@@ -1282,10 +1285,10 @@ bgbgbgbhbibibibibhbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbg
 bgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbhbibibibhbgbgbgbgbgbgbgbgbgbgbgbgbhbibibibibibhbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbjbktzbltzblblbmbjjBjGtCjBtDtDsUtEjGtFsUtEtGtEsUtEjGtEjBtEjGtEjBtEjGsUjB
 bgbgbgbgbgbgbgbgbgbhbibibibibhbgbgbgbgbgbgbgbgbgbgbgbgbhbibibibibhbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbhbibibibibibhbjbkblbltztHblbmbjjBsUtCjBjGsUjBtIjGsUjBtIjGtJsUsUjGsUjBtIjGtIjBtIjGsUjB
 bgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbhbibibibibhbgbgbgbgbgbgbgbgbgbgbgbgbgbgbjbkblblblblblbmbjjBjGtKjBtLtMjBtEtNsUsUtEtOsUjBsUjGtEjBsUjGtEjBtEtPtEjB
-bgbgbgbhbibibibibibhbgbgbgbgbgbgbhbibibibibibibibhbgbgbgbgbgbgbgbgbgbhbibibibibhbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbibibibgbgbgbgbgbjbkblblblblblbmbjtatQtRjBtLtMsUtIjGtIjBtIjGsUtStItTtIjBtItUtIjBtIjGtIjB
-bjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbobobobpbqbpbobobobjbjbjbkblblblblblbmtBtajGjGjBjGjGjBjGtPjGtVtRjGtQjBtRtWjGjBtNjGtOsUjGsUjGjB
-brbrbrbrbrbrbrbrbrbrbrbrbrbrbrbrbsbrbsbrbsbrbsbrbsbrbsbrbrbrbrbrbrbtbtbrbrbrbrbrbrbrbrbrbrbrbrbrbrbrbtbrbubvbwbxbybzbAbBbwbwbubrbrfhblblblblblfibjjBtQwDjBtXtXjBjBtYjBjBsUtYjBjBsUtYjBjBjBsUjBsUjBtYjBjB
-blblblblblblblblblblblblblblblbDblbEbFbEbGbHbGbEbFbDblblmCmCmCmCmCblblblblhiblbIbJbKblblblblblblblblblblbLbMbNbJblbUblbJbJbObPblblblblblbltZblbmbjsUjGjGjGjGtRjGjGjGjGjGjGjGjGjGjGjGjGtRtRjGjGjGjGtKjGjB
+bgbgbgbhbibibibibibhbgbgbgbgbgbgbhbibibibibibibibhbgbgbgbgbgbgbgbgbgbhbibibibibhbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbibibibgbgbgbgbgbjbkblblblblblbmbjtawDwIjBtLtMsUtIjGtIjBtIjGsUtStItTtIjBtItUtIjBtIjGtIjB
+bjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbobobobpbqbpbobobobjbjbjbkblblblblblbmtBtaxejGjBjGjGjBjGtPjGtVtRjGtQjBtRtWjGjBtNjGtOsUjGsUjGjB
+brbrbrbrbrbrbrbrbrbrbrbrbrbrbrbrbsbrbsbrbsbrbsbrbsbrbsbrbrbrbrbrbrbtbtbrbrbrbrbrbrbrbrbrbrbrbrbrbrbrbtbrbubvbwbxbybzbAbBbwbwbubrbrfhblblblblblfibjjBtQxfjBtXtXjBjBtYjBjBsUtYjBjBsUtYjBjBjBsUjBsUjBtYjBjB
+blblblblblblblblblblblblblblblbDblbEbFbEbGbHbGbEbFbDblblmCmCmCmCmCblblblblhiblbIbJbKblblblblblblblblblblbLbMbNbJblbUblbJbJbObPblblblblblbltZblbmbjsUjGjGxejGtRxejGxejGjGxejGjGxejGxejGtRtRjGjGjGjGtKjGjB
 blblblblblblblblblblblblblblblblblbQblblblbRblblbSblblblmCmEnUmEmCblblblblhiblbQblbSblhiblblblblblblblblbLbTbUblblblblblbUbVbWblblblblbltzblblbmbjjBjBjBjBjBsUjBjBjBjBjBjBjBjBsUjBjBjBjBjBsUjBjBjBjBjBjB
 blblblblblblblblblblblblblblblblblbQblblblblblblbVblblblmCmEormEmCblblblblblblblblblblblblblblblblblblblbLbQblblblblblblblbXbYblblblblblblblblbmbjbgbgbgbgbgtBtBbgbgbguabgbgbgbgbgbgbgbgbgbgbgbgbgbgbgbg
 blblblblblblblblblblblblblblblblblblblblblblblblblhiblblmCmEormEmCblblblblbljhjhjhjhblblblblblblblblblblblbZbZbZblblblblblblblblblblblblblblblubbjjAjAtAjAucjAjAjAjAtAucjAjAucucjAjAjAjAtAjAjAjAsUudjAjA

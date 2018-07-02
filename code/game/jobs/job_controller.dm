@@ -111,6 +111,10 @@ var/global/datum/controller/occupations/job_master
 				if (!map.available_subfactions.Find(SOVIET_PARTISAN))
 					J.total_positions = 0
 					continue
+			if (J.is_escort)
+				if (!map.available_subfactions.Find(ESCORT))
+					J.total_positions = 0
+					continue
 			else if (J.base_type_flag() == ITALIAN)
 				if (!map.available_subfactions.Find(ITALIAN))
 					J.total_positions = 0
