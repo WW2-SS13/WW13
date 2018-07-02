@@ -35,7 +35,7 @@
 /datum/job/partisan/civilian/redcross
 	title = "Red Cross"
 	selection_color = "#530909"
-	spawn_location = "JoinLateCivilian"
+	spawn_location = "JoinLateRC"
 	is_redcross = TRUE
 	additional_languages = list( "Russian" = 100, "German" = 100, "Italian" = 100, "Polish" = 100)
 

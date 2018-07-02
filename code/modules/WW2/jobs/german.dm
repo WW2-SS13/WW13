@@ -2192,3 +2192,46 @@ var/first_fallschirm = TRUE
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/SS)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+datum/job/german/commander_escort
+	title = "SS-Standartenfuhrer"
+	en_meaning = "SS Colonel"
+	rank_abbreviation = "Staf"
+	head_position = TRUE
+	selection_color = "#2d2d63"
+	spawn_location = "JoinLateHeerSS-Officer"
+	additional_languages = list( "Russian" = 100, "Ukrainian" = 50, "Italian" = 100)
+	is_officer = TRUE
+	is_commander = TRUE
+	whitelisted = TRUE
+	SL_check_independent = TRUE
+	is_escort = TRUE
+	is_target = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+
+/datum/job/german/commander_escort/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssformalofc(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_r_hand)
+	world << "<b><big>[H.real_name] is the VIP of the German forces! Germans must protect him at all costs!</big></b>"
+	H.add_note("Role", "You are a <b>[title]</b>,  a Colonel of the SS. You need to report to a OKW Command Center in the Belarus, but for that you need to cross this forest filled with partisans...")
+	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_LOW)
+	H.setStat("engineering", STAT_VERY_LOW)
+	H.setStat("rifle", STAT_LOW)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_VERY_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+
+/datum/job/german/commander_escort/get_keys()
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,
+		new/obj/item/weapon/key/german/QM, new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/command_high, new/obj/item/weapon/key/german/train, new/obj/item/weapon/key/german/SS)

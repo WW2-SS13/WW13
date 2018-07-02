@@ -18,6 +18,7 @@
 	var/locked = TRUE
 	var/heal_damage[2]
 	var/named = FALSE
+	var/cooldown = FALSE
 	var/obj/item/radio/radio = null
 	var/obj/item/weapon/gun/projectile/automatic/stationary/kord/MG = null
 	pixel_x = -32
@@ -213,6 +214,19 @@
 				return FALSE
 	else
 		user << "<span class = 'danger'>[capitalize(my_name())] is locked!</span>"
+
+/obj/tank/verb/sound_horn(var/mob/user)
+	if (truck)
+		set category = null
+		set name = "Horn"
+		set desc = "Sound the horn."
+		if (cooldown < world.time - 100)
+			user << "<span class='notice'>The truck sounds the horn!</span>"
+			playsound(user, 'sound/effects/truck_horn.ogg', 100, TRUE)
+			cooldown = world.time
+		return
+
+
 
 /obj/tank/proc/receive_command_from(var/mob/user, x)
 	if (!isliving(user) || user.stat == UNCONSCIOUS || user.stat == DEAD)
