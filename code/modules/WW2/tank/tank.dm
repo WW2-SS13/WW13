@@ -217,14 +217,12 @@
 
 /obj/tank/verb/sound_horn()
 	if (truck)
-		var/mob/user
+  		var/mob/living/carbon/human/user = usr
 		set category = null
 		set name = "Horn"
 		set desc = "Sound the horn."
-		if (cooldown < world.time - 100)
-			user << "<span class='notice'>The truck sounds the horn!</span>"
-			playsound(user, 'sound/effects/truck_horn.ogg', 100, TRUE)
-			cooldown = world.time
+		usr << "<span class='notice'>The truck sounds the horn!</span>"
+		playsound(usr, 'sound/effects/truck_horn.ogg', 100, TRUE)
 		return
 
 
