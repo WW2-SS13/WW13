@@ -13,9 +13,9 @@
 	movement_delay = 1.25
 	slow_movement_delay = 1.25
 	fast_movement_delay = 2.5 // reversed because trucks are faster on asphalt and slower on dirt/grass
-	icon = 'icons/WW2/truck_v.dmi' // I don't know why but we start out southfacing
+	icon = 'icons/WW2/truck_h.dmi' // I don't know why but we start out southfacing
 	horizontal_icon = 'icons/WW2/truck_h.dmi'
-	vertical_icon = 'icons/WW2/truck_v.dmi'
+	vertical_icon = 'icons/WW2/truck_h.dmi'
 	locked = FALSE
 	truck_full = FALSE
 	back_seat_1 = FALSE
@@ -32,9 +32,9 @@
 	movement_delay = 1.25
 	slow_movement_delay = 1.25
 	fast_movement_delay = 2.5 // reversed because trucks are faster on asphalt and slower on dirt/grass
-	icon = 'icons/WW2/truck_v.dmi' // I don't know why but we start out southfacing
+	icon = 'icons/WW2/truck_h.dmi' // I don't know why but we start out southfacing
 	horizontal_icon = 'icons/WW2/truck_h.dmi'
-	vertical_icon = 'icons/WW2/truck_v.dmi'
+	vertical_icon = 'icons/WW2/truck_h.dmi'
 	locked = FALSE
 	truck_full = FALSE
 	back_seat_1 = FALSE
