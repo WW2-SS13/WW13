@@ -215,14 +215,13 @@
 	else
 		user << "<span class = 'danger'>[capitalize(my_name())] is locked!</span>"
 
-///obj/tank/verb/sound_horn()
-//	var/mob/user = usr
-//	set category = null
-//	set name = "Horn"
-//	set desc = "Sound the horn."
-//	usr << "<span class='notice'>HONK!!</span>"
-//	playsound(usr, 'sound/effects/truck_horn.ogg', 100, TRUE)
-//	return
+/obj/tank/verb/sound_horn(mob/user)
+	set category = null
+	set name = "Horn"
+	set desc = "Sound the horn."
+	user << "<span class='notice'>HONK!!</span>"
+	playsound(user, 'sound/effects/truck_horn.ogg', 100, TRUE)
+	return
 
 
 

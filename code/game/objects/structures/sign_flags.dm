@@ -70,6 +70,11 @@
 	desc = "Soyuz nerushimy respublik svobodnyh!"
 	icon_state = "sov_flag"
 
+/obj/structure/sign/flag/medical
+	name = "Medical flag"
+	desc = "A flag witht the universally recognized symbol for medicine."
+	icon_state = "medical_flag"
+
 /obj/structure/sign/flag/germanybanner
 	name = "Third Reich banner"
 	desc = "Ein Volk, ein Reich, ein Fuhrer!"
