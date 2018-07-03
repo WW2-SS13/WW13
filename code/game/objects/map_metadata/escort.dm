@@ -33,7 +33,7 @@
 	else if (istype(J, /datum/job/soviet))
 		. = FALSE
 	if (istype(J, /datum/job/german))
-		if (!J.is_dirlewanger || !J.is_escort)
+		if (!J.is_dirlewanger)
 			. = FALSE
 		else
 			if (istype(J, /datum/job/german/soldier_ss_dirlewanger))
@@ -44,8 +44,6 @@
 				J.total_positions = 8
 			if (istype(J, /datum/job/german/penal_ss_dirlewanger))
 				J.total_positions = 8
-			if (istype(J, /datum/job/german/commander_escort))
-				J.total_positions = 0
 	return .
 
 

@@ -95,6 +95,12 @@ var/GRACE_PERIOD_LENGTH = 7
 		(season = "FALL")
 		return TRUE
 
+	// forces Fall in Escort map
+	if (map && istype(map, /obj/map_metadata/escort))
+		(season = "FALL")
+		return TRUE
+
+
 	// snow is disabled because it breaks the game
 	var/use_snow = FALSE
 
@@ -188,9 +194,9 @@ var/GRACE_PERIOD_LENGTH = 7
 				o.alpha = decal.alpha
 				o.name = ""
 
-		spawn (0)
-			for (var/obj/snow_maker/SM in G)
-				qdel(SM)
+//		spawn (0)
+//			for (var/obj/snow_maker/SM in G)
+//				qdel(SM)
 
 	return TRUE
 
