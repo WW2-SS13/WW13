@@ -1,4 +1,4 @@
-#define NO_WINNER "Neither side has captured the other's base."
+#define NO_WINNER "The convoy is still in transit."
 /obj/map_metadata/escort
 	ID = MAP_ESCORT
 	title = "Escort (150x200x2)"
@@ -17,7 +17,7 @@
 	ambience = list()
 //	times_of_day = list("Night","Evening","Early Morning")
 	faction_distribution_coeffs = list(GERMAN = 0.5, PARTISAN = 0.5)
-	battle_name = "Escort the VIP"
+	battle_name = "Escort the Convoy"
 	meme = FALSE
 
 /obj/map_metadata/escort/job_enabled_specialcheck(var/datum/job/J)
@@ -45,7 +45,7 @@
 			if (istype(J, /datum/job/german/penal_ss_dirlewanger))
 				J.total_positions = 8
 			if (istype(J, /datum/job/german/commander_escort))
-				J.total_positions = 1
+				J.total_positions = 0
 	return .
 
 
