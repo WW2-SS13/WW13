@@ -2147,8 +2147,8 @@ var/first_fallschirm = TRUE
 
 //////////////////////////////////////////////////////////////////////////////
 /datum/job/german/penal_ss_dirlewanger
-	title = "SS-Dirlewanger-Flammenwerfer"
-	en_meaning = "SS-Sturmbrigade Dirlewanger Flamethrower <b>*</b>"
+	title = "SS-Dirlewanger-Minensuchender"
+	en_meaning = "SS-Sturmbrigade Dirlewanger Mine Clearer <b>*</b>"
 	rank_abbreviation = "Strm"
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateSS"
@@ -2166,18 +2166,16 @@ var/first_fallschirm = TRUE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/sssmock(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/german(H), slot_belt)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/flammenwerfer(H), slot_back)
 	var/obj/item/clothing/accessory/armband/penal_ger/penal_ger_c = new /obj/item/clothing/accessory/armband/penal_ger(null)
 	var/obj/item/clothing/under/uniform = H.w_uniform
 	uniform.attackby(penal_ger_c, H)
-	H.add_note("Role", "You are a <b>[title]</b>, a soldier of the SS-Sturmbrigade Dirlewanger, an anti-partisan unit operating in Soviet territory. As a pardoned death row prisoner, your job is to carry the flamethrower and demine the area!")
+	H.add_note("Role", "You are a <b>[title]</b>, a soldier of the SS-Sturmbrigade Dirlewanger, an anti-partisan unit operating in Soviet territory. As a pardoned death row prisoner, your job is to demine the area and remove barricades!")
 	H.give_radio()
 
 	// glorious SS stats
-	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("strength", STAT_MEDIUM_HIGH)
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
 	H.setStat("rifle", STAT_VERY_HIGH)
 	H.setStat("mg", STAT_NORMAL)

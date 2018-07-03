@@ -1,6 +1,7 @@
 /obj/tank
 	var/admin = FALSE
 	var/truck = FALSE
+	var/halftrack = FALSE
 
 /obj/tank/german
 	icon_state = "ger"
@@ -24,6 +25,50 @@
 	back_seat_4 = FALSE
 	back_seat_5 = FALSE
 	back_seat_6 = FALSE
+
+/obj/tank/ambulance //trucks are a subtype of tanks because they are basically the same except for the gun.
+	icon_state = "ambulance"
+	name = "Red Cross Ambulance"
+	truck = TRUE
+	movement_delay = 1.25
+	slow_movement_delay = 1.25
+	fast_movement_delay = 2.5 // reversed because trucks are faster on asphalt and slower on dirt/grass
+	icon = 'icons/WW2/ambulance.dmi' // I don't know why but we start out southfacing
+	horizontal_icon = 'icons/WW2/ambulance.dmi'
+	vertical_icon = 'icons/WW2/ambulance.dmi'
+	locked = FALSE
+	truck_full = FALSE
+	back_seat_1 = FALSE
+	back_seat_2 = FALSE
+	back_seat_3 = FALSE
+	back_seat_4 = FALSE
+	back_seat_5 = FALSE
+	back_seat_6 = FALSE
+
+/obj/tank/sdkfz251 //basically a type of truck, but with a MG
+	icon_state = "sdkfz251"
+	name = "Sd Kfz. 251"
+	truck = TRUE
+	halftrack = TRUE
+	movement_delay = 1
+	slow_movement_delay = 2.8
+	fast_movement_delay = 2.2
+	icon = 'icons/WW2/sdkfz251.dmi' // I don't know why but we start out southfacing
+	horizontal_icon = 'icons/WW2/sdkfz251.dmi'
+	vertical_icon = 'icons/WW2/sdkfz251.dmi'
+	locked = FALSE
+	truck_full = FALSE
+	back_seat_1 = FALSE
+	back_seat_2 = FALSE
+	back_seat_3 = FALSE
+	back_seat_4 = FALSE
+	back_seat_5 = FALSE
+	back_seat_6 = FALSE
+
+/obj/tank/sdkfz251/New()
+	..()
+	MG = new/obj/item/weapon/gun/projectile/automatic/stationary/kord/mg34(null)
+	MG.invisibility = 101
 
 /obj/tank/studebacker //trucks are a subtype of tanks because they are basically the same except for the gun.
 	icon_state = "studebaker_truck"

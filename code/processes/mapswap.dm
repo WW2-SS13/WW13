@@ -2,11 +2,12 @@
 	// map = required players
 	var/list/maps = list(
 		MAP_CITY = 0,
-		MAP_FOREST = 0,
+		MAP_FOREST = 20,
 		MAP_TOWER = 0,
-		MAP_CAMP = 0,
+		MAP_CAMP = 15,
 		MAP_SURVIVAL = 0,
 		MAP_REICHSTAG = 0,
+//		MAP_ESCORT = 15,
 		MAP_PARTISAN = 0
 	)
 

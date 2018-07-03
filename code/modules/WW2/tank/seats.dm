@@ -46,11 +46,20 @@
 			return "front seat"
 		else if (fire_back_seat && drive_front_seat)
 			return "what the fuck how did you get here lmao"
-	else
+	else if (truck && !halftrack)
 		if (!fire_back_seat && !drive_front_seat)
 			return "driver seat"
 		else if (!fire_back_seat && drive_front_seat)
 			return "front passenger seat"
+		else if (!drive_front_seat && fire_back_seat)
+			return "driver seat"
+		else if ((fire_back_seat && drive_front_seat) && !truck_full)
+			return "back seat"
+	else if (halftrack)
+		if (!fire_back_seat && !drive_front_seat)
+			return "driver seat"
+		else if (!fire_back_seat && drive_front_seat)
+			return "gunner seat"
 		else if (!drive_front_seat && fire_back_seat)
 			return "driver seat"
 		else if ((fire_back_seat && drive_front_seat) && !truck_full)

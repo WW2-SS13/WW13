@@ -148,7 +148,7 @@
 			special_MG = using_MG
 		else if (istank(loc))
 			var/obj/tank/T = loc
-			if (T.back_seat() == src)
+			if (T.back_seat() == src && !T.halftrack)
 				special_MG = T.MG
 				special_MG.dir = T.dir // for dir checks below
 				switch (T.dir) // tank sprite memes
@@ -160,6 +160,19 @@
 						special_MG.loc = locate(T.x+3, T.y+2, T.z)
 					if (WEST)
 						special_MG.loc = locate(T.x-1, T.y+1, T.z)
+				tankcheck = TRUE
+			else if (T.halftrack)
+				special_MG = T.MG
+				special_MG.dir = T.dir // for dir checks below
+				switch (T.dir) // tank sprite memes
+					if (NORTH, NORTHEAST, NORTHWEST)
+						special_MG.loc = locate(T.x+1, T.y+1, T.z)
+					if (SOUTH, SOUTHEAST, SOUTHWEST)
+						special_MG.loc = locate(T.x+1, T.y+1, T.z)
+					if (EAST)
+						special_MG.loc = locate(T.x, T.y+1, T.z)
+					if (WEST)
+						special_MG.loc = locate(T.x, T.y+1, T.z)
 				tankcheck = TRUE
 
 		if (special_MG && special_MG.loc)

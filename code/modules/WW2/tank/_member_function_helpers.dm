@@ -77,8 +77,10 @@
 	var/ox = x
 	if (!truck)
 		x = replacetext(x, "The tank", name)
-	else
+	else if (!halftrack)
 		x = replacetext(x, "The truck", name)
+	else
+		x = replacetext(x, "The halftrack", name)
 	visible_message(x)
 	internal_tank_message(x)
 	for (var/obj/tank/other in range(10, src))
