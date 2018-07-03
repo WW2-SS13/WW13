@@ -26,6 +26,7 @@
 	is_officer = TRUE
 	is_commander = TRUE
 	whitelisted = TRUE
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -2003,6 +2004,7 @@ var/first_fallschirm = TRUE
 	additional_languages = list( "Russian" = 100, "Ukrainian" = 100, "Italian" = 100)
 	is_officer = TRUE
 	super_whitelisted = TRUE
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -2198,7 +2200,7 @@ datum/job/german/commander_escort
 	rank_abbreviation = "Staf"
 	head_position = TRUE
 	selection_color = "#2d2d63"
-	spawn_location = "JoinLateHeerSS-Officer"
+	spawn_location = "JoinLateSS-Officer"
 	additional_languages = list( "Russian" = 100, "Ukrainian" = 50, "Italian" = 100)
 	is_officer = TRUE
 	is_commander = TRUE

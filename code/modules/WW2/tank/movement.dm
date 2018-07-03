@@ -395,10 +395,10 @@
 				return TRUE // pass over it
 
 			else if (istype(o, /obj/structure/window/sandbag))
-				if (prob(5))
+				if (prob(20))
 					tank_message("<span class = 'danger'>The truck plows through the sandbag wall!</span>")
 					qdel(o)
-					damage += x_percent_of_max_damage(rand(4,9))
+					damage += x_percent_of_max_damage(rand(1,3))
 					update_damage_status()
 					return TRUE
 				else
