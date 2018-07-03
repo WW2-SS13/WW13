@@ -15,7 +15,7 @@
 		list(GERMAN) = /area/prishtina/farm2,
 		list(SOVIET) = /area/prishtina/farm1)
 	ambience = list()
-//	times_of_day = list("Night","Evening","Early Morning")
+	times_of_day = list("Night","Evening","Early Morning")
 	faction_distribution_coeffs = list(GERMAN = 0.5, PARTISAN = 0.5)
 	battle_name = "Escort the Convoy"
 	meme = FALSE

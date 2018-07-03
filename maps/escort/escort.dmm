@@ -113,7 +113,7 @@
 "ci" = (/obj/effect/landmark{name = "JoinLateCivilian"},/turf/floor/wood,/area/prishtina/houses/nml_one)
 "cj" = (/obj/structure/table/wood,/obj/item/trash/candle,/turf/floor/wood,/area/prishtina/houses/nml_one)
 "ck" = (/obj/structure/table/wood,/obj/item/weapon/material/kitchen/utensil/fork,/obj/item/trash/snack_bowl,/turf/floor/wood,/area/prishtina/houses/nml_two)
-"cl" = (/obj/structure/sink{tag = "icon-sink (EAST)"; icon_state = "sink"; dir = 4; step_x = 0; step_y = 0; pixel_x = 14},/turf/floor/wood,/area/prishtina/houses/nml_one)
+"cl" = (/obj/structure/sink{tag = "icon-sink (EAST)"; icon_state = "sink"; dir = 4; pixel_x = 14},/turf/floor/wood,/area/prishtina/houses/nml_one)
 "cm" = (/obj/structure/simple_door/key_door/anyone/wood{name = "House"},/turf/floor/wood,/area/prishtina/houses/nml_four)
 "cn" = (/obj/structure/simple_door/key_door/anyone/wood,/turf/floor/wood,/area/prishtina/houses/nml_four)
 "co" = (/obj/structure/bed/chair/wood{dir = 4},/turf/floor/wood,/area/prishtina/houses/nml_one)
@@ -123,7 +123,7 @@
 "cs" = (/obj/item/stack/medical/bruise_pack/bint,/turf/floor/wood,/area/prishtina/houses/nml_two)
 "ct" = (/obj/structure/bed/chair/wood,/turf/floor/wood,/area/prishtina/houses/nml_four)
 "cu" = (/obj/structure/bed/chair/wood,/obj/effect/landmark{name = "JoinLateCivilian"},/turf/floor/wood,/area/prishtina/houses/nml_four)
-"cv" = (/obj/structure/sink{tag = "icon-sink (EAST)"; icon_state = "sink"; dir = 4; step_x = 0; step_y = 0; pixel_x = 14},/turf/floor/wood,/area/prishtina/houses/nml_four)
+"cv" = (/obj/structure/sink{tag = "icon-sink (EAST)"; icon_state = "sink"; dir = 4; pixel_x = 14},/turf/floor/wood,/area/prishtina/houses/nml_four)
 "cw" = (/obj/item/weapon/gun/projectile/boltaction/kar98k,/obj/item/weapon/gun/projectile/boltaction/kar98k,/obj/item/weapon/gun/projectile/boltaction/kar98k,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "cx" = (/obj/item/weapon/storage/firstaid,/obj/item/weapon/storage/firstaid,/turf/floor/wood,/area/prishtina/houses/nml_two)
 "cy" = (/obj/item/stack/medical/bruise_pack/bint,/obj/item/stack/medical/bruise_pack/bint,/turf/floor/wood,/area/prishtina/houses/nml_two)
@@ -242,7 +242,7 @@
 "eH" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/purple,/turf/floor/wood_broken,/area/prishtina/houses/nml_two)
 "eI" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/hop,/turf/floor/wood,/area/prishtina/houses/nml_two)
 "eJ" = (/obj/structure/bed/padded,/obj/effect/decal/cleanable/dirt,/obj/item/weapon/bedsheet/brown,/turf/floor/wood,/area/prishtina/houses/nml_two)
-"eK" = (/obj/structure/sink{tag = "icon-sink (EAST)"; icon_state = "sink"; dir = 4; step_x = 0; step_y = 0; pixel_x = 14},/obj/effect/decal/cleanable/dirt,/obj/effect/landmark{name = "JoinLatePartisan"},/turf/floor/wood,/area/prishtina/houses/nml_three)
+"eK" = (/obj/structure/sink{tag = "icon-sink (EAST)"; icon_state = "sink"; dir = 4; pixel_x = 14},/obj/effect/decal/cleanable/dirt,/obj/effect/landmark{name = "JoinLatePartisan"},/turf/floor/wood,/area/prishtina/houses/nml_three)
 "eL" = (/obj/structure/bed/chair/comfy/black,/turf/floor/wood,/area/prishtina/houses/nml_four)
 "eM" = (/obj/item/weapon/cane,/turf/floor/wood,/area/prishtina/houses/nml_four)
 "eN" = (/obj/item/weapon/reagent_containers/glass/bucket,/turf/floor/wood,/area/prishtina/houses/nml_one)
@@ -463,7 +463,7 @@
 "kM" = (/obj/structure/table/iron,/turf/floor/wood,/area/prishtina/void/caves{base_turf = /turf/floor/dirt; name = "underground"})
 "kN" = (/turf/floor/plating/dirt,/area/prishtina/void/caves{base_turf = /turf/floor/dirt; name = "underground"})
 "kO" = (/obj/structure/multiz/ladder/ww2/up{area_id = "basement_forest1"},/turf/floor/wood,/area/prishtina/void/caves{base_turf = /turf/floor/dirt; name = "underground"})
-"kQ" = (/obj/structure/sink{tag = "icon-sink (EAST)"; icon_state = "sink"; dir = 4; step_x = 0; step_y = 0; pixel_x = 14},/obj/effect/decal/cleanable/dirt,/obj/item/clothing/head/helmet/gerhelm/ghillie,/obj/item/clothing/suit/storage/coat/german/ghillie,/obj/item/clothing/under/geruni/ghillie,/obj/item/clothing/gloves/color/brown,/turf/floor/wood,/area/prishtina/houses/nml_five)
+"kQ" = (/obj/structure/sink{tag = "icon-sink (EAST)"; icon_state = "sink"; dir = 4; pixel_x = 14},/obj/effect/decal/cleanable/dirt,/obj/item/clothing/head/helmet/gerhelm/ghillie,/obj/item/clothing/suit/storage/coat/german/ghillie,/obj/item/clothing/under/geruni/ghillie,/obj/item/clothing/gloves/color/brown,/turf/floor/wood,/area/prishtina/houses/nml_five)
 
 (1,1,1) = {"
 ebebebeeeeeeabacaaaaaaababaaaaaaabaaaaabaaaaaaabaaaaaaaaaaabaaaaaaaaababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababaaaaabaaaaaaaaaaaaaaaaabaaaaaaaaaeaeaeaaaaaaaaaaaaaaaaaaaaadaaaaaaaaadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaababaaaaabaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaa
