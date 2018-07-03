@@ -49,7 +49,7 @@
 /obj/tank/sdkfz251/New()
 	..()
 	MG = new/obj/item/weapon/gun/projectile/automatic/stationary/kord/mg34(null)
-//	MG.invisibility = 101
+	MG.invisibility = 101
 
 /obj/tank/studebacker //trucks are a subtype of tanks because they are basically the same except for the gun.
 	icon_state = "studebaker_truck"
