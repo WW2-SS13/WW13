@@ -52,7 +52,7 @@
 		gender = MALE
 
 	short
-		name = "Short Hair"	  // try to capatilize the names please~
+		name = "Short Hair"	  // try to capatilize the names please!
 		icon_state = "hair_a" // you do not need to define _s or _l sub-states, game automatically does this for you
 
 	cut
@@ -62,6 +62,7 @@
 	flair
 		name = "Flaired Hair"
 		icon_state = "hair_flair"
+		gender = FEMALE
 
 	long
 		name = "Shoulder-length Hair"
@@ -70,6 +71,7 @@
 	longalt
 		name = "Shoulder-length Hair Alt"
 		icon_state = "hair_longfringe"
+		gender = FEMALE
 
 	/*longish
 		name = "Longer Hair"
@@ -78,22 +80,24 @@
 	longer
 		name = "Long Hair"
 		icon_state = "hair_vlong"
+		gender = FEMALE
 
 	longeralt
 		name = "Long Hair Alt"
 		icon_state = "hair_vlongfringe"
+		gender = FEMALE
 
-	longest
-		name = "Very Long Hair"
-		icon_state = "hair_longest"
+//	longest
+//		name = "Very Long Hair"
+//		icon_state = "hair_longest"
 
-	longfringe
-		name = "Long Fringe"
-		icon_state = "hair_longfringe"
+//	longfringe
+//		name = "Long Fringe"
+//		icon_state = "hair_longfringe"
 
-	longestalt
-		name = "Longer Fringe"
-		icon_state = "hair_vlongfringe"
+//	longestalt
+//		name = "Longer Fringe"
+//		icon_state = "hair_vlongfringe"
 
 	halfbang
 		name = "Half-banged Hair"
@@ -106,6 +110,7 @@
 	ponytail1
 		name = "Ponytail 1"
 		icon_state = "hair_ponytail"
+		gender = FEMALE
 
 	ponytail2
 		name = "Ponytail 2"
@@ -115,6 +120,7 @@
 	ponytail3
 		name = "Ponytail 3"
 		icon_state = "hair_ponytail3"
+		gender = FEMALE
 
 	ponytail4
 		name = "Ponytail 4"
@@ -197,74 +203,78 @@
 		icon_state = "hair_father"
 		gender = MALE
 
-	reversemohawk
-		name = "Reverse Mohawk"
-		icon_state = "hair_reversemohawk"
-		gender = MALE
+//	reversemohawk
+//		name = "Reverse Mohawk"
+//		icon_state = "hair_reversemohawk"
+//		gender = MALE
 
 	devillock
 		name = "Devil Lock"
 		icon_state = "hair_devilock"
 
-	dreadlocks
-		name = "Dreadlocks"
-		icon_state = "hair_dreads"
+//	dreadlocks
+//		name = "Dreadlocks"
+//		icon_state = "hair_dreads"
 
 	curls
 		name = "Curls"
 		icon_state = "hair_curls"
+		gender = FEMALE
 
-	afro
-		name = "Afro"
-		icon_state = "hair_afro"
+// you must be fucking kidding me
+//	afro
+//		name = "Afro"
+//		icon_state = "hair_afro"
 
-	afro2
-		name = "Afro 2"
-		icon_state = "hair_afro2"
 
-	afro_large
-		name = "Big Afro"
-		icon_state = "hair_bigafro"
-		gender = MALE
+//	afro2
+//		name = "Afro 2"
+//		icon_state = "hair_afro2"
+
+//	afro_large
+//		name = "Big Afro"
+//		icon_state = "hair_bigafro"
+//		gender = MALE
 
 	sargeant
 		name = "Flat Top"
 		icon_state = "hair_sargeant"
 		gender = MALE
-
-	emo
-		name = "Emo"
-		icon_state = "hair_emo"
+// nope
+//	emo
+//		name = "Emo"
+//		icon_state = "hair_emo"
 
 	longemo
 		name = "Long Emo"
 		icon_state = "hair_emolong"
 		gender = FEMALE
 
-	rightemo
-		name = "Right Emo"
-		icon_state = "hair_emoright"
+//	rightemo
+//		name = "Right Emo"
+//		icon_state = "hair_emoright"
 
-	shortovereye
-		name = "Overeye Short"
-		icon_state = "hair_shortovereye"
+//	shortovereye
+//		name = "Overeye Short"
+//		icon_state = "hair_shortovereye"
 
-	longovereye
-		name = "Overeye Long"
-		icon_state = "hair_longovereye"
+//	longovereye
+//		name = "Overeye Long"
+//		icon_state = "hair_longovereye"
 
-	fag
-		name = "Flow Hair"
-		icon_state = "hair_f"
+//	fag
+//		name = "Flow Hair"
+//		icon_state = "hair_f"
 
 	feather
 		name = "Feather"
 		icon_state = "hair_feather"
-
-	hitop
-		name = "Hitop"
-		icon_state = "hair_hitop"
-		gender = MALE
+		gender = FEMALE
+// just... no
+//	hitop
+//		name = "Hitop"
+//		icon_state = "hair_hitop"
+//		gender = MALE
 
 	mohawk
 		name = "Mohawk"
@@ -289,9 +299,9 @@
 		name = "Spiky"
 		icon_state = "hair_spikey"
 
-	kusangi
-		name = "Kusanagi Hair"
-		icon_state = "hair_kusanagi"
+//	kusangi
+//		name = "Kusanagi Hair"
+//		icon_state = "hair_kusanagi"
 
 	kagami
 		name = "Pigtails"
@@ -303,30 +313,32 @@
 		icon_state = "hair_himecut"
 		gender = FEMALE
 
-	braid
-		name = "Floorlength Braid"
-		icon_state = "hair_braid"
-		gender = FEMALE
+//ultra meme zone here. yeah, nope
 
-	mbraid
-		name = "Medium Braid"
-		icon_state = "hair_shortbraid"
-		gender = FEMALE
+//	braid
+//		name = "Floorlength Braid"
+//		icon_state = "hair_braid"
+//		gender = FEMALE
 
-	braid2
-		name = "Long Braid"
-		icon_state = "hair_hbraid"
-		gender = FEMALE
+//	mbraid
+//		name = "Medium Braid"
+//		icon_state = "hair_shortbraid"
+//		gender = FEMALE
 
-	braid3
-		name = "Long Braid 2"
-		icon_state = "hair_longbraid"
-		gender = FEMALE
+//	braid2
+//		name = "Long Braid"
+//		icon_state = "hair_hbraid"
+//		gender = FEMALE
 
-	odango
-		name = "Odango"
-		icon_state = "hair_odango"
-		gender = FEMALE
+//	braid3
+//		name = "Long Braid 2"
+//		icon_state = "hair_longbraid"
+//		gender = FEMALE
+
+//	odango
+//		name = "Odango"
+//		icon_state = "hair_odango"
+//		gender = FEMALE
 
 	ombre
 		name = "Ombre"
@@ -338,6 +350,7 @@
 		icon_state = "hair_updo"
 		gender = FEMALE
 
+//no idea why this is called skinhead :shrug:
 	skinhead
 		name = "Skinhead"
 		icon_state = "hair_skinhead"
@@ -346,36 +359,36 @@
 		name = "Balding Hair"
 		icon_state = "hair_e"
 		gender = MALE // turnoff!
+//nonononono
+//	familyman
+//		name = "The Family Man"
+//		icon_state = "hair_thefamilyman"
+//		gender = MALE
 
-	familyman
-		name = "The Family Man"
-		icon_state = "hair_thefamilyman"
-		gender = MALE
+//	mahdrills
+//		name = "Drillruru"
+//		icon_state = "hair_drillruru"
+//		gender = FEMALE
 
-	mahdrills
-		name = "Drillruru"
-		icon_state = "hair_drillruru"
-		gender = FEMALE
+//	dandypomp
+//		name = "Dandy Pompadour"
+//		icon_state = "hair_dandypompadour"
+//		gender = MALE
 
-	dandypomp
-		name = "Dandy Pompadour"
-		icon_state = "hair_dandypompadour"
-		gender = MALE
+//	poofy
+//		name = "Poofy"
+//		icon_state = "hair_poofy"
+//		gender = FEMALE
 
-	poofy
-		name = "Poofy"
-		icon_state = "hair_poofy"
-		gender = FEMALE
+//	crono
+//		name = "Chrono"
+//		icon_state = "hair_toriyama"
+//		gender = MALE
 
-	crono
-		name = "Chrono"
-		icon_state = "hair_toriyama"
-		gender = MALE
-
-	vegeta
-		name = "Vegeta"
-		icon_state = "hair_toriyama2"
-		gender = MALE
+//	vegeta
+//		name = "Vegeta"
+//		icon_state = "hair_toriyama2"
+//		gender = MALE
 
 	cia
 		name = "CIA"
@@ -392,39 +405,40 @@
 		icon_state = "hair_scully"
 		gender = FEMALE
 
-	nitori
-		name = "Nitori"
-		icon_state = "hair_nitori"
-		gender = FEMALE
+//	nitori
+//		name = "Nitori"
+//		icon_state = "hair_nitori"
+//		gender = FEMALE
 
 	joestar
 		name = "Joestar"
 		icon_state = "hair_joestar"
 		gender = MALE
 
-	volaju
-		name = "Volaju"
-		icon_state = "hair_volaju"
+//	volaju
+//		name = "Volaju"
+//		icon_state = "hair_volaju"
 
-	longeralt2
-		name = "Long Hair Alt 2"
-		icon_state = "hair_longeralt2"
+//	longeralt2
+//		name = "Long Hair Alt 2"
+//		icon_state = "hair_longeralt2"
 
-	shortbangs
-		name = "Short Bangs"
-		icon_state = "hair_shortbangs"
+//	shortbangs
+//		name = "Short Bangs"
+//		icon_state = "hair_shortbangs"
 
-	halfshaved
-		name = "Half-Shaved Emo"
-		icon_state = "hair_halfshaved"
+// who the fuck put this in here
+//	halfshaved
+//		name = "Half-Shaved Emo"
+//		icon_state = "hair_halfshaved"
 
 	bun
 		name = "Bun"
 		icon_state = "hair_bun"
 
-	doublebun
-		name = "Double-Bun"
-		icon_state = "hair_doublebun"
+//	doublebun
+//		name = "Double-Bun"
+//		icon_state = "hair_doublebun"
 
 	Mia
 		name = "Mia"
@@ -434,6 +448,12 @@
 	bald
 		name = "Bald"
 		icon_state = "bald"
+
+//ADL pls no bully
+	jewlocks
+		name = "Jewlocks"
+		icon_state = "hair_jewlocks"
+		gender = MALE
 
 
 /*
@@ -517,9 +537,9 @@
 		name = "Volaju"
 		icon_state = "facial_volaju"
 
-	dwarf
-		name = "Dwarf Beard"
-		icon_state = "facial_dwarf"
+//	dwarf
+//		name = "Dwarf Beard"
+//		icon_state = "facial_dwarf"
 
 //skin styles - WIP
 //going to have to re-integrate this with surgery
