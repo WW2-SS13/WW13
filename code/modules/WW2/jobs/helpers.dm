@@ -86,3 +86,13 @@ datum/job/proc/equip_random_partisan_clothing(var/mob/living/carbon/human/H)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/civ3(H), slot_w_uniform)
 	else
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/overalls(H), slot_w_uniform)
+
+datum/job/proc/equip_random_polish_partisan_clothing(var/mob/living/carbon/human/H)
+	if (prob(33))
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/poluni1(H), slot_w_uniform)
+	else if (prob(33))
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/poluni3(H), slot_w_uniform)
+	else if (prob(33))
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/poluni4(H), slot_w_uniform)
+	else
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/poluni2(H), slot_w_uniform)

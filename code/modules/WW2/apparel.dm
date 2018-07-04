@@ -209,6 +209,38 @@
 	item_state = "gertankeruni"
 	worn_state = "gertankeruni"
 
+///polish
+
+/obj/item/clothing/under/poluni1
+	name = "Polish Uniform (German)"
+	desc = "A captured German uniform, used by the Polish insurgents."
+	icon_state = "poluni1"
+	item_state = "poluni1"
+	worn_state = "poluni1"
+
+/obj/item/clothing/under/poluni2
+	name = "Polish Uniform (Soviet)"
+	desc = "A captured Soviet uniform, used by the Polish insurgents."
+	icon_state = "poluni1"
+	item_state = "poluni1"
+	worn_state = "poluni1"
+
+/obj/item/clothing/under/poluni3
+	name = "Polish Uniform"
+	desc = "A makeshift uniform, used by the Polish insurgents."
+	icon_state = "poluni1"
+	item_state = "poluni1"
+	worn_state = "poluni1"
+
+/obj/item/clothing/under/poluni4
+	name = "Polish Uniform"
+	desc = "A makeshift uniform, used by the Polish insurgents."
+	icon_state = "poluni1"
+	item_state = "poluni1"
+	worn_state = "poluni1"
+
+////
+
 /obj/item/clothing/under/sovuni
 	name = SOVIET_UNIFORM_NAME
 	desc = SOVIET_UNIFORM_DESC
@@ -282,11 +314,47 @@
 	worn_state = "sssmock"
 	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
 
+/obj/item/clothing/suit/polcoat1
+	name = "Polish Coat"
+	desc = "A captured german coat, with the Polish colors on the sleeve."
+	icon_state = "polcoat1"
+	item_state = "polcoat1"
+	worn_state = "polcoat1"
+	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
+
+/obj/item/clothing/suit/pol_officer_coat
+	name = "Polish Officer Coat"
+	desc = "A captured german leather coat, with the Polish colors on the sleeve, used by officers."
+	icon_state = "pol_officer_coat"
+	item_state = "pol_officer_coat"
+	worn_state = "pol_officer_coat"
+	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
+
+/obj/item/clothing/suit/polcoat2
+	name = "Polish cammo smock"
+	desc = "A captured camo SS overcoat, with the Polish colors on the sleeve."
+	icon_state = "polcoat2"
+	item_state = "polcoat2"
+	worn_state = "polcoat2"
+	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
+
 /obj/item/clothing/head/helmet/gerhelm
 	name = GERMAN_HELMET_NAME
 	desc = GERMAN_HELMET_DESC
 	icon_state = GERMAN_HELMET_STATE
 	item_state = GERMAN_HELMET_STATE
+
+/obj/item/clothing/head/helmet/polhelm
+	name = "Polish Stahlhelm"
+	desc = "A captured German stahlhelm, with the red and wite bands of the polish partisans."
+	icon_state = "polhelm"
+	item_state = "polhelm"
+
+/obj/item/clothing/head/helmet/polhelm2
+	name = "Polish Soviet helmet"
+	desc = "A captured Soviet helmet, with the red and wite bands of the polish partisans."
+	icon_state = "polhelm2"
+	item_state = "polhelm2"
 
 /obj/item/clothing/head/helmet/gerhelm/proc/transform2soviet()
 	name = SOVIET_HELMET_NAME
