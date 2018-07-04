@@ -63,7 +63,7 @@
 
 // LUGER PISTOL //
 /obj/item/projectile/bullet/rifle/a9_parabellum_luger
-	damage = DAMAGE_LOW
+	damage = DAMAGE_MEDIUM+5
 	penetrating = 0
 
 /obj/item/projectile/bullet/rifle/a762
@@ -99,7 +99,7 @@
 
 // M1991 .45 VINTAGE PISTOL //
 /obj/item/projectile/bullet/rifle/c4mm
-	damage = DAMAGE_LOW + 5
+	damage = DAMAGE_MEDIUM+8
 	penetrating = 0
 
 /obj/item/projectile/bullet/rifle/a127x108
@@ -112,12 +112,12 @@
 
 // TT-30 TOKAREV PISTOL //
 /obj/item/projectile/bullet/rifle/c762mm_tokarev
-	damage = DAMAGE_LOW - 2
+	damage = DAMAGE_MEDIUM
 	penetrating = 0
 
 // C96 MAUSER PISTOL //
 /obj/item/projectile/bullet/rifle/c763x25mm_mauser
-	damage = DAMAGE_LOW
+	damage = DAMAGE_MEDIUM
 	penetrating = 0
 
 // STEN MK3 SMG //
@@ -127,7 +127,7 @@
 
 // NAGANT REVOLVER //
 /obj/item/projectile/bullet/rifle/c762x38mmR
-	damage = DAMAGE_LOW+4
+	damage = DAMAGE_MEDIUM+6
 	penetrating = 0
 
 // PPS SMG //
@@ -155,7 +155,7 @@
 
 // WALTHER P38 //
 /obj/item/projectile/bullet/rifle/p9x19mm
-	damage = DAMAGE_LOW
+	damage = DAMAGE_MEDIUM+5
 	penetrating = 0
 
 // MODELLO 38 //
