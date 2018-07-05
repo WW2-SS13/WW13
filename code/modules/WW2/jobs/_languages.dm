@@ -19,6 +19,10 @@
 	default_language = "Russian"
 	additional_languages = list("German" = 5)
 
+/datum/job/soviet/partisan
+	default_language = "Polish"
+	additional_languages = list("Russian" = 15)
+
 /datum/job/partisan
 	default_language = "Ukrainian"
 	additional_languages = list("German" = 50, "Russian" = 75)
