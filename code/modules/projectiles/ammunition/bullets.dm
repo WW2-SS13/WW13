@@ -99,6 +99,11 @@
 	caliber = "a762"
 	projectile_type = /obj/item/projectile/bullet/rifle/a762
 
+/obj/item/ammo_casing/a762
+	desc = "A 7.7mm bullet casing."
+	caliber = "a77"
+	projectile_type = /obj/item/projectile/bullet/rifle/a777
+
 /obj/item/ammo_casing/a556
 	desc = "A 5.56mm bullet casing."
 	caliber = "a556"

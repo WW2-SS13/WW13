@@ -47,6 +47,13 @@
 	penetrating = 2
 	armor_penetration = 100
 
+
+// ARISAKA
+/obj/item/projectile/bullet/rifle/a77x58
+	damage = DAMAGE_HIGH + 3
+	penetrating = 2
+	armor_penetration = 100
+
 // MG34
 /obj/item/projectile/bullet/rifle/a792x57_weaker
 	damage = DAMAGE_MEDIUM - 4
