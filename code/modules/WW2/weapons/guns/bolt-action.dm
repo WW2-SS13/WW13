@@ -278,3 +278,23 @@
 	caliber = "a77x58"
 	weight = 3.8
 	effectiveness_mod = 1.1
+
+/obj/item/weapon/gun/projectile/boltaction/arisaka/update_icon(var/add_scope = FALSE)
+	if (add_scope)
+		if (bolt_open)
+			icon_state = "arisaka_scope_open"
+			item_state = "arisaka"
+			return
+		else
+			icon_state = "arisaka_scope"
+			item_state = "arisaka"
+			return
+	if (bolt_open)
+		if (!findtext(icon_state, "_open"))
+			icon_state = addtext(icon_state, "_open") //open
+	else if (icon_state == "arisaka_scope_open") //closed
+		icon_state = "arisaka_scope"
+	else if (icon_state == "arisaka_scope")
+		return
+	else
+		icon_state = "arisaka"
