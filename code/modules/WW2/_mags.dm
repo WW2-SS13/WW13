@@ -58,6 +58,29 @@ WW 2 WEAPONS MAGS N AMMO
 	multiple_sprites = TRUE
 	is_box = TRUE
 
+/obj/item/ammo_magazine/arisaka
+	name = "Clip (7.7x58mm)"
+	icon_state = "kclip"
+	caliber = "a77x58"
+	matter = list(DEFAULT_WALL_MATERIAL = 360)
+	ammo_type = /obj/item/ammo_casing/a77x58
+	max_ammo = 5
+	weight = 0.038
+	multiple_sprites = TRUE
+
+/obj/item/ammo_magazine/arisakabox
+	name = "magazine box (7.7x58mm)"
+	icon_state = "mosin_ammo"
+//	origin_tech = "combat=2"
+	mag_type = MAGAZINE
+	caliber = "a77x58"
+	w_class = 3
+	matter = list(DEFAULT_WALL_MATERIAL = 4500)
+	ammo_type = /obj/item/ammo_casing/a77x58
+	max_ammo = 50
+	multiple_sprites = TRUE
+	is_box = TRUE
+
 /obj/item/ammo_magazine/mp40
 	name = "magazine (9mm)"
 	icon_state = "mp40mag"

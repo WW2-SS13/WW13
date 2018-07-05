@@ -267,3 +267,14 @@
 	else
 		icon_state = "carcano"
 
+
+
+/obj/item/weapon/gun/projectile/boltaction/arisaka
+	name = "Arisaka Type 99"
+	desc = "Japanese bolt-action rifle chambered in 7.7x58mm cartridges."
+	fire_sound = 'sound/weapons/kar_shot.ogg'
+	icon_state = "arisaka"
+	item_state = "arisaka"
+	caliber = "a77x58"
+	weight = 3.8
+	effectiveness_mod = 1.1
