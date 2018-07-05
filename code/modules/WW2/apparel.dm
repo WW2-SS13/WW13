@@ -249,6 +249,13 @@
 	item_state = "japuni"
 	worn_state = "japuni"
 
+/obj/item/clothing/under/japuni
+	name = "Japanese Army Officer Uniform"
+	desc = "A standard uniform of an officer of the Imperial Japanese Army."
+	icon_state = "japuni_off"
+	item_state = "japuni_off"
+	worn_state = "japuni_off"
+
 //////////////////////////////////////////////////////////
 
 /obj/item/clothing/under/sovuni
