@@ -2,16 +2,20 @@
 	faction = "Station"
 
 /datum/job/soviet/give_random_name(var/mob/living/carbon/human/H)
-	if (H.client && H.client.prefs)
-		switch (H.client.prefs.soviet_ethnicity)
-			if (RUSSIAN)
-				H.name = H.species.get_random_russian_name(H.gender)
-			if (UKRAINIAN)
-				H.name = H.species.get_random_ukrainian_name(H.gender)
-			if (POLISH)
-				H.name = H.species.get_random_polish_name(H.gender)
+	if (map && istype(map, /obj/map_metadata/partisan))
+		H.name = H.species.get_random_polish_name(H.gender)
 	else
-		H.name = H.species.get_random_russian_name(H.gender)
+		if (H.client && H.client.prefs)
+
+			switch (H.client.prefs.soviet_ethnicity)
+				if (RUSSIAN)
+					H.name = H.species.get_random_russian_name(H.gender)
+				if (UKRAINIAN)
+					H.name = H.species.get_random_ukrainian_name(H.gender)
+				if (POLISH)
+					H.name = H.species.get_random_polish_name(H.gender)
+		else
+			H.name = H.species.get_random_russian_name(H.gender)
 	H.real_name = H.name
 
 /datum/job/soviet/commander
@@ -1320,13 +1324,13 @@ var/first_guard = FALSE
 /datum/job/soviet/partisan/give_random_name(var/mob/living/carbon/human/H)
 	H.name = H.species.get_random_polish_name(H.gender)
 	H.real_name = H.name
+	default_language = "Polish"
 
 /datum/job/soviet/partisan/soldier
 	title = "Polish Partisan"
 	selection_color = "#530909"
 	spawn_location = "JoinLatePartisan"
 	SL_check_independent = TRUE
-	default_language = "Polish"
 	is_partisan = TRUE
 
 
@@ -1368,6 +1372,9 @@ var/first_guard = FALSE
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH, STAT_VERY_HIGH))
 
 	H.setStat("shotgun", pick(STAT_MEDIUM_HIGH, STAT_HIGH, STAT_VERY_HIGH))
+	H.name = H.species.get_random_polish_name(H.gender)
+	H.real_name = H.name
+	H.default_language = "Polish"
 	return TRUE
 
 /datum/job/soviet/partisan/commander
@@ -1378,7 +1385,6 @@ var/first_guard = FALSE
 	SL_check_independent = TRUE
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLatePartisanLeader"
-	default_language = "Polish"
 	additional_languages = list( "Russian" = 100, "German" = 100)
 	is_partisan = TRUE
 

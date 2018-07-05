@@ -241,6 +241,16 @@
 
 ////
 
+/////////////////////////////JAPAN/////////////////////////
+/obj/item/clothing/under/japuni
+	name = "Japanese Army Uniform"
+	desc = "A standard uniform of the Imperial Japanese Army."
+	icon_state = "japuni"
+	item_state = "japuni"
+	worn_state = "japuni"
+
+//////////////////////////////////////////////////////////
+
 /obj/item/clothing/under/sovuni
 	name = SOVIET_UNIFORM_NAME
 	desc = SOVIET_UNIFORM_DESC
