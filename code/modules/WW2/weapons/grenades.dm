@@ -14,6 +14,12 @@
 	explosion_size = 4
 	num_fragments = 37
 
+/obj/item/weapon/grenade/explosive/kamikaze
+	name = "Kamikaze Charge"
+	icon_state = "rgd"
+	explosion_size = 10
+	num_fragments = 80
+
 /obj/item/weapon/grenade/explosive/f1
 	name = "f1 grenade"
 	icon_state = "rgd5"
