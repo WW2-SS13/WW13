@@ -50,6 +50,13 @@
 	icon_state = "slatino"
 	density = TRUE
 
+/obj/structure/sign/wide/barrier
+	name = "Security Gate"
+	icon = 'icons/obj/gate.dmi'
+	desc = "A base security gate. Pull it to the side to let vehicles pass."
+	icon_state = "gate"
+	density = TRUE
+
 /obj/structure/sign/flag/germany
 	name = "Third Reich flag"
 	desc = "Ein Volk, ein Reich, ein Fuhrer!"
