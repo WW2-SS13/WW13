@@ -53,7 +53,7 @@ WW 2 WEAPONS MAGS N AMMO
 	weight = 0.0127
 	projectile_type = /obj/item/projectile/bullet/rifle/a792x57
 
-/obj/item/ammo_casing/a792x57
+/obj/item/ammo_casing/a77x58
 	desc = "A 7.7x58mm bullet casing."
 	icon_state = "kclip-bullet"
 	spent_icon = "kclip-casing"
