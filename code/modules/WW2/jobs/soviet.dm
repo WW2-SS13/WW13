@@ -1321,11 +1321,6 @@ var/first_guard = FALSE
 /datum/job/soviet/partisan
 	faction = "Station"
 
-/datum/job/soviet/partisan/give_random_name(var/mob/living/carbon/human/H)
-	H.name = H.species.get_random_polish_name(H.gender)
-	H.real_name = H.name
-	default_language = "Polish"
-
 /datum/job/soviet/partisan/soldier
 	title = "Polish Partisan"
 	selection_color = "#530909"
@@ -1421,3 +1416,13 @@ var/first_guard = FALSE
 
 	H.setStat("shotgun", pick(STAT_MEDIUM_HIGH, STAT_HIGH, STAT_VERY_HIGH))
 	return TRUE
+
+/datum/job/soviet/partisan/soldier/give_random_name(var/mob/living/carbon/human/H)
+	H.name = H.species.get_random_polish_name(H.gender)
+	H.real_name = H.name
+	default_language = "Polish"
+
+/datum/job/soviet/partisan/commander/give_random_name(var/mob/living/carbon/human/H)
+	H.name = H.species.get_random_polish_name(H.gender)
+	H.real_name = H.name
+	default_language = "Polish"

@@ -221,23 +221,23 @@
 /obj/item/clothing/under/poluni2
 	name = "Polish Uniform (Soviet)"
 	desc = "A captured Soviet uniform, used by the Polish insurgents."
-	icon_state = "poluni1"
-	item_state = "poluni1"
-	worn_state = "poluni1"
+	icon_state = "poluni2"
+	item_state = "poluni2"
+	worn_state = "poluni2"
 
 /obj/item/clothing/under/poluni3
 	name = "Polish Uniform"
 	desc = "A makeshift uniform, used by the Polish insurgents."
-	icon_state = "poluni1"
-	item_state = "poluni1"
-	worn_state = "poluni1"
+	icon_state = "poluni3"
+	item_state = "poluni3"
+	worn_state = "poluni3"
 
 /obj/item/clothing/under/poluni4
 	name = "Polish Uniform"
 	desc = "A makeshift uniform, used by the Polish insurgents."
-	icon_state = "poluni1"
-	item_state = "poluni1"
-	worn_state = "poluni1"
+	icon_state = "poluni4"
+	item_state = "poluni4"
+	worn_state = "poluni4"
 
 ////
 
