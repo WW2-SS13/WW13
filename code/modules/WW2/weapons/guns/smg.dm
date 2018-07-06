@@ -169,7 +169,7 @@
 	magazine_type = /obj/item/ammo_magazine/mp40/c9x19mm_stenmk2
 	weight = 3.2
 	firemodes = list(
-		list(name="single shot",	burst=1, burst_delay=0.8, recoil=0.4, move_delay=2, dispersion = list(0.6, 0.8, 0.8, 0.8, 1.0)),
+//		list(name="single shot",	burst=1, burst_delay=0.8, recoil=0.4, move_delay=2, dispersion = list(0.6, 0.8, 0.8, 0.8, 1.0)),
 		list(name="short burst",	burst=3, burst_delay=1.2, recoil=0.4, move_delay=3, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
 		list(name="long burst", 	burst=6, burst_delay=1.6, recoil=0.8, move_delay=4, dispersion = list(1.5, 1.7, 1.7, 1.7, 1.9)),
 		)
@@ -261,8 +261,8 @@
 
 /obj/item/weapon/gun/projectile/submachinegun/grease/update_icon()
 	if (ammo_magazine)
-		icon_state = "model38"
-		item_state = "model38"
+		icon_state = "greasegun"
+		item_state = "greasegun"
 	else
 		icon_state = "greasegun0"
 		item_state = "greasegun0"
