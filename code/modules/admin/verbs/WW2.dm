@@ -225,6 +225,9 @@
 	var/msg4 = "Civilians: [alive_civilians.len] alive, [heavily_injured_civilians.len] heavily injured or unconscious, [dead_civilians.len] deceased. Mortality rate: [mortality_civilian]%"
 	var/msg5 = "Partisans: [alive_partisans.len] alive, [heavily_injured_partisans.len] heavily injured or unconscious, [dead_partisans.len] deceased. Mortality rate: [mortality_partisan]%"
 	var/msg6 = "Undead: [alive_undead.len] alive, [heavily_injured_undead.len] heaily injured or unconscious, [dead_undead.len] deceased. Mortality rate: [mortality_undead]%"
+	var/msg7 = "Polish Side: [alive_undead.len] alive, [heavily_injured_undead.len] heaily injured or unconscious, [dead_undead.len] deceased. Mortality rate: [mortality_undead]%"
+	var/msg8 = "Japanese Side: [alive_undead.len] alive, [heavily_injured_undead.len] heaily injured or unconscious, [dead_undead.len] deceased. Mortality rate: [mortality_undead]%"
+	var/msg9 = "American Side: [alive_undead.len] alive, [heavily_injured_undead.len] heaily injured or unconscious, [dead_undead.len] deceased. Mortality rate: [mortality_undead]%"
 
 	if (map && !map.faction_organization.Find(GERMAN))
 		msg1 = null
@@ -238,6 +241,12 @@
 		msg5 = null
 	if (map && !map.faction_organization.Find(PILLARMEN))
 		msg6 = null
+	if (map && !map.faction_organization.Find(POLISH_INSURGENTS))
+		msg7 = null
+	if (map && !map.faction_organization.Find(JAPAN))
+		msg8 = null
+	if (map && !map.faction_organization.Find(USA))
+		msg9 = null
 
 	var/public = "Yes"
 
