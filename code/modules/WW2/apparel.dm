@@ -221,23 +221,23 @@
 /obj/item/clothing/under/poluni2
 	name = "Polish Uniform (Soviet)"
 	desc = "A captured Soviet uniform, used by the Polish insurgents."
-	icon_state = "poluni1"
-	item_state = "poluni1"
-	worn_state = "poluni1"
+	icon_state = "poluni2"
+	item_state = "poluni2"
+	worn_state = "poluni2"
 
 /obj/item/clothing/under/poluni3
 	name = "Polish Uniform"
 	desc = "A makeshift uniform, used by the Polish insurgents."
-	icon_state = "poluni1"
-	item_state = "poluni1"
-	worn_state = "poluni1"
+	icon_state = "poluni3"
+	item_state = "poluni3"
+	worn_state = "poluni3"
 
 /obj/item/clothing/under/poluni4
 	name = "Polish Uniform"
 	desc = "A makeshift uniform, used by the Polish insurgents."
-	icon_state = "poluni1"
-	item_state = "poluni1"
-	worn_state = "poluni1"
+	icon_state = "poluni4"
+	item_state = "poluni4"
+	worn_state = "poluni4"
 
 ////
 
@@ -249,12 +249,47 @@
 	item_state = "japuni"
 	worn_state = "japuni"
 
-/obj/item/clothing/under/japuni
+/obj/item/clothing/under/japuni_officer
 	name = "Japanese Army Officer Uniform"
 	desc = "A standard uniform of an officer of the Imperial Japanese Army."
 	icon_state = "japuni_off"
 	item_state = "japuni_off"
 	worn_state = "japuni_off"
+
+/obj/item/clothing/under/japunimp
+	name = "Kempeitai Uniform"
+	desc = "A standard uniform of the Kempeitai, the Japanese Military Police."
+	icon_state = "japuni_MP"
+	item_state = "japuni_MP"
+	worn_state = "japuni_MP"
+//////////////////////////////////////////////////////////
+
+/////////////////////////////USA/////////////////////////
+/obj/item/clothing/under/usuni
+	name = "US Army Uniform"
+	desc = "A standard uniform of the United States Army."
+	icon_state = "USuni"
+	item_state = "USuni"
+	worn_state = "USuni"
+
+///obj/item/clothing/under/usuni_officer
+//	name = "US Army Officer Uniform"
+//	desc = "A standard uniform of an officer of the United States Army."
+//	icon_state = "USuni_off"
+//	item_state = "USuni_off"
+//	worn_state = "USuni_off"
+/obj/item/clothing/under/usuni_mp
+	name = "US Army Officer Uniform"
+	desc = "A standard uniform of the Military Police of the US Army."
+	icon_state = "USuni_MP"
+	item_state = "USuni_MP"
+	worn_state = "USuni_MP"
+/obj/item/clothing/under/usuni_para
+	name = "US Paratrooper Uniform"
+	desc = "A standard uniform of a paratrooper of the United States Army."
+	icon_state = "USparatrooperuni"
+	item_state = "USparatrooperuni"
+	worn_state = "USparatrooperuni"
 
 //////////////////////////////////////////////////////////
 
@@ -372,6 +407,42 @@
 	desc = "A captured Soviet helmet, with the red and wite bands of the polish partisans."
 	icon_state = "polhelm2"
 	item_state = "polhelm2"
+
+/obj/item/clothing/head/helmet/ushelm
+	name = "US helmet"
+	desc = "A standard US Army helmet."
+	icon_state = "UShelm"
+	item_state = "UShelm"
+
+/obj/item/clothing/head/helmet/usmphelm
+	name = "US MP helmet"
+	desc = "A standard US Military Police helmet."
+	icon_state = "USMPhelm"
+	item_state = "USMPhelm"
+
+/obj/item/clothing/head/helmet/japanhelm
+	name = "US helmet"
+	desc = "A standard IJA helmet."
+	icon_state = "japanhelm"
+	item_state = "japanhelm"
+
+/obj/item/clothing/head/helmet/japmphat
+	name = "Kempeitai hat"
+	desc = "A hat of the Japanese Kempeitai."
+	icon_state = "japmphat"
+	item_state = "japmphat"
+
+/obj/item/clothing/head/helmet/usnco
+	name = "US NCO hat"
+	desc = "An US Army NCO hat."
+	icon_state = "USNCOhat"
+	item_state = "USNCOhat"
+
+/obj/item/clothing/head/helmet/japnco
+	name = "Japanese NCO hat"
+	desc = "A Japanese NCO hat."
+	icon_state = "japNCOhat"
+	item_state = "japCOhat"
 
 /obj/item/clothing/head/helmet/gerhelm/proc/transform2soviet()
 	name = SOVIET_HELMET_NAME

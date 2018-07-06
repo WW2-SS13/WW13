@@ -7,16 +7,21 @@
 	respawn_delay = 1800 //3 minutes
 	squad_spawn_locations = FALSE
 	reinforcements = FALSE
+	event_faction = POLISH_INSURGENTS
+	no_subfaction_chance = FALSE
+	subfaction_is_main_faction = TRUE
 	faction_organization = list(
 		GERMAN,
-		SOVIET)
-	available_subfactions = list()
+		POLISH_INSURGENTS)
+	available_subfactions = list(
+		POLISH_INSURGENTS)
 	roundend_condition_sides = list(
 		list(GERMAN) = /area/prishtina/german/ss_armory,
-		list(SOVIET) = /area/prishtina/houses)
+		list(POLISH_INSURGENTS) = /area/prishtina/houses)
+
 	ambience = list()
 	times_of_day = list("Night","Evening","Early Morning")
-	faction_distribution_coeffs = list(GERMAN = 0.5, PARTISAN = 0.5)
+	faction_distribution_coeffs = list(GERMAN = 0.5, POLISH_INSURGENTS = 0.5)
 	battle_name = "Partisan Hunting"
 	songs = list(
 	 "Partisan's Song:1" = 'sound/music/partisans_song.ogg',
@@ -25,13 +30,13 @@
 
 /obj/map_metadata/partisan/job_enabled_specialcheck(var/datum/job/J)
 	. = TRUE
-	if (istype(J, /datum/job/soviet))
+	if (istype(J, /datum/job/polish))
 		if (!J.is_partisan)
 			. = FALSE
 		else
-			if (istype(J, /datum/job/soviet/partisan/soldier))
+			if (istype(J, /datum/job/polish/soldier))
 				J.total_positions = max(10, round(clients.len*1.4))
-			if (istype(J, /datum/job/soviet/partisan/commander))
+			if (istype(J, /datum/job/polish/commander))
 				J.total_positions = max(1, round(clients.len*0.1))
 	else if (istype(J, /datum/job/soviet))
 		. = FALSE

@@ -102,13 +102,13 @@
 	if (reinforcements_master && reinforcements_master.is_ready() && client && !client.quickBan_isbanned("Penal"))
 		height = 350
 		if (!reinforcements_master.has(src))
-			output += "<p><a href='byond://?src=\ref[src];re_german=1'>Join as a German reinforcement!</A></p>"
-			output += "<p><a href='byond://?src=\ref[src];re_russian=1'>Join as a Soviet reinforcement!</A></p>"
+			output += "<p><a href='byond://?src=\ref[src];re_german=1'>Join as a Axis reinforcement!</A></p>"
+			output += "<p><a href='byond://?src=\ref[src];re_russian=1'>Join as a Allied reinforcement!</A></p>"
 		else
 			if (reinforcements_master.has(src, GERMAN))
-				output += "<p><a href='byond://?src=\ref[src];unre_german=1'>Leave the German reinforcement pool.</A></p>"
+				output += "<p><a href='byond://?src=\ref[src];unre_german=1'>Leave the Axis reinforcement pool.</A></p>"
 			else if (reinforcements_master.has(src, SOVIET))
-				output += "<p><a href='byond://?src=\ref[src];unre_russian=1'>Leave the Soviet reinforcement pool.</A></p>"
+				output += "<p><a href='byond://?src=\ref[src];unre_russian=1'>Leave the Allies reinforcement pool.</A></p>"
 	else
 		output += "<p><i>Reinforcements are not available yet.</i></p>"
 
@@ -140,9 +140,9 @@
 		for (var/player in new_player_mob_list)
 			if (reinforcements_master)
 				if (reinforcements_master.reinforcement_pool[GERMAN]:Find(player))
-					stat("[player:key] - joining as German")
+					stat("[player:key] - joining as Axis")
 				else if (reinforcements_master.reinforcement_pool[SOVIET]:Find(player))
-					stat("[player:key] - joining as Soviet")
+					stat("[player:key] - joining as Allies")
 				else
 					stat(player:key)
 			else
@@ -529,7 +529,10 @@
 		CIVILIAN = FALSE,
 		ITALIAN = FALSE,
 		UKRAINIAN = FALSE,
-		PILLARMEN = FALSE)
+		PILLARMEN = FALSE,
+		POLISH_INSURGENTS = FALSE,
+		USA = FALSE,
+		JAPAN = FALSE)
 
 	var/prev_side = FALSE
 

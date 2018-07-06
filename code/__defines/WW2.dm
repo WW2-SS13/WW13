@@ -5,6 +5,8 @@
 #define SOVIET "SOVIET"
 #define ITALIAN "ITALIAN"
 #define PILLARMEN "PILLARMEN"
+#define JAPAN "JAPAN"
+#define USA "USA"
 
 // there are things with 'SS' in their type path, thats why the const isn't SS
 // this is only used for a few circumstances right now, like faction bans
@@ -15,14 +17,19 @@
 #define SOVIET_PARTISAN "SOVIET_PARTISAN"
 #define DIRLEWANGER "DIRLEWANGER"
 #define ESCORT "ESCORT"
+#define POLISH_INSURGENTS "POLISH_INSURGENTS"
 
 // used for languages only
 #define RUSSIAN "RUSSIAN"
 #define POLISH "POLISH"
 #define UKRAINIAN "UKRAINIAN"
 #define ENGLISH "ENGLISH"
+#define JAPANESE "JAPANESE"
 
 /proc/faction_const2name(constant)
 	if (constant == PILLARMEN)
 		return "Pillar Men and Vampires"
+
+	else if (constant == POLISH_INSURGENTS)
+		return "Polish Insurgents"
 	return capitalize(lowertext(constant)) + "s"

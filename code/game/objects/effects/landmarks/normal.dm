@@ -504,6 +504,37 @@ var/area/partisan_stockpile = null
 			qdel(src)
 			return
 
+/////////////////
+		// NEW SOVIET LANDMARKS
+
+		if ("JoinLateUSA")
+			if (!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if ("JoinLateUSAMP")
+			if (!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if ("JoinLateUSACO")
+			if (!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if ("JoinLateUSASL")
+			if (!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+/////////////////
 		if ("TownStockpile")
 
 			var/turf/turf = loc

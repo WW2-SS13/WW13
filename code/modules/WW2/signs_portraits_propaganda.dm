@@ -20,6 +20,10 @@
 	name = "Portrait of Stalin"
 	icon_state = "stalin"
 
+/obj/structure/sign/portrait/hirohito
+	name = "Portrait of Hirohito"
+	icon_state = "hirohito"
+
 /obj/structure/sign/portrait/propaganda
 
 /obj/structure/sign/portrait/propaganda/sov1

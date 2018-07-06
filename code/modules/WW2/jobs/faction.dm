@@ -12,6 +12,9 @@
 #define TEAM_RU 1
 #define TEAM_GE 2
 #define TEAM_PN 3
+#define TEAM_JP 4
+#define TEAM_US 5
+#define TEAM_PO 6
 
 var/global/spies[3]
 var/global/officers[3]
@@ -33,6 +36,25 @@ var/global/squad_members[3]
 
 /datum/faction/proc/base_type()
 	return "/datum/faction"
+
+// you appear to be a partisan to all other partisans
+/datum/faction/polish
+	icon_state = "partisan_soldier"
+	title = "Polish Soldier"
+	team = TEAM_PO
+
+/datum/faction/polish/base_type()
+	return "/datum/faction/polish"
+
+// you appear to be an officer to all other partisans (UNUSED)
+/datum/faction/polish/officer
+	icon_state = "partisan_officer"
+	team = TEAM_PO
+// you appear to be a partisan leader to all other partisans
+/datum/faction/polish/commander
+	icon_state = "partisan_commander"
+	title = "Polish Leader"
+	team = TEAM_PO
 
 // you appear to be a partisan to all other partisans
 /datum/faction/partisan
@@ -108,6 +130,47 @@ var/global/squad_members[3]
 	icon_state = "soviet_commander"
 	title = "Kapitan"
 	team = TEAM_RU
+
+
+// you appear to be a jp soldier to all other jp
+/datum/faction/japanese
+	icon_state = "japanese_soldier"
+	title = "Japanese Soldier"
+	team = TEAM_JP
+
+/datum/faction/japanese/base_type()
+	return "/datum/faction/japanese"
+
+/datum/faction/soviet/officer
+	icon_state = "japanese_officer"
+	title = "Japanese Officer"
+	team = TEAM_JP
+
+/datum/faction/japanese/commander
+	icon_state = "japanese_commander"
+	title = "Japanese Commander"
+	team = TEAM_JP
+
+// you appear to be a jp soldier to all other jp
+/datum/faction/usa
+	icon_state = "US_soldier"
+	title = "US Soldier"
+	team = TEAM_US
+
+/datum/faction/usa/base_type()
+	return "/datum/faction/usa"
+
+/datum/faction/usa/officer
+	icon_state = "US_officer"
+	title = "US Officer"
+	team = TEAM_US
+
+/datum/faction/usa/commander
+	icon_state = "US_commander"
+	title = "US Commander"
+	team = TEAM_US
+
+
 // squads: both german and soviet use the same types. What squad you appear
 // to be in, and to whom, depends on your true faction. Spies
 
@@ -185,6 +248,12 @@ var/global/squad_members[3]
 			squad_leaders[SOVIET]++
 		else if (istype(J, /datum/job/partisan))
 			squad_leaders[PARTISAN]++
+		else if (istype(J, /datum/job/polish))
+			squad_leaders[POLISH_INSURGENTS]++
+		else if (istype(J, /datum/job/japanese))
+			squad_leaders[JAPAN]++
+		else if (istype(J, /datum/job/usa))
+			squad_leaders[USA]++
 	else if (findtext("[type]", "officer"))
 		if (istype(J, /datum/job/german))
 			officers[GERMAN]++
@@ -192,6 +261,12 @@ var/global/squad_members[3]
 			officers[SOVIET]++
 		else if (istype(J, /datum/job/partisan))
 			officers[PARTISAN]++
+		else if (istype(J, /datum/job/polish))
+			officers[POLISH_INSURGENTS]++
+		else if (istype(J, /datum/job/japanese))
+			officers[JAPAN]++
+		else if (istype(J, /datum/job/usa))
+			officers[USA]++
 	else if (findtext("[type]", "commander"))
 		if (istype(J, /datum/job/german))
 			commanders[GERMAN]++
@@ -199,6 +274,12 @@ var/global/squad_members[3]
 			commanders[SOVIET]++
 		else if (istype(J, /datum/job/partisan))
 			commanders[PARTISAN]++
+		else if (istype(J, /datum/job/polish))
+			commanders[POLISH_INSURGENTS]++
+		else if (istype(J, /datum/job/japanese))
+			commanders[JAPAN]++
+		else if (istype(J, /datum/job/usa))
+			commanders[USA]++
 	else if (!J.is_officer && !J.is_commander && !J.is_squad_leader)
 		if (istype(J, /datum/job/german))
 			if ("[type]" == "/datum/faction/german")
@@ -215,6 +296,21 @@ var/global/squad_members[3]
 				soldiers[PARTISAN]++
 			else if (findtext("[type]", "squad") && !src:is_leader)
 				squad_members[PARTISAN]++
+		else if (istype(J, /datum/job/polish))
+			if ("[type]" == "/datum/faction/polish")
+				soldiers[POLISH_INSURGENTS]++
+			else if (findtext("[type]", "squad") && !src:is_leader)
+				squad_members[POLISH_INSURGENTS]++
+		else if (istype(J, /datum/job/usa))
+			if ("[type]" == "/datum/faction/usa")
+				soldiers[USA]++
+			else if (findtext("[type]", "squad") && !src:is_leader)
+				squad_members[USA]++
+		else if (istype(J, /datum/job/japanese))
+			if ("[type]" == "/datum/faction/japanese")
+				soldiers[JAPAN]++
+			else if (findtext("[type]", "squad") && !src:is_leader)
+				squad_members[JAPAN]++
 	H.all_factions += src
 	..()
 

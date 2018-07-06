@@ -51,6 +51,16 @@
 	icon_state = "nsdap"
 
 
+/obj/item/clothing/accessory/armband/japanesemp
+	name = "Kempeitai armband"
+	desc = "An armband of the Kempeitai, the Japanese military police."
+	icon_state = "japanesemp"
+
+/obj/item/clothing/accessory/armband/usmp
+	name = "US MP armband"
+	desc = "An armband of the US Army Military Police force."
+	icon_state = "usmp"
+
 // prisoner stuff
 /obj/item/clothing/accessory/armband/med_pris
 	name = "medical armband"
