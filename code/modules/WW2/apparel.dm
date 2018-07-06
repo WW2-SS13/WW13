@@ -438,11 +438,11 @@
 	icon_state = "USNCOhat"
 	item_state = "USNCOhat"
 
-/obj/item/clothing/head/helmet/japnco
+/obj/item/clothing/head/helmet/japncohat
 	name = "Japanese NCO hat"
 	desc = "A Japanese NCO hat."
 	icon_state = "japNCOhat"
-	item_state = "japCOhat"
+	item_state = "japNCOhat"
 
 /obj/item/clothing/head/helmet/gerhelm/proc/transform2soviet()
 	name = SOVIET_HELMET_NAME

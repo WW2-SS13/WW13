@@ -169,7 +169,7 @@
 	magazine_type = /obj/item/ammo_magazine/mp40/c9x19mm_stenmk2
 	weight = 3.2
 	firemodes = list(
-		list(name="single shot",	burst=1, burst_delay=0.8, recoil=0.4, move_delay=2, dispersion = list(0.6, 0.8, 0.8, 0.8, 1.0)),
+//		list(name="single shot",	burst=1, burst_delay=0.8, recoil=0.4, move_delay=2, dispersion = list(0.6, 0.8, 0.8, 0.8, 1.0)),
 		list(name="short burst",	burst=3, burst_delay=1.2, recoil=0.4, move_delay=3, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
 		list(name="long burst", 	burst=6, burst_delay=1.6, recoil=0.8, move_delay=4, dispersion = list(1.5, 1.7, 1.7, 1.7, 1.9)),
 		)
@@ -210,5 +210,61 @@
 	else
 		icon_state = "model380"
 		item_state = "model380"
+	update_held_icon()
+	return
+
+/obj/item/weapon/gun/projectile/submachinegun/type100
+	name = "Type 100"
+	desc = "The standard Japanese SMG."
+	icon_state = "model38"
+	item_state = "model38"
+	load_method = MAGAZINE
+	slot_flags = SLOT_BACK|SLOT_BELT
+	w_class = 3
+	caliber = "9x19mm"
+	magazine_type = /obj/item/ammo_magazine/s9x19mm
+	weight = 4.2
+	firemodes = list(
+		list(name="short burst",	burst=3, burst_delay=1.0, recoil=0.6, move_delay=3, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
+		list(name="long burst", 	burst=6, burst_delay=1.4, recoil=1.2, move_delay=4, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
+		)
+	sel_mode = 1
+	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
+
+/obj/item/weapon/gun/projectile/submachinegun/type100/update_icon()
+	if (ammo_magazine)
+		icon_state = "model38"
+		item_state = "model38"
+	else
+		icon_state = "model380"
+		item_state = "model380"
+	update_held_icon()
+	return
+
+/obj/item/weapon/gun/projectile/submachinegun/grease
+	name = "Grease gun"
+	desc = "A small, simple SMG issued to some US troops."
+	icon_state = "greasegun"
+	item_state = "greasegun"
+	load_method = MAGAZINE
+	slot_flags = SLOT_BACK|SLOT_BELT
+	w_class = 3
+	caliber = "9x19mm"
+	magazine_type = /obj/item/ammo_magazine/s9x19mm
+	weight = 4.2
+	firemodes = list(
+		list(name="short burst",	burst=3, burst_delay=1.0, recoil=0.6, move_delay=3, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
+		list(name="long burst", 	burst=6, burst_delay=1.4, recoil=1.2, move_delay=4, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
+		)
+	sel_mode = 1
+	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
+
+/obj/item/weapon/gun/projectile/submachinegun/grease/update_icon()
+	if (ammo_magazine)
+		icon_state = "greasegun"
+		item_state = "greasegun"
+	else
+		icon_state = "greasegun0"
+		item_state = "greasegun0"
 	update_held_icon()
 	return

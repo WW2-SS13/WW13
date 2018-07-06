@@ -12,7 +12,7 @@
 	rank_abbreviation = "Cpt"
 	head_position = TRUE
 	selection_color = "#2d2d63"
-	spawn_location = "JoinLateUSACO"
+	spawn_location = "JoinLateRACO"
 	additional_languages = list( "German" = 100, "Japanese" = 75)
 	is_officer = TRUE
 	is_commander = TRUE
@@ -28,7 +28,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/usnco(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/grease(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_r_hand)
 	world << "<b><big>[H.real_name] is the [title] of the American forces!</big></b>"
 	H.add_note("Role", "You are a <b>[title]</b>, the highest ranking officer present. Your job is the organize the American forces and lead them to victory. You take orders from the <b>US Army High Command</b>.")
@@ -51,11 +51,11 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/usa/MP
-	title = "Militärpolizei"
+	title = "Military Police"
 	en_meaning = "MPO"
 	rank_abbreviation = "2Sgt"
 	selection_color = "#2d2d63"
-	spawn_location = "JoinLateUSAMP"
+	spawn_location = "JoinLateRAMP"
 	additional_languages = list( "German" = 100, "Japanese" = 33, "Russian" = 100)
 	is_officer = TRUE
 	SL_check_independent = TRUE
@@ -71,7 +71,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni_mp(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/usmphelm(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german/MP(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/grease(H), slot_back)
 	H.add_note("Role", "You are a <b>[title]</b>, a military police officer. Keep the <b>Private</b>s in line.")
 	H.give_radio()
 	H.setStat("strength", STAT_VERY_HIGH)
@@ -97,7 +97,7 @@
 	rank_abbreviation = "Sgt"
 	head_position = FALSE
 	selection_color = "#4c4ca5"
-	spawn_location = "JoinLateUSASL"
+	spawn_location = "JoinLateRASL"
 	additional_languages = list( "German" = 33, "Japanese" = 10)
 	is_officer = TRUE
 	is_squad_leader = TRUE
@@ -113,7 +113,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/usnco(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/mp40(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/m1garand(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>. Your job is to lead offensive units of the US Army force according to the <b>Captain</b>'s orders.")
 	H.give_radio()
@@ -142,7 +142,7 @@
 	en_meaning = "Infantry Soldier"
 	rank_abbreviation = "Pvt"
 	selection_color = "#4c4ca5"
-	spawn_location = "JoinLateUSA"
+	spawn_location = "JoinLateRA"
 	allow_spies = TRUE
 	SL_check_independent = TRUE
 
@@ -169,7 +169,7 @@
 	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_NORMAL)
 	H.setStat("shotgun", STAT_NORMAL)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/m1garand(H), slot_back)
 	return TRUE
 
 ///datum/job/usa/soldier/get_keys()

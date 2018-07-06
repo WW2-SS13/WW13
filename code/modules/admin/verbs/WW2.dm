@@ -480,6 +480,9 @@ var/SS_toggled = TRUE
 var/paratroopers_toggled = TRUE
 var/germans_toggled = TRUE
 var/soviets_toggled = TRUE
+var/polish_toggled = TRUE
+var/usa_toggled = TRUE
+var/japanese_toggled = TRUE
 
 /client/proc/toggle_factions()
 	set name = "Toggle Factions"
@@ -497,6 +500,9 @@ var/soviets_toggled = TRUE
 	choices += "PARATROOPERS ([paratroopers_toggled ? "ENABLED" : "DISABLED"])"
 	choices += "GERMANS ([germans_toggled ? "ENABLED" : "DISABLED"])"
 	choices += "SOVIET ([soviets_toggled ? "ENABLED" : "DISABLED"])"
+	choices += "POLISH_INSURGENTS ([soviets_toggled ? "ENABLED" : "DISABLED"])"
+	choices += "JAPAN ([soviets_toggled ? "ENABLED" : "DISABLED"])"
+	choices += "USA ([soviets_toggled ? "ENABLED" : "DISABLED"])"
 	choices += "CANCEL"
 
 	var/choice = input("Enable/Disable what faction?") in choices
@@ -528,6 +534,18 @@ var/soviets_toggled = TRUE
 		soviets_toggled = !soviets_toggled
 		world << "<span class = 'warning'>The Soviet faction has been [soviets_toggled ? "<b><i>ENABLED</i></b>" : "<b><i>DISABLED</i></b>"].</span>"
 		message_admins("[key_name(src)] changed the Soviet faction 'enabled' setting to [soviets_toggled].")
+	else if (findtext(choice, "POLISH_INSURGENTS"))
+		polish_toggled = !polish_toggled
+		world << "<span class = 'warning'>The Polish faction has been [soviets_toggled ? "<b><i>ENABLED</i></b>" : "<b><i>DISABLED</i></b>"].</span>"
+		message_admins("[key_name(src)] changed the Polish faction 'enabled' setting to [soviets_toggled].")
+	else if (findtext(choice, "JAPAN"))
+		japanese_toggled = !japanese_toggled
+		world << "<span class = 'warning'>The Japan faction has been [soviets_toggled ? "<b><i>ENABLED</i></b>" : "<b><i>DISABLED</i></b>"].</span>"
+		message_admins("[key_name(src)] changed the Japan faction 'enabled' setting to [soviets_toggled].")
+	else if (findtext(choice, "USA"))
+		usa_toggled = !usa_toggled
+		world << "<span class = 'warning'>The American faction has been [soviets_toggled ? "<b><i>ENABLED</i></b>" : "<b><i>DISABLED</i></b>"].</span>"
+		message_admins("[key_name(src)] changed the American faction 'enabled' setting to [soviets_toggled].")
 
 var/partisans_forceEnabled = FALSE
 var/civilians_forceEnabled = FALSE
@@ -535,6 +553,9 @@ var/germans_forceEnabled = FALSE
 var/soviets_forceEnabled = FALSE
 var/SS_forceEnabled = FALSE
 var/paratroopers_forceEnabled = FALSE
+var/usa_forceEnabled = FALSE
+var/japanese_forceEnabled = FALSE
+var/polish_forceEnabled = FALSE
 
 /client/proc/forcibly_enable_faction()
 	set name = "Forcibly Enable Faction"
@@ -552,6 +573,9 @@ var/paratroopers_forceEnabled = FALSE
 	choices += "SOVIET ([soviets_forceEnabled ? "FORCIBLY ENABLED" : "NOT FORCIBLY ENABLED"])"
 	choices += "SS ([SS_forceEnabled ? "FORCIBLY ENABLED" : "NOT FORCIBLY ENABLED"])"
 	choices += "PARATROOPERS ([paratroopers_forceEnabled ? "FORCIBLY ENABLED" : "NOT FORCIBLY ENABLED"])"
+	choices += "POLISH_INSURGENTS ([polish_forceEnabled ? "FORCIBLY ENABLED" : "NOT FORCIBLY ENABLED"])"
+	choices += "JAPAN ([japanese_forceEnabled ? "FORCIBLY ENABLED" : "NOT FORCIBLY ENABLED"])"
+	choices += "USA ([usa_forceEnabled ? "FORCIBLY ENABLED" : "NOT FORCIBLY ENABLED"])"
 	choices += "CANCEL"
 
 	var/choice = input("Enable/Disable what faction?") in choices
@@ -583,6 +607,18 @@ var/paratroopers_forceEnabled = FALSE
 		paratroopers_forceEnabled = !paratroopers_forceEnabled
 		world << "<span class = 'notice'>The Paratrooper subfaction [paratroopers_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
 		message_admins("[key_name(src)] changed the Paratrooper subfaction 'forceEnabled' setting to [paratroopers_forceEnabled].")
+	else if (findtext(choice, "POLISH_INSURGENTS"))
+		paratroopers_forceEnabled = !polish_forceEnabled
+		world << "<span class = 'notice'>The Polish faction [paratroopers_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
+		message_admins("[key_name(src)] changed the Polish faction 'forceEnabled' setting to [paratroopers_forceEnabled].")
+	else if (findtext(choice, "JAPAN"))
+		paratroopers_forceEnabled = !japanese_forceEnabled
+		world << "<span class = 'notice'>The Japanese faction [paratroopers_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
+		message_admins("[key_name(src)] changed the Japanese faction 'forceEnabled' setting to [paratroopers_forceEnabled].")
+	else if (findtext(choice, "USA"))
+		paratroopers_forceEnabled = !usa_forceEnabled
+		world << "<span class = 'notice'>The American faction [paratroopers_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
+		message_admins("[key_name(src)] changed the American faction 'forceEnabled' setting to [paratroopers_forceEnabled].")
 
 /client/proc/toggle_respawn_delays()
 	set category = "Special"
