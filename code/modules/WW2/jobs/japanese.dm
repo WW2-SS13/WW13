@@ -7,9 +7,9 @@
 	H.real_name = H.name
 
 /datum/job/japanese/commander
-	title = "Captain"
+	title = "Rikugun-Tai-i"
 	en_meaning = "Company Commander"
-	rank_abbreviation = "Cpt"
+	rank_abbreviation = "Ri-tai"
 	head_position = TRUE
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLateHeerCO"
@@ -28,16 +28,11 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/japuni_officer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/japnco(H), slot_head)
-	if (istype(H, /mob/living/carbon/human/mechahitler))
-		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger/gibber(H), slot_belt)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
+
+	H.equip_to_slot_or_del(new /obj/item/weapon/material/sword/jap_katana(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_r_hand)
-	spawn (5) // after we have our name
-		if (!istype(H, /mob/living/carbon/human/mechahitler))
-			if (!istype(get_area(H), /area/prishtina/admin))
-				world << "<b><big>[H.real_name] is the [title] of the German forces!</big></b>"
-	H.add_note("Role", "You are a <b>[title]</b>, the highest ranking officer present. Your job is the organize the German forces and lead them to victory, while working alongside the <b>SS-Untersharffuhrer</b>. You take orders from the <b>German High Command</b>.")
+	world << "<b><big>[H.real_name] is the [title] of the Japanese forces!</big></b>"
+	H.add_note("Role", "You are a <b>[title]</b>, the highest ranking officer present. Your job is the organize the Japanese forces and lead them to victory. You take orders from the <b>Japanese High Command</b>.")
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_LOW)
 	H.setStat("engineering", STAT_VERY_LOW)
@@ -59,9 +54,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/japanese/MP
-	title = "Militärpolizei"
+	title = "Kempeitai"
 	en_meaning = "MPO"
-	rank_abbreviation = "uffz"
+	rank_abbreviation = "Gu"
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLateHeerMP"
 	additional_languages = list( "Russian" = 100, "Ukrainian" = 33, "Italian" = 100)
@@ -79,8 +74,8 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/japunimp(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/japmphat(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german/MP(H), slot_belt)
-	H.add_note("Role", "You are a <b>[title]</b>, a military police officer. Keep the <b>Soldat</b>en in line.")
+	H.equip_to_slot_or_del(new /obj/item/weapon/material/sword/jap_katana(H), slot_belt)
+	H.add_note("Role", "You are a <b>[title]</b>, a military police officer. Keep the <b>Nitohei</b> in line.")
 	H.give_radio()
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_VERY_LOW)
@@ -103,9 +98,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/japanese/squad_leader
-	title = "Sergeant"
+	title = "Gunso"
 	en_meaning = "Squad Leader"
-	rank_abbreviation = "Sgt"
+	rank_abbreviation = "Gu"
 	head_position = FALSE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerSL"
@@ -125,7 +120,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/japuni_officer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/japnco(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_belt)
-	H.add_note("Role", "You are a <b>[title]</b>. Your job is to lead offensive units of the German force according to the <b>Hauptmann</b>'s and <b>Stabsoffizier</b>en's orders.")
+	H.add_note("Role", "You are a <b>[title]</b>. Your job is to lead offensive units of the Japanese force according to the <b>Rikigun-Tai-i</b>'s orders.")
 	H.give_radio()
 	H.setStat("strength", STAT_NORMAL)
 	H.setStat("engineering", STAT_LOW)
@@ -150,9 +145,9 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/japanese/soldier
-	title = "Private"
+	title = "Nitohei"
 	en_meaning = "Infantry Soldier"
-	rank_abbreviation = "Pvt"
+	rank_abbreviation = "Ni"
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
 	allow_spies = TRUE

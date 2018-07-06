@@ -25,3 +25,10 @@
 	icon_state = "katana"
 	item_state = "katana"
 	slot_flags = SLOT_BELT | SLOT_BACK
+
+/obj/item/weapon/material/sword/jap_katana
+	name = "Japanese Sword"
+	desc = "An imperial Japanese Army sword, issued to officers."
+	icon_state = "katana"
+	item_state = "katana"
+	slot_flags = SLOT_BELT | SLOT_BACK

@@ -933,5 +933,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\partisan\partisan.dmm"
+#include "maps\city\level1.dmm"
 // END_INCLUDE

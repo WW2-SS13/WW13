@@ -12,7 +12,7 @@
 	rank_abbreviation = "Cpt"
 	head_position = TRUE
 	selection_color = "#2d2d63"
-	spawn_location = "JoinLateUSACO"
+	spawn_location = "JoinLateRACO"
 	additional_languages = list( "German" = 100, "Japanese" = 75)
 	is_officer = TRUE
 	is_commander = TRUE
@@ -51,11 +51,11 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/usa/MP
-	title = "Militärpolizei"
+	title = "Military Police"
 	en_meaning = "MPO"
 	rank_abbreviation = "2Sgt"
 	selection_color = "#2d2d63"
-	spawn_location = "JoinLateUSAMP"
+	spawn_location = "JoinLateRAMP"
 	additional_languages = list( "German" = 100, "Japanese" = 33, "Russian" = 100)
 	is_officer = TRUE
 	SL_check_independent = TRUE
@@ -97,7 +97,7 @@
 	rank_abbreviation = "Sgt"
 	head_position = FALSE
 	selection_color = "#4c4ca5"
-	spawn_location = "JoinLateUSASL"
+	spawn_location = "JoinLateRASL"
 	additional_languages = list( "German" = 33, "Japanese" = 10)
 	is_officer = TRUE
 	is_squad_leader = TRUE
@@ -142,7 +142,7 @@
 	en_meaning = "Infantry Soldier"
 	rank_abbreviation = "Pvt"
 	selection_color = "#4c4ca5"
-	spawn_location = "JoinLateUSA"
+	spawn_location = "JoinLateRA"
 	allow_spies = TRUE
 	SL_check_independent = TRUE
 
