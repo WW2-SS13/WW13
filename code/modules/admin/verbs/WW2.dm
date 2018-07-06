@@ -271,6 +271,12 @@
 				world << "<font size=3>[msg5]</font>"
 			if (msg6)
 				world << "<font size=3>[msg6]</font>"
+			if (msg7)
+				world << "<font size=3>[msg6]</font>"
+			if (msg8)
+				world << "<font size=3>[msg6]</font>"
+			if (msg9)
+				world << "<font size=3>[msg6]</font>"
 
 			if (shower)
 				message_admins("[key_name(shower)] showed everyone the battle report.")
