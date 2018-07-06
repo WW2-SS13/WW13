@@ -28,7 +28,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/japuni_officer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/japnco(H), slot_head)
-
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/type100(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/material/sword/jap_katana(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_r_hand)
 	world << "<b><big>[H.real_name] is the [title] of the Japanese forces!</big></b>"
@@ -44,7 +44,6 @@
 	H.setStat("medical", STAT_VERY_LOW)
 	H.setStat("shotgun", STAT_NORMAL)
 
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/arisaka(H), slot_back)
 	return TRUE
 
 ///datum/job/japanese/soldier/get_keys()
@@ -74,6 +73,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/japunimp(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/japmphat(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/type100(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/material/sword/jap_katana(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>, a military police officer. Keep the <b>Nitohei</b> in line.")
 	H.give_radio()
@@ -87,7 +87,6 @@
 	H.setStat("medical", STAT_VERY_LOW)
 	H.setStat("shotgun", STAT_NORMAL)
 
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/arisaka(H), slot_back)
 
 	return TRUE
 
@@ -119,6 +118,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/japuni_officer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/japnco(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/type100(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>. Your job is to lead offensive units of the Japanese force according to the <b>Rikigun-Tai-i</b>'s orders.")
 	H.give_radio()
@@ -131,8 +131,6 @@
 	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_LOW)
 	H.setStat("shotgun", STAT_NORMAL)
-
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/arisaka(H), slot_back)
 	return TRUE
 
 /datum/job/japanese/squad_leader/update_character(var/mob/living/carbon/human/H)

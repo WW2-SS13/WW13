@@ -141,6 +141,38 @@
 		item_state = "g41"
 	return
 
+/obj/item/weapon/gun/projectile/semiautomatic/m1garand
+	name = "M1 Garand"
+	desc = "American semi-automatic rifle, standard-issue to Army units. Carries 8 rounds."
+	icon_state = "g41"
+	item_state = "g41"
+	w_class = 4
+	load_method = SINGLE_CASING|SPEEDLOADER
+	max_shells = 8
+	caliber = "a792x57"
+//	origin_tech = "combat=4;materials=2"
+	slot_flags = SLOT_BACK
+	ammo_type = /obj/item/ammo_casing/a792x57
+	magazine_type = /obj/item/ammo_magazine/kar98k
+	weight = 4.3
+	firemodes = list(
+		list(name="single shot",burst=1, move_delay=2, fire_delay=6)
+		)
+	force = 10
+	throwforce = 20
+	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
+	effectiveness_mod = 1.05
+
+/obj/item/weapon/gun/projectile/semiautomatic/m1garand/update_icon()
+	..()
+	if (ammo_magazine)
+		icon_state = "g41"
+		item_state = "g41"
+	else
+		icon_state = "g41"
+		item_state = "g41"
+	return
+
 /obj/item/weapon/gun/projectile/semiautomatic/fg42
 	name = "FG42"
 	desc = "German assault rifle with a 20 round magazine, it is chambered in 7.92x57mm. Luftwaffe's elite weapon."
