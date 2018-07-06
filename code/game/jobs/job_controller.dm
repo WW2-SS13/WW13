@@ -24,6 +24,9 @@ var/global/datum/controller/occupations/job_master
 		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[UKRAINIAN]
 		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[CIVILIAN]
 		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[PARTISAN]
+		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[POLISH_INSURGENTS]
+		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[JAPAN]
+		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[USA]
 	else
 		for (var/faction in map.faction_organization)
 			job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[faction]
@@ -569,6 +572,12 @@ var/global/datum/controller/occupations/job_master
 					spawn_location = "JoinLateHeer"
 				if (SOVIET)
 					spawn_location = "JoinLateRA"
+				if (USA)
+					spawn_location = "JoinLateUSA"
+				if (JAPAN)
+					spawn_location = "JoinLateHeer"
+				if ((PARTISAN) || (POLISH_INSURGENTS))
+					spawn_location = "JoinLatePartisan"
 
 		// fixes spawning at 1,1,1
 
@@ -792,12 +801,18 @@ var/global/datum/controller/occupations/job_master
 	var/italians = alive_n_of_side(ITALIAN)
 	var/civilians = alive_n_of_side(CIVILIAN)
 	var/partisans = alive_n_of_side(PARTISAN)
+//	var/poles = alive_n_of_side(POLISH_INSURGENTS)
+//	var/americans = alive_n_of_side(USA)
+//	var/japanese = alive_n_of_side(JAPAN)
 
 	// by default no sides are hardlocked
 	var/max_germans = INFINITY
 	var/max_soviets = INFINITY
 	var/max_civilians = INFINITY
 	var/max_partisans = INFINITY
+//	var/max_americans = INFINITY
+//	var/max_poles = INFINITY
+//	var/max_japanese = INFINITY
 
 	// see job_data.dm
 	var/relevant_clients = clients.len
@@ -816,6 +831,15 @@ var/global/datum/controller/occupations/job_master
 
 		if (map.faction_distribution_coeffs.Find(PARTISAN))
 			max_partisans = ceil(relevant_clients * map.faction_distribution_coeffs[PARTISAN])
+
+//		if (map.faction_distribution_coeffs.Find(POLISH_INSURGENTS))
+//			max_poles = ceil(relevant_clients * map.faction_distribution_coeffs[POLISH_INSURGENTS])
+
+//		if (map.faction_distribution_coeffs.Find(USA))
+//			max_americans = ceil(relevant_clients * map.faction_distribution_coeffs[USA])
+
+//		if (map.faction_distribution_coeffs.Find(JAPAN))
+//			max_japanese = ceil(relevant_clients * map.faction_distribution_coeffs[JAPAN])
 
 	// fixes soviet-biased autobalance on verylow pop - Kachnov
 	if (map && relevant_clients <= 7)

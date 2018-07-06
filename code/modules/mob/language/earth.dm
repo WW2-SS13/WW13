@@ -3,6 +3,9 @@
 #define GERMAN_SYLLABLES list("al", "an", "ar", "as", "at", "ea", "ed", "en", "er", "es", "ha", "he", "hi", "in", "is", "it", "le", "me", "nd", "ne", "ng", "nt", "on", "or", "ou", "re", "se", "st", "te", "th", "ti", "to", "ve", "wa", "all", "and", "are", "but", "ent", "era", "ere", "eve", "for", "had", "hat", "hen", "her", "hin", "his", "ing", "ion", "ith", "not", "ome", "oul", "our", "sho", "ted", "ter", "tha", "the", "thi", "tio", "uld", "ver", "was", "wit", "you")
 #define ITALIAN_SYLLABLES list("pi", "za", "pe", "pp", "er", "on", "i", "ma", "mia", "na", "va", "ta", "ra", "ga", "da", "na", "sa", "la", "te", "re", "ge", "de", "ne", "se", "le", "ti", "ri", "gi", "di", "ni", "si")
 
+#define ENGLISH_SYLLABLES list("ing", "Ti", "po", "tle", "fac", "li", "ern", "er", "ri", "sion", "day", "fer", "lo", "eve", "a", "be", "vi", "ny", "gen", "men", "ly", "per", "el", "pen", "ic", "min", "ies", "ed", "to", "est", "pre", "land", "mon", "ket", "i", "pro", "la", "tive", "light", "op", "lec", "es", "ac", "lar", "car", "ob", "out", "main", "re", "ad", "pa", "ci", "of", "rec", "mar", "tion", "ar", "ture", "mo", "pos", "ro", "mis", "in", "ers", "for", "an", "tain", "sen", "my", "e", "ment", "is", "aus", "den", "side", "nal", "con", "Or", "mer", "pi", "ings", "tal", "ness", "y", "tions", "pe", "se", "mag", "tic", "ning", "ter", "Ble", "ra", "ten", "ments", "ties", "nât", "ex", "der", "so", "tor", "set", "ward", "nu", "al", "Ma", "ta", "ver", "some", "age", "oc", "de", "na", "as", "ber", "sub", "ba", "pres", "com", "Si", "col", "can", "sur", "but", "sup", "o", "un", "fi", "dy", "ters", "cit", "te", "di", "At", "ful", "et", "tu", "cle", "ted", "en", "dis", "get", "it", "af", "co", "tem", "an", "Ca", "low", "mu", "au", "cov", "tin", "ty", "cal", "ni", "no", "cy", "daq", "tri", "ry", "man", "par", "ple", "fa", "dif", "tro", "u", "ap", "son", "cu", "im", "ence", "up")
+#define JAPANESE_SYLLABLES list("ka", "ki", "ku", "ke", "ko", "ta", "chi", "tsu", "te", "to", "sa", "shi", "su", "se", "so", "na", "ni", "nu", "ne", "no", "n", "ha", "hi", "fu", "he", "ho", "ma", "mi", "mu", "me", "mo", "ya", "yu", "yo", "ra", "ri", "ru", "re", "ro", "wa", "wo")
+
 /datum/language/russian
 	name = "Russian"
 	desc = "slava sovyetskomu soyuzu!"
@@ -44,6 +47,7 @@
 	colour = "english"
 	flags = RESTRICTED | COMMON_VERBS
 	syllables = GERMAN_SYLLABLES
+	mutual_intelligibility = list(/datum/language/english = 15)
 
 /datum/language/italian
 	name = "Italian"
@@ -62,6 +66,23 @@
 	flags = RESTRICTED | COMMON_VERBS
 	syllables = list()
 	mutual_intelligibility = list(/datum/language/italian = 50)
+
+/datum/language/english
+	name = "English"
+	desc = "We can do it!"
+	key = "e"
+	colour = "english"
+	flags = RESTRICTED | COMMON_VERBS
+	syllables = ENGLISH_SYLLABLES
+	mutual_intelligibility = list(/datum/language/german = 10)
+
+/datum/language/japanese
+	name = "Japanese"
+	desc = "Banzai!"
+	key = "j"
+	colour = "english"
+	flags = RESTRICTED | COMMON_VERBS
+	syllables = JAPANESE_SYLLABLES
 
 /datum/language/romanian/New()
 	..()

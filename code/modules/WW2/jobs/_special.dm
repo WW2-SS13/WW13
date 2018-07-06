@@ -68,6 +68,8 @@
 
 	if (istype(src, /datum/job/soviet))
 		. = SOVIET
+	else if (istype(src, /datum/job/polish))
+		. = POLISH_INSURGENTS
 	else if (istype(src, /datum/job/partisan))
 		if (istype(src, /datum/job/partisan/civilian))
 			. = CIVILIAN
@@ -88,6 +90,10 @@
 		. = ITALIAN
 	else if (istype(src, /datum/job/pillarman))
 		. = PILLARMEN
+	else if (istype(src, /datum/job/japanese))
+		. = JAPAN
+	else if (istype(src, /datum/job/usa))
+		. = USA
 
 	_base_type_flag = .
 	return _base_type_flag
@@ -291,6 +297,10 @@
 		return "PILLARMEN"
 	if (side == ITALIAN)
 		return "Italian Army"
+	if (side == JAPAN)
+		return "Imperial Japanese Army"
+	if (side == USA)
+		return "US Army"
 	return null
 
 // here's a story

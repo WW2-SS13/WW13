@@ -9,11 +9,11 @@
 	reinforcements = FALSE
 	faction_organization = list(
 		GERMAN,
-		SOVIET)
+		POLISH_INSURGENTS)
 	available_subfactions = list()
 	roundend_condition_sides = list(
 		list(GERMAN) = /area/prishtina/farm2,
-		list(SOVIET) = /area/prishtina/farm1)
+		list(POLISH_INSURGENTS) = /area/prishtina/farm1)
 	ambience = list()
 	times_of_day = list("Night","Evening","Early Morning")
 	faction_distribution_coeffs = list(GERMAN = 0.5, PARTISAN = 0.5)
@@ -22,13 +22,13 @@
 
 /obj/map_metadata/escort/job_enabled_specialcheck(var/datum/job/J)
 	. = TRUE
-	if (istype(J, /datum/job/soviet))
+	if (istype(J, /datum/job/polish))
 		if (!J.is_partisan)
 			. = FALSE
 		else
-			if (istype(J, /datum/job/soviet/partisan/soldier))
+			if (istype(J, /datum/job/polish/soldier))
 				J.total_positions = max(10, round(clients.len*1.4))
-			if (istype(J, /datum/job/soviet/partisan/commander))
+			if (istype(J, /datum/job/polish/commander))
 				J.total_positions = max(1, round(clients.len*0.1))
 	else if (istype(J, /datum/job/soviet))
 		. = FALSE

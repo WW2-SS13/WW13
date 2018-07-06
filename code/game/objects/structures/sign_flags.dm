@@ -77,6 +77,12 @@
 	desc = "Soyuz nerushimy respublik svobodnyh!"
 	icon_state = "sov_flag"
 
+/obj/structure/sign/flag/japanese
+	name = "Japanese Empire flag"
+	desc = "BANZAI! BANZAI! BANZAI!"
+	icon_state = "japan_flag"
+
+
 /obj/structure/sign/flag/medical
 	name = "Medical flag"
 	desc = "A flag witht the universally recognized symbol for medicine."

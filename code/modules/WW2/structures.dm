@@ -76,6 +76,15 @@
 	icon_state = "ukrainian"
 	name = "Ukrainian Flag"
 
+/obj/structure/flag/japanese
+	icon_state = "japanese"
+	name = "Japanese Flag"
+
+/obj/structure/flag/us
+	icon_state = "us"
+	name = "USA Flag"
+
+
 /obj/structure/noose
 	icon = 'icons/obj/noose.dmi'
 	icon_state = ""

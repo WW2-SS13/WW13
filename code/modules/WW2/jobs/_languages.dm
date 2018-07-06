@@ -31,6 +31,18 @@
 	default_language = "Ukrainian"
 	additional_languages = list("German" = 50, "Russian" = 75)
 
+/datum/job/usa
+	default_language = "English"
+	additional_languages = list("German" = 15, "Japanese" = 5)
+
+/datum/job/japanese
+	default_language = "Japanese"
+	additional_languages = list("English" = 20)
+
+/datum/job/polish
+	default_language = "Polish"
+	additional_languages = list("German" = 35, "Russian" = 25)
+
 /datum/job/update_character(var/mob/living/carbon/human/H)
 	. = ..()
 
