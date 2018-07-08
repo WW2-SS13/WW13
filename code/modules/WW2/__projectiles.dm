@@ -54,6 +54,18 @@
 	penetrating = 2
 	armor_penetration = 100
 
+// M1GARAND
+/obj/item/projectile/bullet/rifle/c762x63
+	damage = DAMAGE_HIGH + 3
+	penetrating = 2
+	armor_penetration = 100
+
+// BAR
+/obj/item/projectile/bullet/rifle/c762x63_smg
+	damage = DAMAGE_MEDIUM_HIGH
+	penetrating = 2
+	armor_penetration = 100
+
 // MG34
 /obj/item/projectile/bullet/rifle/a792x57_weaker
 	damage = DAMAGE_MEDIUM - 4
@@ -66,6 +78,11 @@
 // MP40 SMG //
 /obj/item/projectile/bullet/rifle/a9_parabellum
 	damage = DAMAGE_LOW + 2
+	penetrating = 0
+
+// 45 smg //
+/obj/item/projectile/bullet/rifle/c45_smg
+	damage = DAMAGE_LOW + 4
 	penetrating = 0
 
 // LUGER PISTOL //
@@ -84,7 +101,10 @@
 	weaken = 3
 	penetrating = 5
 	armor_penetration = 150
-
+//4mm??
+/obj/item/projectile/bullet/rifle/c4mm
+	damage = DAMAGE_MEDIUM+8
+	penetrating = 0
 // PPSH SMG //
 /obj/item/projectile/bullet/rifle/a556
 	damage = DAMAGE_LOW - 2
@@ -105,7 +125,7 @@
 	penetrating = 3
 
 // M1991 .45 VINTAGE PISTOL //
-/obj/item/projectile/bullet/rifle/c4mm
+/obj/item/projectile/bullet/rifle/c45cal
 	damage = DAMAGE_MEDIUM+8
 	penetrating = 0
 
@@ -163,6 +183,16 @@
 // WALTHER P38 //
 /obj/item/projectile/bullet/rifle/p9x19mm
 	damage = DAMAGE_MEDIUM+5
+	penetrating = 0
+
+// Nambu, pistol //
+/obj/item/projectile/bullet/rifle/c8mmnambu
+	damage = DAMAGE_MEDIUM+2
+	penetrating = 0
+
+// Nambu, smg //
+/obj/item/projectile/bullet/rifle/c8mmnambu_smg
+	damage = DAMAGE_LOW
 	penetrating = 0
 
 // MODELLO 38 //

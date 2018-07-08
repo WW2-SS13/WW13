@@ -52,8 +52,8 @@
 
 
 /obj/item/clothing/accessory/armband/japanesemp
-	name = "Kempeitai armband"
-	desc = "An armband of the Kempeitai, the Japanese military police."
+	name = "Kenpeitai armband"
+	desc = "An armband of the Kenpeitai, the Japanese military police."
 	icon_state = "japanesemp"
 
 /obj/item/clothing/accessory/armband/usmp

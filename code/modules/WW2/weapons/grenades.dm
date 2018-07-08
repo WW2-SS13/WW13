@@ -26,6 +26,25 @@
 	explosion_size = 3
 	num_fragments = 75
 
+/obj/item/weapon/grenade/explosive/type91
+	name = "Type 91 grenade"
+	icon_state = "type91"
+	explosion_size = 4
+	num_fragments = 37
+
+/obj/item/weapon/grenade/explosive/type97
+	name = "Type 97 grenade"
+	icon_state = "type97"
+	explosion_size = 3
+	num_fragments = 75
+
+/obj/item/weapon/grenade/explosive/mk2
+	name = "MKII grenade"
+	icon_state = "mk2"
+	explosion_size = 3
+	num_fragments = 75
+
+
 /obj/item/weapon/grenade/explosive/l2a2
 	name = "l2a2 grenade"
 	icon_state = "l2a2"

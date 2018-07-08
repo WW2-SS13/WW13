@@ -239,7 +239,12 @@
 	item_state = "poluni4"
 	worn_state = "poluni4"
 
-////
+/obj/item/clothing/under/gloriousuniform
+	name = "Glorious Holy Hand Uniform"
+	desc = "Shiny and new!"
+	icon_state = "glorious_holy_hand"
+	item_state = "glorious_holy_hand"
+	worn_state = "glorious_holy_hand"
 
 /////////////////////////////JAPAN/////////////////////////
 /obj/item/clothing/under/japuni
@@ -257,8 +262,8 @@
 	worn_state = "japuni_off"
 
 /obj/item/clothing/under/japunimp
-	name = "Kempeitai Uniform"
-	desc = "A standard uniform of the Kempeitai, the Japanese Military Police."
+	name = "Kenpeitai Uniform"
+	desc = "A standard uniform of the Kenpeitai, the Japanese Military Police."
 	icon_state = "japuni_MP"
 	item_state = "japuni_MP"
 	worn_state = "japuni_MP"
@@ -272,12 +277,12 @@
 	item_state = "USuni"
 	worn_state = "USuni"
 
-///obj/item/clothing/under/usuni_officer
-//	name = "US Army Officer Uniform"
-//	desc = "A standard uniform of an officer of the United States Army."
-//	icon_state = "USuni_off"
-//	item_state = "USuni_off"
-//	worn_state = "USuni_off"
+/obj/item/clothing/under/uscapuni
+	name = "US Army Officer Uniform"
+	desc = "A standard uniform of an officer of the United States Army."
+	icon_state = "USCapuni"
+	item_state = "USCapuni"
+	worn_state = "USCapuni"
 /obj/item/clothing/under/usuni_mp
 	name = "US Army Officer Uniform"
 	desc = "A standard uniform of the Military Police of the US Army."
@@ -427,8 +432,8 @@
 	item_state = "japanhelm"
 
 /obj/item/clothing/head/helmet/japmphat
-	name = "Kempeitai hat"
-	desc = "A hat of the Japanese Kempeitai."
+	name = "Kenpeitai hat"
+	desc = "A hat of the Japanese Kenpeitai."
 	icon_state = "japmphat"
 	item_state = "japmphat"
 
@@ -614,6 +619,51 @@
 		/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen
 		)
 
+/obj/item/weapon/storage/belt/japan
+	name = "Japanese belt pouch"
+	desc = "A belt that can hold gear like pistols, ammo and other things."
+	icon_state = "gerbelt"
+	item_state = "gerbelt"
+	storage_slots = 12
+	max_w_class = 3
+	max_storage_space = 24
+	can_hold = list(
+		/obj/item/ammo_magazine,
+		/obj/item/weapon/material,
+		/obj/item/weapon/gauze_pack,
+		/obj/item/weapon/grenade,
+		/obj/item/weapon/attachment,
+		/obj/item/weapon/gun/projectile/pistol,
+		/obj/item/weapon/gun/projectile/revolver,
+		/obj/item/weapon/melee/classic_baton,
+		/obj/item/flashlight,
+		/obj/item/weapon/handcuffs,
+		/obj/item/ammo_casing/a145,
+		/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen
+		)
+/obj/item/weapon/storage/belt/usa
+	name = "US belt pouch"
+	desc = "A belt that can hold gear like pistols, ammo and other things."
+	icon_state = "gerbelt"
+	item_state = "gerbelt"
+	storage_slots = 12
+	max_w_class = 3
+	max_storage_space = 24
+	can_hold = list(
+		/obj/item/ammo_magazine,
+		/obj/item/weapon/material,
+		/obj/item/weapon/gauze_pack,
+		/obj/item/weapon/grenade,
+		/obj/item/weapon/attachment,
+		/obj/item/weapon/gun/projectile/pistol,
+		/obj/item/weapon/gun/projectile/revolver,
+		/obj/item/weapon/melee/classic_baton,
+		/obj/item/flashlight,
+		/obj/item/weapon/handcuffs,
+		/obj/item/ammo_casing/a145,
+		/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen
+		)
+
 /obj/item/weapon/storage/belt/german_basic
 	name = "German soldier belt"
 	desc = "A basic belt. Only capable of storing a small arms pistol, clips, rations, gauze and a shovel."
@@ -688,6 +738,24 @@
 	..()
 	new /obj/item/weapon/melee/classic_baton/MP/german(src)
 	new /obj/item/weapon/gun/projectile/pistol/mauser(src)
+	new /obj/item/flashlight(src)
+	new /obj/item/weapon/handcuffs(src)
+	new /obj/item/weapon/handcuffs(src)
+	new /obj/item/weapon/handcuffs(src)
+
+/obj/item/weapon/storage/belt/usa/MP/New()
+	..()
+	new /obj/item/weapon/melee/classic_baton/MP/usa(src)
+	new /obj/item/weapon/gun/projectile/pistol/_45(src)
+	new /obj/item/flashlight(src)
+	new /obj/item/weapon/handcuffs(src)
+	new /obj/item/weapon/handcuffs(src)
+	new /obj/item/weapon/handcuffs(src)
+
+/obj/item/weapon/storage/belt/japan/MP/New()
+	..()
+	new /obj/item/weapon/melee/classic_baton/MP/japan(src)
+	new /obj/item/weapon/gun/projectile/pistol/nambu(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/weapon/handcuffs(src)
 	new /obj/item/weapon/handcuffs(src)

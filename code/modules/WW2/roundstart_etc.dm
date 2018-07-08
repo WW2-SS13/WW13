@@ -100,6 +100,11 @@ var/GRACE_PERIOD_LENGTH = 7
 		(season = "FALL")
 		return TRUE
 
+	// forces Spring in Island map
+	if (map && istype(map, /obj/map_metadata/island))
+		(season = "SPRING")
+		return TRUE
+
 
 	// snow is disabled because it breaks the game
 	var/use_snow = FALSE

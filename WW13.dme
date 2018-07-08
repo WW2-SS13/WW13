@@ -324,6 +324,7 @@
 #include "code\game\objects\map_metadata\escort.dm"
 #include "code\game\objects\map_metadata\forest.dm"
 #include "code\game\objects\map_metadata\forest_new.dm"
+#include "code\game\objects\map_metadata\island.dm"
 #include "code\game\objects\map_metadata\partisan.dm"
 #include "code\game\objects\map_metadata\reichstag.dm"
 #include "code\game\objects\map_metadata\survival.dm"
@@ -933,5 +934,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\city\level1.dmm"
+#include "maps\island\island.dmm"
 // END_INCLUDE

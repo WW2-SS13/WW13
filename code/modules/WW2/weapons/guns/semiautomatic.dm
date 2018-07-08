@@ -144,16 +144,16 @@
 /obj/item/weapon/gun/projectile/semiautomatic/m1garand
 	name = "M1 Garand"
 	desc = "American semi-automatic rifle, standard-issue to Army units. Carries 8 rounds."
-	icon_state = "g41"
+	icon_state = "M1Garand"
 	item_state = "g41"
 	w_class = 4
 	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shells = 8
-	caliber = "a792x57"
+	caliber = "c762x63"
 //	origin_tech = "combat=4;materials=2"
 	slot_flags = SLOT_BACK
-	ammo_type = /obj/item/ammo_casing/a792x57
-	magazine_type = /obj/item/ammo_magazine/kar98k
+	ammo_type = /obj/item/ammo_casing/c762x63
+	magazine_type = /obj/item/ammo_magazine/c762x63
 	weight = 4.3
 	firemodes = list(
 		list(name="single shot",burst=1, move_delay=2, fire_delay=6)
@@ -166,10 +166,10 @@
 /obj/item/weapon/gun/projectile/semiautomatic/m1garand/update_icon()
 	..()
 	if (ammo_magazine)
-		icon_state = "g41"
+		icon_state = "M1Garand"
 		item_state = "g41"
 	else
-		icon_state = "g41"
+		icon_state = "M1Garand"
 		item_state = "g41"
 	return
 
@@ -202,6 +202,38 @@
 		icon_state = "fg42"
 		item_state = "fg42"
 	return
+
+/obj/item/weapon/gun/projectile/semiautomatic/bar
+	name = "M1918 BAR"
+	desc = "An american Light Machine Gun"
+	icon_state = "bar"
+	item_state = "dp0"
+	load_method = MAGAZINE
+	slot_flags = SLOT_BACK
+	w_class = 4
+	caliber = "c762x63_smg"
+	magazine_type = /obj/item/ammo_magazine/c762x63_smg
+	ammo_type = /obj/item/ammo_casing/c762x63_smg
+	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
+
+	firemodes = list(
+		list(name="semi automatic",	burst=1, burst_delay=0.8, move_delay=2, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6)),
+		list(name="short bursts",	burst=3, burst_delay=1.0, move_delay=3, dispersion = list(0.4, 0.8, 0.8, 0.8, 1.0)),
+		list(name="long bursts",	burst=4, burst_delay=1.2, move_delay=4, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
+		)
+
+
+/obj/item/weapon/gun/projectile/semiautomatic/bar/update_icon()
+	..()
+	if (ammo_magazine)
+		icon_state = "bar"
+		item_state = "dp0"
+	else
+		icon_state = "bar"
+		item_state = "dp0"
+	return
+
+
 
 /obj/item/weapon/gun/projectile/semiautomatic/stg
 	name = "MP-43/B"

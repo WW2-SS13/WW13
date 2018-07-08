@@ -3,7 +3,7 @@
 	faction = "Station"
 
 /datum/job/usa/give_random_name(var/mob/living/carbon/human/H)
-	H.name = H.species.get_random_name(H.gender)
+	H.name = H.species.get_random_english_name(H.gender)
 	H.real_name = H.name
 
 /datum/job/usa/commander
@@ -26,9 +26,9 @@
 /datum/job/usa/commander/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/uscapuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/usnco(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/grease(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/thompson(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_r_hand)
 	world << "<b><big>[H.real_name] is the [title] of the American forces!</big></b>"
 	H.add_note("Role", "You are a <b>[title]</b>, the highest ranking officer present. Your job is the organize the American forces and lead them to victory. You take orders from the <b>US Army High Command</b>.")
@@ -71,7 +71,10 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni_mp(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/usmphelm(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/grease(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/usa/MP(H), slot_belt)
+	var/obj/item/clothing/accessory/armband/usmp/usmp_a = new /obj/item/clothing/accessory/armband/usmp(null)
+	var/obj/item/clothing/under/uniform = H.w_uniform
+	uniform.attackby(usmp_a, H)
 	H.add_note("Role", "You are a <b>[title]</b>, a military police officer. Keep the <b>Private</b>s in line.")
 	H.give_radio()
 	H.setStat("strength", STAT_VERY_HIGH)
@@ -113,7 +116,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/usnco(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/m1garand(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/thompson(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>. Your job is to lead offensive units of the US Army force according to the <b>Captain</b>'s orders.")
 	H.give_radio()

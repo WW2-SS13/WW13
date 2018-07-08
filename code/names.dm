@@ -32,6 +32,14 @@ var/list/first_names_male_italian = file2list("config/names/first_male_italian.t
 var/list/first_names_female_italian = file2list("config/names/first_female_italian.txt")
 var/list/last_names_italian = file2list("config/names/last_italian.txt")
 
+var/list/first_names_male_english = file2list("config/names/first_male_english.txt")
+var/list/first_names_female_english = file2list("config/names/first_female_english.txt")
+var/list/last_names_english = file2list("config/names/last_english.txt")
+
+var/list/first_names_male_japanese = file2list("config/names/first_male_japanese.txt")
+var/list/first_names_female_japanese = file2list("config/names/first_female_japanese.txt")
+var/list/last_names_japanese = file2list("config/names/last_japanese.txt")
+
 var/list/verbs = file2list("config/names/verbs.txt")
 var/list/adjectives = file2list("config/names/adjectives.txt")
 //loaded on startup because of "

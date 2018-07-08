@@ -58,7 +58,7 @@ WW 2 WEAPONS MAGS N AMMO
 	multiple_sprites = TRUE
 	is_box = TRUE
 
-/obj/item/ammo_magazine/arisaka
+/obj/item/ammo_magazine/a77x58
 	name = "Clip (7.7x58mm)"
 	icon_state = "kclip"
 	caliber = "a77x58"
@@ -77,6 +77,29 @@ WW 2 WEAPONS MAGS N AMMO
 	w_class = 3
 	matter = list(DEFAULT_WALL_MATERIAL = 4500)
 	ammo_type = /obj/item/ammo_casing/a77x58
+	max_ammo = 50
+	multiple_sprites = TRUE
+	is_box = TRUE
+
+/obj/item/ammo_magazine/c762x63
+	name = "Clip (7.62x63mm)"
+	icon_state = "clip"
+	caliber = "c762x63"
+	matter = list(DEFAULT_WALL_MATERIAL = 360)
+	ammo_type = /obj/item/ammo_casing/c762x63
+	max_ammo = 8
+	weight = 0.05
+	multiple_sprites = TRUE
+
+/obj/item/ammo_magazine/garandbox
+	name = "magazine box (7.62x63mm)"
+	icon_state = "mosin_ammo"
+//	origin_tech = "combat=2"
+	mag_type = MAGAZINE
+	caliber = "c762x63"
+	w_class = 3
+	matter = list(DEFAULT_WALL_MATERIAL = 4500)
+	ammo_type = /obj/item/ammo_casing/c762x63
 	max_ammo = 50
 	multiple_sprites = TRUE
 	is_box = TRUE
@@ -180,13 +203,25 @@ WW 2 WEAPONS MAGS N AMMO
 	weight = 0.0143
 	multiple_sprites = TRUE
 
+/obj/item/ammo_magazine/c8mmnambu
+	name = "Nambu magazine"
+	icon_state = "lugermag"
+//	origin_tech = "combat=2"
+	mag_type = MAGAZINE
+	matter = list(DEFAULT_WALL_MATERIAL = 600)
+	caliber = "c8mmnambu"
+	ammo_type = /obj/item/ammo_casing/c8mmnambu
+	max_ammo = 8
+	weight = 0.0143
+	multiple_sprites = TRUE
+
 /obj/item/ammo_magazine/c45m
-	name = "magazine (.45)"
+	name = "M1911 magazine (.45)"
 	icon_state = "45"
 	mag_type = MAGAZINE
-	ammo_type = /obj/item/ammo_casing/c45
+	ammo_type = /obj/item/ammo_casing/c45cal
 	matter = list(DEFAULT_WALL_MATERIAL = 525) //metal costs are very roughly based around TRUE .45 casing = 75 metal
-	caliber = ".45"
+	caliber = "c45cal"
 	max_ammo = 7
 	multiple_sprites = TRUE
 
@@ -474,7 +509,7 @@ OTHER
 	multiple_sprites = FALSE
 
 /obj/item/ammo_magazine/svt
-	name = "magazine (12.7x108)"
+	name = "magazine (7.62x54)"
 	icon_state = "127x108"
 	mag_type = MAGAZINE
 	caliber = "a762x54"
@@ -511,6 +546,35 @@ OTHER
 	max_ammo = 20
 	multiple_sprites = TRUE
 
+/obj/item/ammo_magazine/c8mmnambu_smg
+	name = "magazine (8mm)"
+	icon_state = "stg_mag"
+	mag_type = MAGAZINE
+	caliber = "c8mmnambu_smg"
+	matter = list(DEFAULT_WALL_MATERIAL = 1800)
+	ammo_type = /obj/item/ammo_casing/c8mmnambu_smg
+	max_ammo = 30
+	multiple_sprites = TRUE
+
+/obj/item/ammo_magazine/c45_smg
+	name = "magazine (.45 cal)"
+	icon_state = "9x39"
+	mag_type = MAGAZINE
+	caliber = "c45_smg"
+	matter = list(DEFAULT_WALL_MATERIAL = 1800)
+	ammo_type = /obj/item/ammo_casing/c45_smg
+	max_ammo = 30
+	multiple_sprites = TRUE
+
+/obj/item/ammo_magazine/c762x63_smg
+	name = "magazine (762x63)"
+	icon_state = "fg42"
+	mag_type = MAGAZINE
+	caliber = "c762x63_smg"
+	matter = list(DEFAULT_WALL_MATERIAL = 1800)
+	ammo_type = /obj/item/ammo_casing/c762x63_smg
+	max_ammo = 20
+	multiple_sprites = TRUE
 
 /////////////////////FLAREGUNS//////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
