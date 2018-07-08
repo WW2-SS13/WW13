@@ -115,6 +115,24 @@
 				A.y = rand(teleport_y, teleport_y_offset)
 				A.z = rand(teleport_z, teleport_z_offset)
 
+//////////////////////////////////////LANDING CRAFTS///////////////////////////////////////////
+/obj/effect/step_trigger/teleporter/lcraft
+	var/teleport_x_offset = FALSE
+	var/teleport_y_offset = FALSE
+	var/teleport_z_offset = FALSE
+
+	Trigger(var/atom/movable/A)
+		playsound(loc, 'sound/landing_craft.ogg', 100, TRUE)
+		A << "<span class='info'>The landing craft is moving...</span>"
+		spawn(150)
+			if (teleport_x && teleport_y && teleport_z)
+				if (teleport_x_offset && teleport_y_offset && teleport_z_offset)
+
+					A.x = rand(teleport_x, teleport_x_offset)
+					A.y = rand(teleport_y, teleport_y_offset)
+					A.z = rand(teleport_z, teleport_z_offset)
+/////////////////////////////////////////////////////////////////////////////////////////////
+
 /* Step trigger to display message if *TRIGGERED* */
 /obj/effect/step_trigger/message
 	var/message	//the message to give to the mob

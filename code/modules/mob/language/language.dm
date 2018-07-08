@@ -369,7 +369,7 @@
 					else
 						H.real_name = H.client.prefs.english_name
 					H.name = H.real_name
-					H.gender = H.client.prefs.russian_gender
+					H.gender = H.client.prefs.english_gender
 
 		else if (istype(new_language, /datum/language/japanese))
 			if (ishuman(src))
@@ -380,7 +380,7 @@
 					else
 						H.real_name = H.client.prefs.japanese_name
 					H.name = H.real_name
-					H.gender = H.client.prefs.german_gender
+					H.gender = H.client.prefs.japanese_gender
 
 	if (!istype(new_language) || (new_language in languages))
 		return FALSE

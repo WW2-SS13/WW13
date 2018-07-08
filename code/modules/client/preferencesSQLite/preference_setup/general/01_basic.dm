@@ -51,7 +51,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	pref.english_name		= sanitize_name(pref.english_name, pref.species)
 	if (!pref.english_name)
 		pref.english_name	= random_english_name(pref.english_gender, pref.species)
-	pref.japanese_name		= sanitize_name(pref.english_name, pref.species)
+	pref.japanese_name		= sanitize_name(pref.japanese_name, pref.species)
 	if (!pref.japanese_name)
 		pref.japanese_name	= random_japanese_name(pref.japanese_gender, pref.species)
 	/*										*/

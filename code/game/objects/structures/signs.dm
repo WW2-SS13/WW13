@@ -517,3 +517,30 @@
 /obj/structure/sign/department/prison
 	name = "PRISON"
 	icon_state = "prison"
+
+
+//numbers
+/obj/structure/sign/n1
+	desc = "A silver sign which reads 'I'."
+	name = "ONE"
+	icon_state = "n1"
+/obj/structure/sign/n2
+	desc = "A silver sign which reads 'II'."
+	name = "TWO"
+	icon_state = "n2"
+/obj/structure/sign/n3
+	desc = "A silver sign which reads 'III'."
+	name = "THREE"
+	icon_state = "n3"
+/obj/structure/sign/n4
+	desc = "A silver sign which reads 'IV'."
+	name = "FOUR"
+	icon_state = "n4"
+/obj/structure/sign/n5
+	desc = "A silver sign which reads 'V'."
+	name = "FIVE"
+	icon_state = "n5"
+/obj/structure/sign/n6
+	desc = "A silver sign which reads 'VI'."
+	name = "SIX"
+	icon_state = "n6"
