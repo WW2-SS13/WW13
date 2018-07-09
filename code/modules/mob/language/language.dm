@@ -128,6 +128,42 @@
 		full_name += " [capitalize(lowertext(new_name))]"
 
 	return "[trim(full_name)]"
+/datum/language/proc/get_random_japanese_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
+	if (!syllables || !syllables.len)
+		if (gender==FEMALE)
+			return capitalize(pick(first_names_female_japanese)) + " " + capitalize(pick(last_names_japanese))
+		else
+			return capitalize(pick(first_names_male_japanese)) + " " + capitalize(pick(last_names_japanese))
+
+	var/full_name = ""
+	var/new_name = ""
+
+	for (var/i = 0;i<name_count;i++)
+		new_name = ""
+		for (var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
+			new_name += pick(syllables)
+		full_name += " [capitalize(lowertext(new_name))]"
+
+	return "[trim(full_name)]"
+
+/datum/language/proc/get_random_english_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
+	if (!syllables || !syllables.len)
+		if (gender==FEMALE)
+			return capitalize(pick(first_names_female_english)) + " " + capitalize(pick(last_names_english))
+		else
+			return capitalize(pick(first_names_male_english)) + " " + capitalize(pick(last_names_english))
+
+	var/full_name = ""
+	var/new_name = ""
+
+	for (var/i = 0;i<name_count;i++)
+		new_name = ""
+		for (var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
+			new_name += pick(syllables)
+		full_name += " [capitalize(lowertext(new_name))]"
+
+	return "[trim(full_name)]"
+
 
 /datum/language
 	var/list/scramble_cache = list()
@@ -323,6 +359,28 @@
 						H.real_name = H.client.prefs.italian_name
 					H.name = H.real_name
 					H.gender = H.client.prefs.italian_gender
+
+		else if (istype(new_language, /datum/language/english))
+			if (ishuman(src))
+				var/mob/living/carbon/human/H = src
+				if (H.species && H.client)
+					if (H.client.prefs.be_random_name_english)
+						H.real_name = H.species.get_random_english_name(H.gender, FALSE)
+					else
+						H.real_name = H.client.prefs.english_name
+					H.name = H.real_name
+					H.gender = H.client.prefs.english_gender
+
+		else if (istype(new_language, /datum/language/japanese))
+			if (ishuman(src))
+				var/mob/living/carbon/human/H = src
+				if (H.species && H.client)
+					if (H.client.prefs.be_random_name_japanese)
+						H.real_name = H.species.get_random_japanese_name(H.gender, FALSE)
+					else
+						H.real_name = H.client.prefs.japanese_name
+					H.name = H.real_name
+					H.gender = H.client.prefs.japanese_gender
 
 	if (!istype(new_language) || (new_language in languages))
 		return FALSE

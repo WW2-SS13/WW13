@@ -95,11 +95,11 @@ var/datum/reinforcements/reinforcements_master = null
 		if (prob(50))
 			if (!locked[SOVIET])
 				soviet_countdown = soviet_countdown_success_reset*2
-				world << "<font size = 3>Due to harsh combat in other areas on the Eastern Front, Soviet reinforcements will not be available for a while.</font>"
+				world << "<font size = 3>Due to harsh combat in other areas of the front, Allied reinforcements will not be available for a while.</font>"
 		else
 			if (!locked[GERMAN])
 				german_countdown = german_countdown_success_reset*2
-				world << "<font size = 3>Due to harsh combat in other areas on the Eastern Front, Wehrmacht reinforcements will not be available for a while.</font>"
+				world << "<font size = 3>Due to harsh combat in other areas on the front, Axis reinforcements will not be available for a while.</font>"
 
 	if (reinforcement_pool[SOVIET] && reinforcement_pool[GERMAN])
 		for (var/mob/new_player/np in reinforcement_pool[SOVIET])
@@ -164,8 +164,8 @@ var/datum/reinforcements/reinforcements_master = null
 
 	var/sname[0]
 
-	sname[SOVIET] = "Soviet"
-	sname[GERMAN] = "German"
+	sname[SOVIET] = "Allied"
+	sname[GERMAN] = "Axis"
 
 	np << "<span class = 'danger'>You have joined a queue for [sname[side]] reinforcements; please wait until the timer reaches 0 seconds to spawn.</span>"
 	var/list/l = reinforcement_pool[side]
@@ -198,11 +198,11 @@ var/datum/reinforcements/reinforcements_master = null
 	var/list/l = reinforcement_pool[SOVIET]
 	if (l.len < reinforcement_spawn_req && !allow_quickspawn[SOVIET])
 		for (var/mob/new_player/np in l)
-			np << "<span class='danger'>Failed to spawn a new Soviet squadron. [reinforcement_spawn_req - l.len] more draftees needed."
+			np << "<span class='danger'>Failed to spawn a new Allied squadron. [reinforcement_spawn_req - l.len] more draftees needed."
 		return ret
 	else if (map && map.has_occupied_base(SOVIET))
 		for (var/mob/new_player/np in l)
-			np << "<span class='danger'>The Germans are currently occupying the Soviet base! Reinforcements can't be sent."
+			np << "<span class='danger'>The Axis forces are currently occupying the Allied base! Reinforcements can't be sent."
 		return ret
 	for (var/mob/new_player/np in l)
 		if (np)
@@ -214,7 +214,7 @@ var/datum/reinforcements/reinforcements_master = null
 	var/obj/item/radio/R = main_radios[SOVIET]
 	if (R && R.loc)
 		processes.callproc.queue(R, /obj/item/radio/proc/announce, list("A new squadron has been deployed.", "Reinforcements Announcements"), 10)
-	world << "<font size=3>A new <b>Soviet</b> squadron has been deployed.</font>"
+	world << "<font size=3>A new <b>Allied</b> squadron has been deployed.</font>"
 	return ret
 
 /datum/reinforcements/proc/reset_german_timer()
@@ -222,11 +222,11 @@ var/datum/reinforcements/reinforcements_master = null
 	var/list/l = reinforcement_pool[GERMAN]
 	if (l.len < reinforcement_spawn_req && !allow_quickspawn[GERMAN])
 		for (var/mob/new_player/np in l)
-			np << "<span class='danger'>Failed to spawn a new German squadron. [reinforcement_spawn_req - l.len] more draftees needed."
+			np << "<span class='danger'>Failed to spawn a new Axis squadron. [reinforcement_spawn_req - l.len] more draftees needed."
 		return ret
 	else if (map && map.has_occupied_base(GERMAN))
 		for (var/mob/new_player/np in l)
-			np << "<span class='danger'>The Soviets are currently occupying the German base! Reinforcements can't be sent."
+			np << "<span class='danger'>The Allies are currently occupying the Axis base! Reinforcements can't be sent."
 		return ret
 	for (var/mob/new_player/np in l)
 		if (np) // maybe helps with logged out nps
@@ -238,7 +238,7 @@ var/datum/reinforcements/reinforcements_master = null
 	var/obj/item/radio/R = main_radios[GERMAN]
 	if (R && R.loc)
 		processes.callproc.queue(R, /obj/item/radio/proc/announce, list("A new squadron has been deployed.", "Reinforcements Announcements"), 10)
-	world << "<font size=3>A new <b>German</b> squadron has been deployed.</font>"
+	world << "<font size=3>A new <b>Axis</b> squadron has been deployed.</font>"
 	return ret
 
 /datum/reinforcements/proc/r_german()
@@ -268,7 +268,7 @@ var/datum/reinforcements/reinforcements_master = null
 	if (is_permalocked(SOVIET))
 
 		if (!showed_permalock_message[SOVIET])
-			world << "<font size = 3>The Soviet Army is all out of reinforcements.</font>"
+			world << "<font size = 3>The Allied forces are out of reinforcements.</font>"
 			showed_permalock_message[SOVIET] = TRUE
 
 		locked[SOVIET] = TRUE
@@ -280,7 +280,7 @@ var/datum/reinforcements/reinforcements_master = null
 	if (is_permalocked(GERMAN))
 
 		if (!showed_permalock_message[GERMAN])
-			world << "<font size = 3>The German Army is all out of reinforcements.</font>"
+			world << "<font size = 3>The Axis forces are out of reinforcements.</font>"
 			showed_permalock_message[GERMAN] = TRUE
 
 		locked[GERMAN] = TRUE
@@ -307,9 +307,9 @@ var/datum/reinforcements/reinforcements_master = null
 
 	if (is_ready())
 		if (map && map.has_occupied_base(GERMAN))
-			l += "The German base is currently occupied;Reinforcements cannot be deployed."
+			l += "The Axis base is currently occupied;Reinforcements cannot be deployed."
 		else
-			l += "German:: "
+			l += "Axis:: "
 			l += "Deployed: [reinforcements_granted[GERMAN]]/[max_german_reinforcements]"
 			l += "Deploying: [r_german()]/[reinforcement_add_limit_german] ([reinforcement_spawn_req] needed) in [german_countdown] seconds"
 			l += "Locked: [locked[GERMAN] ? "Yes" : "No"]"
@@ -317,9 +317,9 @@ var/datum/reinforcements/reinforcements_master = null
 		l += ""
 
 		if (map && map.has_occupied_base(SOVIET))
-			l += "The Soviet base is currently occupied;Reinforcements cannot be deployed."
+			l += "The Allied base is currently occupied;Reinforcements cannot be deployed."
 		else
-			l += "Soviet:: "
+			l += "Allies:: "
 			l += "Deployed: [reinforcements_granted[SOVIET]]/[max_soviet_reinforcements]"
 			l += "Deploying: [r_soviet()]/[reinforcement_add_limit_soviet] ([reinforcement_spawn_req] needed) in [soviet_countdown] seconds"
 			l += "Locked: [locked[SOVIET] ? "Yes" : "No"]"

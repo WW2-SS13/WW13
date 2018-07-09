@@ -20,6 +20,8 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	pref.russian_gender 		= sanitize_inlist(pref.russian_gender, valid_player_genders, pick(valid_player_genders))
 	pref.ukrainian_gender 		= sanitize_inlist(pref.ukrainian_gender, valid_player_genders, pick(valid_player_genders))
 	pref.italian_gender 		= sanitize_inlist(pref.italian_gender, valid_player_genders, pick(valid_player_genders))
+	pref.english_gender 		= sanitize_inlist(pref.english_gender, valid_player_genders, pick(valid_player_genders))
+	pref.japanese_gender 		= sanitize_inlist(pref.japanese_gender, valid_player_genders, pick(valid_player_genders))
 	pref.body_build 	= sanitize_inlist(pref.body_build, list("Slim", "Default", "Fat"), "Default")
 	pref.identifying_gender = (pref.identifying_gender in all_genders_define_list) ? pref.identifying_gender : pref.gender
 	pref.real_name		= sanitize_name(pref.real_name, pref.species)
@@ -45,6 +47,13 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	pref.italian_name		= sanitize_name(pref.italian_name, pref.species)
 	if (!pref.italian_name)
 		pref.italian_name	= random_italian_name(pref.italian_gender, pref.species)
+
+	pref.english_name		= sanitize_name(pref.english_name, pref.species)
+	if (!pref.english_name)
+		pref.english_name	= random_english_name(pref.english_gender, pref.species)
+	pref.japanese_name		= sanitize_name(pref.japanese_name, pref.species)
+	if (!pref.japanese_name)
+		pref.japanese_name	= random_japanese_name(pref.japanese_gender, pref.species)
 	/*										*/
 
 //	pref.spawnpoint		= sanitize_inlist(pref.spawnpoint, spawntypes, initial(pref.spawnpoint))
@@ -52,6 +61,8 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	pref.be_random_name_german	= sanitize_integer(pref.be_random_name_german, FALSE, TRUE, initial(pref.be_random_name_german))
 	pref.be_random_name_russian	= sanitize_integer(pref.be_random_name_russian, FALSE, TRUE, initial(pref.be_random_name_russian))
 	pref.be_random_name_ukrainian	= sanitize_integer(pref.be_random_name_ukrainian, FALSE, TRUE, initial(pref.be_random_name_ukrainian))
+	pref.be_random_name_japanese	= sanitize_integer(pref.be_random_name_japanese, FALSE, TRUE, initial(pref.be_random_name_japanese))
+	pref.be_random_name_english	= sanitize_integer(pref.be_random_name_english, FALSE, TRUE, initial(pref.be_random_name_english))
 	pref.be_random_name_italian	= sanitize_integer(pref.be_random_name_italian, FALSE, TRUE, initial(pref.be_random_name_italian))
 
 /datum/category_item/player_setup_item/general/basic/content()
@@ -91,6 +102,18 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	. += "(<a href='?src=\ref[src];random_name_italian=1'>Random Name</A>) "
 	. += "(<a href='?src=\ref[src];always_random_name_italian=1'>Always Random Name: [pref.be_random_name_italian ? "Yes" : "No"]</a>)"
 	. += "<br><br>"
+	// english name
+	. += "<b>English Name:</b> "
+	. += "<a href='?src=\ref[src];rename_english=1'><b>[pref.english_name]</b></a><br>"
+	. += "(<a href='?src=\ref[src];random_name_english=1'>Random Name</A>) "
+	. += "(<a href='?src=\ref[src];always_random_name_english=1'>Always Random Name: [pref.be_random_name_english ? "Yes" : "No"]</a>)"
+	. += "<br><br>"
+	// japanese name
+	. += "<b>Japanese Name:</b> "
+	. += "<a href='?src=\ref[src];rename_japanese=1'><b>[pref.japanese_name]</b></a><br>"
+	. += "(<a href='?src=\ref[src];random_name_japanese=1'>Random Name</A>) "
+	. += "(<a href='?src=\ref[src];always_random_name_japanese=1'>Always Random Name: [pref.be_random_name_japanese ? "Yes" : "No"]</a>)"
+	. += "<br><br>"
 	// gender
 	. += "<b>Default Gender:</b> <a href='?src=\ref[src];gender=1'><b>[capitalize(lowertext(pref.gender))]</b></a><br>"
 	. += "<br>"
@@ -101,6 +124,10 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	. += "<b>Ukrainian Gender:</b> <a href='?src=\ref[src];gender_ukrainian=1'><b>[capitalize(lowertext(pref.ukrainian_gender))]</b></a><br>"
 	. += "<br>"
 	. += "<b>Italian Gender:</b> <a href='?src=\ref[src];gender_italian=1'><b>[capitalize(lowertext(pref.italian_gender))]</b></a><br>"
+	. += "<br>"
+	. += "<b>Japanese Gender:</b> <a href='?src=\ref[src];gender_japanese=1'><b>[capitalize(lowertext(pref.japanese_gender))]</b></a><br>"
+	. += "<br>"
+	. += "<b>English Gender:</b> <a href='?src=\ref[src];gender_english=1'><b>[capitalize(lowertext(pref.english_gender))]</b></a><br>"
 	. += "<br>"
 	. += "<b>Soviet Ethnicity:</b> <a href='?src=\ref[src];ethnicity_soviet=1'><b>[capitalize(lowertext(pref.soviet_ethnicity))]</b></a><br>"
 	. += "<br><br>"
@@ -242,6 +269,46 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 		pref.be_random_name_italian = !pref.be_random_name_italian
 		return TOPIC_REFRESH
 
+	//english names
+	if (href_list["rename_english"])
+		var/raw_name = input(user, "Choose your character's English name:", "Character Name")  as text|null
+		if (!isnull(raw_name) && CanUseTopic(user))
+			var/new_name = sanitize_name(raw_name, pref.species)
+			if (new_name)
+				pref.english_name = new_name
+				return TOPIC_REFRESH
+			else
+				user << "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>"
+				return TOPIC_NOACTION
+
+	else if (href_list["random_name_english"])
+		pref.english_name = random_english_name(pref.english_gender, pref.species)
+		return TOPIC_REFRESH
+
+	else if (href_list["always_random_name_english"])
+		pref.be_random_name_english = !pref.be_random_name_english
+		return TOPIC_REFRESH
+
+	//japanese names
+	if (href_list["rename_japanese"])
+		var/raw_name = input(user, "Choose your character's Japanese name:", "Character Name")  as text|null
+		if (!isnull(raw_name) && CanUseTopic(user))
+			var/new_name = sanitize_name(raw_name, pref.species)
+			if (new_name)
+				pref.japanese_name = new_name
+				return TOPIC_REFRESH
+			else
+				user << "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>"
+				return TOPIC_NOACTION
+
+	else if (href_list["random_name_japanese"])
+		pref.japanese_name = random_japanese_name(pref.japanese_gender, pref.species)
+		return TOPIC_REFRESH
+
+	else if (href_list["always_random_name_japanese"])
+		pref.be_random_name_japanese = !pref.be_random_name_japanese
+		return TOPIC_REFRESH
+
 	else if (href_list["gender"])
 		pref.gender = next_in_list(pref.gender, valid_player_genders)
 		return TOPIC_REFRESH
@@ -271,6 +338,19 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 		if ((input(user, "Choose new Italian name that corresponds with this gender?") in list("Yes", "No")) == "Yes")
 			pref.italian_name = random_italian_name(pref.italian_gender, pref.species)
 		return TOPIC_REFRESH
+
+	else if (href_list["gender_english"])
+		pref.english_gender = next_in_list(pref.english_gender, valid_player_genders)
+		if ((input(user, "Choose new English name that corresponds with this gender?") in list("Yes", "No")) == "Yes")
+			pref.english_name = random_english_name(pref.english_gender, pref.species)
+		return TOPIC_REFRESH
+
+	else if (href_list["gender_japanese"])
+		pref.japanese_gender = next_in_list(pref.japanese_gender, valid_player_genders)
+		if ((input(user, "Choose new Japanese name that corresponds with this gender?") in list("Yes", "No")) == "Yes")
+			pref.japanese_name = random_japanese_name(pref.japanese_gender, pref.species)
+		return TOPIC_REFRESH
+
 
 	else if (href_list["ethnicity_soviet"])
 		pref.soviet_ethnicity = next_in_list(pref.soviet_ethnicity, list(RUSSIAN, UKRAINIAN, POLISH))

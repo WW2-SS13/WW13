@@ -87,7 +87,7 @@
 	icon_state = "colt"
 	item_state = "gun"
 	w_class = 2
-	caliber = ".45"
+	caliber = "c45cal"
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/c45m
@@ -188,6 +188,25 @@
 		icon_state = "waltherp"
 	else
 		icon_state = "waltherp0"
+	return
+
+/obj/item/weapon/gun/projectile/pistol/nambu
+	name = "Nambu Pistol"
+	desc = "Standard issue Japanese pistol. Chambered in 8mm nambu ammunition."
+	icon_state = "nambu"
+	item_state = "gun"
+	w_class = 2
+	caliber = "c8mmnambu"
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
+	magazine_type = /obj/item/ammo_magazine/c8mmnambu
+	weight = 0.794
+
+/obj/item/weapon/gun/projectile/pistol/nambu/update_icon()
+	..()
+	if (ammo_magazine)
+		icon_state = "nambu"
+	else
+		icon_state = "nambu0"
 	return
 
 

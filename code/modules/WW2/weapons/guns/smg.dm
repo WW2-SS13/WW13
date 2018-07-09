@@ -216,13 +216,13 @@
 /obj/item/weapon/gun/projectile/submachinegun/type100
 	name = "Type 100"
 	desc = "The standard Japanese SMG."
-	icon_state = "model38"
-	item_state = "model38"
+	icon_state = "type100"
+	item_state = "model1380"
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
-	caliber = "9x19mm"
-	magazine_type = /obj/item/ammo_magazine/s9x19mm
+	caliber = "c8mmnambu_smg"
+	magazine_type = /obj/item/ammo_magazine/c8mmnambu_smg
 	weight = 4.2
 	firemodes = list(
 		list(name="short burst",	burst=3, burst_delay=1.0, recoil=0.6, move_delay=3, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
@@ -233,11 +233,11 @@
 
 /obj/item/weapon/gun/projectile/submachinegun/type100/update_icon()
 	if (ammo_magazine)
-		icon_state = "model38"
-		item_state = "model38"
+		icon_state = "type100"
+		item_state = "type100"
 	else
-		icon_state = "model380"
-		item_state = "model380"
+		icon_state = "type1000"
+		item_state = "type1000"
 	update_held_icon()
 	return
 
@@ -249,9 +249,9 @@
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
-	caliber = "9x19mm"
-	magazine_type = /obj/item/ammo_magazine/s9x19mm
-	weight = 4.2
+	caliber = "c45_smg"
+	magazine_type = /obj/item/ammo_magazine/c45_smg
+	weight = 3.7
 	firemodes = list(
 		list(name="short burst",	burst=3, burst_delay=1.0, recoil=0.6, move_delay=3, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
 		list(name="long burst", 	burst=6, burst_delay=1.4, recoil=1.2, move_delay=4, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
@@ -266,5 +266,33 @@
 	else
 		icon_state = "greasegun0"
 		item_state = "greasegun0"
+	update_held_icon()
+	return
+
+/obj/item/weapon/gun/projectile/submachinegun/thompson
+	name = "Thompson M1A1"
+	desc = "Used by both gangsters and law enforcement, the Thompson SMG is the standard-issue SMG of the US Army."
+	icon_state = "thompson"
+	item_state = "thompson"
+	load_method = MAGAZINE
+	slot_flags = SLOT_BACK|SLOT_BELT
+	w_class = 3
+	caliber = "c45_smg"
+	magazine_type = /obj/item/ammo_magazine/c45_smg
+	weight = 4.2
+	firemodes = list(
+		list(name="short burst",	burst=3, burst_delay=1.0, recoil=0.9, move_delay=3, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
+		list(name="long burst", 	burst=6, burst_delay=1.4, recoil=1.8, move_delay=4, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
+		)
+	sel_mode = 1
+	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
+
+/obj/item/weapon/gun/projectile/submachinegun/thompson/update_icon()
+	if (ammo_magazine)
+		icon_state = "thompson"
+		item_state = "thompson"
+	else
+		icon_state = "thompson0"
+		item_state = "thompson0"
 	update_held_icon()
 	return

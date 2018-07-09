@@ -24,21 +24,27 @@ var/list/preferences_datums = list()
 	var/real_name = "John Doe"						//our character's name
 	var/german_name = "Hans Schneider"
 	var/russian_name = "Boris Borisov"
-	var/ukrainian_name = "Boris Borisov"
+	var/ukrainian_name = "Artem Hrebenyuk"
 	var/polish_name = "Stanislaw Nowak"
 	var/italian_name = "Alessandro Giovanni"
+	var/japanese_name = "Haruki Nakamura"
+	var/english_name = "John Adams"
 	var/be_random_name = FALSE				//whether we are a random name every round
 	var/be_random_name_german = FALSE
 	var/be_random_name_russian = FALSE
 	var/be_random_name_ukrainian = FALSE
 	var/be_random_name_polish = FALSE
 	var/be_random_name_italian = FALSE
+	var/be_random_name_english = FALSE
+	var/be_random_name_japanese = FALSE
 	var/gender = MALE					//gender of character (well duh)
 	var/german_gender = MALE
 	var/russian_gender = MALE
 	var/ukrainian_gender = MALE // civs
 //	var/polish_gender = MALE
 	var/italian_gender = MALE
+	var/english_gender = MALE
+	var/japanese_gender = MALE
 	var/soviet_ethnicity = RUSSIAN
 	var/body_build = "Default"			//character body build name
 	var/age = 30						//age of character
@@ -158,11 +164,15 @@ var/list/preferences_datums = list()
 			russian_name = random_russian_name(gender, species)
 			ukrainian_name = random_ukrainian_name(gender, species)
 			italian_name = random_italian_name(gender, species)
+			english_name = random_english_name(gender, species)
+			japanese_name = random_japanese_name(gender, species)
 			remember_preference("real_name", real_name)
 			remember_preference("german_name", german_name)
 			remember_preference("russian_name", russian_name)
 			remember_preference("ukrainian_name", ukrainian_name)
 			remember_preference("italian_name", italian_name)
+			remember_preference("english_name", english_name)
+			remember_preference("japanese_name", japanese_name)
 			save_preferences(1)
 
 		spawn (1)

@@ -40,7 +40,7 @@
 
 /obj/item/ammo_casing/c45p
 	desc = "A .45 practice bullet casing."
-	caliber = ".45"
+	caliber = "c45"
 	projectile_type = /obj/item/projectile/bullet/pistol/practice
 
 /obj/item/ammo_casing/c45r

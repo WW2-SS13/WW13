@@ -15,7 +15,8 @@
 		ITALIAN)
 	available_subfactions = list(
 		SCHUTZSTAFFEL = 33,
-		ITALIAN = 33)
+		ITALIAN = 33
+		)
 	faction_distribution_coeffs = list(GERMAN = 0.42, SOVIET = 0.58)
 	battle_name = "Battle of Kiev"
 

@@ -73,13 +73,13 @@
 	name = "top mounted magazine (9mm practice)"
 	ammo_type = /obj/item/ammo_casing/c9mmp
 
-/obj/item/ammo_magazine/c45
+/obj/item/ammo_magazine/c45cal
 	name = "ammunition Box (.45)"
 	icon_state = "9mm"
 //	origin_tech = list(TECH_COMBAT = 2)
-	caliber = ".45"
+	caliber = "c45cal"
 	matter = list(DEFAULT_WALL_MATERIAL = 2250)
-	ammo_type = /obj/item/ammo_casing/c45
+	ammo_type = /obj/item/ammo_casing/c45cal
 	max_ammo = 30
 
 /obj/item/ammo_magazine/c9mm/empty

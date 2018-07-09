@@ -104,6 +104,31 @@ proc/random_italian_name(gender, species = "Human")
 			return capitalize(pick(first_names_male_italian)) + " " + capitalize(pick(last_names_italian))
 	else
 		return current_species.get_random_italian_name(gender)
+proc/random_english_name(gender, species = "Human")
+	var/datum/species/current_species
+	if (species)
+		current_species = all_species[species]
+
+	if (!current_species || current_species.name_language == null)
+		if (gender==FEMALE)
+			return capitalize(pick(first_names_female_english)) + " " + capitalize(pick(last_names_english))
+		else
+			return capitalize(pick(first_names_male_english)) + " " + capitalize(pick(last_names_english))
+	else
+		return current_species.get_random_english_name(gender)
+
+proc/random_japanese_name(gender, species = "Human")
+	var/datum/species/current_species
+	if (species)
+		current_species = all_species[species]
+
+	if (!current_species || current_species.name_language == null)
+		if (gender==FEMALE)
+			return capitalize(pick(first_names_female_japanese)) + " " + capitalize(pick(last_names_japanese))
+		else
+			return capitalize(pick(first_names_male_japanese)) + " " + capitalize(pick(last_names_japanese))
+	else
+		return current_species.get_random_japanese_name(gender)
 
 proc/russify(var/list/name_list, gender)
 	var/list/l = name_list.Copy()

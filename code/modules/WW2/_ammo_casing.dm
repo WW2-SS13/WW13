@@ -59,7 +59,7 @@ WW 2 WEAPONS MAGS N AMMO
 	spent_icon = "kclip-casing"
 	caliber = "a77x58"
 	weight = 0.0118
-	projectile_type = /obj/item/projectile/bullet/rifle/a792x57
+	projectile_type = /obj/item/projectile/bullet/rifle/a77x58
 
 /obj/item/ammo_casing/a792x57_weaker
 	desc = "A 7.92x57mm bullet casing."
@@ -91,10 +91,50 @@ WW 2 WEAPONS MAGS N AMMO
 	weight = 0.0095
 	projectile_type = /obj/item/projectile/bullet/rifle/a9_parabellum_luger
 
-/obj/item/ammo_casing/c45
+/obj/item/ammo_casing/c8mmnambu
+	desc = "A 8mm Nambu bullet casing."
+	icon_state = "pistol_bullet_anykind"
+	spent_icon = "pistol_bullet_casing"
+	caliber = "c8mmnambu"
+	weight = 0.0095
+	projectile_type = /obj/item/projectile/bullet/rifle/c8mmnambu
+
+/obj/item/ammo_casing/c8mmnambu_smg
+	desc = "A 8mm Nambu bullet casing."
+	icon_state = "pistol_bullet_anykind"
+	spent_icon = "pistol_bullet_casing"
+	caliber = "c8mmnambu_smg"
+	weight = 0.0095
+	projectile_type = /obj/item/projectile/bullet/rifle/c8mmnambu_smg
+
+/obj/item/ammo_casing/c45cal
 	desc = "A .45 bullet casing."
-	caliber = ".45"
-	projectile_type = /obj/item/projectile/bullet/rifle/a9_parabellum_luger
+	icon_state = "pistol_bullet_anykind"
+	spent_icon = "pistol_bullet_casing"
+	caliber = "c45cal"
+	projectile_type = /obj/item/projectile/bullet/rifle/c45cal
+
+/obj/item/ammo_casing/c45_smg
+	desc = "A .45 bullet casing."
+	icon_state = "pistol_bullet_anykind"
+	spent_icon = "pistol_bullet_casing"
+	caliber = "c45_smg"
+	projectile_type = /obj/item/projectile/bullet/rifle/c45_smg
+
+/obj/item/ammo_casing/c762x63
+	desc = "A 7.62x63 bullet casing."
+	icon_state = "kclip-bullet"
+	spent_icon = "kclip-casing"
+	caliber = "c762x63"
+	projectile_type = /obj/item/projectile/bullet/rifle/c762x63
+
+/obj/item/ammo_casing/c762x63_smg
+	desc = "A 7.62x63 bullet casing."
+	icon_state = "kclip-bullet"
+	spent_icon = "kclip-casing"
+	caliber = "c762x63_smg"
+	projectile_type = /obj/item/projectile/bullet/rifle/c762x63_smg
+
 
 /obj/item/ammo_casing/c762mm_tokarev
 	desc = "A 7.62mm pistol bullet casing."

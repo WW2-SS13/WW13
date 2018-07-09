@@ -3,7 +3,7 @@
 	faction = "Station"
 
 /datum/job/japanese/give_random_name(var/mob/living/carbon/human/H)
-	H.name = H.species.get_random_name(H.gender)
+	H.name = H.species.get_random_japanese_name(H.gender)
 	H.real_name = H.name
 
 /datum/job/japanese/commander
@@ -13,7 +13,7 @@
 	head_position = TRUE
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLateHeerCO"
-	additional_languages = list( "Russian" = 100, "Ukrainian" = 50, "Italian" = 100)
+	additional_languages = list("English" = 100)
 	is_officer = TRUE
 	is_commander = TRUE
 	whitelisted = TRUE
@@ -53,12 +53,12 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/japanese/MP
-	title = "Kempeitai"
+	title = "Kenpeitai"
 	en_meaning = "MPO"
 	rank_abbreviation = "Gu"
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLateHeerMP"
-	additional_languages = list( "Russian" = 100, "Ukrainian" = 33, "Italian" = 100)
+	additional_languages = list( "Russian" = 25, "English" = 100)
 	is_officer = TRUE
 	SL_check_independent = TRUE
 
@@ -74,7 +74,10 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/japunimp(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/japmphat(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/type100(H), slot_back)
-	H.equip_to_slot_or_del(new /obj/item/weapon/material/sword/jap_katana(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/japan/MP(H), slot_belt)
+	var/obj/item/clothing/accessory/armband/japanesemp/japanesemp_a = new /obj/item/clothing/accessory/armband/japanesemp(null)
+	var/obj/item/clothing/under/uniform = H.w_uniform
+	uniform.attackby(japanesemp_a, H)
 	H.add_note("Role", "You are a <b>[title]</b>, a military police officer. Keep the <b>Nitohei</b> in line.")
 	H.give_radio()
 	H.setStat("strength", STAT_VERY_HIGH)
@@ -103,7 +106,7 @@
 	head_position = FALSE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerSL"
-	additional_languages = list( "Russian" = 33, "Italian" = 50)
+	additional_languages = list("English" = 50)
 	is_officer = TRUE
 	is_squad_leader = TRUE
 	SL_check_independent = TRUE

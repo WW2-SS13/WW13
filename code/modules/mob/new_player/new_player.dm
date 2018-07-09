@@ -102,8 +102,8 @@
 	if (reinforcements_master && reinforcements_master.is_ready() && client && !client.quickBan_isbanned("Penal"))
 		height = 350
 		if (!reinforcements_master.has(src))
-			output += "<p><a href='byond://?src=\ref[src];re_german=1'>Join as a Axis reinforcement!</A></p>"
-			output += "<p><a href='byond://?src=\ref[src];re_russian=1'>Join as a Allied reinforcement!</A></p>"
+			output += "<p><a href='byond://?src=\ref[src];re_german=1'>Join as an Axis reinforcement!</A></p>"
+			output += "<p><a href='byond://?src=\ref[src];re_russian=1'>Join as an Allied reinforcement!</A></p>"
 		else
 			if (reinforcements_master.has(src, GERMAN))
 				output += "<p><a href='byond://?src=\ref[src];unre_german=1'>Leave the Axis reinforcement pool.</A></p>"
@@ -754,6 +754,10 @@
 				client.prefs.gender = client.prefs.russian_gender
 			else if (J_flag == ITALIAN)
 				client.prefs.gender = client.prefs.italian_gender
+			else if (J_flag == USA)
+				client.prefs.gender = client.prefs.english_gender
+			else if (J_flag == JAPAN)
+				client.prefs.gender = client.prefs.japanese_gender
 
 			// traps came back, this should fix them for good - Kachnov
 			new_character.gender = client.prefs.gender

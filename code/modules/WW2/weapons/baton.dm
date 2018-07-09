@@ -44,5 +44,15 @@
 	desc = "A wooden police baton perfect for subduing communists."
 	weakens = 4
 
+/obj/item/weapon/melee/classic_baton/MP/japan
+	name = "Japanese police baton"
+	desc = "A wooden police baton perfect for subduing western dogs."
+	weakens = 4
+
+/obj/item/weapon/melee/classic_baton/MP/usa
+	name = "American MP police baton"
+	desc = "A wooden police baton perfect for subduing the enemies of democracy."
+	weakens = 2
+
 
 
