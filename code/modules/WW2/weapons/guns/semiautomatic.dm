@@ -227,10 +227,10 @@
 	..()
 	if (ammo_magazine)
 		icon_state = "bar"
-		item_state = "dp0"
+		item_state = "bar0"
 	else
 		icon_state = "bar"
-		item_state = "dp0"
+		item_state = "bar0"
 	return
 
 

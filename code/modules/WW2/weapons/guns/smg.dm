@@ -234,10 +234,10 @@
 /obj/item/weapon/gun/projectile/submachinegun/type100/update_icon()
 	if (ammo_magazine)
 		icon_state = "type100"
-		item_state = "model1380"
+		item_state = "type100"
 	else
 		icon_state = "type1000"
-		item_state = "model1380"
+		item_state = "type1000"
 	update_held_icon()
 	return
 

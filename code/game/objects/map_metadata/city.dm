@@ -5,27 +5,20 @@
 	respawn_delay = 2400
 	squad_spawn_locations = FALSE
 	supply_points_per_tick = list(
-		USA = 1.00,
-		JAPAN = 1.50)
-//	supply_points_per_tick = list(
-//		GERMAN = 1.00,
-//		SOVIET = 1.50)
+		GERMAN = 1.00,
+		SOVIET = 1.50)
 	faction_organization = list(
-//		GERMAN,
-//		SOVIET,
-		USA,
-		JAPAN,
+		GERMAN,
+		SOVIET,
 		PARTISAN,
 		CIVILIAN,
 		ITALIAN)
 	available_subfactions = list(
-//		SCHUTZSTAFFEL = 33,
-//		ITALIAN = 33
+		SCHUTZSTAFFEL = 33,
+		ITALIAN = 33
 		)
-//	faction_distribution_coeffs = list(GERMAN = 0.42, SOVIET = 0.58)
-	faction_distribution_coeffs = list(USA = 0.42, JAPAN = 0.58)
-//	battle_name = "Battle of Kiev"
-	battle_name = "Battle of Guam"
+	faction_distribution_coeffs = list(GERMAN = 0.42, SOVIET = 0.58)
+	battle_name = "Battle of Kiev"
 
 /obj/map_metadata/city/germans_can_cross_blocks()
 	return (processes.ticker.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)

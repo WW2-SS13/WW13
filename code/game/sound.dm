@@ -142,6 +142,15 @@ var/list/sneeze_sounds_female = list(
 	'sound/effects/emotes/female_sneeze1.ogg',
 	'sound/effects/emotes/female_sneeze2.ogg')
 
+var/list/charge_sounds_ger = list(
+	'sound/effects/emotes/charge_ger.ogg')
+var/list/charge_sounds_sov = list(
+	'sound/effects/emotes/charge_sov.ogg')
+var/list/charge_sounds_eng = list(
+	'sound/effects/emotes/charge_eng.ogg')
+var/list/charge_sounds_jap = list(
+	'sound/effects/emotes/charge_jap.ogg')
+
 // pain, etc sounds from Interbay
 
 
@@ -323,5 +332,18 @@ var/const/FALLOFF_SOUNDS = 0.5
 				soundin = pick(sigh_sounds_female)
 			if ("sneeze_female")
 				soundin = pick(sneeze_sounds_female)
+
+			if ("charge_JAPAN")
+				soundin = pick(charge_sounds_jap)
+			if ("charge_USA")
+				soundin = pick(charge_sounds_eng)
+			if ("charge_SOVIET")
+				soundin = pick(charge_sounds_sov)
+			if ("charge_CIVILIAN")
+				soundin = pick(charge_sounds_sov)
+			if ("charge_PARTISAN")
+				soundin = pick(charge_sounds_sov)
+			if ("charge_GERMAN")
+				soundin = pick(charge_sounds_ger)
 
 	return soundin

@@ -150,7 +150,7 @@
 		return
 
 	if (istype(src, /datum/job/german))
-
+		user.faction_text = "GERMAN"
 		if (istype(src, /datum/job/german/soldier_ss))
 			user.base_faction = new/datum/faction/german/SS(user, src)
 		else
@@ -198,6 +198,7 @@
 							user.squad_faction = new/datum/faction/squad/four(user, src)
 
 	else if (istype(src, /datum/job/soviet))
+		user.faction_text = "SOVIET"
 		user.base_faction = new/datum/faction/soviet(user, src)
 
 		if (is_officer && !is_commander)
@@ -228,6 +229,7 @@
 					user.squad_faction = new/datum/faction/squad/four(user, src)
 
 	else if (istype(src, /datum/job/partisan))
+		user.faction_text = "PARTISAN"
 		user.base_faction = new/datum/faction/partisan(user, src)
 		if (is_officer && !is_commander)
 			user.officer_faction = new/datum/faction/partisan/officer(user, src)
@@ -235,9 +237,16 @@
 			user.officer_faction = new/datum/faction/partisan/commander(user, src)
 
 	else if (istype(src, /datum/job/italian))
+		user.faction_text = "ITALIAN"
 		user.base_faction = new/datum/faction/german/italian(user, src)
 		if (is_commander)
 			user.officer_faction = new/datum/faction/german/commander/italian
+	else if (istype(src, /datum/job/japanese))
+		user.faction_text = "JAPAN"
+		user.base_faction = new/datum/faction/japanese(user, src)
+	else if (istype(src, /datum/job/usa))
+		user.faction_text = "USA"
+		user.base_faction = new/datum/faction/usa(user, src)
 
 /datum/job/proc/try_make_jew(var/mob/living/carbon/human/user)
 	return // disabled

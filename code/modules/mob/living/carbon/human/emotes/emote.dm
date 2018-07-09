@@ -12,7 +12,8 @@ var/list/vocal_emotes = list(
 	"scream",
 	"sigh",
 	"sneeze",
-	"yawn")
+	"yawn",
+	"charge")
 
 /mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null)
 
@@ -340,6 +341,26 @@ var/list/vocal_emotes = list(
 						message = "makes a weak noise. [get_visible_gender() == MALE ? "He" : get_visible_gender() == FEMALE ? "She" : "They"] [get_visible_gender() == NEUTER ? "frown" : "frowns"]."
 						m_type = 2
 
+			if ("charge")
+				if (miming)
+					message = "charges!"
+					m_type = 1
+				else
+					if (!muzzled)
+						message = "charges!"
+						m_type = 2
+						if (faction_text == SOVIET)
+							playsound(get_turf(src), "charge_SOVIET", 100)
+						if (faction_text == GERMAN)
+							playsound(get_turf(src), "charge_GERMAN", 100)
+						if (faction_text == JAPAN)
+							playsound(get_turf(src), "charge_JAPAN", 100)
+						if (faction_text == USA)
+							playsound(get_turf(src), "charge_USA", 100)
+					else
+						message = "makes a weak noise."
+						m_type = 2
+
 			if ("sigh")
 				if (miming)
 					message = "sighs."
@@ -641,7 +662,7 @@ var/list/vocal_emotes = list(
 	cry, dab, drool, eyebrow, frown, gasp, giggle, groan, grumble, handshake, hug-(none)/mob,
 	grin, laugh, look-(none)/mob, moan, mumble, nod, point-atom, raise, salute, shake, shiver, shrug,
 	sigh, signal-#1-10, smile, sneeze, sniff, snore, stare-(none)/mob, scream, surrender, tremble, twitch,
-	wink, yawn, dab"}
+	wink, yawn, dab, charge"}
 
 			else
 				src << "<span class = 'notice'>Unusable emote '[act]'. Say *help for a list.</span>"

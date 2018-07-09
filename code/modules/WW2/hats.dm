@@ -74,8 +74,8 @@
 
 /obj/item/clothing/head/japanesebandana
 	name = "Japanese bandana"
-	icon_state = "japanese"
-	item_state = "uia_cap"
+	icon_state = "japanesebandana"
+	item_state = "japanesebandana"
 
 /obj/item/clothing/head/glorioushat
 	name = "Glorious Holy Hand Hat"

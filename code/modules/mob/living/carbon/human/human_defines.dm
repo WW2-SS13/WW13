@@ -103,6 +103,7 @@
 	var/datum/faction/officer_faction = null
 	var/datum/faction/squad/squad_faction = null
 	var/datum/faction/spy_faction = null
+	var/faction_text = null
 
 	var/list/faction_images[100] // names are keys, values are images
 
