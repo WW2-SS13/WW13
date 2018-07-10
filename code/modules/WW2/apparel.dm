@@ -426,7 +426,7 @@
 	item_state = "USMPhelm"
 
 /obj/item/clothing/head/helmet/japanhelm
-	name = "US helmet"
+	name = "Japanese Army helmet"
 	desc = "A standard IJA helmet."
 	icon_state = "japanhelm"
 	item_state = "japanhelm"

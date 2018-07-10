@@ -145,7 +145,7 @@
 	name = "M1 Garand"
 	desc = "American semi-automatic rifle, standard-issue to Army units. Carries 8 rounds."
 	icon_state = "M1Garand"
-	item_state = "g41"
+	item_state = "m1garand"
 	w_class = 4
 	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shells = 8
@@ -167,10 +167,10 @@
 	..()
 	if (ammo_magazine)
 		icon_state = "M1Garand"
-		item_state = "g41"
+		item_state = "m1garand"
 	else
 		icon_state = "M1Garand"
-		item_state = "g41"
+		item_state = "m1garand"
 	return
 
 /obj/item/weapon/gun/projectile/semiautomatic/fg42

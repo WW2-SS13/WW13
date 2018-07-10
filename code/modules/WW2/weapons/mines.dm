@@ -16,6 +16,7 @@
 //	unacidable = TRUE
 	anchored = FALSE
 
+	var/atmine = FALSE
 	var/triggered = FALSE
 	var/triggertype = "explosive" //Calls that proc
 	/*
@@ -109,15 +110,23 @@
 
 //Triggering
 /obj/item/mine/Crossed(AM as mob|obj)
-	if (isobserver(AM)) return
-	if (istype(AM, /obj/item/projectile)) return
-	Bumped(AM)
+	if (!atmine)
+		if (isobserver(AM)) return
+		if (istype(AM, /obj/item/projectile)) return
+		Bumped(AM)
+	else
+		if (istype(AM, /obj/tank))
+			Bumped(AM)
 
 /obj/item/mine/Bumped(AM as mob|obj)
-	if (isobserver(AM)) return
-	if (!anchored) return //If armed
-	if (triggered) return
-	trigger(AM)
+	if (!atmine)
+		if (isobserver(AM)) return
+		if (!anchored) return //If armed
+		if (triggered) return
+		trigger(AM)
+	else
+		if (istype(AM, /obj/tank))
+			Bumped(AM)
 
 /obj/item/mine/proc/trigger(atom/movable/AM)
 	if (world.time < nextCanExplode)
@@ -126,17 +135,24 @@
 		O << "<font color='red'>[AM] triggered the [src]!</font>"
 	triggered = TRUE
 	visible_message("<span class = 'red'><b>Click!</b></span>")
-	explosion(get_turf(src),-1,1,3)
-	spawn(0)
+	if (atmine == FALSE)
+		explosion(get_turf(src),-1,1,3)
+	else
+		explosion(get_turf(src),2,2,6)
+		spawn(3)
+			explosion(get_turf(src),2,2,6)
+		spawn(6)
+			explosion(get_turf(src),2,2,6)
+	spawn(9)
 		if (src)
-			del(src)
+			qdel(src)
 
 //TYPES//
 //Explosive
 /obj/item/mine/proc/explosive(obj)
 	explosion(loc,-1,1,3)
 	spawn(0)
-		del(src)
+		qdel(src)
 
 /obj/item/mine/betty
 	name = "S-mine 'Bouncing Betty'"
@@ -148,6 +164,20 @@
 	throwforce = 5.0
 	throw_range = 6
 	throw_speed = 3
+//	unacidable = TRUE
+	anchored = FALSE
+
+/obj/item/mine/tm46
+	name = "TM-46 Anti-tank mine"
+	desc = "Russian anti-tank mine. Won't be triggered by people."
+	icon = 'icons/obj/grenade.dmi'
+	icon_state = "tm46"
+	force = 5.0
+	w_class = 2.0
+	throwforce = 5.0
+	throw_range = 2
+	throw_speed = 2
+	atmine = TRUE
 //	unacidable = TRUE
 	anchored = FALSE
 
