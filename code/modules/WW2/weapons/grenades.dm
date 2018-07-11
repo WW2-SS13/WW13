@@ -16,9 +16,10 @@
 
 /obj/item/weapon/grenade/explosive/kamikaze
 	name = "Kamikaze Charge"
-	icon_state = "rgd"
-	explosion_size = 10
+	icon_state = "kamikaze"
+	explosion_size = 6
 	num_fragments = 80
+	big_bomb = TRUE
 
 /obj/item/weapon/grenade/explosive/f1
 	name = "f1 grenade"

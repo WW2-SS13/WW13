@@ -5,6 +5,8 @@
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall/)
 	respawn_delay = 2400
 	squad_spawn_locations = FALSE
+	min_autobalance_players = 70
+	reinforcements = FALSE
 	supply_points_per_tick = list(
 		USA = 1.00,
 		JAPAN = 1.50)
@@ -26,6 +28,7 @@
 		"Blood On the Risers(Gory Gory):1" = 'sound/music/gory.ogg',
 		"Battotai:1" = 'sound/music/battotai.ogg',
 		"American March:1" = 'sound/music/american_march.ogg',
+		"Marine's Hymn (Halls of Montezuma):1" = 'sound/music/montezuma.ogg',
 		)
 	meme = FALSE
 	battle_name = "Battle of Peleliu"

@@ -357,6 +357,8 @@ var/list/vocal_emotes = list(
 							playsound(get_turf(src), "charge_JAPAN", 100)
 						if (faction_text == USA)
 							playsound(get_turf(src), "charge_USA", 100)
+						if (faction_text == POLISH_INSURGENTS)
+							playsound(get_turf(src), "charge_POLISH_INSURGENTS", 100)
 					else
 						message = "makes a weak noise."
 						m_type = 2

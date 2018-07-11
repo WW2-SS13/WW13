@@ -153,6 +153,8 @@ var/list/charge_sounds_eng = list(
 	'sound/effects/emotes/charge_eng.ogg')
 var/list/charge_sounds_jap = list(
 	'sound/effects/emotes/charge_jap.ogg')
+var/list/charge_sounds_pol = list(
+	'sound/effects/emotes/charge_pol.ogg')
 
 // pain, etc sounds from Interbay
 
@@ -346,6 +348,8 @@ var/const/FALLOFF_SOUNDS = 0.5
 				soundin = pick(charge_sounds_sov)
 			if ("charge_PARTISAN")
 				soundin = pick(charge_sounds_sov)
+			if ("charge_POLISH_INSURGENTS")
+				soundin = pick(charge_sounds_pol)
 			if ("charge_GERMAN")
 				soundin = pick(charge_sounds_ger)
 

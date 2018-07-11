@@ -26,6 +26,7 @@
 	var/fragment_damage = 15
 	var/damage_step = 2      //projectiles lose a fragment each time they travel this distance. Can be a non-integer.
 	var/explosion_size = 2   //size of the center explosion
+	var/big_bomb = FALSE
 
 	//The radius of the circle used to launch projectiles. Lower values mean less projectiles are used but if set too low gaps may appear in the spread pattern
 	var/spread_range = 7
@@ -64,7 +65,10 @@
 
 /obj/item/weapon/grenade/explosive/proc/on_explosion(var/turf/T)
 	if (explosion_size)
-		explosion(T, 1, 1, 2, round(explosion_size/2), FALSE)
+		if (!big_bomb)
+			explosion(T, 1, 1, 2, round(explosion_size/2), FALSE)
+		else
+			explosion(T, 3, 3, 4, round(explosion_size), FALSE)
 
 /obj/item/weapon/grenade/explosive/frag
 	name = "fragmentation grenade"

@@ -249,10 +249,17 @@
 /////////////////////////////JAPAN/////////////////////////
 /obj/item/clothing/under/japuni
 	name = "Japanese Army Uniform"
-	desc = "A standard uniform of the Imperial Japanese Army."
+	desc = "A standard uniform of the Imperial Japanese Army, with the red color of the Infantry."
 	icon_state = "japuni"
 	item_state = "japuni"
 	worn_state = "japuni"
+
+/obj/item/clothing/under/japuni_med
+	name = "Japanese Army Medical Uniform"
+	desc = "A standard uniform of the Imperial Japanese Army, with the dark-green color of the medical corps."
+	icon_state = "japuni_med"
+	item_state = "japuni_med"
+	worn_state = "japuni_med"
 
 /obj/item/clothing/under/japuni_officer
 	name = "Japanese Army Officer Uniform"
@@ -273,9 +280,9 @@
 /obj/item/clothing/under/usuni
 	name = "US Army Uniform"
 	desc = "A standard uniform of the United States Army."
-	icon_state = "USuni"
-	item_state = "USuni"
-	worn_state = "USuni"
+	icon_state = "USuni_green"
+	item_state = "USuni_green"
+	worn_state = "USuni_green"
 
 /obj/item/clothing/under/uscapuni
 	name = "US Army Officer Uniform"
@@ -419,6 +426,12 @@
 	icon_state = "UShelm"
 	item_state = "UShelm"
 
+/obj/item/clothing/head/helmet/ushelm_med
+	name = "US Medical helmet"
+	desc = "A standard US Army helmet, with red cross decals."
+	icon_state = "UShelm_med"
+	item_state = "UShelm_med"
+
 /obj/item/clothing/head/helmet/usmphelm
 	name = "US MP helmet"
 	desc = "A standard US Military Police helmet."
@@ -430,6 +443,12 @@
 	desc = "A standard IJA helmet."
 	icon_state = "japanhelm"
 	item_state = "japanhelm"
+
+/obj/item/clothing/head/helmet/japanhelm_med
+	name = "Japanese medical helmet"
+	desc = "A standard IJA helmet, with a white band and white symbols."
+	icon_state = "japanhelm_med"
+	item_state = "japanhelm_med"
 
 /obj/item/clothing/head/helmet/japmphat
 	name = "Kenpeitai hat"
@@ -858,6 +877,16 @@
 	name = "italian backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "germanpack"
+	item_state_slots = null
+/obj/item/weapon/storage/backpack/japan
+	name = "japanese backpack"
+	desc = "You wear this on your back and put items into it."
+	icon_state = "germanpack"
+	item_state_slots = null
+/obj/item/weapon/storage/backpack/usa
+	name = "american backpack"
+	desc = "You wear this on your back and put items into it."
+	icon_state = "russianpack"
 	item_state_slots = null
 
 //portable rations

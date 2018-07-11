@@ -537,7 +537,7 @@ OTHER
 */
 
 /obj/item/ammo_magazine/a9x39
-	name = "magazine (9x39)"
+	name = "magazine (9x39mm)"
 	icon_state = "9x39"
 	mag_type = MAGAZINE
 	caliber = "a9x39"
@@ -574,6 +574,16 @@ OTHER
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	ammo_type = /obj/item/ammo_casing/c762x63_smg
 	max_ammo = 20
+	multiple_sprites = TRUE
+
+/obj/item/ammo_magazine/c77x58_smg
+	name = "magazine (7.7x58mm)"
+	icon_state = "762x25mm_pps"
+	mag_type = MAGAZINE
+	caliber = "c77x58_smg"
+	matter = list(DEFAULT_WALL_MATERIAL = 1800)
+	ammo_type = /obj/item/ammo_casing/c77x58_smg
+	max_ammo = 30
 	multiple_sprites = TRUE
 
 /////////////////////FLAREGUNS//////////////////////////////////////////
