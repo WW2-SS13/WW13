@@ -154,8 +154,8 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_casing/c763x25mm_mauser
 	desc = "A 7.63x25mm pistol bullet casing."
-	icon_state = "7.63x25mm-bullet"
-	spent_icon = "7.63x25mm-casing"
+	icon_state = "7.63x25m-bullet"
+	spent_icon = "7.63x25m-casing"
 	caliber = "7.63x25mm"
 	weight = 0.0039
 	projectile_type = /obj/item/projectile/bullet/rifle/c763x25mm_mauser
