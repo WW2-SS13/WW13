@@ -122,14 +122,14 @@ WW 2 WEAPONS MAGS N AMMO
 	projectile_type = /obj/item/projectile/bullet/rifle/c45_smg
 
 /obj/item/ammo_casing/c762x63
-	desc = "A 7.62x63 bullet casing."
+	desc = "A 30-06 bullet casing."
 	icon_state = "kclip-bullet"
 	spent_icon = "kclip-casing"
 	caliber = "c762x63"
 	projectile_type = /obj/item/projectile/bullet/rifle/c762x63
 
 /obj/item/ammo_casing/c762x63_smg
-	desc = "A 7.62x63 bullet casing."
+	desc = "A 30-06 bullet casing."
 	icon_state = "kclip-bullet"
 	spent_icon = "kclip-casing"
 	caliber = "c762x63_smg"

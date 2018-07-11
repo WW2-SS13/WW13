@@ -468,7 +468,7 @@
 			src << "<span class = 'red'>Currently this side is locked for joining.</span>"
 		return
 
-	if ((job.is_SS && !SS_forceEnabled) || (job.is_paratrooper && !paratroopers_forceEnabled))
+	if (job.is_paratrooper && !paratroopers_forceEnabled)
 		if (map && map.germans_can_cross_blocks() && map.soviets_can_cross_blocks())
 			src << "<span class = 'red'>This job is not available for joining after the grace period has ended.</span>"
 			return

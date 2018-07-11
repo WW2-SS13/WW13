@@ -36,7 +36,7 @@
 
 
 /obj/item/weapon/storage/firstaid/regular
-	icon_state = "firstaid_2"
+	icon_state = "firstaid2"
 
 	New()
 		..()

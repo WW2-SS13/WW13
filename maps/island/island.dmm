@@ -139,20 +139,20 @@
 "cI" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/road,/area/prishtina/german/bunker{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red1"; name = "Japanese Bunkers"})
 "cJ" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/obj/structure/barbwire,/obj/structure/barbwire{dir = 4},/turf/floor/plating/beach/sand,/area/prishtina/forest{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red4"; name = "Beach"})
 "cK" = (/obj/structure/light/small,/turf/floor/plating/sand,/area/prishtina/forest{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red4"; name = "Beach"})
-"cL" = (/turf/wall/iron{opacity = 0},/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
-"cM" = (/obj/structure/flag/us,/turf/wall/iron{opacity = 0},/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
+"cL" = (/turf/wall/iron{opacity = 0},/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"cM" = (/obj/structure/flag/us,/turf/wall/iron{opacity = 0},/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
 "cN" = (/obj/structure/closet/crate/mg34belt,/turf/floor/plating/road,/area/prishtina/german/bunker{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red1"; name = "Japanese Bunkers"})
 "cO" = (/obj/structure/barbwire,/obj/structure/barbwire{dir = 4; icon_state = "barbwire"; pixel_y = 0; tag = "icon-barbwire (EAST)"},/turf/floor/plating/beach/sand,/area/prishtina/forest{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red4"; name = "Beach"})
-"cP" = (/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
-"cQ" = (/obj/structure/light/small{dir = 1},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
-"cR" = (/obj/effect/landmark{name = "JoinLateRACO"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
-"cS" = (/obj/structure/light/small{dir = 4},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
+"cP" = (/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"cQ" = (/obj/structure/light/small{dir = 1},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"cR" = (/obj/effect/landmark{name = "JoinLateRACO"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"cS" = (/obj/structure/light/small{dir = 4},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
 "cT" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/barbwire{dir = 4; icon_state = "barbwire"; pixel_y = 0; tag = "icon-barbwire (EAST)"},/turf/floor/plating/beach/sand,/area/prishtina/forest{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red4"; name = "Beach"})
-"cU" = (/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
-"cV" = (/obj/effect/landmark{name = "JoinLateRAMP"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
-"cW" = (/obj/structure/light/small{dir = 8},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
-"cX" = (/obj/effect/landmark{name = "JoinLateRASL"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
-"cY" = (/obj/structure/light/small,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
+"cU" = (/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"cV" = (/obj/effect/landmark{name = "JoinLateRAMP"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"cW" = (/obj/structure/light/small{dir = 8},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"cX" = (/turf/wall/iron,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"cY" = (/obj/structure/simple_door/key_door/german/command_intermediate{name = "Landing Craft Command Room"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
 "cZ" = (/turf/wall/iron{name = "landing craft"; opacity = 0},/area/prishtina/soviet/immediate_outside_defenses{base_turf = /turf/floor/plating/beach/water/deep; name = "Landing Crafts"})
 "da" = (/obj/structure/multiz/stairs{dir = 1},/obj/structure/simple_door/key_door/anyone/train{name = "Landing Craft Ramp"},/turf/floor/plating/concrete,/area/prishtina/soviet/immediate_outside_defenses{base_turf = /turf/floor/plating/beach/water/deep; name = "Landing Crafts"})
 "db" = (/turf/floor/plating/beach/water,/area/prishtina/no_mans_land/invisible_wall)
@@ -200,17 +200,17 @@
 "dR" = (/obj/item/ammo_casing/a792x57{dir = 6},/turf/floor/plating/beach/sand,/area/prishtina/forest{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red4"; name = "Beach"})
 "dS" = (/obj/effect/step_trigger/teleporter/lcraft{name = "lcraft55"; teleport_x = 89; teleport_x_offset = 91; teleport_y = 9; teleport_y_offset = 14; teleport_z = 3; teleport_z_offset = 3},/turf/floor/plating/concrete,/area/prishtina/soviet/immediate_outside_defenses{base_turf = /turf/floor/plating/beach/water/deep; name = "Landing Crafts"})
 "dT" = (/obj/structure/flag/us,/turf/wall/iron{name = "landing craft"; opacity = 0},/area/prishtina/soviet/immediate_outside_defenses{base_turf = /turf/floor/plating/beach/water/deep; name = "Landing Crafts"})
-"dU" = (/obj/structure/sign/n1,/turf/wall/iron{name = "landing craft"; opacity = 0},/area/prishtina/soviet/immediate_outside_defenses{base_turf = /turf/floor/plating/beach/water/deep; name = "Landing Crafts"})
+"dU" = (/obj/structure/table/iron,/obj/structure/light/small{dir = 1},/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
 "dV" = (/obj/structure/sign/n2,/turf/wall/iron{name = "landing craft"; opacity = 0},/area/prishtina/soviet/immediate_outside_defenses{base_turf = /turf/floor/plating/beach/water/deep; name = "Landing Crafts"})
 "dW" = (/obj/structure/sign/n3,/turf/wall/iron{name = "landing craft"; opacity = 0},/area/prishtina/soviet/immediate_outside_defenses{base_turf = /turf/floor/plating/beach/water/deep; name = "Landing Crafts"})
 "dX" = (/obj/structure/sign/n4,/turf/wall/iron{name = "landing craft"; opacity = 0},/area/prishtina/soviet/immediate_outside_defenses{base_turf = /turf/floor/plating/beach/water/deep; name = "Landing Crafts"})
 "dY" = (/obj/structure/sign/n5,/turf/wall/iron{name = "landing craft"; opacity = 0},/area/prishtina/soviet/immediate_outside_defenses{base_turf = /turf/floor/plating/beach/water/deep; name = "Landing Crafts"})
 "dZ" = (/obj/structure/simple_door/key_door/anyone/train{name = "Landing Craft Ramp"},/turf/wall/iron{icon = 'icons/obj/doors/material_doors.dmi'; icon_state = "metal"; name = "Landing Craft Ramp door"; opacity = 0},/area/prishtina/soviet/immediate_outside_defenses{base_turf = /turf/floor/plating/beach/water/deep; name = "Landing Crafts"})
 "ea" = (/obj/structure/anti_tank,/turf/floor/plating/beach/water,/area/prishtina/no_mans_land/invisible_wall)
-"eb" = (/obj/structure/simple_door/key_door/german/command_intermediate{name = "Landing Craft Command Room"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
-"ec" = (/turf/floor/plating/concrete,/area/prishtina/soviet/lift/upper{base_turf = /turf/floor/plating/beach/water/deep; name = "LC #1"})
+"eb" = (/obj/structure/table/iron,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"ec" = (/obj/structure/railing{dir = 8},/obj/structure/railing{dir = 4},/turf/floor/plating/concrete,/area/prishtina/no_mans_land/invisible_wall)
 "ed" = (/turf/floor/plating/concrete,/area/prishtina/soviet/immediate_outside_defenses{base_turf = /turf/floor/plating/beach/water/deep; name = "Landing Crafts"})
-"ee" = (/obj/lift_lever/linked/soviet,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
+"ee" = (/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
 "ef" = (/obj/map_metadata/island,/turf/floor/plating/beach/water/deep,/area/prishtina/void{base_turf = /turf/floor/plating/beach/water/deep; capturable = 0; icon_state = "blue1"; location = 1; name = "Sea"})
 "eg" = (/obj/structure/railing,/obj/structure/railing{dir = 8},/obj/structure/railing{dir = 4},/turf/floor/dirt,/area/prishtina/forest{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red4"; name = "Beach"})
 "eh" = (/obj/effect/decal/cleanable/blood/tracks,/turf/floor/plating/beach/sand,/area/prishtina/forest{base_turf = /turf/floor/plating/beach/water; capturable = 0; icon_state = "red1"; name = "Shallow Water"})
@@ -256,12 +256,12 @@
 "eV" = (/obj/structure/sign/n3,/turf/wall/iron{name = "landing craft"; opacity = 0},/area/prishtina/forest{base_turf = /turf/floor/plating/beach/water/deep; capturable = 0; icon_state = "red2"; name = "Deep Water"})
 "eW" = (/obj/structure/sign/n4,/turf/wall/iron{name = "landing craft"; opacity = 0},/area/prishtina/forest{base_turf = /turf/floor/plating/beach/water/deep; capturable = 0; icon_state = "red2"; name = "Deep Water"})
 "eX" = (/obj/map_metadata/island,/turf/floor/plating/beach/water/deep,/area/prishtina/forest{base_turf = /turf/floor/plating/beach/water/deep; capturable = 0; icon_state = "red2"; name = "Deep Water"})
-"eY" = (/obj/structure/sign/n1,/turf/wall/iron{opacity = 0},/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
-"eZ" = (/turf/floor/plating/concrete,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
-"fa" = (/obj/structure/sign/n2,/turf/wall/iron{opacity = 0},/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
-"fb" = (/obj/structure/sign/n3,/turf/wall/iron{opacity = 0},/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
-"fc" = (/obj/structure/sign/n4,/turf/wall/iron{opacity = 0},/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
-"fd" = (/obj/structure/sign/n5,/turf/wall/iron{opacity = 0},/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
+"eY" = (/obj/effect/landmark{name = "JoinLateRASL"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"eZ" = (/obj/lift_lever/soviet,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"fa" = (/obj/lift_lever/linked/soviet,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"fb" = (/obj/structure/light/small,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"fc" = (/obj/structure/sign/n1,/turf/wall/iron{opacity = 0},/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"fd" = (/obj/structure/railing{dir = 4},/obj/structure/railing{dir = 8},/turf/floor/plating/concrete,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
 "fe" = (/turf/floor/plating/beach/water/deep,/area/prishtina/no_mans_land/invisible_wall)
 "ff" = (/turf/floor/plating/concrete,/area/prishtina/no_mans_land/invisible_wall)
 "fg" = (/obj/structure/sign/flag/japanese,/turf/wall/rockwall,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; icon_state = "blue3"; name = "Japanese Cave HQ"})
@@ -383,31 +383,149 @@
 "hs" = (/obj/structure/table/iron,/obj/item/weapon/folder,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; icon_state = "blue3"; name = "Japanese Cave HQ"})
 "ht" = (/obj/structure/table/iron,/obj/item/weapon/phone,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; icon_state = "blue3"; name = "Japanese Cave HQ"})
 "hu" = (/obj/structure/table/rack,/obj/item/weapon/gun/projectile/submachinegun/type100,/obj/item/weapon/gun/projectile/submachinegun/type100,/obj/item/ammo_magazine/c8mmnambu_smg,/obj/item/ammo_magazine/c8mmnambu_smg,/obj/item/ammo_magazine/c8mmnambu_smg,/obj/item/ammo_magazine/c8mmnambu_smg,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; icon_state = "blue3"; name = "Japanese Cave HQ"})
-"hv" = (/obj/structure/table/iron,/obj/structure/light/small{dir = 1},/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
-"hw" = (/obj/structure/table/iron,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
-"hx" = (/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
-"hy" = (/obj/lift_lever/soviet,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; name = "Ship"})
-"hz" = (/obj/lift_controller/up/soviet/lc,/turf/floor/plating/concrete,/area/prishtina/soviet/lift/upper{base_turf = /turf/floor/plating/beach/water/deep; name = "LC #1"})
+"hv" = (/obj/structure/sign/n2,/turf/wall/iron{opacity = 0},/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"hw" = (/turf/floor/plating/concrete,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"hx" = (/obj/structure/sign/n3,/turf/wall/iron{opacity = 0},/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"hy" = (/obj/structure/sign/n4,/turf/wall/iron{opacity = 0},/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"hz" = (/turf/wall/iron{name = "landing craft"; opacity = 0},/area/prishtina/soviet/lift/upper{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "LC #1"})
 "hA" = (/obj/structure/railing{dir = 4},/obj/structure/railing{dir = 8},/obj/structure/railing,/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
 "hB" = (/obj/effect/decal/cleanable/blood/tracks,/turf/floor/plating/beach/water,/area/prishtina/no_mans_land/invisible_wall)
 "hC" = (/turf/floor/plating/beach/sand,/area/prishtina/no_mans_land/invisible_wall)
-"hD" = (/turf/floor/plating/concrete,/area/prishtina/soviet/lift/lower{base_turf = /turf/floor/plating/beach/water/deep; name = "LC #1"})
-"hE" = (/obj/lift_controller/down/soviet/lc,/turf/floor/plating/concrete,/area/prishtina/soviet/lift/lower{base_turf = /turf/floor/plating/beach/water/deep; name = "LC #1"})
+"hD" = (/obj/structure/sign/n5,/turf/wall/iron{opacity = 0},/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"hE" = (/turf/floor/plating/road,/area/prishtina/soviet/lift/upper{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "LC #1"})
+"hF" = (/obj/lift_controller/up/soviet/lc,/turf/floor/plating/road,/area/prishtina/soviet/lift/upper{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "LC #1"})
+"hG" = (/turf/wall/iron{name = "landing craft"; opacity = 0},/area/prishtina/soviet/lift/lower{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "LC #1"})
+"hH" = (/obj/structure/multiz/stairs{dir = 1},/turf/floor/plating/concrete,/area/prishtina/soviet/lift/upper{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "LC #1"})
+"hI" = (/turf/floor/plating/concrete,/area/prishtina/soviet/lift/lower{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "LC #1"})
+"hJ" = (/obj/lift_controller/down/soviet/lc,/turf/floor/plating/concrete,/area/prishtina/soviet/lift/lower{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "LC #1"})
+"hK" = (/obj/structure/sign/flag/usa,/turf/wall/iron{name = "landing craft"; opacity = 0},/area/prishtina/soviet/lift/lower{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "LC #1"})
+"hL" = (/obj/structure/sign/n1,/turf/wall/iron{name = "landing craft"; opacity = 0},/area/prishtina/soviet/lift/lower{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "LC #1"})
+"hM" = (/obj/structure/light/small{dir = 8},/turf/floor/plating/road,/area/prishtina/soviet/lift/upper{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "LC #1"})
+"hN" = (/obj/structure/light/small{dir = 4},/turf/floor/plating/road,/area/prishtina/soviet/lift/upper{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "LC #1"})
+"hO" = (/obj/structure/sign/flag/usa,/turf/wall/iron{name = "landing craft"; opacity = 0},/area/prishtina/soviet/lift/upper{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "LC #1"})
+"hP" = (/obj/structure/sign/n1,/turf/wall/iron{name = "landing craft"; opacity = 0},/area/prishtina/soviet/lift/upper{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "LC #1"})
+"hQ" = (/obj/structure/multiz/ladder/ww2{area_id = "down2"},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
+"hR" = (/obj/structure/railing{dir = 8},/obj/structure/railing{dir = 4},/turf/floor/plating/concrete,/area/prishtina/void{base_turf = /turf/floor/plating/beach/water/deep; capturable = 0; icon_state = "blue1"; location = 1; name = "Sea"})
+"hS" = (/obj/structure/multiz/ladder/ww2{area_id = "down1"},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
+"hT" = (/obj/structure/multiz/ladder/ww2{area_id = "down3"},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
+"hU" = (/obj/structure/multiz/ladder/ww2{area_id = "down5"},/turf/floor/wood_broken,/area/prishtina/houses)
+"hV" = (/obj/structure/barricade,/obj/structure/barbwire{dir = 4},/turf/floor/plating/beach/sand,/area/prishtina/forest{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red4"; name = "Beach"})
+"hW" = (/obj/structure/multiz/ladder/ww2{area_id = "down4"},/turf/floor/wood_broken,/area/prishtina/houses)
+"hX" = (/obj/structure/multiz/ladder/ww2{area_id = "down6"; icon = 'icons/obj/wild.dmi'; icon_state = "small_bush"; name = "hidden ladder"},/turf/floor/plating/beach/sand,/area/prishtina/forest{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red4"; name = "Beach"})
+"hY" = (/turf/wall/rockwall,/area/prishtina/void/caves)
+"hZ" = (/turf/floor/dirt,/area/prishtina/void/caves)
+"ia" = (/obj/structure/light/small/red{dir = 1},/turf/floor/dirt,/area/prishtina/void/caves)
+"ib" = (/obj/structure/multiz/ladder/ww2/up{area_id = "down2"},/turf/floor/dirt,/area/prishtina/void/caves)
+"ic" = (/obj/structure/multiz/ladder/ww2/up{area_id = "down1"},/turf/floor/dirt,/area/prishtina/void/caves)
+"id" = (/obj/structure/multiz/ladder/ww2/up{area_id = "down3"},/turf/floor/dirt,/area/prishtina/void/caves)
+"ie" = (/obj/structure/multiz/ladder/ww2/up{area_id = "down5"},/turf/floor/dirt,/area/prishtina/void/caves)
+"if" = (/obj/structure/multiz/ladder/ww2/up{area_id = "down4"},/turf/floor/dirt,/area/prishtina/void/caves)
+"ig" = (/obj/structure/multiz/ladder/ww2/up{area_id = "down6"},/turf/floor/dirt,/area/prishtina/void/caves)
+"ih" = (/obj/structure/sign/n1,/turf/wall/iron,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"ii" = (/obj/structure/sign/n2,/turf/wall/iron,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"ij" = (/obj/structure/sign/n3,/turf/wall/iron,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"ik" = (/obj/structure/sign/n4,/turf/wall/iron,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"il" = (/obj/structure/sign/n5,/turf/wall/iron,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"im" = (/turf/wall/iron,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"in" = (/obj/structure/flag/us,/turf/wall/iron,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"io" = (/obj/structure/light/small{dir = 1},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"ip" = (/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iq" = (/obj/structure/sign/flag/usa,/turf/wall/iron,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"ir" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/medical,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"is" = (/obj/structure/light/small{dir = 1},/obj/structure/bed/padded,/obj/item/weapon/bedsheet/medical,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"it" = (/obj/structure/multiz/ladder/ww2{area_id = "ship2"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iu" = (/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iv" = (/obj/structure/light/small{dir = 1},/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iw" = (/obj/structure/sign/nosmoking_1,/turf/wall/iron,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"ix" = (/obj/structure/light/small{dir = 4},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iy" = (/obj/structure/table/iron,/obj/item/weapon/storage/firstaid/surgery,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iz" = (/obj/structure/simple_door/key_door/anyone{name = "Sleeping Quarters"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iA" = (/obj/structure/simple_door/key_door/soviet/command_intermediate{name = "Military Police"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iB" = (/obj/structure/simple_door/key_door/anyone{name = "Medical"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iC" = (/obj/item/weapon/bedsheet/blue,/obj/structure/bed,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iD" = (/obj/structure/light/small{dir = 1},/obj/item/weapon/bedsheet/blue,/obj/structure/bed,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iE" = (/obj/structure/multiz/ladder/ww2{area_id = "ship1"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iF" = (/obj/structure/light/small,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iG" = (/obj/structure/simple_door/key_door/anyone{name = "Canteen"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iH" = (/obj/structure/simple_door/key_door/anyone{name = "Engineering"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iI" = (/obj/structure/simple_door/key_door/soviet/command_intermediate{name = "Storage"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iJ" = (/obj/structure/multiz/ladder/ww2{area_id = "ship3"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iK" = (/obj/structure/light/small,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iL" = (/obj/lift_lever/linked/soviet,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
+"iM" = (/obj/structure/light/small{dir = 1},/obj/item/weapon/stool/prison,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iN" = (/obj/item/weapon/stool/prison,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iO" = (/obj/structure/barricade/steel,/obj/structure/barbwire{dir = 4},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iP" = (/obj/structure/optable,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iQ" = (/obj/structure/curtain/medical,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iR" = (/obj/structure/closet/crate/medical,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iS" = (/obj/structure/light/small{dir = 1},/obj/structure/table/iron,/obj/item/weapon/storage/firstaid/adv,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iT" = (/obj/item/weapon/mop,/obj/item/weapon/reagent_containers/glass/bucket,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iU" = (/obj/structure/light/small{dir = 1},/obj/structure/table/iron,/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iV" = (/obj/structure/sink/kitchen,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iW" = (/obj/structure/table/iron,/obj/item/weapon/material/ashtray,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,/obj/item/weapon/flame/lighter,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iX" = (/obj/structure/simple_door/key_door/soviet/command_intermediate{name = "Prison Cell #1"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iY" = (/obj/structure/bed/chair/wood/red,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iZ" = (/obj/structure/light/small{dir = 8},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"ja" = (/obj/structure/table/iron,/obj/item/weapon/storage/firstaid,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jb" = (/obj/structure/bed/chair/wood,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jc" = (/obj/structure/table/iron,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jd" = (/obj/item/weapon/reagent_containers/glass/bucket,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"je" = (/obj/structure/closet,/obj/item/weapon/storage/backpack/italy{name = "US Army backpack"},/obj/item/weapon/storage/backpack/italy{name = "US Army backpack"},/obj/item/weapon/storage/backpack/italy{name = "US Army backpack"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jf" = (/obj/structure/table/rack,/obj/item/flashlight,/obj/item/flashlight,/obj/item/flashlight,/obj/item/flashlight,/obj/item/flashlight,/obj/item/flashlight,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jg" = (/obj/structure/table/rack,/obj/item/weapon/gauze_pack/gauze,/obj/item/weapon/gauze_pack/gauze,/obj/item/weapon/gauze_pack/gauze,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jh" = (/obj/structure/table/rack,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"ji" = (/obj/structure/table/iron,/obj/item/weapon/melee/classic_baton/MP/usa,/obj/item/weapon/melee/classic_baton/MP/usa,/obj/item/weapon/storage/box/handcuffs,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jj" = (/obj/structure/table/iron,/obj/item/weapon/storage/firstaid/combat,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jk" = (/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jl" = (/obj/structure/table/wood,/obj/item/trash/snack_bowl,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jm" = (/obj/structure/sign/redcross,/turf/wall/iron,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jn" = (/obj/structure/light/small{dir = 8},/obj/structure/bed/chair/wood{dir = 1},/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jo" = (/obj/structure/bed/chair/wood{dir = 1},/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jp" = (/obj/structure/pot,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jq" = (/obj/structure/light/small{dir = 4},/obj/structure/oven,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jr" = (/obj/structure/light/small{dir = 8},/obj/structure/bed/chair/wood,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"js" = (/obj/structure/light/small{dir = 4},/obj/structure/bed/chair/wood,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jt" = (/obj/structure/closet/crate/flares,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"ju" = (/obj/item/weapon/flammenwerfer_fueltank{desc = "A tank of flamethrower fuel."; name = "flamethrower fuel tank"},/obj/item/weapon/flammenwerfer_fueltank{desc = "A tank of flamethrower fuel."; name = "flamethrower fuel tank"},/obj/item/weapon/flammenwerfer_fueltank{desc = "A tank of flamethrower fuel."; name = "flamethrower fuel tank"},/obj/item/weapon/flammenwerfer_fueltank{desc = "A tank of flamethrower fuel."; name = "flamethrower fuel tank"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jv" = (/obj/item/weapon/storage/backpack/flammenwerfer{name = "flamethrower backpack"},/obj/item/weapon/storage/backpack/flammenwerfer{name = "flamethrower backpack"},/obj/item/weapon/storage/backpack/flammenwerfer{name = "flamethrower backpack"},/obj/item/weapon/storage/backpack/flammenwerfer{name = "flamethrower backpack"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jw" = (/obj/structure/closet/crate/empty{name = "BAR Mags Crate"},/obj/item/ammo_magazine/c762x63_smg,/obj/item/ammo_magazine/c762x63_smg,/obj/item/ammo_magazine/c762x63_smg,/obj/item/ammo_magazine/c762x63_smg,/obj/item/ammo_magazine/c762x63_smg,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jx" = (/obj/structure/closet/crate/gasmasks,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jy" = (/obj/structure/closet/crate/gauze,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jz" = (/obj/structure/closet/crate/rations/soviet_solids,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jA" = (/obj/structure/closet/crate/rations/soviet_meat,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jB" = (/obj/structure/closet/crate/empty{name = "Garand Clips Crate"},/obj/item/ammo_magazine/c762x63,/obj/item/ammo_magazine/c762x63,/obj/item/ammo_magazine/c762x63,/obj/item/ammo_magazine/c762x63,/obj/item/ammo_magazine/c762x63,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jC" = (/obj/structure/table/iron,/obj/item/stack/material/barbwire{amount = 20},/obj/item/stack/material/barbwire{amount = 20},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jD" = (/obj/structure/bed/chair/wood,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jE" = (/obj/item/weapon/storage/toolbox/emergency,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jF" = (/obj/structure/closet/crate/empty{name = "Garand Clips Crate"},/obj/item/ammo_magazine/c762x63,/obj/item/ammo_magazine/c762x63,/obj/item/ammo_magazine/c762x63,/obj/item/ammo_magazine/c762x63,/obj/item/ammo_magazine/c762x63,/obj/item/ammo_magazine/c762x63,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jG" = (/obj/structure/light/small,/obj/item/weapon/bedsheet/blue,/obj/structure/bed,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jH" = (/obj/structure/light/small,/obj/structure/table/iron,/obj/item/stack/material/rope{amount = 50},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jI" = (/obj/structure/table/iron,/obj/item/weapon/wrench,/obj/item/weapon/wrench,/obj/item/weapon/screwdriver,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jJ" = (/obj/structure/table/iron,/obj/item/weapon/wirecutters,/obj/item/weapon/wirecutters/boltcutters,/obj/item/weapon/wirecutters/boltcutters,/obj/item/weapon/wirecutters,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jK" = (/obj/item/weapon/storage/toolbox/mechanical,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jL" = (/obj/structure/light/small,/obj/item/weapon/storage/toolbox/electrical,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jM" = (/obj/structure/light/small,/obj/structure/closet/crate/c45ammo,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jN" = (/obj/structure/closet/crate/bayonets/german,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jO" = (/obj/structure/closet/crate/webbing,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jP" = (/obj/structure/closet/crate/rations/german_solids,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jQ" = (/obj/structure/closet/crate/rations/german_meat,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jR" = (/obj/structure/closet/crate/rations/water,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"jS" = (/obj/structure/light/small,/obj/structure/closet/crate/empty{name = ".45 Mags Crate"},/obj/item/ammo_magazine/c45_smg,/obj/item/ammo_magazine/c45_smg,/obj/item/ammo_magazine/c45_smg,/obj/item/ammo_magazine/c45_smg,/obj/item/ammo_magazine/c45_smg,/obj/item/ammo_magazine/c45_smg,/obj/item/ammo_magazine/c45_smg,/obj/item/ammo_magazine/c45_smg,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 
 (1,1,1) = {"
 aeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeafafafafaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeae
 aeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeafafafafaffIgDaQafaeaeaeaeaeaeaeaeaeaeaeaeaefnfVfZgbaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeae
 aeaeaeaeaeaeaeaehfaeaeaeaeaehfaeaeaeaeaeaeaeaefgfghgfgfghhhihjfhaQaQaQfifjfjaeaeaeaeaeaeaeaeaeaegEgFfjfjfVgEfjfnaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeae
 aeaeaeaeaeaeaeaefkflflgGfmgHgIfoaeaeaeaeaeafaffhhkhlhmhnhobwhoaQbwaQaQfpfqfjfjfjfjfjaeaeaeaefXfjfjfVbLfVbLbLfVgJaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeae
-aeaeaeaeaeaeaefrfjfjfjfmfjfmfmfjfsftaeafafaQaQbMhpbMhpbwaQbwaQaQaQaQaQafaeaeaefjfjfjfjfjaeaeaefVbLfVbLfjbLfVgKaeaeaeaeaeaeaeaeaeaeaefjfjfjfjfjaeaeaeaeaefufufufufvfwaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeae
+aeaeaeaeaeaeaefrfjfjfjfmfjfmfmfjfsftaeafafaQaQbMhpbMhpbwaQbwaQaQaQaQaQafaeaeaefjfjfjfjfjaeaeaefVbLfVbLfjbLfVgKaeaeaeaeaeaeaeaeaeaeaefjfjfjfjhQaeaeaeaeaefufufufufvfwaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeae
 aeaeaeaeaeaeaefxfjfjfyfjfjfjfjfjfjfjfjfpaQaQaQaQaQaQhqaQbwaQfzaQafafafafaeaeaeaeaefqfjfjaeaeaefjbLfVbLfVfZbLgKaeaeaeaeaefjfjfjfjfjfjfjfjfjfjfjfjfjfjftfAfjfjfjfjfjfjfBaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeae
 aeaeaeaeaeaeaefxfjfjfjfmfjfmfmfqaeaeaeafafafafaffzhrhshththuafafaeaeaeaeaeaeaeaeaeaeaefjfjfjaeaefjfjfjbLfVfjfVaeaefjfjfjfjfjfqfjfjfjfjfjfjfjfjfjfjfjfjfjfjfCfDfEfFfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeae
 aeaeaeaeaeaeaefGfjfjfyfjfjfjfjaeaeaeaeaeaeaeaeafafafafafafafafaeaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfjfjfjfjfjfjfjaefjfjfjfqfjfjfjaeaefjfjfjfjfqaeaeaeaeaefHftfAfjfjfjfjfHftfAaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeae
 aeaeaeaeaeaeaeaeaefqfjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfjfjfjfjfjfjfjfjfjaeaeaeaeaeaefjfjfJfKfKaeaeaeaeaeaeaeaefqfjfjfjfjfHftfAaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeae
 aeaeaeaeaeaeaeaeaeaefjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfjfjfjfjfjfjfjfqaeaeaeaeaeaeaefLfjfjfMfjfjfNaeaeaeaeaeaeaeaefHftfAfjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeae
 aeaeaeaeaeaeaeaeaeaefjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfjfqaeaeaeaeaeaeaeaeaeaeaeaeaeaefObTbTfPfjfyfNaeaeaeaeaeaeaeaeaeaefjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeae
-aeaeaeaeaeaeaeaeaeaeaefjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfjfjaecccccngEdFfjfjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefQbTfjfjfMfjfjfNaeaeaeaeaeaeaeaeaeaefjfjfjaeaeaeaefjfjfjfjfjaeaeaeaeaeaeaeaeae
-aeaeaeaeaeaeaeaeaeaeaeaefjfjfjaeaeaeaeaeaeaeaegLgLgMgMgNaefjfjfjfjfjfjfjfjfjfjfjfjfjfjfjaefjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefSbTbTfTfjfjfNaeaeaeaeaeaeaeaeaeaeaefqfjfjfjaefjfjaeaeaefjfjaeaeaeaeaeaeaeae
+aeaeaeaeaeaeaeaeaeaeaefjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfjfjaecccccngEdFhSfjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefQbTfjfjfMfjfjfNaeaeaeaeaeaeaeaeaeaefjfjfjaeaeaeaefjfjfjfjfjaeaeaeaeaeaeaeaeae
+aeaeaeaeaeaeaeaeaeaeaeaefjfjfjaeaeaeaeaeaeaeaegLgLgMgMgNaefjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefSbTbTfTfjfjfNaeaeaeaeaeaeaeaeaeaeaefqfjfjfjaefjfjaeaeaefjfjaeaeaeaeaeaeaeae
 aeaeaefUgOfWaeaeaeaeaeaeaefqfjfjaeaeaeaeaegPgEfjfjfjfjfjgEfjfjfqfjfjfjaeaefqfjfjfjfjfjfjaeaefjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfMfqfNaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfjfjfjaeaeaeaeaefjfjaeaeaeaeaeaeae
 aeaefXbLfjbLfWaeaeaeaeaeaeaefjfjaefjfjfjaegPfjfjfjfjfjfjfjaeaeaeaeaeaeaeaeaeaefjfjfjfjfjaeaefqfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfqfjfjaeaeaeaeaefqfjaeaeaeaeaeae
 aeaefXfjfVfjfVfYaeaeaeaeaeaefjfjfjfjfqfjfjfjfjfjfjfjfjfjgQaeaeaeaeaeaeaeaeaeaefjaeaefqfjfjaeaeaefjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaaaaaaeaaaaaaaaaeaeaeaeaeaeaeaeaeaeaefjaefjfjfjfjaeaeaeaefjaeaeaeaeaeae
@@ -421,27 +539,27 @@ aefZfVbLfjaeaeaeaefjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaaaacacacacacacacaOgg
 aefjbLfVghaeaeaeaefjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaacacacacacacacacacacacacacaBgfaBacacacacajacacacadacacadadacadacadadadacacacacacacahacacacacacacacacajacacacadadadadacacacacacacacajacacacac
 aefRfjfjaeaeaeaefjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaaaaaacacahacacacacacajacacacacadacacacacacacacadadadadadadadadadadadadadacacacacacacacakacacacajacacacacacacacacadadadadacacacacacacacacacacac
 aefqfjaeaeaeaeaefjfjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaacacacacacacacacacacacacacacacadadacadadadadadadadacacacacacacacacacadadacacacacajacacacacacacacacacacacacacacacadadacacacacahacacacacacacacac
-aeaefjaeaefjfjfjfjfqaefjaeaeaeaeaeaaaaaaaeaeaeaeaeaeaeaaaaacacacacacacacacahacacacacacacacadadadacacacacacacacacacacacacacacacacadadacacacacacacacacacacacacacacacahacacadadacacacacacacacacacahacacacac
+aeaehTaeaefjfjfjfjfqaefjaeaeaeaeaeaaaaaaaeaeaeaeaeaeaeaaaaacacacacacacacacahacacacacacacacadadadacacacacacacacacacacacacacacacacadadacacacacacacacacacacacacacacacahacacadadacacacacacacacacacahacacacac
 aeaeaeaefjfqaefjfjaeaefjaeaeaeaeaaaaacaaaaaaaaaaaaaaaaaaacacahacacacacacacacacacacahacacacacadadadacacacacadacacadacacacacacacacadadacacacacacacacacahacacacacacacacacadadacacacacajacacacacacacaiacacac
 aeaeaeaefjaeaaababaeaaabaaaaaaaaaaacacacaaaaacaaaaacacacacacacacacacajacacaiacacacacacacacacadadacacacacacacacaiacacacacahacacacacadadacacacacacacacacacacacacaiacacacacadadacacacacacacacaiacacacacacac
 aaaaaeaefjabgaadabgaaagiaaaaacacacacacacacacacacacacacacacacacacacacahacacacacacacahacacacacadadacacacahahacacaiacacacacacacajacacacadadadacacacacajacacacacacacacacacadadadacacacacacacacacacacacajacac
 acaaaaaaaagcaOadadaaaOaOaOacacacacacacacacacacacacaiacacacacacacacacacacacajahacacacacacacadadacacacacacacacacacajajacacacacacacacacadadadadacacacacacacacacajacacacacadadacacagagalamagalagacacacacacac
-acacacaaaaaOaOadadacacacacacacacaiacajacacajacacacacacacacacacacaiacacakakacacacacacacacacadadacacacacacaiacacacacacacacaiacacacacacacacadadacacacacacacahacacacacahacadacacacagatanaoanatauacacacacahac
+acacacaaaaaOaOadadacacacacacacacaiacajacacajacacacacacacacacacacaiacacakakacacacacacacacacadadacacacacacaiacacacacacacacaiacacacacacacacadadacacacacacacahacacacacahacadacacacaghUanaoanatauacacacacahac
 acacacacacacacbvbSgeacacaiacacacacacacacacacacacacacacacajajacacacacacacacacacacacadacadadadadacacacacacacacajacacacacacacacacacacacacacadacacacacacacaiacacacacacacadadadadadagatauapaqatagacaiacacakac
 acacacaiacacacaBgfadacacacacacacacacacacacacacacacacacacacacajacacacacacacacacacadadadadacacacacacahacacacacacacagagagaragagagacacacacadadacacahacacacacacacacacacacadadadadacagagalagagaDagacacacacacac
 acacacacacacacacacadadacacacahacacacajacacacacacacahacahacacacacacacacacacacacadadadadacacacacacacacacacacacacacagasaxayazaAagacacacacacadacacacacacacacacacacaiacacacadadadacacacacacacaBacacacacacacac
 acacahacacacacacacadadacacacacaiacacacacacacacaiacacacacacacacacacahacacacacacadadadacacacacacacacacacacacahacacalaCapaEaCaGalacadacacacadacacacacacacacacacacajacacacadadacacacacacacacacacacacacacacac
 acacacacahacacacacadacacacacacacacacajacacahacacacacacacacacacacacacacacacacacadadacacacacacacacacacakacacacacacagaCataIauaIagacacahacadadadacacadacacacacgjacacacacacacadadadacacahacacaiacaiacajacacac
-acajacaiacacacacacadacacajacacacacacacacacacacacacacacaiacacacacacacacacacadadadacacaiacacaiacahacacacacacacacacagaNauavaoaEagacacacadadadadadadadacahacagauagagagagagacadadaOaOaOacacacacajacacacacacac
-acacacacacacajacadadacacacacacacahacacajacacacahacacacacacahacacacacacadadacacacacacacacacacacacacacacacacacacacagaggkaPgkaDaRacacadadacacacadadacacacacamavaNglaTaUagadadadaOaVaBacajacacacacakacacacah
-acacacacacacacacacadadacacajacacacacacacacacacacacacacacacacacacadadadadadacacacacacacacacacagagagalagagagagacacacacacadacaBaBacadadacacadacacadadacacacagataugYapaoaPadadadaOaWaYacacacacahahacacacacac
-acacacacajacacacacadadacacacakacacacacacacacacacacacacacacacadadadacacacacacacacacacacacacacagaZbbbcbdbebdagacadacadadadacacadadadacacacacacacacadadacacagagauauagagaggmadacaObfbgacacacacacacacacacacac
-acacacahacacacacajacadadadadacacaiacacacacacacacacacadadadadadacacacacacacacacacacacahacacacagbhbianaobjauaPadadadadadadadadadacagagagagagalagacadadacacacacbkblgngogpgqadadbmaOaOacacacacacacacacacacac
-acacacacaiacacadacadadacacadadadadadacadadacacajacacacadadacacacacacacacacacacajacacacakacacagatavatavanatagadadadadadadadadadadagbnaTbogrgrauacgjadadacacadacacadacacadadadacagagagagagagalagacacacacac
+acajacaiacacacacacadacacajacacacacaccahVachVcaacacacacaiacacacacacacacacacadadadacacaiacacaiacahacacacacacacacacagaNauavaoaEagacacacadadadadadadadacahacagauagagagagagacadadaOaOaOacacacacajacacacacacac
+acacacacacacajacadadacacacacacacahachVaWacbuhVahacacacacacahacacacacacadadacacacacacacacacacacacacacacacacacacacagaggkaPgkaDaRacacadadacacacadadacacacacamavaNglaTaUagadadadaOaVaBacajacacacacakacacacah
+acacacacacacacacacadadacacajacacacachVaWacbuhVacacacacacacacacacadadadadadacacacacacacacacacagagagalagagagagacacacacacadacaBaBacadadacacadacacadadacacacagataugYapaoaPadadadaOaWaYacacacacahahacacacacac
+acacacacajacacacacadadacacacakacacachVbkbvblhVacacacacacacacadadadacacacacacacacacacacacacacagaZbbbcbdbebdagacadacadadadacacadadadacacacacacacacadadacacagagauauagagaggmadacaObfbgacacacacacacacacacacac
+acacacahacacacacajacadadadadacacaiaccahVhVhVcaacacacadadadadadacacacacacacacacacacacahacacacagbhbianaobjauaPadadadadadadadadadacagagagagagalagacadadacacacacbkblgngogpgqadadbmaOaOacacacacacacacacacacac
+acacacacaiacacadacadadacacadadadadadacadadacacajacacacadadacacacacacacacacacacajacacacakacacagatavatavanhWagadadadadadadadadadadagbnaTbogrgrauacgjadadacacadacacadacacadadadacagagagagagagalagacacacacac
 acacacacakacacacadadacacacacacacacacadadadadacadadadadadacacacacaiacacahacacacacaiacacacacacauauamaualamagagacacacadadadadadadadaPavauauatavaggsacadadadadadadadadadadadadacacagbeaTbpazbbauagacacahacac
 acajacacadadadadadacacacacadacacacacacacadadadadadacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacadadadadacacacaggtbqauapatargsacacacadadadguguacadgvadadadadaPavanatapbrauagacacacacac
 acajacadadacacacacacacacaiacacacacacacacadadacacacacacacacacacacacacacacacacacajacacacacacacacacacacacacacacadacahacadadadacacacagagagagagauagbsbtadadadgwadgvgxgvacacacgwacacagatauatauavatagacacacacac
-acacadadacacacacahahacacacahacacacacajacacadadahacacacacacajacahacacacacacacacacacacacacacacacacacacadadadadadadadadadadacacacbubvbvbvbvbvbvbvbgbxadacadgyacacgxacacajacgwacbyawaDagaDagamalagacacacacac
+acacadadacacacacahahacacacahacacacacajacacadadahacacachXacajacahacacacacacacacacacacacacacacacacacacadadadadadadadadadadacacacbubvbvbvbvbvbvbvbgbxadacadgyacacgxacacajacgwacbyawaDagaDagamalagacacacacac
 acacadacacacajacacacacajacacacacacacacacacacadacacacacacacacacacacacacacacacauagagagagacacadadadadadadadadadacacacacadadadadacacbzbAbAbzbAbAbBbCbmacacacgyahacacgzgzacgvgwacaObAbAacbAacacacacacacacajac
 acacadacacacacacacacacacacacacacacbDbDacacacadacacacacahacacaiacacacahacacacauauauatagadacadadacacacacacacacacacgjacacacadadacahacacaiacadacadadacacacacgyacgvgvgAgAacgvgwacacacacacacaiacacacacacacacac
 acadacacbDbDbDbDacacbDbDbDbDacacacbDbDbDacacadacajacacacacacacacacacacacacacagbEbEavaPadadadacacaFaFaFaHaFaJaFaHaFaFaFbFacadacacacacacacacadadacacacacacgygygygygBgCgygwgwacacacgjacacacacacacacahacacac
@@ -554,27 +672,27 @@ dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
 dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
 dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
 dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcMcLcPcPcPcPcPcQcPcPcPcPcPcPcPcPcPcPcQcPcPcPcPcPcPcPcPcPcPcQcPcPcPcPcPcPcPcPcPcPcQcLcLcLcLcLdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcLcLcPcPcPcPcPcPcPcPcPcPcPcRcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcScLcLcLcLcLdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcLcLcPcPcPcPcPcUcUcUcUcPcPcPcPcPcPcPcPcVcPcPcVcVcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcScLcLcLcLcLdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcLcLcWcPcPcPcPcPcPcPcPcPcPcUcUcUcUcPcPcPcPcPcPcPcPcPcPcPcPcPcPcLcLcLebcLcLcLebcLcLcLcPcPcPcPcPcPcPcPcPcPcScLcLcLcLcLcLdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcLcLcPcPcPcPcPcPcPcPcPcRcPcPcPcPcPcPcPcPcUcUcUcUcPcPcPcPcPcPcPcLhvhwhxhxhxhxhxhwhvcLcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcLcMdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcLcLcWcPcPcUcPcPcUcPcPcPcPcUcUcPcPcUcPcPcPcPcPcUcPcPcPcPcPcPcPcLhxhxhxhxhxhxhxhxhxcLcPcPcPcPcPcPcPcPcPcPcScLcLcLcLcLcLdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcLcLcPcPcPcPcPcPcPcPcXcPcPcXcPcPcXcXcPcPcUcUcPcPcPcPcPcPcPcPcPcLhxhxhxhxhxhxhxhxhxcLcPcPcPcPcPcPcScLcLcLcLcLdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcLcLcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcXcPcPcPcPcPcPcPcPcPcPcPcPcLhxhxhxhxhxhxhxhxhxcLcPcPcScLcLcLcLcLdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcMcLcPcPcPcPcPcYcPcPcPcPcPcPcPcPcPcPcYcPcPcPcPcPcPcPcPcPcPcYcPcLhxhxhxhxhxhxhxhxhxcLcLcLcLcLdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcLcLeYeZeYcLcLcLfaeZfacLcLcLfbeZfbcLcLcLfceZfccLcLcLfdeZfdcLcLeYcLfacLfbcLfccLfdcLdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxfefefffefefefefefffefefefefefffefefefefefffefefefefefffedxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxffdxdxdxdxdxffdxdxdxdxdxffdxdxdxdxdxffdxdxdxdxdxffdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxffdxdxdxdxdxffdxdxdxdxdxffdxdxdxdxdxffdxdxdxdxdxffdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxeeffhydxdxdxdxffdxdxdxdxdxffdxdxdxdxdxffdxdxdxdxdxffdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZdadadacZdxcZdadadacZdxcZdadadacZdxcZdadadacZdxcZdadadacZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZecececcZdxcZdcdcdccZdxcZddddddcZdxcZdydydycZdxcZdSdSdScZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZecececcZdxcZdcdcdccZdxcZddddddcZdxcZdydydycZdxcZdSdSdScZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZechzeccZdxcZdcdcdccZdxcZddddddcZdxcZdydydycZdxcZdSdSdScZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZecececcZdxcZdcdcdccZdxcZddddddcZdxcZdydydycZdxcZdSdSdScZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZecececcZdxcZdcdcdccZdxcZddddddcZdxcZdydydycZdxcZdSdSdScZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZecececcZdxcZdcdcdccZdxcZddddddcZdxcZdydydycZdxcZdSdSdScZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdTcZdUcZdTdxdTcZdVcZdTdxdTcZdWcZdTdxdTcZdXcZdTdxdTcZdYcZdTdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcLcLcPcPcPcPcPcPcPcPcPcPcPcRcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcLcPcPcScLcLcLcLcLdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcLcLcPcPcPcPcPcUcUcUcUcPcPcPcPcPcPcPcPcVcPcPcVcVcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcLcPcPcPcPcPcPcScLcLcLcLcLdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcLcLcWcPcPcPcPcPcPcPcPcPcPcUcUcUcUcPcPcPcPcPcPcPcPcPcPcPcPcPcPcXcXcXcYcXcXcXcYcXcXcXcPcPcPcPcPcPcPcPcPcPcScLcLcLcLcLcLdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcLcLcPcPcPcPcPcPcPcPcPcRcPcPcPcPcPcPcPcPcUcUcUcUcPcPcPcPcPcPcPcXdUebeeeeeeeeeeebdUcXcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcLcMdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcLcLcWcPcPcUcPcPcUcPcPcPcPcUcUcPcPcUcPcPcPcPcPcUcPcPcPcPcPcPcPcXeeeeeeeeeeeeeeeeeecXcPcPcPcPcPcPcPcPcPcPcScLcLcLcLcLcLdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcLcLcPcPcPcPcPcPcPcPeYcPcPeYcPcPeYeYcPcPcUcUcPcPcPcPcPcPcPcPcPcXeeeeeeeeeeeeeeeeeecXcPcPcPcPcPcPcScLcLcLcLcLdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcLcLcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPcPeYcPcPcPcPcPcPcPcPcPcPcPcPcXeeeeeeeeeeeeeeeeeecXcPcPcScLcLcLcLcLdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcMcLcPeZcPfacPfbcPcPcPcPcPcPcPcPcPcPfbcPcPcPcPcPcPcPcPcPcPfbcPcXeeeeeeeeeeeeeeeeeecXcLcLcLcLdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcLcLfcfdfccLcLcLhvhwhvcLcLcLhxhwhxcLcLcLhyhwhycLcLcLhDhwhDcLcXihcXiicXijcXikcXilcXdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxfefeecfefefefefefffefefefefefffefefefefefffefefefefefffedxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxecdxdxdxdxdxffdxdxdxdxdxffdxdxdxdxdxffdxdxdxdxdxffdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxecdxdxdxdxdxffdxdxdxdxdxffdxdxdxdxdxffdxdxdxdxdxffdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxhRdxdxdxdxdxffdxdxdxdxdxffdxdxdxdxdxffdxdxdxdxdxffdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxhGhIhIhIhGdxcZdadadacZdxcZdadadacZdxcZdadadacZdxcZdadadacZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxhGhIhIhIhGdxcZdcdcdccZdxcZddddddcZdxcZdydydycZdxcZdSdSdScZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxhGhIhIhIhGdxcZdcdcdccZdxcZddddddcZdxcZdydydycZdxcZdSdSdScZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxhGhIhJhIhGdxcZdcdcdccZdxcZddddddcZdxcZdydydycZdxcZdSdSdScZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxhGhIhIhIhGdxcZdcdcdccZdxcZddddddcZdxcZdydydycZdxcZdSdSdScZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxhGhIhIhIhGdxcZdcdcdccZdxcZddddddcZdxcZdydydycZdxcZdSdSdScZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxhGhIhIhIhGdxcZdcdcdccZdxcZddddddcZdxcZdydydycZdxcZdSdSdScZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxhGhKhLhKhGdxdTcZdVcZdTdxdTcZdWcZdTdxdTcZdXcZdTdxdTcZdYcZdTdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
 dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
 dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
 dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
@@ -601,11 +719,71 @@ dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
 "}
 
 (1,1,3) = {"
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZiahZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZibhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhZhYhYhYhYhYhYhYhYiahZhZhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhZhZhZhZhZiahZhZhZhZhZhZhZhZiahZhZhZhZhZhZhZhZhZhZhZhZhZhZhZiahZhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhZhZhZhZhZichZhZhZhZhZhZhZhZhZhZhZhZhZhZhZhZhZhZhZhZhZhZhZhZhZhZhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhZhZhYhYhYhYhZhZhYhYhZhZhZhZhZhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZiahYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhZhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZiahYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhZhZiahYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhZhZhYhYhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhZhZiahZhZhZhZhZhZhZhZhZhZiahZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZiahYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhYhYhZhYhYhYhYhZhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYiahZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZiahYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZiahYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhZhZiahYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhZidhZhZhZhZhZhZhZiahZhZhZhZhZiahZhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhZhZhYhYhYhYhYhYhZhZhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhYhYhYhYhYhYhYhYhYhY
+hYhYhZiahYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZiahZhZhZhZhZhZhZiahZhZhZhZhZhZhZiaiehZhYhYhYhYhYhYhYhYhYhY
+hYhZhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhZhZhZhYhYhYhYhYhYhZhZhYhYhZhZhYhYhZhZhZhYhYhYhYhYhYhYhYhY
+hYhZhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhZhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYiahZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZiahYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZiahYhYhYhYhYhYhYhYhYhYhYhYhYhYiahZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhZiahYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZiahZhZhZhZhZhYhYhYhYhYhYhZhZhYhYhYhYhYhYhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhZhZhYhYhYhYhYhYhYhZhZhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhYhYhYhZhZhZhZhZhZhZhZiahZhZhZhZhZhZiahZhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhZhZhZhZhZhZhZhZiahZhZhZhZhZhZhZhZhZiahZhZhZhZhZhZhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhYhYhYhYhZifhZhYhYhYhYhYhYhYhYhYhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhYhYhYhYhYhYhYhZhZiahZhYhYhYhYhYhYhZhYhYhYhYhZhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZhZhYhZiahZhZhZhZhZhZhZhZhZhZhZhZiahZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYiahZhZhZhZhZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhZighZhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
+hYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhYhY
 dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
 dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
 dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
 dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
 dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdximimiqimimiqimimimimimimimimimimimimiwimimimimimimimiwimimimimimimimimimimimimimimdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxinimioiCiCiCiCiDimiMiNiNiOipioimiPiQiripirioiRiSiripiripisimitimiTiTiviuiuiuiUiViVimimimimimdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdximimiWipipipipipimipipipiXipiYimiZiQipipipipipipipipipipjaimipimjbjbjbjbjbiujciujdimipipiximimimimimdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdximimjejejfjgipjhimiNiNiNiOipjiimiPiQiripiripjjiyiripiripirimipimjkjljljljkiuiuiuiuimipipipipipipiximimimimimdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdximimimimimimizimimimimimimiAimimimimimimimimimimimimjmiBjmimiximjnjojojojoiujpjpjqimipipipipipipipipipipiximimimimimimdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdximimiEipipiFipiFipipipipiFipiFipipipipiFipiFipipipipiFipiFipipiGiuiuiuiuiuiuiuiuiuimipipipipipipipipipipipipipipipimindxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdximimimimimimizimimimimimimizimimimimimimiHimimimimimimiIimimiximjrjbjbjbjbiujbjbjsimipipipipipipipipipipiximimimimimimdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdximimjejejfjgipjhimipipjhjhipjhimjtipjujvipimjwjxjyjzjAipjBimipimjkjljkjljkiujkjljlimipipipipipipiximimimimimdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdximimiWipipipipipimipipipipipipimjCjDipipjEimipipipipipipjFimipimjojojojojoiujojojoimipipiximimimimimdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxinimiFiCiCiCiCjGimiFipipipipiFimjHjIjJjKjLimjMjNjOjPjQjRjSimiJimiuiuiKiuiuiuiKiuiuimimimimimdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdximimiqimimiqimimimiqimimiqimimimimimimimimimimimimimimimimimimimimimimimimimimimimdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
 dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
 dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
 dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
@@ -625,75 +803,15 @@ dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
 dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
 dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
 dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
-dxdxcZdZdZdZcZdxdxdxdxdxdxdxdxdxdxdxdxdxcZdZdZdZcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZdZdZdZcZdxdxdxdxdxdxdxdx
-dxdxcZhDhDhDcZdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxcZdZdZdZcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZdZdZdZcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdx
-dxdxcZhDhDhDcZdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdx
-dxdxcZhDhEhDcZdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdx
-dxdxcZhDhDhDcZdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdx
-dxdxcZhDhDhDcZdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdx
-dxdxcZhDhDhDcZdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdx
-dxdxdTcZdUcZdTdxdxdxdxdxdxdxdxdxdxdxdxdxdTcZdVcZdTdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdTcZdYcZdTdxdxdxdxdxdxdxdx
+dxdxdxeeeciLdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdx
+dxdxhzhHhHhHhzdxdxdxdxdxdxdxdxdxdxdxdxdxcZdZdZdZcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZdZdZdZcZdxdxdxdxdxdxdxdx
+dxdxhzhEhEhEhzdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxcZdZdZdZcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZdZdZdZcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdx
+dxdxhzhMhEhNhzdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdx
+dxdxhzhEhFhEhzdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdx
+dxdxhzhEhEhEhzdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdx
+dxdxhzhMhEhNhzdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdx
+dxdxhzhEhEhEhzdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdx
+dxdxhzhOhPhOhzdxdxdxdxdxdxdxdxdxdxdxdxdxdTcZdVcZdTdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxcZedededcZdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdTcZdYcZdTdxdxdxdxdxdxdxdx
 dxdxhehedxhehedxdxdxdxdxdxdxdxdxdxdxdxdxhehedxhehedxdxdxdxdxdxdxdxdxdxdxdxdTcZdWcZdTdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdTcZdXcZdTdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxhehehehehedxdxdxdxdxdxdxdx
 dxhehedxhedxhehedxdxdxdxdxdxdxdxdxdxdxhehedxhedxhehedxdxdxdxdxdxdxdxdxdxdxhehedxhehedxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxhehehehehedxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxhehedxhedxhehedxdxdxdxdxdxdx
 dxhehedxhedxhehedxdxdxdxdxdxdxdxdxdxdxhehedxhedxhehedxdxdxdxdxdxdxdxdxdxhehedxhedxhehedxdxdxdxdxdxdxdxdxdxdxdxdxdxhehedxhedxhehedxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxdxhehedxhedxhehedxdxdxdxdxdxdx

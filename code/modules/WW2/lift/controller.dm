@@ -43,6 +43,8 @@
 /obj/lift_controller/down/proc/activate()
 
 	if (world.time < next_activation)
+		if (islc)
+			visible_message("<span class = 'danger'>The landing craft is not ready to move yet.</span>")
 		return
 	if (!islc)
 		next_activation = world.time + 50
@@ -99,9 +101,14 @@
 							pseudoturfs += lpt
 					status = STATUS_LIFT_DOCKED
 	else
+		if (STATUS_LIFT_DOCKED) // going down
+			visible_message("<span class = 'danger'>The landing craft is launching!</span>")
+		if (STATUS_LIFT_AWAY)
+			visible_message("<span class = 'danger'>The landing craft is returning to the ship!</span>")
 		spawn (100)
 			switch (status)
 				if (STATUS_LIFT_DOCKED) // going down
+					visible_message("<span class = 'danger'>The landing craft has arrived.</span>")
 					for (var/turf/lift1_turf in get_area(src))
 						var/turf/lift2_turf = GetBelow(lift1_turf, src)
 						#ifdef LIFT_DEBUG
@@ -113,9 +120,10 @@
 							pseudoturfs -= lpt
 							lpt._Move(lift2_turf)
 							target.pseudoturfs += lpt
-
 					status = STATUS_LIFT_AWAY
+
 				if (STATUS_LIFT_AWAY)
+					visible_message("<span class = 'danger'>The landing craft has arrived.</span>")
 					for (var/turf/lift1_turf in get_area(target))
 						var/turf/lift2_turf = GetAbove(lift1_turf, target)
 						#ifdef LIFT_DEBUG

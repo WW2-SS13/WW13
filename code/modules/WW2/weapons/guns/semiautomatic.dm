@@ -143,7 +143,7 @@
 
 /obj/item/weapon/gun/projectile/semiautomatic/m1garand
 	name = "M1 Garand"
-	desc = "American semi-automatic rifle, standard-issue to Army units. Carries 8 rounds."
+	desc = "American semi-automatic rifle, standard-issue to Army units. Carries 8 30-06 rounds."
 	icon_state = "M1Garand"
 	item_state = "m1garand"
 	w_class = 4
@@ -205,7 +205,7 @@
 
 /obj/item/weapon/gun/projectile/semiautomatic/bar
 	name = "M1918 BAR"
-	desc = "An american Light Machine Gun"
+	desc = "An american Light Machine Gun. Uses 30-06 rounds."
 	icon_state = "bar"
 	item_state = "dp0"
 	load_method = MAGAZINE
