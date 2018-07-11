@@ -30,6 +30,17 @@
 	if (constant == PILLARMEN)
 		return "Pillar Men and Vampires"
 
-	else if (constant == POLISH_INSURGENTS)
+	if (constant == POLISH_INSURGENTS)
 		return "Polish Insurgents"
-	return capitalize(lowertext(constant)) + "s"
+
+	if (constant == SOVIET)
+		return "Allies"
+
+	if (constant == USA)
+		return "Allies"
+
+	if (constant == JAPAN)
+		return "Axis"
+
+	if (constant == GERMAN)
+		return "Axis"

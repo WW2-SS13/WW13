@@ -273,6 +273,8 @@
 	name = "Arisaka Type 99"
 	desc = "Japanese bolt-action rifle chambered in 7.7x58mm cartridges."
 	fire_sound = 'sound/weapons/kar_shot.ogg'
+	ammo_type = /obj/item/ammo_casing/a77x58
+	magazine_type = /obj/item/ammo_magazine/a77x58
 	icon_state = "arisaka"
 	item_state = "arisaka"
 	caliber = "a77x58"

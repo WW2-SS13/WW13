@@ -82,7 +82,7 @@ WW 2 WEAPONS MAGS N AMMO
 	is_box = TRUE
 
 /obj/item/ammo_magazine/c762x63
-	name = "Clip (7.62x63mm)"
+	name = "Clip (30-06)"
 	icon_state = "clip"
 	caliber = "c762x63"
 	matter = list(DEFAULT_WALL_MATERIAL = 360)
@@ -92,7 +92,7 @@ WW 2 WEAPONS MAGS N AMMO
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/garandbox
-	name = "magazine box (7.62x63mm)"
+	name = "magazine box (30-06)"
 	icon_state = "mosin_ammo"
 //	origin_tech = "combat=2"
 	mag_type = MAGAZINE
@@ -567,7 +567,7 @@ OTHER
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/c762x63_smg
-	name = "magazine (762x63)"
+	name = "magazine (30-06)"
 	icon_state = "fg42"
 	mag_type = MAGAZINE
 	caliber = "c762x63_smg"

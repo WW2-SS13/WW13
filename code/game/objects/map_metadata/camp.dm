@@ -28,6 +28,7 @@
 	faction_distribution_coeffs = list(GERMAN = 0.3, SOVIET = 0.70)
 	songs = list(
 		"The Great Escape:1" = 'sound/music/the_great_escape.ogg',
+		"Atrium Carceri - Identity Theft:1" = 'sound/music/ac_identity_theft.ogg',
 		)
 
 /obj/map_metadata/camp/germans_can_cross_blocks()

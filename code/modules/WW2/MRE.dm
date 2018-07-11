@@ -56,6 +56,16 @@
 	desc = "Mama mia!"
 	nutriment_desc = list("spaghett" = 1, "tomat" = 1, "spicia meatball")
 
+/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/american
+	name = "American MRE: Canned Meat"
+	desc = "A package of canned meat and vegetables."
+	nutriment_desc = list("canned meat" = 1, "canned vegetables" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/japanese
+	name = "Japanese MRE: Noodles"
+	desc = "A package of precooked noodles and dry meat."
+	nutriment_desc = list("noodles" = 1, "vegetables" = 1, "dried meat")
+
 // scho ka kola
 
 /obj/item/weapon/reagent_containers/food/snacks/MRE/schokakola

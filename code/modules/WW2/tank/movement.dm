@@ -243,8 +243,12 @@
 			if (istype(o, /obj/item/mine))
 				var/obj/item/mine/mine = o
 				mine.trigger(src)
-				damage += x_percent_of_max_damage(rand(5,7))
-				update_damage_status()
+				if (mine.atmine == TRUE)
+					damage += 400
+					update_damage_status()
+				else
+					damage += x_percent_of_max_damage(rand(5,7))
+					update_damage_status()
 				return FALSE // halt us too
 
 			else if (istype(o, /obj/item/weapon/grenade))
