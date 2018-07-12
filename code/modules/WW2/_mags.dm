@@ -82,12 +82,22 @@ WW 2 WEAPONS MAGS N AMMO
 	is_box = TRUE
 
 /obj/item/ammo_magazine/c762x63
-	name = "Clip (30-06)"
+	name = "Clip (30-06), 8b."
 	icon_state = "clip"
 	caliber = "c762x63"
 	matter = list(DEFAULT_WALL_MATERIAL = 360)
 	ammo_type = /obj/item/ammo_casing/c762x63
 	max_ammo = 8
+	weight = 0.05
+	multiple_sprites = TRUE
+
+/obj/item/ammo_magazine/c762x63_5
+	name = "Clip (30-06), 5b."
+	icon_state = "clip"
+	caliber = "c762x63"
+	matter = list(DEFAULT_WALL_MATERIAL = 360)
+	ammo_type = /obj/item/ammo_casing/c762x63
+	max_ammo = 5
 	weight = 0.05
 	multiple_sprites = TRUE
 
