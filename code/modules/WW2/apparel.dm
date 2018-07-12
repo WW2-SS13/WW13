@@ -293,8 +293,7 @@
 
 /obj/item/clothing/under/usuni3
 	name = "US Army Uniform pants"
-	desc = "A pair of Khaki cotton pants, sometimes you gotta show your other guns to intimidate the enemy...
-And so you don't sweat your balls off."
+	desc = "A pair of Khaki cotton pants, sometimes you gotta show your other guns to intimidate the enemy... And so you don't sweat your balls off."
 	icon_state = "USuni_green3"
 	item_state = "USuni_green3"
 	worn_state = "USuni_green3"

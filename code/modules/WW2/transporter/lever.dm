@@ -38,7 +38,7 @@
 			if (orientation == "NONE")
 				icon_state = "lever_pulled"
 				orientation = "PULLED"
-			for (var/turf/floor/plating/concrete/T in range(2, src))
+			for (var/turf/floor/plating/concrete/T in range(7, src))
 				T.opacity = TRUE
 				T.density = TRUE
 				T.name = "LC Ramp"
