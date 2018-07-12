@@ -279,10 +279,25 @@
 /////////////////////////////USA/////////////////////////
 /obj/item/clothing/under/usuni
 	name = "US Army Uniform"
-	desc = "A standard uniform of the United States Army."
+	desc = "A uniform in a lighter shade of olive, made from cotton. Try not to sweat too much."
 	icon_state = "USuni_green"
 	item_state = "USuni_green"
 	worn_state = "USuni_green"
+
+/obj/item/clothing/under/usuni2
+	name = "US Army Light Uniform"
+	desc = "A uniform lacking its jacket. When you don't want to sweat your balls off and you want to be modest."
+	icon_state = "USuni_green2"
+	item_state = "USuni_green2"
+	worn_state = "USuni_green2"
+
+/obj/item/clothing/under/usuni3
+	name = "US Army Uniform pants"
+	desc = "A pair of Khaki cotton pants, sometimes you gotta show your other guns to intimidate the enemy...
+And so you don't sweat your balls off."
+	icon_state = "USuni_green3"
+	item_state = "USuni_green3"
+	worn_state = "USuni_green3"
 
 /obj/item/clothing/under/uscapuni
 	name = "US Army Officer Uniform"
@@ -302,6 +317,13 @@
 	icon_state = "USparatrooperuni"
 	item_state = "USparatrooperuni"
 	worn_state = "USparatrooperuni"
+
+/obj/item/clothing/under/usuni_mar
+	name = "US Marine Cammo Uniform"
+	desc = "A standard cammo uniform of the United States Marines."
+	icon_state = "USuni_marinecamo"
+	item_state = "USuni_marinecamo"
+	worn_state = "USuni_marinecamo"
 
 //////////////////////////////////////////////////////////
 
@@ -422,21 +444,51 @@
 
 /obj/item/clothing/head/helmet/ushelm
 	name = "US helmet"
-	desc = "A standard US Army helmet."
+	desc = "A simple steel helmet worn by American GIs."
 	icon_state = "UShelm"
 	item_state = "UShelm"
 
 /obj/item/clothing/head/helmet/ushelm_med
 	name = "US Medical helmet"
-	desc = "A standard US Army helmet, with red cross decals."
+	desc = "A simple steel helmet worn by American GIs, with medical decals."
 	icon_state = "UShelm_med"
 	item_state = "UShelm_med"
 
 /obj/item/clothing/head/helmet/ushelm_nco
 	name = "US NCO helmet"
-	desc = "A standard US Army helmet, with a white bar in the back, identifying a NCO."
+	desc = "A simple steel helmet worn by American GIs, with a white bar in the back, identifying a NCO."
 	icon_state = "UShelm_nco"
 	item_state = "UShelm_nco"
+
+/obj/item/clothing/head/helmet/ushelm_2lt
+	name = "US 2Lt. helmet"
+	desc = "A simple steel helmet worn by American GIs, with a the markings of a 2nd Lt. in the front."
+	icon_state = "UShelm_2lt"
+	item_state = "UShelm_2lt"
+
+/obj/item/clothing/head/helmet/ushelm_1lt
+	name = "US 1Lt. helmet"
+	desc = "A simple steel helmet worn by American GIs, with a the markings of a 1nd Lt. in the front."
+	icon_state = "UShelm_1lt"
+	item_state = "UShelm_1lt"
+
+/obj/item/clothing/head/helmet/ushelm_cap
+	name = "US Captain helmet"
+	desc = "A simple steel helmet worn by American GIs, with a the markings of a Captain in the front."
+	icon_state = "UShelm_cap"
+	item_state = "UShelm_cap"
+
+/obj/item/clothing/head/helmet/ushelm_mar
+	name = "US Marines camo helmet"
+	desc = "The regular American M1 but with a frogskin camo cover."
+	icon_state = "UShelm_mar"
+	item_state = "UShelm_mar"
+
+/obj/item/clothing/head/helmet/ushelm_mar_nco
+	name = "US Marines NCO camo helmet"
+	desc = "The regular American M1 but with a frogskin camo cover. It has the markings of a NCO."
+	icon_state = "UShelm_mar_nco"
+	item_state = "UShelm_mar_nco"
 
 /obj/item/clothing/head/helmet/usmphelm
 	name = "US MP helmet"

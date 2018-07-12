@@ -29,46 +29,69 @@
 //function(user)
 	if (world.time < next_activation)
 		next_activation = world.time + 50
+		visible_message("This Landing Craft isn't ready to depart yet.</span>")
 	else
 		next_activation = world.time + 400 //to give it time to reach the destination
+		for (var/mob/m in range(7, src))
+			m.playsound_local(get_turf(m), 'sound/landing_craft.ogg', 100 - get_dist(m, src))
 		if (local == "docked")
 			if (orientation == "NONE")
 				icon_state = "lever_pulled"
 				orientation = "PULLED"
-			for (var/turf/wall/titanium/T in range(2, src))
+			for (var/turf/floor/plating/concrete/T in range(2, src))
 				T.opacity = TRUE
 				T.density = TRUE
-				T.icon = 'icons/obj/doors/material_doors_leonister.dmi'
-				T.icon_state = "morgue"
+				T.name = "LC Ramp"
 			spawn (3)
 				icon_state = "lever_none"
 				orientation = "NONE"
-			spawn (100)
+			spawn (200)
 				for (var/mob/M in range(5, src))
-					M.z = 3
+					if (M.z == 3)
+						M.z = 1
+					else if (M.z == 1)
+						M.z = 3
 				for (var/obj/O in range(5, src))
-					if (O.anchored == FALSE)
-						O.z = 3
+					if ((O.anchored == FALSE) || istype(O, /obj/transport_lever))
+						if (O.z == 3)
+							O.z = 1
+						else if (O.z == 3)
+							O.z = 1
+				spawn(5)
+					for (var/turf/floor/plating/concrete/T in range(7, src))
+						T.opacity = FALSE
+						T.density = FALSE
+						T.name = "LC Ramp"
 			local = "launched"
 		else if (local == "launched")
 			if (orientation == "NONE")
 				icon_state = "lever_pushed"
 				orientation = "PUSHED"
-			for (var/turf/wall/titanium/T in range(2, src))
-				T.opacity = FALSE
-				T.density = FALSE
-				T.icon = 'icons/turf/floors.dmi'
-				T.icon_state = "concrete6"
+			for (var/turf/floor/plating/concrete/T in range(7, src))
+				T.opacity = TRUE
+				T.density = TRUE
+				T.name = "LC Ramp"
 			local = "docked"
 			spawn (3)
 				icon_state = "lever_none"
 				orientation = "NONE"
-			spawn (100)
+			spawn (200)
 				for (var/mob/M in range(5, src))
-					M.z = 2
+					if (M.z == 2)
+						M.z = 3
+					else if (M.z == 3)
+						M.z = 2
 				for (var/obj/O in range(5, src))
-					if (O.anchored == FALSE)
-						O.z = 2
+					if ((O.anchored == FALSE) || istype(O, /obj/transport_lever))
+						if (O.z == 2)
+							O.z = 3
+						else if (O.z == 3)
+							O.z = 2
+				spawn(5)
+					for (var/turf/floor/plating/concrete/T in range(7, src))
+						T.opacity = FALSE
+						T.density = FALSE
+						T.name = "LC Ramp"
 
 
 /obj/transport_lever/proc/function(var/mob/user as mob)

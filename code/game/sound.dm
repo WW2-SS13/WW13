@@ -143,7 +143,11 @@ var/list/sneeze_sounds_female = list(
 	'sound/effects/emotes/female_sneeze2.ogg')
 
 var/list/charge_sounds_ger = list(
-	'sound/effects/emotes/charge_ger.ogg')
+	'sound/effects/emotes/charge_ger.ogg',
+	'sound/effects/emotes/charge_ger2.ogg',
+	'sound/effects/emotes/charge_ger3.ogg',
+	'sound/effects/emotes/charge_ger4.ogg',
+	'sound/effects/emotes/charge_ger5.ogg')
 var/list/charge_sounds_sov = list(
 	'sound/effects/emotes/charge_sov.ogg',
 	'sound/effects/emotes/charge_sov2.ogg',

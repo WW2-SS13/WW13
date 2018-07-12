@@ -588,7 +588,7 @@ OTHER
 
 /obj/item/ammo_magazine/c77x58_smg
 	name = "magazine (7.7x58mm)"
-	icon_state = "762x25mm_pps"
+	icon_state = "type99"
 	mag_type = MAGAZINE
 	caliber = "c77x58_smg"
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)

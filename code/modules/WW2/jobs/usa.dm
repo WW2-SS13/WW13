@@ -163,7 +163,13 @@
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni(H), slot_w_uniform)
+	if (prob(60))
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni(H), slot_w_uniform)
+	else
+		if (prob(60))
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni2(H), slot_w_uniform)
+		else
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni3(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ushelm(H), slot_head)
 //	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german_basic/soldier(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.")
@@ -293,7 +299,7 @@
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni2(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ushelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef/classic(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/m1garand(H), slot_back)
@@ -420,7 +426,10 @@
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni(H), slot_w_uniform)
+	if (prob(75))
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni2(H), slot_w_uniform)
+	else
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni3(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ushelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/bar(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/usa(H), slot_back)
@@ -441,3 +450,97 @@
 
 /datum/job/usa/heavy_weapon/get_keys()
 	return list(new/obj/item/weapon/key/allied)
+
+///////////////////////////////////////MARINES///////////////////////////////////////////////////////////
+/datum/job/usa/marines_squad_leader
+	title = "Marine Sergeant"
+	en_meaning = "Marines Squad Leader"
+	rank_abbreviation = "Sgt"
+	head_position = FALSE
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateRASL"
+	additional_languages = list( "German" = 50, "Japanese" = 15)
+	is_officer = TRUE
+	is_squad_leader = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+
+/datum/job/usa/marines_squad_leader/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni2(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ushelm_mar_nco(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/thompson(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_belt)
+	H.add_note("Role", "You are a <b>[title]</b>. Your job is to lead a squad of marines according to the <b>Captain</b>'s orders.")
+	H.give_radio()
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_LOW)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_MEDIUM_LOW)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+
+/datum/job/usa/marines_squad_leader/update_character(var/mob/living/carbon/human/H)
+	..()
+	H.make_artillery_officer()
+
+/datum/job/usa/squad_leader/get_keys()
+	return list(new/obj/item/weapon/key/allied,
+		new/obj/item/weapon/key/allied/command_intermediate,
+		new/obj/item/weapon/key/allied/medic, new/obj/item/weapon/key/allied/engineer, new/obj/item/weapon/key/allied/QM)
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/usa/marines_soldier
+	title = "Marine Private"
+	en_meaning = "Marines Infantry Soldier"
+	rank_abbreviation = "Pvt"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateRA"
+	allow_spies = TRUE
+	SL_check_independent = TRUE
+	additional_languages = list("German" = 25)
+
+	// AUTOBALANCE
+	min_positions = 2
+	max_positions = 10
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+
+/datum/job/usa/marines_soldier/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
+	if (prob(60))
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni(H), slot_w_uniform)
+	else
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni2(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ushelm_mar(H), slot_head)
+	H.add_note("Role", "You are a <b>[title]</b>, a soldier specialized in amphibious operations. Your mission is to spearhead the American forces and capture the beachhead.")
+	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_HIGH)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_MEDIUM_HIGH)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	if (prob(80))
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/m1garand(H), slot_back)
+	else
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/bar(H), slot_back)
+	return TRUE
+
+/datum/job/usa/marines_soldier/get_keys()
+	return list(new/obj/item/weapon/key/allied)
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -236,8 +236,8 @@
 /obj/item/weapon/gun/projectile/semiautomatic/type99
 	name = "Type 99 LMG"
 	desc = "A japanese Light Machine Gun. Uses 7.7x58mm arisaka rounds."
-	icon_state = "bar"
-	item_state = "dp0"
+	icon_state = "type99"
+	item_state = "type99"
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK
 	w_class = 4
@@ -256,11 +256,11 @@
 /obj/item/weapon/gun/projectile/semiautomatic/type99/update_icon()
 	..()
 	if (ammo_magazine)
-		icon_state = "bar"
-		item_state = "bar0"
+		icon_state = "type99"
+		item_state = "type990"
 	else
-		icon_state = "bar"
-		item_state = "bar0"
+		icon_state = "type99"
+		item_state = "type990"
 	return
 
 /obj/item/weapon/gun/projectile/semiautomatic/stg
