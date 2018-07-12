@@ -58,6 +58,10 @@
 							O.z = 1
 						else if (O.z == 3)
 							O.z = 1
+				if (z == 3)
+					z = 1
+				else
+					z = 3
 				visible_message("The Landing Craft has arrived.</span>")
 				spawn(5)
 					for (var/turf/floor/plating/concrete/T in range(7, src))
@@ -73,11 +77,15 @@
 							else if (M.z == 1)
 								M.z = 3
 						for (var/obj/O in range(5, src))
-							if ((O.anchored == FALSE) || istype(O, /obj/transport_lever))
+							if (O.anchored == FALSE)
 								if (O.z == 3)
 									O.z = 1
 								else if (O.z == 3)
 									O.z = 1
+						if (z == 3)
+							z = 1
+						else
+							z = 3
 			local = "launched"
 		else if (local == "launched")
 			visible_message("The Landing Craft is departing!</span>")
@@ -94,16 +102,20 @@
 				orientation = "NONE"
 			spawn (200)
 				for (var/mob/M in range(5, src))
-					if (M.z == 2)
+					if (M.z == 1)
 						M.z = 3
 					else if (M.z == 3)
-						M.z = 2
+						M.z = 1
 				for (var/obj/O in range(5, src))
-					if ((O.anchored == FALSE) || istype(O, /obj/transport_lever))
-						if (O.z == 2)
+					if (O.anchored == FALSE)
+						if (O.z == 1)
 							O.z = 3
 						else if (O.z == 3)
-							O.z = 2
+							O.z = 1
+				if (z == 3)
+					z = 1
+				else
+					z = 3
 				visible_message("The Landing Craft has arrived.</span>")
 				spawn(5)
 					for (var/turf/floor/plating/concrete/T in range(7, src))
@@ -119,11 +131,15 @@
 							else if (M.z == 1)
 								M.z = 3
 						for (var/obj/O in range(5, src))
-							if ((O.anchored == FALSE) || istype(O, /obj/transport_lever))
+							if (O.anchored == FALSE)
 								if (O.z == 3)
 									O.z = 1
 								else if (O.z == 3)
 									O.z = 1
+						if (z == 3)
+							z = 1
+						else
+							z = 3
 
 
 /obj/transport_lever/proc/function(var/mob/user as mob)
