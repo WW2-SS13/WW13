@@ -14,6 +14,11 @@
 /obj/transport_lever/New()
 	..()
 	lever_list += src
+	for (var/turf/wall/titanium/T in range(2, src))
+		T.opacity = FALSE
+		T.density = FALSE
+		T.icon = 'icons/turf/floors.dmi'
+		T.icon_state = "concrete6"
 
 /obj/transport_lever/Destroy()
 	lever_list -= src
@@ -30,37 +35,40 @@
 			if (orientation == "NONE")
 				icon_state = "lever_pulled"
 				orientation = "PULLED"
-			for (var/obj/transport_controller/down in range(5, src))
-				down.opacity = FALSE
-				down.density = FALSE
-				down.icon = 'icons/obj/doors/material_doors_leonister.dmi'
-				down.icon_state = "morgue"
-				invisibility = 101
+			for (var/turf/wall/titanium/T in range(2, src))
+				T.opacity = TRUE
+				T.density = TRUE
+				T.icon = 'icons/obj/doors/material_doors_leonister.dmi'
+				T.icon_state = "morgue"
 			spawn (3)
 				icon_state = "lever_none"
 				orientation = "NONE"
 			spawn (100)
-				for (var/atom/movable/A in range(5, src))
-					if (A.anchored == FALSE)
-						A.z = 2
+				for (var/mob/M in range(5, src))
+					M.z = 3
+				for (var/obj/O in range(5, src))
+					if (O.anchored == FALSE)
+						O.z = 3
 			local = "launched"
 		else if (local == "launched")
 			if (orientation == "NONE")
 				icon_state = "lever_pushed"
 				orientation = "PUSHED"
-			for (var/obj/transport_controller/down in range(5, src))
-				down.opacity = TRUE
-				down.density = TRUE
-				down.icon = 'icons/obj/doors/material_doors_leonister.dmi'
-				down.icon_state = "morgue"
+			for (var/turf/wall/titanium/T in range(2, src))
+				T.opacity = FALSE
+				T.density = FALSE
+				T.icon = 'icons/turf/floors.dmi'
+				T.icon_state = "concrete6"
 			local = "docked"
 			spawn (3)
-				icon_state = none_state
+				icon_state = "lever_none"
 				orientation = "NONE"
 			spawn (100)
-				for (var/atom/movable/A in range(5, src))
-					if (A.anchored == FALSE)
-						A.z = 3
+				for (var/mob/M in range(5, src))
+					M.z = 2
+				for (var/obj/O in range(5, src))
+					if (O.anchored == FALSE)
+						O.z = 2
 
 
 /obj/transport_lever/proc/function(var/mob/user as mob)

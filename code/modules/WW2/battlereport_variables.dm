@@ -6,6 +6,9 @@ var/list/alive_russians = list()
 var/list/alive_civilians = list()
 var/list/alive_partisans = list()
 var/list/alive_undead = list()
+var/list/alive_polish = list()
+var/list/alive_usa = list()
+var/list/alive_japan = list()
 
 var/list/heavily_injured_germans = list()
 var/list/heavily_injured_italians = list()
@@ -13,6 +16,9 @@ var/list/heavily_injured_russians = list()
 var/list/heavily_injured_civilians = list()
 var/list/heavily_injured_partisans = list()
 var/list/heavily_injured_undead = list()
+var/list/heavily_injured_polish = list()
+var/list/heavily_injured_usa = list()
+var/list/heavily_injured_japan = list()
 
 var/list/dead_germans = list()
 var/list/dead_italians = list()
@@ -20,6 +26,9 @@ var/list/dead_russians = list()
 var/list/dead_civilians = list()
 var/list/dead_partisans = list()
 var/list/dead_undead = list()
+var/list/dead_polish = list()
+var/list/dead_usa = list()
+var/list/dead_japan = list()
 
 var/list/recently_died = list()
 
@@ -54,6 +63,18 @@ var/list/recently_died = list()
 			dead = dead_undead
 			injured = heavily_injured_undead
 			alive = alive_undead
+		if (POLISH_INSURGENTS)
+			dead = dead_polish
+			injured = heavily_injured_polish
+			alive = alive_polish
+		if (USA)
+			dead = dead_usa
+			injured = heavily_injured_usa
+			alive = alive_usa
+		if (JAPAN)
+			dead = dead_japan
+			injured = heavily_injured_japan
+			alive = alive_japan
 
 	return list(alive, dead, injured)
 

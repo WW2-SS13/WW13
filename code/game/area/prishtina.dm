@@ -10,9 +10,9 @@
 /area/prishtina/New()
 	..()
 	if (istype(src, /area/prishtina/german) && !istype(src, /area/prishtina/german/ss_torture_room))
-		name = "(German) [name]"
+		name = "(Axis) [name]"
 	else if (istype(src, /area/prishtina/soviet))
-		name = "(Soviet) [name]"
+		name = "(Allies) [name]"
 	else if (istype(src, /area/prishtina/void/german/ss_train))
 		name = "(Waffen-S.S.) [name]"
 	else if (istype(src, /area/prishtina/german/ss_torture_room))
@@ -29,6 +29,25 @@
  * to slow down dramatically. The forest area reached this limit, but only
  * when there were snow objects, so its been split into 9 separate areas.
 */
+/area/prishtina/island
+	name = "Island"
+	base_turf = /turf/floor/plating/beach/sand
+	icon_state = "purple1"
+
+/area/prishtina/island/beach
+	name = "Beach"
+	base_turf = /turf/floor/plating/beach/sand
+	icon_state = "red4"
+
+/area/prishtina/island/shallow
+	name = "Shallow Water"
+	base_turf = /turf/floor/plating/beach/water
+	icon_state = "blue1"
+
+/area/prishtina/island/sea
+	name = "Sea"
+	base_turf = /turf/floor/plating/beach/water/deep
+	icon_state = "blue2"
 
 /area/prishtina/no_mans_land
 	name = "No Man's Land"
