@@ -10,6 +10,8 @@ var/list/obj/effect/bump_teleporter/BUMP_TELEPORTERS = list()
 	anchored = TRUE
 	density = TRUE
 	opacity = FALSE
+	var/active = TRUE
+	var/timer = 0			//immediate by default
 
 /obj/effect/bump_teleporter/New()
 	..()
@@ -30,5 +32,7 @@ var/list/obj/effect/bump_teleporter/BUMP_TELEPORTERS = list()
 
 	for (var/obj/effect/bump_teleporter/BT in BUMP_TELEPORTERS)
 		if (BT.id == id_target)
-			usr.loc = BT.loc	//Teleport to location with correct id.
+			if (active)
+				spawn(timer)
+					usr.loc = BT.loc	//Teleport to location with correct id.
 			return

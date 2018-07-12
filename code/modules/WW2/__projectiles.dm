@@ -66,6 +66,12 @@
 	penetrating = 2
 	armor_penetration = 100
 
+// TYPE 99 LMG
+/obj/item/projectile/bullet/rifle/c77x58_smg
+	damage = DAMAGE_MEDIUM_HIGH-1
+	penetrating = 2
+	armor_penetration = 100
+
 // MG34
 /obj/item/projectile/bullet/rifle/a792x57_weaker
 	damage = DAMAGE_MEDIUM - 4

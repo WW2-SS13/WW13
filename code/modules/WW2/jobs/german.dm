@@ -508,7 +508,7 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/german(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/material/knife/combat(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/mp40(H), slot_r_hand)
-	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/german(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>, an engineer. Your job is to build forward defenses.")
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_HIGH)

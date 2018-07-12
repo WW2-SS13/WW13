@@ -91,7 +91,7 @@
 		var/obj/item/weapon/storage/belt/keychain/kc = W
 		//var/list/keylist = kc.keys
 
-		if (istype(src, /obj/tank/german))
+		if (istype(src, /obj/tank/german) || istype(src, /obj/tank/opelblitz) || istype(src, /obj/tank/sdkfz251))
 			for (var/obj/item/weapon/key/german/command_intermediate/key in kc.keys)
 				if (istype(key))
 					if (locked == TRUE)
@@ -102,7 +102,7 @@
 						locked = TRUE
 					return FALSE
 
-		else if (istype(src, /obj/tank/soviet))
+		else if (istype(src, /obj/tank/soviet) || (istype(src, /obj/tank/studebacker)))
 			for (var/obj/item/weapon/key/soviet/command_intermediate/key in kc.keys)
 				if (istype(key))
 					if (locked == TRUE)

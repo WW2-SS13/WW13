@@ -335,12 +335,12 @@
 			equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(src), slot_wear_suit)
 
 		spawn (0)
-			if (istype(original_job, /datum/job/soviet))
+			if ((istype(original_job, /datum/job/soviet)) || (istype(original_job, /datum/job/usa)))
 				if (original_job.is_officer)
 					equip_to_slot_or_del(new /obj/item/radio/rbs/command(src), slot_s_store)
 				else
 					equip_to_slot_or_del(new /obj/item/radio/rbs(src), slot_s_store)
-			else if (istype(original_job, /datum/job/german) || istype(original_job, /datum/job/italian))
+			else if ((istype(original_job, /datum/job/german) || istype(original_job, /datum/job/italian)) || (istype(original_job, /datum/job/japanese)))
 				if (original_job.is_SS)
 					if (original_job.is_officer)
 						equip_to_slot_or_del(new /obj/item/radio/feldfu/SS/command(src), slot_s_store)

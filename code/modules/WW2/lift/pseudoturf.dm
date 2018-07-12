@@ -32,13 +32,9 @@ var/turf/floor/plating/under/ref_under_plating = null
 		pixel_y = t.pixel_y
 		dir = t.dir
 	else
-//		icon = 'icons/turf/un.dmi'
-//		icon_state = "un_dark"
-		icon = 'icons/misc/beach.dmi'
-		icon_state = "seadeep"
-		density = 1
-		opacity = 0
-		name = "Deep Water"
+		icon = 'icons/turf/un.dmi'
+		icon_state = "un_dark"
+
 
 	for (var/atom/movable/a in loc)
 		if (istype(a, /obj/structure/wild))

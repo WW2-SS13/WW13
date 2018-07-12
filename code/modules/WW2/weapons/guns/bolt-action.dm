@@ -234,6 +234,43 @@
 	else
 		icon_state = "kar98k"
 
+/obj/item/weapon/gun/projectile/boltaction/springfield
+	name = "M1903 Springfield"
+	desc = "American bolt-action rifle chambered in 30-06 Springfield ammunition. Mostly used as a sniper rifle."
+	icon_state = "springfield"
+	item_state = "kar98k"
+	caliber = "c762x63"
+	fire_sound = 'sound/weapons/kar_shot.ogg'
+	ammo_type = /obj/item/ammo_casing/c762x63
+	magazine_type = /obj/item/ammo_magazine/c762x63_5
+	bolt_safety = TRUE
+	effectiveness_mod = 0.98
+
+/obj/item/weapon/gun/projectile/boltaction/springfield/New()
+	..()
+	weight = 3.9
+
+//This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
+/obj/item/weapon/gun/projectile/boltaction/springfield/update_icon(var/add_scope = FALSE)
+	if (add_scope)
+		if (bolt_open)
+			icon_state = "springfield_scope_open"
+			item_state = "kar98k_scope"
+			return
+		else
+			icon_state = "springfield_scope"
+			item_state = "kar98k_scope"
+			return
+	if (bolt_open)
+		if (!findtext(icon_state, "_open"))
+			icon_state = addtext(icon_state, "_open") //open
+	else if (icon_state == "springfield_scope_open") //closed
+		icon_state = "springfield_scope"
+	else if (icon_state == "springfield_scope")
+		return
+	else
+		icon_state = "springfield"
+
 /obj/item/weapon/gun/projectile/boltaction/carcano
 	name = "Carcano M1891"
 	desc = "Italian made bolt action rifle Carcano Modello 1891. It smells of tomato pasta and gunpowder."

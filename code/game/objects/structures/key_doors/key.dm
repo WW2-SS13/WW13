@@ -11,4 +11,8 @@
 		name = "German [name]"
 	else if (istype(src, /obj/item/weapon/key/soviet))
 		name = "Soviet [name]"
+	else if (istype(src, /obj/item/weapon/key/japan))
+		name = "Japanese [name]"
+	else if (istype(src, /obj/item/weapon/key/allied))
+		name = "Allied [name]"
 	..()

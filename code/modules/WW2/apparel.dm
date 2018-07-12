@@ -249,10 +249,17 @@
 /////////////////////////////JAPAN/////////////////////////
 /obj/item/clothing/under/japuni
 	name = "Japanese Army Uniform"
-	desc = "A standard uniform of the Imperial Japanese Army."
+	desc = "A standard uniform of the Imperial Japanese Army, with the red color of the Infantry."
 	icon_state = "japuni"
 	item_state = "japuni"
 	worn_state = "japuni"
+
+/obj/item/clothing/under/japuni_med
+	name = "Japanese Army Medical Uniform"
+	desc = "A standard uniform of the Imperial Japanese Army, with the dark-green color of the medical corps."
+	icon_state = "japuni_med"
+	item_state = "japuni_med"
+	worn_state = "japuni_med"
 
 /obj/item/clothing/under/japuni_officer
 	name = "Japanese Army Officer Uniform"
@@ -272,10 +279,24 @@
 /////////////////////////////USA/////////////////////////
 /obj/item/clothing/under/usuni
 	name = "US Army Uniform"
-	desc = "A standard uniform of the United States Army."
-	icon_state = "USuni"
-	item_state = "USuni"
-	worn_state = "USuni"
+	desc = "A uniform in a lighter shade of olive, made from cotton. Try not to sweat too much."
+	icon_state = "USuni_green"
+	item_state = "USuni_green"
+	worn_state = "USuni_green"
+
+/obj/item/clothing/under/usuni2
+	name = "US Army Light Uniform"
+	desc = "A uniform lacking its jacket. When you don't want to sweat your balls off and you want to be modest."
+	icon_state = "USuni_green2"
+	item_state = "USuni_green2"
+	worn_state = "USuni_green2"
+
+/obj/item/clothing/under/usuni3
+	name = "US Army Uniform pants"
+	desc = "A pair of Khaki cotton pants, sometimes you gotta show your other guns to intimidate the enemy... And so you don't sweat your balls off."
+	icon_state = "USuni_green3"
+	item_state = "USuni_green3"
+	worn_state = "USuni_green3"
 
 /obj/item/clothing/under/uscapuni
 	name = "US Army Officer Uniform"
@@ -295,6 +316,13 @@
 	icon_state = "USparatrooperuni"
 	item_state = "USparatrooperuni"
 	worn_state = "USparatrooperuni"
+
+/obj/item/clothing/under/usuni_mar
+	name = "US Marine Cammo Uniform"
+	desc = "A standard cammo uniform of the United States Marines."
+	icon_state = "USuni_marinecamo"
+	item_state = "USuni_marinecamo"
+	worn_state = "USuni_marinecamo"
 
 //////////////////////////////////////////////////////////
 
@@ -415,9 +443,51 @@
 
 /obj/item/clothing/head/helmet/ushelm
 	name = "US helmet"
-	desc = "A standard US Army helmet."
+	desc = "A simple steel helmet worn by American GIs."
 	icon_state = "UShelm"
 	item_state = "UShelm"
+
+/obj/item/clothing/head/helmet/ushelm_med
+	name = "US Medical helmet"
+	desc = "A simple steel helmet worn by American GIs, with medical decals."
+	icon_state = "UShelm_med"
+	item_state = "UShelm_med"
+
+/obj/item/clothing/head/helmet/ushelm_nco
+	name = "US NCO helmet"
+	desc = "A simple steel helmet worn by American GIs, with a white bar in the back, identifying a NCO."
+	icon_state = "UShelm_nco"
+	item_state = "UShelm_nco"
+
+/obj/item/clothing/head/helmet/ushelm_2lt
+	name = "US 2Lt. helmet"
+	desc = "A simple steel helmet worn by American GIs, with a the markings of a 2nd Lt. in the front."
+	icon_state = "UShelm_2lt"
+	item_state = "UShelm_2lt"
+
+/obj/item/clothing/head/helmet/ushelm_1lt
+	name = "US 1Lt. helmet"
+	desc = "A simple steel helmet worn by American GIs, with a the markings of a 1nd Lt. in the front."
+	icon_state = "UShelm_1lt"
+	item_state = "UShelm_1lt"
+
+/obj/item/clothing/head/helmet/ushelm_cap
+	name = "US Captain helmet"
+	desc = "A simple steel helmet worn by American GIs, with a the markings of a Captain in the front."
+	icon_state = "UShelm_cap"
+	item_state = "UShelm_cap"
+
+/obj/item/clothing/head/helmet/ushelm_mar
+	name = "US Marines camo helmet"
+	desc = "The regular American M1 but with a frogskin camo cover."
+	icon_state = "UShelm_mar"
+	item_state = "UShelm_mar"
+
+/obj/item/clothing/head/helmet/ushelm_mar_nco
+	name = "US Marines NCO camo helmet"
+	desc = "The regular American M1 but with a frogskin camo cover. It has the markings of a NCO."
+	icon_state = "UShelm_mar_nco"
+	item_state = "UShelm_mar_nco"
 
 /obj/item/clothing/head/helmet/usmphelm
 	name = "US MP helmet"
@@ -430,6 +500,12 @@
 	desc = "A standard IJA helmet."
 	icon_state = "japanhelm"
 	item_state = "japanhelm"
+
+/obj/item/clothing/head/helmet/japanhelm_med
+	name = "Japanese medical helmet"
+	desc = "A standard IJA helmet, with a white band and white symbols."
+	icon_state = "japanhelm_med"
+	item_state = "japanhelm_med"
 
 /obj/item/clothing/head/helmet/japmphat
 	name = "Kenpeitai hat"
@@ -858,6 +934,16 @@
 	name = "italian backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "germanpack"
+	item_state_slots = null
+/obj/item/weapon/storage/backpack/japan
+	name = "japanese backpack"
+	desc = "You wear this on your back and put items into it."
+	icon_state = "germanpack"
+	item_state_slots = null
+/obj/item/weapon/storage/backpack/usa
+	name = "american backpack"
+	desc = "You wear this on your back and put items into it."
+	icon_state = "russianpack"
 	item_state_slots = null
 
 //portable rations

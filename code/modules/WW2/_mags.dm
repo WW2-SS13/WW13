@@ -82,12 +82,22 @@ WW 2 WEAPONS MAGS N AMMO
 	is_box = TRUE
 
 /obj/item/ammo_magazine/c762x63
-	name = "Clip (30-06)"
+	name = "Clip (30-06), 8b."
 	icon_state = "clip"
 	caliber = "c762x63"
 	matter = list(DEFAULT_WALL_MATERIAL = 360)
 	ammo_type = /obj/item/ammo_casing/c762x63
 	max_ammo = 8
+	weight = 0.05
+	multiple_sprites = TRUE
+
+/obj/item/ammo_magazine/c762x63_5
+	name = "Clip (30-06), 5b."
+	icon_state = "clip"
+	caliber = "c762x63"
+	matter = list(DEFAULT_WALL_MATERIAL = 360)
+	ammo_type = /obj/item/ammo_casing/c762x63
+	max_ammo = 5
 	weight = 0.05
 	multiple_sprites = TRUE
 
@@ -537,7 +547,7 @@ OTHER
 */
 
 /obj/item/ammo_magazine/a9x39
-	name = "magazine (9x39)"
+	name = "magazine (9x39mm)"
 	icon_state = "9x39"
 	mag_type = MAGAZINE
 	caliber = "a9x39"
@@ -574,6 +584,16 @@ OTHER
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	ammo_type = /obj/item/ammo_casing/c762x63_smg
 	max_ammo = 20
+	multiple_sprites = TRUE
+
+/obj/item/ammo_magazine/c77x58_smg
+	name = "magazine (7.7x58mm)"
+	icon_state = "type99"
+	mag_type = MAGAZINE
+	caliber = "c77x58_smg"
+	matter = list(DEFAULT_WALL_MATERIAL = 1800)
+	ammo_type = /obj/item/ammo_casing/c77x58_smg
+	max_ammo = 30
 	multiple_sprites = TRUE
 
 /////////////////////FLAREGUNS//////////////////////////////////////////

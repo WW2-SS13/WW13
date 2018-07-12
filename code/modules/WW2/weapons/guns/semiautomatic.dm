@@ -233,7 +233,35 @@
 		item_state = "bar0"
 	return
 
+/obj/item/weapon/gun/projectile/semiautomatic/type99
+	name = "Type 99 LMG"
+	desc = "A japanese Light Machine Gun. Uses 7.7x58mm arisaka rounds."
+	icon_state = "type99"
+	item_state = "type99"
+	load_method = MAGAZINE
+	slot_flags = SLOT_BACK
+	w_class = 4
+	caliber = "c77x58_smg"
+	magazine_type = /obj/item/ammo_magazine/c77x58_smg
+	ammo_type = /obj/item/ammo_casing/c77x58_smg
+	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
 
+	firemodes = list(
+		list(name="semi automatic",	burst=1, burst_delay=0.8, move_delay=2, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6)),
+		list(name="short bursts",	burst=3, burst_delay=1.0, move_delay=3, dispersion = list(0.4, 0.8, 0.8, 0.8, 1.0)),
+		list(name="long bursts",	burst=4, burst_delay=1.2, move_delay=4, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
+		)
+
+
+/obj/item/weapon/gun/projectile/semiautomatic/type99/update_icon()
+	..()
+	if (ammo_magazine)
+		icon_state = "type99"
+		item_state = "type990"
+	else
+		icon_state = "type99"
+		item_state = "type990"
+	return
 
 /obj/item/weapon/gun/projectile/semiautomatic/stg
 	name = "MP-43/B"

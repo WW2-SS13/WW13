@@ -186,6 +186,9 @@
 	var/total_civilians = alive_civilians.len + dead_civilians.len + heavily_injured_civilians.len
 	var/total_partisans = alive_partisans.len + dead_partisans.len + heavily_injured_partisans.len
 	var/total_undead = alive_undead.len + dead_undead.len + heavily_injured_undead.len
+	var/total_polish = alive_polish.len + dead_polish.len + heavily_injured_polish.len
+	var/total_usa = alive_usa.len + dead_usa.len + heavily_injured_usa.len
+	var/total_japan = alive_japan.len + dead_japan.len + heavily_injured_japan.len
 
 	var/mortality_coefficient_german = 0
 	var/mortality_coefficient_italian = 0
@@ -193,6 +196,9 @@
 	var/mortality_coefficient_civilian = 0
 	var/mortality_coefficient_partisan = 0
 	var/mortality_coefficient_undead = 0
+	var/mortality_coefficient_polish = 0
+	var/mortality_coefficient_usa = 0
+	var/mortality_coefficient_japan = 0
 
 	if (dead_germans.len > 0)
 		mortality_coefficient_german = dead_germans.len/total_germans
@@ -212,12 +218,24 @@
 	if (dead_undead.len > 0)
 		mortality_coefficient_undead = dead_undead.len/total_undead
 
+	if (dead_polish.len > 0)
+		mortality_coefficient_polish = dead_polish.len/total_polish
+
+	if (dead_usa.len > 0)
+		mortality_coefficient_usa = dead_usa.len/total_usa
+
+	if (dead_japan.len > 0)
+		mortality_coefficient_japan = dead_japan.len/total_japan
+
 	var/mortality_german = round(mortality_coefficient_german*100)
 	var/mortality_italian = round(mortality_coefficient_italian*100)
 	var/mortality_russian = round(mortality_coefficient_russian*100)
 	var/mortality_civilian = round(mortality_coefficient_civilian*100)
 	var/mortality_partisan = round(mortality_coefficient_partisan*100)
 	var/mortality_undead = round(mortality_coefficient_undead*100)
+	var/mortality_polish = round(mortality_coefficient_polish*100)
+	var/mortality_usa = round(mortality_coefficient_usa*100)
+	var/mortality_japan = round(mortality_coefficient_japan*100)
 
 	var/msg1 = "German Side: [alive_germans.len] alive, [heavily_injured_germans.len] heavily injured or unconscious, [dead_germans.len] deceased. Mortality rate: [mortality_german]%"
 	var/msg2 = "Italian Side: [alive_italians.len] alive, [heavily_injured_italians.len] heavily injured or unconscious, [dead_italians.len] deceased. Mortality rate: [mortality_italian]%"
@@ -225,9 +243,9 @@
 	var/msg4 = "Civilians: [alive_civilians.len] alive, [heavily_injured_civilians.len] heavily injured or unconscious, [dead_civilians.len] deceased. Mortality rate: [mortality_civilian]%"
 	var/msg5 = "Partisans: [alive_partisans.len] alive, [heavily_injured_partisans.len] heavily injured or unconscious, [dead_partisans.len] deceased. Mortality rate: [mortality_partisan]%"
 	var/msg6 = "Undead: [alive_undead.len] alive, [heavily_injured_undead.len] heaily injured or unconscious, [dead_undead.len] deceased. Mortality rate: [mortality_undead]%"
-	var/msg7 = "Polish Side: [alive_undead.len] alive, [heavily_injured_undead.len] heaily injured or unconscious, [dead_undead.len] deceased. Mortality rate: [mortality_undead]%"
-	var/msg8 = "Japanese Side: [alive_undead.len] alive, [heavily_injured_undead.len] heaily injured or unconscious, [dead_undead.len] deceased. Mortality rate: [mortality_undead]%"
-	var/msg9 = "American Side: [alive_undead.len] alive, [heavily_injured_undead.len] heaily injured or unconscious, [dead_undead.len] deceased. Mortality rate: [mortality_undead]%"
+	var/msg7 = "Polish Side: [alive_polish.len] alive, [heavily_injured_polish.len] heaily injured or unconscious, [dead_polish.len] deceased. Mortality rate: [mortality_polish]%"
+	var/msg8 = "American Side: [alive_usa.len] alive, [heavily_injured_usa.len] heaily injured or unconscious, [dead_usa.len] deceased. Mortality rate: [mortality_usa]%"
+	var/msg9 = "Japanese Side: [alive_japan.len] alive, [heavily_injured_japan.len] heaily injured or unconscious, [dead_japan.len] deceased. Mortality rate: [mortality_japan]%"
 
 	if (map && !map.faction_organization.Find(GERMAN))
 		msg1 = null
@@ -272,11 +290,11 @@
 			if (msg6)
 				world << "<font size=3>[msg6]</font>"
 			if (msg7)
-				world << "<font size=3>[msg6]</font>"
+				world << "<font size=3>[msg7]</font>"
 			if (msg8)
-				world << "<font size=3>[msg6]</font>"
+				world << "<font size=3>[msg8]</font>"
 			if (msg9)
-				world << "<font size=3>[msg6]</font>"
+				world << "<font size=3>[msg9]</font>"
 
 			if (shower)
 				message_admins("[key_name(shower)] showed everyone the battle report.")
