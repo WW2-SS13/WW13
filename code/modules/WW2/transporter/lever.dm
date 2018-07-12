@@ -35,6 +35,7 @@
 		for (var/mob/m in range(7, src))
 			m.playsound_local(get_turf(m), 'sound/landing_craft.ogg', 100 - get_dist(m, src))
 		if (local == "docked")
+			visible_message("The Landing Craft is departing!</span>")
 			if (orientation == "NONE")
 				icon_state = "lever_pulled"
 				orientation = "PULLED"
@@ -57,13 +58,29 @@
 							O.z = 1
 						else if (O.z == 3)
 							O.z = 1
+				visible_message("The Landing Craft has arrived.</span>")
 				spawn(5)
 					for (var/turf/floor/plating/concrete/T in range(7, src))
 						T.opacity = FALSE
 						T.density = FALSE
 						T.name = "LC Ramp"
+				spawn (400)
+					if (z == 1)
+						visible_message("The Landing Craft is returning!</span>")
+						for (var/mob/M in range(5, src))
+							if (M.z == 3)
+								M.z = 1
+							else if (M.z == 1)
+								M.z = 3
+						for (var/obj/O in range(5, src))
+							if ((O.anchored == FALSE) || istype(O, /obj/transport_lever))
+								if (O.z == 3)
+									O.z = 1
+								else if (O.z == 3)
+									O.z = 1
 			local = "launched"
 		else if (local == "launched")
+			visible_message("The Landing Craft is departing!</span>")
 			if (orientation == "NONE")
 				icon_state = "lever_pushed"
 				orientation = "PUSHED"
@@ -87,11 +104,26 @@
 							O.z = 3
 						else if (O.z == 3)
 							O.z = 2
+				visible_message("The Landing Craft has arrived.</span>")
 				spawn(5)
 					for (var/turf/floor/plating/concrete/T in range(7, src))
 						T.opacity = FALSE
 						T.density = FALSE
 						T.name = "LC Ramp"
+				spawn (400)
+					if (z == 1)
+						visible_message("The Landing Craft is returning!</span>")
+						for (var/mob/M in range(5, src))
+							if (M.z == 3)
+								M.z = 1
+							else if (M.z == 1)
+								M.z = 3
+						for (var/obj/O in range(5, src))
+							if ((O.anchored == FALSE) || istype(O, /obj/transport_lever))
+								if (O.z == 3)
+									O.z = 1
+								else if (O.z == 3)
+									O.z = 1
 
 
 /obj/transport_lever/proc/function(var/mob/user as mob)
