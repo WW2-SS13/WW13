@@ -117,7 +117,7 @@
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/usnco(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ushelm_nco(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/thompson(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>. Your job is to lead offensive units of the US Army force according to the <b>Captain</b>'s orders.")

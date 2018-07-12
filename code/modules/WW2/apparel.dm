@@ -432,6 +432,12 @@
 	icon_state = "UShelm_med"
 	item_state = "UShelm_med"
 
+/obj/item/clothing/head/helmet/ushelm_nco
+	name = "US NCO helmet"
+	desc = "A standard US Army helmet, with a white bar in the back, identifying a NCO."
+	icon_state = "UShelm_nco"
+	item_state = "UShelm_nco"
+
 /obj/item/clothing/head/helmet/usmphelm
 	name = "US MP helmet"
 	desc = "A standard US Military Police helmet."

@@ -27,24 +27,41 @@
 	else
 		next_activation = world.time + 400 //to give it time to reach the destination
 		if (local == "docked")
+			if (orientation == "NONE")
+				icon_state = "lever_pulled"
+				orientation = "PULLED"
+			for (var/obj/transport_controller/down in range(5, src))
+				down.opacity = FALSE
+				down.density = FALSE
+				down.icon = 'icons/obj/doors/material_doors_leonister.dmi'
+				down.icon_state = "morgue"
+				invisibility = 101
+			spawn (3)
+				icon_state = "lever_none"
+				orientation = "NONE"
 			spawn (100)
-				for (var/atom/movable/b in range(5, src))
-					if (istype(b, down))
-						b.opacity = FALSE
-						b.density = FALSE
-						b.icon = 'icons/obj/doors/material_doors_leonister.dmi'
-						b.icon_state = "morgue"
-						invisibility = 101
+				for (var/atom/movable/A in range(5, src))
+					if (A.anchored == FALSE)
+						A.z = 2
 			local = "launched"
 		else if (local == "launched")
-			spawn (100)
-				for (var/atom/movable/b in range(5, src))
-					if (istype(b, obj/transport_controller/down))
-						b.opacity = TRUE
-						b.density = TRUE
-						b.icon = 'icons/obj/doors/material_doors_leonister.dmi'
-						b.icon_state = "morgue"
+			if (orientation == "NONE")
+				icon_state = "lever_pushed"
+				orientation = "PUSHED"
+			for (var/obj/transport_controller/down in range(5, src))
+				down.opacity = TRUE
+				down.density = TRUE
+				down.icon = 'icons/obj/doors/material_doors_leonister.dmi'
+				down.icon_state = "morgue"
 			local = "docked"
+			spawn (3)
+				icon_state = none_state
+				orientation = "NONE"
+			spawn (100)
+				for (var/atom/movable/A in range(5, src))
+					if (A.anchored == FALSE)
+						A.z = 3
+
 
 /obj/transport_lever/proc/function(var/mob/user as mob)
 	if (orientation == "NONE")
