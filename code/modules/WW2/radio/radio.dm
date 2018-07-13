@@ -27,17 +27,17 @@ var/const/UK_FREQ = 1008
 		if (DEFAULT_FREQ)
 			return "DEFAULT"
 		if (SO_BASE_FREQ)
-			return "Soviet Base"
+			return "Allied Base"
 		if (SO_COMM_FREQ)
-			return "Soviet Command"
+			return "Allied Command"
 		if (SO_SUPPLY_FREQ)
-			return "Soviet Supply"
+			return "Allied Supply"
 		if (DE_BASE_FREQ)
-			return "German Base"
+			return "Axis Base"
 		if (DE_COMM_FREQ)
-			return "German Command"
+			return "Axis Command"
 		if (DE_SUPPLY_FREQ)
-			return "German Supply"
+			return "Axis Supply"
 		if (SS_FREQ)
 			return "SS"
 		if (UK_FREQ)
