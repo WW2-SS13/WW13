@@ -9,7 +9,7 @@
 		MAP_REICHSTAG = 0,
 //		MAP_ESCORT = 15,
 //		MAP_FOREST_NEW = 25,
-		MAP_ISLAND = 22,
+		MAP_ISLAND = 10,
 		MAP_PARTISAN = 0
 	)
 
