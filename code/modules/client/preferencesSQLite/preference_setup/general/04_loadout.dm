@@ -1,7 +1,7 @@
 /datum/category_item/player_setup_item/general/loadout
 	name = "Loadout"
 	sort_order = 4
-	var/list/loadout_items = list("Water", "Booze", "Grenade", "Smoke grenade", "Stolen gun", "Stolen gun ammo", "Flare", "Knife", "Cigarettes", "Lighter", "Crowbar", "Wrench", "Screwdriver", "Magazine")
+	var/list/loadout_items = list("Water", "Grenade", "Smoke grenade", "Flare", "Knife", "Cigarettes", "Lighter", "Crowbar", "Wrench", "Screwdriver", "Magazine")
 
 /datum/category_item/player_setup_item/general/loadout/content()
 	//name

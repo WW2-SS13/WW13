@@ -424,7 +424,7 @@ var/global/datum/controller/occupations/job_master
 									continue
 								if ("water")
 									H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled(H), slot)
-								if ("booze")
+/*								if ("booze")
 									var/probs = list()
 									switch (H.original_job.base_type_flag())
 										if (GERMAN)
@@ -448,7 +448,7 @@ var/global/datum/controller/occupations/job_master
 									else if (prob(probs["wine"]))
 										H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/wine(H), slot)
 									else goto tryagain
-
+*/
 								if ("grenade")
 									switch (H.original_job.base_type_flag())
 										if (GERMAN, ITALIAN)
