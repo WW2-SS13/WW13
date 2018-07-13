@@ -82,7 +82,7 @@ WW 2 WEAPONS MAGS N AMMO
 	is_box = TRUE
 
 /obj/item/ammo_magazine/c762x63
-	name = "Clip (30-06), 8b."
+	name = "Clip (30-06), 8 rds."
 	icon_state = "clip"
 	caliber = "c762x63"
 	matter = list(DEFAULT_WALL_MATERIAL = 360)
@@ -92,7 +92,7 @@ WW 2 WEAPONS MAGS N AMMO
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/c762x63_5
-	name = "Clip (30-06), 5b."
+	name = "Clip (30-06), 5 rds."
 	icon_state = "clip"
 	caliber = "c762x63"
 	matter = list(DEFAULT_WALL_MATERIAL = 360)
