@@ -3,7 +3,7 @@
 	title = "Island (100x100x1)"
 	lobby_icon_state = "pacific"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall/)
-	respawn_delay = 2400
+	respawn_delay = 1800
 	squad_spawn_locations = FALSE
 	reinforcements = FALSE
 	min_autobalance_players = 75
@@ -34,10 +34,10 @@
 	battle_name = "Battle of Peleliu"
 
 /obj/map_metadata/island/germans_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 4800 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/island/soviets_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 4800 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/island/announce_mission_start(var/preparation_time)
 	world << "<font size=4>All factions have <b>15 minutes</b> to prepare before the ceasefire ends!<br>The Japanese will win if they hold out for <b>45 minutes</b>. The Americans will win if they capture the Japanese caves.</font>"
