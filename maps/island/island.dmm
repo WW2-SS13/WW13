@@ -8,7 +8,7 @@
 "ah" = (/obj/structure/barricade,/obj/structure/barbwire{dir = 4},/obj/structure/window/sandbag,/turf/floor/dirt,/area/prishtina/island/beach)
 "ai" = (/obj/structure/barbwire{dir = 4},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
 "aj" = (/turf/floor/plating/sand,/area/prishtina/island/beach)
-"ak" = (/obj/structure/barbwire{dir = 4},/obj/structure/barbwire{dir = 4},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
+"ak" = (/turf/wall/rockwall,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "al" = (/obj/structure/window/classic,/obj/structure/curtain/black,/turf/floor/wood,/area/prishtina/houses)
 "am" = (/obj/structure/sign/flag/japanese,/turf/wall/wood,/area/prishtina/houses)
 "an" = (/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/houses)
@@ -48,14 +48,14 @@
 "aV" = (/obj/structure/window/sandbag,/turf/floor/plating/sand,/area/prishtina/island/beach)
 "aW" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/sand,/area/prishtina/island/beach)
 "aX" = (/obj/structure/bed/chair/wood,/obj/structure/light/small{dir = 1},/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red2"; name = "Japanese FOB"})
-"aY" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
+"aY" = (/turf/floor/dirt,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "aZ" = (/obj/structure/table/wood,/obj/item/trash/candle,/turf/floor/wood_broken,/area/prishtina/houses)
 "ba" = (/obj/structure/bed/chair/wood{dir = 4},/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red2"; name = "Japanese FOB"})
 "bb" = (/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/houses)
 "bc" = (/obj/structure/bed/chair/wood,/turf/floor/wood_broken,/area/prishtina/houses)
 "bd" = (/obj/structure/bed,/turf/floor/dirt,/area/prishtina/houses)
 "be" = (/obj/structure/bed,/obj/item/weapon/bedsheet/brown,/turf/floor/wood_broken,/area/prishtina/houses)
-"bf" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/sand,/area/prishtina/island/beach)
+"bf" = (/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "bg" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
 "bh" = (/obj/structure/table/wood,/obj/item/trash/candle,/turf/floor/wood,/area/prishtina/houses)
 "bi" = (/obj/structure/bed/chair/wood{dir = 1},/turf/floor/dirt,/area/prishtina/houses)
@@ -71,15 +71,15 @@
 "bs" = (/obj/effect/overlay/coconut,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
 "bt" = (/obj/structure/closet/hideout/beach,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
 "bu" = (/obj/structure/closet/cabinet{anchored = 1; desc = "Something looks strange in this bush..."; icon = 'icons/obj/wild.dmi'; icon_closed = "small_bush"; icon_opened = "small_bush"; icon_state = "small_bush"; name = "weird bush"; opened = 1},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
-"bv" = (/obj/structure/barricade,/obj/structure/barbwire{dir = 4},/obj/structure/window/sandbag,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
+"bv" = (/obj/structure/sign/flag/japanese,/turf/wall/rockwall,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "bw" = (/obj/effect/landmark{name = "JoinLateHeerSL"},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; icon_state = "blue3"; name = "Japanese Cave HQ"})
-"bx" = (/obj/structure/sink/puddle,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
+"bx" = (/obj/structure/barricade,/obj/structure/barbwire{dir = 4},/obj/structure/window/sandbag,/turf/floor/dirt,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "by" = (/obj/structure/barbwire{dir = 4},/obj/structure/anti_tank,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
-"bz" = (/obj/structure/barricade,/obj/structure/barbwire{dir = 4},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
+"bz" = (/obj/structure/barbwire{dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "bA" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
 "bB" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
-"bC" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
-"bD" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
+"bC" = (/obj/structure/wild/tree/anchored,/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"bD" = (/turf/floor/plating/dirt,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "bE" = (/obj/structure/bed/chair/wood,/turf/floor/dirt,/area/prishtina/houses)
 "bF" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
 "bG" = (/obj/structure/table/wood,/turf/floor/dirt,/area/prishtina/houses)
@@ -89,56 +89,56 @@
 "bK" = (/obj/structure/simple_door/key_door/japan/command_intermediate{name = "Japanese Command Room"},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; icon_state = "blue3"; name = "Japanese Cave HQ"})
 "bL" = (/obj/effect/landmark{name = "JoinLateHeer"},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "bM" = (/obj/effect/landmark{name = "JoinLateHeerCO"},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; icon_state = "blue3"; name = "Japanese Cave HQ"})
-"bN" = (/obj/structure/closet/crate/empty{name = "Sake Crate"},/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka{desc = "a bottle of Japanese sake."; name = "Sake"},/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka{desc = "a bottle of Japanese sake."; name = "Sake"},/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka{desc = "a bottle of Japanese sake."; name = "Sake"},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
-"bO" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/structure/window/sandbag,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
-"bP" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
-"bQ" = (/obj/item/weapon/reagent_containers/food/snacks/grown/rice,/obj/item/weapon/reagent_containers/food/snacks/grown/rice,/obj/item/weapon/reagent_containers/food/snacks/grown/rice,/obj/item/weapon/reagent_containers/food/snacks/grown/rice,/obj/item/weapon/reagent_containers/food/snacks/grown/rice,/obj/structure/closet/crate/empty{name = "Japanese Rations"},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
-"bR" = (/obj/item/weapon/reagent_containers/food/snacks/spaghetti{desc = "A bundle of raw noodles."; name = "Noodles"},/obj/item/weapon/reagent_containers/food/snacks/spaghetti{desc = "A bundle of raw noodles."; name = "Noodles"},/obj/item/weapon/reagent_containers/food/snacks/spaghetti{desc = "A bundle of raw noodles."; name = "Noodles"},/obj/structure/closet/crate/empty{name = "Japanese Rations"},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
-"bS" = (/obj/item/weapon/reagent_containers/food/snacks/egg,/obj/item/weapon/reagent_containers/food/snacks/egg,/obj/item/weapon/reagent_containers/food/snacks/egg,/obj/item/weapon/reagent_containers/food/snacks/egg,/obj/item/weapon/reagent_containers/food/snacks/egg,/obj/structure/closet/crate/empty{name = "Japanese Rations"},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
+"bN" = (/obj/structure/barbwire{dir = 4},/obj/structure/barbwire{dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"bO" = (/obj/effect/overlay/palmtree_l,/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"bP" = (/obj/effect/overlay/palmtree_r,/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"bQ" = (/obj/structure/wild/bush,/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"bR" = (/obj/structure/window/sandbag,/turf/floor/plating/dirt,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"bS" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/dirt,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "bT" = (/obj/effect/landmark{name = "JoinLateHeerMP"},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
-"bU" = (/obj/item/weapon/reagent_containers/food/snacks/grown/cabbage,/obj/item/weapon/reagent_containers/food/snacks/grown/cabbage,/obj/item/weapon/reagent_containers/food/snacks/grown/cabbage,/obj/structure/closet/crate/empty{name = "Japanese Rations"},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
-"bV" = (/obj/structure/barbwire{dir = 4},/turf/floor/plating/sand,/area/prishtina/island/beach)
-"bW" = (/obj/item/weapon/shovel,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
+"bU" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/turf/floor/plating/dirt,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"bV" = (/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"bW" = (/obj/structure/wild/bush/tame/big{name = "large bush"},/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "bX" = (/obj/structure/table/wood,/obj/item/weapon/material/sword/jap_katana,/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red2"; name = "Japanese FOB"})
-"bY" = (/obj/item/weapon/reagent_containers/glass/bucket,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
-"bZ" = (/obj/item/weapon/stool,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
-"ca" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
-"cb" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/obj/structure/barbwire{dir = 4},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
+"bY" = (/obj/structure/wild/tree,/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"bZ" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/dirt,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"ca" = (/obj/structure/wild/tree/anchored,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"cb" = (/turf/floor/plating/dirt,/area/prishtina/island/beach)
 "cc" = (/obj/structure/closet/crate/sandbags,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
-"cd" = (/obj/structure/barricade,/turf/floor/plating/sand,/area/prishtina/island/beach)
-"ce" = (/obj/structure/pot,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
-"cf" = (/obj/structure/multiz/ladder/ww2{area_id = "down6"; icon = 'icons/obj/wild.dmi'; icon_state = "small_bush"; name = "hidden ladder"},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
+"cd" = (/obj/structure/barbwire{dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"ce" = (/obj/structure/window/sandbag,/turf/floor/plating/dirt,/area/prishtina/island/beach)
+"cf" = (/obj/structure/window/sandbag,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
 "cg" = (/obj/structure/table/wood,/obj/item/weapon/phone/tohighcommand/german,/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red2"; name = "Japanese FOB"})
 "ch" = (/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red2"; name = "Japanese FOB"})
 "ci" = (/obj/structure/table/wood,/obj/item/weapon/paper,/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red2"; name = "Japanese FOB"})
 "cj" = (/obj/structure/table/wood,/obj/item/weapon/gun/projectile/pistol/nambu,/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red2"; name = "Japanese FOB"})
-"ck" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/obj/structure/barbwire{dir = 4},/turf/floor/plating/sand,/area/prishtina/island/beach)
+"ck" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
 "cl" = (/obj/structure/table/wood,/obj/item/weapon/pen,/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red2"; name = "Japanese FOB"})
 "cm" = (/obj/structure/table/wood,/obj/item/weapon/paper_bundle,/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red2"; name = "Japanese FOB"})
 "cn" = (/obj/structure/closet/crate/barbwire,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "co" = (/turf/wall/iron,/area/prishtina/german/bunker{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red1"; name = "Japanese Bunkers"})
-"cp" = (/obj/structure/barricade,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
+"cp" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/dirt,/area/prishtina/island/beach)
 "cq" = (/obj/structure/sign/flag/japanese,/turf/wall/iron,/area/prishtina/german/bunker{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red1"; name = "Japanese Bunkers"})
 "cr" = (/turf/floor/plating/road,/area/prishtina/german/bunker{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red1"; name = "Japanese Bunkers"})
 "cs" = (/obj/structure/light/small/red{dir = 1},/turf/floor/plating/road,/area/prishtina/german/bunker{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red1"; name = "Japanese Bunkers"})
-"ct" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/barbwire{dir = 4},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
+"ct" = (/obj/effect/overlay/palmtree_l,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
 "cu" = (/obj/structure/light/small/red{dir = 1},/obj/item/weapon/gun/projectile/automatic/stationary/mg34stat{dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/road,/area/prishtina/german/bunker{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red1"; name = "Japanese Bunkers"})
 "cv" = (/obj/structure/light/small/red,/obj/structure/light/small/red{dir = 1},/turf/floor/plating/road,/area/prishtina/german/bunker{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red1"; name = "Japanese Bunkers"})
 "cw" = (/obj/structure/simple_door/key_door/japan{name = "Bunker"},/turf/floor/plating/road,/area/prishtina/german/bunker{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red1"; name = "Japanese Bunkers"})
 "cx" = (/obj/structure/light/small/red,/turf/floor/plating/road,/area/prishtina/german/bunker{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red1"; name = "Japanese Bunkers"})
 "cy" = (/obj/structure/sign/portrait/hirohito,/turf/wall/iron,/area/prishtina/german/bunker{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red1"; name = "Japanese Bunkers"})
 "cz" = (/obj/structure/barricade/steel,/turf/floor/plating/road,/area/prishtina/german/bunker{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red1"; name = "Japanese Bunkers"})
-"cA" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/barbwire{dir = 4},/obj/structure/anti_tank,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
+"cA" = (/obj/effect/overlay/palmtree_r,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
 "cB" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/barbwire{dir = 4},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
-"cC" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/barbwire{dir = 4},/obj/structure/anti_tank,/turf/floor/plating/sand,/area/prishtina/island/beach)
-"cD" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/barbwire{dir = 4},/turf/floor/plating/sand,/area/prishtina/island/beach)
-"cE" = (/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
+"cC" = (/obj/structure/wild/tree,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"cD" = (/obj/effect/overlay/coconut,/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"cE" = (/obj/structure/closet/hideout/beach,/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "cF" = (/turf/wall/rockwall{density = 1; name = "cliff"; opacity = 1},/area/prishtina/island/beach)
-"cG" = (/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
+"cG" = (/obj/structure/closet/cabinet{anchored = 1; desc = "Something looks strange in this bush..."; icon = 'icons/obj/wild.dmi'; icon_closed = "small_bush"; icon_opened = "small_bush"; icon_state = "small_bush"; name = "weird bush"; opened = 1},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
 "cH" = (/obj/structure/light/small{dir = 8},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
 "cI" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/road,/area/prishtina/german/bunker{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red1"; name = "Japanese Bunkers"})
-"cJ" = (/obj/structure/barricade,/obj/structure/sign/flag/japanese,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
-"cK" = (/obj/structure/wild/bush,/obj/structure/barricade,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
+"cJ" = (/obj/structure/wild/bush/tame/big{name = "large bush"},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"cK" = (/obj/structure/closet/cabinet{anchored = 1; desc = "Something looks strange in this bush..."; icon = 'icons/obj/wild.dmi'; icon_closed = "small_bush"; icon_opened = "small_bush"; icon_state = "small_bush"; name = "weird bush"; opened = 1},/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "cL" = (/turf/wall/iron{opacity = 0},/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
 "cM" = (/obj/structure/flag/us,/turf/wall/iron{opacity = 0},/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
 "cN" = (/obj/structure/closet/crate/mg34belt,/turf/floor/plating/road,/area/prishtina/german/bunker{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red1"; name = "Japanese Bunkers"})
@@ -273,6 +273,7 @@
 "fm" = (/obj/structure/bed/roller,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "fn" = (/obj/structure/table/rack,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "fo" = (/obj/structure/table/wood,/obj/item/clothing/mask/surgical,/obj/item/clothing/mask/surgical,/obj/item/clothing/mask/surgical,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
+"fp" = (/obj/structure/wild/bush,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
 "fq" = (/obj/structure/light/small/red,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "fr" = (/obj/item/weapon/storage/box/bloodpacks,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "fs" = (/obj/structure/table/wood,/obj/item/clothing/gloves/latex,/obj/item/clothing/gloves/latex,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
@@ -598,6 +599,72 @@
 "lA" = (/obj/effect/landmark{name = "JoinLateMARSL"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "lB" = (/obj/item/weapon/bedsheet/blue,/obj/structure/bed,/obj/effect/landmark{name = "JoinLateMAR"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "lC" = (/obj/structure/light/small,/obj/item/weapon/bedsheet/blue,/obj/structure/bed,/obj/effect/landmark{name = "JoinLateMAR"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"lD" = (/obj/structure/closet/hideout/beach,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"lE" = (/obj/structure/barricade,/obj/structure/barbwire{dir = 4},/obj/structure/window/sandbag,/turf/floor/plating/beach/sand,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"lF" = (/obj/structure/barricade,/obj/structure/barbwire{dir = 4},/obj/structure/window/sandbag,/turf/floor/plating/dirt,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"lG" = (/obj/structure/barbwire{dir = 4},/turf/floor/plating/dirt,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"lH" = (/obj/structure/wild/tree/anchored,/obj/structure/wild/tree/anchored,/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"lI" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"lJ" = (/obj/effect/overlay/palmtree_r,/turf/floor/plating/dirt,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"lK" = (/turf/floor/plating/beach/sand,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"lL" = (/obj/structure/closet/hideout/pine,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"lM" = (/obj/structure/barbwire{dir = 4},/obj/structure/anti_tank,/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"lN" = (/obj/structure/barricade,/obj/structure/barbwire{dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"lO" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/dirt,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"lP" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/dirt,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"lQ" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"lR" = (/obj/structure/closet/crate/empty{name = "Sake Crate"},/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka{desc = "a bottle of Japanese sake."; name = "Sake"},/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka{desc = "a bottle of Japanese sake."; name = "Sake"},/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka{desc = "a bottle of Japanese sake."; name = "Sake"},/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"lS" = (/obj/structure/closet/hideout/pine,/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"lT" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"lU" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"lV" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/dirt,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"lW" = (/obj/structure/wild/tree/anchored,/turf/floor/plating/dirt,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"lX" = (/obj/structure/wild/tree/anchored,/turf/floor/plating/beach/sand,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"lY" = (/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"lZ" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/structure/window/sandbag,/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"ma" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag,/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mb" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mc" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"md" = (/obj/item/weapon/reagent_containers/food/snacks/grown/rice,/obj/item/weapon/reagent_containers/food/snacks/grown/rice,/obj/item/weapon/reagent_containers/food/snacks/grown/rice,/obj/item/weapon/reagent_containers/food/snacks/grown/rice,/obj/item/weapon/reagent_containers/food/snacks/grown/rice,/obj/structure/closet/crate/empty{name = "Japanese Rations"},/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"me" = (/obj/item/weapon/reagent_containers/food/snacks/spaghetti{desc = "A bundle of raw noodles."; name = "Noodles"},/obj/item/weapon/reagent_containers/food/snacks/spaghetti{desc = "A bundle of raw noodles."; name = "Noodles"},/obj/item/weapon/reagent_containers/food/snacks/spaghetti{desc = "A bundle of raw noodles."; name = "Noodles"},/obj/structure/closet/crate/empty{name = "Japanese Rations"},/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mf" = (/obj/item/weapon/reagent_containers/food/snacks/egg,/obj/item/weapon/reagent_containers/food/snacks/egg,/obj/item/weapon/reagent_containers/food/snacks/egg,/obj/item/weapon/reagent_containers/food/snacks/egg,/obj/item/weapon/reagent_containers/food/snacks/egg,/obj/structure/closet/crate/empty{name = "Japanese Rations"},/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mg" = (/obj/item/weapon/reagent_containers/food/snacks/grown/cabbage,/obj/item/weapon/reagent_containers/food/snacks/grown/cabbage,/obj/item/weapon/reagent_containers/food/snacks/grown/cabbage,/obj/structure/closet/crate/empty{name = "Japanese Rations"},/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mh" = (/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"mi" = (/obj/structure/sink/puddle,/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mj" = (/obj/item/weapon/reagent_containers/glass/bucket,/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mk" = (/obj/item/weapon/shovel,/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"ml" = (/obj/item/weapon/stool,/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mm" = (/obj/effect/overlay/palmtree_r,/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mn" = (/obj/structure/wild/tree/anchored,/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mo" = (/obj/structure/closet/cabinet{anchored = 1; desc = "Something looks strange in this bush..."; icon = 'icons/obj/wild.dmi'; icon_closed = "small_bush"; icon_opened = "small_bush"; icon_state = "small_bush"; name = "weird bush"; opened = 1},/turf/floor/plating/dirt,/area/prishtina/island/beach)
+"mp" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mq" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/obj/structure/barbwire{dir = 4},/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mr" = (/obj/structure/pot,/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"ms" = (/obj/effect/overlay/palmtree_l,/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"mt" = (/obj/structure/barricade,/turf/floor/plating/sand,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mu" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mv" = (/obj/structure/window/sandbag,/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mw" = (/obj/effect/overlay/palmtree_r,/turf/floor/plating/dirt,/area/prishtina/island/beach)
+"mx" = (/obj/structure/wild/tree/anchored,/turf/floor/plating/dirt,/area/prishtina/island/beach)
+"my" = (/obj/structure/multiz/ladder/ww2{area_id = "down6"; icon = 'icons/obj/wild.dmi'; icon_state = "small_bush"; name = "hidden ladder"},/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mz" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag,/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mA" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/barbwire{dir = 4},/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mB" = (/obj/structure/wild/tree/anchored,/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"mC" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/barbwire{dir = 4},/obj/structure/anti_tank,/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mD" = (/obj/structure/barricade,/turf/floor/plating/beach/sand,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mE" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/barbwire{dir = 4},/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mF" = (/obj/structure/wild/tree/anchored,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
+"mG" = (/obj/effect/overlay/palmtree_l,/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mH" = (/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mI" = (/obj/structure/wild/bush,/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"mJ" = (/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mK" = (/obj/effect/overlay/palmtree_r,/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"mL" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/barbwire{dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mM" = (/obj/structure/closet/hideout/beach,/turf/floor/plating/dirt,/area/prishtina/island/beach)
+"mN" = (/obj/effect/overlay/coconut,/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"mO" = (/obj/structure/light/small{dir = 8},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"mP" = (/obj/structure/barricade,/obj/structure/sign/flag/japanese,/turf/floor/plating/beach/sand,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
+"mQ" = (/obj/structure/wild/bush,/obj/structure/barricade,/turf/floor/plating/beach/sand,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 
 (1,1,1) = {"
 aeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeafafafafaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaekEaekEaeaeaeaeaeaeae
@@ -615,48 +682,48 @@ aeaeaeaeaeaeaeaeaeaeaefjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefjlwfjfjaecccccn
 aeaeaeaeaeaeaeaeaeaeaeaefjfjfjaeaeaeaeaeaeaeaedaeRgMgMeRaefjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefSbTbTfTfjfjfNaeaeaeaeaeaeaeaeaeaeaefqfjfjfjaefjfjaeaeaefjfjaeaeaeaeaeaeaeae
 aeaeaefUgOfWaeaeaeaeaeaeaefqfjfjaeaeaeaeaegPgEfjfjfjfjfjgEfjfjfqfjfjfjaeaefqfjfjfjfjfjfjaeaefjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfMfqfNaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfjfjfjaeaeaeaeaefjfjaeaeaeaeaeaeae
 aeaefXbLfjbLfWaeaeaeaeaeaeaefjfjaefjfjfjaegPfjfjlnfjlnfjfjaeaeaeaeaeaeaeaeaeaefjeSeSfjfjaeaefqfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfqfjfjaeaeaeaeaefqfjaeaeaeaeaeae
-aeaefXfjfVfjfVfYaeaeaeaeaeaefjfjfjfjfqfjfjfjfjlnfjfjfjfjgQaeaeaeaeaeaeaeaeaeaefjaeaefqfjfjaeaeaefjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaaaaaaeaaaaaaaaaeaeaeaeaeaeaeaeaeaeaefjaefjfjfjfjaeaeaeaefjaeaeaeaeaeae
-aegRfVfZbLbLbLfYaeaeaeaeaeaefjfjfjfjaeaeaeaefjfjlnlnfjgQaeaeaeaeaeaeaeaeaeaeaefjaeaeaefjfjaeaeaefjabaaaaaeaeaeaaaaaaaeaeaeaeaeaaaaacaaaaaaacacaaaaaaaaaeaeaeaeaeaeaeaefjaeaeaefjababadaaaaabaaaaaaaeaaaa
-aefRfjfjfVfjfVlxaeaeaeaeaeaefjfjfjaeaeaeaeaegSgSgTgUgVaeaeaeaeaeaeaeaeaeaeaeaefjaeaeaefjfjaeaeaeaaahaiaaaaaeaaaaacaaaaaaaaaaaaaaacacacacacacacacacacaaaeaeaeaeaeaeaeaefjaeaeaeadabajacaaaaahaiacaaaaaaac
-aefVbLfVbLfVfjfjaeaeaeaeaefjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefjaeaeaefjfjaeaeaeaaakaiacaaaaaaacacacacacacaaaaacacaBacacacacacacacaaaaaaaaaeaeaaaaaaaafjaeaeaeaaajajacacaiaiaiacacacacac
-aefVbLfjfjbLfjfjfjaeaefjfjfqaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaaaaaaaaaaaaefjaeaeaefjfjaeaeaeaaacacacacaaacacacacacacacacacacacacacacacacaOacacacacacaaaaaaaaacacaaahaaaaaaaaaVaWaYacacacacacacacacac
-aefVfjgXfZgWaeaefjfjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaaaacaaaaacaaaafjaeaaaaabababaaaaaaacacacacaOacacacacacacaBacacacacacacacacacacacacacacacacacacacacacaaaiaiaaaaacbfbgacacacacacacacacbkac
-aefjbLfjfVaeaeaeaefjfqaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaaaacacacacacacaaahaeaaadabajajadaaacacacacacacacacacacaOaOacacacacacacacacacacacacacacacacacacacacacacacacacacacacajacacacacaBacacacacacac
-aefZfVbLfjaeaeaeaefjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaaaacacacacacacacaiblaaaaacaVaVbmacacacacacajacacacacacacacacacacacacacaOacacacacacacacacacacacacacacacacacacacacacajajacacacacacacacacacacac
-aefjbLfVghaeaeaeaefjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaacacacacacacacacacacacacacbgbfbgacacacacbkacacacajacacajajacajacajajajacacacacacacaBacacacacacacacacbkacacacajajajajacacacacacacacbkacacacac
-aefRfjfjaeaeaeaefjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaaaaaacacaBacacacacacbkacacacacajacacacacacacacajajajajajajajajajajajajajacacacacacacacbsacacacbkacacacacacacacacajajajajacacacacacacacbtacacac
-aefqfjaeaeaeaeaefjfjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaacacacacacacacacacacacbuacacacajajacajajajajajajajacacacacbtacacacacajajacacacacbkacacacacacacacacacacacacacacacajajacacacacaBacacacacacacacac
-aeaehTaeaefjfjfjfjfqaefjaeaeaeaeaeaaaaaaaeaeaeaeaeaeaeaaaaacacacacacacacacaBacacacacacacacajajajacacacacacacacacacacacacacacacacajajacacacacacacacacacacacacacacacaBacacajajacbuacacacacacacacaBacacacac
-aeaeaeaefjfqaefjfjaeaefjaeaeaeaeaaaaacaaaaaaaaaaaaaaaaaaacacaBacacacacacacacacacacaBacacacacajajajacacacacajacacajacacacacacacacajajacacacacacacacacaBacacbtacacacacacajajacacacacbkacacacacacacaOacacac
-aeaeaeaefjaeaaababaeaaabaaaaaaaaaaacacacaaaaacaaaaacacacacacacacacacbkacacaOacacacacacacbtacajajacacacacacacacaOacacbuacaBacacacacajajacacacacacacacacacacacacaOacacacacajajacacacacacacacaOacacacacacac
-aaaaaeaefjabadajabadaabvaaaaacacacacacacacacacacacacacacacacacacacacaBacacacacacacaBacacacacajajacacacaBaBacacaOacacacacacacbkacacacajajajacacacacbkacacacacacacacacacajajajacacacacacacacacacacacbkacac
-acaaaaaaaaahaiajajaaaiaiaiacacbtacacacacacacacacacaOacacacacacacacacacacacbkaBacacacacacacajajacacacacacacacacacbkbkacacacacacacacacajajajajacacacacbuacacacbkacacacacajajacacagagalamagalagacacacacacac
-acacacaaaaaiaiajajacacacacacacacaOacbkacacbkacacacacacacacacacacaOacacbsbsacacacacacacacacajajacacacacacaOacacacacacacacaOacacacacacacacajajacacacacacacaBacacacacaBacajacacacaghUanaoanatauacacacacaBac
-acacacacacacacbmaWaYacacaOacacacacacacacacacbtacacacacacbkbkacacacacacacacacacacacajacajajajajacacacacacacacbkacacacacacacacacacacacacacajacacacacacacaOacacacacacacajajajajajagatauapaqatagacaOacacbsac
-acacacaOacacacbgbfajacacacacacacacacacacacacacacacacacacacacbkacacacacacacacacacajajajajacacacacacaBacacacacacacagagagaragagagacacacacajajacacaBacacacacacacacacacacajajajajacagagalagagaDagacacacacacac
-acacacacacacacacacajajacacacaBacacacbkacacacacacacaBacaBacacacacacacacacacacacajajajajacacacacacacacacacacacacacagasaxayazaAagacacacacacajacacacacacacacacacacaOacacacajajajacacacacacacbgacacacacacacac
-acacaBacacacbtacacajajacacacacaOacacacacacacacaOacacacacacacacacacaBacacacacacajajajacacacacacacacacacacacaBacacalaCapaEaCaGalacajacacacajacacacacacacacacacacbkacacbtajajacacacacacacacacacacacacacacac
-acacacacaBacacacacajacacacacacacacacbkacacaBacacacacacacacacacacacacacacacacacajajacacacacacacacacacbsacacacacacagaCataIauaIagacacaBacajajajacacajacacacacbxacacacacacacajajajacacaBacacaOacaOacbkacacac
-acbkacaOacbuacacacajacacbkacacacacacbybzacbzbyacacacacaOacacacacacacacacacajajajacacaOacacaOacaBacacacacacacacacagaNauavaoaEagacacacajajajajajajajacaBacagauagagagagagacajajaiaiaiacacacacbkacacacacacac
-acacacacacacbkacajajacacacacbuacaBacbzbAacbBbzaBacacacacacaBacacacacacajajacacacacacacacacacacacacacacacacacacacagaggkaPgkaDaRacacajajacacacajajacacacacamavaNglaTaUagajajajaibCbgacbkacacacacbsacacacaB
-acacacacacacacacacajajacacbkacacacacbzbAacbBbzacacacacacbtacacacajajajajajacacacacacacacacacagagagalagagagagacacacacacajacbgbgacajajacacajacacajajacacacagataugYapaoaPajajajaibAbDacacacacaBaBacacacacac
-acacacacbkacacacacajajacacacbsacacacbzbFbmbIbzacacacacacacacajajajacacacacacacacacacacacacacagaZbbbcbdbebdagacajacajajajacacajajajacacacacacacacajajacacagagauauagagagbNajacaibObPacacacacacacacacacacac
-acacacaBacacacacbkacajajajajacacaOacbybzbzbzbyacacacajajajajajacacacacacacacacacacacaBacacacagbhbianaobjauaPajajajajajajajajajacagagagagagalagacajajacacacacbFbIbQbRbSbUajajbVaiaiacacacacacacacacacacac
-acacacacaOacacajacajajacacajajajajajacajajacacbkacacacajajacacacacacacacacacacbkacacacbsacacagatavatavanhWagajajajajajajajajajajagbnaTbogrgrauacbxajajacacajacacajacacajajajacagagagagagagalagacacacacac
-acacacacbsacacacajajacacacacacacacacajajajajacajajajajajacacacbuaOacacaBacacacacaOacacacacacauauamaualamagagacacacajajajajajajajaPavauauatavagbWacajajajajajajajajajajajajacacagbeaTbpazbbauagacacaBacac
-acbkacacajajajajajacacacacajacacacacacacajajajajajacacbtacacacacacacacacacacacacacacacacacacacacacacacacacacacacacajajajajacbuacaggtbqauapatarbWacacacajajajbYbYacajbZajajajajaPavanatapbrauagacacacacac
-acbkacajajacacacacacacacaOacbuacacacacacajajacacacacacacacacacacacacacacacbtacbkacacacacacacacacacacacacacacajacaBacajajajacacacagagagagagauagcacbajajajcdajbZcebZacacaccdacacagatauatauavatagacacacacac
-acacajajbtacacacaBaBacacacaBacacacacbkacacajajaBacacaccfacbkacaBacacacacacacacacacacacacacacacacacacajajajajajajajajajajacacacbBbmbmbmbmbmbmbmbPckajacajcpacacceacacbkaccdacctawaDagaDagamalagacacacacac
-acacajacacacbkacacacbtbkacacacacacacacacacacajacacacacacacacacacacacacacacacauagagagagacacajajajajajajajajajacacacacajajajajacaccAcBcBcAcBcBcCcDbVacacaccpaBacaccEcEacbZcdacaicBcBaccBacacacacacacacbkac
-acacajacbuacacacacacacacacacacacaccFcFbtacacajacacacacaBacacaOacacacaBacacacauauauatagajacajajacacacacacacacacacbxacacacajajacaBacacaOacajacajajacacacaccpacbZbZcGcGacbZcdacacacacacacaOacacacacacacacac
-acajacaccFcFcFcFacaccFcFcFcFacacaccFcFcFacacajacbkacacacacacacacacacacacacacagbEbEavaPajajajacacaFaFaFaHaFaJaFaHaFaFaFcHacajacacacacacacacajajacacacacaccpcpcpcpcJcKcpcdcdacacacbxacacacacacacacaBacacac
-acajacbkcFcFcFacaccFcFcFcFcFcFabaccFcFcFcFajajacacacacacacacaOacaObkacacacacagbGbGbbagacacacacacaFaKaLaMaSaLaXbabXaMaHbIacajajajacacacajacajajajacacacacaBbuacacbsacacajacacbkacacacacacacacacacacacacac
-acajajajajajacajaccFacacbucFajaBbsaccFajajajajacaccFcFacacacacacacacacacacacaubHbHbHagacacacaccObJcgchaLbacichaLcjaLcYajajajajajajajajajajajajacacbtacaOacacacacacacacajajacacacacacacacaBacacacacacaOac
-abacacajajbscFacacacajacajacacajacajajajacacajcFcFcFcFcFacacacacacacacacacacagagauagagacacacaccObJaKaLaMbaciclaLaLaLcYajajajajajajajajajajajacacacacacacacacacacacacaBcRajcTacacacacbkacacacacacacacacac
-acaccFcFaccFcFcFcFajajcFcFcFcFaccFcFajajajajajcFcFcFcFcFaccFacacacaOacbkacacacacacacacacacacacacaFclcmaLaLaLaLaMaLaLaHcZajbmajacbmacacacajajajacacacacaOacacacacacbkacdbaVaWaOacbsacacacaOacacacacacacac
-cFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFacajajajaccFcFcFcFcFcFcFacacacacacacaOacacbkacacacbkacacaFaFaFbJaFaFaFbJaFaFaFcHajcZdfbBdgacaOacacacajajajacacacacbkacacacacacbgbgbgacacacacacacacacacacdkacbkac
-cFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFacajdlajcFcFcFcFcFcFcFcFcFacbtacacacacacacacacacacacacacacaccOacacaccOacacacajajbBbFbIbAacacacajacacajajacacacacacacacacacacacacacacaBacacacacacacacdkdkacacac
-cFcFcFcFcFcFcFcFcFbtacajacajacacajajcFcFcFacbsajaccFcFcFcFcFcFcFcFcFcFacacacaccFacacacacbtacacacacacacacacacacajajajajajajacbgbgacacacacacacacacajajacacacacacacacacbsacacacacdsacacacacacacacacacacacac
+aeaefXfjfVfjfVfYaeaeaeaeaeaefjfjfjfjfqfjfjfjfjlnfjfjfjfjgQaeaeaeaeaeaeaeaeaeaefjaeaefqfjfjaeaeaefjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeakakakaeakakakakaeaeaeaeaeaeaeaeaeaeaefjaefjfjfjfjaeaeaeaefjaeaeaeaeaeae
+aegRfVfZbLbLbLfYaeaeaeaeaeaefjfjfjfjaeaeaeaefjfjlnlnfjgQaeaeaeaeaeaeaeaeaeaeaefjaeaeaefjfjaeaeaefjaYakakaeaeaeakakakaeaeaeaeaeakakbfakakakbfbfakakakakaeaeaeaeaeaeaeaefjaeaeaefjaYaYbvakakaYakakakaeakak
+aefRfjfjfVfjfVlxaeaeaeaeaeaefjfjfjaeaeaeaeaegSgSgTgUgVaeaeaeaeaeaeaeaeaeaeaeaefjaeaeaefjfjaeaeaeakbxbzakakaeakakbfakakakakakakakbfbfbfbfbfbCbfbfbfbfakaeaeaeaeaeaeaeaefjaeaeaebvaYbDbfakakbxbzbfakakakbf
+aefVbLfVbLfVfjfjaeaeaeaeaefjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefjaeaeaefjfjaeaeaeakbNbzbfakakakbfbfbfbfbfbfakakbfbfbObfbfbfbCbfbfbfakakakakaeaeakakakakfjaeaeaeakbDbDbDbfbzbzbzbfbCbfbfbf
+aefVbLfjfjbLfjfjfjaeaefjfjfqaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaaaaaaaaaaaaefjaeaeaefjfjaeaeaeakbfbfbfbfakbfbfbfbPbfbfbfbfbfbfbfbfbfbfbfbfbQbfbfbfbfbfakakakakbfbfakbxakakakakbRbSbUbfbfbfbCbCbfbfbfbf
+aefVfjgXfZgWaeaefjfjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaaabVaaaabVaaaafjaeaaaaabababaaaaakbfbCbfbfbQbfbfbWbfbfbfbObPbObfbfbPbfbCbfbfbObfbfbCbYbfbfbfbfbWbfbfakbzbzakakbfbZbZbDbfbfbfbfbfbfbfbPbf
+aefjbLfjfVaeaeaeaefjfqaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaaabVbVbVbVcabVaaahaeaaadabcbcbadaabfbfbCbfbfbfbfbCbfbObQbQbfbfbfbfbCbfbfbfbObfbWbfbfbfbfbfbfbWbfbfbfbfbfbfbfbYbfbfbDbfbfbfbfbObfbfbfbfbfbf
+aefZfVbLfjaeaeaeaefjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaaabVcabVcAbVbVbVcdblaaaabVcececfbVbVbfbfbfbfbPbObObfbfbfbfbfbfbPbfbfbfbQbfbfbfbfbfbfbfbObfbfbCbfbfbfbfbfbfbfbCbfbYbDbDbfbfbWbCbfbfbfbfbWbfbf
+aefjbLfVghaeaeaeaefjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaabVbVbVbVbVctbVbVbVbVbVbVbVckcpckctbVbObfbPbfbfbfbDbfbfbDbDbfbDbfbDbDbDbfbfbWbfbfbfbObfbfbfbfbCbfbfbfbPbfbCbfbDbDbDbDbfbfbfbfbfbfbfbPbfbfbfbC
+aefRfjfjaeaeaeaefjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaaaaabVbVctbVbVbVctbVcAbVlLcCbVcbbVbVbVbfbfbfbfbDbDbDbDbDbDbDbDbDbDbDbDbDbfbfbfbfbfbfbfcDbfbfbfbPbCbfbObfbfbfbWbfbDbDbDbDbWbfbfbfbfbWbfcEbfbfbf
+aefqfjaeaeaeaeaefjfjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaabVbVbVbVbVcabVbVbVbVbVcGbVbVbVcbcbbVcbcbcbcbbDbDbDbfbfbfbfcEbfbflSbfbDbDbfbfbfbfbPbfbfbfbCbCbfbfbfbfbfbfbfbfbfbfbDbDbfbfbfbfbObfbfbfbfbfbfbObf
+aeaehTaeaefjfjfjfjfqaefjaeaeaeaeaeakakakaeaeaeaeaeaeaeaaaabVbVbVbVcJbVbVbVctbVbVbVbVbVcCcbcbcbcbbVbVbVbfbfbfbfbfbObfbfbfbfbfbfbfbDbDbfbfbfbfbfbWbfbfbfbfbfbWbfbfbfbObfbfbDbDbfcKbfbfbfbfbWbfbfbObfbfbfbC
+aeaeaeaefjfqaefjfjaeaefjaeaeaeaeakakbfakakakakakakakakakbfbVctcAbVbVbVbVbVcJbVbVcactbVbVbVcbcbcbcbbVbVbVcJcbbVbfbDbfbfbfbfbfbfbfbDbDbfbObfbfbObCbfbfbObfbfcEbfbfbfbCbfbDbDbfbfbfbfbPbfbfbfbCbfbfbQbfbfbC
+aeaeaeaefjaeakaYaYaeakaYakakakakakbfbPbfakakbfbfakbfbfbfbfbVbVbVbVbVcAbVbVfpbVbVbVbVcCbVlDlLcbcbbVbVcabVbVbVbVbQbfbfcKbfbObfbfbfbfbDbDbfbfbfbPbfbfbfbfbfbObfbfbQbfbfbfbfbDbDbfbfbfbfbfbfbfbQbfbfbfbfbfbf
+akakaeaefjaYbvbDaYbvaklEakakbfbfbfbfbfbPbfbfbfbfbfbfbfbPbWbVbVbVbVbVctbfbfbfbfbfbfbObfbfbfbfbDbDbfbfbfbObObfbfbQbfbfbfbfbfbfbPbfbfbfbDbDbDbfbfbfbObPbfbCbfbYbfbfbfbfbfbDbDbDbfbPbfbfbObfbfbfbfbfbfbPbfbf
+bfakakakaklFlGbDbDakbzbzbzbfbfcEbPbfbfbfbfbfbfbPbffpbVbVbVbVcabVctbVbVbfbfbPbObfbPbYbfbPbfbDbDbfbPbWbfbfbfbfbfbfbPbPbfbfbWbfbfbWbflSbDbDbDbDbfbWbfbfcKbfbfbfbPbfbfbfbfbDbDbfbfagagalamagalagbfbWbfbfbfbf
+bfbfbfakaklGlGbDbDbDbCbfbfbfbfbfbQbfbPbfbfbPbfbfbfbVcCcabVbVbVbVfpbVcJcDcDbfbYbYbYbfbYbfbfbDbDbfbYbfbfbfbQbfbfbfbfbfbfbfbQbfbfbfbfbfbfbfbDbDbfbWbfbfbfbfbObfbfbWbfbObfbDbfbfbfaghUanaoanataubfbfbfbfbObf
+bfbPbfbfbDbDbDbRbSbUbfbfbQbfbfbPbfbfbfbfcDbfcEbVbVbVbVbVcAcAbVbVbVctbVbfbfbfbWbYbfbDbfbDbDbDbDbYbfbfbWbfbfbfbPbfbfbfbfbfbfbfbObfbfbObfbfbDbfbfbfbfbfbfbQbfbfbfbfbWbfbDbDbDbDbDagatauapaqatagbfbQbfbfcDbf
+bfbfbfbQbfbfbDbZbZbDbfbPbfbCbfbfbWbfbfbfbfbPbfbVcCbVbVbVbVbVcAbVcJbVbVbCbfbfbYbfbDbDbDbDbYbfbYbYbfbObfbfbfbYbfbPagagagaragagagbfbfbWbfbDbDbfbfbObfbObCbfbfbYbCbCbfbfbDbDbDbDbfagagalagagaDagbfbfbfbfbfbf
+bPbfbfbfbPbfbDbDbDbDbfbYbfbfbObfbfbfbPbCbfbfbfcJbVctbVctbVbVcAcAbVbVbVbfbfbYbYbDbDbDbDbfbfbfbWbfbfbfbfbObfbfbfbfagasaxayazaAagbfbfbfbfbfbDbfbPbfbfbflHbCbObfbCbQbfbfbfbDbDbDbfbfbfbfbfbflIbfbfbfbfbObObf
+bfbfbObfbfbfcEbDbDbDbDbYbWbfbfbQbCbDbDbDbDbfbffpbVbVbVbVcabVbVcJbVctcJbfbObfbYbDbDbDbfbfbPbPbfbObPbfbfbfbPbObfbfalaCapaEaCaGalbfbDbfbfbfbDbfbfbPbfbfbfbfbfbfbfbPbfbPcEbDbDbfbflSbfbfbYbfbfbfbfbCbfbfbObf
+bfbfbfbfbObfbfbfbDbDbDbfbWbfbCbfbfbDlJbfbDbObfbVcabVbVcAbVbVbVbVbVbVbVbfbfbfbfbDbDbflSbOcDbfbfbfbfbfcDbfbfbYbfbfagaCataIauaIagbfbfbObfbDbDbDbflSbDbfbfbWbfmibfbfbfbfbfbfbDbDbDbfbfbObfbfbQbfbQbfbPbfbfbf
+bfbPbfbQbfcKbfbfbDbDbDbDbPbDbDbDbfbflMlNbDlNlMbVbVbVbVfpbVbVctbVcJbVcCbfbfbDbDbDbfbWbQbfbfbQbfbObfbYbfbObfbfbfbfagaNauavaoaEagbfbfbfbDbDbDbDbDbDbDbfbObfagauagagagagagbfbDbDbzbzbzbfbfbfbfbPbfbfbfbfbfbf
+bfbfbfbfbfbfbPlSbDbDbDbfbCbDcKbfbObflNlObDlPlNbObfbfbCbfbfbObflSbfbfbfbDbDbfbfbfbfbfbfbfbYbfbfbfbfbfbfbfbfbfbObfagaggkaPgkaDaRbfbfbDbDbfbfbfbDbDbfbYbfbfamavaNglaTaUagbDbDbDbzlQlIbfbPbfbfbfbfcDbfbYbfbO
+bfbCbCbfbfcDbfbfbfbDbDbfbfbPbfbfbfbflNlObDlPlNbfbfbCbfbfcEbfbfbfbDbDbDbDbDbfbObfbPbfbYbfbfbfagagagalagagagagbfbfbfbfbfbDbflIlIbfbDbDbfbfbPbfbfbDbDbfbfbfagataugYapaoaPbDbDbDbzlTlUbfbfbYbfbObObfbCbfbfbf
+bfbfbfbfbPbfbCbWbfbDbDbDbfbfcDbYbCbflNlVbRbSlNbfbClWbDbDbfbDbDbDbDbfbfbflXbfbfbfbYbfbfbfbObfagaZbbbcbdbebdagbfbDbfbDbDbDbfbfbDbDbDbfbPbfbflSbfbfbDbDbfbYagagauauagagaglRbDbfbzlZmabfbfbfbCbfbPbfbfbfbfbC
+bfbCbfbObfbCbfbfbPbfbDbDbPbfbfbfbQbflMlNlNlNlMbfbfbDbDbDbDbDbDbDbfbfbObfbfbObfbfbfbfbObCbfbfagbhbianaobjauaPbDbDbDbDbDbDbDbDbDbfagagagagagalaglYbDbDlYbflYlYmbmcmdmemfmgbDbDlGbzbzbfbYbObfbfbfbfbPbfbYbf
+bfbfbfbfbQbWbYbfbYbfbDbDbfbDbDbDbDbDbDbDbDbDbfbPbfbDbDbDbDbDbfbflSbfbfbObYbPbYbPbYbfbfcDbfcDagatavatavanhWagbDbDbDbDbDbDbDbDbDbDagbnaTbogrgraubfmibDbDlYlYbDlYlYbDlYlYbDbDbDbfagagagagagagalagbfbfbfbfbf
+bfbfbfbfcDbfbfbfbfbYbDbDbDbDbDbDlWbDbDbDbDbDbfbDbDbDbDbDbfbfbfcKbQbObfbObfbfbfbfbQbfbfbfbPbfauauamaualamagaglYbfbfbDbDbDbDbDbDbDaPavauauatavagmkbfbDbDbDbDbDbDbDbDbDbDbDbDbfbfagbeaTbpazbbauagbfbfbObfbf
+bfbPbfbYbfbPbfbPbYbYbfbDbDlYlYbfbfcbcbmhcbcbcbcbcbmhlYcEbfbObYbfbfbYbfbfbfbfbflYlYbCbflYbfbPbfbfbfbfbflYbfbfbfbflKbDbDbDbDbfcKlYaggtbqauapatarmkbfbflYbDbDbDmjmjlYbDmlbDbDbDbDaPavanatapbrauagbfbCbfbfbf
+bfbPbYbfbYbYbYbfbYbfbfbfbQmhmobfbfmhcbmhcbcbmhmhbVbVbfbYbYbfbPbfbObYlWbDlYcEbfmmlYbCbfmnbfbClYbfbfbflYbflYlYlYbfbObDbDbDbDbfbfbfagagagagagauagmpmqbDlYbDmtlYmlmrmllYlYlYmtbflYagatauatauavatagbfbfbfbObf
+bfbfbfbPcEbfbfbfbObObfbfbfmscbmhmhmhmwmhcbcbcbmsmxmhbfmybfbPbfbObfbfbfbfbDlYlYlYlYbflYbfbflYlYlYbflYbDbDlYlYbDbDbDbDbDlYbfbPbfmumvmvmvmvmvmvmvmzmqbDbDlYmDlYlYmrlYlYmmlYmtbfmAawaDagaDagamalagbfbCbfbfbf
+bfbPbfbfbfbfbPbfbfbfcEbPbfmhmxmBcbmhcbmBmhcbcbmhmhcbbVmhlYmhcbbfmhcbcbmhmhmhauagagagagmhmhcbcbmhmhmhcbcbcbmhlKbfbfcDlYlYbDlYbflYmCmEmEmCmEmEmCmElGbflYbfmDmGlYlYmHmHlYmlmtbfbzmLmLbfmLbfbfbfbfbfbCbCbPbf
+bfbfbfbDcKbDbfbflJbfbfbflSmxcbmhmhcFcFmMmhcbcbmhmhacacaBcbcbmIbfcbmhaBbVbVmhauauauatagmhmhcbcbmhacacbVbVbVacbfbfmibfbflYlYcbmhctbfbfbQbfbfbfbDbDlYbflYbfmDlYmlmlmJmJlYmlmtbfbfbYbfbfbfbQbfbfbObfbfbfbfbf
+mhbVbVcbcFcFcFcFbVmhcFcFcFcFmhmhaccFcFcFacaccbacbkacacacmhmhacacmhacacaccaacagbEbEavaPcbcbcbmhacaFaFaFaHaFaJaFaHaFaFaFmOmhmhbVmhbfbfbfbfbflYbDlYlYbfbfbfmDmDmDmDmPmQmDmtmtbfbfbfmibfbfbfbfbCbYbfbObfbfbf
+mKmhmhmKcFcFcFmhmhcFcFcFcFcFcFabaccFcFcFcFajcbacacacacmFacacaOacaObkmhacacacagbGbGbbagacacacacacaFaKaLaMaSaLaXbabXaMaHbIaccbmhmhbfbPbflYbfbDbDmhmhmhbfbPbOcKbfbfcDbfbfbfbfbfbPbfbfbObfbfbfbfbfbfbfbfbfbP
+acmhajmhmhmhacmhaccFacacbucFajaBbsaccFajcbcbcbacaccFcFacmFmFacacacacmFacacacaubHbHbHagacacacaccObJcgchaLbacichaLcjaLcYajajajajcbcbcbmhcbmhmhmhcCaclDmhmImhbVmhmhbVbVmhmhmhbfbflSbfbCbfmhctmhmhbCmhbfbQmh
+abacacajajbscFacacacajacajacacajacajajajaccbcbcFcFcFcFcFacacacacacacacacacacagagauagagacacacaccObJaKaLaMbaciclaLaLaLcYajajajajmhajmhajajcbajbVacacmhacacmhacbVbVacacmscRajcTmhacbfbfbPmhmhacmhmBmhmhbfmh
+acaccFcFaccFcFcFcFajajcFcFcFcFaccFcFajajajajajcFcFcFcFcFaccFacacacaOacbkacacacacacacacacacacacacaFclcmaLaLaLaLaMaLaLaHcZajbmajacbmacacacajajajacacacacaObVmhmhmhmhbkacdbaVaWaOacmNmhmhacfpacbVacbVbVbVbV
+cFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFacajajajaccFcFcFcFcFcFcFacacacacacacaOacacbkacacacbkacacaFaFaFbJaFaFaFbJaFaFaFcHajcZdfbBdgacaOacacacajajajacacacacbkacacacacacbgbgbgacacacacacacacacacacdkaccAbV
+cFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFacajdlajcFcFcFcFcFcFcFcFcFacbtacacacacacacacacacacacacacacaccOacacaccOacacacajajbBbFbIbAacacacajacacajajacacacacacacacacacacacacacacaBacacacacacacacdkdkacbVac
+cFcFcFcFcFcFcFcFcFbtacajacajacacajajcFcFcFacbsajaccFcFcFcFcFcFcFcFcFcFacacacaccFacacmFacbtacacacacacacacacacacajajajajajajacbgbgacacacacacacacacajajacacacacacacacacbsacacacacdsacacacacacacacacacacacac
 cFcFcFaccFcFajacacacajaccFaccFacacacacacajajduajcFcFcFcFcFcFcFcFcFcFcFcFacacaccFcFacacacaccFcFaccFacacacacajajajacacajajacacacacacacacacacacacacacajacaBaBacacaOacacacacbyaiaibyacacacaBacacacacacacacac
 abajacacacacacajajaccFcFcFcFcFcFcFcFcFacaccFcFcFcFcFcFcFaccFcFcFcFcFcFcFacaccFcFcFcFcFaccFcFcFcFcFacacajajajacacajajajajajacacacacacaBacacacbkacacajajajacacacacacacacacacacacacacacacdzacacacaiaiaiacac
 accFcFcFajajajbkcFcFcFcFcFcFcFcFdvaccFcFcFcFcFcFacaccFacajaccFdwdxcocococqcocococococococococococoajajajacacacajajajajajajajacacacacacacdsacacaBacaOacajajajacacacacacacacacacbtacbkdzeGeGdzbkacaOacacac
