@@ -70,16 +70,17 @@
 						for (var/mob/m in range(10, src))
 							m.playsound_local(get_turf(m), 'sound/landing_craft.ogg', 100 - get_dist(m, src))
 						for (var/mob/M in range(5, src))
-							if (M.z == 3)
-								M.z = 1
+							if (M.z == 1)
+								M.z = 3
 							else if (M.z == 1)
 								M.z = 3
 						for (var/obj/O in range(5, src))
 							if ((O.anchored == FALSE) || istype(O, /obj/transport_lever))
-								if (O.z == 3)
-									O.z = 1
-								else if (O.z == 3)
-									O.z = 1
+								if (O.z == 1)
+									O.z = 3
+								else if (O.z == 1)
+									O.z = 3
+						z = 3
 					spawn(5)
 						for (var/turf/floor/plating/concrete/T in range(8, src))
 							T.opacity = FALSE
@@ -123,16 +124,17 @@
 						for (var/mob/m in range(10, src))
 							m.playsound_local(get_turf(m), 'sound/landing_craft.ogg', 100 - get_dist(m, src))
 						for (var/mob/M in range(5, src))
-							if (M.z == 3)
-								M.z = 1
+							if (M.z == 1)
+								M.z = 3
 							else if (M.z == 1)
 								M.z = 3
 						for (var/obj/O in range(5, src))
 							if ((O.anchored == FALSE) || istype(O, /obj/transport_lever))
-								if (O.z == 3)
-									O.z = 1
-								else if (O.z == 3)
-									O.z = 1
+								if (O.z == 1)
+									O.z = 3
+								else if (O.z == 1)
+									O.z = 3
+						z = 3
 					spawn(5)
 						for (var/turf/floor/plating/concrete/T in range(8, src))
 							T.opacity = FALSE

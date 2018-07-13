@@ -163,10 +163,10 @@
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
-	if (prob(60))
+	if (prob(80))
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni(H), slot_w_uniform)
 	else
-		if (prob(60))
+		if (prob(80))
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni2(H), slot_w_uniform)
 		else
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni3(H), slot_w_uniform)
@@ -426,7 +426,7 @@
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
-	if (prob(75))
+	if (prob(85))
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni2(H), slot_w_uniform)
 	else
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni3(H), slot_w_uniform)
@@ -518,7 +518,7 @@
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
-	if (prob(60))
+	if (prob(80))
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni(H), slot_w_uniform)
 	else
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni2(H), slot_w_uniform)
