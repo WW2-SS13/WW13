@@ -520,10 +520,17 @@
 	item_state = "USNCOhat"
 
 /obj/item/clothing/head/helmet/japncohat
-	name = "Japanese NCO hat"
-	desc = "A Japanese NCO hat."
+	name = "Japanese NCO cap"
+	desc = "A Japanese NCO cap."
 	icon_state = "japNCOhat"
 	item_state = "japNCOhat"
+
+
+/obj/item/clothing/head/helmet/japhat
+	name = "Japanese open cap"
+	desc = "An open Japanese cat."
+	icon_state = "japextendedhat"
+	item_state = "japextendedhat"
 
 /obj/item/clothing/head/helmet/gerhelm/proc/transform2soviet()
 	name = SOVIET_HELMET_NAME
@@ -1025,7 +1032,7 @@
 	worn_state = "sovofficer_coat"
 
 /obj/item/clothing/suit/storage/coat/german/ghillie
-	name = "Ghilie Ghillie Suit"
+	name = "Ghillie Suit"
 	desc =  "A standard ghillie suit."
 	icon_state = "ger_ghillie"
 	item_state = "ger_ghillie"
@@ -1060,4 +1067,14 @@
 /obj/item/clothing/mask/gas/soviet
 	icon_state = "gp5_mask"
 	item_state = "gp5_mask"
+	filtered_gases = list("xylyl_bromide", "mustard_gas", "white_phosphorus_gas", "chlorine_gas", "zyklon_b")
+
+/obj/item/clothing/mask/gas/japan
+	icon_state = "gp5_mask"
+	item_state = "gp5_mask"
+	filtered_gases = list("xylyl_bromide", "mustard_gas", "white_phosphorus_gas", "chlorine_gas", "zyklon_b")
+
+/obj/item/clothing/mask/gas/usa
+	icon_state = "m38_mask"
+	item_state = "m38_mask"
 	filtered_gases = list("xylyl_bromide", "mustard_gas", "white_phosphorus_gas", "chlorine_gas", "zyklon_b")

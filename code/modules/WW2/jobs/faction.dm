@@ -141,7 +141,7 @@ var/global/squad_members[3]
 /datum/faction/japanese/base_type()
 	return "/datum/faction/japanese"
 
-/datum/faction/soviet/officer
+/datum/faction/japanese/officer
 	icon_state = "japanese_officer"
 	title = "Japanese Officer"
 	team = TEAM_JP
@@ -151,7 +151,7 @@ var/global/squad_members[3]
 	title = "Japanese Commander"
 	team = TEAM_JP
 
-// you appear to be a jp soldier to all other jp
+// you appear to be a us soldier to all other us
 /datum/faction/usa
 	icon_state = "US_soldier"
 	title = "US Soldier"

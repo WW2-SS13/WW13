@@ -33,7 +33,51 @@
 		/obj/item/weapon/storage/belt/german_basic = 15,
 		/obj/item/weapon/storage/backpack/german = 15
 	)
-
+/obj/structure/vending/usaapparel
+	name = "US Army apparel rack"
+	desc = "Basic wear for US Army soldiers."
+	icon_state = "apparel_usa"
+	products = list(
+//		/obj/item/clothing/suit/storage/coat/german = 50,
+		/obj/item/clothing/accessory/storage/webbing = 50,
+		/obj/item/clothing/under/usuni = 50,
+		/obj/item/clothing/under/usuni2 = 20,
+		/obj/item/clothing/under/usuni3 = 10,
+		/obj/item/clothing/head/helmet/ushelm = 50,
+		/obj/item/clothing/head/helmet/usnco = 50,
+		/obj/item/clothing/shoes/usboots = 50,
+		/obj/item/clothing/mask/gas/usa = 25,
+		/obj/item/weapon/storage/backpack/usa = 15
+	)
+/obj/structure/vending/marinesapparel
+	name = "US Marines apparel rack"
+	desc = "Basic wear for US Marines soldiers."
+	icon_state = "apparel_usa"
+	products = list(
+//		/obj/item/clothing/suit/storage/coat/german = 50,
+		/obj/item/clothing/accessory/storage/webbing = 50,
+		/obj/item/clothing/under/usuni = 50,
+		/obj/item/clothing/under/usuni2 = 20,
+		/obj/item/clothing/under/usuni3 = 10,
+		/obj/item/clothing/head/helmet/ushelm_mar = 50,
+		/obj/item/clothing/shoes/usboots = 50,
+		/obj/item/clothing/mask/gas/usa = 25,
+		/obj/item/weapon/storage/backpack/usa = 15
+	)
+/obj/structure/vending/japanapparel
+	name = "Japanese apparel rack"
+	desc = "Basic wear for IJA soldiers."
+	icon_state = "apparel_japan"
+	products = list(
+//		/obj/item/clothing/suit/storage/coat/german = 50,
+		/obj/item/clothing/accessory/storage/webbing = 50,
+		/obj/item/clothing/under/geruni = 50,
+		/obj/item/clothing/head/helmet/japanhelm = 50,
+		/obj/item/clothing/head/helmet/japhat = 25,
+		/obj/item/clothing/shoes/swat/wrappedboots = 50,
+		/obj/item/clothing/mask/gas/japan = 25,
+		/obj/item/weapon/storage/backpack/japan = 15
+	)
 /obj/structure/vending/italian/apparel
 	name = "Italian apparel rack"
 	desc = "Basic wear for Italian soldiers."
@@ -88,6 +132,35 @@
 		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/german = 25
 	)
 //	idle_power_usage = 0
+
+/obj/structure/vending/japanequipment
+	name = "Japanese equipment rack"
+	desc = "Basic equip for Japanese soldiers."
+	icon_state = "equipment_japan"
+	products = list(
+		/obj/item/weapon/attachment/bayonet = 25,
+		/obj/item/weapon/gauze_pack/gauze = 25,
+		/obj/item/flashlight = 25,
+		/obj/item/weapon/shovel/spade/japan = 25,
+		/obj/item/weapon/gun/projectile/boltaction/arisaka = 25,
+		 /obj/item/ammo_magazine/a77x58 = 50,
+		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/japanese = 25
+	)
+
+/obj/structure/vending/usaquipment
+	name = "US equipment rack"
+	desc = "Basic equip for US soldiers."
+	icon_state = "equipment_usa"
+	products = list(
+		/obj/item/weapon/attachment/bayonet = 25,
+		/obj/item/weapon/gauze_pack/gauze = 25,
+		/obj/item/flashlight = 25,
+		/obj/item/weapon/shovel/spade/usa = 25,
+		/obj/item/weapon/gun/projectile/semiautomatic/m1garand = 25,
+		/obj/item/ammo_magazine/c762x63 = 50,
+		/obj/item/ammo_magazine/c762x63_5 = 10,
+		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/american = 25
+	)
 
 /obj/structure/vending/SSequipment
 	name = "SS equipment rack"

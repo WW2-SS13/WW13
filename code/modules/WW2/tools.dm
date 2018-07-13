@@ -38,6 +38,16 @@
 	icon_state = "german_shovel2"
 	item_state = "lopata"
 
+/obj/item/weapon/shovel/spade/japan
+	name = "japanese field shovel"
+	icon_state = "lopata"
+	item_state = "lopata"
+
+/obj/item/weapon/shovel/spade/usa
+	name = "american field shovel"
+	icon_state = "german_shovel2"
+	item_state = "lopata"
+
 /obj/item/weapon/shovel/spade/mortar
 	name = "spade mortar"
 	icon_state = "spade_mortar"

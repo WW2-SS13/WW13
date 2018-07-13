@@ -458,7 +458,7 @@
 	rank_abbreviation = "Sgt"
 	head_position = FALSE
 	selection_color = "#4c4ca5"
-	spawn_location = "JoinLateRASL"
+	spawn_location = "JoinLateMARSL"
 	additional_languages = list( "German" = 50, "Japanese" = 15)
 	is_officer = TRUE
 	is_squad_leader = TRUE
@@ -504,7 +504,7 @@
 	en_meaning = "Marines Infantry Soldier"
 	rank_abbreviation = "Pvt"
 	selection_color = "#4c4ca5"
-	spawn_location = "JoinLateRA"
+	spawn_location = "JoinLateMAR"
 	allow_spies = TRUE
 	SL_check_independent = TRUE
 	additional_languages = list("German" = 25)
