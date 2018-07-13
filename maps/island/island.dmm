@@ -285,7 +285,7 @@
 "fy" = (/obj/effect/decal/cleanable/blood,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "fz" = (/obj/structure/light/small/red,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; icon_state = "blue3"; name = "Japanese Cave HQ"})
 "fA" = (/obj/structure/bed/chair/wood{dir = 8},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
-"fB" = (/obj/structure/sink/kitchen,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
+"fB" = (/obj/item/trash/candle,/obj/structure/light/small{dir = 1},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "fC" = (/obj/structure/table/wood,/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "fD" = (/obj/structure/table/wood,/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "fE" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/glass/bucket,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
@@ -341,7 +341,7 @@
 "gC" = (/obj/structure/light/small,/obj/structure/railing{dir = 8},/turf/floor/plating/road,/area/prishtina/no_mans_land/invisible_wall{base_turf = /turf/floor/plating/beach/water})
 "gD" = (/obj/structure/table/rack,/obj/item/weapon/material/sword/jap_katana,/obj/item/weapon/material/sword/jap_katana,/obj/item/weapon/material/sword/jap_katana,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; icon_state = "blue3"; name = "Japanese Cave HQ"})
 "gE" = (/obj/structure/light/small/red{dir = 1},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
-"gF" = (/obj/structure/table/rack,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
+"gF" = (/obj/structure/table/rack,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/weapon/material/sword/jap_katana,/obj/item/weapon/material/sword/jap_katana,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "gG" = (/obj/structure/light/small/red{dir = 1},/obj/structure/sink,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "gH" = (/obj/item/weapon/mop,/obj/item/weapon/reagent_containers/glass/bucket,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "gI" = (/obj/structure/table/wood,/obj/item/weapon/storage/pill_bottle/tramadol,/obj/structure/light/small/red{dir = 1},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
@@ -362,7 +362,7 @@
 "gX" = (/obj/item/weapon/bedsheet/brown{name = "sleeping bag"},/obj/effect/landmark{name = "JoinLateHeer"},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "gY" = (/obj/effect/decal/cleanable/dirt,/obj/item/weapon/newspaper,/turf/floor/dirt,/area/prishtina/houses)
 "gZ" = (/obj/structure/sign/n1,/turf/wall/iron{opacity = 0},/area/prishtina/no_mans_land/invisible_wall{base_turf = /turf/floor/plating/beach/water})
-"ha" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/structure/multiz/ladder/ww2{area_id = "lc1"; name = "to LC #1"},/obj/structure/railing,/turf/floor/plating/concrete,/area/prishtina/no_mans_land/invisible_wall{base_turf = /turf/floor/plating/beach/water})
+"ha" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/structure/multiz/ladder/ww2{area_id = "lc1"; name = "to LC #1"},/turf/floor/plating/concrete,/area/prishtina/no_mans_land/invisible_wall{base_turf = /turf/floor/plating/beach/water})
 "hb" = (/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/turf/floor/plating/beach/water/deep,/area/prishtina/island/sea)
 "hc" = (/obj/structure/sign/n1,/turf/wall/iron,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "hd" = (/obj/structure/sign/n2,/turf/wall/iron,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
@@ -385,13 +385,13 @@
 "hu" = (/obj/structure/table/rack,/obj/item/weapon/gun/projectile/submachinegun/type100,/obj/item/weapon/gun/projectile/submachinegun/type100,/obj/item/ammo_magazine/c8mmnambu_smg,/obj/item/ammo_magazine/c8mmnambu_smg,/obj/item/ammo_magazine/c8mmnambu_smg,/obj/item/ammo_magazine/c8mmnambu_smg,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; icon_state = "blue3"; name = "Japanese Cave HQ"})
 "hv" = (/obj/structure/sign/n2,/turf/wall/iron{opacity = 0},/area/prishtina/no_mans_land/invisible_wall{base_turf = /turf/floor/plating/beach/water})
 "hw" = (/obj/structure/curtain/medical,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
-"hx" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/structure/multiz/ladder/ww2{area_id = "lc2"; name = "to LC #2"},/obj/structure/railing,/turf/floor/plating/concrete,/area/prishtina/no_mans_land/invisible_wall{base_turf = /turf/floor/plating/beach/water})
+"hx" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/structure/multiz/ladder/ww2{area_id = "lc2"; name = "to LC #2"},/turf/floor/plating/concrete,/area/prishtina/no_mans_land/invisible_wall{base_turf = /turf/floor/plating/beach/water})
 "hy" = (/obj/structure/sign/n3,/turf/wall/iron{opacity = 0},/area/prishtina/no_mans_land/invisible_wall{base_turf = /turf/floor/plating/beach/water})
 "hz" = (/obj/structure/multiz/ladder/ww2/up{area_id = "lc1"; name = "to upper deck"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "hA" = (/obj/structure/multiz/ladder/ww2/up{area_id = "lc2"; name = "to upper deck"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "hB" = (/obj/structure/sign/n3,/turf/wall/iron,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "hC" = (/obj/structure/sign/n4,/turf/wall/iron,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
-"hD" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/structure/multiz/ladder/ww2{area_id = "lc3"; name = "to LC #3"},/obj/structure/railing,/turf/floor/plating/concrete,/area/prishtina/no_mans_land/invisible_wall{base_turf = /turf/floor/plating/beach/water})
+"hD" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/structure/multiz/ladder/ww2{area_id = "lc3"; name = "to LC #3"},/turf/floor/plating/concrete,/area/prishtina/no_mans_land/invisible_wall{base_turf = /turf/floor/plating/beach/water})
 "hE" = (/obj/structure/multiz/ladder/ww2/up{area_id = "lc5"; name = "to upper deck"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "hF" = (/obj/structure/multiz/ladder/ww2/up{area_id = "lc3"; name = "to upper deck"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "hG" = (/obj/structure/multiz/ladder/ww2/up{area_id = "lc4"; name = "to upper deck"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
@@ -401,9 +401,9 @@
 "hK" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/turf/floor/plating/concrete{name = "LC Ramp"},/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "hL" = (/obj/structure/railing{dir = 8},/obj/structure/railing,/turf/wall/iron,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "hM" = (/obj/structure/sign/n4,/turf/wall/iron{opacity = 0},/area/prishtina/no_mans_land/invisible_wall{base_turf = /turf/floor/plating/beach/water})
-"hN" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/structure/multiz/ladder/ww2{area_id = "lc4"; name = "to LC #4"},/obj/structure/railing,/turf/floor/plating/concrete,/area/prishtina/no_mans_land/invisible_wall{base_turf = /turf/floor/plating/beach/water})
+"hN" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/structure/multiz/ladder/ww2{area_id = "lc4"; name = "to LC #4"},/turf/floor/plating/concrete,/area/prishtina/no_mans_land/invisible_wall{base_turf = /turf/floor/plating/beach/water})
 "hO" = (/obj/structure/sign/n5,/turf/wall/iron{opacity = 0},/area/prishtina/no_mans_land/invisible_wall{base_turf = /turf/floor/plating/beach/water})
-"hP" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/structure/multiz/ladder/ww2{area_id = "lc5"; name = "to LC #5"},/obj/structure/railing,/turf/floor/plating/concrete,/area/prishtina/no_mans_land/invisible_wall{base_turf = /turf/floor/plating/beach/water})
+"hP" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/structure/multiz/ladder/ww2{area_id = "lc5"; name = "to LC #5"},/turf/floor/plating/concrete,/area/prishtina/no_mans_land/invisible_wall{base_turf = /turf/floor/plating/beach/water})
 "hQ" = (/obj/structure/multiz/ladder/ww2{area_id = "down2"},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "hR" = (/obj/structure/table/rack,/obj/item/weapon/gun/projectile/semiautomatic/m1garand,/obj/item/weapon/gun/projectile/semiautomatic/m1garand,/obj/structure/railing{dir = 8},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 1; name = "Ship"})
 "hS" = (/obj/structure/multiz/ladder/ww2{area_id = "down1"},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
@@ -586,27 +586,34 @@
 "ln" = (/obj/effect/landmark{name = "JoinLateHeerQM"},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "lo" = (/obj/item/weapon/grenade/explosive/kamikaze,/obj/item/weapon/grenade/explosive/kamikaze,/obj/item/weapon/grenade/explosive/kamikaze,/obj/item/weapon/grenade/explosive/kamikaze,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "lp" = (/turf/floor/plating/concrete{name = "LC Ramp"},/area/prishtina/soviet/immediate_outside_defenses{base_turf = /turf/floor/plating/road; name = "Landing Crafts"})
+"lq" = (/obj/structure/light/small{dir = 1},/obj/item/roller,/obj/item/roller,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "lr" = (/obj/structure/simple_door/key_door/allied/command_intermediate{name = "Storage"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"ls" = (/obj/structure/light/small{dir = 1},/obj/item/roller,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"lt" = (/obj/item/roller,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"lu" = (/obj/item/weapon/reagent_containers/food/snacks/boiledrice,/obj/structure/table/wood,/obj/structure/light/small{dir = 1},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
+"lv" = (/obj/structure/sink/kitchen,/obj/structure/light/small{dir = 1},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
+"lw" = (/obj/structure/light/small{dir = 1},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
+"lx" = (/obj/structure/table/rack,/obj/item/weapon/material/sword/jap_katana,/obj/item/weapon/material/sword/jap_katana,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 
 (1,1,1) = {"
 aeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeafafafafaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaekEaekEaeaeaeaeaeaeae
-aeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeafafafafaffIgDaQafaeaeaeaeaeaeaeaeaeaeaeaeaefnfVfZgbaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaekFfjfjfZkRfZkSaeaeaeaeaeae
+aeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeafafafafaffIgDaQafaeaeaeaeaeaeaeaeaeaeaeaeaefnfVfZgbaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaekFfjfjfBkRfBkSaeaeaeaeaeae
 aeaeaeaeaeaeaeaehfaeaeaeaeaehfaeaeaeaeaeaeaeaefgfghgfgfghhhihjfhaQaQaQfifjfjaeaeaeaeaeaeaeaeaeaegEgFfjfjfVgEfjfnaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaelglhfZfjfZlhaeaeaeaeaeae
 aeaeaeaeaeaeaeaefkflflgGfmgHgIfoaeaeaeaeaeafaffhhkhlhmhnhobwhoaQbwaQaQbKfqfjfjfjfjfjaeaeaeaefXfjfjfVbLfVbLbLfVgJaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaelifjlhfjfjfjlhloaeaeaeaeae
-aeaeaeaeaeaeaefrfjfjfjfmfjfmfmfjfsftaeafafaQaQbMhpbMhpbwaQbwaQljljaQaQafaeaeaefjfjfjfjfjaeaeaefVbLfVbLfjbLfVgKaeaeaeaeaeaeaeaeaeaeaefjfjfjfjhQaeaeaeaeaefufufufufvfwaeaeaeaeaefjfjlhfjfjfjlhaeaeaeaeaeae
-aeaeaeaeaeaeaefxlklkfyfjlklklklkfjfjfjbKaQaQaQllllaQhqaQbwaQfzaQafafafafaeaeaeaeaefqfjfjaeaeaefjbLfVbLfVfZbLgKaeaeaeaeaefjfjfjfjfjfjfjfjfjfjfjfjfjfjftfAlmfjlmfjfjlmfBaeaeaeaeaeaeaefjfjaeaeaeaeaeaeaeae
+aeaeaeaeaeaeaefrfjfjfjfmfjfmfmfjfsftaeafafaQaQbMhpbMhpbwaQbwaQljljaQaQafaeaeaefjfjfjfjfjaeaeaefVbLfVbLfjbLfVgKaeaeaeaeaeaeaeaeaeaeaefjfjfjfjhQaeaeaeaeaelufufufufvfwaeaeaeaeaefjfjlhfjfjfjlhaeaeaeaeaeae
+aeaeaeaeaeaeaefxlklkfyfjlklklklkfjfjfjbKaQaQaQllllaQhqaQbwaQfzaQafafafafaeaeaeaeaefqfjfjaeaeaefjbLfVbLfVfZbLgKaeaeaeaeaefjfjfjfjfjfjfjfjfjfjfjfjfjfjftfAlmfjlmfjfjlmlvaeaeaeaeaeaeaefjfjaeaeaeaeaeaeaeae
 aeaeaeaeaeaeaefxfjlkfjfmlkfmfmfqaeaeaeafafafafaffzhrhshththuafafaeaeaeaeaeaeaeaeaeaeaefjfjfjaeaefjfjfjbLfVfjfVaeaefjfjfjfjfjfqfjfjfjfjfjfjfjfjfjfjfjfjfjfjfCfDfEfFfjfjaeaeaeaeaeaeaefjaeaeaeaeaeaeaeaeae
 aeaeaeaeaeaeaefGlkfjfyfjlkfjfjaeaeaeaeaeaeaeaeafafafafafafafafaeaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfjfjfjfjfjfjfjaefjfjfjfqfjfjfjaeaefjfjfjfjfqaeaeaeaeaefHftfAlmfjfjlmfHftfAaeaeaeaeaeaefjaeaeaeaeaeaeaeaeae
 aeaeaeaeaeaeaeaeaefqfjlkfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfjfjfjfjfjfjfjfjfjaeaeaeaeaeaefjfjfJfKfKaeaeaeaeaeaeaeaefqfjfjlmfjfHftfAaeaeaeaeaeaefjaeaeaeaeaeaeaeaeae
-aeaeaeaeaeaeaeaeaeaefjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfjfjfjfjfjfjfjfqaeaeaeaeaeaeaefLfjfjfMfjfjfNaeaeaeaeaeaeaeaefHftfAfjfjfjaeaeaeaeaeaefjfjaeaeaeaeaeaeaeaeae
+aeaeaeaeaeaeaeaeaeaefjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfjfjfjfjfjfjfjfqaeaeaeaeaeaeaefLfjfjfMfjfjfNaeaeaeaeaeaeaeaefHftfAfjfjfjaeaeaeaeaeaelwfjaeaeaeaeaeaeaeaeae
 aeaeaeaeaeaeaeaeaeaefjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfjfqaeaeaeaeaeaeaeaeaeaeaeaeaeaefObTbTfPfjfyfNaeaeaeaeaeaeaeaeaeaefjfjfjaeaeaeaeaeaeaefjfjaeaeaeaeaeaeaeaeae
-aeaeaeaeaeaeaeaeaeaeaefjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfjfjaecccccndSdFhSfjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefQbTfjfjfMfjfjfNaeaeaeaeaeaeaeaeaeaefjfjfjaeaeaeaefjfjfjfjfjaeaeaeaeaeaeaeaeae
+aeaeaeaeaeaeaeaeaeaeaefjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefjlwfjfjaecccccndSdFhSfjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefQbTfjfjfMfjfjfNaeaeaeaeaeaeaeaeaeaefjfjfjaeaeaeaefjfjfjfjfjaeaeaeaeaeaeaeaeae
 aeaeaeaeaeaeaeaeaeaeaeaefjfjfjaeaeaeaeaeaeaeaegLgLgMgMgNaefjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefSbTbTfTfjfjfNaeaeaeaeaeaeaeaeaeaeaefqfjfjfjaefjfjaeaeaefjfjaeaeaeaeaeaeaeae
 aeaeaefUgOfWaeaeaeaeaeaeaefqfjfjaeaeaeaeaegPgEfjfjfjfjfjgEfjfjfqfjfjfjaeaefqfjfjfjfjfjfjaeaefjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfMfqfNaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfjfjfjaeaeaeaeaefjfjaeaeaeaeaeaeae
 aeaefXbLfjbLfWaeaeaeaeaeaeaefjfjaefjfjfjaegPfjfjlnfjlnfjfjaeaeaeaeaeaeaeaeaeaefjeSeSfjfjaeaefqfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfqfjfjaeaeaeaeaefqfjaeaeaeaeaeae
 aeaefXfjfVfjfVfYaeaeaeaeaeaefjfjfjfjfqfjfjfjfjlnfjfjfjfjgQaeaeaeaeaeaeaeaeaeaefjaeaefqfjfjaeaeaefjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaaaaaaeaaaaaaaaaeaeaeaeaeaeaeaeaeaeaefjaefjfjfjfjaeaeaeaefjaeaeaeaeaeae
 aegRfVfZbLbLbLfYaeaeaeaeaeaefjfjfjfjaeaeaeaefjfjlnlnfjgQaeaeaeaeaeaeaeaeaeaeaefjaeaeaefjfjaeaeaefjabaaaaaeaeaeaaaaaaaeaeaeaeaeaaaaacaaaaaaacacaaaaaaaaaeaeaeaeaeaeaeaefjaeaeaefjababadaaaaabaaaaaaaeaaaa
-aefRfjfjfVfjfVfRaeaeaeaeaeaefjfjfjaeaeaeaeaegSgSgTgUgVaeaeaeaeaeaeaeaeaeaeaeaefjaeaeaefjfjaeaeaeaaahaiaaaaaeaaaaacaaaaaaaaaaaaaaacacacacacacacacacacaaaeaeaeaeaeaeaeaefjaeaeaeadabajacaaaaahaiacaaaaaaac
+aefRfjfjfVfjfVlxaeaeaeaeaeaefjfjfjaeaeaeaeaegSgSgTgUgVaeaeaeaeaeaeaeaeaeaeaeaefjaeaeaefjfjaeaeaeaaahaiaaaaaeaaaaacaaaaaaaaaaaaaaacacacacacacacacacacaaaeaeaeaeaeaeaeaefjaeaeaeadabajacaaaaahaiacaaaaaaac
 aefVbLfVbLfVfjfjaeaeaeaeaefjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefjaeaeaefjfjaeaeaeaaakaiacaaaaaaacacacacacacaaaaacacaBacacacacacacacaaaaaaaaaeaeaaaaaaaafjaeaeaeaaajajacacaiaiaiacacacacac
 aefVbLfjfjbLfjfjfjaeaefjfjfqaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaaaaaaaaaaaaefjaeaeaefjfjaeaeaeaaacacacacaaacacacacacacacacacacacacacacacacaOacacacacacaaaaaaaaacacaaahaaaaaaaaaVaWaYacacacacacacacacac
 aefVfjgXfZgWaeaefjfjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaaaacaaaaacaaaafjaeaaaaabababaaaaaaacacacacaOacacacacacacaBacacacacacacacacacacacacacacacacacacacacacaaaiaiaaaaacbfbgacacacacacacacacbkac
@@ -876,9 +883,9 @@ gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaga
 gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaga
 gaksksksksksksksgagagagagagagagagagagagagaksksksksksksksgagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaksksksksksksksgagagagagagaga
 gaksimhcimhcimksgagagagagagagagagagagagagaksimhdimhdimksgagagagagagagagagagagaksksksksksksksgagagagagagagagagagagagagagaksksksksksksksgagagagagagagagagagagagagagagagagagagaksimheimheimksgagagagagagaga
-gaksimiohzioimksgagagagagagagagagagagagagaksimiohAioimksgagagagagagagagagagagaksimhBimhBimksgagagagagagagagagagagagagagaksimhCimhCimksgagagagagagagagagagagagagagagagagagagaksimiohEioimksgagagagagagaga
-gaksimipipipimksgagagagagagagagagagagagagaksimipipipimksgagagagagagagagagagagaksimiohFioimksgagagagagagagagagagagagagagaksimiohGioimksgagagagagagagagagagagagagagagagagagagaksimipipipimksgagagagagagaga
-gaksimhHhHhHimksgagagagagagagagagagagagagaksimhHhHhHimksgagagagagagagagagagagaksimipipipimksgagagagagagagagagagagagagagaksimipipipimksgagagagagagagagagagagagagagagagagagagaksimhHhHhHimksgagagagagagaga
+gaksimiohzlqimksgagagagagagagagagagagagagaksimlqhAioimksgagagagagagagagagagagaksimhBimhBimksgagagagagagagagagagagagagagaksimhCimhCimksgagagagagagagagagagagagagagagagagagagaksimlshElsimksgagagagagagaga
+gaksimipipltimksgagagagagagagagagagagagagaksimltipipimksgagagagagagagagagagagaksimlshFlsimksgagagagagagagagagagagagagagaksimlshGlsimksgagagagagagagagagagagagagagagagagagagaksimipipltimksgagagagagagaga
+gaksimhHhHhHimksgagagagagagagagagagagagagaksimhHhHhHimksgagagagagagagagagagagaksimltipipimksgagagagagagagagagagagagagagaksimltipipimksgagagagagagagagagagagagagagagagagagagaksimhHhHhHimksgagagagagagaga
 gakshJhKhKhKhLksgagagagagagagagagagagagagakshJhKhKhKhLksgagagagagagagagagagagaksimhHhHhHimksgagagagagagagagagagagagagagaksimhHhHhHimksgagagagagagagagagagagagagagagagagagagakshJhKhKhKhLksgagagagagagaga
 gaeTeTlplplpeTeTgagagagagagagagagagagagagaeTeTlplplpeTeTgagagagagagagagagagagakshJhKhKhKhLksgagagagagagagagagagagagagagakshJhKhKhKhLksgagagagagagagagagagagagagagagagagagagaeTeTlplplpeTeTgagagagagagaga
 gaeThIhIhIhIhIeTgagagagagagagagagagagagagaeThIhIhIhIhIeTgagagagagagagagagagagaeTeTlplplpeTeTgagagagagagagagagagagagagagaeTeTlplplpeTeTgagagagagagagagagagagagagagagagagagagaeThIhIhIhIhIeTgagagagagagaga
