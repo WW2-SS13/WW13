@@ -494,7 +494,7 @@
 	..()
 	H.make_artillery_officer()
 
-/datum/job/usa/squad_leader/get_keys()
+/datum/job/usa/marines_squad_leader/get_keys()
 	return list(new/obj/item/weapon/key/allied,
 		new/obj/item/weapon/key/allied/command_intermediate,
 		new/obj/item/weapon/key/allied/medic, new/obj/item/weapon/key/allied/engineer, new/obj/item/weapon/key/allied/QM)
