@@ -541,7 +541,7 @@ var/area/partisan_stockpile = null
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
-		if ("JoinLateMARSL")
+		if ("JoinLateMAR")
 			if (!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc

@@ -529,8 +529,8 @@
 /obj/item/clothing/head/helmet/japhat
 	name = "Japanese open cap"
 	desc = "An open Japanese cat."
-	icon_state = "japextendedhat"
-	item_state = "japextendedhat"
+	icon_state = "japextendedcap"
+	item_state = "japextendedcap"
 
 /obj/item/clothing/head/helmet/gerhelm/proc/transform2soviet()
 	name = SOVIET_HELMET_NAME
