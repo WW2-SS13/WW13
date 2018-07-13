@@ -14,11 +14,6 @@
 /obj/transport_lever/New()
 	..()
 	lever_list += src
-	for (var/turf/wall/titanium/T in range(2, src))
-		T.opacity = FALSE
-		T.density = FALSE
-		T.icon = 'icons/turf/floors.dmi'
-		T.icon_state = "concrete6"
 
 /obj/transport_lever/Destroy()
 	lever_list -= src
@@ -140,48 +135,3 @@
 							T.opacity = FALSE
 							T.density = FALSE
 							T.name = "LC Ramp"
-
-
-/obj/transport_lever/proc/function(var/mob/user as mob)
-	if (orientation == "NONE")
-		icon_state = pushed_state
-		orientation = "PUSHED"
-		for (var/obj/transport_controller/down/transport in range(10, src))
-			if (transport.activate())
-				visible_message("<span class = 'danger'>[user] pushes the lever forwards!</span>")
-				break
-	spawn (3)
-		icon_state = none_state
-		orientation = "NONE"
-
-	playsound(get_turf(src), 'sound/effects/lever.ogg', 100, TRUE)
-
-/obj/transport_lever/linked
-	var/obj/transport_lever/counterpart = null
-
-/obj/transport_lever/linked/attack_hand(var/mob/user)
-	if (user && istype(user, /mob/living/carbon/human) && counterpart)
-		function(user)
-
-/obj/transport_lever/linked/function(var/mob/user as mob)
-	if (orientation == "NONE")
-		icon_state = pushed_state
-		orientation = "PUSHED"
-		for (var/obj/transport_controller/down/transport in range(10, counterpart))
-			if (transport.activate())
-				visible_message("<span class = 'danger'>[user] pushes the lever forwards!</span>")
-				break
-	spawn (3)
-		icon_state = none_state
-		orientation = "NONE"
-
-
-// subtypes
-
-/obj/transport_lever/one
-	lever_id = "lc1"
-	name = "1st lever"
-
-/obj/transport_lever/linked/one
-	lever_id = "lc1"
-	name = "2nd lever"
