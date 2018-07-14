@@ -12,7 +12,7 @@ SERVER_NAME Lebensraum Alpha
 HUB_FEATURES A new light-medium roleplay WW2 Server
 
 ## The main content of your hub message
-HUB_BODY <i>1941, SEASON, TIME_OF_DAY, Ukraine</i><br>
+HUB_BODY <i>WW2, SEASON, TIME_OF_DAY</i><br>
 
 ## Use a link to a banner on your hub message? Comment out if not
 HUB_BANNER_URL <img src='http://tny.im/btn'>
@@ -123,7 +123,7 @@ NORESPAWN
 # DONT_DEL_NEWMOB
 
 ## set a hosted by name for unix platforms
-HOSTEDBY Kachnov
+HOSTEDBY The Senate
 
 ## Set to jobban "Guest-" accounts from Captain, HoS, HoP, CE, RD, CMO, Warden, Security, Detective, and AI positions.
 ## Set to 1 to jobban them from those positions, set to 0 to allow them.
@@ -190,7 +190,7 @@ WIKIURL http://mechahitler.co.nf/wiki/media/index.php?title=Main_Page
 WEBSITEURL http://mechahitler.co.nf/
 
 ##Rules address
-# RULESURL http://www.tgstation13.org/wiki/Rules
+# RULESURL http://mechahitler.co.nf/lebensraum/rules.html
 
 ##Github address
 GITHUBURL https://github.com/WW2-SS13/WW13/issues

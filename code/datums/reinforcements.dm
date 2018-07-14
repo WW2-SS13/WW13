@@ -124,10 +124,10 @@ var/datum/reinforcements/reinforcements_master = null
 			german_countdown = german_countdown_success_reset*2
 			world << "<font size = 3>Due to harsh combat in other areas on the front, German reinforcements will not be available for a while.</font>"
 		else if (!locked[JAPAN])
-			japan_countdown = german_countdown_success_reset*2
+			japan_countdown = japan_countdown_success_reset*2
 			world << "<font size = 3>Due to harsh combat in other areas on the front, Japanese reinforcements will not be available for a while.</font>"
 		else if (!locked[USA])
-			usa_countdown = german_countdown_success_reset*2
+			usa_countdown = usa_countdown_success_reset*2
 			world << "<font size = 3>Due to harsh combat in other areas on the front, American reinforcements will not be available for a while.</font>"
 	if (map.front == "Eastern")
 		if (reinforcement_pool[SOVIET] && reinforcement_pool[GERMAN])
@@ -162,20 +162,20 @@ var/datum/reinforcements/reinforcements_master = null
 				if (!np || !np.client)
 					reinforcement_pool[GERMAN] -= np
 
-		usa_countdown = usa_countdown - tick_len
-		if (usa_countdown < 1)
-			if (!reset_usa_timer())
-				usa_countdown = usa_countdown_failure_reset
+		soviet_countdown = soviet_countdown - tick_len
+		if (soviet_countdown < 1)
+			if (!reset_soviet_timer())
+				soviet_countdown = soviet_countdown_failure_reset
 			else
-				usa_countdown = usa_countdown_success_reset
+				soviet_countdown = soviet_countdown_success_reset
 				allow_quickspawn[SOVIET] = FALSE
 
-		japan_countdown = japan_countdown - tick_len
-		if (japan_countdown < 1)
-			if (!reset_japan_timer())
-				japan_countdown = japan_countdown_failure_reset
+		german_countdown = german_countdown - tick_len
+		if (german_countdown < 1)
+			if (!reset_german_timer())
+				german_countdown = german_countdown_failure_reset
 			else
-				japan_countdown = japan_countdown_success_reset
+				german_countdown = german_countdown_success_reset
 				allow_quickspawn[GERMAN] = FALSE
 
 /datum/reinforcements/proc/add(var/mob/new_player/np, side)
@@ -277,11 +277,18 @@ var/datum/reinforcements/reinforcements_master = null
 		for (var/mob/new_player/np in l)
 			np << "<span class='danger'>The Axis forces are currently occupying the Allied base! Reinforcements can't be sent."
 		return ret
-	for (var/mob/new_player/np in l)
-		if (np)
-			np.LateSpawnForced("Sovietsky Soldat", TRUE, TRUE)
-			reinforcements_granted[SOVIET] = reinforcements_granted[SOVIET]+1
-			ret = TRUE
+	if (map.front == "Eastern")
+		for (var/mob/new_player/np in l)
+			if (np)
+				np.LateSpawnForced("Sovietsky Soldat", TRUE, TRUE)
+				reinforcements_granted[SOVIET] = reinforcements_granted[SOVIET]+1
+				ret = TRUE
+	if (map.front == "Pacific")
+		for (var/mob/new_player/np in l)
+			if (np) // maybe helps with logged out nps
+				np.LateSpawnForced("Private", TRUE, TRUE)
+				reinforcements_granted[JAPAN] = reinforcements_granted[JAPAN]+1
+				ret = TRUE
 	reinforcement_pool[SOVIET] = list()
 	lock_check()
 	var/obj/item/radio/R = main_radios[SOVIET]
@@ -301,11 +308,18 @@ var/datum/reinforcements/reinforcements_master = null
 		for (var/mob/new_player/np in l)
 			np << "<span class='danger'>The Allies are currently occupying the Axis base! Reinforcements can't be sent."
 		return ret
-	for (var/mob/new_player/np in l)
-		if (np) // maybe helps with logged out nps
-			np.LateSpawnForced("Soldat", TRUE, TRUE)
-			reinforcements_granted[GERMAN] = reinforcements_granted[GERMAN]+1
-			ret = TRUE
+	if (map.front == "Eastern")
+		for (var/mob/new_player/np in l)
+			if (np) // maybe helps with logged out nps
+				np.LateSpawnForced("Soldat", TRUE, TRUE)
+				reinforcements_granted[GERMAN] = reinforcements_granted[GERMAN]+1
+				ret = TRUE
+	if (map.front == "Pacific")
+		for (var/mob/new_player/np in l)
+			if (np) // maybe helps with logged out nps
+				np.LateSpawnForced("Nitohei", TRUE, TRUE)
+				reinforcements_granted[JAPAN] = reinforcements_granted[JAPAN]+1
+				ret = TRUE
 	reinforcement_pool[GERMAN] = list()
 	lock_check()
 	var/obj/item/radio/R = main_radios[GERMAN]
