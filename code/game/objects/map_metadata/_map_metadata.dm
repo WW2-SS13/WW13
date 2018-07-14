@@ -76,6 +76,9 @@ var/global/obj/map_metadata/map = null
 	var/meme = FALSE
 	var/battle_name = null
 
+	//front (western europe, eastern europe, pacific, etc)
+	var/front = "Eastern"
+
 /obj/map_metadata/New()
 	..()
 	map = src

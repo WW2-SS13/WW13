@@ -16,12 +16,12 @@
 #define TEAM_US 5
 #define TEAM_PO 6
 
-var/global/spies[3]
-var/global/officers[3]
-var/global/commanders[3]
-var/global/squad_leaders[3]
-var/global/soldiers[3]
-var/global/squad_members[3]
+var/global/spies[6]
+var/global/officers[6]
+var/global/commanders[6]
+var/global/squad_leaders[6]
+var/global/soldiers[6]
+var/global/squad_members[6]
 
 /datum/faction
 	// redefine these since they don't exist in /datum
