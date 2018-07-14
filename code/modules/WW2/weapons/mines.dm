@@ -150,7 +150,7 @@
 //TYPES//
 //Explosive
 /obj/item/mine/proc/explosive(obj)
-	explosion(loc,-1,1,3)
+	explosion(loc,-2,2,3)
 	spawn(0)
 		qdel(src)
 
@@ -159,7 +159,7 @@
 	desc = "German anti-personnel mine. Useful for setting traps or for area denial."
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "betty"
-	force = 5.0
+	force = 10.0
 	w_class = 2.0
 	throwforce = 5.0
 	throw_range = 6
