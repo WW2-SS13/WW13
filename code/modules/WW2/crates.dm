@@ -348,12 +348,12 @@
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/ammo_magazine/c792x57_fg42 = DYNAMIC_AMT)
 
-/obj/structure/closet/crate/c45m
-	name = "M1911 ammo"
+/obj/structure/closet/crate/Thomson_ammo
+	name = "Thomson ammo"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
-	paths = list(/obj/item/ammo_magazine/c45m = DYNAMIC_AMT)
+	paths = list(/obj/item/ammo_magazine/c45_smg = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/german_grenade
 	name = "Stielgranate 41 crate"
@@ -438,6 +438,13 @@
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/weapon/sandbag = 66)
+
+/obj/structure/closet/crate/punji_sticks
+	name = "Punji stick crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/weapon/punji_sticks = 25)
 
 /obj/structure/closet/crate/flares_ammo
 	name = "Flaregun Ammo crate"
