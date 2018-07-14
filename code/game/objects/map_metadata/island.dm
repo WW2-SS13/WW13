@@ -5,8 +5,8 @@
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall/)
 	respawn_delay = 1800
 	squad_spawn_locations = FALSE
-	reinforcements = FALSE
-	min_autobalance_players = 75
+//	reinforcements = FALSE
+	min_autobalance_players = 90
 	supply_points_per_tick = list(
 		USA = 1.00,
 		JAPAN = 1.50)
@@ -22,6 +22,7 @@
 		list(JAPAN) = /area/prishtina/german/armory,
 		list(USA) = /area/prishtina/farm4 // area inexistent in this map, in order to prevent the americans from winning by capture
 		)
+	front = "Pacific"
 	faction_distribution_coeffs = list(USA = 0.42, JAPAN = 0.58)
 	songs = list(
 		"Song of the Kamikaze:1" = 'sound/music/kamikaze.ogg',
