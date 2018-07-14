@@ -227,10 +227,10 @@
 	..()
 	if (ammo_magazine)
 		icon_state = "bar"
-		item_state = "bar0"
+		item_state = "dp0"
 	else
-		icon_state = "bar"
-		item_state = "bar0"
+		icon_state = "bar0"
+		item_state = "dp0"
 	return
 
 /obj/item/weapon/gun/projectile/semiautomatic/type99
@@ -257,10 +257,10 @@
 	..()
 	if (ammo_magazine)
 		icon_state = "type99"
-		item_state = "type990"
+		item_state = "type99"
 	else
-		icon_state = "type99"
-		item_state = "type990"
+		icon_state = "type99_empty"
+		item_state = "type99"
 	return
 
 /obj/item/weapon/gun/projectile/semiautomatic/stg

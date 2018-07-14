@@ -292,6 +292,69 @@
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/ammo_magazine/svt = DYNAMIC_AMT)
 
+/obj/structure/closet/crate/type99ammo
+	name = "Type 99 ammo crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/c77x58_smg = DYNAMIC_AMT)
+
+/obj/structure/closet/crate/m1grande
+	name = "M1 Gernade ammo"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/c762x63 = DYNAMIC_AMT)
+
+/obj/structure/closet/crate/c762x63_smg
+	name = "(30-06) ammo"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/c762x63_smg = DYNAMIC_AMT)
+
+/obj/structure/closet/crate/c45m
+	name = "M1911 ammo"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/c45m = DYNAMIC_AMT)
+
+/obj/structure/closet/crate/c8mmnambu
+	name = "Namba ammo"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/c8mmnambu = DYNAMIC_AMT)
+
+/obj/structure/closet/crate/a77x58
+	name = "type 99 ammo"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/a77x58 = DYNAMIC_AMT)
+
+/obj/structure/closet/crate/c8mmnambu_smg
+	name = "type 100 ammo"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/c8mmnambu_smg = DYNAMIC_AMT)
+
+/obj/structure/closet/crate/c792x57_fg42
+	name = "Fg42 ammo"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/c792x57_fg42 = DYNAMIC_AMT)
+
+/obj/structure/closet/crate/Thomson_ammo
+	name = "Thomson ammo"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/c45_smg = DYNAMIC_AMT)
+
 /obj/structure/closet/crate/german_grenade
 	name = "Stielgranate 41 crate"
 	icon_state = "mil_crate_closed"
@@ -305,6 +368,27 @@
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/weapon/grenade/explosive/l2a2 = 7)
+
+/obj/structure/closet/crate/jap_type97
+	name = "type97 grenade crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/weapon/grenade/explosive/type97 = 7)
+
+/obj/structure/closet/crate/jap_type91
+	name = "type91 grenade crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/weapon/grenade/explosive/type91 = 7)
+
+/obj/structure/closet/crate/US_mk2
+	name = "mk2 grenade crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/weapon/grenade/explosive/mk2 = 7)
 
 /obj/structure/closet/crate/panzerfaust
 	name = "Panzerfaust crate"
@@ -354,6 +438,13 @@
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/weapon/sandbag = 66)
+
+/obj/structure/closet/crate/punji_sticks
+	name = "Punji stick crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/weapon/punji_sticks = 25)
 
 /obj/structure/closet/crate/flares_ammo
 	name = "Flaregun Ammo crate"
