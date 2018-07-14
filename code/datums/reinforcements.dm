@@ -129,7 +129,7 @@ var/datum/reinforcements/reinforcements_master = null
 		else if (!locked[USA])
 			usa_countdown = german_countdown_success_reset*2
 			world << "<font size = 3>Due to harsh combat in other areas on the front, American reinforcements will not be available for a while.</font>"
-	if (map.faction_organization == SOVIET)
+	if (map.front == "Eastern")
 		if (reinforcement_pool[SOVIET] && reinforcement_pool[GERMAN])
 			for (var/mob/new_player/np in reinforcement_pool[SOVIET])
 				if (!np || !np.client)
@@ -153,14 +153,14 @@ var/datum/reinforcements/reinforcements_master = null
 			else
 				german_countdown = german_countdown_success_reset
 				allow_quickspawn[GERMAN] = FALSE
-	else
-		if (reinforcement_pool[USA] && reinforcement_pool[JAPAN])
-			for (var/mob/new_player/np in reinforcement_pool[USA])
+	if (map.front == "Pacific")
+		if (reinforcement_pool[SOVIET] && reinforcement_pool[GERMAN])
+			for (var/mob/new_player/np in reinforcement_pool[SOVIET])
 				if (!np || !np.client)
-					reinforcement_pool[USA] -= np
-			for (var/mob/new_player/np in reinforcement_pool[JAPAN])
+					reinforcement_pool[SOVIET] -= np
+			for (var/mob/new_player/np in reinforcement_pool[GERMAN])
 				if (!np || !np.client)
-					reinforcement_pool[JAPAN] -= np
+					reinforcement_pool[GERMAN] -= np
 
 		usa_countdown = usa_countdown - tick_len
 		if (usa_countdown < 1)
@@ -168,7 +168,7 @@ var/datum/reinforcements/reinforcements_master = null
 				usa_countdown = usa_countdown_failure_reset
 			else
 				usa_countdown = usa_countdown_success_reset
-				allow_quickspawn[USA] = FALSE
+				allow_quickspawn[SOVIET] = FALSE
 
 		japan_countdown = japan_countdown - tick_len
 		if (japan_countdown < 1)
@@ -176,7 +176,7 @@ var/datum/reinforcements/reinforcements_master = null
 				japan_countdown = japan_countdown_failure_reset
 			else
 				japan_countdown = japan_countdown_success_reset
-				allow_quickspawn[JAPAN] = FALSE
+				allow_quickspawn[GERMAN] = FALSE
 
 /datum/reinforcements/proc/add(var/mob/new_player/np, side)
 

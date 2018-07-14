@@ -175,7 +175,7 @@
 "ds" = (/obj/structure/wild/tree,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
 "dt" = (/obj/item/weapon/gun/projectile/automatic/stationary/mg34stat,/turf/floor/plating/road,/area/prishtina/german/bunker{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red1"; name = "Japanese Bunkers"})
 "du" = (/obj/structure/closet/hideout/beach,/turf/floor/plating/sand,/area/prishtina/island/beach)
-"dv" = (/turf/wall/r_wall,/area/prishtina/island/beach)
+"dv" = (/obj/structure/wild/tree/anchored,/turf/floor/dirt,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "dw" = (/obj/structure/barbwire,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
 "dx" = (/obj/structure/barbwire,/turf/wall/rockwall{density = 1; name = "cliff"; opacity = 1},/area/prishtina/island/beach)
 "dy" = (/obj/structure/light/small{dir = 4},/turf/floor/plating/road,/area/prishtina/soviet/immediate_outside_defenses{base_turf = /turf/floor/plating/road; name = "Landing Crafts"})
@@ -600,7 +600,6 @@
 "lB" = (/obj/item/weapon/bedsheet/blue,/obj/structure/bed,/obj/effect/landmark{name = "JoinLateMAR"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "lC" = (/obj/structure/light/small,/obj/item/weapon/bedsheet/blue,/obj/structure/bed,/obj/effect/landmark{name = "JoinLateMAR"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "lD" = (/obj/structure/closet/hideout/beach,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
-"lE" = (/obj/structure/barricade,/obj/structure/barbwire{dir = 4},/obj/structure/window/sandbag,/turf/floor/plating/beach/sand,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "lF" = (/obj/structure/barricade,/obj/structure/barbwire{dir = 4},/obj/structure/window/sandbag,/turf/floor/plating/dirt,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "lG" = (/obj/structure/barbwire{dir = 4},/turf/floor/plating/dirt,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "lH" = (/obj/structure/wild/tree/anchored,/obj/structure/wild/tree/anchored,/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
@@ -619,7 +618,6 @@
 "lU" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "lV" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/dirt,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "lW" = (/obj/structure/wild/tree/anchored,/turf/floor/plating/dirt,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
-"lX" = (/obj/structure/wild/tree/anchored,/turf/floor/plating/beach/sand,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "lY" = (/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "lZ" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/structure/window/sandbag,/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "ma" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag,/turf/floor/plating/grass/wild,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
@@ -698,7 +696,7 @@ aefqfjaeaeaeaeaefjfjfjfjaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaabVbVbVbVbVcabVbVbVbVbV
 aeaehTaeaefjfjfjfjfqaefjaeaeaeaeaeakakakaeaeaeaeaeaeaeaaaabVbVbVbVcJbVbVbVctbVbVbVbVbVcCcbcbcbcbbVbVbVbfbfbfbfbfbObfbfbfbfbfbfbfbDbDbfbfbfbfbfbWbfbfbfbfbfbWbfbfbfbObfbfbDbDbfcKbfbfbfbfbWbfbfbObfbfbfbC
 aeaeaeaefjfqaefjfjaeaefjaeaeaeaeakakbfakakakakakakakakakbfbVctcAbVbVbVbVbVcJbVbVcactbVbVbVcbcbcbcbbVbVbVcJcbbVbfbDbfbfbfbfbfbfbfbDbDbfbObfbfbObCbfbfbObfbfcEbfbfbfbCbfbDbDbfbfbfbfbPbfbfbfbCbfbfbQbfbfbC
 aeaeaeaefjaeakaYaYaeakaYakakakakakbfbPbfakakbfbfakbfbfbfbfbVbVbVbVbVcAbVbVfpbVbVbVbVcCbVlDlLcbcbbVbVcabVbVbVbVbQbfbfcKbfbObfbfbfbfbDbDbfbfbfbPbfbfbfbfbfbObfbfbQbfbfbfbfbDbDbfbfbfbfbfbfbfbQbfbfbfbfbfbf
-akakaeaefjaYbvbDaYbvaklEakakbfbfbfbfbfbPbfbfbfbfbfbfbfbPbWbVbVbVbVbVctbfbfbfbfbfbfbObfbfbfbfbDbDbfbfbfbObObfbfbQbfbfbfbfbfbfbPbfbfbfbDbDbDbfbfbfbObPbfbCbfbYbfbfbfbfbfbDbDbDbfbPbfbfbObfbfbfbfbfbfbPbfbf
+akakaeaefjaYbvbDaYbvakbxakakbfbfbfbfbfbPbfbfbfbfbfbfbfbPbWbVbVbVbVbVctbfbfbfbfbfbfbObfbfbfbfbDbDbfbfbfbObObfbfbQbfbfbfbfbfbfbPbfbfbfbDbDbDbfbfbfbObPbfbCbfbYbfbfbfbfbfbDbDbDbfbPbfbfbObfbfbfbfbfbfbPbfbf
 bfakakakaklFlGbDbDakbzbzbzbfbfcEbPbfbfbfbfbfbfbPbffpbVbVbVbVcabVctbVbVbfbfbPbObfbPbYbfbPbfbDbDbfbPbWbfbfbfbfbfbfbPbPbfbfbWbfbfbWbflSbDbDbDbDbfbWbfbfcKbfbfbfbPbfbfbfbfbDbDbfbfagagalamagalagbfbWbfbfbfbf
 bfbfbfakaklGlGbDbDbDbCbfbfbfbfbfbQbfbPbfbfbPbfbfbfbVcCcabVbVbVbVfpbVcJcDcDbfbYbYbYbfbYbfbfbDbDbfbYbfbfbfbQbfbfbfbfbfbfbfbQbfbfbfbfbfbfbfbDbDbfbWbfbfbfbfbObfbfbWbfbObfbDbfbfbfaghUanaoanataubfbfbfbfbObf
 bfbPbfbfbDbDbDbRbSbUbfbfbQbfbfbPbfbfbfbfcDbfcEbVbVbVbVbVcAcAbVbVbVctbVbfbfbfbWbYbfbDbfbDbDbDbDbYbfbfbWbfbfbfbPbfbfbfbfbfbfbfbObfbfbObfbfbDbfbfbfbfbfbfbQbfbfbfbfbWbfbDbDbDbDbDagatauapaqatagbfbQbfbfcDbf
@@ -709,11 +707,11 @@ bfbfbfbfbObfbfbfbDbDbDbfbWbfbCbfbfbDlJbfbDbObfbVcabVbVcAbVbVbVbVbVbVbVbfbfbfbfbD
 bfbPbfbQbfcKbfbfbDbDbDbDbPbDbDbDbfbflMlNbDlNlMbVbVbVbVfpbVbVctbVcJbVcCbfbfbDbDbDbfbWbQbfbfbQbfbObfbYbfbObfbfbfbfagaNauavaoaEagbfbfbfbDbDbDbDbDbDbDbfbObfagauagagagagagbfbDbDbzbzbzbfbfbfbfbPbfbfbfbfbfbf
 bfbfbfbfbfbfbPlSbDbDbDbfbCbDcKbfbObflNlObDlPlNbObfbfbCbfbfbObflSbfbfbfbDbDbfbfbfbfbfbfbfbYbfbfbfbfbfbfbfbfbfbObfagaggkaPgkaDaRbfbfbDbDbfbfbfbDbDbfbYbfbfamavaNglaTaUagbDbDbDbzlQlIbfbPbfbfbfbfcDbfbYbfbO
 bfbCbCbfbfcDbfbfbfbDbDbfbfbPbfbfbfbflNlObDlPlNbfbfbCbfbfcEbfbfbfbDbDbDbDbDbfbObfbPbfbYbfbfbfagagagalagagagagbfbfbfbfbfbDbflIlIbfbDbDbfbfbPbfbfbDbDbfbfbfagataugYapaoaPbDbDbDbzlTlUbfbfbYbfbObObfbCbfbfbf
-bfbfbfbfbPbfbCbWbfbDbDbDbfbfcDbYbCbflNlVbRbSlNbfbClWbDbDbfbDbDbDbDbfbfbflXbfbfbfbYbfbfbfbObfagaZbbbcbdbebdagbfbDbfbDbDbDbfbfbDbDbDbfbPbfbflSbfbfbDbDbfbYagagauauagagaglRbDbfbzlZmabfbfbfbCbfbPbfbfbfbfbC
+bfbfbfbfbPbfbCbWbfbDbDbDbfbfcDbYbCbflNlVbRbSlNbfbClWbDbDbfbDbDbDbDbfbfbfdvbfbfbfbYbfbfbfbObfagaZbbbcbdbebdagbfbDbfbDbDbDbfbfbDbDbDbfbPbfbflSbfbfbDbDbfbYagagauauagagaglRbDbfbzlZmabfbfbfbCbfbPbfbfbfbfbC
 bfbCbfbObfbCbfbfbPbfbDbDbPbfbfbfbQbflMlNlNlNlMbfbfbDbDbDbDbDbDbDbfbfbObfbfbObfbfbfbfbObCbfbfagbhbianaobjauaPbDbDbDbDbDbDbDbDbDbfagagagagagalaglYbDbDlYbflYlYmbmcmdmemfmgbDbDlGbzbzbfbYbObfbfbfbfbPbfbYbf
 bfbfbfbfbQbWbYbfbYbfbDbDbfbDbDbDbDbDbDbDbDbDbfbPbfbDbDbDbDbDbfbflSbfbfbObYbPbYbPbYbfbfcDbfcDagatavatavanhWagbDbDbDbDbDbDbDbDbDbDagbnaTbogrgraubfmibDbDlYlYbDlYlYbDlYlYbDbDbDbfagagagagagagalagbfbfbfbfbf
 bfbfbfbfcDbfbfbfbfbYbDbDbDbDbDbDlWbDbDbDbDbDbfbDbDbDbDbDbfbfbfcKbQbObfbObfbfbfbfbQbfbfbfbPbfauauamaualamagaglYbfbfbDbDbDbDbDbDbDaPavauauatavagmkbfbDbDbDbDbDbDbDbDbDbDbDbDbfbfagbeaTbpazbbauagbfbfbObfbf
-bfbPbfbYbfbPbfbPbYbYbfbDbDlYlYbfbfcbcbmhcbcbcbcbcbmhlYcEbfbObYbfbfbYbfbfbfbfbflYlYbCbflYbfbPbfbfbfbfbflYbfbfbfbflKbDbDbDbDbfcKlYaggtbqauapatarmkbfbflYbDbDbDmjmjlYbDmlbDbDbDbDaPavanatapbrauagbfbCbfbfbf
+bfbPbfbYbfbPbfbPbYbYbfbDbDlYlYbfbfcbcbmhcbcbcbcbcbmhlYcEbfbObYbfbfbYbfbfbfbfbflYlYbCbflYbfbPbfbfbfbfbflYbfbfbfbfaYbDbDbDbDbfcKlYaggtbqauapatarmkbfbflYbDbDbDmjmjlYbDmlbDbDbDbDaPavanatapbrauagbfbCbfbfbf
 bfbPbYbfbYbYbYbfbYbfbfbfbQmhmobfbfmhcbmhcbcbmhmhbVbVbfbYbYbfbPbfbObYlWbDlYcEbfmmlYbCbfmnbfbClYbfbfbflYbflYlYlYbfbObDbDbDbDbfbfbfagagagagagauagmpmqbDlYbDmtlYmlmrmllYlYlYmtbflYagatauatauavatagbfbfbfbObf
 bfbfbfbPcEbfbfbfbObObfbfbfmscbmhmhmhmwmhcbcbcbmsmxmhbfmybfbPbfbObfbfbfbfbDlYlYlYlYbflYbfbflYlYlYbflYbDbDlYlYbDbDbDbDbDlYbfbPbfmumvmvmvmvmvmvmvmzmqbDbDlYmDlYlYmrlYlYmmlYmtbfmAawaDagaDagamalagbfbCbfbfbf
 bfbPbfbfbfbfbPbfbfbfcEbPbfmhmxmBcbmhcbmBmhcbcbmhmhcbbVmhlYmhcbbfmhcbcbmhmhmhauagagagagmhmhcbcbmhmhmhcbcbcbmhlKbfbfcDlYlYbDlYbflYmCmEmEmCmEmEmCmElGbflYbfmDmGlYlYmHmHlYmlmtbfbzmLmLbfmLbfbfbfbfbfbCbCbPbf
@@ -728,7 +726,7 @@ cFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFacajdlajcFcFcFcFcFcFcFcFcFacbtacacacac
 cFcFcFcFcFcFcFcFcFbtacajacajacacajajcFcFcFacbsajaccFcFcFcFcFcFcFcFcFcFacacacaccFacacmFacbtacacacacacacacacacacajajajajajajacbgbgacacacacacacacacajajacacacacacacacacbsacacacacdsacacacacacacacacacacacac
 cFcFcFaccFcFajacacacajaccFaccFacacacacacajajduajcFcFcFcFcFcFcFcFcFcFcFcFacacaccFcFacacacaccFcFaccFacacacacajajajacacajajacacacacacacacacacacacacacajacaBaBacacaOacacacacbyaiaibyacacacaBacacacacacacacac
 abajacacacacacajajaccFcFcFcFcFcFcFcFcFacaccFcFcFcFcFcFcFaccFcFcFcFcFcFcFacaccFcFcFcFcFaccFcFcFcFcFacacajajajacacajajajajajacacacacacaBacacacbkacacajajajacacacacacacacacacacacacacacacdzacacacaiaiaiacac
-accFcFcFajajajbkcFcFcFcFcFcFcFcFdvaccFcFcFcFcFcFacaccFacajaccFdwdxcocococqcocococococococococococoajajajacacacajajajajajajajacacacacacacdsacacaBacaOacajajajacacacacacacacacacbtacbkdzeGeGdzbkacaOacacac
+accFcFcFajajajbkcFcFcFcFcFcFcFcFcFaccFcFcFcFcFcFacaccFacajaccFdwdxcocococqcocococococococococococoajajajacacacajajajajajajajacacacacacacdsacacaBacaOacajajajacacacacacacacacacbtacbkdzeGeGdzbkacaOacacac
 accFcFcFcFcFcFcFcFcFcFcFcFcFcFcFcFacacaccFcFcFacacajajajajajacdwdxcocrcrcscrcrcrcucrcrcvcrcrcvcrcwajacacajajajdAajajajajajajajajacacaOacbsacacacacacacbkajajacacbkbkacacbsaiacaOacaceGeGeGdzacacacacacac
 ajajacacaccFacacajacacacajajajacacacdBajacacajajajajajcFcFajajdxdxcocrcrcxcrcrcrcxcrcocococococococFcFcFajajajdAajajajajajajajajacacacacacacaccocococqcocwcocococoaiaiacbkaiaiacacacdzdzdzdzaBacdsacbkac
 acajacacajacajajaccFcFcFcFajajdCajajajajajajajdBajajaccFcFcFajdxdxcococococyczcycocwcodxdxcFcFcFcFcFcFcFaccFajajdDajajajdDajajajaceGacbkacacaccocrcrcscrcrcrcIcrcoaOacdzacbsacacbkbkbkaOacacacacacacacac
