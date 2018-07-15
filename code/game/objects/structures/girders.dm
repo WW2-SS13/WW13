@@ -209,11 +209,6 @@
 		else
 	return
 
-/obj/structure/girder/cult
-	icon= 'icons/obj/cult.dmi'
-	icon_state= "cultgirder"
-	health = 250
-	cover = 70
 
 /obj/structure/girder/cult/dismantle()
 	new /obj/item/remains/human(get_turf(src))
