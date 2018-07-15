@@ -233,8 +233,8 @@ var/datum/reinforcements/reinforcements_master = null
 
 	var/sname[0]
 
-	sname[SOVIET] = "Soviet"
-	sname[GERMAN] = "German"
+	sname[SOVIET] = "Allied"
+	sname[GERMAN] = "Axis"
 	sname[JAPAN] = "Japanese"
 	sname[USA] = "American"
 
