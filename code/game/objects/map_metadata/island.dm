@@ -5,7 +5,7 @@
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall/)
 	respawn_delay = 1800
 	squad_spawn_locations = FALSE
-	reinforcements = FALSE
+//	reinforcements = FALSE
 //	min_autobalance_players = 90
 	supply_points_per_tick = list(
 		USA = 1.00,

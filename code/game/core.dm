@@ -28,6 +28,8 @@
 
 	processes.supply.codes[GERMAN] = rand(1000,9999)
 	processes.supply.codes[SOVIET] = rand(1000,9999)
+	processes.supply.codes[USA] = rand(1000,9999)
+	processes.supply.codes[JAPAN] = rand(1000,9999)
 	// announce after some other stuff, like system setups, are announced
 	spawn (3)
 

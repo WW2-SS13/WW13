@@ -48,18 +48,30 @@ var/global/datum/controller/occupations/job_master
 */
 	var/current_german_squad = 1
 	var/current_soviet_squad = 1
+	var/current_usa_squad = 1
+	var/current_japan_squad = 1
 
 	var/german_squad_members = 0
 	var/german_squad_leaders = 0
+
+	var/japan_squad_members = 0
+	var/japan_squad_leaders = 0
+
+	var/usa_squad_members = 0
+	var/usa_squad_leaders = 0
 
 	var/soviet_squad_members = 0
 	var/soviet_squad_leaders = 0
 
 	var/german_squad_info[4]
 	var/soviet_squad_info[4]
+	var/usa_squad_info[4]
+	var/japan_squad_info[4]
 
 	var/german_officer_squad_info[4]
 	var/soviet_officer_squad_info[4]
+	var/usa_officer_squad_info[4]
+	var/japan_officer_squad_info[4]
 
 	var/italians_were_enabled = FALSE
 	var/SS_was_enabled = FALSE
@@ -203,6 +215,10 @@ var/global/datum/controller/occupations/job_master
 			return round(german_squad_members/MEMBERS_PER_SQUAD)
 		if (SOVIET)
 			return round(soviet_squad_members/MEMBERS_PER_SQUAD)
+		if (USA)
+			return round(usa_squad_members/MEMBERS_PER_SQUAD)
+		if (JAPAN)
+			return round(japan_squad_members/MEMBERS_PER_SQUAD)
 	return FALSE
 
 /datum/controller/occupations/proc/must_have_squad_leader(var/team)
@@ -213,6 +229,12 @@ var/global/datum/controller/occupations/job_master
 		if (SOVIET)
 			if (full_squads(team) > soviet_squad_leaders && !(soviet_squad_leaders == 4))
 				return TRUE
+		if (USA)
+			if (full_squads(team) > usa_squad_leaders && !(usa_squad_leaders == 4))
+				return TRUE
+		if (JAPAN)
+			if (full_squads(team) > japan_squad_leaders && !(japan_squad_leaders == 4))
+				return TRUE
 	return FALSE // not relevant for other teams
 
 /datum/controller/occupations/proc/must_not_have_squad_leader(var/team)
@@ -222,6 +244,12 @@ var/global/datum/controller/occupations/job_master
 				return TRUE
 		if (SOVIET)
 			if (soviet_squad_leaders > full_squads(team))
+				return TRUE
+		if (JAPAN)
+			if (japan_squad_leaders > full_squads(team))
+				return TRUE
+		if (USA)
+			if (usa_squad_leaders > full_squads(team))
 				return TRUE
 	return FALSE // not relevant for other teams
 
@@ -654,6 +682,40 @@ var/global/datum/controller/occupations/job_master
 					else
 						spawn (2)
 							H << "<i>Your squad, #[current_soviet_squad], does not have a Squad Leader yet. Consider waiting for one before deploying.</i>"
+		else if (isusasquadmember_or_leader(H))
+			if (isusasquadleader(H))
+				usa_squad_info[current_usa_squad] = "<b>The leader of your squad (#[current_usa_squad]) is [H.real_name]. He has a golden HUD.</b>"
+				if (!istype(get_area(H), /area/prishtina/admin) && ticker.current_state != GAME_STATE_PREGAME) // first check fails due to bad location, fix
+					world << "<b>The leader of American Squad #[current_usa_squad] is [H.real_name]!</b>"
+				usa_officer_squad_info[current_usa_squad] = "<b><i>The leader of squad #[current_usa_squad] is [H.real_name].</i></b>"
+				++usa_squad_leaders
+			else
+				if (!job.is_officer)
+					++usa_squad_members
+					if (usa_squad_info[current_usa_squad])
+						spawn (0)
+							H << usa_squad_info[current_usa_squad]
+							H.add_memory(usa_squad_info[current_usa_squad])
+					else
+						spawn (2)
+							H << "<i>Your squad, #[current_usa_squad], does not have a Squad Leader yet. Consider waiting for one before deploying.</i>"
+		else if (isjapansquadmember_or_leader(H))
+			if (isjapansquadleader(H))
+				japan_squad_info[current_japan_squad] = "<b>The leader of your squad (#[current_japan_squad]) is [H.real_name]. He has a golden HUD.</b>"
+				if (!istype(get_area(H), /area/prishtina/admin) && ticker.current_state != GAME_STATE_PREGAME) // first check fails due to bad location, fix
+					world << "<b>The leader of Japanese Squad #[current_japan_squad] is [H.real_name]!</b>"
+				japan_officer_squad_info[current_japan_squad] = "<b><i>The leader of squad #[current_japan_squad] is [H.real_name].</i></b>"
+				++japan_squad_leaders
+			else
+				if (!job.is_officer)
+					++japan_squad_members
+					if (japan_squad_info[current_japan_squad])
+						spawn (0)
+							H << japan_squad_info[current_japan_squad]
+							H.add_memory(japan_squad_info[current_japan_squad])
+					else
+						spawn (2)
+							H << "<i>Your squad, #[current_japan_squad], does not have a Squad Leader yet. Consider waiting for one before deploying.</i>"
 
 		else if (H.original_job.is_officer && H.original_job.base_type_flag() == SOVIET)
 			spawn (5)
@@ -669,6 +731,19 @@ var/global/datum/controller/occupations/job_master
 				//		H << "<br>[german_officer_squad_info[i]]"
 						H.add_memory(german_officer_squad_info[i])
 
+		else if (H.original_job.is_officer && H.original_job.base_type_flag() == USA)
+			spawn (5)
+				for (var/i in 1 to usa_officer_squad_info.len)
+					if (usa_officer_squad_info[i])
+				//		H << "<br>[german_officer_squad_info[i]]"
+						H.add_memory(usa_officer_squad_info[i])
+		else if (H.original_job.is_officer && H.original_job.base_type_flag() == JAPAN)
+			spawn (5)
+				for (var/i in 1 to japan_officer_squad_info.len)
+					if (japan_officer_squad_info[i])
+				//		H << "<br>[german_officer_squad_info[i]]"
+						H.add_memory(japan_officer_squad_info[i])
+
 		if (H.original_job.is_officer)
 			if (H.original_job.base_type_flag() == GERMAN)
 		//		H << "The passcode for radios and phones is <b>[supply_codes[GERMAN]].</b>"
@@ -677,6 +752,12 @@ var/global/datum/controller/occupations/job_master
 			else if (H.original_job.base_type_flag() == SOVIET)
 		//		H << "The passcode for radios and phones is <b>[supply_codes[SOVIET]].</b>"
 				H.add_memory("The passcode for radios and phones is [processes.supply.codes[SOVIET]].")
+			else if (H.original_job.base_type_flag() == USA)
+		//		H << "The passcode for radios and phones is <b>[supply_codes[SOVIET]].</b>"
+				H.add_memory("The passcode for radios and phones is [processes.supply.codes[USA]].")
+			else if (H.original_job.base_type_flag() == JAPAN)
+		//		H << "The passcode for radios and phones is <b>[supply_codes[SOVIET]].</b>"
+				H.add_memory("The passcode for radios and phones is [processes.supply.codes[JAPAN]].")
 
 		#ifdef SPAWNLOC_DEBUG
 		world << "[H] ([rank]) GOT TO job spawn location = [H.job_spawn_location]"

@@ -109,6 +109,11 @@
 		spies[SOVIET] = FALSE
 	if (!spies[PARTISAN])
 		spies[PARTISAN] = FALSE
+	if (!spies[JAPAN])
+		spies[JAPAN] = FALSE
+	if (!spies[USA])
+		spies[USA] = FALSE
+
 
 	if (!squad_leaders[GERMAN])
 		squad_leaders[GERMAN] = FALSE
@@ -116,6 +121,10 @@
 		squad_leaders[SOVIET] = FALSE
 	if (!squad_leaders[PARTISAN])
 		squad_leaders[PARTISAN] = FALSE
+	if (!squad_leaders[USA])
+		squad_leaders[USA] = FALSE
+	if (!squad_leaders[JAPAN])
+		squad_leaders[JAPAN] = FALSE
 
 	if (!officers[GERMAN])
 		officers[GERMAN] = FALSE
@@ -123,6 +132,10 @@
 		officers[SOVIET] = FALSE
 	if (!officers[PARTISAN])
 		officers[PARTISAN] = FALSE
+	if (!officers[USA])
+		officers[USA] = FALSE
+	if (!officers[JAPAN])
+		officers[JAPAN] = FALSE
 
 	if (!commanders[GERMAN])
 		commanders[GERMAN] = FALSE
@@ -130,6 +143,10 @@
 		commanders[SOVIET] = FALSE
 	if (!commanders[PARTISAN])
 		commanders[PARTISAN] = FALSE
+	if (!commanders[USA])
+		commanders[USA] = FALSE
+	if (!commanders[JAPAN])
+		commanders[JAPAN] = FALSE
 
 	if (!soldiers[GERMAN])
 		soldiers[GERMAN] = FALSE
@@ -137,6 +154,10 @@
 		soldiers[SOVIET] = FALSE
 	if (!soldiers[PARTISAN])
 		soldiers[PARTISAN] = FALSE
+	if (!soldiers[USA])
+		soldiers[USA] = FALSE
+	if (!soldiers[JAPAN])
+		soldiers[JAPAN] = FALSE
 
 
 	if (!squad_members[GERMAN])
@@ -145,6 +166,10 @@
 		squad_members[SOVIET] = FALSE
 	if (!squad_members[PARTISAN])
 		squad_members[PARTISAN] = FALSE
+	if (!squad_members[USA])
+		squad_members[USA] = FALSE
+	if (!squad_members[JAPAN])
+		squad_members[JAPAN] = FALSE
 
 	if (!istype(user))
 		return
@@ -244,9 +269,62 @@
 	else if (istype(src, /datum/job/japanese))
 		user.faction_text = "JAPAN"
 		user.base_faction = new/datum/faction/japanese(user, src)
+		if (is_officer && !is_commander)
+			user.officer_faction = new/datum/faction/japanese/officer(user, src)
+
+		else if (is_commander)
+			user.officer_faction = new/datum/faction/japanese/commander(user, src)
+
+		if (is_squad_leader)
+			switch (squad_leaders[JAPAN])
+				if (0)
+					user.squad_faction = new/datum/faction/squad/one/leader(user, src)
+				if (1)
+					user.squad_faction = new/datum/faction/squad/two/leader(user, src)
+				if (2)
+					user.squad_faction = new/datum/faction/squad/three/leader(user, src)
+				if (3)
+					user.squad_faction = new/datum/faction/squad/four/leader(user, src)
+		else if (!is_officer && !is_commander && !is_nonmilitary && !is_guard && !is_tankuser)
+			switch (squad_members[JAPAN]) // non officers
+				if (0 to 7-1)
+					user.squad_faction = new/datum/faction/squad/one(user, src)
+				if (8-1 to 14-1)
+					user.squad_faction = new/datum/faction/squad/two(user, src)
+				if (15-1 to 21-1)
+					user.squad_faction = new/datum/faction/squad/three(user, src)
+				if (22-1 to 28-1)
+					user.squad_faction = new/datum/faction/squad/four(user, src)
 	else if (istype(src, /datum/job/usa))
 		user.faction_text = "USA"
 		user.base_faction = new/datum/faction/usa(user, src)
+
+		if (is_officer && !is_commander)
+			user.officer_faction = new/datum/faction/usa/officer(user, src)
+
+		else if (is_commander)
+			user.officer_faction = new/datum/faction/usa/commander(user, src)
+
+		if (is_squad_leader)
+			switch (squad_leaders[USA])
+				if (0)
+					user.squad_faction = new/datum/faction/squad/one/leader(user, src)
+				if (1)
+					user.squad_faction = new/datum/faction/squad/two/leader(user, src)
+				if (2)
+					user.squad_faction = new/datum/faction/squad/three/leader(user, src)
+				if (3)
+					user.squad_faction = new/datum/faction/squad/four/leader(user, src)
+		else if (!is_officer && !is_commander && !is_nonmilitary && !is_guard && !is_tankuser)
+			switch (squad_members[USA]) // non officers
+				if (0 to 7-1)
+					user.squad_faction = new/datum/faction/squad/one(user, src)
+				if (8-1 to 14-1)
+					user.squad_faction = new/datum/faction/squad/two(user, src)
+				if (15-1 to 21-1)
+					user.squad_faction = new/datum/faction/squad/three(user, src)
+				if (22-1 to 28-1)
+					user.squad_faction = new/datum/faction/squad/four(user, src)
 
 /datum/job/proc/try_make_jew(var/mob/living/carbon/human/user)
 	return // disabled
