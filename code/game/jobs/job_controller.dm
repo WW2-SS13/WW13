@@ -215,6 +215,10 @@ var/global/datum/controller/occupations/job_master
 			return round(german_squad_members/MEMBERS_PER_SQUAD)
 		if (SOVIET)
 			return round(soviet_squad_members/MEMBERS_PER_SQUAD)
+		if (USA)
+			return round(usa_squad_members/MEMBERS_PER_SQUAD)
+		if (JAPAN)
+			return round(japan_squad_members/MEMBERS_PER_SQUAD)
 	return FALSE
 
 /datum/controller/occupations/proc/must_have_squad_leader(var/team)
@@ -225,6 +229,12 @@ var/global/datum/controller/occupations/job_master
 		if (SOVIET)
 			if (full_squads(team) > soviet_squad_leaders && !(soviet_squad_leaders == 4))
 				return TRUE
+		if (USA)
+			if (full_squads(team) > usa_squad_leaders && !(usa_squad_leaders == 4))
+				return TRUE
+		if (JAPAN)
+			if (full_squads(team) > japan_squad_leaders && !(japan_squad_leaders == 4))
+				return TRUE
 	return FALSE // not relevant for other teams
 
 /datum/controller/occupations/proc/must_not_have_squad_leader(var/team)
@@ -234,6 +244,12 @@ var/global/datum/controller/occupations/job_master
 				return TRUE
 		if (SOVIET)
 			if (soviet_squad_leaders > full_squads(team))
+				return TRUE
+		if (JAPAN)
+			if (japan_squad_leaders > full_squads(team))
+				return TRUE
+		if (USA)
+			if (usa_squad_leaders > full_squads(team))
 				return TRUE
 	return FALSE // not relevant for other teams
 
@@ -670,7 +686,7 @@ var/global/datum/controller/occupations/job_master
 			if (isusasquadleader(H))
 				usa_squad_info[current_usa_squad] = "<b>The leader of your squad (#[current_usa_squad]) is [H.real_name]. He has a golden HUD.</b>"
 				if (!istype(get_area(H), /area/prishtina/admin) && ticker.current_state != GAME_STATE_PREGAME) // first check fails due to bad location, fix
-					world << "<b>The leader of usa Squad #[current_usa_squad] is [H.real_name]!</b>"
+					world << "<b>The leader of American Squad #[current_usa_squad] is [H.real_name]!</b>"
 				usa_officer_squad_info[current_usa_squad] = "<b><i>The leader of squad #[current_usa_squad] is [H.real_name].</i></b>"
 				++usa_squad_leaders
 			else
@@ -687,7 +703,7 @@ var/global/datum/controller/occupations/job_master
 			if (isjapansquadleader(H))
 				japan_squad_info[current_japan_squad] = "<b>The leader of your squad (#[current_japan_squad]) is [H.real_name]. He has a golden HUD.</b>"
 				if (!istype(get_area(H), /area/prishtina/admin) && ticker.current_state != GAME_STATE_PREGAME) // first check fails due to bad location, fix
-					world << "<b>The leader of japan Squad #[current_japan_squad] is [H.real_name]!</b>"
+					world << "<b>The leader of Japanese Squad #[current_japan_squad] is [H.real_name]!</b>"
 				japan_officer_squad_info[current_japan_squad] = "<b><i>The leader of squad #[current_japan_squad] is [H.real_name].</i></b>"
 				++japan_squad_leaders
 			else
