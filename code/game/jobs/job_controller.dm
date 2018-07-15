@@ -48,18 +48,30 @@ var/global/datum/controller/occupations/job_master
 */
 	var/current_german_squad = 1
 	var/current_soviet_squad = 1
+	var/current_usa_squad = 1
+	var/current_japan_squad = 1
 
 	var/german_squad_members = 0
 	var/german_squad_leaders = 0
+
+	var/japan_squad_members = 0
+	var/japan_squad_leaders = 0
+
+	var/usa_squad_members = 0
+	var/usa_squad_leaders = 0
 
 	var/soviet_squad_members = 0
 	var/soviet_squad_leaders = 0
 
 	var/german_squad_info[4]
 	var/soviet_squad_info[4]
+	var/usa_squad_info[4]
+	var/japan_squad_info[4]
 
 	var/german_officer_squad_info[4]
 	var/soviet_officer_squad_info[4]
+	var/usa_officer_squad_info[4]
+	var/japan_officer_squad_info[4]
 
 	var/italians_were_enabled = FALSE
 	var/SS_was_enabled = FALSE

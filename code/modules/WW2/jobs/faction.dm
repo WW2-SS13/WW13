@@ -350,10 +350,10 @@ var/global/squad_members[6]
 	return (istype(H.original_job, /datum/job/usa) && issquadleader(H))
 
 /proc/isjapansquadmember_or_leader(var/mob/living/carbon/human/H)
-	return (istype(H.original_job, /datum/job/japan) && getsquad(H))
+	return (istype(H.original_job, /datum/job/japanese) && getsquad(H))
 
 /proc/isjapansquadleader(var/mob/living/carbon/human/H)
-	return (istype(H.original_job, /datum/job/japan) && issquadleader(H))
+	return (istype(H.original_job, /datum/job/japanese) && issquadleader(H))
 
 /proc/sharesquads(var/mob/living/carbon/human/H, var/mob/living/carbon/human/HH)
 	return (getsquad(H) && getsquad(H) == getsquad(HH))
