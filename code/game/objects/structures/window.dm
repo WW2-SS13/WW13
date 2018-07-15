@@ -552,16 +552,6 @@
 	basestate = "fwindow"
 	maxhealth = 30
 
-/obj/structure/window/shuttle
-	name = "shuttle window"
-	desc = "It looks rather strong. Might take a few good hits to shatter it."
-	icon = 'icons/obj/podwindows.dmi'
-	icon_state = "window"
-	basestate = "window"
-	maxhealth = 40
-	reinf = TRUE
-	basestate = "w"
-	dir = 5
 
 /obj/structure/window/reinforced/polarized
 	name = "electrochromic window"
