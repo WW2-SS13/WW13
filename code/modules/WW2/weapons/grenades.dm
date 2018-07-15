@@ -20,6 +20,9 @@
 	explosion_size = 6
 	num_fragments = 80
 	big_bomb = TRUE
+	throw_speed = 1
+	throw_range = FALSE
+	nothrow = TRUE
 
 /obj/item/weapon/grenade/explosive/f1
 	name = "f1 grenade"
@@ -57,14 +60,14 @@
 
 /obj/item/weapon/grenade/smokebomb/german
 	desc = "German smoke grenade. Won't blow up."
-	name = "Smoke grenade"
+	name = "German Smoke grenade"
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "smoke_grenade"
 	det_time = 20
 
 /obj/item/weapon/grenade/smokebomb/soviet
 	desc = "Soviet smoke grenade. Won't blow up."
-	name = "Smoke grenade"
+	name = "Soviet Smoke grenade"
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "smoke_grenade"
 	det_time = 20
@@ -73,8 +76,16 @@
 	desc = "American smoke grenade. Won't blow up."
 	name = "M18 smoke grenade"
 	icon = 'icons/obj/grenade.dmi'
-	icon_state = "smoke41"
+	icon_state = "m18smoke"
 	det_time = 20
+
+/obj/item/weapon/grenade/smokebomb/japan
+	desc = "Japanese smoke grenade. Won't blow up."
+	name = "Japanese smoke grenade"
+	icon = 'icons/obj/grenade.dmi'
+	icon_state = "japsmoke"
+	det_time = 20
+
 
 /obj/item/weapon/storage/box/smoke_grenades
 	name = "box of smoke grenades"

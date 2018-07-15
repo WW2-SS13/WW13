@@ -54,7 +54,7 @@
 /datum/job/usa/MP
 	title = "Military Police"
 	en_meaning = "MPO"
-	rank_abbreviation = "2Sgt"
+	rank_abbreviation = "1Sgt"
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLateRAMP"
 	additional_languages = list( "German" = 100, "Japanese" = 33, "Russian" = 100)
