@@ -299,15 +299,15 @@
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/ammo_magazine/c77x58_smg = DYNAMIC_AMT)
 
-/obj/structure/closet/crate/m1grande
-	name = "M1 Gernade ammo"
+/obj/structure/closet/crate/m1garand
+	name = "M1Garand clips"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/ammo_magazine/c762x63 = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/c762x63_smg
-	name = "(30-06) ammo"
+	name = "(30-06) magazines"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
@@ -321,14 +321,14 @@
 	paths = list(/obj/item/ammo_magazine/c45m = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/c8mmnambu
-	name = "Namba ammo"
+	name = "Nambu ammo"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/ammo_magazine/c8mmnambu = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/a77x58
-	name = "type 99 ammo"
+	name = "arisaka clips"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
@@ -348,8 +348,8 @@
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/ammo_magazine/c792x57_fg42 = DYNAMIC_AMT)
 
-/obj/structure/closet/crate/Thomson_ammo
-	name = "Thomson ammo"
+/obj/structure/closet/crate/Thompson_ammo
+	name = "Thompson ammo"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
