@@ -69,6 +69,13 @@
 	icon_state = "smoke_grenade"
 	det_time = 20
 
+/obj/item/weapon/grenade/smokebomb/usa
+	desc = "American smoke grenade. Won't blow up."
+	name = "M18 smoke grenade"
+	icon = 'icons/obj/grenade.dmi'
+	icon_state = "smoke41"
+	det_time = 20
+
 /obj/item/weapon/storage/box/smoke_grenades
 	name = "box of smoke grenades"
 	icon_state = "flashbang"

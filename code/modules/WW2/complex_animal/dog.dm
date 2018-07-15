@@ -111,7 +111,7 @@
 /mob/living/simple_animal/complex_animal/canine/dog/samoyed/sosku
 	name = "sosku dog"
 	real_name = "sosku"
-	desc = "the one that helpt keep morale up wen all hoop was lost."
+	desc = "the one that helped keep the morale up when all hope was lost."
 	icon_state = "samoyed"
 	icon_living = "samoyed"
 	icon_dead = "samoyed_dead"
