@@ -34,7 +34,7 @@
 			pixel_x = 0
 		if (NORTH, SOUTH)
 			icon = vertical_icon
-			pixel_x = -32
+			pixel_x = 0
 
 	update_bounding_rectangle()
 
@@ -102,6 +102,7 @@
 				icon = vertical_icon
 			if (SOUTH)
 				icon = vertical_icon
+		update_bounding_rectangle()
 
 		if (!handle_passing_target_turf(target))
 			return FALSE
@@ -133,25 +134,44 @@
 		. += 32
 
 /obj/tank/proc/update_bounding_rectangle()
-	switch (dir)
-		if (EAST)
-		//	bound_x = round_to_multiple_of_32(32)
-			bound_width = round_to_multiple_of_32(142)
-			bound_height = round_to_multiple_of_32(75)
-		if (WEST)
-		//	bound_x = round_to_multiple_of_32(96)
-			bound_width = round_to_multiple_of_32(142)
-			bound_height = round_to_multiple_of_32(75)
-		if (NORTH)
-		//	bound_y = -round_to_multiple_of_32(64)
-		//	bound_x = round_to_multiple_of_32(64)
-			bound_width = round_to_multiple_of_32(113, TRUE)
-			bound_height = round_to_multiple_of_32(89)
-		if (SOUTH)
-		//	bound_x = round_to_multiple_of_32(64)
-			bound_width = round_to_multiple_of_32(113, TRUE)
-			bound_height = round_to_multiple_of_32(89)
 
+	if (truck == FALSE)
+		switch (dir)
+			if (EAST)
+			//	bound_x = round_to_multiple_of_32(32)
+				bound_width = round_to_multiple_of_32(142)
+				bound_height = round_to_multiple_of_32(75)
+			if (WEST)
+			//	bound_x = round_to_multiple_of_32(96)
+				bound_width = round_to_multiple_of_32(142)
+				bound_height = round_to_multiple_of_32(75)
+			if (NORTH)
+			//	bound_y = -round_to_multiple_of_32(64)
+			//	bound_x = round_to_multiple_of_32(64)
+				bound_width = round_to_multiple_of_32(113, TRUE)
+				bound_height = round_to_multiple_of_32(89)
+			if (SOUTH)
+			//	bound_x = round_to_multiple_of_32(64)
+				bound_width = round_to_multiple_of_32(113, TRUE)
+				bound_height = round_to_multiple_of_32(89)
+	else
+		switch (dir)
+			if (EAST)
+				bound_x = -32
+				bound_width = 128
+				bound_height = 64
+			if (WEST)
+				bound_x = -32
+				bound_width = 128
+				bound_height = 64
+			if (NORTH)
+				bound_x = -32
+				bound_width = 64
+				bound_height = 64
+			if (SOUTH)
+				bound_x = -32
+				bound_width = 64
+				bound_height = 64
 /obj/tank/proc/handle_passing_target_turf(var/turf/t)
 
 	var/list/turfs_in_the_way = list()
@@ -500,11 +520,12 @@
 		next_gib = world.time + 5
 		if (!truck)
 			tank_message("<span class = 'danger'>The tank runs over [m]!</span>")
+			m.maim()
 		else
 			tank_message("<span class = 'danger'>The truck runs over [m]!</span>")
-		m.maim()
+			m.apply_damage(70, BRUTE, null, FALSE)
 
-	else if (istype(m))
+	else if (istype(m) && !truck)
 		spawn (5)
 			m.maim()
 
