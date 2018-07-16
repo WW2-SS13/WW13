@@ -503,6 +503,16 @@
 	uses_winter_overlay = TRUE
 	may_become_muddy = TRUE
 
+/turf/floor/plating/dust
+	name = "dust"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "dust2"
+	interior = FALSE
+	stepsound = "dirt"
+	uses_winter_overlay = FALSE
+	may_become_muddy = TRUE
+
+
 /turf/floor/plating/sand
 	name = "sand"
 	icon = 'icons/turf/floors.dmi'

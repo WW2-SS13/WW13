@@ -1,6 +1,6 @@
 /obj/map_metadata/island
 	ID = MAP_ISLAND
-	title = "Island (100x100x1)"
+	title = "Island (100x150x2)"
 	lobby_icon_state = "pacific"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall/)
 	respawn_delay = 1800

@@ -86,6 +86,30 @@
 	name = "large cultivated bush"
 	icon_state = "big_bush"
 
+obj/structure/wild/burnedbush
+	name = "burned bush"
+	icon_state = "burnedbush1"
+	opacity = FALSE
+	density = FALSE
+
+obj/structure/wild/junglebush
+	name = "jungle vegetation"
+	icon_state = "jungle1"
+	opacity = FALSE
+	density = FALSE
+
+obj/structure/wild/burnedtree
+	name = "burned tree"
+	icon_state = "burnedtree1"
+	opacity = FALSE
+	density = FALSE
+
+obj/structure/wild/rock
+	name = "rock"
+	icon_state = "rock1"
+	opacity = FALSE
+	density = FALSE
+
 /obj/structure/wild/bush/New()
 	..()
 
@@ -100,3 +124,25 @@
 		icon_state = "palebush_[rand(1,4)]"
 	else
 		icon_state = "stalkybush_[rand(1,3)]"
+
+
+/obj/structure/wild/burnedbush/New()
+	..()
+
+	icon_state = "burnedbush[rand(1,5)]"
+
+/obj/structure/wild/junglebush/New()
+	..()
+
+	icon_state = "jungle[rand(1,6)]"
+
+
+/obj/structure/wild/burnedtree/New()
+	..()
+
+	icon_state = "burnedtree[rand(1,5)]"
+
+/obj/structure/wild/rock/New()
+	..()
+
+	icon_state = "rock[rand(1,5)]"
