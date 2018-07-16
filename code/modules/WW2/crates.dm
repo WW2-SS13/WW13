@@ -135,6 +135,13 @@
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/ammo_magazine/maxim/mg34_belt = DYNAMIC_AMT)
 
+/obj/structure/closet/crate/type92belt
+	name = "Type 92 belts crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/maxim/type92_belt = DYNAMIC_AMT)
+
 /obj/structure/closet/crate/bint
 	name = "Bint crate"
 	icon_state = "mil_crate_closed"

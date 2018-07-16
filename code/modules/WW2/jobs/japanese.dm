@@ -5,6 +5,7 @@
 /datum/job/japanese/give_random_name(var/mob/living/carbon/human/H)
 	H.name = H.species.get_random_japanese_name(H.gender)
 	H.real_name = H.name
+	H.s_tone = 52
 
 /datum/job/japanese/commander
 	title = "Rikugun-Tai-i"

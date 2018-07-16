@@ -65,6 +65,23 @@
 	if (!istype(src, /obj/structure/wild/tree/anchored))
 		pixel_x = rand(-8,8)
 
+/obj/structure/wild/palm
+	name = "palm tree"
+	icon = 'icons/misc/beach2.dmi'
+	icon_state = "palm1"
+	opacity = TRUE
+	density = TRUE
+	sways = FALSE
+
+/obj/structure/wild/palm/fire_act(temperature)
+	if (prob(15 * (temperature/500)))
+		visible_message("<span class = 'warning'>[src] collapses.</span>")
+		qdel(src)
+
+/obj/structure/wild/tree/New()
+	..()
+	icon_state = pick("palm1","palm2")
+
 /obj/structure/wild/bush
 	name = "bush"
 	icon_state = "small_bush"

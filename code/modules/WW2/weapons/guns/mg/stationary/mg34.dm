@@ -72,3 +72,42 @@
 			item_state = "mg34stat0"*/
 	update_held_icon()
 	return
+
+/obj/item/weapon/gun/projectile/automatic/stationary/type92stat
+	name = "Stationary Type 92"
+	desc = "Type 92 machinegun established on special pod."
+	icon_state = "Type92HMG"
+	item_state = "Type92HMG"
+	layer = FLY_LAYER
+	anchored = TRUE
+	density = TRUE
+	w_class = 6
+	magazine_type = /obj/item/ammo_magazine/maxim/type92_belt
+	auto_eject = TRUE
+	load_method = MAGAZINE
+	handle_casings = EJECT_CASINGS
+	max_shells = FALSE
+	caliber = "a77x58"
+	fire_sound = 'sound/weapons/guns/fire/mg34_firing.ogg'
+	slot_flags = FALSE
+	ammo_type = /obj/item/ammo_casing/a77x58_weaker
+
+	firemodes = list(	// changed burst from 3 to 6, burst_delay from 2.5 to 0.1 to make this more mg-ish - Kachnov
+		list(name="default", burst=10, burst_delay=0.1, fire_delay=0.75, dispersion=list(0.9, 1.1, 1.1, 1.1, 1.3), accuracy=list(2))
+		)
+
+/obj/item/weapon/gun/projectile/automatic/stationary/type92stat/update_icon()
+	if (ammo_magazine)
+		icon_state = "Type92HMG"
+/*		if (wielded)
+			item_state = "mg34stat"
+		else
+			item_state = "mg34stat"*/
+	else
+		icon_state = "Type92HMG0"
+/*		if (wielded)
+			item_state = "mg34stat0"
+		else
+			item_state = "mg34stat0"*/
+	update_held_icon()
+	return

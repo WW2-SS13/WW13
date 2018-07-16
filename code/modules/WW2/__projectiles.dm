@@ -54,6 +54,11 @@
 	penetrating = 2
 	armor_penetration = 100
 
+//TYPE 92 HMG
+/obj/item/projectile/bullet/rifle/a77x58_weaker
+	damage = DAMAGE_MEDIUM - 4
+	penetrating = 1
+
 // M1GARAND
 /obj/item/projectile/bullet/rifle/c762x63
 	damage = DAMAGE_HIGH + 3
