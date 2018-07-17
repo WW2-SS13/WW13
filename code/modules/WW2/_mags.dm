@@ -127,6 +127,19 @@ WW 2 WEAPONS MAGS N AMMO
 	weight = 0.72
 	multiple_sprites = TRUE
 
+/obj/item/ammo_magazine/bly
+	name = "blyskawica magazine (9mm)"
+	icon_state = "mp40mag"
+//	origin_tech = "combat=2"
+	mag_type = MAGAZINE
+	caliber = "9x19mm"
+	w_class = 2
+	matter = list(DEFAULT_WALL_MATERIAL = 4500)
+	ammo_type = /obj/item/ammo_casing/a9_parabellum
+	max_ammo = 32
+	weight = 0.72
+	multiple_sprites = TRUE
+
 /obj/item/ammo_magazine/mp40/c9x19mm_stenmk2
 	name = "magazine (9x19mm)"
 	icon_state = "stenmag"

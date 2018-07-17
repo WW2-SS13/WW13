@@ -90,6 +90,42 @@
 	update_held_icon()
 	return
 
+/obj/item/weapon/gun/projectile/submachinegun/bly
+	name = "blyskawica"
+	desc = "A polish submachinegun, manufactured covertly by the Polish Home Army."
+	icon_state = "blyskawica"
+	item_state = "blyskawica"
+	load_method = MAGAZINE
+	slot_flags = SLOT_BACK|SLOT_BELT
+	w_class = 3
+	weight = 3.97
+	caliber = "9x19mm"
+	magazine_type = /obj/item/ammo_magazine/bly
+
+	firemodes = list(
+		list(name="short bursts",	burst=3, burst_delay=1.2, recoil=0.7, move_delay=3, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
+		list(name="long bursts",	burst=6, burst_delay=1.4, recoil=0.9, move_delay=4, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
+		)
+
+	sel_mode = 2
+	effectiveness_mod = 1.05
+
+/obj/item/weapon/gun/projectile/submachinegun/blyskawica/update_icon()
+	if (ammo_magazine)
+		icon_state = "blyskawica"
+/*		if (wielded)
+			item_state = "mp40-w"
+		else
+			item_state = "mp40"*/
+	else
+		icon_state = "blyskawica0"
+/*		if (wielded)
+			item_state = "mp40-w"
+		else
+			item_state = "mp400"*/
+	update_held_icon()
+	return
+
 /obj/item/weapon/gun/projectile/submachinegun/ppsh
 	name = "PPSh-41"
 	desc = "Soviet submachinegun with a very large drum magazine. Capable of bringing many targets down in Stalin's name."
