@@ -261,8 +261,6 @@
 
 		/obj/item/weapon/material/knife/boot/nr40_knife_SS = 10,
 
-		/obj/item/weapon/material/kitchen/utensil/knife/boot/nr40_knife_SS = 10,
-
 	)
 /obj/structure/vending/guard_weaponrack
 	name = "Guard weapon rack"
@@ -285,7 +283,7 @@
 		/obj/item/weapon/grenade/smokebomb/german = 40,
 
 		/obj/item/weapon/melee/classic_baton/MP/SS = 20,
-		/obj/item/weapon/material/kitchen/utensil/knife/boot/nr40_knife_SS = 10,
+		/obj/item/weapon/material/knife/boot/nr40_knife_SS = 10,
 	)
 
 /obj/structure/vending/guard_equipment
