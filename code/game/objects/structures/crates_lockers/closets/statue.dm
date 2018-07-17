@@ -126,3 +126,6 @@
 	dump_contents()
 	visible_message("<span class='warning'>[src] shatters!.</span>")
 	qdel(src)
+
+
+
