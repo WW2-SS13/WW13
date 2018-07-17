@@ -90,7 +90,7 @@
 	equip_random_polish_partisan_clothing(H)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/flashlight(H), slot_r_hand)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/stenmk2(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/bly(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/tokarev(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/uia_cap(H), slot_head)
 	if (prob(35))
