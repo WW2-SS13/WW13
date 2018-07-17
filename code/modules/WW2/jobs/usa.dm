@@ -461,7 +461,6 @@
 	spawn_location = "JoinLateMARSL"
 	additional_languages = list( "German" = 50, "Japanese" = 15)
 	is_officer = TRUE
-	is_squad_leader = TRUE
 	SL_check_independent = TRUE
 
 	// AUTOBALANCE
