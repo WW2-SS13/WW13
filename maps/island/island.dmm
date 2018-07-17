@@ -224,7 +224,6 @@
 "ep" = (/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
 "eq" = (/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/obj/structure/barricade,/obj/effect/decal/cleanable/blood/drip,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
 "er" = (/obj/effect/decal/cleanable/blood/tracks,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
-"es" = (/obj/structure/window/sandbag,/obj/item/weapon/gun/projectile/automatic/stationary/mg34stat,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
 "et" = (/obj/structure/railing,/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/obj/structure/railing{dir = 8},/obj/structure/railing{dir = 4},/turf/floor/dirt,/area/prishtina/island/beach)
 "eu" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
 "ev" = (/obj/structure/anti_tank,/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/barbwire{dir = 4},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
@@ -1008,7 +1007,7 @@ acacacacacacaOacacacdzacacaccOdZdZdZdZdZdZdZdZcOacacacacajacaccOcOcOaiaiaicOcOai
 dNacacacacacacacacacdzeGeGdzacacaccOacaccOacacacacacacaOacdzacacacacacacacacacacacacacacacacacacacacaOacacacacacdzdzeGeGdzacacacacdNacacaOacacacacacacacacacacacacacacacacacacacacacaOacacacacdNacacacac
 acacacaOacacacaOdNaceGeGeGeGacacacacacacacacacacacbsacacdzdzdzacacacacacacacacacaOacacacacacacacacacacacacacacacdzeGeGeGdzacaOacacacacacdzdzeGbsbsacaOacdNacacacacacacacbtdNacacacacacacacacacacacacacac
 acacacacacacacacacacacdzdzacacacacacaOacacacaOdNacacacacdzeGeGdzacdNelacacacdNacacacacacacdNaOacacacbsacacemenacdzdzdzdzdzemacacacacacacaceGeGacacacacacacacacacacdNacaOacacdzeGbAacemacdNaOacacaccOacac
-acacemacacacacacacacacemememememdNacacacdNacacacacacacemdzeGeGdzacacaOacaceoepepepepeoacacacaccOdNacacacacacacacacacacacaceqepepepepepeoacacacacemacaceracacacaccOacacacacaceGeGbAesbmbIacbAacacbBacdNac
+acacemacacacacacacacacemememememdNacacacdNacacacacacacemdzeGeGdzacacaOacaceoepepepepeoacacacaccOdNacacacacacacacacacacacaceqepepepepepeoacacacacemacaceracacacaccOacacacacaceGeGbAbmbmbIacbAacacbBacdNac
 accOacaceoepepepepeoeracdNcOacacacacaceoepepepepepeocOemacdzeGdzacacacacacacacacacacacacacacacacacacemacaccOacelacaOetaccOacacacacacacacaccOacacacacaceracacacacacacacacacaceGdzeucBevcBacbFbmbmbIacacac
 acacacacacacacacacaceracacacacelacacacacacacacacacacacacacacacacaccOememacacacacaccOacacacacewacemacacacacacacacacacexacacacaceracacacacacacacacererereyacaceoepepepepepeoacacacaiemacaceoezezezezepepeo
 emacacacacewacaceyereyacacacacacacacacacacacacacacacacacacacacacacememacelacacemacacacacaceoepepeAepepeoacacacacacacexacacacaceracacacacacacacelacacacacacacacacacacaccOacacacacacacacbsacacacacacacacac
