@@ -150,7 +150,7 @@
 //TYPES//
 //Explosive
 /obj/item/mine/proc/explosive(obj)
-	explosion(loc,3,3,5)
+	explosion(loc,2,2,4)
 	spawn(0)
 		qdel(src)
 
