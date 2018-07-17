@@ -143,8 +143,9 @@
 		/obj/item/flashlight = 25,
 		/obj/item/weapon/shovel/spade/japan = 25,
 		/obj/item/weapon/gun/projectile/boltaction/arisaka = 25,
-		 /obj/item/ammo_magazine/a77x58 = 50,
-		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/japanese = 25
+		/obj/item/ammo_magazine/a77x58 = 50,
+		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/japanese = 25,
+		/obj/item/weapon/material/knife/boot = 25,
 	)
 
 /obj/structure/vending/usaquipment
@@ -159,7 +160,8 @@
 		/obj/item/weapon/gun/projectile/semiautomatic/m1garand = 25,
 		/obj/item/ammo_magazine/c762x63 = 50,
 		/obj/item/ammo_magazine/c762x63_5 = 10,
-		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/american = 25
+		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/american = 25,
+		/obj/item/weapon/material/knife/boot/tacknife_US = 30,
 	)
 
 /obj/structure/vending/SSequipment
@@ -276,7 +278,7 @@
 		/obj/item/ammo_magazine/kar98k = 50,
 		/obj/item/ammo_magazine/mp40 = 40,
 		/obj/item/ammo_magazine/a762/akm = 24,
-		/obj/item/ammo_magazine/c763x25mm_mauser = 24,
+		/obj/item/ammo_magazine/c763x25mm_mauser = 50,
 
 		/obj/item/weapon/grenade/explosive/stgnade = 20,
 		/obj/item/weapon/grenade/explosive/l2a2 = 20,
@@ -291,9 +293,9 @@
 	desc = "Basic equip for Guards."
 	icon_state = "equipment_german"
 	products = list(
-	/obj/item/clothing/mask/gas/german = 90,
+	/obj/item/clothing/mask/gas/german = 30,
 	/obj/item/flashlight = 40,
-	/obj/item/clothing/accessory/storage/webbing = 90,
+	/obj/item/clothing/accessory/storage/webbing = 40,
 
 
 	)

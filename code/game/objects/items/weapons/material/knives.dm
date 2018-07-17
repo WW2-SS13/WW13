@@ -164,6 +164,17 @@
 	drawsound = 'sound/items/unholster_knife.ogg'
 	force_divisor = 0.3
 
+/obj/item/weapon/material/knife/boot/tacknife_US
+	name = "tacknife"
+	desc = "'slish and dise."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "tacknife_US"
+	item_state = "knife"
+	applies_material_colour = FALSE
+	unbreakable = TRUE
+	drawsound = 'sound/items/unholster_knife.ogg'
+	force_divisor = 0.3
+
 /obj/item/weapon/material/knife/attack(target as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << "<span class='warning'>You accidentally cut yourself with \the [src].</span>"
