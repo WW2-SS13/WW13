@@ -439,6 +439,13 @@
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/weapon/grenade/explosive/f1 = 7)
 
+/obj/structure/closet/crate/US_smokegernade
+	name = "M11 smokegernade"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/weapon/grenade/smokebomb/usa = 7)
+
 /obj/structure/closet/crate/sandbags
 	name = "Sandbags crate"
 	icon_state = "mil_crate_closed"

@@ -58,13 +58,13 @@
 /obj/item/weapon/material/makeshift_knife_grip/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W,/obj/item/weapon/material/makeshift_knife_blade))
 		user << "You finish conecting the blade and the grip."
-		new /obj/item/weapon/material/makeshift_knife(user.loc, material.name)
+		new /obj/item/weapon/material/knife/boot/makeshift_knife(user.loc, material.name)
 		qdel(W)
 		qdel(src)
 		return
 
 
-/obj/item/weapon/material/makeshift_knife
+/obj/item/weapon/material/knife/boot/makeshift_knife
 	name = "makeshift knife"
 	desc = "A self made kife it's a little dull but you can still cut somebody with it."
 	icon_state = "makeshift_knife"
