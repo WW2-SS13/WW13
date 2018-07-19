@@ -33,6 +33,7 @@
 	flamethrower.ptank = ptank
 	flamethrower.pressure_1 = ptank.air_contents.return_pressure()
 
+
 /obj/item/weapon/storage/backpack/flammenwerfer/open()
 	return
 

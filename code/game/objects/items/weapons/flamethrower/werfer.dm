@@ -36,10 +36,8 @@
 	else
 		if (lit)
 			icon_state = "m2_flamethrower_on"
-			item_state = "m2_flamethrower_on"
 		else
 			icon_state = "m2_flamethrower"
-			item_state = "m2_flamethrower"
 	update_held_icon()
 
 /obj/item/weapon/flamethrower/flammenwerfer/m2
