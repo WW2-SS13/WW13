@@ -17,16 +17,47 @@
 	var/rheight = 3
 	var/max_total_range = 8
 
+/obj/item/weapon/flamethrower/flammenwerfer/New()
+	..()
+	if (backpack.flam_type == "usa")
+		icon_state = "m2_flamethrower"
+		item_state = "m2_flamethrower"
 /obj/item/weapon/flamethrower/flammenwerfer/nothrow_special_check()
 	return nodrop_special_check()
 
 /obj/item/weapon/flamethrower/flammenwerfer/update_icon()
-	if (lit)
-		icon_state = "fw_on"
-		item_state = "fw_on"
+	if (backpack.flam_type == "ger")
+		if (lit)
+			icon_state = "fw_on"
+			item_state = "fw_on"
+		else
+			icon_state = "fw_off"
+			item_state = "fw_off"
 	else
-		icon_state = "fw_off"
-		item_state = "fw_off"
+		if (lit)
+			icon_state = "m2_flamethrower_on"
+			item_state = "m2_flamethrower_on"
+		else
+			icon_state = "m2_flamethrower"
+			item_state = "m2_flamethrower"
+	update_held_icon()
+
+/obj/item/weapon/flamethrower/flammenwerfer/m2
+	name = "M2 flamethrower"
+	icon = 'icons/obj/flamethrower.dmi'
+	icon_state = "m2_flamethrower"
+	item_state = "m2_flamethrower"
+
+/obj/item/weapon/flamethrower/flammenwerfer/nothrow_special_check()
+	return nodrop_special_check()
+
+/obj/item/weapon/flamethrower/flammenwerfer/m2/update_icon()
+	if (lit)
+		icon_state = "m2_flamethrower_on"
+		item_state = "m2_flamethrower_on"
+	else
+		icon_state = "m2_flamethrower"
+		item_state = "m2_flamethrower"
 	update_held_icon()
 
 /obj/item/weapon/flamethrower/flammenwerfer/Destroy()
@@ -144,9 +175,9 @@
 	if (user.stat || user.restrained() || user.lying)	return
 	user.set_using_object(src)
 	if (!ptank)
-		user << "<span class='notice'>Attach a plasma tank first!</span>"
+		user << "<span class='notice'>Attach a fuel tank first!</span>"
 		return
-	var/dat = text({"<TT><b>Das Flammenwerfer (<a href='?src=\ref[src];light=1'>[lit ? "<font color='red'>Lit</font>" : "Unlit"]</a>)</b><BR>\n
+	var/dat = text({"<TT><b>Flamethrower (<a href='?src=\ref[src];light=1'>[lit ? "<font color='red'>Lit</font>" : "Unlit"]</a>)</b><BR>\n
 	Fullness: [fullness_percentage()]%<BR>\n
 	Amount to throw: <A HREF='?src=\ref[src];amount=-100'>-</A> <A HREF='?src=\ref[src];amount=-10'>-</A> <A HREF='?src=\ref[src];amount=-1'>-</A> [throw_amount] <A HREF='?src=\ref[src];amount=1'>+</A> <A HREF='?src=\ref[src];amount=10'>+</A> <A HREF='?src=\ref[src];amount=100'>+</A><BR>\n
 	Fire Width ([rwidth]): <A HREF='?src=\ref[src];rwidth=-1'>-</A> <A HREF='?src=\ref[src];rwidth=+1'>+</A>
