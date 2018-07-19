@@ -3,7 +3,7 @@
  * around. This may as well become /obj/item/weapon/flammenwerfer - Kachnov */
 
 /obj/item/weapon/flamethrower/flammenwerfer
-	name = "flammenwerfer"
+	name = "flamthrower"
 	desc = "You are a firestarter!"
 	icon = 'icons/obj/flamethrower.dmi'
 	icon_state = "fw_off"
