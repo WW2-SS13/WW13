@@ -5,6 +5,8 @@
 	bound_height = 32
 	density = TRUE
 	anchored = TRUE
+	explosion_resistance = TRUE
+	opacity = TRUE
 
 /obj/structure/memoriel_statue
 	icon_state = "sosku_statue"
