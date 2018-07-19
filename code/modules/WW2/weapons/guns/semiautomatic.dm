@@ -259,8 +259,8 @@
 		icon_state = "type99"
 		item_state = "type99"
 	else
-		icon_state = "type990"
-		item_state = "type990"
+		icon_state = "type99_empty"
+		item_state = "type99_empty"
 	return
 
 /obj/item/weapon/gun/projectile/semiautomatic/stg
