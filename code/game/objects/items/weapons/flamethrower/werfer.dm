@@ -177,11 +177,8 @@
 	if (!ptank)
 		user << "<span class='notice'>Attach a fuel tank first!</span>"
 		return
-<<<<<<< HEAD
 	var/dat = text({"<TT><b>Flamethrower (<a href='?src=\ref[src];light=1'>[lit ? "<font color='red'>Lit</font>" : "Unlit"]</a>)</b><BR>\n
-=======
 	var/dat = text({"<TT><b>das flammenwerfer (<a href='?src=\ref[src];light=1'>[lit ? "<font color='red'>Lit</font>" : "Unlit"]</a>)</b><BR>\n
->>>>>>> refs/remotes/WW2-SS13/master
 	Fullness: [fullness_percentage()]%<BR>\n
 	Amount to throw: <A HREF='?src=\ref[src];amount=-100'>-</A> <A HREF='?src=\ref[src];amount=-10'>-</A> <A HREF='?src=\ref[src];amount=-1'>-</A> [throw_amount] <A HREF='?src=\ref[src];amount=1'>+</A> <A HREF='?src=\ref[src];amount=10'>+</A> <A HREF='?src=\ref[src];amount=100'>+</A><BR>\n
 	Fire Width ([rwidth]): <A HREF='?src=\ref[src];rwidth=-1'>-</A> <A HREF='?src=\ref[src];rwidth=+1'>+</A>
