@@ -6,6 +6,13 @@
 	var/obj/item/weapon/flamethrower/flammenwerfer/flamethrower = null // thrower is taken by movable atoms!
 	var/obj/item/weapon/tank/plasma/ptank = null
 	nothrow = TRUE
+	var/flam_type = "ger"
+
+/obj/item/weapon/storage/backpack/flammenwerfer/m2
+	name = "M2 flamethrower backpack"
+	icon_state = "m2_flamethrower"
+	item_state = "m2_flamethrower_on"
+	flam_type = "usa"
 
 /obj/item/weapon/storage/backpack/flammenwerfer/nothrow_special_check()
 	return nodrop_special_check()
@@ -21,6 +28,7 @@
 
 	flamethrower = new(src)
 	flamethrower.backpack = src
+	flamethrower.update_held_icon()
 	ptank = new/obj/item/weapon/tank/plasma/super()
 	flamethrower.ptank = ptank
 	flamethrower.pressure_1 = ptank.air_contents.return_pressure()
@@ -33,7 +41,7 @@
 
 	if (slot == SLOT_BACK)
 		if (!user.put_in_any_hand_if_possible(flamethrower) && !(user.l_hand == flamethrower) && !(user.r_hand == flamethrower))
-			user << "<span class = 'danger'>You don't have space to hold the flammenwerfer in your hands.</span>"
+			user << "<span class = 'danger'>You don't have space to hold the flamethrower in your hands.</span>"
 			return
 
 	..(user, slot)
@@ -65,7 +73,7 @@
 		..(W, user)
 
 	if (istype(W, /obj/item/weapon/flammenwerfer_fueltank))
-		visible_message("<span class = 'notice'>[user] puts the flammenwerfer fuel tank in the flammenwerfer.</span>")
+		visible_message("<span class = 'notice'>[user] puts the flamethrower fuel tank in the flamethrower.</span>")
 		qdel(W)
 		flamethrower.ptank = new ptank.type
 		flamethrower.pressure_1 = ptank.air_contents.return_pressure()
@@ -90,7 +98,7 @@
 /obj/item/weapon/storage/backpack/flammenwerfer/proc/explode()
 	if (istype(loc, /mob))
 		var/mob/M = loc
-		M.visible_message("<span class = 'userdanger'>[M]'s flammenwerfer explodes!</span>", "<span class = 'danger'><font size = 3>Your flammenwerfer explodes!</font></span>")
+		M.visible_message("<span class = 'userdanger'>[M]'s flamethrower explodes!</span>", "<span class = 'danger'><font size = 3>Your flammethrower explodes!</font></span>")
 		explosion(get_turf(M), 1, 2, 3, 4)
 
 		for (var/mob/living/L in range(1, get_turf(M)))
@@ -104,6 +112,6 @@
 		M.drop_from_inventory(src)
 		qdel(src)
 	else
-		visible_message("<span class = 'userdanger'>The flammenwerfer explodes!</span>")
+		visible_message("<span class = 'userdanger'>The flamethrower explodes!</span>")
 		explosion(get_turf(src), 1, 2, 3, 4)
 		qdel(src)

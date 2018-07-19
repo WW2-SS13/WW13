@@ -345,7 +345,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/japuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/japanhelm(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/flammenwerfer(H), slot_back) //yes, i know its german. Needs coding and spriting.
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/flammenwerfer/m2(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/nambu(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>, a flamethrower unit. Your job is incinerate the enemy!")
 	H.give_radio()

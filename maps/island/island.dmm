@@ -224,6 +224,7 @@
 "ep" = (/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
 "eq" = (/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/obj/structure/barricade,/obj/effect/decal/cleanable/blood/drip,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
 "er" = (/obj/effect/decal/cleanable/blood/tracks,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
+"es" = (/obj/item/weapon/storage/backpack/flammenwerfer/m2,/obj/item/weapon/storage/backpack/flammenwerfer/m2,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "et" = (/obj/structure/railing,/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/obj/structure/railing{dir = 8},/obj/structure/railing{dir = 4},/turf/floor/dirt,/area/prishtina/island/beach)
 "eu" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
 "ev" = (/obj/structure/anti_tank,/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/barbwire{dir = 4},/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
@@ -371,7 +372,6 @@
 "hh" = (/obj/structure/table/iron,/obj/item/weapon/pen,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; icon_state = "blue3"; name = "Japanese Cave HQ"})
 "hi" = (/obj/structure/table/iron,/obj/item/weapon/stamp,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; icon_state = "blue3"; name = "Japanese Cave HQ"})
 "hj" = (/obj/structure/bed/roller,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship"})
-"hk" = (/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship"})
 "hl" = (/obj/structure/table/iron,/obj/item/weapon/paper,/obj/item/weapon/paper,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; icon_state = "blue3"; name = "Japanese Cave HQ"})
 "hm" = (/obj/structure/light/small{dir = 1},/obj/structure/bed/roller,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship"})
 "hn" = (/obj/structure/bed/chair/wood{dir = 8},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; icon_state = "blue3"; name = "Japanese Cave HQ"})
@@ -486,7 +486,6 @@
 "js" = (/obj/structure/light/small{dir = 4},/obj/structure/bed/chair/wood,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "jt" = (/obj/structure/closet/crate/flares,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "ju" = (/obj/item/weapon/flammenwerfer_fueltank{desc = "A tank of flamethrower fuel."; name = "flamethrower fuel tank"},/obj/item/weapon/flammenwerfer_fueltank{desc = "A tank of flamethrower fuel."; name = "flamethrower fuel tank"},/obj/item/weapon/flammenwerfer_fueltank{desc = "A tank of flamethrower fuel."; name = "flamethrower fuel tank"},/obj/item/weapon/flammenwerfer_fueltank{desc = "A tank of flamethrower fuel."; name = "flamethrower fuel tank"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
-"jv" = (/obj/item/weapon/storage/backpack/flammenwerfer{name = "flamethrower backpack"},/obj/item/weapon/storage/backpack/flammenwerfer{name = "flamethrower backpack"},/obj/item/weapon/storage/backpack/flammenwerfer{name = "flamethrower backpack"},/obj/item/weapon/storage/backpack/flammenwerfer{name = "flamethrower backpack"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "jw" = (/obj/structure/railing{dir = 8},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship"})
 "jx" = (/obj/structure/closet/crate/gasmasks,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "jy" = (/obj/structure/closet/crate/gauze,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
@@ -512,7 +511,7 @@
 "jS" = (/obj/structure/closet/crate/c45m,/obj/structure/light/small,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "jT" = (/obj/structure/railing{dir = 4},/obj/structure/curtain/medical,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship"})
 "jU" = (/obj/structure/closet/crate/US_mk2,/obj/structure/railing{dir = 8},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship"})
-"jV" = (/obj/structure/closet/crate/US_smokegernade,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship"})
+"jV" = (/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship"})
 "jW" = (/obj/structure/table/rack,/obj/item/weapon/gauze_pack/gauze,/obj/item/weapon/gauze_pack/gauze,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship"})
 "jX" = (/obj/structure/light/small{dir = 8},/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/obj/structure/curtain/medical,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship"})
 "jY" = (/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/obj/structure/curtain/medical,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship"})
@@ -1108,15 +1107,15 @@ gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaga
 gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaga
 gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaga
 gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagIgIgIgOgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgIgagagagagagagagagagagagagagagagagagagagagagagagagagaga
-gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagRgIgWgWhjhkhmhwhRihiihkijhkikhkilititiBiBiBhkhkhkhkhkhkiCiDiEhkhkhkhkhkhkhkhkhkitgIgIgIgIgIgagagagagagagagagagagagagagagagagagagagagagaga
-gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagIgIhjhkiJhkhjhkhkhkiihkijhkikhkilhkiYiYiYiYiYiYiYiYiYhkjcjwhkhkhkhkhkhkhkhkhkhkhkgIhkhkjBgIgIgIgIgIgagagagagagagagagagagagagagagagagagaga
-gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagIgIiJhjhkhjhkhjhkhkjThkjUhkjVhkjWhkiYiYiYiYiYiYiYiYiYhkjcjwhkhkhkhkhkhkhkhkhkhkhkgIhkhkhkhkhkhkjBgIgIgIgIgIgagagagagagagagagagagagagagaga
-gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagIgOjXjYjYjYjYjYjYjYjYhkjUhkjVhkjZhkiYiYiYiYiYiYiYiYiYkakbjwhkkckckdkekdkckdkekdkckchkhkhkhkhkhkhkhkhkhkjBgIgIgIgIgIgIgagagagagagagagagaga
-gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagIgIkfhkhkhkhkhkhkhkhkhkjwhkhkhkhkhkhkhkhkhkhkhkhkhkhkkgkhjwhkkckikjkkklkmklkkkjknkchkhkhkhkhkhkhkhkhkhkhkhkhkhkhkgIgRgagagagagagagagagaga
-gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagIgIkohkhkhkhkhkhkhkhkhkkpkpkpkpkphkhkiYhkiYhkiYhkiYhkhkkqkrhkkckukvkkkmkmkmkkkvkukchkhkhkhkhkhkhkhkhkhkjBgIgIgIgIgIgIgagagagagagagagagaga
-gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagIgIkwhkhkhkhkhkhkhkhkhkhkhkhkhkhkhkhkhkhkhkhkhkhkhkhkhkkqkrhkkckxkvkvkvkvkvkvkvkxkchkhkhkhkhkhkjBgIgIgIgIgIgagagagagagagagagagagagagagaga
-gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagIgIkphkkykpkpkpkphkkzkpkpkpkphkkzkpkpkpkphkkzkpkpkpkphkkzjwhkkckAkBkvkBkBkBkvkBkCkchkhkjBgIgIgIgIgIgagagagagagagagagagagagagagagagagagaga
-gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagRgIhkfbfcgvhkhkhkfbgBgvhkhkhkfbgBgvhkhkhkfbgBgvhkhkhkfbgBgCkDkcnunvnwnxnynznwnAnvkcgIgIgIgIgagagagagagagagagagagagagagagagagagagagagagaga
+gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagRgIgWgWhjjVhmhwhRihiijVijjVikjVilititiBiBiBjVjVjVjVjVjViCiDiEjVjVjVjVjVjVjVjVjVitgIgIgIgIgIgagagagagagagagagagagagagagagagagagagagagagaga
+gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagIgIhjjViJjVhjjVjVjViijVijjVikjViljViYiYiYiYiYiYiYiYiYjVjcjwjVjVjVjVjVjVjVjVjVjVjVgIjVjVjBgIgIgIgIgIgagagagagagagagagagagagagagagagagagaga
+gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagIgIiJhjjVhjjVhjjVjVjTjVjUjVjVjVjWjViYiYiYiYiYiYiYiYiYjVjcjwjVjVjVjVjVjVjVjVjVjVjVgIjVjVjVjVjVjVjBgIgIgIgIgIgagagagagagagagagagagagagagaga
+gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagIgOjXjYjYjYjYjYjYjYjYjVjUjVjVjVjZjViYiYiYiYiYiYiYiYiYkakbjwjVkckckdkekdkckdkekdkckcjVjVjVjVjVjVjVjVjVjVjBgIgIgIgIgIgIgagagagagagagagagaga
+gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagIgIkfjVjVjVjVjVjVjVjVjVjwjVjVjVjVjVjVjVjVjVjVjVjVjVjVkgkhjwjVkckikjkkklkmklkkkjknkcjVjVjVjVjVjVjVjVjVjVjVjVjVjVjVgIgRgagagagagagagagagaga
+gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagIgIkojVjVjVjVjVjVjVjVjVkpkpkpkpkpjVjViYjViYjViYjViYjVjVkqkrjVkckukvkkkmkmkmkkkvkukcjVjVjVjVjVjVjVjVjVjVjBgIgIgIgIgIgIgagagagagagagagagaga
+gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagIgIkwjVjVjVjVjVjVjVjVjVjVjVjVjVjVjVjVjVjVjVjVjVjVjVjVjVkqkrjVkckxkvkvkvkvkvkvkvkxkcjVjVjVjVjVjVjBgIgIgIgIgIgagagagagagagagagagagagagagaga
+gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagIgIkpjVkykpkpkpkpjVkzkpkpkpkpjVkzkpkpkpkpjVkzkpkpkpkpjVkzjwjVkckAkBkvkBkBkBkvkBkCkcjVjVjBgIgIgIgIgIgagagagagagagagagagagagagagagagagagaga
+gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagRgIjVfbfcgvjVjVjVfbgBgvjVjVjVfbgBgvjVjVjVfbgBgvjVjVjVfbgBgCkDkcnunvnwnxnynznwnAnvkcgIgIgIgIgagagagagagagagagagagagagagagagagagagagagagaga
 gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagIgIgZhagZgIgIgIhvhxhvgIgIgIhyhDhygIgIgIhMhNhMgIgIgIhOhPhOgIkckckckckckckckckckckcgagagagagagagagagagagagagagagagagagagagagagagagagagaga
 gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagahbgagagagagahbgagagagagahbgagagagagahbgagagagagahbgagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaga
 gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaga
@@ -1154,7 +1153,7 @@ gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaimimipgLjfjgnokQimiN
 gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaimimimimimimizimimimimimimiAimimimimimimimimimimimimjmiIjmimiximjnjojojojoiujpjpjqimipipipipipipipipipipiximimimimimimgagagagagagagagagagaga
 gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaimimkXipipiFipiFipipipipiFipiFipipipipiFipiFipipipipiFipiFipipiGiuiuiuiuiukPkPkPkPimipipipipipipipipipipipipipipipimingagagagagagagagagagaga
 gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaimimimimimimizimimimimimimizimimimimimimiHimimimimimimlrimimiximjrjbjbjbjbiujbjbjsimipipipipipipipipipipiximimimimimimgagagagagagagagagagaga
-gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaimimipgLjfjgnpkYimipgNjfjgipkYimjtkZjujvkZimjFjxjyjzjAipjMimipimjllakVlajkiujGlblaimipipipipipipiximimimimimgagagagagagagagagagagagagagagaga
+gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaimimipgLjfjgnpkYimipgNjfjgipkYimjtkZjueskZimjFjxjyjzjAipjMimipimjllakVlajkiujGlblaimipipipipipipiximimimimimgagagagagagagagagagagagagagagaga
 gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaimimiWnqnrnqnqnqimiWlzlAlzlzlzimjCjDkZkZjEimiplclclclcipipimipimjojojojojoiujojojoimipipiximimimimimgagagagagagagagagagagagagagagagagagagaga
 gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagainimjensnsnsnsntimjelBlBlBlBlCimjHjIjJjKjLimjSjNjOjPjQjRlEimleimiuiuiKiuiuiuiKiuiuimimimimimgagagagagagagagagagagagagagagagagagagagagagagaga
 gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaimimiqimimiqimimimiqimimiqimimimimimimimimimimimimimimimimimimimimimimimimimimimimgagagagagagagagagagagagagagagagagagagagagagagagagagagaga
