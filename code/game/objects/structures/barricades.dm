@@ -49,7 +49,7 @@
 	else
 		if (istype(W, /obj/item/weapon/crowbar))
 			user.visible_message("<span class = 'notice'>\The [user] starts to dissasemble \the [src] with [W].</span>")
-			if (!do_after(user,60))
+			if (!do_after(user,120))
 				user.visible_message("<span class = 'notice'>\The [user] decides not to dissasemble the \the [src].</span>")
 				return
 			user.visible_message("<span class = 'notice'>\The [user] finishes dissasembling through \the [src]!</span>")
