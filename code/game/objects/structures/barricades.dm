@@ -47,6 +47,15 @@
 				return
 		return
 	else
+		if (istype(W, /obj/item/weapon/crowbar))
+			user.visible_message("<span class = 'notice'>\The [user] starts to dissasemble \the [src] with [W].</span>")
+			if (!do_after(user,60))
+				user.visible_message("<span class = 'notice'>\The [user] decides not to dissasemble the \the [src].</span>")
+				return
+			user.visible_message("<span class = 'notice'>\The [user] finishes dissasembling through \the [src]!</span>")
+			playsound(loc, 'sound/items/crowbar.ogg', 50, TRUE)
+			qdel(src)
+			return
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		switch(W.damtype)
 			if ("fire")
