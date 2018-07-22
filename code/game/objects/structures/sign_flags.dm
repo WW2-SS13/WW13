@@ -82,6 +82,11 @@
 	desc = "BANZAI! BANZAI! BANZAI!"
 	icon_state = "japan_flag"
 
+/obj/structure/sign/flag/poland
+	name = "Polish flag"
+	desc = "Bog Honor Ojczyzna!"
+	icon_state = "pol_flag"
+
 
 /obj/structure/sign/flag/medical
 	name = "Medical flag"
