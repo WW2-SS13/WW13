@@ -4,13 +4,13 @@
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall)
 	respawn_delay = 2400
 	squad_spawn_locations = FALSE
+	min_autobalance_players = 50
 	supply_points_per_tick = list(
 		GERMAN = 1.00,
 		USA = 1.00)
 	faction_organization = list(
 		GERMAN,
 		USA,
-		PARTISAN,
 		CIVILIAN)
 	available_subfactions = list(
 		SCHUTZSTAFFEL = 50,
