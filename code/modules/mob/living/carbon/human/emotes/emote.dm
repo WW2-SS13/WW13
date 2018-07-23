@@ -513,6 +513,25 @@ var/list/vocal_emotes = list(
 						message = "makes a strange noise."
 						m_type = 2
 
+			if ("burp")
+				if (miming)
+					message = "burps."
+					m_type = 1
+				else
+					if (!muzzled)
+						message = "burps"
+						m_type = 2
+						if (miming)
+							playsound(get_turf(src), "burp_1", 100)
+						if (miming)
+							playsound(get_turf(src), "burp_2", 100)
+						if (miming)
+							playsound(get_turf(src), "burp_3", 100)
+					else
+						message = "makes a weak noise."
+						m_type = 2
+
+
 			if ("sniff")
 				message = "sniffs."
 				m_type = 2

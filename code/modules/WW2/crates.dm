@@ -300,7 +300,7 @@
 	paths = list(/obj/item/ammo_magazine/svt = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/type99ammo
-	name = "Type 99 ammo crate"
+	name = "Type 99 ammo crate crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
@@ -314,60 +314,62 @@
 	paths = list(/obj/item/ammo_magazine/c762x63 = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/c762x63_smg
-	name = "(30-06) magazines"
+	name = "(30-06) magazines crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/ammo_magazine/c762x63_smg = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/c45m
-	name = "M1911 ammo"
+	name = "M1911 ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/ammo_magazine/c45m = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/c8mmnambu
-	name = "Nambu ammo"
+	name = "Nambu ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/ammo_magazine/c8mmnambu = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/a77x58
-	name = "arisaka clips"
+	name = "arisaka clips crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/ammo_magazine/a77x58 = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/c8mmnambu_smg
-	name = "type 100 ammo"
+	name = "type 100 ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/ammo_magazine/c8mmnambu_smg = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/bar_ammo
-	name = "Fg42 ammo"
+	name = "Fg42 ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/ammo_magazine/c792x57_fg42 = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/Thompson_ammo
-	name = "Thompson ammo"
+	name = "Thompson ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/ammo_magazine/c45_smg = DYNAMIC_AMT)
 
+/obj/structure/closet/crate/anti_tank_mine
+
 /obj/structure/closet/crate/german_grenade
-	name = "Stielgranate 41 crate"
+	name = "TM-46 crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
-	paths = list(/obj/item/weapon/grenade/explosive/stgnade = 7)
+	paths = list(/obj/item/mine/tm46 = 7)
 
 /obj/structure/closet/crate/german_grenade2
 	name = "l2a2 grenade crate"

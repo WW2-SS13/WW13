@@ -98,7 +98,7 @@
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
-	weight = 3.97
+	weight = 3
 	caliber = "9x19mm"
 	magazine_type = /obj/item/ammo_magazine/bly
 
@@ -113,16 +113,9 @@
 /obj/item/weapon/gun/projectile/submachinegun/blyskawica/update_icon()
 	if (ammo_magazine)
 		icon_state = "blyskawica"
-/*		if (wielded)
-			item_state = "mp40-w"
-		else
-			item_state = "mp40"*/
 	else
 		icon_state = "blyskawica0"
-/*		if (wielded)
-			item_state = "mp40-w"
-		else
-			item_state = "mp400"*/
+
 	update_held_icon()
 	return
 
