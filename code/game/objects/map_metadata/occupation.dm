@@ -48,7 +48,7 @@
 	else if (istype(J, /datum/job/partisan/civilian))
 		J.total_positions = 500
 		if (istype(J, /datum/job/partisan/civilian/redcross))
-			J.total_positions = 0
+			J.total_positions = 1
 	return .
 
 /obj/map_metadata/occupation/announce_mission_start(var/preparation_time)
