@@ -462,7 +462,7 @@
 //spy
 
 /datum/job/partisan/civilian/americanspy
-	title = "Civilian"
+	title = "Construction Worker"
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianSpy"
 
@@ -474,7 +474,7 @@
 
 /datum/job/partisan/civilian/americanspy/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/_45(H), slot_l_store)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45m(H), slot_r_store)
 	equip_random_civilian_clothing(H)
