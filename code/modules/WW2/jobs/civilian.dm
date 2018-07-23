@@ -462,7 +462,7 @@
 //spy
 
 /datum/job/partisan/civilian/americanspy
-	title = "American Agent"
+	title = "Civilian"
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianSpy"
 
