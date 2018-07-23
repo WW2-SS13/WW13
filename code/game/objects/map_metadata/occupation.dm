@@ -46,7 +46,7 @@
 				J.total_positions = 2
 				modded_num_of_SS = TRUE
 	else if (istype(J, /datum/job/partisan/civilian))
-			J.total_positions = max(round(clients.len, 15)
+		J.total_positions = max(round(clients.len, 15))
 		if (istype(J, /datum/job/partisan/civilian/chef))
 			J.total_positions = 6
 		if (istype(J, /datum/job/partisan/civilian/det))
