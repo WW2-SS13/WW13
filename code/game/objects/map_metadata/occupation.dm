@@ -7,7 +7,7 @@
 	/area/prishtina/no_mans_land/invisible_wall/inside) // above and underground
 	respawn_delay = 1800
 	squad_spawn_locations = FALSE
-	//min_autobalance_players = 50 // aparently less that this will fuck autobalance
+	min_autobalance_players = 50
 	reinforcements = FALSE
 	faction_organization = list(
 		GERMAN,
@@ -26,29 +26,29 @@
 	faction_distribution_coeffs = list(GERMAN = 0.3, CIVILIAN = 0.70)
 
 /obj/map_metadata/occupation/germans_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 10 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 2400 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/occupation/soviets_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 10 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 2400 || admin_ended_all_grace_periods)
 
 
 /obj/map_metadata/occupation/job_enabled_specialcheck(var/datum/job/J)
 	. = TRUE
 	if (istype(J, /datum/job/german))
-		if ((!J.is_SS) || (!J.is_reichstag))
+		if (!J.is_SS)
 			. = FALSE
 		else
-			if (istype(J, /datum/job/german/soldier_ss_reichstag))
-				J.total_positions = min(4, round(clients.len*0.2))
-			if (istype(J, /datum/job/german/medic_ss_reichstag))
+			if (istype(J, /datum/job/german/soldier_ss))
+				J.total_positions = max(round(clients.len*0.2), 20)
+			if (istype(J, /datum/job/german/medic_ss))
 				J.total_positions = 2
 			if (istype(J, /datum/job/german/squad_leader_ss))
 				J.total_positions = 2
 				modded_num_of_SS = TRUE
-//	else if (istype(J, /datum/job/partisan/civilian))
-//		J.total_positions = max(5, round(clients.len*0.75))
 	else if (istype(J, /datum/job/partisan/civilian))
-		J.total_positions = max(500,600)
+		J.total_positions = 500
+		if (istype(J, /datum/job/partisan/civilian/redcross))
+			J.total_positions = 0
 	return .
 
 /obj/map_metadata/occupation/announce_mission_start(var/preparation_time)
