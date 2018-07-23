@@ -46,7 +46,37 @@
 				J.total_positions = 2
 				modded_num_of_SS = TRUE
 	else if (istype(J, /datum/job/partisan/civilian))
-		J.total_positions = 500
+			J.total_positions = max(round(clients.len, 15)
+		if (istype(J, /datum/job/partisan/civilian/chef))
+			J.total_positions = 6
+		if (istype(J, /datum/job/partisan/civilian/det))
+			J.total_positions = 2
+		if (istype(J, /datum/job/partisan/civilian/cop))
+			J.total_positions = 1
+		if (istype(J, /datum/job/partisan/civilian/worker))
+			J.total_positions = 10
+		if (istype(J, /datum/job/partisan/civilian/rich))
+			J.total_positions = 2
+		if (istype(J, /datum/job/partisan/civilian/sci))
+			J.total_positions = 5
+		if (istype(J, /datum/job/partisan/civilian/mayor))
+			J.total_positions = 1
+		if (istype(J, /datum/job/partisan/civilian/librarian))
+			J.total_positions = 2
+		if (istype(J, /datum/job/partisan/civilian/jewl))
+			J.total_positions = 1
+		if (istype(J, /datum/job/partisan/civilian/journalist))
+			J.total_positions = 1
+		if (istype(J, /datum/job/partisan/civilian/writer))
+			J.total_positions = 1
+		if (istype(J, /datum/job/partisan/civilian/hunter))
+			J.total_positions = 4
+		if (istype(J, /datum/job/partisan/civilian/doctor))
+			J.total_positions = 2
+		if (istype(J, /datum/job/partisan/civilian/vio))
+			J.total_positions = 1
+		if (istype(J, /datum/job/partisan/civilian/americanspy))
+			J.total_positions = 1
 		if (istype(J, /datum/job/partisan/civilian/redcross))
 			J.total_positions = 1
 	return .
