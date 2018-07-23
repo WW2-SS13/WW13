@@ -162,7 +162,6 @@
 "df" = (/obj/structure/table/wood/poker,/turf/floor/wood,/area/prishtina/houses/nml_one)
 "dg" = (/obj/item/weapon/soap,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses/nml_one)
 "dh" = (/obj/structure/bed,/obj/item/weapon/bedsheet/brown,/turf/floor/wood,/area/prishtina/houses/nml_one)
-"di" = (/obj/tank/studebacker{dir = 8; icon_state = "studebaker_truck"; locked = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina)
 "dj" = (/obj/structure/table/wood,/obj/item/flashlight/lamp/green,/turf/floor/wood,/area/prishtina/houses/nml_one)
 "dk" = (/obj/structure/multiz/stairs,/turf/floor/plating/cobblestone/vertical,/area/prishtina)
 "dl" = (/obj/structure/table/wood,/obj/item/weapon/paper,/turf/floor/wood,/area/prishtina/houses/nml_one)
@@ -201,7 +200,6 @@
 "dS" = (/obj/item/weapon/paper/crumpled/bloody,/turf/floor/wood,/area/prishtina/houses/nml_one)
 "dT" = (/obj/item/weapon/paper/crumpled,/obj/structure/light/small,/turf/floor/wood,/area/prishtina/houses/nml_one)
 "dU" = (/obj/item/weapon/stool,/turf/floor/plating/cobblestone/vertical,/area/prishtina)
-"dV" = (/obj/tank/studebacker{dir = 8; icon_state = "studebaker_truck"; locked = 1},/obj/item/weapon/stool,/turf/floor/plating/cobblestone/vertical,/area/prishtina)
 "dW" = (/obj/structure/sign/goldenplaque{name = "Church"},/turf/wall/wood,/area/prishtina/houses/nml_one)
 "dX" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/turf/floor/plating/cobblestone/vertical,/area/prishtina)
 "dY" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/snacks/meat{name = "pork"},/obj/item/weapon/reagent_containers/food/snacks/meat{name = "pork"},/obj/item/weapon/reagent_containers/food/snacks/meat{name = "pork"},/turf/floor/plating/cobblestone/vertical,/area/prishtina)
@@ -969,7 +967,7 @@ aaaaaaaaaaatbjasajcSaeaeaeaeakaiaiaiazcTaHaHaHctcdazcUcVcVaWazcWcXaWazazcnazaias
 aaaaaaaaatbjbjasajdaaeaeaeaeakaiaiaiazdbaHaHaHctcdazaWaWaWcBazaWaWaWaWaXaWazaiasajaeaeaeaeaeakamdcaEamaFaFaGamaHaHaHaHamaHaHaHamapapaJcYcRcRcRcZaxaWaWaWaWaWaWaYaWaWaWaWaWaWaWaJaHddaJddaHaHaHaJaibRaeaeaeaeaebTaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiai
 aaaaaaatbjbjbjasajaeaeaeaeaeakaiaiaicnaHaHaHaHaHaHcnaWaWaWaWcnaWaWaWaWaWaWazaiasajaeaeaeaeaeakamaWbcbdbeaHbfamaHdedfaHbkaHaHaHamapapaJcYdgcRdgcZaxaWaWaWaWaWaWaYaWaWaWaWaWaWaWaJaHdhaJaHdjdldmaJaiajaeaeaeaeaeakaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiai
 aaaaatatbjbjbjasajaeaeaeaeaeakaiaiaiazcEcAcOcTdbcFazdudBdGcPazdHdIdKdLdMcPazaiasajaeaeaeaeaeakambraWamaHaHbsamaHdNdfaHamaHaHaHamapapaJcYcRcRcRcZaxaWaWaWaWaWaWaYaWaWaWaWaWaWaWaJaHdOaJaHdPdQaHaJaiajaeaeaeaeaeakaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiai
-aaatbjbjbjbjbjasajaedRaeaeaeakaiaiaiazazazazazazazazazazazazazazazazazazazazaiasajaeaeaeaeaeakamambGamaHaHaHbHaHdfdfaHbKaHaHaHamapapaJcRcRcRcRcRaxaWaWaWaWaWaWaWaWaWaWaWaWaWaWaJaHdhaJdSaHdTdhaJaiajaeaeaeaeaeakaiaididUaiaiaiaiaidVdUaiaiaiaiaidVaiaiaiaidUaiaiaiai
+aaatbjbjbjbjbjasajaedRaeaeaeakaiaiaiazazazazazazazazazazazazazazazazazazazazaiasajaeaeaeaeaeakamambGamaHaHaHbHaHdfdfaHbKaHaHaHamapapaJcRcRcRcRcRaxaWaWaWaWaWaWaWaWaWaWaWaWaWaWaJaHdhaJdSaHdTdhaJaiajaeaeaeaeaeakaiaiaidUaiaiaiaiaidUdUaiaiaiaiaidUaiaiaiaidUaiaiaiai
 atbjbjbjbjbjbjasajaeaeaeaeaeakaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiasajaeaeaeaeaeakambUbVambWbXbYamaHbZaHaHamaHaHaHamapapaJaJaJaJaJaJaJaJaJdWbHbHdWaJdWbHbHdWaJaJaJaJaJaJaJaJaJaJaJaJaiajaeaeaeaeaeakaidXdYeaecaiaiaiedeeefegaiaieheiejekaiaielemeneoaiai
 bjbjbjbjbjbjbjasajaeaeaeaeaeakaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiasajaeaeaeaeaeepamamamamameqamamamamamamamewbHewamaiaiaiaiaiaiaiaiaiaiaiaidkdkaiaiaidkdkaiaiaiaiaiaiaiaiaiaiaiaiaiaiajaeaeaeaeaeakaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiai
 bjbjbjaiaiaiaiasajaeaeaeaeaeexdndndndndndneydndndndndndndndndndneydndndndndndnasbRaeaeaeaeaeeDasasaseEdndndndneydndndndndndneydndndndndndneydndndndndndndndneydneydndndndndndneydndndndndndndneydodpaeaeaeaeaedqdneydndndndndndndndndneydndndndndndndneydndndndndndn
