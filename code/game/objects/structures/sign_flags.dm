@@ -55,6 +55,7 @@
 	icon = 'icons/obj/gate.dmi'
 	desc = "A base security gate. Pull it to the side to let vehicles pass."
 	icon_state = "gate"
+	bound_width = 96
 	density = TRUE
 
 /obj/structure/sign/flag/germany
