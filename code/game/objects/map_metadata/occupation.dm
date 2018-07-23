@@ -39,7 +39,7 @@
 			. = FALSE
 		else
 			if (istype(J, /datum/job/german/soldier_ss))
-				J.total_positions = min(4, round(clients.len*0.2))
+				J.total_positions = max(round(clients.len*0.2), 20)
 			if (istype(J, /datum/job/german/medic_ss))
 				J.total_positions = 2
 			if (istype(J, /datum/job/german/squad_leader_ss))
