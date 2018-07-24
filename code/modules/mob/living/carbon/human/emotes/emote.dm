@@ -13,7 +13,9 @@ var/list/vocal_emotes = list(
 	"sigh",
 	"sneeze",
 	"yawn",
-	"charge")
+	"charge",
+	"whistle",
+	)
 
 /mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null)
 
@@ -418,6 +420,14 @@ var/list/vocal_emotes = list(
 						message = "makes a loud noise."
 						m_type = 2
 
+			if ("whistle")
+				if (miming)
+					message = "whistles"
+					m_type = 1
+				else
+					message = "whistles!"
+					m_type = 2
+
 			if ("moan")
 				if (miming)
 					message = "appears to moan!"
@@ -522,11 +532,9 @@ var/list/vocal_emotes = list(
 						message = "burps"
 						m_type = 2
 						if (miming)
-							playsound(get_turf(src), "burp_1", 100)
+							playsound(get_turf(src), "burp1", 100)
 						if (miming)
-							playsound(get_turf(src), "burp_2", 100)
-						if (miming)
-							playsound(get_turf(src), "burp_3", 100)
+							playsound(get_turf(src), "burp2", 100)
 					else
 						message = "makes a weak noise."
 						m_type = 2
@@ -683,7 +691,7 @@ var/list/vocal_emotes = list(
 	cry, dab, drool, eyebrow, frown, gasp, giggle, groan, grumble, handshake, hug-(none)/mob,
 	grin, laugh, look-(none)/mob, moan, mumble, nod, point-atom, raise, salute, shake, shiver, shrug,
 	sigh, signal-#1-10, smile, sneeze, sniff, snore, stare-(none)/mob, scream, surrender, tremble, twitch,
-	wink, yawn, dab, charge"}
+	wink, yawn, dab, whistle, charge"}
 
 			else
 				src << "<span class = 'notice'>Unusable emote '[act]'. Say *help for a list.</span>"

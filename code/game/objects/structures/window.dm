@@ -538,6 +538,29 @@
     dir = 5
     icon_state = "fwindow"
 
+/obj/structure/window/reinforced/indestructebel
+	name = "indestructebel window"
+	desc = "It looks rather strong. Might take a few good hits to shatter it."
+	icon_state = "rwindow"
+	basestate = "rwindow"
+	maxhealth = 100000.0
+	reinf = TRUE
+	maximal_heat = T0C + 750
+	damage_per_fire_tick = 2.0
+	glasstype = /obj/item/stack/material/glass/reinforced
+
+
+/obj/structure/window/New(Loc, constructed=0)
+	..()
+
+	//player-constructed windows
+	if (constructed)
+		state = FALSE
+
+/obj/structure/window/reinforced/full/indestructebel
+    dir = 5
+    icon_state = "fwindow"
+
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
 	desc = "It looks rather strong and opaque. Might take a few good hits to shatter it."

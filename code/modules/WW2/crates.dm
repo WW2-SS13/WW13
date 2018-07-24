@@ -362,14 +362,19 @@
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/ammo_magazine/c45_smg = DYNAMIC_AMT)
 
-/obj/structure/closet/crate/anti_tank_mine
-
-/obj/structure/closet/crate/german_grenade
+/obj/structure/closet/crate/antitank_mine
 	name = "TM-46 crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/mine/tm46 = 7)
+
+/obj/structure/closet/crate/german_grenade
+	name = "Stielgranate 41 crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/weapon/grenade/explosive/stgnade = 7)
 
 /obj/structure/closet/crate/german_grenade2
 	name = "l2a2 grenade crate"

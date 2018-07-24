@@ -50,6 +50,7 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_magazine/kar98kbox
 	name = "magazine box (7.92x57mm)"
+	desc = "a box full of rounds to refill your 7.92x57mm clips"
 	icon_state = "mosin_ammo"
 //	origin_tech = "combat=2"
 	mag_type = MAGAZINE
@@ -61,9 +62,10 @@ WW 2 WEAPONS MAGS N AMMO
 	multiple_sprites = TRUE
 	is_box = TRUE
 
-/obj/item/ammo_magazine/a77x58
+/obj/item/ammo_magazine/arisaka
 	name = "Clip (7.7x58mm)"
 	icon_state = "kclip"
+	desc = "ammo for your arisaka gun"
 	caliber = "a77x58"
 	matter = list(DEFAULT_WALL_MATERIAL = 360)
 	ammo_type = /obj/item/ammo_casing/a77x58
@@ -71,7 +73,7 @@ WW 2 WEAPONS MAGS N AMMO
 	weight = 0.038
 	multiple_sprites = TRUE
 
-/obj/item/ammo_magazine/arisakabox
+/obj/item/ammo_magazine/a77x58
 	name = "magazine box (7.7x58mm)"
 	icon_state = "mosin_ammo"
 //	origin_tech = "combat=2"
@@ -86,6 +88,7 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_magazine/c762x63
 	name = "Clip (30-06), 8 rds."
+	desc = "ammo for your M1 Garand i hoop you shoot well"
 	icon_state = "clip"
 	caliber = "c762x63"
 	matter = list(DEFAULT_WALL_MATERIAL = 360)
@@ -97,6 +100,7 @@ WW 2 WEAPONS MAGS N AMMO
 /obj/item/ammo_magazine/c762x63_5
 	name = "Clip (30-06), 5 rds."
 	icon_state = "clip"
+	desc = "ammo for your M1 Garand"
 	caliber = "c762x63"
 	matter = list(DEFAULT_WALL_MATERIAL = 360)
 	ammo_type = /obj/item/ammo_casing/c762x63
@@ -119,6 +123,7 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_magazine/mp40
 	name = "magazine (9mm)"
+	desc = "a magazine fr your Mp40 or other guns"
 	icon_state = "mp40mag"
 //	origin_tech = "combat=2"
 	mag_type = MAGAZINE
@@ -132,6 +137,7 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_magazine/bly
 	name = "blyskawica magazine (9mm)"
+	desc = "a mag for the blyskawica is the same as the Mp40 magazine"
 	icon_state = "mp40mag"
 //	origin_tech = "combat=2"
 	mag_type = MAGAZINE
@@ -155,6 +161,7 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_magazine/maxim
 	name = "Maxim ammo belt"
+	desc = "a belt full of 762x54 and time to shoot some germans"
 	icon_state = "maximbelt"
 //	origin_tech = "combat=2"
 	mag_type = MAGAZINE
@@ -258,6 +265,7 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_magazine/c762mm_tokarev
 	name = "magazine (7.62mm)"
+	desc = "a magazine for the tokarev"
 	icon_state = "tokarevmag"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/c762mm_tokarev
@@ -269,6 +277,7 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_magazine/c763x25mm_mauser
 	name = "stripper clip (7.63x25mm)"
+	desc = "a clip of 7.63x25mm for the mauser"
 	icon_state = "7.63x25m"
 	ammo_type = /obj/item/ammo_casing/c763x25mm_mauser
 	matter = list(DEFAULT_WALL_MATERIAL = 500)
@@ -289,6 +298,7 @@ WW 2 WEAPONS MAGS N AMMO
 ////////// NAGANT REVOLVER ///////////////
 /obj/item/ammo_magazine/c762x38mmR
 	name = "pouch of bullets (7.62x38mmR)"
+	desc = "a pouch of 7.62x38mmR for the Nagant revolver"
 	icon_state = "7.62x38mmRPouch"
 	ammo_type = /obj/item/ammo_casing/c762x38mmR
 	caliber = "7.62x38mmR"
@@ -308,6 +318,7 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_magazine/c792x57_fg42
 	name = "magazine (7.92x57mm)"
+	desc = "a Fg 42 magazine"
 	icon_state = "fg42"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/c792x57_fg42
@@ -326,6 +337,7 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_magazine/p9x19mm
 	name = "magazine (9x19mm)"
+	desc = "a waltherp magazine "
 	icon_state = "waltherp"
 	caliber = "9x19mm"
 	mag_type = MAGAZINE
@@ -336,6 +348,7 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_magazine/s9x19mm
 	name = "magazine (9x19mm)"
+	desc = "a M38 magazine"
 	icon_state = "m38"
 	caliber = "9x19mm"
 	mag_type = MAGAZINE
