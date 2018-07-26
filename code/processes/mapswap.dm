@@ -11,12 +11,18 @@
 //		MAP_FOREST_NEW = 25,
 		MAP_ISLAND = 10,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		MAP_PARTISAN = 10
 =======
 		MAP_PARTISAN = 0
 //		MAP_VILLAGE = 0
 //		MAP_OCCUPATION = 20
 >>>>>>> 49324d1ea156b6eb995cd7797d72c3c18a57a35d
+=======
+		MAP_PARTISAN = 0
+//		MAP_VILLAGE = 0
+//		MAP_OCCUPATION = 20
+>>>>>>> eadbb49bf261138500f0cf3b5cd2a5c1bf761124
 	)
 
 	var/ready = TRUE
