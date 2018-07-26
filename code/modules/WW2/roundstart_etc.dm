@@ -205,17 +205,6 @@ var/GRACE_PERIOD_LENGTH = 7
 
 	return TRUE
 
-/hook/roundstart/proc/show_battle_report()
-	if (istype(map, /obj/map_metadata/forest))
-		spawn (600)
-			show_global_battle_report(null)
-	return TRUE
-
-// calls the train_move hook on maps without a train, which does map.announce_mission_start() among other things
-/hook/roundstart/proc/automatic_train_move_hook()
-	spawn (20)
-		if (!WW2_train_check())
-			callHook("train_move")
 
 var/mission_announced = FALSE
 var/mapcheck_train_arrived = FALSE
@@ -246,4 +235,12 @@ var/mapcheck_train_arrived = FALSE
 	spawn (show_report_after)
 		show_global_battle_report(null)
 
+	return TRUE
+
+/hook/roundstart/proc/show_battle_report()
+	if (istype(map, /obj/map_metadata/forest))
+		spawn (600)
+			show_global_battle_report(null)
+	else
+		map.announce_mission_start()
 	return TRUE

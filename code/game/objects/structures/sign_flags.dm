@@ -55,6 +55,7 @@
 	icon = 'icons/obj/gate.dmi'
 	desc = "A base security gate. Pull it to the side to let vehicles pass."
 	icon_state = "gate"
+	bound_width = 96
 	density = TRUE
 
 /obj/structure/sign/flag/germany
@@ -81,6 +82,11 @@
 	name = "Japanese Empire flag"
 	desc = "BANZAI! BANZAI! BANZAI!"
 	icon_state = "japan_flag"
+
+/obj/structure/sign/flag/poland
+	name = "Polish flag"
+	desc = "Bog Honor Ojczyzna!"
+	icon_state = "pol_flag"
 
 
 /obj/structure/sign/flag/medical
