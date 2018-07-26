@@ -177,6 +177,30 @@ var/datum/reinforcements/reinforcements_master = null
 			else
 				german_countdown = german_countdown_success_reset
 				allow_quickspawn[GERMAN] = FALSE
+	if (map.front == "Western")
+		if (reinforcement_pool[SOVIET] && reinforcement_pool[GERMAN])
+			for (var/mob/new_player/np in reinforcement_pool[SOVIET])
+				if (!np || !np.client)
+					reinforcement_pool[SOVIET] -= np
+			for (var/mob/new_player/np in reinforcement_pool[GERMAN])
+				if (!np || !np.client)
+					reinforcement_pool[GERMAN] -= np
+
+		soviet_countdown = soviet_countdown - tick_len
+		if (soviet_countdown < 1)
+			if (!reset_soviet_timer())
+				soviet_countdown = soviet_countdown_failure_reset
+			else
+				soviet_countdown = soviet_countdown_success_reset
+				allow_quickspawn[SOVIET] = FALSE
+
+		german_countdown = german_countdown - tick_len
+		if (german_countdown < 1)
+			if (!reset_german_timer())
+				german_countdown = german_countdown_failure_reset
+			else
+				german_countdown = german_countdown_success_reset
+				allow_quickspawn[GERMAN] = FALSE
 
 /datum/reinforcements/proc/add(var/mob/new_player/np, side)
 
@@ -289,6 +313,12 @@ var/datum/reinforcements/reinforcements_master = null
 				np.LateSpawnForced("Private", TRUE, TRUE)
 				reinforcements_granted[JAPAN] = reinforcements_granted[JAPAN]+1
 				ret = TRUE
+	if (map.front == "Western")
+		for (var/mob/new_player/np in l)
+			if (np) // maybe helps with logged out nps
+				np.LateSpawnForced("Private", TRUE, TRUE)
+				reinforcements_granted[JAPAN] = reinforcements_granted[JAPAN]+1
+				ret = TRUE
 	reinforcement_pool[SOVIET] = list()
 	lock_check()
 	var/obj/item/radio/R = main_radios[SOVIET]
@@ -319,6 +349,12 @@ var/datum/reinforcements/reinforcements_master = null
 			if (np) // maybe helps with logged out nps
 				np.LateSpawnForced("Nitohei", TRUE, TRUE)
 				reinforcements_granted[JAPAN] = reinforcements_granted[JAPAN]+1
+				ret = TRUE
+	if (map.front == "Western")
+		for (var/mob/new_player/np in l)
+			if (np) // maybe helps with logged out nps
+				np.LateSpawnForced("Soldat", TRUE, TRUE)
+				reinforcements_granted[GERMAN] = reinforcements_granted[GERMAN]+1
 				ret = TRUE
 	reinforcement_pool[GERMAN] = list()
 	lock_check()

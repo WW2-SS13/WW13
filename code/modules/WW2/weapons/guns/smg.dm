@@ -110,7 +110,7 @@
 	sel_mode = 2
 	effectiveness_mod = 1.05
 
-/obj/item/weapon/gun/projectile/submachinegun/blyskawica/update_icon()
+/obj/item/weapon/gun/projectile/submachinegun/bly/update_icon()
 	if (ammo_magazine)
 		icon_state = "blyskawica"
 	else

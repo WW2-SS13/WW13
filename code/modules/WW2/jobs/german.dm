@@ -1676,7 +1676,7 @@ var/first_fallschirm = TRUE
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_back)
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/ppsh(H), slot_back)
-	H.add_note("Role", "You are a <b>[title]</b>, a soldier of the Waffen-SS. Your job is to defend the Reichstag to the last man, no surrender!")
+	H.add_note("Role", "You are a <b>[title]</b>, an elite soldier of the Waffen-SS.")
 	H.give_radio()
 
 	// glorious SS stats

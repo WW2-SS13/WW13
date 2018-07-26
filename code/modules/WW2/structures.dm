@@ -84,6 +84,9 @@
 	icon_state = "us"
 	name = "USA Flag"
 
+/obj/structure/flag/polish
+	icon_state = "polish"
+	name = "Polish Flag"
 
 /obj/structure/noose
 	icon = 'icons/obj/noose.dmi'
