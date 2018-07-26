@@ -531,9 +531,9 @@ var/list/vocal_emotes = list(
 					if (!muzzled)
 						message = "burps"
 						m_type = 2
-						if (miming)
+						if (!muzzled)
 							playsound(get_turf(src), "burp1", 100)
-						if (miming)
+						if (!muzzled)
 							playsound(get_turf(src), "burp2", 100)
 					else
 						message = "makes a weak noise."
