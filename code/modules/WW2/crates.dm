@@ -313,8 +313,8 @@
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/ammo_magazine/c762x63 = DYNAMIC_AMT)
 
-/obj/structure/closet/crate/c762x63_smg
-	name = "(30-06) magazines crate"
+/obj/structure/closet/crate/bar_ammo
+	name = "Bar magazines crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
@@ -348,7 +348,7 @@
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/ammo_magazine/c8mmnambu_smg = DYNAMIC_AMT)
 
-/obj/structure/closet/crate/bar_ammo
+/obj/structure/closet/crate/fg42_ammo
 	name = "Fg42 ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
@@ -396,6 +396,20 @@
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/weapon/grenade/explosive/type91 = 7)
+
+/obj/structure/closet/crate/M34phosphoruse_gernade
+	name = "M34 phosphoruse gernade crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/weapon/grenade/gas/phosphorus/usa = 7)
+
+/obj/structure/closet/crate/musterdgas_gernade
+	name = "Musterd gas gernades crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/weapon/grenade/gas/musterd/german = 7)
 
 /obj/structure/closet/crate/US_mk2
 	name = "mk2 grenade crate"

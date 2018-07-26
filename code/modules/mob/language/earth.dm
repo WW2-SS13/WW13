@@ -2,7 +2,7 @@
 #define POLISH_SYLLABLES list("al", "an", "bi", "ve", "vo", "go", "de", "yel", "n", "yer", "yet", "ka", "ko", "la", "ly", "lo", "l", "na", "nee", "ny", "no", "ov", "ol", "on", "or", "slog", "ot", "po", "pr", "ra", "re", "ro", "st", "ta", "tye", "to", "t", "at", "bil", "ver", "ego", "eny", "enn", "est", "kak", "ln", "ova", "ogo", "l", "oro", "ost", "oto", "pry", "pro", "sta", "stv", "tor", "chto", "eto", "pa", "tu", "wa", "ugu")
 #define GERMAN_SYLLABLES list("al", "an", "ar", "as", "at", "ea", "ed", "en", "er", "es", "ha", "he", "hi", "in", "is", "it", "le", "me", "nd", "ne", "ng", "nt", "on", "or", "ou", "re", "se", "st", "te", "th", "ti", "to", "ve", "wa", "all", "and", "are", "but", "ent", "era", "ere", "eve", "for", "had", "hat", "hen", "her", "hin", "his", "ing", "ion", "ith", "not", "ome", "oul", "our", "sho", "ted", "ter", "tha", "the", "thi", "tio", "uld", "ver", "was", "wit", "you")
 #define ITALIAN_SYLLABLES list("pi", "za", "pe", "pp", "er", "on", "i", "ma", "mia", "na", "va", "ta", "ra", "ga", "da", "na", "sa", "la", "te", "re", "ge", "de", "ne", "se", "le", "ti", "ri", "gi", "di", "ni", "si")
-
+#define HEBREW_SYLLABLES list("pi", "za", "pe", "pp", "er", "on", "i", "ma", "mia", "na", "va", "ta", "ra", "ga", "da", "na", "sa", "la", "te", "re", "ge", "de", "ne", "se", "le", "ti", "ri", "gi", "di", "ni", "si")
 #define ENGLISH_SYLLABLES list("ing", "Ti", "po", "tle", "fa", "li", "ern", "er", "ri", "sion", "day", "fe", "lo", "eve", "a", "be", "vi", "ny", "gen", "men", "ly", "per", "el", "pen", "min", "ies", "ed", "to", "est", "pre", "land", "i", "pro", "la", "tive", "light", "es", "lar", "car", "out", "main", "re", "ad", "pa", "of", "tion", "ar", "ture", "mo", "pos", "ro", "in", "ers", "for", "an", "tain", "my", "e", "ment", "is", "side", "nal", "con", "ings", "ness", "y", "tions", "pe", "se", "ning", "ments", "ties", "so", "tor", "set", "ward" , "ence", "up")
 #define JAPANESE_SYLLABLES list("ka", "ki", "ku", "ke", "ko", "ta", "chi", "tsu", "te", "to", "sa", "shi", "su", "se", "so", "na", "ni", "nu", "ne", "no", "n", "ha", "hi", "fu", "he", "ho", "ma", "mi", "mu", "me", "mo", "ya", "yu", "yo", "ra", "ri", "ru", "re", "ro", "wa", "wo")
 
@@ -83,6 +83,14 @@
 	colour = "english"
 	flags = RESTRICTED | COMMON_VERBS
 	syllables = JAPANESE_SYLLABLES
+
+/datum/language/japanese
+	name = "Hebrew"
+	desc = "you Jew!"
+	key = "h"
+	colour = "english"
+	flags = RESTRICTED | COMMON_VERBS
+	syllables = HEBREW_SYLLABLES
 
 /datum/language/romanian/New()
 	..()
