@@ -61,7 +61,7 @@
 
 // M1GARAND
 /obj/item/projectile/bullet/rifle/c762x63
-	damage = DAMAGE_HIGH + 
+	damage = DAMAGE_HIGH + 4
 	penetrating = 2
 	armor_penetration = 100
 
