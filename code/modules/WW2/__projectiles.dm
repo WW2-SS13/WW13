@@ -32,18 +32,18 @@
 
 // STG44
 /obj/item/projectile/bullet/rifle/a792x33
-	damage = DAMAGE_MEDIUM - 4
+	damage = DAMAGE_MEDIUM - 3
 	penetrating = 1
 
 // MOSIN
 /obj/item/projectile/bullet/rifle/a762x54
-	damage = DAMAGE_HIGH - 2
+	damage = DAMAGE_HIGH - 1
 	penetrating = 2
 	armor_penetration = 100
 
 // KAR
 /obj/item/projectile/bullet/rifle/a792x57
-	damage = DAMAGE_HIGH + 4
+	damage = DAMAGE_HIGH + 5
 	penetrating = 2
 	armor_penetration = 100
 
@@ -56,12 +56,12 @@
 
 //TYPE 92 HMG
 /obj/item/projectile/bullet/rifle/a77x58_weaker
-	damage = DAMAGE_MEDIUM - 4
+	damage = DAMAGE_MEDIUM - 3
 	penetrating = 1
 
 // M1GARAND
 /obj/item/projectile/bullet/rifle/c762x63
-	damage = DAMAGE_HIGH + 3
+	damage = DAMAGE_HIGH + 
 	penetrating = 2
 	armor_penetration = 100
 
@@ -88,12 +88,12 @@
 
 // MP40 SMG //
 /obj/item/projectile/bullet/rifle/a9_parabellum
-	damage = DAMAGE_LOW + 2
+	damage = DAMAGE_LOW + 3
 	penetrating = 0
 
 // 45 smg //
 /obj/item/projectile/bullet/rifle/c45_smg
-	damage = DAMAGE_LOW + 4
+	damage = DAMAGE_LOW + 5
 	penetrating = 0
 
 // LUGER PISTOL //
