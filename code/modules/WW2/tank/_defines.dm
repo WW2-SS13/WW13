@@ -1,2 +1,2 @@
-#define MG_TANKS
+//#define MG_TANKS
 #define TRUCKS
