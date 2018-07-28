@@ -15,7 +15,7 @@
 	available_subfactions = list(
 		SCHUTZSTAFFEL = 50,
 		)
-	faction_distribution_coeffs = list(GERMAN = 0.7, USA = 0.3)
+	faction_distribution_coeffs = list(GERMAN = 0.5, USA = 0.5)
 	battle_name = "Village Battle"
 	front = "Western"
 
