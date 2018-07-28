@@ -394,9 +394,6 @@
 	var/busy = FALSE 	//Something's being washed at the moment
 	var/sound = 'sound/effects/sink.ogg'
 
-	var/amount_per_transfer_from_this = 10
-	var/possible_transfer_amounts = list(10,25,50,100) //still working progress//
-
 /obj/structure/sink/ex_act(severity)
 	switch(severity)
 		if (1.0)
