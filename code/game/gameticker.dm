@@ -109,7 +109,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 	if (!map || !map.can_start() && !admin_started)
 		if (serverswap_open_status)
-			world << "<b>Unable to start the game.</b> Not enough players, [map.required_players] active players needed. Reverting to the pre-game lobby."
+			world << "<b>Unable to start the game.</b> Not enough players, more active players needed. Reverting to the pre-game lobby."
 		current_state = GAME_STATE_PREGAME
 		job_master.ResetOccupations()
 		return FALSE
