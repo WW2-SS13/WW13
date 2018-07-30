@@ -88,15 +88,6 @@
 	reagent_payload = "white_phosphorus_gas"
 	det_time = 20
 
-/obj/item/weapon/grenade/gas/musterd/german
-	desc = "a german musterd gas gernade time to gas some jews. Won't blow up."
-	name = "Mustergas gernade"
-	var/reagent_payload = null
-	icon = 'icons/obj/grenade.dmi'
-	icon_state = "musterdgas_grenade"
-	reagent_payload = "mustard_gas"
-	det_time = 20
-
 /obj/item/weapon/grenade/smokebomb/japan
 	desc = "Japanese smoke grenade. Won't blow up."
 	name = "Japanese smoke grenade"
