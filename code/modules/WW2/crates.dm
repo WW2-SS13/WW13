@@ -404,13 +404,6 @@
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/weapon/grenade/gas/phosphorus/usa = 7)
 
-/obj/structure/closet/crate/musterdgas_gernade
-	name = "Musterd gas gernades crate"
-	icon_state = "mil_crate_closed"
-	icon_opened = "mil_crate_opened"
-	icon_closed = "mil_crate_closed"
-	paths = list(/obj/item/weapon/grenade/gas/musterd/german = 7)
-
 /obj/structure/closet/crate/US_mk2
 	name = "mk2 grenade crate"
 	icon_state = "mil_crate_closed"
