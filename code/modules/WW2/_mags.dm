@@ -25,7 +25,7 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_magazine/mosinbox
 	name = "magazine box (7.62x54mm)"
-	desc = "this is a box with 7,62c54mm that is used for Mosin clips to get refilld"
+	desc = "this is a box with 7.62x54mm that is used for Mosin clips to get refilld"
 	icon_state = "mosin_ammo"
 //	origin_tech = "combat=2"
 	mag_type = MAGAZINE
@@ -39,7 +39,7 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_magazine/kar98k
 	name = "Clip (7.92x57mm)"
-	desc = "this is ammo fro the Kar98k"
+	desc = "this is ammo for the Kar98k"
 	icon_state = "kclip"
 	caliber = "a792x57"
 	matter = list(DEFAULT_WALL_MATERIAL = 360)
@@ -88,7 +88,7 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_magazine/c762x63
 	name = "Clip (30-06), 8 rds."
-	desc = "ammo for your M1 Garand i hoop you shoot well"
+	desc = "ammo for your M1 Garand"
 	icon_state = "clip"
 	caliber = "c762x63"
 	matter = list(DEFAULT_WALL_MATERIAL = 360)
@@ -123,7 +123,7 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_magazine/mp40
 	name = "magazine (9mm)"
-	desc = "a magazine fr your Mp40 or other guns"
+	desc = "a magazine for thr Mp40 or other guns"
 	icon_state = "mp40mag"
 //	origin_tech = "combat=2"
 	mag_type = MAGAZINE
