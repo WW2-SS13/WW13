@@ -14,7 +14,7 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_magazine/mosin
 	name = "Clip (7.62x54mm)"
-	desc = "this ammo is used for the Mosin"
+	desc = "this type ammo is used for the Mosin"
 	icon_state = "kclipe"
 	caliber = "a762x54"
 	matter = list(DEFAULT_WALL_MATERIAL = 360)
@@ -25,7 +25,7 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_magazine/mosinbox
 	name = "magazine box (7.62x54mm)"
-	desc = "this is a box with 7.62x54mm that is used for Mosin clips to get refilld"
+	desc = "this is a box with 7.62x54mm that can used for Mosin clips to get refilld"
 	icon_state = "mosin_ammo"
 //	origin_tech = "combat=2"
 	mag_type = MAGAZINE
