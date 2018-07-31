@@ -538,9 +538,8 @@
     dir = 5
     icon_state = "fwindow"
 
-/obj/structure/window/reinforced/indestructebel
-	name = "indestructebel window"
-	desc = "It looks rather strong. Might take a few good hits to shatter it."
+/obj/structure/window/reinforced/indestructible
+	name = "indestructible window"
 	icon_state = "rwindow"
 	basestate = "rwindow"
 	maxhealth = 100000.0
@@ -550,14 +549,7 @@
 	glasstype = /obj/item/stack/material/glass/reinforced
 
 
-/obj/structure/window/New(Loc, constructed=0)
-	..()
-
-	//player-constructed windows
-	if (constructed)
-		state = FALSE
-
-/obj/structure/window/reinforced/full/indestructebel
+/obj/structure/window/reinforced/full/indestructible
     dir = 5
     icon_state = "fwindow"
 
