@@ -36,7 +36,7 @@
 	name = "M34 phosphoruse gernade"
 	var/reagent_payload = null
 	icon = 'icons/obj/grenade.dmi'
-	icon_state = "m34phosphorus"
+	icon_state = "flashbang"
 	reagent_payload = "white_phosphorus_gas"
 	det_time = 20
 
