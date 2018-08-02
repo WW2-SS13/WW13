@@ -278,6 +278,20 @@
 	on_impact(atom/hit_atom)
 		on_hit(hit_atom)
 
+/obj/item/projectile/grenade/gas
+	name = "gas grenade"
+
+	kill_count = 10
+
+	new/obj/effect/effect/smoke/chem/payload/white_phosphorus_gas(t)
+
+	on_hit(atom/hit_atom)
+		name += " (Used)"
+		playsound(loc, 'sound/effects/smoke.ogg', 50, TRUE, -3)
+		new/obj/effect/effect/smoke/chem/payload/white_phosphorus_gas(t)
+
+	on_impact(atom/hit_atom)
+		on_hit(hit_atom)
 
 /////////////////////FLAREGUNS//////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
