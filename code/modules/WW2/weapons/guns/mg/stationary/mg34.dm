@@ -104,7 +104,7 @@
 		else
 			item_state = "mg34stat"*/
 	else
-		icon_state = "Type92HMg_empty"
+		icon_state = "Type92HMG_empty"
 /*		if (wielded)
 			item_state = "mg34stat0"
 		else

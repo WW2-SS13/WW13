@@ -115,6 +115,6 @@
 	name = "Winchester 1897"
 
 /obj/item/weapon/gun/projectile/shotgun/pump/combat/coachgun
-	icon_state = "coachgun"
 	name = "Coachgun"
+	icon_state = "coachgun"
 

@@ -473,6 +473,58 @@
 		src << "You sent '[msg]' to all Partisans."
 		message_admins("[key_name(src)] sent '[msg]' to all Partisans")
 
+/client/proc/message_USA()
+	set category = "Special"
+	set name = "Message USA"
+
+	var/msg = input(usr, "Send what?", "Message USA") as text
+
+	if (!msg)
+		return
+
+	var/ick_ock = input(usr, "Make this an IC message?", "Message USA") in list("Yes", "No")
+
+	if (ick_ock == "Yes")
+		ick_ock = TRUE
+	else
+		ick_ock = FALSE
+
+	if (msg)
+		for (var/mob/living/carbon/human/H in player_list)
+			if (istype(H) && H.client)
+				if (H.original_job || H.original_job.base_type_flag() == USA)
+					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE US ARMY COMMAND TO US FORCES :</b>" : "<b>MESSAGE TO PARTISANS FROM ADMINS:</b>"
+					H << "[msg_start] <span class = 'notice'>[msg]</span>"
+
+		src << "You sent '[msg]' to all US soldiers."
+		message_admins("[key_name(src)] sent '[msg]' to all US Soldiers")
+
+/client/proc/message_japan()
+	set category = "Special"
+	set name = "Message Japan"
+
+	var/msg = input(usr, "Send what?", "Message Japan") as text
+
+	if (!msg)
+		return
+
+	var/ick_ock = input(usr, "Make this an IC message?", "Message Japan") in list("Yes", "No")
+
+	if (ick_ock == "Yes")
+		ick_ock = TRUE
+	else
+		ick_ock = FALSE
+
+	if (msg)
+		for (var/mob/living/carbon/human/H in player_list)
+			if (istype(H) && H.client)
+				if (H.original_job || H.original_job.base_type_flag() == JAPAN)
+					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE EMPERIR OF JAPAN TO JAPENIS SOLDIERS:</b>" : "<b>MESSAGE TO PARTISANS FROM ADMINS:</b>"
+					H << "[msg_start] <span class = 'notice'>[msg]</span>"
+
+		src << "You sent '[msg]' to all Japs."
+		message_admins("[key_name(src)] sent '[msg]' to all Japs")
+
 var/german_civilian_mode = FALSE
 var/soviet_civilian_mode = FALSE
 
