@@ -468,7 +468,7 @@
 	H.give_radio()
 	H.setStat("strength", STAT_NORMAL)
 	H.setStat("engineering", STAT_NORMAL)
-	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("rifle", STAT_HIGH)
 	H.setStat("mg", STAT_MEDIUM_LOW)
 	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)

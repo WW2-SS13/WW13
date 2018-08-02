@@ -24,22 +24,6 @@
 	throw_range = FALSE
 	nothrow = TRUE
 
-/obj/item/weapon/grenade/smokebomb/usa
-	desc = "American smoke grenade. Won't blow up."
-	name = "M18 smoke grenade"
-	icon = 'icons/obj/grenade.dmi'
-	icon_state = "m18smoke"
-	det_time = 20
-
-/obj/item/weapon/grenade/gas/phosphorus/usa
-	desc = "American phosphorus grenade. Won't blow up."
-	name = "M34 phosphoruse gernade"
-	var/reagent_payload = null
-	icon = 'icons/obj/grenade.dmi'
-	icon_state = "flashbang"
-	reagent_payload = "white_phosphorus_gas"
-	det_time = 20
-
 /obj/item/weapon/grenade/explosive/f1
 	name = "f1 grenade"
 	icon_state = "rgd5"
@@ -88,6 +72,13 @@
 	icon_state = "smoke_grenade"
 	det_time = 20
 
+/obj/item/weapon/grenade/smokebomb/japan
+	desc = "Japanese smoke grenade. Won't blow up."
+	name = "Japanese smoke grenade"
+	icon = 'icons/obj/grenade.dmi'
+	icon_state = "japsmoke"
+	det_time = 20
+
 /obj/item/weapon/grenade/smokebomb/usa
 	desc = "American smoke grenade. Won't blow up."
 	name = "M18 smoke grenade"
@@ -95,11 +86,13 @@
 	icon_state = "m18smoke"
 	det_time = 20
 
-/obj/item/weapon/grenade/smokebomb/japan
-	desc = "Japanese smoke grenade. Won't blow up."
-	name = "Japanese smoke grenade"
+/obj/item/weapon/grenade/gas/phosphorus/usa
+	var/reagent_payload = null
+	desc = "American phosphorus grenade. Won't blow up."
+	name = "M34 phosphoruse gernade"
 	icon = 'icons/obj/grenade.dmi'
-	icon_state = "japsmoke"
+	icon_state = "m34phosphorus"
+	reagent_payload = "white_phosphorus_gas"
 	det_time = 20
 
 

@@ -162,3 +162,7 @@
 /mob/living/carbon/human/verb/charge()
 	set category = "Emote"
 	emote("charge")
+
+/mob/living/carbon/human/verb/whistle()
+	set category = "Emote"
+	emote("whistle")
