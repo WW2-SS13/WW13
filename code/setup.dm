@@ -13,7 +13,7 @@
 
 	// objects
 
-	admin_notice("<span class='danger'>Initializing objects</span>", R_DEBUG)
+	admin_notice("<span class='danger'>Initializing objects Êîíòðîëüíàÿ ðàáîòà</span>", R_DEBUG)
 	sleep(-1)
 	for (var/atom/movable/object in world)
 		if (!object.gcDestroyed)
