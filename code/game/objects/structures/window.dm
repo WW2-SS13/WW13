@@ -538,21 +538,6 @@
     dir = 5
     icon_state = "fwindow"
 
-/obj/structure/window/reinforced/indestructible
-	name = "indestructible window"
-	icon_state = "rwindow"
-	basestate = "rwindow"
-	maxhealth = 100000.0
-	reinf = TRUE
-	maximal_heat = T0C + 750
-	damage_per_fire_tick = 2.0
-	glasstype = /obj/item/stack/material/glass/reinforced
-
-
-/obj/structure/window/reinforced/full/indestructible
-    dir = 5
-    icon_state = "fwindow"
-
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
 	desc = "It looks rather strong and opaque. Might take a few good hits to shatter it."
