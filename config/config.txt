@@ -6,10 +6,10 @@ RESOURCE_WEBSITE nil
 
 ## Server name: This appears at the top of the screen in-game and in the BYOND hub. Remove the # infront of SERVERNAME and replace 'tgstation' with the name of your choice.
 ## IMPORTANT: Don't include special characters such as ' in here
-SERVER_NAME Lebensraum Alpha
+SERVER_NAME Lebensraum [RU]
 
 ## What features do you want to advertise on your hub message?
-HUB_FEATURES A new light-medium roleplay WW2 Server
+HUB_FEATURES light-medium roleplay WW2 Server
 
 ## The main content of your hub message
 HUB_BODY <i>WW2, SEASON, TIME_OF_DAY</i><br>
@@ -21,7 +21,7 @@ HUB_BANNER_URL <img src='http://tny.im/btn'>
 OPEN_HUB_DISCORD_IN_NEW_WINDOW 1
 
 ## When hosting on this port number, your server will not show on the hub
-TESTING_PORT 12345
+TESTING_PORT 8895
 
 ## When hosting on this port number, you server WILL show up on the hub, but only admins can join
 HUBTESTING_PORT 12346
