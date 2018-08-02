@@ -59,7 +59,7 @@
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
 	return TRUE
 
-
+//DETECTIVE
 /datum/job/partisan/civilian/det
 	title = "Detective"
 	selection_color = "#530909"
@@ -90,7 +90,7 @@
 
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
 	return TRUE
-
+//COP
 /datum/job/partisan/civilian/cop
 	title = "Cop"
 	selection_color = "#530909"
@@ -182,7 +182,8 @@
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
 	return TRUE
 
-
+//SCIENTIST
+//TODO: Update clothing for scientist and give random chemcials in pockets. 
 /datum/job/partisan/civilian/sci
 	title = "Scientist"
 	selection_color = "#530909"
@@ -196,10 +197,10 @@
 
 /datum/job/partisan/civilian/sci/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
+	equip_random_civilian_clothing(H)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/flashlight(H), pick(slot_l_hand, slot_r_hand))
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat(H), slot_wear_suit)
-	equip_random_civilian_clothing(H)
 	H.add_note("Role", "You are a <b>[title]</b>, when the germans came your lab was shelled! Survive with the equipment you have!")
 	H.setStat("strength", civ_stat())
 	H.setStat("engineering", civ_stat())
@@ -213,6 +214,8 @@
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
 	return TRUE
 
+//MAYOR
+//Give mayor clothing and german radio
 /datum/job/partisan/civilian/mayor
 	title = "Mayor"
 	selection_color = "#530909"
@@ -242,6 +245,9 @@
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
 	return TRUE
 
+
+//LIBRARIAN
+//TODO: Better clothing
 /datum/job/partisan/civilian/librarian
 	title = "Librarian"
 	selection_color = "#530909"
@@ -271,6 +277,8 @@
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
 	return TRUE
 
+//GEM
+//Todo: More MONEY
 /datum/job/partisan/civilian/jewl
 	title = "Jewler"
 	selection_color = "#530909"
@@ -300,6 +308,9 @@
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
 	return TRUE
 
+
+//WAR JOURNALIST
+//TODO: Fix camera and give war journalist more features and shit.
 /datum/job/partisan/civilian/journalist
 	title = "War Journalist"
 	selection_color = "#530909"
@@ -331,7 +342,7 @@
 	return TRUE
 
 //WRITER
-
+//TODO: Book writing?
 /datum/job/partisan/civilian/writer
 	title = "Writer"
 	selection_color = "#530909"
@@ -363,7 +374,7 @@
 	return TRUE
 
 //HUNTER
-
+//TODO: better clothes
 /datum/job/partisan/civilian/hunter
 	title = "Hunter"
 	selection_color = "#530909"
@@ -396,7 +407,7 @@
 	return TRUE
 
 //DOCTOR
-
+//TODO: not much maybe more supplies 
 /datum/job/partisan/civilian/doctor
 	title = "Doctor"
 	selection_color = "#530909"
@@ -429,7 +440,7 @@
 	return TRUE
 
 //violinist
-
+//TODO: manuscript and clothign
 /datum/job/partisan/civilian/vio
 	title = "Violinist"
 	selection_color = "#530909"
