@@ -30,6 +30,7 @@
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
 	return TRUE
 
+//CHEF
 /datum/job/partisan/civilian/chef
 	title = "Chef"
 	selection_color = "#530909"
@@ -43,9 +44,9 @@
 
 /datum/job/partisan/civilian/chef/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/flashlight(H), pick(slot_l_hand, slot_r_hand))
-	equip_random_civilian_clothing(H)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef/classic(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chef(H), slot_w_uniform)
 	H.add_note("Role", "You are a <b>[title]</b>, one of the best in this city, serve the guests of this restruant with the best food in town!")
 	H.setStat("strength", civ_stat())
 	H.setStat("engineering", civ_stat())
@@ -78,6 +79,7 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/c38(H), slot_r_store)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/det(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/det(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new 	/obj/item/clothing/suit/storage/det_trench(H), slot_wear_suit)
 	H.add_note("Role", "You are a <b>[title]</b>! It was cold. It was dark. Just another evening in this city. The police force was dismantaled by the occupiers here who's friends had a particular distaste for the boys in blue. Specially now, in 1942. You can get away with punching a cop no problem.")
 	H.setStat("strength", civ_stat())
 	H.setStat("engineering", civ_stat())
@@ -90,6 +92,7 @@
 
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
 	return TRUE
+
 //COP
 /datum/job/partisan/civilian/cop
 	title = "Cop"
@@ -107,6 +110,8 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/collectable/police(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/assistantformal(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/_45(H), slot_l_store)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45m(H), slot_r_store)
 	H.add_note("Role", "You are a <b>[title]</b>, well not so much anymore. The germans have dismantaled the police force and torched the building. Survive.")
 	H.setStat("strength", civ_stat())
 	H.setStat("engineering", civ_stat())
@@ -135,9 +140,10 @@
 
 /datum/job/partisan/civilian/worker/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/engineer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/toolbox/mechanical(H), slot_l_hand)
-	equip_random_civilian_clothing(H)
+
 	H.add_note("Role", "You are a <b>[title]</b>, a simple man trying to live a simple life. Before the germans arrived we were working on a construction site down south. ")
 	H.setStat("strength", civ_stat())
 	H.setStat("engineering", pick(STAT_HIGH, STAT_VERY_HIGH))
@@ -160,7 +166,7 @@
 
 	// AUTOBALANCE
 	min_positions = 1
-	max_positions = 2
+	max_positions = 1
 	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
 
@@ -183,7 +189,7 @@
 	return TRUE
 
 //SCIENTIST
-//TODO: Update clothing for scientist and give random chemcials in pockets. 
+//TODO: Update clothing for scientist and give random chemcials in pockets.
 /datum/job/partisan/civilian/sci
 	title = "Scientist"
 	selection_color = "#530909"
@@ -197,7 +203,7 @@
 
 /datum/job/partisan/civilian/sci/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
-	equip_random_civilian_clothing(H)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/scientist(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/flashlight(H), pick(slot_l_hand, slot_r_hand))
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat(H), slot_wear_suit)
@@ -230,8 +236,9 @@
 /datum/job/partisan/civilian/mayor/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/leather(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket/charcoal(H), slot_w_uniform)
-	equip_random_civilian_clothing(H)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/mayor(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/radio/feldfu/SS(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/coat/civilian(H), slot_wear_suit)
 	H.add_note("Role", "You are the <b>[title]</b>, you must work with the german occupiors to keep your citizens safe!")
 	H.setStat("strength", civ_stat())
 	H.setStat("engineering", civ_stat())
@@ -263,7 +270,7 @@
 	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/flashlight(H), pick(slot_l_hand, slot_r_hand))
-	equip_random_civilian_clothing(H)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/common2(H), slot_w_uniform)
 	H.add_note("Role", "You are the <b>[title]</b>, keep your books safe!")
 	H.setStat("strength", civ_stat())
 	H.setStat("engineering", civ_stat())
@@ -325,9 +332,11 @@
 /datum/job/partisan/civilian/journalist/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/camera(H), slot_l_hand)
-	H.equip_to_slot_or_del(new /obj/item/camera_film(H), slot_l_store)
-	equip_random_civilian_clothing(H)
+	//H.equip_to_slot_or_del(new /obj/item/camera(H), slot_l_hand)
+	//H.equip_to_slot_or_del(new /obj/item/camera_film(H), slot_l_store)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/work2(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/press(H), slot_wear_suit)
+
 	H.add_note("Role", "You are a <b>[title]</b>, you are here working on a piece for TIME magazine!")
 	H.setStat("strength", civ_stat())
 	H.setStat("engineering", civ_stat())
@@ -359,7 +368,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/weapon/book(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/pen/blue(H), slot_r_hand)
-	equip_random_civilian_clothing(H)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/work1(H), slot_w_uniform)
 	H.add_note("Role", "You are a <b>[title]</b>, its a good time to write a book!")
 	H.setStat("strength", civ_stat())
 	H.setStat("engineering", civ_stat())
@@ -392,7 +401,7 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/shotgunshells(H), pick(slot_l_hand, slot_r_hand))
 	H.equip_to_slot_or_del(new /obj/item/stack/money(H), slot_r_store)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/pump/combat/winchester1897 (H), slot_back)
-	equip_random_civilian_clothing(H)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/hunter(H), slot_w_uniform)
 	H.add_note("Role", "You are a <b>[title]</b>, there are always more bear to hunt in the woods!")
 	H.setStat("strength", civ_stat())
 	H.setStat("engineering", civ_stat())
@@ -407,7 +416,7 @@
 	return TRUE
 
 //DOCTOR
-//TODO: not much maybe more supplies 
+//TODO: not much maybe more supplies
 /datum/job/partisan/civilian/doctor
 	title = "Doctor"
 	selection_color = "#530909"
