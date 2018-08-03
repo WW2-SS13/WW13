@@ -54,6 +54,10 @@
 			J.total_positions = 4
 		if (istype(J, /datum/job/partisan/civilian/det))
 			J.total_positions = 2
+		if (istype(J, /datum/job/partisan/civilian/preist))
+			J.total_positions = 2
+		if (istype(J, /datum/job/partisan/civilian/fire))
+			J.total_positions = 3
 		if (istype(J, /datum/job/partisan/civilian/cop))
 			J.total_positions = 1
 		if (istype(J, /datum/job/partisan/civilian/worker))

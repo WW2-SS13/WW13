@@ -126,6 +126,23 @@
 	worn_state = "geruni_MP"
 
 
+/obj/item/clothing/under/firefighter
+	name = "firefighter's uniform"
+	desc = "A fancier, more pressed uniform."
+	icon_state = "germanfirefighteruniform"
+	item_state = "germanfirefighteruniform"
+	worn_state = "germanfirefighteruniform"
+
+
+/obj/item/clothing/under/firefighteroff
+	name = "firefighter's uniform"
+	desc = "A fancier, more pressed uniform."
+	icon_state = "germanfirefighteruniform"
+	item_state = "germanfirefighteruniform"
+	worn_state = "germanfirefighteruniform"
+
+
+
 /obj/item/clothing/under/geruni/verb/roll_sleeves()
 	set category = null
 	set src in usr
@@ -476,6 +493,13 @@
 	desc = "A simple steel helmet worn by American GIs, with a the markings of a Captain in the front."
 	icon_state = "UShelm_cap"
 	item_state = "UShelm_cap"
+
+
+/obj/item/clothing/head/helmet/fire
+	name = "Firefighter cap"
+	desc = "A simple cap worn by firefighters."
+	icon_state = "germpcapworn"
+	item_state = "germanfirefightinggeneralscap"
 
 /obj/item/clothing/head/helmet/ushelm_mar
 	name = "US Marines camo helmet"

@@ -35,7 +35,7 @@
 	title = "Chef"
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianChef"
-
+	additional_languages = list( "Russian" = 10, "German" = 70)
 	// AUTOBALANCE
 	min_positions = 1
 	max_positions = 3
@@ -65,7 +65,7 @@
 	title = "Detective"
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianDetective"
-
+	additional_languages = list( "Russian" = 10, "German" = 80)
 	// AUTOBALANCE
 	min_positions = 1
 	max_positions = 2
@@ -98,7 +98,7 @@
 	title = "Cop"
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianCop"
-
+	additional_languages = list( "Russian" = 10, "German" = 80)
 	// AUTOBALANCE
 	min_positions = 1
 	max_positions = 1
@@ -131,7 +131,7 @@
 	title = "Construction Worker"
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianWorker"
-
+	additional_languages = list( "Russian" = 10, "German" = 70)
 	// AUTOBALANCE
 	min_positions = 1
 	max_positions = 10
@@ -163,7 +163,7 @@
 	title = "Rich Banker"
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianRich"
-
+	additional_languages = list( "Russian" = 10, "German" = 70)
 	// AUTOBALANCE
 	min_positions = 1
 	max_positions = 1
@@ -194,7 +194,7 @@
 	title = "Scientist"
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianScientist"
-
+	additional_languages = list( "Russian" = 10, "German" = 70, "English" = 50)
 	// AUTOBALANCE
 	min_positions = 1
 	max_positions = 10
@@ -226,7 +226,7 @@
 	title = "Mayor"
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianMayor"
-
+	additional_languages = list( "Russian" = 100, "German" = 100, "English" = 100)
 	// AUTOBALANCE
 	min_positions = 1
 	max_positions = 1
@@ -259,7 +259,7 @@
 	title = "Librarian"
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianBook"
-
+	additional_languages = list( "Russian" = 70, "German" = 70)
 	// AUTOBALANCE
 	min_positions = 1
 	max_positions = 1
@@ -284,13 +284,44 @@
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
 	return TRUE
 
+//PREIST
+//TODO: Better clothing
+/datum/job/partisan/civilian/preist
+	title = "Preist"
+	selection_color = "#530909"
+	spawn_location = "JoinLateCivilianGod"
+	additional_languages = list( "Russian" = 70, "German" = 70)
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 2
+	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
+
+/datum/job/partisan/civilian/preist/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/flashlight(H), pick(slot_l_hand, slot_r_hand))
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/common1(H), slot_w_uniform)
+	H.add_note("Role", "You are a <b>[title]</b>, keep your flock safe!")
+	H.setStat("strength", civ_stat())
+	H.setStat("engineering", civ_stat())
+	H.setStat("shotgun", civ_stat())
+	H.setStat("medical", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+
+	H.setStat("rifle", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
+	H.setStat("mg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
+	H.setStat("smg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
+
+	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+	return TRUE
+
 //GEM
 //Todo: More MONEY
 /datum/job/partisan/civilian/jewl
 	title = "Jewler"
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianJewl"
-
+	additional_languages = list( "Russian" = 10, "German" = 70)
 	// AUTOBALANCE
 	min_positions = 1
 	max_positions = 1
@@ -322,7 +353,7 @@
 	title = "War Journalist"
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianWar"
-
+	additional_languages = list( "Russian" = 100, "German" = 100, "English" = 100)
 	// AUTOBALANCE
 	min_positions = 1
 	max_positions = 1
@@ -356,7 +387,7 @@
 	title = "Writer"
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianWrite"
-
+	additional_languages = list( "Russian" = 10, "German" = 70)
 	// AUTOBALANCE
 	min_positions = 1
 	max_positions = 1
@@ -388,7 +419,7 @@
 	title = "Hunter"
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianHunt"
-
+	additional_languages = list( "Russian" = 10, "German" = 70)
 	// AUTOBALANCE
 	min_positions = 1
 	max_positions = 3
@@ -421,7 +452,7 @@
 	title = "Doctor"
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianDoc"
-
+	additional_languages = list( "Russian" = 20, "German" = 80)
 	// AUTOBALANCE
 	min_positions = 1
 	max_positions = 2
@@ -448,13 +479,44 @@
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
 	return TRUE
 
+//FIRE
+/datum/job/partisan/civilian/fire
+	title = "Fire Fighter"
+	selection_color = "#530909"
+	spawn_location = "JoinLateCivilianDoc"
+	additional_languages = list( "Russian" = 20, "German" = 80)
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 3
+	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
+
+/datum/job/partisan/civilian/fire/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/firefighter(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/german(H), slot_back)
+	H.add_note("Role", "You are a <b>[title]</b>, in the chaos the fire department was destroyed! Maybe you could get the engineers to rebuild it!")
+	H.setStat("strength", civ_stat())
+	H.setStat("engineering", civ_stat())
+	H.setStat("shotgun", civ_stat())
+	H.setStat("medical", pick(STAT_VERY_HIGH, STAT_HIGH))
+
+	H.setStat("rifle", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
+	H.setStat("mg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
+	H.setStat("smg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
+
+	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+	return TRUE
+
 //violinist
 //TODO: manuscript and clothign
 /datum/job/partisan/civilian/vio
 	title = "Violinist"
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianVio"
-
+	additional_languages = list( "Russian" = 10, "German" = 70)
 	// AUTOBALANCE
 	min_positions = 1
 	max_positions = 1
@@ -485,7 +547,7 @@
 	title = "Construction Worker"
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianSpy"
-
+	additional_languages = list( "Russian" = 100, "German" = 100, "English" = 100)
 	// AUTOBALANCE
 	min_positions = 1
 	max_positions = 1
@@ -497,7 +559,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/_45(H), slot_l_store)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45m(H), slot_r_store)
-	equip_random_civilian_clothing(H)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/work2(H), slot_w_uniform)
 	H.add_note("Role", "You are a <b>[title]</b>, you have infiltrated this occupied town and are here to blend in and record information. In your closet is a weapon for self defense and a german radio for listening in. DO NOT BLOW YOUR COVER.")
 	H.setStat("strength", civ_stat())
 	H.setStat("engineering", civ_stat())
