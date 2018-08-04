@@ -58,16 +58,7 @@ var/movementMachine/movementMachine = null
 									movedir = SOUTHEAST
 									diag = TRUE
 							// hack to let other clients Move() earlier
-							spawn (0)
-								if (M && M.client)
-									M.client.movement_busy = TRUE
-									M.client.Move(get_step(M, movedir), movedir, diag)
-									// remove this client from movementMachine_clients until it needs to be in it again. This makes the amount of loops to be done the absolute minimum
-									movementMachine_clients -= M.client
-									spawn ((M.client.move_delay - world.time))
-										if (M && M.client)
-											M.client.movement_busy = FALSE
-											movementMachine_clients += M.client
+							do_movement(M, movedir, diag)
 					else
 						mob_list -= M
 				else
@@ -98,6 +89,23 @@ var/movementMachine/movementMachine = null
 
 		sleep(interval)
 #undef SECONDS
+
+
+/movementMachine/proc/do_movement(var/mob/M, movedir, diag)
+	set waitfor = FALSE
+	if (M && M.client)
+		M.client.movement_busy = TRUE
+		M.client.Move(get_step(M, movedir), movedir, diag)
+		// remove this client from movementMachine_clients until it needs to be in it again. This makes the amount of loops to be done the absolute minimum
+		movementMachine_clients -= M.client
+		do_movement_continued(M)
+
+/movementMachine/proc/do_movement_continued(var/mob/M)
+	set waitfor = FALSE
+	sleep(M.client.move_delay - world.time)
+	if (M && M.client)
+		M.client.movement_busy = FALSE
+		movementMachine_clients += M.client
 
 /movementMachine/proc/average_tick_usage()
 	if (!last_twenty_tick_usage_times.len)
