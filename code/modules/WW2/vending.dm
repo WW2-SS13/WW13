@@ -171,7 +171,7 @@
 	products = list(
 
 		/obj/item/clothing/under/geruni/ssuni = 20,
-		/obj/item/clothing/suit/sssmock = 20,
+		/obj/item/clothing/suit/storage/coat/sssmock = 20,
 		/obj/item/clothing/accessory/storage/webbing = 20,
 
 		/obj/item/clothing/head/helmet/gerhelm/sshelm = 10,
@@ -209,7 +209,7 @@
 	products = list(
 		/obj/item/clothing/head/helmet/gerhelm/sshelm = 12,
 		/obj/item/clothing/mask/gas/german = 12,
-		/obj/item/clothing/suit/sssmock = 12,
+		/obj/item/clothing/suit/storage/coat/sssmock = 12,
 		/obj/item/clothing/under/geruni/ssuni = 12,
 		/obj/item/clothing/under/geruni/sscamo = 6,
 		/obj/item/clothing/shoes/swat = 12,
