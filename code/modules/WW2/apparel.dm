@@ -126,6 +126,23 @@
 	worn_state = "geruni_MP"
 
 
+/obj/item/clothing/under/firefighter
+	name = "firefighter's uniform"
+	desc = "A fancier, more pressed uniform."
+	icon_state = "germanfirefighteruniform"
+	item_state = "germanfirefighteruniform"
+	worn_state = "germanfirefighteruniform"
+
+
+/obj/item/clothing/under/firefighteroff
+	name = "firefighter's uniform"
+	desc = "A fancier, more pressed uniform."
+	icon_state = "germanfirefighteruniform"
+	item_state = "germanfirefighteruniform"
+	worn_state = "germanfirefighteruniform"
+
+
+
 /obj/item/clothing/under/geruni/verb/roll_sleeves()
 	set category = null
 	set src in usr
@@ -445,6 +462,13 @@
 	icon_state = "UShelm_cap"
 	item_state = "UShelm_cap"
 
+
+/obj/item/clothing/head/helmet/fire
+	name = "Firefighter cap"
+	desc = "A simple cap worn by firefighters."
+	icon_state = "germpcapworn"
+	item_state = "germanfirefightinggeneralscap"
+
 /obj/item/clothing/head/helmet/ushelm_mar
 	name = "US Marines camo helmet"
 	desc = "The regular American M1 but with a frogskin camo cover."
@@ -577,6 +601,13 @@
 	desc = "A heavy vest used by Soviet Sturmovik. Used for deflecting shrapnel and some bullets."
 	icon_state = "cn42"
 	armor = list(melee = 50)
+	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
+
+/obj/item/clothing/suit/armor/press
+	name = "Press vest"
+	desc = "A heavy press vest."
+	icon_state = "press_armor"
+	armor = list(melee = 40)
 	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
 
 /obj/item/weapon/storage/belt/soviet
@@ -891,6 +922,84 @@
 	icon_state = "civuni3"
 	item_state = "civuni3"
 	worn_state = "civuni3"
+
+/obj/item/clothing/under/common1
+	name = "Civilian Clothing"
+	desc = "A nice set of threads for civilians. Smells of sweat and resentment."
+	icon_state = "civ_common_1"
+	item_state = "civ_common_1"
+	worn_state = "civ_common_1"
+
+/obj/item/clothing/under/common2
+	name = "Civilian Clothing"
+	desc = "A nice set of threads for civilians. Smells of sweat and resentment."
+	icon_state = "civ_common_2"
+	item_state = "civ_common_2"
+	worn_state = "civ_common_2"
+
+/obj/item/clothing/under/mayor
+	name = "Mayor's Clothing"
+	desc = "An outfit that resonates respect."
+	icon_state = "mayor"
+	item_state = "mayor"
+	worn_state = "mayor"
+
+/obj/item/clothing/under/wrench
+	name = "Mechanic's Clothing"
+	desc = "Smells like oil and hard work."
+	icon_state = "wrench"
+	item_state = "wrench"
+	worn_state = "wrench"
+
+/obj/item/clothing/under/oilworker
+	name = "Oil Worker's Clothing"
+	desc = "Smells like oil and hard work."
+	icon_state = "oil_worker"
+	item_state = "oil_worker"
+	worn_state = "oil_worker"
+
+/obj/item/clothing/under/hunter
+	name = "Hunter's Clothing"
+	desc = "Some say bears dont see you coming when you wear this."
+	icon_state = "hunter"
+	item_state = "hunter"
+	worn_state = "hunter"
+
+/obj/item/clothing/under/work1
+	name = "Worker's Clothing"
+	desc = "Its a hard day's work."
+	icon_state = "work1"
+	item_state = "work1"
+	worn_state = "work1"
+
+/obj/item/clothing/under/work2
+	name = "Worker's Clothing"
+	desc = "Its a hard day's work."
+	icon_state = "work2"
+	item_state = "work2"
+	worn_state = "work2"
+
+/obj/item/clothing/under/work3
+	name = "Worker's Clothing"
+	desc = "Its a hard day's work."
+	icon_state = "work3"
+	item_state = "work3"
+	worn_state = "work3"
+
+/obj/item/clothing/under/navy
+	name = "Navy Uniform"
+	desc = "Smells like fish."
+	icon_state = "navy"
+	item_state = "navy"
+	worn_state = "navy"
+
+/obj/item/clothing/under/navyofficer
+	name = "Navy Uniform"
+	desc = "Smells like fish."
+	icon_state = "navyofficer"
+	item_state = "navyofficer"
+	worn_state = "navyofficer"
+
 
 /obj/item/clothing/under/redcross
 	name = "Red Cross Uniform"

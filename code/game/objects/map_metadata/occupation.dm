@@ -20,6 +20,9 @@
 		)
 	available_subfactions = list(
 		SCHUTZSTAFFEL)
+	songs = list(
+		"Song of the Kamikaze:1" = 'sound/music/occupied.ogg'
+		)
 	battle_name = "Occupation"
 	custom_loadout = FALSE // so people do not spawn with guns!
 	var/modded_num_of_SS = FALSE
@@ -48,9 +51,13 @@
 	else if (istype(J, /datum/job/partisan/civilian))
 		J.total_positions = max(round(clients.len, 15))
 		if (istype(J, /datum/job/partisan/civilian/chef))
-			J.total_positions = 6
+			J.total_positions = 4
 		if (istype(J, /datum/job/partisan/civilian/det))
 			J.total_positions = 2
+		if (istype(J, /datum/job/partisan/civilian/preist))
+			J.total_positions = 2
+		if (istype(J, /datum/job/partisan/civilian/fire))
+			J.total_positions = 3
 		if (istype(J, /datum/job/partisan/civilian/cop))
 			J.total_positions = 1
 		if (istype(J, /datum/job/partisan/civilian/worker))
@@ -58,7 +65,7 @@
 		if (istype(J, /datum/job/partisan/civilian/rich))
 			J.total_positions = 2
 		if (istype(J, /datum/job/partisan/civilian/sci))
-			J.total_positions = 5
+			J.total_positions = 3
 		if (istype(J, /datum/job/partisan/civilian/mayor))
 			J.total_positions = 1
 		if (istype(J, /datum/job/partisan/civilian/librarian))
@@ -70,7 +77,7 @@
 		if (istype(J, /datum/job/partisan/civilian/writer))
 			J.total_positions = 1
 		if (istype(J, /datum/job/partisan/civilian/hunter))
-			J.total_positions = 4
+			J.total_positions = 3
 		if (istype(J, /datum/job/partisan/civilian/doctor))
 			J.total_positions = 2
 		if (istype(J, /datum/job/partisan/civilian/vio))
