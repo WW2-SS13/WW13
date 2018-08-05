@@ -145,8 +145,8 @@
 
 /process/throwing/reset_current_list()
 	PROCESS_USE_FASTEST_LIST(thrown_list)
-	if (current_list.len > 50)
-		current_list.len = min(current_list.len, 50)
+	if (current_list.len > 100)
+		current_list.len = min(current_list.len, 100)
 
 /process/throwing/statProcess()
 	..()
