@@ -141,6 +141,39 @@
 		item_state = "g41"
 	return
 
+
+/obj/item/weapon/gun/projectile/semiautomatic/kbsp
+	name = "KBSP wz.1938"
+	desc = "Polish semi-automatic rifle using 7.92x57mm Mauser ammunition clips, in a 10 round magazine."
+	icon_state = "kbsp"
+	item_state = "kbsp"
+	w_class = 4
+	load_method = SINGLE_CASING|SPEEDLOADER
+	max_shells = 10
+	caliber = "a792x57"
+//	origin_tech = "combat=4;materials=2"
+	slot_flags = SLOT_BACK
+	ammo_type = /obj/item/ammo_casing/a792x57
+	magazine_type = /obj/item/ammo_magazine/kar98k
+	weight = 4.9
+	firemodes = list(
+		list(name="single shot",burst=1, move_delay=2, fire_delay=6)
+		)
+	force = 10
+	throwforce = 20
+	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
+	effectiveness_mod = 1.05
+
+/obj/item/weapon/gun/projectile/semiautomatic/kbsp/update_icon()
+	..()
+	if (ammo_magazine)
+		icon_state = "kbsp"
+		item_state = "kbsp"
+	else
+		icon_state = "kbsp"
+		item_state = "kbsp"
+	return
+
 /obj/item/weapon/gun/projectile/semiautomatic/m1garand
 	name = "M1 Garand"
 	desc = "American semi-automatic rifle, standard-issue to Army units. Carries 8 30-06 rounds."
