@@ -939,5 +939,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\occupation\occupation.dmm"
+#include "maps\village.dmm"
 // END_INCLUDE
