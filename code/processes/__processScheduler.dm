@@ -163,6 +163,7 @@ var/global/processScheduler/processScheduler
 	var/list/processed = list()
 
 	// run for up to 95% of the world tick
+	__repeat__
 	for (var/process/p in tmpQueued)
 		if (canProcess(p, tmpQueued))
 			p.run_time_tick_usage = world.tick_usage
@@ -171,6 +172,10 @@ var/global/processScheduler/processScheduler
 			relayProcess(p, tmpQueued)
 			p.run_failures = 0
 			processed += p
+
+	// repeat if we've not yet reached 90% tick usage
+	if (world.tick_usage <= 90 && tmpQueued.len)
+		goto __repeat__
 
 	// count run failures
 	countRunFailures(tmpQueued, processed)
