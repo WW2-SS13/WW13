@@ -939,5 +939,9 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
+<<<<<<< HEAD
 #include "maps\village.dmm"
+=======
+#include "maps\partisan\partisan.dmm"
+>>>>>>> 99ea18b0e59680fabcdaa1231510ac269b2be82b
 // END_INCLUDE
