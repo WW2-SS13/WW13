@@ -128,6 +128,19 @@ var/static/list/soviet_supply_crate_types = list(
 
 )
 
+var/static/list/partisan_supply_crate_types = list(
+	"Pistol Kit" = /obj/item/weapon/gun/projectile/pistol/torakev,
+	"Rifle Kit" = /obj/item/weapon/gun/projectile/rifle/kar,
+	"Satchel Charge" = /obj/item/weapon/gun/,
+	"Kamakazi Explosive" = 
+	"Tools" = 
+	"SS Disguise Kit" = 
+	"Crossbow Kit" = 
+	"Handcuff Kit" = 
+	"Chloral Hydrate Kit" = 
+	"Body Armor Kit" = 
+	"Binocluars" = 
+	
 var/static/list/supply_crate_costs = list(
 
 	// AMMO AND MISC.
