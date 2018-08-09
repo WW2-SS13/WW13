@@ -315,7 +315,7 @@
 	)
 
 /obj/structure/vending/medrack
-	name = "Med rack"
+	name = "Medkit rack"
 	desc = "a locker with all the medcine you need."
 	icon_state = "medvender"
 	products = list(
@@ -333,7 +333,7 @@
 /obj/structure/vending/medrack
 	name = "Medicine Cabinet"
 	desc = "a cabinate full of bottles of medcine and pills."
-	icon_state = "med_bottlevender"
+	icon_state = "medicen_vender"
 	products = list(
 	/obj/item/weapon/reagent_containers/syringe = 30,
 	/obj/item/weapon/reagent_containers/syringe/ld50_syringe = 5,
@@ -361,7 +361,7 @@
 /obj/structure/vending/medrack
 	name = "Chemical Cabinet"
 	desc = "a cabinet full of all chemicals and other thing to us to make new chemicals."
-	icon_state = "med_bottlevender"
+	icon_state = "chem_vender"
 	products = list(
 	/obj/item/weapon/reagent_containers/syringe = 20,
 	/obj/item/weapon/reagent_containers/dropper = 15,
