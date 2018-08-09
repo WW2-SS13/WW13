@@ -351,7 +351,7 @@
 	sel_mode = 1
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
 
-/obj/item/weapon/gun/projectile/submachinegun/thompson/tommgun/update_icon()
+/obj/item/weapon/gun/projectile/submachinegun/thompson/tommygun/update_icon()
 	if (ammo_magazine)
 		icon_state = "tommygun"
 		item_state = "tommygun"

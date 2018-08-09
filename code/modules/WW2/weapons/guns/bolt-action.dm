@@ -255,11 +255,11 @@
 	if (add_scope)
 		if (bolt_open)
 			icon_state = "springfield_scope_open"
-			item_state = "springfield"
+			item_state = "springfield_scope_open"
 			return
 		else
 			icon_state = "springfield_scope"
-			item_state = "springfield"
+			item_state = "springfield_scope"
 			return
 	if (bolt_open)
 		if (!findtext(icon_state, "_open"))

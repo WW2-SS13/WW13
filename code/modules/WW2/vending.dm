@@ -262,6 +262,7 @@
 		/obj/item/weapon/material/knife/boot/nr40_knife_SS = 10,
 
 	)
+
 /obj/structure/vending/guard_weaponrack
 	name = "Guard weapon rack"
 	desc = "Rack filled with weapons."
@@ -311,5 +312,66 @@
 		/obj/item/weapon/gun/projectile/boltaction/mosin = 25,
 		/obj/item/ammo_magazine/mosin = 50,
 		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/soviet = 25
+	)
+
+/obj/structure/vending/medrack
+	name = "Med rack"
+	desc = "a locker with all the medcine you need."
+	icon_state = "medvender"
+	products = list(
+	/obj/item/weapon/storage/firstaid/fire = 5,
+	/obj/item/weapon/storage/firstaid/regular = 5,
+	/obj/item/weapon/storage/firstaid/toxin = 5,
+	/obj/item/weapon/storage/firstaid/o2 = 5,
+	/obj/item/weapon/storage/firstaid/adv = 5,
+	/obj/item/weapon/storage/firstaid/combat = 3,
+	/obj/item/weapon/storage/firstaid/surgery = 3,
+	/obj/item/weapon/storage/firstaid/injectorpack = 5,
+
+	)
+
+/obj/structure/vending/medrack
+	name = "Medicine Cabinet"
+	desc = "a cabinate full of bottles of medcine and pills."
+	icon_state = "med_bottlevender"
+	products = list(
+	/obj/item/weapon/reagent_containers/syringe = 30,
+	/obj/item/weapon/reagent_containers/syringe/ld50_syringe = 5,
+	/obj/item/weapon/reagent_containers/syringe/inaprovaline = 15,
+	/obj/item/weapon/reagent_containers/syringe/antitoxin = 15,
+	/obj/item/weapon/reagent_containers/syringe/antiviral = 15,
+	/obj/item/weapon/reagent_containers/syringe/morphine = 20,
+	/obj/item/weapon/storage/pill_bottle/antitox = 5,
+	/obj/item/weapon/storage/pill_bottle/bicaridine = 5,
+	/obj/item/weapon/storage/pill_bottle/dexalin_plus = 5,
+	/obj/item/weapon/storage/pill_bottle/dermaline = 5,
+	/obj/item/weapon/storage/pill_bottle/dylovene = 5,
+	/obj/item/weapon/storage/pill_bottle/inaprovaline = 5,
+	/obj/item/weapon/storage/pill_bottle/kelotane = 5,
+	/obj/item/weapon/storage/pill_bottle/penicillin = 5,
+	/obj/item/weapon/storage/pill_bottle/tramadol = 5,
+	/obj/item/weapon/storage/pill_bottle/citalopram = 5,
+	/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline = 8,
+	/obj/item/weapon/reagent_containers/glass/bottle/stoxin = 8,
+	/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 8,
+	/obj/item/weapon/doctor_handbook = 5,
+
+	)
+
+/obj/structure/vending/medrack
+	name = "Chemical Cabinet"
+	desc = "a cabinet full of all chemicals and other thing to us to make new chemicals."
+	icon_state = "med_bottlevender"
+	products = list(
+	/obj/item/weapon/reagent_containers/syringe = 20,
+	/obj/item/weapon/reagent_containers/dropper = 15,
+	/obj/item/weapon/storage/pill_bottle = 30,
+	/obj/item/weapon/reagent_containers/glass/beaker = 10,
+	/obj/item/weapon/reagent_containers/glass/bottle/ammonia = 5,
+	/obj/item/weapon/reagent_containers/glass/bottle/diethylamine = 5,
+	/obj/item/weapon/reagent_containers/glass/bottle/pacid = 5,
+	/obj/item/weapon/reagent_containers/glass/bottle/capsaicin = 5,
+	/obj/item/weapon/reagent_containers/glass/bottle/frostoil = 5,
+
 	)
 //	idle_power_usage = 0
