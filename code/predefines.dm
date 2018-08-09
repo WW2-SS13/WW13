@@ -363,8 +363,8 @@
 #define DEAF  4
 
 // /mob/var/stat things.
-#define CONSCIOUS   FALSE
-#define UNCONSCIOUS TRUE
+#define CONSCIOUS   0
+#define UNCONSCIOUS 1
 #define DEAD        2
 
 // Channel numbers for power.

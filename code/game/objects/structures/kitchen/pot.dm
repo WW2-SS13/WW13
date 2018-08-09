@@ -1,7 +1,7 @@
-#define STATE_EMPTY "empty"
-#define STATE_WATER "water"
-#define STATE_BOILING "boiling"
-#define STATE_STEWING "stew"
+#define STATE_EMPTY 0
+#define STATE_WATER 1
+#define STATE_BOILING 2
+#define STATE_STEWING 3
 // what turns into what when we boil it?
 #define BOIL_MAP list(/obj/item/weapon/reagent_containers/food/snacks/spaghetti = /obj/item/weapon/reagent_containers/food/snacks/boiledspagetti)
 
@@ -9,12 +9,12 @@
 /obj/structure/pot
 	name = "Pot"
 	icon = 'icons/obj/kitchen.dmi'
-	icon_state = "empty_pot"
+	icon_state = "pot0"
 	layer = 2.9
 	density = TRUE
 	anchored = TRUE
 	flags = OPENCONTAINER | NOREACT
-	var/base_state = "_pot"
+	var/base_state = "pot"
 	var/state = STATE_EMPTY
 	var/fullness = 0 // 0 to 100
 	var/bowls = 0
@@ -36,7 +36,7 @@
 	..()
 
 /obj/structure/pot/update_icon()
-	icon_state = "[state][base_state]"
+	icon_state = "[base_state][state]"
 
 /obj/structure/pot/attackby(var/obj/item/I, var/mob/living/carbon/human/H)
 	if (!istype(H))
@@ -75,7 +75,7 @@
 			return
 	else if (!istype(I, /obj/item/trash/snack_bowl))
 		if (istype(I, /obj/item/weapon/reagent_containers/food))
-			if (!list(STATE_WATER, STATE_BOILING).Find(state))
+			if (!(state in STATE_WATER to STATE_BOILING))
 				return
 
 			if (istype(I, /obj/item/weapon/reagent_containers/food/drinks))
@@ -161,61 +161,66 @@
 
 /obj/structure/pot/process()
 
-	if (state == STATE_BOILING)
-		if (contents.len)
-			var/boiling = 0
-			for (var/obj/item/weapon/reagent_containers/food/F in contents)
-				if (!F.boiled && prob(10))
-					visible_message("<span class = 'notice'>[F] finishes boiling.</span>")
-					if (BOIL_MAP[F.type])
-						var/newtype = BOIL_MAP[F.type]
-						new newtype (src)
-						contents -= F
-						qdel(F)
-					else
-						F.name = replacetext(F.name, "raw ", "")
-						F.desc = replacetext(F.desc, "raw", "boiled")
-						F.name = "boiled [F.name]"
-						F.color = "#f0f0f0"
-						F.reagents.multiply_reagent("nutriment", 4)
-						F.reagents.multiply_reagent("protein", 2)
-						F.boiled = TRUE
-						F.raw = FALSE
-				else
-					++boiling
-			if (boiling > 0)
-				if (stew_ticks >= rand(20,25))
-					state = STATE_STEWING
-					bowls = min(round(contents.len/3) + 3,10) // 1 object = 3 bowls. 10 objects = 6 bowls
-					initial_bowls = bowls
-					visible_message("<span class = 'notice'>The liquid in the pot turns into a stew.</span>")
-					stew_desc = "Stew with "
-					stew_nutriment_desc.Cut()
-					for (var/obj/item/I in contents)
-						stew_desc += I.name
-						if (I != contents[contents.len])
-							if (contents.len > 1)
-								if (I == contents[contents.len-1])
-									stew_desc += " and "
-								else
-									stew_desc += ", "
-						if (istype(I, /obj/item/weapon/reagent_containers/food))
-							var/obj/item/weapon/reagent_containers/food/F = I
-							if (F.reagents)
-								stew_nutriment += round(F.reagents.get_reagent_amount("nutriment")/bowls)
-								stew_protein += round(F.reagents.get_reagent_amount("protein")/bowls)
-								stew_nutriment_desc |= F.name
-					for (var/datum/reagent/R in reagents.reagent_list)
-						R.volume /= bowls
-					reagents.update_total()
+	if (state!= STATE_BOILING)
+		update_icon()
+		return
 
-					name = "pot of stew"
-					stew_ticks = 0
-					contents.Cut()
-				else
-					++stew_ticks
+	if (!contents.len)
+		state = STATE_WATER
+		update_icon()
+		return
+
+	var/boiling = 0
+	for (var/obj/item/weapon/reagent_containers/food/F in contents)
+		if (!F.boiled && prob(10))
+			visible_message("<span class = 'notice'>[F] finishes boiling.</span>")
+			if (BOIL_MAP[F.type])
+				var/newtype = BOIL_MAP[F.type]
+				new newtype (src)
+				contents -= F
+				qdel(F)
+			else
+				F.name = replacetext(F.name, "raw ", "")
+				F.desc = replacetext(F.desc, "raw", "boiled")
+				F.name = "boiled [F.name]"
+				F.color = "#f0f0f0"
+				F.reagents.multiply_reagent("nutriment", 4)
+				F.reagents.multiply_reagent("protein", 2)
+				F.boiled = TRUE
+				F.raw = FALSE
 		else
-			state = STATE_WATER
+			++boiling
+	if (boiling > 0)
+		if (stew_ticks >= rand(20,25))
+			state = STATE_STEWING
+			bowls = min(round(contents.len/3) + 3,10) // 1 object = 3 bowls. 10 objects = 6 bowls
+			initial_bowls = bowls
+			visible_message("<span class = 'notice'>The liquid in the pot turns into a stew.</span>")
+			stew_desc = "Stew with "
+			stew_nutriment_desc.Cut()
+			for (var/obj/item/I in contents)
+				stew_desc += I.name
+				if (I != contents[contents.len])
+					if (contents.len > 1)
+						if (I == contents[contents.len-1])
+							stew_desc += " and "
+						else
+							stew_desc += ", "
+				if (istype(I, /obj/item/weapon/reagent_containers/food))
+					var/obj/item/weapon/reagent_containers/food/F = I
+					if (F.reagents)
+						stew_nutriment += round(F.reagents.get_reagent_amount("nutriment")/bowls)
+						stew_protein += round(F.reagents.get_reagent_amount("protein")/bowls)
+						stew_nutriment_desc |= F.name
+			for (var/datum/reagent/R in reagents.reagent_list)
+				R.volume /= bowls
+			reagents.update_total()
+
+			name = "pot of stew"
+			stew_ticks = 0
+			contents.Cut()
+		else
+			++stew_ticks
 
 	update_icon()
 

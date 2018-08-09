@@ -33,7 +33,7 @@
 		for (var/mob/living/L in target_area.contents)
 			if (L.wear_mask && istype(L.wear_mask, /obj/item/clothing/mask/gas))
 				var/obj/item/clothing/mask/gas/G = L.wear_mask
-				if (G.filtered_gases.Find("zyklon_b"))
+				if ("zyklon_b" in G.filtered_gases)
 					continue
 
 			if (first)

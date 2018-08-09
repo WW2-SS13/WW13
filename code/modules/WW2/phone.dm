@@ -107,7 +107,7 @@ var/list/soviet_traitors = list()
 			raiding += GERMAN
 			raiding += ITALIAN
 		else
-			raiding += 1 // somehow we got here, bomb everyone ayylmao
+			raiding += "EVERYONE" // somehow we got here, bomb everyone ayylmao
 
 		var/list/traitors = list()
 
@@ -116,7 +116,7 @@ var/list/soviet_traitors = list()
 		else if (faction == SOVIET)
 			traitors = soviet_traitors
 
-		var/list/targets = (raiding.Find(SOVIET) ? alive_russians : raiding.Find(GERMAN) ? alive_germans : player_list)
+		var/list/targets = (SOVIET in raiding ? alive_russians : GERMAN in raiding ? alive_germans : player_list)
 
 		var/maximum_targets = max(1, ceil(targets.len/5))
 		var/targeted = 0
@@ -131,7 +131,7 @@ var/list/soviet_traitors = list()
 				// don't use any 'else's here because it breaks multi-level if conditionals
 				// before katyushas couldn't hit inside the german base because else ifs - Kachnov
 
-				if (used_areas.Find(H_area))
+				if (H_area in used_areas)
 					continue
 				if (istype(H_area, /area/prishtina/admin))
 					continue
@@ -162,7 +162,7 @@ var/list/soviet_traitors = list()
 				if (H_area.is_void_area)
 					continue
 
-				if ((H.original_job && raiding.Find(H.original_job.base_type_flag())) || raiding.Find(TRUE) || (traitors.Find(H.real_name) && H_area.location == AREA_OUTSIDE))
+				if ((H.original_job && H.original_job.base_type_flag() in raiding) || "EVERYONE" in raiding || (H.real_name in traitors && H_area.location == AREA_OUTSIDE))
 					if (targeted < maximum_targets)
 
 						++targeted
