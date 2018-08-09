@@ -125,3 +125,19 @@ Used In File(s): /code/game/objects/item/devices/radio/radio.dm
 		</div>
 	</div>
 {{/if}}
+
+{{if data.is_partisan_radio}}
+	<div class="item">
+		<div class="itemContentWide">
+			Supply Points: {{:data.partisan_points}}<br>
+			<big>Partisan Drop Crates:</big>
+			{{for data.partisan_crate_objects}}	
+				<br>
+				{{:value}}
+				<br>
+				<center>{{:helper.link("Order", null, {'order' : value})}}</center>
+				<br>
+			{{/for}}
+		</div>
+	</div>
+{{/if}}
