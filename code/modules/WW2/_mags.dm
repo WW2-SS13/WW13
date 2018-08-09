@@ -127,6 +127,19 @@ WW 2 WEAPONS MAGS N AMMO
 	weight = 0.72
 	multiple_sprites = TRUE
 
+/obj/item/ammo_magazine/bren
+	name = "magazine (.303)"
+	icon_state = "bren"
+//	origin_tech = "combat=2"
+	mag_type = MAGAZINE
+	caliber = ".303"
+	w_class = 2
+	matter = list(DEFAULT_WALL_MATERIAL = 4500)
+	ammo_type = /obj/item/ammo_casing/bren
+	max_ammo = 20
+	weight = 0.72
+	multiple_sprites = TRUE
+
 /obj/item/ammo_magazine/bly
 	name = "blyskawica magazine (9mm)"
 	icon_state = "mp40mag"
@@ -475,7 +488,13 @@ OTHER
 
 /obj/item/ammo_magazine/a556/ppsh
 	icon_state = "ppshmag"
+	caliber = "a792x33"
 	max_ammo = 71
+	multiple_sprites = TRUE
+
+/obj/item/ammo_magazine/a556/pps
+	icon_state = "stg_mag"
+	max_ammo = 40
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/a762/akm
