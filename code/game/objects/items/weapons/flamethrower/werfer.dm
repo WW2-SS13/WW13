@@ -19,7 +19,8 @@
 
 /obj/item/weapon/flamethrower/flammenwerfer/New()
 	..()
-	if (backpack.flam_type == "usa")
+	sleep(5)
+	if (backpack && backpack.flam_type == "usa")
 		icon_state = "m2_flamethrower"
 		item_state = "m2_flamethrower"
 /obj/item/weapon/flamethrower/flammenwerfer/nothrow_special_check()
@@ -91,17 +92,17 @@
 
 	if (!lit || operating)	return
 
-	var/mob/living/carbon/human/my_mob = loc
+	var/mob/living/carbon/human/H = loc
 
-	if (!my_mob || !istype(my_mob) || src != my_mob.get_active_hand())
+	if (!H || !istype(H) || src != H.get_active_hand())
 		return
 
 	if (!fueltank || fullness_percentage() <= 0.01)
-		my_mob << "<span class = 'warning'>Out of fuel!</span>"
+		H << "<span class = 'warning'>Out of fuel!</span>"
 		return
 
-	if (my_mob.back != backpack || !my_mob.back || !backpack)
-		my_mob << "<span class = 'danger'>Put the backpack on first.</span>"
+	if (!H.back || !backpack || H.back != backpack)
+		H << "<span class = 'danger'>Put the backpack on first.</span>"
 		return
 
 	operating = TRUE
@@ -114,7 +115,7 @@
 		if (T == my_turf)
 			continue
 
-		switch (my_mob.dir)
+		switch (H.dir)
 			if (EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 				if (abs(my_turf.x - T.x) > rwidth || abs(my_turf.y - T.y) > rheight)
 					continue
@@ -123,7 +124,7 @@
 					continue
 
 		// higher temperature = less missed turfs
-		if (T != get_step(my_turf, my_mob.dir) && prob((get_dist(my_turf, T)+10)/get_temperature_coeff()))
+		if (T != get_step(my_turf, H.dir) && prob((get_dist(my_turf, T)+10)/get_temperature_coeff()))
 			continue
 
 		if (T.density)
@@ -138,7 +139,7 @@
 			continue
 
 		for (var/turf/TT in blocking_turfs)
-			if (get_step(TT, my_mob.dir) == T)
+			if (get_step(TT, H.dir) == T)
 				continue
 
 		if (my_turf)
