@@ -171,6 +171,25 @@
 		icon_state = "nagant"
 	return
 
+/obj/item/weapon/gun/projectile/pistol/glisenti
+	name = "Glisenti Model 1910"
+	desc = "Standard issue Italian pistol. The Glisenti Model 1910 is chambered in 9x19mm Parabellum rounds with a 8 rounds box detachable magazine."
+	icon_state = "glisenti"
+	item_state = "gun"
+	w_class = 2
+	caliber = "9x19mm"
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
+	magazine_type = /obj/item/ammo_magazine/p9x19mm
+	weight = 0.7
+
+/obj/item/weapon/gun/projectile/pistol/glisenti/update_icon()
+	..()
+	if (ammo_magazine)
+		icon_state = "glisenti"
+	else
+		icon_state = "glisenti0"
+	return
+
 /obj/item/weapon/gun/projectile/pistol/waltherp38
 	name = "Walther P38"
 	desc = "Standard issue German pistol. The Walther P38 is chambered in 9x19mm Parabellum rounds with a 8 rounds box detachable magazine."
@@ -188,6 +207,25 @@
 		icon_state = "waltherp"
 	else
 		icon_state = "waltherp0"
+	return
+
+/obj/item/weapon/gun/projectile/pistol/waltherpp
+	name = "Walther P38"
+	desc = "Standard issue German pistol. The Walther PP is chambered in 9x19mm Parabellum rounds with a 8 rounds box detachable magazine. Lighter then the P38."
+	icon_state = "waltherpp"
+	item_state = "gun"
+	w_class = 2
+	caliber = "9x19mm"
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
+	magazine_type = /obj/item/ammo_magazine/p9x19mm
+	weight = 0.594
+
+/obj/item/weapon/gun/projectile/pistol/waltherpp/update_icon()
+	..()
+	if (ammo_magazine)
+		icon_state = "waltherpp"
+	else
+		icon_state = "waltherpp0"
 	return
 
 /obj/item/weapon/gun/projectile/pistol/nambu
@@ -209,7 +247,53 @@
 		icon_state = "nambu0"
 	return
 
+/obj/item/weapon/gun/projectile/pistol/mauser
+	name = "FEG 37M"
+	desc = "The FÉG 37M is a Hungarian semi-automatic pistol based on a design by Rudolf Frommer."
+	icon_state = "feg37m"
+	item_state = "gun"
+	w_class = 2
+	caliber = "7.63x25mm"
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
+	load_method = SINGLE_CASING|SPEEDLOADER
+	max_shells = 10
+	ammo_type = /obj/item/ammo_casing/c763x25mm_mauser
+	magazine_type = /obj/item/ammo_magazine/c763x25mm_mauser
+	weight = 1.13
 
+/obj/item/weapon/gun/projectile/pistol/mauser/update_icon()
+	..()
+	if (loaded.len)
+		icon_state = "feg37m"
+		item_state = "gun"
+	else
+		icon_state = "feg37m0"
+		item_state = "gun"
+	return
+
+/obj/item/weapon/gun/projectile/pistol/mauser
+	name = "FN Model 1910"
+	desc = "The FN Model 1910 is a blowback-operated, semi-automatic pistol designed by John Browning and manufactured by Fabrique Nationale of Belgium."
+	icon_state = "fn1910"
+	item_state = "gun"
+	w_class = 2
+	caliber = "7.63x25mm"
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
+	load_method = SINGLE_CASING|SPEEDLOADER
+	max_shells = 10
+	ammo_type = /obj/item/ammo_casing/c763x25mm_mauser
+	magazine_type = /obj/item/ammo_magazine/c763x25mm_mauser
+	weight = 1.13
+
+/obj/item/weapon/gun/projectile/pistol/mauser/update_icon()
+	..()
+	if (loaded.len)
+		icon_state = "fn1910"
+		item_state = "gun"
+	else
+		icon_state = "fn19100"
+		item_state = "gun"
+	return
 /////////////////////FLAREGUNS//////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
