@@ -49,8 +49,8 @@ var/inactive_keys = "None<br>"
 			continue
 
 		var/cur_key = Entry[1]
-		if(!ckeys_with_customitems.Find(cur_key))
-			ckeys_with_customitems.Add(cur_key)
+		if(!(cur_key in ckeys_with_customitems))
+			ckeys_with_customitems += cur_key)
 
 	//run a query to get all ckeys inactive for over 2 months
 	var/list/inactive_ckeys = list()
