@@ -623,6 +623,13 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 					usr << "<span class = 'danger'>There are too many items already arriving! Please wait before ordering more.</span>"
 					return
 		purchase(item, choices[item], points)
+	else if (href_list["order"])
+		var/split_purchase = splittext(href_list["purchase"], " (")
+		var/item = split_purchase[1]
+		var/points = text2num(replacetext(split_purchase[2], ")", ""))
+		var/choices = list()
+		choices = partisan_supply_crate_types
+		order(item, choices[item], points)
 
 	for (var/channel in internal_channels)
 		listening_on_channel[radio_freq2name(channel)] = TRUE
@@ -631,6 +638,15 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		nanomanager.update_uis(src)
 
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, TRUE)
+
+/obj/item/radio/proc/order(var/itemname, var/path, var/pointcost = FALSE)
+
+	if (partisan_points <= pointcost)
+		return
+
+	usr << "[itemname] has been purchased and will arrive at X."
+	partisan_points -= pointcost
+	processes.supplydrop.add("[path]", faction)
 
 /obj/item/radio/proc/purchase(var/itemname, var/path, var/pointcost = FALSE)
 
@@ -643,6 +659,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	// sanity checking due to crashing, not sure it will help - Kachnov
 	if (ispath(path) && list(GERMAN, SOVIET).Find(faction))
 		processes.supplydrop.add("[path]", faction)
+
 
 // shitcode copied from the german supplytrain system - Kachnov
 /obj/item/radio
