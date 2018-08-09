@@ -148,7 +148,8 @@ var/list/admin_verbs_debug = list(
 	/client/proc/check_positions,
 	/client/proc/change_time_of_day,
 	/client/proc/randomly_change_weather,
-	/client/proc/randomly_modify_weather
+	/client/proc/randomly_modify_weather,
+	/client/proc/change_colour_filter
 	)
 
 var/list/admin_verbs_paranoid_debug = list(
@@ -773,3 +774,24 @@ var/list/admin_verbs_host = list(
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins("<span class = 'notice'>[key_name_admin(usr)] told everyone to man up and deal with it.</span>", TRUE)
+
+var/global/list/global_colour_matrix = null
+
+/client/proc/change_colour_filter()
+	set category = "Debug"
+	set name = "Color Filter"
+	set desc = "Apply cool colour filter to players' screens."
+
+	var/input = input("Choose filter", "Filter") in list("normal", "black and white", "bloody")
+
+	switch(input)
+		if("normal")
+			global_colour_matrix = null
+		if("black and white")
+			global_colour_matrix = list(0.33, 0.33, 0.33,\
+										0.33, 0.33, 0.33,\
+										0.33, 0.33, 0.33)
+		if("bloody")
+			global_colour_matrix = list(1, 0.33, 0.33,\
+										0, 0.33, 0.33,\
+										0, 0.33, 0.33)
