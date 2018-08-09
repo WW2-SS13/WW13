@@ -147,7 +147,8 @@ var/list/global_huds = list(
 		var/obj/screen/plane_master/instance = new mytype()
 		plane_masters["[instance.plane]"] = instance
 		instance.backdrop(mymob)
-		mymob.client.screen |= instance
+		if(mymob && mymob.client)
+			mymob.client.screen |= instance
 	..()
 
 /datum/hud/Destroy()
