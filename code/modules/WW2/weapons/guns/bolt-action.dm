@@ -255,7 +255,7 @@
 	if (add_scope)
 		if (bolt_open)
 			icon_state = "springfield_scope_open"
-			item_state = "springfield_scope_open"
+			item_state = "springfield_scope"
 			return
 		else
 			icon_state = "springfield_scope"

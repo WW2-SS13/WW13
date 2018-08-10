@@ -221,7 +221,7 @@
 "em" = (/obj/effect/decal/cleanable/blood,/turf/floor/carpet,/area/prishtina/houses)
 "en" = (/obj/structure/bed/chair/wood{dir = 4},/obj/effect/decal/cleanable/blood,/turf/floor/wood,/area/prishtina/houses)
 "eo" = (/obj/structure/light/small,/turf/floor/wood,/area/prishtina/houses)
-"ep" = (/obj/structure/closet/crate/medical,/turf/floor/tiled/white,/area/prishtina/houses)
+"ep" = (/obj/structure/vending/med_cabinet,/turf/floor/tiled/white,/area/prishtina/houses)
 "eq" = (/obj/structure/flag/german,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
 "er" = (/obj/structure/light/small{dir = 1},/turf/floor/tiled/white,/area/prishtina/houses)
 "es" = (/obj/item/clothing/gloves/latex,/obj/item/clothing/mask/surgical,/obj/item/weapon/storage/box/syringes,/obj/structure/closet,/obj/item/weapon/storage/belt/medical,/obj/item/weapon/storage/backpack/satchel_med,/obj/item/weapon/storage/box/bodybags,/obj/item/weapon/doctor_handbook,/turf/floor/tiled/white,/area/prishtina/houses)
@@ -574,36 +574,36 @@
 "lb" = (/obj/effect/decal/cleanable/blood/oil,/turf/floor/wood,/area/prishtina/houses)
 "lc" = (/obj/structure/sign/portrait/hitler,/turf/wall/wood,/area/prishtina/houses)
 "ld" = (/obj/structure/reagent_dispensers/fueltank,/turf/floor/wood,/area/prishtina/houses)
-"le" = (/obj/structure/light/small{dir = 1},/turf/floor/wood,/area/prishtina/german/medical/surgery1)
+"le" = (/obj/structure/light/small{dir = 1},/obj/structure/vending/medrack,/turf/floor/tiled/white,/area/prishtina/houses)
 "lf" = (/obj/structure/optable,/turf/floor/wood,/area/prishtina/german/medical/surgery1)
-"lg" = (/turf/floor/wood_broken,/area/prishtina/german/medical/surgery1)
+"lg" = (/obj/structure/light/small{dir = 1},/obj/structure/table/iron,/turf/floor/wood,/area/prishtina/german/medical/surgery1)
 "lh" = (/obj/structure/curtain/medical,/turf/floor/wood,/area/prishtina/german/medical/surgery1)
 "li" = (/turf/floor/wood,/area/prishtina/german/medical)
 "lj" = (/obj/structure/light/small{dir = 1},/turf/floor/wood,/area/prishtina/german/medical)
-"lk" = (/obj/item/weapon/storage/box/bodybags,/obj/item/weapon/storage/box/bodybags,/obj/item/weapon/storage/box/bodybags,/turf/floor/wood,/area/prishtina/german/medical)
-"ll" = (/obj/structure/table/wood,/obj/item/weapon/storage/box/gloves,/obj/item/weapon/doctor_handbook,/obj/item/weapon/doctor_handbook,/turf/floor/wood,/area/prishtina/german/medical)
-"lm" = (/obj/structure/table/wood,/obj/item/weapon/storage/firstaid/adv,/obj/item/weapon/storage/firstaid/adv,/turf/floor/wood,/area/prishtina/german/medical)
-"ln" = (/obj/structure/table/wood,/obj/item/weapon/storage/firstaid/combat,/obj/item/weapon/storage/firstaid/combat,/turf/floor/wood,/area/prishtina/german/medical)
-"lo" = (/obj/structure/table/wood,/obj/item/weapon/storage/firstaid/fire,/obj/item/weapon/storage/firstaid/fire,/obj/item/weapon/storage/firstaid/o2,/obj/item/weapon/storage/firstaid/o2,/turf/floor/wood,/area/prishtina/german/medical)
+"lk" = (/obj/structure/table/iron,/turf/floor/wood_broken,/area/prishtina/german/medical/surgery1)
+"ll" = (/obj/structure/vending/med_cabinet,/turf/floor/wood,/area/prishtina/german/medical)
+"lm" = (/obj/structure/vending/medrack,/turf/floor/wood,/area/prishtina/german/medical)
+"ln" = (/obj/structure/bed,/obj/item/weapon/bedsheet/medical,/turf/floor/wood,/area/prishtina/german/medical)
+"lo" = (/obj/item/weapon/bedsheet/medical,/obj/structure/bed,/turf/floor/wood_broken,/area/prishtina/german/medical)
 "lp" = (/turf/floor/wood,/area/prishtina/german/medical/surgery1)
 "lq" = (/obj/item/clothing/mask/surgical,/obj/item/clothing/mask/surgical,/turf/floor/wood,/area/prishtina/german/medical)
-"lr" = (/obj/structure/table/wood,/obj/item/weapon/storage/firstaid/injectorpack,/obj/item/weapon/storage/firstaid/injectorpack,/turf/floor/wood,/area/prishtina/german/medical)
+"lr" = (/obj/structure/bed,/obj/item/weapon/bedsheet/medical,/turf/floor/wood_broken,/area/prishtina/german/medical)
 "ls" = (/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/wood,/area/prishtina/german/prison)
 "lt" = (/obj/structure/barricade/steel,/obj/structure/barbwire{dir = 4; icon_state = "barbwire"; pixel_y = 0; tag = "icon-barbwire (EAST)"},/turf/floor/wood,/area/prishtina/german/prison)
 "lu" = (/obj/structure/curtain/medical,/turf/floor/wood_broken,/area/prishtina/german/medical/surgery1)
 "lv" = (/turf/floor/wood_broken,/area/prishtina/german/medical)
-"lw" = (/obj/structure/table/wood,/obj/item/weapon/storage/firstaid/toxin,/obj/item/weapon/storage/firstaid/toxin,/turf/floor/wood,/area/prishtina/german/medical)
+"lw" = (/obj/structure/light/small,/obj/structure/table/iron,/turf/floor/wood,/area/prishtina/german/medical/surgery1)
 "lx" = (/turf/floor/wood,/area/prishtina/german/prison)
-"ly" = (/obj/item/weapon/storage/firstaid/surgery,/obj/item/weapon/storage/firstaid/surgery,/obj/item/weapon/storage/firstaid/surgery,/turf/floor/wood,/area/prishtina/german/medical)
+"ly" = (/obj/structure/table/iron,/turf/floor/wood,/area/prishtina/german/medical/surgery1)
 "lz" = (/obj/structure/simple_door/key_door/german{name = "Isolation"},/turf/floor/wood,/area/prishtina/german/prison)
 "lA" = (/obj/effect/landmark{name = "JoinLateHeerDr"},/turf/floor/wood,/area/prishtina/german/medical)
 "lB" = (/obj/item/weapon/reagent_containers/spray/sterilizine,/obj/item/weapon/reagent_containers/spray/sterilizine,/obj/item/weapon/reagent_containers/spray/sterilizine,/turf/floor/wood,/area/prishtina/german/medical)
 "lC" = (/obj/structure/curtain/medical,/turf/floor/wood,/area/prishtina/german/medical/surgery2)
 "lD" = (/turf/floor/wood,/area/prishtina/german/medical/surgery2)
-"lE" = (/obj/structure/light/small,/turf/floor/wood,/area/prishtina/german/medical/surgery1)
-"lF" = (/obj/structure/light/small,/turf/floor/wood,/area/prishtina/german/medical)
+"lE" = (/obj/structure/light/small,/obj/structure/bed,/obj/item/weapon/bedsheet/medical,/turf/floor/wood,/area/prishtina/german/medical)
+"lF" = (/obj/structure/table/iron,/turf/floor/wood,/area/prishtina/german/medical/surgery2)
 "lG" = (/obj/structure/optable,/turf/floor/wood,/area/prishtina/german/medical/surgery2)
-"lH" = (/obj/structure/light/small,/turf/floor/wood,/area/prishtina/german/medical/surgery2)
+"lH" = (/obj/structure/light/small,/obj/structure/table/iron,/turf/floor/wood,/area/prishtina/german/medical/surgery2)
 "lI" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/structure/barbwire{dir = 4},/obj/structure/barricade,/turf/floor/plating/road,/area/prishtina)
 "lJ" = (/obj/structure/closet/crate/steel,/turf/floor/wood,/area/prishtina)
 "lK" = (/obj/structure/vending/usaquipment,/turf/floor/wood,/area/prishtina)
@@ -724,7 +724,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahsaaaahshsaaaaaaaaaahsararhsaahshsaaaaaaaa
 aaaahsaaaaaaaahsaaaaaaaahshshshsaaaaaaaaaahshsaaaaaaaaaahshsaaaaaahshshsaaaaaaaaaaaaaaaaaaaaaahsaaaaaaaaararaaaraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahsaaaaaaaaaaadadadgIacacacgNadadadaaaaaaaaaaaaglaaaaaaaaaaaaaaaaaaaaaaaaaaaahWaaaaaaaaaaaahWaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaahshshshshshshshsaaaahshshsaaaaaaaaaaaahsararaaaaaaaaaahsaaaaaaaaaahsaaaaaaaaaaaaaaaaarhsaaaaaraaaaaahsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadgIacacacgNadadadaaaaaaaaaaaaglglglglglglglglglglglgmglglglglglglglglglglglglglglglglglglglglglglglglglglgmglglglglglglgl
 aaaaaahsaaaaaaaaaaaahshsaahshshshsaaaaaahsaaaaaaaahshsaaaaaaaaararaaaaaaaaaaaaaaaahsaaaaaaaaaaaaaaaahsaaaraaaahsaraaaaaaaaaaaaaaaaaaaaasasasasasasasasasasasasasasasasasasasasasasasasasasasaaaaaaadadadgIacacacgNadadadaaaaaaaaaahWaaaaaaaahWaaaaaaaaaaaaaaaaaaaaaaaaaahWaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaahsaaaaaaaahshshsaahsaahshsaaaahsaahsaaaaaahshsaahsaaaaaaaaarjzaraaaaaaaaaaaaaaaaaaaaaahsaaaaaaaaaaaaaaaaaaaaaraaaaaaaaaaaaaahsaaaseiaveieiaveiasepereseseseseretasauavdLaueuauauavauasaaaaaaadadadgIacacacgNadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+aaaaaahsaaaaaaaahshshsaahsaahshsaaaahsaahsaaaaaahshsaahsaaaaaaaaarjzaraaaaaaaaaaaaaaaaaaaaaahsaaaaaaaaaaaaaaaaaaaaaraaaaaaaaaaaaaahsaaaseiaveieiaveiasepleeseseseseretasauavdLaueuauauavauasaaaaaaadadadgIacacacgNadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
 aaaaaaaaaaaaaaaahshsaaaaaaaahshsaahsaaaahsaaaaaaaahsaahsaaaahsaaaaaraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaarjzaraaaraaaahsaaaaaaaaaaaaaseiaueieiaueiasevevevevevevevevasauaudLauauauauauauasaaaaaaadadadgIacacacgNadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
 aaaaaaaaaaaaaaaaaaaaaaaaaaaahshshsaaaahsaaaahshshshsaaaaaaaaaaaaaaaraaaraaaaaaaaaaaaaaaaaaaaaaaaaaaactaaaaaaaaaaaaaraaaaaaaaaaaaaaaaaaaseiaueieiaueiasevevevevevevevevasauaudLauauauauauauasaaaaaaadadjmgIacacacgNhfadadadadadadadadadadadjmadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadjmadadadadadadad
 aaaaaaaaaahsaahshshsaaaaaaaaaahshsaaaaaaaahsaahshshsaaaahsaaaaararaaaaaraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasauauauauauauasevevevevevevevevasauejdLauauauauauauewaaaaaaadadadgIacacacacjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjr
@@ -800,15 +800,15 @@ aeafafafafafbQhMafmmafbpambPafmrafafaSafafmqmqmqaSmsafaebMafafafafafafafafafafae
 aebMhQafafafbQhMafbRafafbqafafafafbpcXbPafafafbphRbPafajafafafafafafafafafafafaeagadadadgIacacacacgNadadadehkYauauauaudsauauauaudLdLkZdLehadaaaaaaaaehkYauauauaudsauauauauladLkZdLehadaaaaaaaaehkYauauauaudsauauauaudLdLkZdLehadaaaaaaaaaskVauauauaulbauauaulbauauauauauauauauauauauauauauauauauauauauauasaaaaaaaaaaaaaaaaaaaaaa
 aeafbSafafafafebafbRbRafafafaSafafafbqafafaSafafbqafmtaeapafapafapafapafapafapaeagadadadgIacacacacgNadadadehehehehiVehehehehehehehehehehehadaaaaaaaaehehehehehehehehehehlcehehehehehadaaaaaaaaehehehehehehehehehdsehehehehehehadaaaaaaaaasbnauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaKasaahWhWaaaahWaaaaaaaaaa
 aeafafafafcYbQhMafbRbRafafbpfFbPafafmuafbpfGbPhaafmvmvaeaeaAaeaAaeaAaeaAaeaAaeaeagadadadgIacacacacgNadadadcFaaaaaaaaaaaaaaaaaaaaaaaaaaaaeQadaaaaaaaacFaaaaaaaaaaaaaaaaaaaaaaaahWaaeQadaaaaaaaacFaaaaaaaaaaaaaaaaaaaaaaaaaahWeQadaaaaaaaaasldaukXkXkWkXkXkXauaukXkXkXkXkXkXkXkXkXaukXkXkXkWkXkXkXkXkXauauashWhWaaaaaaaaaaaaaaaaaa
-aeafafafbkambQhMafafafhaafafbqafafmwmwmwmwbqafafafmvmvaelelflglhliljlklllmlnloaehphwhwhwhxhxhyhyhyhzadadadcFaaaaaaaaghghaaaahWaaaaaaaaaaaaadaaaaaaaacFaaaagiararararaaaaaaaaaaaaaaaradaaaaaaaacFaahWaaaaaaaaaaaaaaaaaaaaaaaaaaadaaaaaaaaasldaukXkXkXkXkXkXauaukXkXkWkXkXkXkXkXkXaukXkXkXkXkXkXkXkXkXauauashWaaaaaaaaaaaaaaaahWhW
-aeecaeaeaeaeaeaeaeaeafafaXafafaXafmwmwmwmwaXafaXafmvmvaLlplplplhlqlilililililraehAgKgKgKacacgygyhBhCadadadcFaaaaaagjgjgjaaaaaaaaaaaaaaaaeQaaaaaahWaacFaaaaaaaraGaGararaahWaaaaaaaaeQaaaaaaaaaacFaaaaaaaaaaaaaaaaaaaaaaaaaaaaeQaaaaaahWaaasldaukXkXkXkXkXkXauaukXkXkXkXkXkXkXkXkXaukXkXkXkXkXkXkXkXkXauauasaaaaaaaaaaaaaaaaaaaaaa
-aeafafaQiulsltltltaebMafafaXaXcqaXaXaXaXaXcyafgVaXafaPaelhlhlhlulilvlililililwaehShDadadacacacachEhCadadadcFaaaagrgjgjgjaaaaaaaaaaaaaaaaeQaaaaaaaaaacFaaaaaaaraGaGaGaraaaaaaaaaaaaeQaaaahWaaaacFaaaaaaaagtaahlaaaaaaaaaaaaaaeQaaaaaaaaaaasbnauauauauauauauaulbauauauauauauauauaulbauauauauauauauauauauaKasaaaaaaaahWhWaaaaaaaaaa
-dUafafafhalsmylxmyaeafafafciclafbDbDbDgDbhbEafafafafafbalilililvlilililililvlyaeagadadadhFgzacachEhCadadadcFaaaaaaguguaaaaaaaaaaaahWaaaaeQaaaaaaaaaacFaaaaaaarararararaaaaaaaaaaaaeQaaaaaaaaaacFaaaaaaaaaaaaaaaaaaaaaaaaaaaaeQaaaaaaaaaaaskVauauauauauauauauauauauauauauauauauauauauaulbauauauauauauauauashWaaaaaaaaaaaaaahWaaaa
+aeafafafbkambQhMafafafhaafafbqafafmwmwmwmwbqafafafmvmvaelglflklhliljlllllmlmlmaehphwhwhwhxhxhyhyhyhzadadadcFaaaaaaaaghghaaaahWaaaaaaaaaaaaadaaaaaaaacFaaaagiararararaaaaaaaaaaaaaaaradaaaaaaaacFaahWaaaaaaaaaaaaaaaaaaaaaaaaaaadaaaaaaaaasldaukXkXkXkXkXkXauaukXkXkWkXkXkXkXkXkXaukXkXkXkXkXkXkXkXkXauauashWaaaaaaaaaaaaaaaahWhW
+aeecaeaeaeaeaeaeaeaeafafaXafafaXafmwmwmwmwaXafaXafmvmvaLlplplplhlqlnlililililiaehAgKgKgKacacgygyhBhCadadadcFaaaaaagjgjgjaaaaaaaaaaaaaaaaeQaaaaaahWaacFaaaaaaaraGaGararaahWaaaaaaaaeQaaaaaaaaaacFaaaaaaaaaaaaaaaaaaaaaaaaaaaaeQaaaaaahWaaasldaukXkXkXkXkXkXauaukXkXkXkXkXkXkXkXkXaukXkXkXkXkXkXkXkXkXauauasaaaaaaaaaaaaaaaaaaaaaa
+aeafafaQiulsltltltaebMafafaXaXcqaXaXaXaXaXcyafgVaXafaPaelhlhlhlulilolililililiaehShDadadacacacachEhCadadadcFaaaagrgjgjgjaaaaaaaaaaaaaaaaeQaaaaaaaaaacFaaaaaaaraGaGaGaraaaaaaaaaaaaeQaaaahWaaaacFaaaaaaaagtaahlaaaaaaaaaaaaaaeQaaaaaaaaaaasbnauauauauauauauaulbauauauauauauauauaulbauauauauauauauauauauaKasaaaaaaaahWhWaaaaaaaaaa
+dUafafafhalsmylxmyaeafafafciclafbDbDbDgDbhbEafafafafafbalilililvlilililililvliaeagadadadhFgzacachEhCadadadcFaaaaaaguguaaaaaaaaaaaahWaaaaeQaaaaaaaaaacFaaaaaaarararararaaaaaaaaaaaaeQaaaaaaaaaacFaaaaaaaaaaaaaaaaaaaaaaaaaaaaeQaaaaaaaaaaaskVauauauauauauauauauauauauauauauauauauauauaulbauauauauauauauauashWaaaaaaaaaaaaaahWaaaa
 aeafafafaflzlxlxmyaLcbafafafafafafafafafafafbGbEafafafeelilvlvlilAlAlAlvlililidjaghTadadacacacachGhCadadadcFaaaaaaaaaaaaaaaaaaaaaaaaaaaaeQaaaaaaaaaacFhWaaaaaaaaaaaaaaaaaaaahWaaaaeQaaaaaaaaaacFaaaahWaaaaaaaaaaaaaaaaaahWaaeQaaaaaaaaaaaskVaukXkXkXkXkXkXauaukXkXkXkWkXkXkXkXkXaukXkXkXauaueieieieieiauasaaaahWaaaaaaaaaaaahWaa
-aefjafaZaflsmymAmyaecbafhaafafafbsbLbsbNbsbcafhabGafafbdlilililvlililililililBaeagadadadacacacachEhCadadadcFaaaaaaaaaaaaaaaaaaaaaaaaaaaaeQaahWaaaaaacFaaaaaaaaaaaaaaaaaaaaaaaaaaaaeQaaaahWaaaacFaaaaaaaaaaaaaaaaaahWaaaaaaaaeQaaaaaaaaaaasauauauaueoauauauauaueoauauauauauauaueoauauauauaueoeieieieieiauasaaaaaaaaaaaaaaaaaaaaaa
-aebHafaZaflsltltltaeccafafhaafbEbsbsbsbsbsbGafafafbEaPaelhlhlhlhlilvlilClClClCaeagadhqhqhrhrhrachEhCadadadeTcEcEcEcEcEcEcEcEcEcEcEcEcEcEeUaaaaaahWaaeTcEcEcEcEcEcEcEcEcEcEcEcEcEcEeUaaaaaaaaaaeTcEcEcEcEcEcEcEcEcEcEcEcEcEcEeUaahWaaaaaaasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasaaaaaaaahWaaaaaaaahWhW
-aecZafafaflsmylxmyaLccafafafafafbsbsbsbsbOafafbcbGafafaelplplplhlilililClDlDlDaeagjuhUhUhVhVhVhthEhCadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahWaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahWaaaaaaaaaaaaaaaaaaaaaaaaaahWaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahWhWaa
-aeafafbkaflzlxmAmyaecdafbkczgWcAafafafafafbEbkafafafbbaelElflplhlilFlilClDlGlHaeagjuhUhUhVhVhVhthEhCadadadaaaaaaaaaaaaaaaaaaaahWaaaaaaaahWaaaaaahWaaaahWaaaaaaaaaahWaaaaaaaaaahWaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahWaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahWaaaaaaaaaaaaaaaahWaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahWaaaahWaaaaaahWaaaa
+aefjafaZaflsmymAmyaecbafhaafafafbsbLbsbNbsbcafhabGafafbdlilililvlilnlililililBaeagadadadacacacachEhCadadadcFaaaaaaaaaaaaaaaaaaaaaaaaaaaaeQaahWaaaaaacFaaaaaaaaaaaaaaaaaaaaaaaaaaaaeQaaaahWaaaacFaaaaaaaaaaaaaaaaaahWaaaaaaaaeQaaaaaaaaaaasauauauaueoauauauauaueoauauauauauauaueoauauauauaueoeieieieieiauasaaaaaaaaaaaaaaaaaaaaaa
+aebHafaZaflsltltltaeccafafhaafbEbsbsbsbsbsbGafafafbEaPaelhlhlhlhlilrlilClClClCaeagadhqhqhrhrhrachEhCadadadeTcEcEcEcEcEcEcEcEcEcEcEcEcEcEeUaaaaaahWaaeTcEcEcEcEcEcEcEcEcEcEcEcEcEcEeUaaaaaaaaaaeTcEcEcEcEcEcEcEcEcEcEcEcEcEcEeUaahWaaaaaaasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasaaaaaaaahWaaaaaaaahWhW
+aecZafafaflsmylxmyaLccafafafafafbsbsbsbsbOafafbcbGafafaelplplplhlilnlilClDlDlDaeagjuhUhUhVhVhVhthEhCadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahWaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahWaaaaaaaaaaaaaaaaaaaaaaaaaahWaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahWhWaa
+aeafafbkaflzlxmAmyaecdafbkczgWcAafafafafafbEbkafafafbbaelwlflylhlilElilClFlGlHaeagjuhUhUhVhVhVhthEhCadadadaaaaaaaaaaaaaaaaaaaahWaaaaaaaahWaaaaaahWaaaahWaaaaaaaaaahWaaaaaaaaaahWaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahWaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahWaaaaaaaaaaaaaaaahWaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahWaaaahWaaaaaahWaaaa
 aeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeagadhuhuhvhvhvachEhCadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahWaaaaaaaaaahWaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahWaaaaaaaaaaaaaaaahWaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahWaaaaaaaaaaaahWaaaaaaaaaaaaaaaahWhWaaaaaaaalL
 "}
 

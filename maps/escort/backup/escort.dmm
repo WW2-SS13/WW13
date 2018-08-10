@@ -221,7 +221,7 @@
 "em" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/road,/area/prishtina/forest)
 "en" = (/obj/structure/bed/chair/wood{dir = 4},/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "eo" = (/obj/effect/decal/cleanable/dirt,/obj/effect/landmark{name = "JoinLatePartisan"},/turf/floor/wood_broken,/area/prishtina/houses/nml_three)
-"ep" = (/obj/structure/table/wood,/obj/item/weapon/material/knife/boot/makeshift_knife,/obj/item/trash/snack_bowl,/turf/floor/wood,/area/prishtina/houses/nml_four)
+"ep" = (/obj/structure/table/wood,/obj/item/weapon/material/kitchen/utensil/knife/boot/makeshift_knife,/obj/item/trash/snack_bowl,/turf/floor/wood,/area/prishtina/houses/nml_four)
 "eq" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/dirt,/area/prishtina/forest)
 "er" = (/obj/structure/table/wood,/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "es" = (/obj/item/stack/material/rope,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})

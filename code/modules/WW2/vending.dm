@@ -330,7 +330,7 @@
 
 	)
 
-/obj/structure/vending/medrack
+/obj/structure/vending/med_cabinet
 	name = "Medicine Cabinet"
 	desc = "a cabinate full of bottles of medcine and pills."
 	icon_state = "medicen_vender"
@@ -358,7 +358,7 @@
 
 	)
 
-/obj/structure/vending/medrack
+/obj/structure/vending/chem_cabinet
 	name = "Chemical Cabinet"
 	desc = "a cabinet full of all chemicals and other thing to us to make new chemicals."
 	icon_state = "chem_vender"
