@@ -377,7 +377,6 @@ OTHER
 	icon_state = "ppshmag"
 ////	origin_tech = "combat=2"
 	mag_type = MAGAZINE
-	caliber = "a762x25"
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	ammo_type = /obj/item/ammo_casing/a762x25
 	max_ammo = 71
