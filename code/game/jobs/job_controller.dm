@@ -315,11 +315,10 @@ var/global/datum/controller/occupations/job_master
 	#endif
 
 	var/list/turfs = latejoin_turfs[spawn_location]
+	var/spawnpoint = pick(turfs)
+	if (!locate(/mob) in spawnpoint && !locate(/obj/structure) in spawnpoint)
+		H.loc = spawnpoint
 
-	for (var/spawnpoint in turfs)
-		if (!locate(/mob) in spawnpoint && !locate(/obj/structure) in spawnpoint)
-			H.loc = spawnpoint
-			break
 
 	// make sure we have the right ambience for our new location
 	spawn (1)
