@@ -25,6 +25,8 @@
 		"Song of the Kamikaze:1" = 'sound/music/occupied.ogg'
 		)
 	battle_name = "Occupation"
+	agents = 1
+	agents_in_game = 0
 	custom_loadout = FALSE // so people do not spawn with guns!
 	var/modded_num_of_SS = FALSE
 	faction_distribution_coeffs = list(GERMAN = 0.3, CIVILIAN = 0.70)

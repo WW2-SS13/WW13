@@ -1,6 +1,23 @@
 /proc/civ_stat()
 	return pick(ALL_STATS)
 
+/datum/job/partisan/proc/create_partisan(var/mob/living/carbon/human/H)
+	if(!map.agents || map.agents_in_game >= 4)
+		return
+
+	if(prob(80))
+		return
+
+	var/obj/item/letter/L = new /obj/item/letter()
+	H.put_in_any_hand_if_possible(L)
+
+	if(!(L in H.contents))
+		L.loc = get_turf(H)
+
+	map.agents_in_game++
+	H << "<B><span class='danger'>You are partisan!!!</span>"
+	H.mind.store_memory("You are partisan!!!")
+
 /datum/job/partisan/civilian
 	title = "Civilian"
 	selection_color = "#530909"
@@ -12,7 +29,7 @@
 	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
 
-/datum/job/partisan/civilian/equip(var/mob/living/carbon/human/H)
+/datum/job/partisan/civilian/equip(var/mob/living/carbon/human/H, var/create_partisans = 0)
 	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/flashlight(H), pick(slot_l_hand, slot_r_hand))
@@ -28,6 +45,9 @@
 	H.setStat("smg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
 
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+
+	create_partisan(H)
+
 	return TRUE
 
 //CHEF
@@ -58,6 +78,9 @@
 	H.setStat("smg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
 
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+
+	create_partisan(H)
+
 	return TRUE
 
 //DETECTIVE
@@ -91,6 +114,9 @@
 	H.setStat("smg", pick(STAT_MEDIUM_LOW, STAT_MEDIUM_HIGH))
 
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+
+	create_partisan(H)
+
 	return TRUE
 
 //COP
@@ -123,6 +149,9 @@
 	H.setStat("smg", pick(STAT_MEDIUM_LOW, STAT_MEDIUM_HIGH))
 
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+
+	create_partisan(H)
+
 	return TRUE
 
 //CONSTRUCTION WORKER
@@ -155,6 +184,9 @@
 	H.setStat("smg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
 
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+
+	create_partisan(H)
+
 	return TRUE
 
 //RICH MAN
@@ -186,6 +218,9 @@
 	H.setStat("smg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
 
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+
+	create_partisan(H)
+
 	return TRUE
 
 //SCIENTIST
@@ -218,6 +253,9 @@
 	H.setStat("smg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
 
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+
+	create_partisan(H)
+
 	return TRUE
 
 //MAYOR
@@ -250,6 +288,9 @@
 	H.setStat("smg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
 
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+
+	create_partisan(H)
+
 	return TRUE
 
 
@@ -282,6 +323,9 @@
 	H.setStat("smg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
 
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+
+	create_partisan(H)
+
 	return TRUE
 
 //PREIST
@@ -313,6 +357,9 @@
 	H.setStat("smg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
 
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+
+	create_partisan(H)
+
 	return TRUE
 
 //GEM
@@ -344,6 +391,9 @@
 	H.setStat("smg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
 
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+
+	create_partisan(H)
+
 	return TRUE
 
 
@@ -379,6 +429,9 @@
 	H.setStat("smg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
 
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+
+	create_partisan(H)
+
 	return TRUE
 
 //WRITER
@@ -411,6 +464,9 @@
 	H.setStat("smg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
 
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+
+	create_partisan(H)
+
 	return TRUE
 
 //HUNTER
@@ -444,6 +500,9 @@
 	H.setStat("smg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
 
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+
+	create_partisan(H)
+
 	return TRUE
 
 //DOCTOR
@@ -477,6 +536,9 @@
 	H.setStat("smg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
 
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+
+	create_partisan(H)
+
 	return TRUE
 
 //FIRE
@@ -508,6 +570,9 @@
 	H.setStat("smg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
 
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+
+	create_partisan(H)
+
 	return TRUE
 
 //violinist
@@ -539,6 +604,9 @@
 	H.setStat("smg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
 
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+
+	create_partisan(H)
+
 	return TRUE
 
 //spy
@@ -613,4 +681,7 @@
 	H.setStat("smg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
 
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+
+	create_partisan(H)
+
 	return TRUE

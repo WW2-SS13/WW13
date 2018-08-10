@@ -56,6 +56,8 @@ var/global/obj/map_metadata/map = null
 	var/time_to_end_round_after_both_sides_locked = 6000
 	var/admins_triggered_roundend = FALSE
 	var/admins_triggered_noroundend = FALSE
+	var/agents = 0
+	var/agents_in_game = 0
 
 	// win conditions 3.0 - Kachnov
 	var/datum/win_condition/win_condition = null
