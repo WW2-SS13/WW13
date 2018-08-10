@@ -789,6 +789,7 @@
 #include "code\modules\WW2\helmet.dm"
 #include "code\modules\WW2\helpers.dm"
 #include "code\modules\WW2\lantern.dm"
+#include "code\modules\WW2\letter.dm"
 #include "code\modules\WW2\loudspeaker.dm"
 #include "code\modules\WW2\medals.dm"
 #include "code\modules\WW2\medical.dm"
