@@ -192,6 +192,34 @@
 		icon_state = "pps0"
 	return
 
+/obj/item/weapon/gun/projectile/submachinegun/fedorov
+	name = "Fedorov Avtomat"
+	desc = "Russian submachine gun chambered in 7.62x25mm Tokarev."
+	icon_state = "avtomat_federov"
+	item_state = "avtomat_federov"
+	load_method = MAGAZINE
+	slot_flags = SLOT_BACK|SLOT_BELT
+	w_class = 3
+	//fire_sound = ''
+	caliber = "7.62x25mm"
+	magazine_type = /obj/item/ammo_magazine/c762x25mm_pps
+	weight = 3.04
+	firemodes = list(
+		list(name="short bursts",	burst=3, burst_delay=1.0, recoil=0.6, move_delay=3, dispersion = list(0.9, 1.3, 1.3, 1.3, 1.5)),
+		list(name="long bursts",	burst=6, burst_delay=1.2, recoil=0.8, move_delay=4, dispersion = list(1.4, 1.6, 1.6, 1.6, 1.8)),
+		)
+
+//	can_wield = TRUE
+
+	sel_mode = 1
+
+/obj/item/weapon/gun/projectile/submachinegun/fedorov/update_icon()
+	if (ammo_magazine)
+		icon_state = "avtomat_federov"
+	else
+		icon_state = "avtomat_federov0"
+	return
+
 /obj/item/weapon/gun/projectile/submachinegun/stenmk2
 	name = "Sten MKII"
 	desc = "British submachine gun chambered in 9x19mm."
@@ -221,6 +249,36 @@
 		icon_state = "sten0"
 	return
 
+/obj/item/weapon/gun/projectile/submachinegun/kis
+	name = "KIS"
+	desc = "Polish submachine gun chambered in 9x19mm."
+	icon_state = "kis"
+	item_state = "model38"
+	load_method = MAGAZINE
+	slot_flags = SLOT_BACK|SLOT_BELT
+	w_class = 3
+	//fire_sound = '' // TO DO
+	caliber = "9x19mm"
+	magazine_type = /obj/item/ammo_magazine/mp40/c9x19mm_stenmk2
+	weight = 3.2
+	firemodes = list(
+//		list(name="single shot",	burst=1, burst_delay=0.8, recoil=0.4, move_delay=2, dispersion = list(0.6, 0.8, 0.8, 0.8, 1.0)),
+		list(name="short burst",	burst=3, burst_delay=1.2, recoil=0.4, move_delay=3, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
+		list(name="long burst", 	burst=6, burst_delay=1.6, recoil=0.8, move_delay=4, dispersion = list(1.5, 1.7, 1.7, 1.7, 1.9)),
+		)
+
+//	can_wield = TRUE
+
+	sel_mode = 1
+
+/obj/item/weapon/gun/projectile/submachinegun/kis/update_icon()
+	if (ammo_magazine)
+		icon_state = "kis"
+	else
+		icon_state = "kis0"
+	return
+
+
 /obj/item/weapon/gun/projectile/submachinegun/modello38
 	name = "Modello 38"
 	desc = "Full name MAB 38 'Moschetto Automatico Modello 1938', a standard issue submachine gun used by the Royal Italian Army. You can feel the power of meatballs in your side."
@@ -248,6 +306,35 @@
 		item_state = "model380"
 	update_held_icon()
 	return
+
+/obj/item/weapon/gun/projectile/submachinegun/ovp
+	name = "Beretta OVP"
+	desc = "The Beretta OVP was a submachine gun developed in Italy."
+	icon_state = "ovp"
+	item_state = "ovp"
+	load_method = MAGAZINE
+	slot_flags = SLOT_BACK|SLOT_BELT
+	w_class = 3
+	caliber = "9x19mm"
+	magazine_type = /obj/item/ammo_magazine/s9x19mm
+	weight = 4
+	firemodes = list(
+		list(name="short burst",	burst=3, burst_delay=1.0, recoil=0.6, move_delay=3, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
+		list(name="long burst", 	burst=6, burst_delay=1.4, recoil=1.2, move_delay=4, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
+		)
+	sel_mode = 1
+	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
+
+/obj/item/weapon/gun/projectile/submachinegun/ovp/update_icon()
+	if (ammo_magazine)
+		icon_state = "ovp"
+		item_state = "ovp"
+	else
+		icon_state = "ovp0"
+		item_state = "ovp0"
+	update_held_icon()
+	return
+
 
 /obj/item/weapon/gun/projectile/submachinegun/type100
 	name = "Type 100"

@@ -53,11 +53,11 @@ var/list/tier_2_officer_jobtypes = list(
 		return 1
 
 	if (j1.is_officer && j2.is_officer)
-		if (tier_1_officer_jobtypes.Find(j1.type))
-			if (!tier_1_officer_jobtypes.Find(j2.type))
+		if (j1.type in tier_1_officer_jobtypes)
+			if (!(j2.type in tier_1_officer_jobtypes))
 				return 1
-		else if (tier_2_officer_jobtypes.Find(j1.type))
-			if (!tier_1_officer_jobtypes.Find(j2.type) && !tier_2_officer_jobtypes.Find(j2.type))
+		else if (j1.type in tier_2_officer_jobtypes)
+			if (!(j2.type in tier_1_officer_jobtypes) && !(j2.type in tier_2_officer_jobtypes))
 				return 1
 
 	return 0

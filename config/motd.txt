@@ -8,3 +8,4 @@ This server is running {server_version}, and you are running {client_version}. F
 <h2><small>Patreon: https://www.patreon.com/worldwar2inspace</small></h2>
 <h2><small>Github: https://github.com/WW2-SS13/WW13/issues</small></h2>
 </i>
+

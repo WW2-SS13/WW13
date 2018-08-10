@@ -93,6 +93,7 @@
 #include "code\_onclick\hud\human.dm"
 #include "code\_onclick\hud\movable_screen_objects.dm"
 #include "code\_onclick\hud\other_mobs.dm"
+#include "code\_onclick\hud\plane_master.dm"
 #include "code\datums\browser.dm"
 #include "code\datums\category.dm"
 #include "code\datums\configuration.dm"
@@ -788,6 +789,7 @@
 #include "code\modules\WW2\helmet.dm"
 #include "code\modules\WW2\helpers.dm"
 #include "code\modules\WW2\lantern.dm"
+#include "code\modules\WW2\letter.dm"
 #include "code\modules\WW2\loudspeaker.dm"
 #include "code\modules\WW2\medals.dm"
 #include "code\modules\WW2\medical.dm"
@@ -938,5 +940,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\occupation\occupation.dmm"
+#include "maps\partisan\partisan.dmm"
 // END_INCLUDE

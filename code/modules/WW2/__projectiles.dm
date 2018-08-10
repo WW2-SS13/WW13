@@ -211,6 +211,12 @@
 	damage = DAMAGE_LOW
 	penetrating = 0
 
+
+// BREN MG //
+/obj/item/projectile/bullet/rifle/bren
+	damage = DAMAGE_MEDIUM
+	penetrating = 10
+
 #undef DAMAGE_LOW
 #undef DAMAGE_MEDIUM
 #undef DAMAGE_HIGH

@@ -34,6 +34,7 @@ var/list/global_huds = list(
 	screen.icon = 'icons/obj/hud_full.dmi'
 	screen.icon_state = icon_state
 	screen.layer = 17
+	screen.plane = HUD_PLANE
 	screen.mouse_opacity = FALSE
 
 	return screen
@@ -44,6 +45,7 @@ var/list/global_huds = list(
 	druggy.screen_loc = ui_entire_screen
 	druggy.icon_state = "druggy"
 	druggy.layer = 17
+	druggy.plane = HUD_PLANE
 	druggy.mouse_opacity = FALSE
 
 	//that white blurry effect you get when you eyes are damaged
@@ -51,6 +53,7 @@ var/list/global_huds = list(
 	blurry.screen_loc = ui_entire_screen
 	blurry.icon_state = "blurry"
 	blurry.layer = 17
+	blurry.plane = HUD_PLANE
 	blurry.mouse_opacity = FALSE
 
 	nvg = setup_overlay("nvg_hud")
@@ -113,9 +116,10 @@ var/list/global_huds = list(
 	including inventories and item quick actions.
 */
 
-/*/datum/hud
+/datum/hud
 	var/mob/mymob
-
+	var/list/obj/screen/plane_master/plane_masters = list()
+/*
 	var/hud_shown = TRUE			//Used for the HUD toggle (F12)
 	var/inventory_shown = TRUE		//the inventory
 	var/show_intent_icons = FALSE
@@ -135,14 +139,25 @@ var/list/global_huds = list(
 
 	var/obj/screen/movable/action_button/hide_toggle/hide_actions_toggle
 	var/action_buttons_hidden = FALSE
-
-datum/hud/New(mob/owner)
+*/
+/datum/hud/New(mob/owner)
 	mymob = owner
-	instantiate()
+	//instantiate()
+	for(var/mytype in subtypesof(/obj/screen/plane_master))
+		var/obj/screen/plane_master/instance = new mytype()
+		plane_masters["[instance.plane]"] = instance
+		instance.backdrop(mymob)
+		if(mymob && mymob.client)
+			mymob.client.screen |= instance
 	..()
 
 /datum/hud/Destroy()
-	..()
+	if(plane_masters.len)
+		for(var/thing in plane_masters)
+			qdel(plane_masters[thing])
+		plane_masters.Cut()
+	return ..()
+/*
 	grab_intent = null
 	hurt_intent = null
 	disarm_intent = null

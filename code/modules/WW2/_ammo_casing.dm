@@ -144,6 +144,14 @@ WW 2 WEAPONS MAGS N AMMO
 	caliber = "c762x63"
 	projectile_type = /obj/item/projectile/bullet/rifle/c762x63
 
+/obj/item/ammo_casing/bren
+	desc = "A .303 bullet casing."
+	icon_state = "kclip-bullet"
+	spent_icon = "kclip-casing"
+	caliber = ".303"
+	projectile_type = /obj/item/projectile/bullet/rifle/bren
+
+
 /obj/item/ammo_casing/c762x63_smg
 	desc = "A 30-06 bullet casing."
 	icon_state = "kclip-bullet"

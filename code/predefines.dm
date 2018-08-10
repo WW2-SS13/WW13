@@ -363,8 +363,8 @@
 #define DEAF  4
 
 // /mob/var/stat things.
-#define CONSCIOUS   FALSE
-#define UNCONSCIOUS TRUE
+#define CONSCIOUS   0
+#define UNCONSCIOUS 1
 #define DEAD        2
 
 // Channel numbers for power.
@@ -485,11 +485,11 @@
 #define INVISIBILITY_EYE		          61
 
 #define SEE_INVISIBLE_LIVING              25
-#define SEE_INVISIBLE_OBSERVER_NOLIGHTING 15
+#define SEE_INVISIBLE_OBSERVER_NOLIGHTING 45
 #define SEE_INVISIBLE_LEVEL_ONE           35
 #define SEE_INVISIBLE_LEVEL_TWO           45
 #define SEE_INVISIBLE_CULT		          60
-#define SEE_INVISIBLE_OBSERVER            61
+#define SEE_INVISIBLE_OBSERVER            25
 
 #define SEE_INVISIBLE_MINIMUM 5
 #define INVISIBILITY_MAXIMUM 100

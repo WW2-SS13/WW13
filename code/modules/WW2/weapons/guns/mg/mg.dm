@@ -90,6 +90,81 @@
 	update_held_icon()
 	return
 
+/obj/item/weapon/gun/projectile/automatic/bren
+	name = "Bren light machine gun"
+	desc = "The Bren gun, usually called simply the Bren, are a series of light machine guns (LMG) made by Britain in the 1930s and used in various roles until 1992."
+	icon_state = "bren"
+	item_state = "bren"
+	load_method = MAGAZINE
+	w_class = 5
+	heavy = TRUE
+	caliber = ".303"
+	magazine_type = /obj/item/ammo_magazine/bren
+	weight = 9.12
+	slot_flags = SLOT_BACK
+
+	firemodes = list(
+		list(name="short bursts",	burst=4, burst_delay=0.8, move_delay=8, dispersion = list(0.7, 1.1, 1.1, 1.1, 1.3), recoil = 1.0),
+		list(name="long bursts",	burst=8, burst_delay=1.5, move_delay=11, dispersion = list(0.9, 1.3, 1.3, 1.3, 1.5), recoil = 1.5)
+		)
+
+	sel_mode = 2
+	force = 20
+	throwforce = 30
+
+/obj/item/weapon/gun/projectile/automatic/bren/update_icon()
+	if (ammo_magazine)
+		icon_state = "bren"
+	/*	if (wielded)
+			item_state = "dp-w"
+		else
+			item_state = "dp"*/
+	else
+		icon_state = "bren0"
+	/*	if (wielded)
+			item_state = "dp-w"
+		else
+			item_state = "dp0"*/
+	update_held_icon()
+	return
+/obj/item/weapon/gun/projectile/automatic/zb30
+	name = "ZB vz. 30"
+	desc = "ZB-30 and ZB-30J are Czechoslovakian light machine guns."
+	icon_state = "zb30"
+	item_state = "zb30"
+	load_method = MAGAZINE
+	w_class = 5
+	heavy = TRUE
+	caliber = "7.92x57mm"
+	magazine_type = /obj/item/ammo_magazine/c792x57_fg42
+	weight = 9.12
+	slot_flags = SLOT_BACK
+
+	firemodes = list(
+		list(name="short bursts",	burst=4, burst_delay=0.8, move_delay=8, dispersion = list(0.7, 1.1, 1.1, 1.1, 1.3), recoil = 1.0),
+		list(name="long bursts",	burst=8, burst_delay=1.5, move_delay=11, dispersion = list(0.9, 1.3, 1.3, 1.3, 1.5), recoil = 1.5)
+		)
+
+	sel_mode = 2
+	force = 20
+	throwforce = 30
+
+/obj/item/weapon/gun/projectile/automatic/zb30/update_icon()
+	if (ammo_magazine)
+		icon_state = "zb30"
+	/*	if (wielded)
+			item_state = "dp-w"
+		else
+			item_state = "dp"*/
+	else
+		icon_state = "zb300"
+	/*	if (wielded)
+			item_state = "dp-w"
+		else
+			item_state = "dp0"*/
+	update_held_icon()
+	return
+
 /obj/item/weapon/gun/projectile/automatic/mg34
 	name = "MG-34"
 	desc = "German light machinegun chambered in 7.92x57mm Mauser. An utterly devastating support weapon."
