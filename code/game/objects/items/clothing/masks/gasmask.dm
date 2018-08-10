@@ -15,7 +15,7 @@
 	armor = list(melee = FALSE, bullet = FALSE, laser = FALSE, energy = FALSE, bomb = FALSE, bio = 75, rad = FALSE)
 
 /obj/item/clothing/mask/gas/proc/check_can_block(var/datum/reagent/r)
-	if ((filtered_gases.Find(r.id) && prob(83)) || (filtered_gases.Find("zyklon_b") && r.id == "zyklon_b")) /*
+	if ((r.id in filtered_gases && prob(83)) || ("zyklon_b" in filtered_gases && r.id == "zyklon_b")) /*
 ?Lord Taemin? - Yesterday at 3:01 PM
 -Gas mask should protect you only 83%*/
 		return TRUE

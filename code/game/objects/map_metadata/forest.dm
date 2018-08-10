@@ -50,7 +50,7 @@
 /obj/map_metadata/forest/check_prishtina_block(var/mob/living/carbon/human/H, var/turf/T)
 	. = ..(H, T)
 	if (!.)
-		if (H.original_job && list(SOVIET, PARTISAN, CIVILIAN).Find(H.original_job.base_type_flag()))
+		if (H.original_job && H.original_job.base_type_flag() in list(SOVIET, PARTISAN, CIVILIAN))
 			if ((T.y >= GRACE_WALL_2_MAX_Y || istype(get_area(T), /area/prishtina/german/train_zone)) && processes.ticker.playtime_elapsed < mission_announced + 9000) // because H.y >= 420 causes magical teleportation
 				return TRUE
 	return .

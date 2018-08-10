@@ -93,7 +93,7 @@
 	if (transforming)
 		return
 
-	if (lying || list(UNCONSCIOUS, DEAD).Find(stat))
+	if (lying || stat < CONSCIOUS)
 		layer = MOB_LAYER - 0.01
 		if (back && istype(back, /obj/item/weapon/storage/backpack/flammenwerfer))
 			var/obj/item/weapon/storage/backpack/flammenwerfer/flamethrower_backpack = back
