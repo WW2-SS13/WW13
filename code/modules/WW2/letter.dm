@@ -12,13 +12,19 @@
 		new /datum/data/agent_equipment("Tokarev", /obj/item/weapon/gun/projectile/pistol, 10, 1)
 		)
 
+var/list/obj/effect/landmark/recieve/drop_points = list()
+
 /obj/effect/landmark/recieve
 	name = "Recieve landmark"
+
+/obj/effect/landmark/recieve/New()
+	..()
+	drop_points += src
 
 /obj/item/letter/New()
 	..()
 	sleep(5)
-	recieve_landmark = locate(/obj/effect/landmark/recieve)
+	recieve_landmark = safepick(drop_points)
 
 /datum/data/agent_equipment
 	var/name = "Agent Equipment"
@@ -115,10 +121,20 @@
 		points = 0
 		used = 1
 		popup.close()
-		usr << "<B>Drop location</B>: <span class='danger'>\"[recieve_landmark.x]\", \"[recieve_landmark.y]\"</span>"
+		//usr << "<B>Drop location</B>: <span class='danger'>\"[recieve_landmark.x]\", \"[recieve_landmark.y]\"</span>"
+		if(recieve_landmark.x > usr.x)
+			usr << "<span class='notice'>You need to go [recieve_landmark.x - usr.x] tiles east and ...</span>"
+		else
+			usr << "<span class='notice'>You need to go [usr.x - recieve_landmark.x] tiles west and ...</span>"
+
+		if(recieve_landmark.y > usr.y)
+			usr << "<span class='notice'>[recieve_landmark.y - usr.y] tiles north.</span>"
+		else
+			usr << "<span class='notice'>[usr.y - recieve_landmark.y] tiles south.</span>"
+
 		usr.mind.store_memory("<b>Drop location</b>: \"[recieve_landmark.x]\", \"[recieve_landmark.y]\"")
 	else
-		recieve_landmark = locate(/obj/effect/landmark/recieve)
+		recieve_landmark = safepick(drop_points)
 		if(recieve_landmark)
 			SendSupplies()
 	return
