@@ -22,6 +22,7 @@
 		else
 			. += "<a href='?src=\ref[src];select_ooc_color=1'><b>[pref.ooccolor]</b></a> <table style='display:inline;' bgcolor='[pref.ooccolor]'><tr><td>__</td></tr></table> <a href='?src=\ref[src];reset=ooc'>reset</a><br>" // only one linebreak needed here
 	. += "<b>Lobby Music Volume:</b> <a href='?src=\ref[src];change_lobby_music_volume=1'><b>[pref.lobby_music_volume]%</b></a><br>"
+	. += "<b>Scream Type:</b> <a href='?src=\ref[src];change_scream_type=1'><b>[pref.scream_type]</b></a><br>"
 	. += "<br>"
 
 /datum/category_item/player_setup_item/player_global/ui/OnTopic(var/href,var/list/href_list, var/mob/user)
@@ -55,6 +56,16 @@
 		if (pref.client)
 			pref.client.onload_preferences("SOUND_LOBBY")
 		return TOPIC_REFRESH
+
+	else if (href_list["change_scream_type"])
+		var/input_ = input(user, "Select new scream type.", "SCREAM!!!") in list("1", "2")
+		switch(input_)
+			if("1")
+				pref.scream_type = 1
+			if("2")
+				pref.scream_type = 2
+		return TOPIC_REFRESH
+
 
 	else if (href_list["reset"])
 		switch(href_list["reset"])
