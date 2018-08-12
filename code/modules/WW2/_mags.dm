@@ -603,14 +603,24 @@ OTHER
 	max_ammo = 30
 	multiple_sprites = TRUE
 
-/obj/item/ammo_magazine/c45_smg
+/obj/item/ammo_magazine/thompson_ammo
 	name = "magazine (.45 cal)"
-	icon_state = "9x39"
+	icon_state = "m1a1"
 	mag_type = MAGAZINE
-	caliber = "c45_smg"
+	caliber = "11.43×23mm"
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	ammo_type = /obj/item/ammo_casing/c45_smg
 	max_ammo = 30
+	multiple_sprites = TRUE
+
+/obj/item/ammo_magazine/thompson_ammo/tommy_ammo
+	name = "drum (.45 cal)"
+	icon_state = "m1a1_drum"
+	mag_type = MAGAZINE
+	caliber = "11.43×23mm"
+	matter = list(DEFAULT_WALL_MATERIAL = 1800)
+	ammo_type = /obj/item/ammo_casing/c45_smg
+	max_ammo = 50
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/c762x63_smg

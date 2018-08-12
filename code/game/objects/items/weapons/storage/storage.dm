@@ -233,9 +233,9 @@
 	M.Scale((storage_width-storage_cap_width*2+3)/32,1)
 	storage_continue.transform = M
 
-	storage_start.screen_loc = "[Xcord]:16,[Ycord]:16"
-	storage_continue.screen_loc = "[Xcord]:[storage_cap_width+(storage_width-storage_cap_width*2)/2+2],[Ycord]:16"
-	storage_end.screen_loc = "[Xcord]:[19+storage_width-storage_cap_width],[Ycord]:16"
+	storage_start.screen_loc = "[Xcord]:16,[Ycord]"
+	storage_continue.screen_loc = "[Xcord]:[storage_cap_width+(storage_width-storage_cap_width*2)/2+2],[Ycord]"
+	storage_end.screen_loc = "[Xcord]:[19+storage_width-storage_cap_width],[Ycord]"
 
 	var/startpoint = FALSE
 	var/endpoint = TRUE
@@ -259,12 +259,12 @@
 		storage_start.overlays += stored_continue
 		storage_start.overlays += stored_end
 
-		O.screen_loc = "[Xcord]:[round((startpoint+endpoint)/2)+2],[Ycord]:16"
+		O.screen_loc = "[Xcord]:[round((startpoint+endpoint)/2)+2],[Ycord]"
 		O.maptext = ""
 		O.layer = 20
 		O.plane = HUD_PLANE
 
-	closer.screen_loc = "[Xcord]:[storage_width+19],[Ycord]:16"
+	closer.screen_loc = "[Xcord]:[storage_width+19],[Ycord]"
 	return
 
 /datum/numbered_display

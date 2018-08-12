@@ -238,7 +238,7 @@
 	name = "M1903 Springfield"
 	desc = "American bolt-action rifle chambered in 30-06 Springfield ammunition. Mostly used as a sniper rifle."
 	icon_state = "springfield"
-	item_state = "kar98k"
+	item_state = "springfield"
 	caliber = "c762x63"
 	fire_sound = 'sound/weapons/kar_shot.ogg'
 	ammo_type = /obj/item/ammo_casing/c762x63
@@ -255,11 +255,11 @@
 	if (add_scope)
 		if (bolt_open)
 			icon_state = "springfield_scope_open"
-			item_state = "kar98k_scope"
+			item_state = "springfield_scope"
 			return
 		else
 			icon_state = "springfield_scope"
-			item_state = "kar98k_scope"
+			item_state = "springfield_scope"
 			return
 	if (bolt_open)
 		if (!findtext(icon_state, "_open"))
