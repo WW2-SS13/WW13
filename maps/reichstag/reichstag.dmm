@@ -695,7 +695,7 @@
 "ns" = (/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/splatter,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "nt" = (/obj/effect/decal/cleanable/dirt,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "nu" = (/obj/effect/decal/cleanable/blood,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
-"nv" = (/obj/structure/table/wood,/obj/effect/decal/cleanable/dirt,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
+"nv" = (/obj/structure/table/wood,/obj/effect/decal/cleanable/dirt,/obj/item/weapon/storage/backpack/satchel_surg,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "nw" = (/obj/structure/bed/chair/wood/red{dir = 8; icon_state = "wooden_chair_red"},/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "nx" = (/obj/structure/table/wood,/obj/structure/bed/chair/wood{dir = 8},/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "ny" = (/obj/structure/railing{dir = 8},/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
@@ -1228,6 +1228,9 @@
 "xF" = (/obj/structure/table,/obj/item/weapon/gun/projectile/pistol/_45/gibber,/turf/floor/bluegrid,/area/prishtina/admin)
 "xG" = (/obj/structure/table,/obj/item/weapon/gun/projectile/pistol/luger/gibber,/turf/floor/bluegrid,/area/prishtina/admin)
 "xH" = (/obj/structure/table,/obj/item/weapon/gun/projectile/pistol/mauser/gibber,/turf/floor/bluegrid,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"xI" = (/obj/structure/table/iron,/obj/item/weapon/storage/backpack/satchel_surg,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/medical{base_turf = /turf/floor/dirt})
+"xJ" = (/obj/item/weapon/storage/backpack/satchel_surg,/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
+"xK" = (/obj/item/weapon/storage/firstaid/surgery,/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
 
 (1,1,1) = {"
 abababababababacadaeafafafagahacababababababaiajakakakakakakakakakakajajakakakakakakajakakakakakajakakakakakakakakakakakakakakakakakakakakakakakakajalxhxhxhxhxhxhxhxhxhxhxhxhakakakakakakanakakakakakak
@@ -1324,7 +1327,7 @@ blblblblblblblblblblblblblblblblblblblblblblblblblblblblmCmCuBmCmCblblcablbljhjh
 dSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdScMeKdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSiWafafafafjsixaItbjHucumueunjAsUuoupuqjAucjHurupjAupusjHucjAutupucjHjA
 aIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIjPjPaIjPjPmNaIaIaIaIaIaIaIaIaIaIaIaIaIaIchafafafafafcyaIjAjHjHuuueuvjAsUjHjHjHucjHjHwEuxjAjHjHunjHjAueunuyjHjA
 awawmOawawawawmOawawaHcicicicjcinbckckcjcjcjcjcjarararclclclnoclcmcncncmjIclclcoclarararcpcqcqcrcqcqcsctcscsctcscscucvjJcucwcucxrrchafrsrsrsafcyaIwFucwGjHuejHsUjAjAjAsUjAjAjAuzucjAsUjAjAuAsUtVjAuCjAjA
-rtakakrtakrtakakrtrtalcicAcBcCcAdecBcAjQcFdUcHcjarararcIcJcKcLococcJcJcJcNcNcOcOcParararcqcQcRcScTcUcscVeacWcWikcscYcZdadbcZcZdcrrruafrsrsrsafcyaItbjHucjHuDuEsUjHwHucjHuuuxjHuFumjHjHucjHjHjHjHjHjHjHtA
+rtakakrtakrtakakrtrtalcicAcBcCcAdecBcAjQcFdUcHcjarararcIcJcKcLococcJcJcJcNxIcOcOcParararcqcQcRcScTcUcscVeacWcWikcscYcZdadbcZcZdcrrruafrsrsrsafcyaItbjHucjHuDuEsUjHwHucjHuuuxjHuFumjHjHucjHjHjHjHjHjHjHtA
 akakrtakakakakarakakalcjcHdditdecBdUcBitdfcBjRcjarararcldhcJdidjdicJcJcJdkdkdlcOcIarararcplHcSiudmdncscWdodpdqdrctcZcZcZdsdtcZcwrrruafrvrvrvrwryrOsUjHjHsUjHuetVjAjAjAjAjAjAjAjAtVsUjAwFjAjAjAjAjAsUjAjA
 akrtakasrtakrtakrtakalcjducBdUdgizdvdgiAcBiBdeciarararcIcJcJdicJdycJiCdjdzcJdAcJclarararcpdBcSdCdDdEcscWdFdGdHiDnqcZdJiEiFdLcZcwrrruafafafafrwryrOucjHsUjHjHjHuzjHsUsUjHjAjHjHueuGtVuHjHjHjHjAjHjHjHuIjA
 akakrtakakrtakasakakalcjdMdvcBdgdvdUcBdNcAdfdOcjarararcIdPcJdidldiiCiGiCdAcJcJcJclarararcpdQdRiHcScSctcWiIiJcWcWcsdVcZiEdWcZdXcurrrurPrQrRrSrwryrOsUsUjHumjHjHjAugjHuJupjAuKupsUuIuLupuMupsUjAupuNsUuOjA
@@ -1566,7 +1569,7 @@ hqhqhqhqhqhqhqhqhqhqhqhqhqhqhuhuhWhxhxhxhWjdjdjdjdjdjehwcXcXwZhMhLhLhxhxhxtehxhx
 hqhqhqhqhqhqhqhqhqhqhqhqhqhqhuhuhywThwwThyhxhxhwhwhwhwhwhIhwxahyhLjfjfjfhLjUiiijilhLhLhLhOifhNhwcXimhwhIhIcXhwinhwhxhxhwhwcGhwhwhuhuhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhq
 hqhqhqhqhqhqhqhqhqhqhqhqhqhqhuhuwUwThwhwwThxhxcXcXcXindwhwdwhJhWhLjfjfjfhLhLhOhQhRhLhLhLhLiohLhwcXhwhIhwcXcXhwhwhwhxhxhwhwhwhwhwhuhuhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhq
 hqhqhqhqhqhqhqhqhqhqhqhqhqhqhuhuhwhwhwhwhwhxwVhwcXcXhwcXhwcXhwhwhLhLhLhLhLhLhLhLhLhLhLhLhLhLhLhwcXhwcXhwcXhwcXhwjghxhxhwhwhwhwhwhuhuhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhq
-hqhqhqhqhqhqhqhqhqhqhqhqhqhqhuhuhThwhwhwhwhwhwcXhwcXhwhUhVhWxbhWhLhXhLhXhLhXhLhLhLhLhXhLhXhLhXhwhwhJhWhVhWhVhYhWhWhWhwhwhwhwhwhThuhuhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhq
+hqhqhqhqhqhqhqhqhqhqhqhqhqhqhuhuhThwxJxKhwhwhwcXhwcXhwhUhVhWxbhWhLhXhLhXhLhXhLhLhLhLhXhLhXhLhXhwhwhJhWhVhWhVhYhWhWhWhwhwhwhwhwhThuhuhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhq
 hqhqhqhqhqhqhqhqhqhqhqhqhqhqhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhq
 hqhqhqhqhqhqhqhqhqhqhqhqhqhqhuhuhuhuhuhuhuhqhqhqhqhqhqhqhqhqhqhqhqhuhuhuhuhuhuhuhuhuhuhuhuhuhuhqhqhqhqhqhqhqhqhqhqhqhqhuhuhuhuhuhuhuhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhq
 hqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhq
