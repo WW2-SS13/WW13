@@ -50,7 +50,7 @@
 "aX" = (/obj/effect/floor_decal/grass_edge,/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (WEST)"; icon_state = "spline_plain"; dir = 8},/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (NORTH)"; icon_state = "spline_plain"; dir = 1},/turf/floor/plating/grass,/area/prishtina/forest)
 "aY" = (/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "aZ" = (/obj/structure/simple_door/key_door/anyone/wood{name = "House"},/turf/floor/wood,/area/prishtina/houses/nml_five)
-"ba" = (/obj/item/weapon/grenade/explosive/l2a2,/obj/item/weapon/grenade/explosive/l2a2,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
+"ba" = (/obj/item/weapon/grenade/explosive/rgd,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "bb" = (/obj/item/stack/material/wood,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "bc" = (/obj/item/weapon/shovel/spade/russia,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "bd" = (/obj/structure/bed/chair/wood{dir = 1},/obj/effect/landmark{name = "JoinLatePartisan"},/turf/floor/wood,/area/prishtina/houses/nml_one)
@@ -77,7 +77,7 @@
 "by" = (/obj/item/flashlight,/obj/item/flashlight,/obj/item/flashlight,/obj/item/flashlight,/obj/item/flashlight,/obj/item/flashlight,/obj/item/flashlight,/obj/item/flashlight,/obj/item/flashlight,/obj/item/flashlight,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "bz" = (/turf/wall/wood,/area/prishtina/houses/nml_three)
 "bA" = (/obj/effect/decal/cleanable/dirt,/turf/wall/wood,/area/prishtina/houses/nml_three)
-"bB" = (/obj/item/weapon/grenade/explosive/rgd,/obj/item/weapon/grenade/explosive/rgd,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
+"bB" = (/obj/item/weapon/grenade/explosive/stgnade,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "bC" = (/obj/structure/oven,/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/houses/nml_three)
 "bD" = (/obj/structure/closet/crate/bettymines,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "bE" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/blue,/turf/floor/wood,/area/prishtina/houses/nml_three)
@@ -90,7 +90,6 @@
 "bL" = (/obj/effect/landmark{name = "JoinLatePartisan"},/obj/structure/multiz/ladder/ww2{area_id = "basement_partisan4"},/turf/floor/wood,/area/prishtina/houses/nml_one)
 "bM" = (/obj/item/weapon/wrench,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "bN" = (/obj/effect/landmark{name = "JoinLatePartisan"},/turf/floor/wood_broken,/area/prishtina/houses/nml_two)
-"bO" = (/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "bP" = (/turf/wall/wood,/area/prishtina/houses/nml_four)
 "bQ" = (/obj/structure/oven,/turf/floor/wood,/area/prishtina/houses/nml_four)
 "bR" = (/obj/structure/sink,/turf/floor/wood,/area/prishtina/houses/nml_four)
@@ -102,7 +101,7 @@
 "bX" = (/turf/wall/wood,/area/prishtina/houses/nml_one)
 "bY" = (/obj/structure/simple_door/key_door/anyone/wood{name = "House"},/turf/floor/wood,/area/prishtina/houses/nml_one)
 "bZ" = (/turf/floor/wood_broken,/area/prishtina/houses/nml_four)
-"ca" = (/obj/item/weapon/gun/projectile/boltaction/mosin,/obj/item/weapon/gun/projectile/boltaction/mosin,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
+"ca" = (/obj/item/weapon/gun/projectile/boltaction/mosin,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "cb" = (/obj/structure/sink{dir = 8; pixel_x = -12},/turf/floor/wood,/area/prishtina/houses/nml_one)
 "cc" = (/turf/floor/wood,/area/prishtina/houses/nml_one)
 "cd" = (/obj/structure/bed/chair/wood,/turf/floor/wood,/area/prishtina/houses/nml_one)
@@ -124,7 +123,7 @@
 "ct" = (/obj/structure/bed/chair/wood,/turf/floor/wood,/area/prishtina/houses/nml_four)
 "cu" = (/obj/structure/bed/chair/wood,/obj/effect/landmark{name = "JoinLateCivilian"},/turf/floor/wood,/area/prishtina/houses/nml_four)
 "cv" = (/obj/structure/sink{tag = "icon-sink (EAST)"; icon_state = "sink"; dir = 4; step_x = 0; step_y = 0; pixel_x = 14},/turf/floor/wood,/area/prishtina/houses/nml_four)
-"cw" = (/obj/item/weapon/gun/projectile/boltaction/kar98k,/obj/item/weapon/gun/projectile/boltaction/kar98k,/obj/item/weapon/gun/projectile/boltaction/kar98k,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
+"cw" = (/obj/item/weapon/gun/projectile/boltaction/kar98k,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "cx" = (/obj/item/weapon/storage/firstaid,/obj/item/weapon/storage/firstaid,/turf/floor/wood,/area/prishtina/houses/nml_two)
 "cy" = (/obj/item/stack/medical/bruise_pack/bint,/obj/item/stack/medical/bruise_pack/bint,/turf/floor/wood,/area/prishtina/houses/nml_two)
 "cz" = (/obj/structure/table/wood,/obj/item/weapon/flame/candle,/turf/floor/wood,/area/prishtina/houses/nml_four)
@@ -150,7 +149,6 @@
 "cT" = (/obj/item/weapon/gun/projectile/boltaction/kar98k,/obj/item/weapon/gun/projectile/boltaction/kar98k,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "cU" = (/mob/living/simple_animal/mouse/white,/turf/floor/plating/grass/wild,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "cV" = (/obj/structure/closet/crate/kar98kammo,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
-"cW" = (/obj/item/weapon/gun/launcher/rocket/panzerfaust,/obj/item/weapon/gun/launcher/rocket/panzerfaust,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "cX" = (/obj/item/weapon/gun/launcher/rocket/panzerfaust,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "cY" = (/obj/structure/closet/crate/mosinammo,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "cZ" = (/obj/structure/grille/fence,/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/turf/floor/plating/grass/wild,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
@@ -761,9 +759,9 @@ aaaaaaanabaaaaaaaaaaaaaaaaaaaeaecQcQaeaeaaabaeananaaacaaaeaeaeaeaeaaaaabaaaaaaae
 aaaaaaaaaaaaaaaaabaaaaaaaaabaaaaaeaeaeaaababaaaaanaaabaaaaaaaeaeaeaeaeaeaeaeaeaeaeaaaaaaababaaaacHaaaaaaaaaaabaaaaaaaaaaaaaaabaaaaababaaaaaaaaabaaaeaeaeaaabaaaaaaaaabaeaYaYaYbqbraYaYaYaYaYaYaYaYaYaYaYaYaYaYaYaYaYnzaYafafafafdOahahdQafaaaaaaaaaaabanaaaaabaaaaaaaaaaabaadKaaaaaaabaaaaaaaaaaaaaaaaacacaa
 aaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaeaeaaabaaacacaaabaaaaaaaaaaaaaaaeaeaeaeaeaeiiaeaeaeaaaaaaaaaaaaaaaaaaaaabaaaaaaaaababaaaaaaaaaaaaaaabaaaaabaaaaaaaeaeaeaaaaaeaaabaaabdNaYaYaYbsbsaYaYbebebeigbfbebebeaYnAbtbtbtbtbtaYafafafafafakalalamafabaaaaaaabaaaaaaaaababaaaaaaaaaaaaaaanaaaaaaaaaaaaababaaaaaaaaaaaa
 abaaabaaaaababaaacaaabaaaaaaaaaaaeaaaaaaaaaaababaaaaaaabaaaaaaaaaaaeaaabaaaeaeaeaeaeaeabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaanaaaaabaaaeaeaeaeaeaaaaaaaaaaaaaaaeaYaYdjbDbDaYaYbebgbhbjbjbkblbeaYaYaYaYaYaYaYaYcJajafafafakalalamajababaaaaabaaaaaaaaabaaaaaaaaaaaaaaabaaaaaaaaaaabaaaaaaaaaaabaaaaaa
-abaaaaaaananaaaaaaaaaaabaaaaabaeaeabaaaaaaaaabaaaaaaababaaababaaaaaaaaaaaaaaaaaeaaaeaeaaaaaaababacacaaaaaaaaaaababaaaaababaaaaabaaabaaababaaaaaeaeaeaeaeaaababaaabaaaaaeaYaYdjdkbKaYaYbejcbmbjbjbNckbegpdtilcacwbBbOdZdZdZdZafajakalalamajaaaaabaaaaaaaaaaaaabaaaaaaaaaaababaaaaaaaaaaaaaaaaabaaaaaaaaaaabaa
-aaaaaaabaaaaababababaaaaaaaaaaaeaeaaaaaaabaaaaabaaaaaaaaaaaaabaaaaaaaaabaaaaaaaaabaeaeaeabaaaeaeaeaaaaaaabaaabababaaaaaaaaaaacaaaaaaaaabaaaaabaeaeaeaaaaaaabaaaaaaaaaeaeaYaYcZdbdbdcaYcfcsbGbjbjbGdPcfgqdtimcacTdgfIbadZdZdtaYafakalalamafabaaaaaaaaaaaaabababananaaaaaaababaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaa
-aaabaaaaaaaaaaaaaaaaaaaaaaabaeaeaeaaaaabaaaaaaaaaaaaaaaaaaaaaaaaabaaabaaaaaaacaaaaaaaaaeaeaeaeaeaeaeaeaeaaaaabababaaababaaaaaaaaaaaaaaabaeaeaeaeaeaeaeaaaaaaaaaaaaabaaaaaYaYdeafafdfaYbedRcxedbwefcybeaYdtincWcTcVcVaYnBgrnKaYaYgsaTaTgtafaaaaaaaaababaaaaabaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaacaa
+abaaaaaaananaaaaaaaaaaabaaaaabaeaeabaaaaaaaaabaaaaaaababaaababaaaaaaaaaaaaaaaaaeaaaeaeaaaaaaababacacaaaaaaaaaaababaaaaababaaaaabaaabaaababaaaaaeaeaeaeaeaaababaaabaaaaaeaYaYdjdkbKaYaYbejcbmbjbjbNckbegpdtilcacwbabBdZdZdZdZafajakalalamajaaaaabaaaaaaaaaaaaabaaaaaaaaaaababaaaaaaaaaaaaaaaaabaaaaaaaaaaabaa
+aaaaaaabaaaaababababaaaaaaaaaaaeaeaaaaaaabaaaaabaaaaaaaaaaaaabaaaaaaaaabaaaaaaaaabaeaeaeabaaaeaeaeaaaaaaabaaabababaaaaaaaaaaacaaaaaaaaabaaaaabaeaeaeaaaaaaabaaaaaaaaaeaeaYaYcZdbdbdcaYcfcsbGbjbjbGdPcfgqdtimcacTdgfIaYdZdZdtaYafakalalamafabaaaaaaaaaaaaabababananaaaaaaababaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaa
+aaabaaaaaaaaaaaaaaaaaaaaaaabaeaeaeaaaaabaaaaaaaaaaaaaaaaaaaaaaaaabaaabaaaaaaacaaaaaaaaaeaeaeaeaeaeaeaeaeaaaaabababaaababaaaaaaaaaaaaaaabaeaeaeaeaeaeaeaaaaaaaaaaaaabaaaaaYaYdeafafdfaYbedRcxedbwefcybeaYdtinaYcwcVcVaYnBgrnKaYaYgsaTaTgtafaaaaaaaaababaaaaabaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaacaa
 aaabaaaaaaababaaaaaaabaaaaaeaeaeanaaaaaaaaaaaaaaabaaababaaanaaaaabaaaaaaabaaaaaaaaabaadLaeaeaeaeaaaeaeaeaeabaaaaabaaaaaaaaabaaaaabaaaeaeaeaeaeaeaeaeaeaaaaabababaaaaaaaeaYaYdedididfaYbebebebebebebebegpdtaYcXcTcVcYaYnLaYaYaYaYaYaYafafafaaaaaaaaaaabaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaababaaaaaaaaaaaeaeaeabaaabaaaaaaabaaaaaaaaaaanaaaaaaaaabaaaaaaaaaaaaaaaaabaaaaaaaaaaacacaaaaaaaeaeaeaaabaaaaabaaaaaeaeaeaeaeaeaeaeaeaeaeaeaeaaaaaaabaaabaaaaaeaYaYdeafafdfaYaYaYaYaYbbbbbbegaYnCaYaYnDnEaYaYagahahahahahaicJajafaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabacananabaaaaabaaaaaaaa
 aaabaaaaaaaaababaaaaabaaaeaeaaaaaaabaaaaaaaaaaabaaaaaaanabababaaaaaaaaaaaaababaaaaaaaaaaaaaaaaaaaaaaaaaaabaeaeaeaeababaeaeaeaeaeaeaeaaaaabaaaaaeaeaeaeaaaaaaaaaaaeaeaeaeaYaYbzbAddbzbzaYaYaYaYaYbbaYaYaYaYdnnMaYnNdlaYakalalalalalamajajafaaaaabaaaaaaaaaaanaaaaaaaaanaaaaabaaaaaadLaaaaaaababaaaaaaabaaaaaa

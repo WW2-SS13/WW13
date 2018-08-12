@@ -377,9 +377,9 @@ OTHER
 	icon_state = "ppshmag"
 ////	origin_tech = "combat=2"
 	mag_type = MAGAZINE
-	caliber = "a762x25"
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	ammo_type = /obj/item/ammo_casing/a762x25
+	caliber = "a762x25"
 	max_ammo = 71
 	multiple_sprites = TRUE
 	weight = 2.41
@@ -488,7 +488,7 @@ OTHER
 
 /obj/item/ammo_magazine/a556/ppsh
 	icon_state = "ppshmag"
-	caliber = "a792x33"
+	caliber = "a762x25"
 	max_ammo = 71
 	multiple_sprites = TRUE
 

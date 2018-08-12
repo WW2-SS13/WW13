@@ -146,6 +146,15 @@
 		slot_r_hand_str = "medicalpack",
 		)
 
+/obj/item/weapon/storage/backpack/satchel_surg
+	name = "surgical satchel"
+	desc = "A sterile satchel used by doctors."
+	icon_state = "doctorsbag"
+	item_state_slots = list(
+		slot_l_hand_str = "surg_2",
+		slot_r_hand_str = "surg_2",
+		)
+
 /obj/item/weapon/storage/backpack/satchel_sec
 	name = "security satchel"
 	desc = "A robust satchel for security related needs."
