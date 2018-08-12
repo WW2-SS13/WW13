@@ -30,6 +30,10 @@
 	set category = "Emote"
 	emote("cry")
 
+/mob/living/carbon/human/verb/whistle()
+	set category = "Emote"
+	emote("whistle")
+
 /mob/living/carbon/human/verb/eyebrow()
 	set category = "Emote"
 	emote("eyebrow")
@@ -88,7 +92,7 @@
 
 /mob/living/carbon/human/verb/raise()
 	set category = "Emote"
-	emote("raise")
+	emote("raise hand")
 
 /mob/living/carbon/human/verb/salute()
 	set category = "Emote"
@@ -121,6 +125,10 @@
 /mob/living/carbon/human/verb/sniff()
 	set category = "Emote"
 	emote("sniff")
+
+/mob/living/carbon/human/verb/pale()
+	set category = "Emote"
+	emote("pale")
 
 /mob/living/carbon/human/verb/snore()
 	set category = "Emote"

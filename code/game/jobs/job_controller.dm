@@ -423,7 +423,7 @@ var/global/datum/controller/occupations/job_master
 			if (job.is_officer)
 				H.equip_coat(/obj/item/clothing/suit/storage/coat/soviet/officer)
 			else if (job.is_partisan)
-				H.equip_coat(/obj/item/clothing/suit/polcoat1)
+				H.equip_coat(/obj/item/clothing/suit/storage/coat/polcoat1)
 			else
 				H.equip_coat(/obj/item/clothing/suit/storage/coat/soviet)
 		else if (istype(job, /datum/job/italian))

@@ -144,7 +144,7 @@
 "cN" = (/obj/structure/closet/crate/mg34belt,/turf/floor/plating/road,/area/prishtina/german/bunker{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red1"; name = "Japanese Bunkers"})
 "cO" = (/obj/structure/anti_tank,/turf/floor/plating/beach/sand,/area/prishtina/island/beach)
 "cP" = (/obj/structure/sink,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
-"cQ" = (/obj/structure/table/wood,/obj/item/weapon/storage/pill_bottle/tramadol,/obj/structure/light/small{dir = 1},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
+"cQ" = (/obj/structure/vending/medrack,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "cR" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/sand,/area/prishtina/island/beach)
 "cS" = (/obj/structure/table/iron,/obj/item/weapon/pen,/obj/structure/light/small{dir = 1},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; icon_state = "blue3"; name = "Japanese Cave HQ"})
 "cT" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/sand,/area/prishtina/island/beach)
@@ -268,7 +268,7 @@
 "fh" = (/obj/structure/table/iron,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; icon_state = "blue3"; name = "Japanese Cave HQ"})
 "fi" = (/obj/structure/barricade/steel,/obj/structure/barbwire{dir = 4},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; icon_state = "blue3"; name = "Japanese Cave HQ"})
 "fj" = (/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
-"fk" = (/obj/structure/closet/crate/medical,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
+"fk" = (/obj/structure/vending/med_cabinet,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "fl" = (/obj/structure/iv_drip,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "fm" = (/obj/structure/bed/roller,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "fn" = (/obj/structure/closet/crate/a77x58,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
@@ -438,7 +438,7 @@
 "iv" = (/obj/structure/light/small{dir = 1},/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "iw" = (/obj/structure/sign/nosmoking_1,/turf/wall/iron,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "ix" = (/obj/structure/light/small{dir = 4},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
-"iy" = (/obj/item/weapon/storage/firstaid/surgery,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
+"iy" = (/obj/structure/table/wood,/obj/structure/light/small{dir = 1},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "iz" = (/obj/structure/simple_door/key_door/anyone{name = "Sleeping Quarters"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "iA" = (/obj/structure/simple_door/key_door/allied/command_intermediate{name = "Military Police"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "iB" = (/obj/item/bodybag,/obj/item/bodybag,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship"})
@@ -457,8 +457,8 @@
 "iO" = (/obj/structure/barricade/steel,/obj/structure/barbwire{dir = 4},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "iP" = (/obj/structure/optable,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "iQ" = (/obj/structure/curtain/medical,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
-"iR" = (/obj/structure/closet/crate/medical,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
-"iS" = (/obj/structure/light/small{dir = 1},/obj/structure/table/iron,/obj/item/weapon/storage/firstaid/adv,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iR" = (/obj/structure/vending/med_cabinet,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"iS" = (/obj/item/weapon/storage/firstaid,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "iT" = (/obj/item/weapon/mop,/obj/item/weapon/reagent_containers/glass/bucket,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "iU" = (/obj/structure/light/small{dir = 1},/obj/structure/table/iron,/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/obj/item/trash/snack_bowl,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "iV" = (/obj/structure/sink/kitchen,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
@@ -466,7 +466,7 @@
 "iX" = (/obj/structure/simple_door/key_door/allied/command_intermediate{name = "Cell"},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "iY" = (/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship"})
 "iZ" = (/obj/structure/light/small{dir = 8},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
-"ja" = (/obj/structure/table/iron,/obj/item/weapon/storage/firstaid,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
+"ja" = (/obj/structure/vending/medrack,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "jb" = (/obj/structure/bed/chair/wood,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "jc" = (/obj/structure/railing{dir = 4},/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship"})
 "jd" = (/obj/item/weapon/reagent_containers/glass/bucket,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
@@ -475,7 +475,6 @@
 "jg" = (/obj/structure/table/rack,/obj/item/weapon/gauze_pack/gauze,/obj/item/weapon/gauze_pack/gauze,/obj/item/weapon/gauze_pack/gauze,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "jh" = (/obj/structure/table/wood,/obj/item/trash/snack_bowl,/obj/item/weapon/material/kitchen/utensil/fork,/obj/item/weapon/reagent_containers/food/snacks/hotdog,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "ji" = (/obj/structure/sink,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
-"jj" = (/obj/structure/table/iron,/obj/item/weapon/storage/firstaid/combat,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "jk" = (/obj/structure/table/wood,/obj/item/weapon/material/kitchen/utensil/fork,/obj/item/weapon/reagent_containers/food/snacks/donut,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "jl" = (/obj/structure/table/wood,/obj/item/weapon/material/kitchen/utensil/spoon,/obj/item/weapon/reagent_containers/food/snacks/grilledcheese,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "jm" = (/obj/structure/sign/redcross,/turf/wall/iron,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
@@ -666,7 +665,6 @@
 "mP" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag,/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "blue4"; name = "Village"})
 "mQ" = (/obj/item/weapon/gun/projectile/automatic/stationary/type92stat,/turf/floor/plating/road,/area/prishtina/german/bunker{base_turf = /turf/floor/plating/beach/sand; capturable = 0; icon_state = "red1"; name = "Japanese Bunkers"})
 "mR" = (/obj/structure/bed/chair/wood{dir = 4},/obj/item/weapon/storage/firstaid/surgery,/turf/floor/wood_broken,/area/prishtina/houses)
-"mS" = (/obj/structure/table/iron,/obj/item/weapon/storage/firstaid/surgery,/obj/item/weapon/storage/firstaid/surgery,/turf/floor/plating/road,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "mT" = (/obj/structure/closet/crate/rations/german_meat,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "mU" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/barbwire{dir = 4},/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "blue4"; name = "Village"})
 "mV" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/barbwire{dir = 4},/obj/structure/anti_tank,/turf/floor/plating/asteroid,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "blue4"; name = "Village"})
@@ -921,8 +919,8 @@
 aeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeafafafafaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaekEaekEaeaeaeaeaeaeae
 aeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeafafafafaffIgDaQafaeaeaeaeaeaeaeaeaeaeaeaeaefnfVfZgbaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaekFfjfjfBkRfBkSaeaeaeaeaeae
 aeaeaeaeaeaeaeaehfaeaeaeaeaehfaeaeaeaeaeaeaeaefgfghgfgfghhhihicLaQaQaQfifjfjaeaeaeaeaeaeaeaeaeaefjgFkGkHkMlwkHfnaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaelglhfZfjfZlhaeaeaeaeaeae
-aeaeaeaeaeaeaeaefkcMflcPfmgHcQfoaeaeaeaeaeafaffhcShlcUhnhobwhoaQbwaQaQbKfqfjfjfjfjfjaeaeaeaefXlwfjldbLkMbLbLkMgJaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaelifjlhfjfjfjlhloaeaeaeaeae
-aeaeaeaeaeaeaefriyfjfjfmfjfmfmfjfsftaeafafaQaQbMhpbMhpbwaQbwaQljljaQaQafaeaeaefjfjfjfjfjaeaeaefVbLldbLkGbLkMgKaeaeaeaeaeaeaeaeaeaeaefjfjfjfjhQaeaeaeaeaelufufufufvfwaeaeaeaeaefjfjlhfjfjfjlhaeaeaeaeaeae
+aeaeaeaeaeaeaeaecQcMflcPfkgHiyfoaeaeaeaeaeafaffhcShlcUhnhobwhoaQbwaQaQbKfqfjfjfjfjfjaeaeaeaefXlwfjldbLkMbLbLkMgJaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaelifjlhfjfjfjlhloaeaeaeaeae
+aeaeaeaeaeaeaefrfjfjfjfmfjfmfmfjfsftaeafafaQaQbMhpbMhpbwaQbwaQljljaQaQafaeaeaefjfjfjfjfjaeaeaefVbLldbLkGbLkMgKaeaeaeaeaeaeaeaeaeaeaefjfjfjfjhQaeaeaeaeaelufufufufvfwaeaeaeaeaefjfjlhfjfjfjlhaeaeaeaeaeae
 aeaeaeaeaeaeaefxlklkfyfjlklklklkfjfjfjbKaQaQaQllllaQhqaQbwaQaQaQafafafafaeaeaeaeaefqfjfjaeaeaefjbLldbLldlybLgKaeaeaeaeaefjfjfjfjfjfjfjfjfjfjfjfjfjfHftfAlmfjlmfjfjlmlvaeaeaeaeaeaeaefjfjaeaeaeaeaeaeaeae
 aeaeaeaeaeaeaefxfjlkfjfmlkfmfmfjaeaeaeafafafafafaQhrhshtcVhuafafaeaeaeaeaeaeaeaeaeaeaefjfjfjaeaefjkGkGbLldkHkMaeaefjfjfjfjfjfqfjfjfjfjfjfjfjfjfjfjfjfjfjfjdedhdifFfjfjaeaeaeaeaeaeaefjaeaeaeaeaeaeaeaeae
 aeaeaeaeaeaeaefGlkfjfyfjlkfjfjaeaeaeaeaeaeaeaeafafafafafafafafaeaeaeaeaeaeaeaeaeaeaeaeaeaefjfjfjfjfjkGndnekHaefjfjfjfqfjfjfjaeaefjfjfjfjfqaeaeaeaeaefHftfAlmfjfjlmfHfjdjaeaeaeaeaeaefjaeaeaeaeaeaeaeaeae
@@ -1183,9 +1181,9 @@ gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaga
 gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaga
 gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaga
 gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaimimiqimimiqimimimimimimimimimimimimiwimimimimimimimiwimimimimimimimimimimimimimimgagagagagagagagagagagagagagagagagagagagagagagagagagagaga
-gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagainimeUnknknknknlimiMiNiNiOkIkJimiPiQiripirioiRiSiripirkKisimkLimiTiTivjijiiuiUiViVimimimimimgagagagagagagagagagagagagagagagagagagagagagagaga
-gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaimimiWnmnnnmnmnmimipipipiXkIkNimiZiQipipipipkOkOkOkKkKkKjaimipimjbjbjbjbjbiulfkPjdimmKmTmXimimimimimgagagagagagagagagagagagagagagagagagagaga
-gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaimimipgLjfjgnokQimiNiNiNiOkIrmimiPiQiripiripjjmSiripirkKirimipimiLjhkTkUjkiukPkPkWnEiuiuiuimipipiximimimimimgagagagagagagagagagagagagagagaga
+gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagainimeUnknknknknlimiMiNiNiOkIkJimiPiQiripirioiRioiripirkKisimkLimiTiTivjijiiuiUiViVimimimimimgagagagagagagagagagagagagagagagagagagagagagagaga
+gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaimimiWnmnnnmnmnmimipipipiXkIkNimiZiQipipipipkOkOkOkKkKkKiSimipimjbjbjbjbjbiulfkPjdimmKmTmXimimimimimgagagagagagagagagagagagagagagagagagagaga
+gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaimimipgLjfjgnokQimiNiNiNiOkIrmimiPiQiripiripipjairipirkKirimipimiLjhkTkUjkiukPkPkWnEiuiuiuimipipiximimimimimgagagagagagagagagagagagagagagaga
 gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaimimimimimimizimimimimimimiAimimimimimimimimimimimimjmiIjmimiximjnjojojojoiujpjpjqimiuiupQimipipipipipipiximimimimimimgagagagagagagagagagaga
 gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaimimkXipipiFipiFipipipipiFipiFipipipipiFipiFipipipipiFipiFipipiGiuiuiuiuiukPkPkPkPimiuiurFimipipipipipipipipipipipimingagagagagagagagagagaga
 gagagagagagagagagagagagagagagagagagagagagagagagagagagagagagaimimimimimimizimimimimimimizimimimimimimiHimimimimimimlrimimiximjrjbjbjbjbiujbjbjsimiuiurBimipipipipipipiximimimimimimgagagagagagagagagagaga

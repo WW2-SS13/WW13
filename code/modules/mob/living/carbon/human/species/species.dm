@@ -215,7 +215,7 @@
 				properly_clothed = TRUE
 			else if (istype(H.wear_suit, /obj/item/clothing/suit/fallsparka))
 				properly_clothed = TRUE
-			else if (istype(H.wear_suit, /obj/item/clothing/suit/sssmock))
+			else if (istype(H.wear_suit, /obj/item/clothing/suit/storage/coat/sssmock))
 				properly_clothed = TRUE
 
 		if (properly_clothed)

@@ -408,38 +408,6 @@
 	worn_state = "fallsparka"
 	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
 
-/obj/item/clothing/suit/sssmock
-	name = "S.S. Smock"
-	desc = "A camo SchutzStaffel overcoat that blends in well in the fall."
-	icon_state = "sssmock"
-	item_state = "sssmock"
-	worn_state = "sssmock"
-	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
-
-/obj/item/clothing/suit/polcoat1
-	name = "Polish Coat"
-	desc = "A captured german coat, with the Polish colors on the sleeve."
-	icon_state = "polcoat1"
-	item_state = "polcoat1"
-	worn_state = "polcoat1"
-	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
-
-/obj/item/clothing/suit/pol_officer_coat
-	name = "Polish Officer Coat"
-	desc = "A captured german leather coat, with the Polish colors on the sleeve, used by officers."
-	icon_state = "pol_officer_coat"
-	item_state = "pol_officer_coat"
-	worn_state = "pol_officer_coat"
-	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
-
-/obj/item/clothing/suit/polcoat2
-	name = "Polish cammo smock"
-	desc = "A captured camo SS overcoat, with the Polish colors on the sleeve."
-	icon_state = "polcoat2"
-	item_state = "polcoat2"
-	worn_state = "polcoat2"
-	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
-
 /obj/item/clothing/head/helmet/gerhelm
 	name = GERMAN_HELMET_NAME
 	desc = GERMAN_HELMET_DESC
@@ -1112,6 +1080,14 @@
 	item_state = "nazi_coat"
 	worn_state = "nazi_coat"
 
+/obj/item/clothing/suit/storage/coat/sssmock
+	name = "S.S. Smock"
+	desc = "A camo SchutzStaffel overcoat that blends in well in the fall."
+	icon_state = "sssmock"
+	item_state = "sssmock"
+	worn_state = "sssmock"
+	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
+
 /obj/item/clothing/suit/storage/coat/german/SS
 	name = "SS Soldier's Coat"
 	desc = "An ordinary winter coat issued to SS soldiers."
@@ -1153,6 +1129,30 @@
 	icon_state = "italy_coat"
 	item_state = "italy_coat"
 	worn_state = "italy_coat"
+
+/obj/item/clothing/suit/storage/coat/polcoat1
+	name = "Polish Coat"
+	desc = "A captured german coat, with the Polish colors on the sleeve."
+	icon_state = "polcoat1"
+	item_state = "polcoat1"
+	worn_state = "polcoat1"
+	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
+
+/obj/item/clothing/suit/storage/coat/pol_officer_coat
+	name = "Polish Officer Coat"
+	desc = "A captured german leather coat, with the Polish colors on the sleeve, used by officers."
+	icon_state = "pol_officer_coat"
+	item_state = "pol_officer_coat"
+	worn_state = "pol_officer_coat"
+	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
+
+/obj/item/clothing/suit/storage/coat/polcoat2
+	name = "Polish cammo smock"
+	desc = "A captured camo SS overcoat, with the Polish colors on the sleeve."
+	icon_state = "polcoat2"
+	item_state = "polcoat2"
+	worn_state = "polcoat2"
+	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
 
 // WEBBING - can hold everything but clothing
 
