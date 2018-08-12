@@ -41,9 +41,9 @@
 	else
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/polhelm2(H), slot_head)
 	if (prob(25))
-		H.equip_to_slot_or_del(new /obj/item/clothing/suit/polcoat1(H), slot_wear_suit)
+		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/coat/polcoat1(H), slot_wear_suit)
 	else if (prob(15))
-		H.equip_to_slot_or_del(new /obj/item/clothing/suit/polcoat2(H), slot_wear_suit)
+		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/coat/polcoat2(H), slot_wear_suit)
 
 	H.give_radio()
 	H.add_note("Role", "You are a <b>[title]</b>, a Polish partisan soldier. You take orders from the <b>Partisan Leader</b> alone.")
@@ -94,7 +94,7 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/tokarev(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/uia_cap(H), slot_head)
 	if (prob(35))
-		H.equip_to_slot_or_del(new /obj/item/clothing/suit/pol_officer_coat(H), slot_wear_suit)
+		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/coat/pol_officer_coat(H), slot_wear_suit)
 
 	H.give_radio()
 

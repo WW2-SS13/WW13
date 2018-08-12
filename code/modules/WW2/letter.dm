@@ -5,11 +5,19 @@
 	icon_state = "letter_full"
 	var/datum/browser/popup = null
 	var/used = 0
-	var/points = 30
+	var/points = 50
 	var/obj/effect/landmark/recieve_landmark = null
 	var/list/cart = list()
 	var/list/agent_menu = list(
-		new /datum/data/agent_equipment("Tokarev", /obj/item/weapon/gun/projectile/pistol, 10, 1)
+		new /datum/data/agent_equipment("Tokarev",/obj/item/weapon/gun/projectile/pistol/tokarev, 15, 1),
+		new /datum/data/agent_equipment("Kar Rifle", /obj/item/weapon/gun/projectile/boltaction/kar98k, 40, 1),
+		new /datum/data/agent_equipment("Sniper Scope", /obj/item/weapon/attachment/scope/adjustable/sniper_scope, 10, 1),
+		new /datum/data/agent_equipment("Plastiqe Explosives", /obj/item/weapon/plastique/russian, 15, 1),
+		new /datum/data/agent_equipment("Shotgun", /obj/item/weapon/gun/projectile/shotgun/pump, 40, 1),
+		new /datum/data/agent_equipment("Blyskawica", /obj/item/weapon/gun/projectile/submachinegun/bly, 50, 1),
+		new /datum/data/agent_equipment("Knife", /obj/item/weapon/material/knife/combat, 10, 1),
+		new /datum/data/agent_equipment("Black Paint (great for night time stealth) ", /obj/item/weapon/reagent_containers/glass/paint/black, 10, 1),
+		new /datum/data/agent_equipment("Kamikaze Charge", /obj/item/weapon/grenade/explosive/kamikaze, 50, 1)
 		)
 
 var/list/obj/effect/landmark/recieve/drop_points = list()

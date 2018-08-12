@@ -19,6 +19,7 @@
 
 	else if (istype(C, /obj/item/weapon/shovel))
 		var/obj/snow/S = has_snow()
+		var/turf/T = get_turf(user)
 		var/mob/living/carbon/human/H = user
 		if (S && istype(H) && !H.shoveling_snow)
 			H.shoveling_snow = TRUE
@@ -31,6 +32,20 @@
 				qdel(S)
 			else
 				H.shoveling_snow = FALSE
+		else if (istype(T, /turf/floor/dirt) && istype(H) && !H.shoveling_dirt)
+			if (T.available_dirt >= 1)
+				H.shoveling_dirt = TRUE
+				visible_message("<span class = 'notice'>[user] starts to shovel dirt into a pile.</span>", "<span class = 'notice'>You start to shovel dirt into a pile.</span>")
+				playsound(src,'sound/effects/shovelling.ogg',100,1)
+				if (do_after(user, rand(45,60)))
+					visible_message("<span class = 'notice'>[user] shovels dirt into a pile.</span>", "<span class = 'notice'>You shovel dirt into a pile.</span>")
+					H.shoveling_dirt = FALSE
+					T.available_dirt -= 1
+					new /obj/item/weapon/dirt_wall(T)
+				else
+					H.shoveling_dirt = FALSE
+			else
+				user << "<span class='notice'>All the loose dirt has been shoveled out of this spot already.</span>"
 		else
 			return ..(C, user)
 
@@ -70,6 +85,41 @@
 						H.adaptStat("engineering", 3)
 				return
 
+	else if (istype(C, /obj/item/weapon/dirt_wall))
+
+		var/your_dir = "NORTH"
+
+		switch (user.dir)
+			if (NORTH)
+				your_dir = "NORTH"
+			if (SOUTH)
+				your_dir = "SOUTH"
+			if (EAST)
+				your_dir = "EAST"
+			if (WEST)
+				your_dir = "WEST"
+
+		var/dirt_wall_time = 50
+
+		if (ishuman(user))
+			var/mob/living/carbon/human/H = user
+			dirt_wall_time /= H.getStatCoeff("strength")
+			dirt_wall_time /= (H.getStatCoeff("engineering") * H.getStatCoeff("engineering"))
+
+		if (src == get_step(user, user.dir))
+			if (WWinput(user, "This will start building a dirt wall [your_dir] of you.", "Dirt Wall Construction", "Continue", list("Continue", "Stop")) == "Continue")
+				visible_message("<span class='danger'>[user] starts constructing the base of a dirt wall.</span>", "<span class='danger'>You start constructing the base of a dirt wall.</span>")
+				if (do_after(user, dirt_wall_time, user.loc))
+					var/obj/item/weapon/dirt_wall/bag = C
+					var/progress = bag.sand_amount
+					qdel(C)
+					var/obj/structure/window/dirt_wall/incomplete/dirt_wall = new/obj/structure/window/dirt_wall/incomplete(src, user)
+					dirt_wall.progress = progress
+					visible_message("<span class='danger'>[user] finishes constructing the base of a dirt wall. Anyone can now add to it.</span>")
+					if (ishuman(user))
+						var/mob/living/carbon/human/H = user
+						H.adaptStat("engineering", 3)
+				return
 
 	if (flooring)
 		if (istype(C, /obj/item/weapon/crowbar))

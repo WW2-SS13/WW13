@@ -360,7 +360,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
-	paths = list(/obj/item/ammo_magazine/c45_smg = DYNAMIC_AMT)
+	paths = list(/obj/item/ammo_magazine/thompson_ammo = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/german_grenade
 	name = "Stielgranate 41 crate"

@@ -2,7 +2,7 @@
 /turf/floor/plating/asteroid //floor piece
 	name = "sand"
 	icon = 'icons/turf/floors.dmi'
-	icon_state = "asteroid"
+	icon_state = "asteroidplating"
 	interior = FALSE
 	stepsound = "dirt"
 

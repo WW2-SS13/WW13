@@ -13,7 +13,9 @@ var/list/vocal_emotes = list(
 	"sigh",
 	"sneeze",
 	"yawn",
-	"charge")
+	"charge",
+	"burp",
+	"whistle",)
 
 /mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null)
 
@@ -400,11 +402,34 @@ var/list/vocal_emotes = list(
 					message = "grumbles!"
 					m_type = 1
 				if (!muzzled)
-					message = "grumbles!"
+					message = "grumbles!" //needs a sound/
 					m_type = 2
 				else
 					message = "makes a noise."
 					m_type = 2
+
+			if ("burp")
+				if (miming)
+					message = "burps!"
+					m_type = 1
+				if (!muzzled) //needs a sound//
+					message = "burpt!"
+					m_type = 2
+				else
+					message = "makes a noise."
+					m_type = 2
+
+			if ("whistle")
+				if (miming)
+					message = "whistle!"
+					m_type = 1
+				if (!muzzled) //needs a sound//
+					message = "whistles!"
+					m_type = 2
+				else
+					message = "makes a loud noise."
+					m_type = 2
+
 
 			if ("groan")
 				if (miming)
@@ -459,7 +484,7 @@ var/list/vocal_emotes = list(
 					else
 				m_type = 1
 
-			if ("raise")
+			if ("raise hand")
 				if (!restrained())
 					message = "raises a hand."
 				m_type = 1
@@ -491,11 +516,11 @@ var/list/vocal_emotes = list(
 				m_type = 2
 				if (miming)
 					m_type = 1
-/*
+
 			if ("pale")
 				message = "goes pale for a second."
 				m_type = 1
-*/
+
 			if ("tremble")
 				message = "trembles in fear!"
 				m_type = 1
@@ -659,10 +684,12 @@ var/list/vocal_emotes = list(
 							H.Weaken(rand(4,5))
 					P.next_pose = world.time + 600
 
+					//some one make it so the one's that make sounds have a colour//
+
 			if ("help")
 				src << {"blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough,
-	cry, dab, drool, eyebrow, frown, gasp, giggle, groan, grumble, handshake, hug-(none)/mob,
-	grin, laugh, look-(none)/mob, moan, mumble, nod, point-atom, raise, salute, shake, shiver, shrug,
+	cry, dab, drool, eyebrow, frown, gasp, giggle, whistle, groan, grumble, handshake, hug-(none)/mob,
+	grin, laugh, look-(none)/mob, moan, mumble, nod, point-atom, raise hand, pale, salute, shake, shiver, shrug,
 	sigh, signal-#1-10, smile, sneeze, sniff, snore, stare-(none)/mob, scream, surrender, tremble, twitch,
 	wink, yawn, dab, charge"}
 

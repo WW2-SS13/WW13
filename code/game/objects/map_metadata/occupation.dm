@@ -22,7 +22,7 @@
 	available_subfactions = list(
 		SCHUTZSTAFFEL)
 	songs = list(
-		"Song of the Kamikaze:1" = 'sound/music/occupied.ogg'
+		"Occupation:1" = 'sound/music/occupied.ogg'
 		)
 	battle_name = "Occupation"
 	agents = 1

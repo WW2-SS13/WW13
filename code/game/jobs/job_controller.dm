@@ -315,11 +315,10 @@ var/global/datum/controller/occupations/job_master
 	#endif
 
 	var/list/turfs = latejoin_turfs[spawn_location]
+	var/spawnpoint = pick(turfs)
+	if (!locate(/mob) in spawnpoint && !locate(/obj/structure) in spawnpoint)
+		H.loc = spawnpoint
 
-	for (var/spawnpoint in turfs)
-		if (!locate(/mob) in spawnpoint && !locate(/obj/structure) in spawnpoint)
-			H.loc = spawnpoint
-			break
 
 	// make sure we have the right ambience for our new location
 	spawn (1)
@@ -424,7 +423,7 @@ var/global/datum/controller/occupations/job_master
 			if (job.is_officer)
 				H.equip_coat(/obj/item/clothing/suit/storage/coat/soviet/officer)
 			else if (job.is_partisan)
-				H.equip_coat(/obj/item/clothing/suit/polcoat1)
+				H.equip_coat(/obj/item/clothing/suit/storage/coat/polcoat1)
 			else
 				H.equip_coat(/obj/item/clothing/suit/storage/coat/soviet)
 		else if (istype(job, /datum/job/italian))

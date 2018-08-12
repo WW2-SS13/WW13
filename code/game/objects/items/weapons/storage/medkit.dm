@@ -119,9 +119,9 @@
 
 /obj/item/weapon/storage/firstaid/surgery
 	name = "surgery kit"
-	desc = "Contains tools for surgery. Has precise foam fitting for safe transport."
-	icon_state = "firstaid2"
-	item_state = "firstaid_2"
+	desc = "Contains tools for surgery."
+	icon_state = "surg_full"
+	item_state = "tile"
 
 /obj/item/weapon/storage/firstaid/surgery/New()
 	..()
