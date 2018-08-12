@@ -52,7 +52,7 @@ var/list/flooring_types
 	name = "coarse sand"
 	desc = "Gritty and unpleasant."
 	icon = 'icons/turf/flooring/asteroid.dmi'
-	icon_base = "asteroid"
+	icon_base = "asteroidplating"
 	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
 	build_type = null
 
