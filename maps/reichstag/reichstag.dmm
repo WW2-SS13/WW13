@@ -161,7 +161,7 @@
 "de" = (/obj/item/weapon/cigbutt,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
 "df" = (/turf/floor/wood_broken,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
 "dg" = (/obj/item/weapon/cigbutt,/turf/floor/plating/dirt,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
-"dh" = (/obj/structure/closet/crate/medical,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/medical{base_turf = /turf/floor/dirt})
+"dh" = (/obj/structure/vending/medrack,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/medical{base_turf = /turf/floor/dirt})
 "di" = (/obj/structure/bed/roller,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/medical{base_turf = /turf/floor/dirt})
 "dj" = (/obj/effect/decal/cleanable/blood/drip,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/medical{base_turf = /turf/floor/dirt})
 "dk" = (/obj/structure/bed/chair/wood{dir = 1},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/medical{base_turf = /turf/floor/dirt})
@@ -678,7 +678,7 @@
 "nb" = (/obj/structure/sign/portrait/propaganda/sov3,/turf/wall/brick,/area/prishtina/soviet/small_map/inside/relaxation{base_turf = /turf/floor/dirt; capturable = 0})
 "nc" = (/obj/structure/bed/chair/wood/red{icon_state = "wooden_chair_red"; dir = 1},/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "nd" = (/obj/structure/table/wood,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
-"ne" = (/obj/structure/table/wood,/obj/structure/bed/chair/wood{dir = 1},/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
+"ne" = (/obj/structure/vending/med_cabinet,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "nf" = (/obj/structure/sign/flag/germany,/turf/wall/sandstone,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "ng" = (/turf/wall/sandstone,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "nh" = (/obj/structure/sign/portrait/hitler,/turf/wall/sandstone,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
@@ -695,9 +695,9 @@
 "ns" = (/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/splatter,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "nt" = (/obj/effect/decal/cleanable/dirt,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "nu" = (/obj/effect/decal/cleanable/blood,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
-"nv" = (/obj/structure/table/wood,/obj/effect/decal/cleanable/dirt,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
+"nv" = (/obj/structure/table/wood,/obj/effect/decal/cleanable/dirt,/obj/item/weapon/storage/backpack/satchel_surg,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "nw" = (/obj/structure/bed/chair/wood/red{dir = 8; icon_state = "wooden_chair_red"},/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
-"nx" = (/obj/structure/table/wood,/obj/structure/bed/chair/wood{dir = 8},/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
+"nx" = (/obj/structure/vending/medrack,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "ny" = (/obj/structure/railing{dir = 8},/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "nz" = (/obj/structure/sign/wide/carpet,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "nA" = (/obj/structure/railing{dir = 4},/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
@@ -727,11 +727,11 @@
 "nY" = (/obj/structure/table/glass,/obj/item/weapon/phone/tohighcommand/german,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "nZ" = (/obj/structure/bed/chair/wood{dir = 1},/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "oa" = (/obj/structure/bed/chair/wood{dir = 8},/obj/structure/light/small,/obj/effect/decal/cleanable/dirt,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
-"ob" = (/obj/structure/vending/medrack,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/medical{base_turf = /turf/floor/dirt})
-"oc" = (/obj/item/weapon/storage/firstaid/surgery,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/medical{base_turf = /turf/floor/dirt})
+"ob" = (/obj/structure/bed/chair/wood{dir = 8},/obj/structure/light/small,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
+"oc" = (/obj/structure/vending/medrack,/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
 "od" = (/obj/structure/table/wood,/obj/item/clothing/head/helmet/gerhelm/medic,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
-"oe" = (/obj/structure/vending/medrack,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
-"of" = (/obj/structure/vending/med_cabinet,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
+"oe" = (/obj/item/weapon/storage/firstaid/injectorpack,/obj/item/weapon/storage/firstaid/injectorpack,/obj/item/weapon/storage/firstaid/injectorpack,/obj/structure/closet,/obj/item/weapon/storage/firstaid/injectorpack,/obj/item/weapon/storage/firstaid/injectorpack,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
+"of" = (/obj/structure/closet,/obj/item/weapon/storage/firstaid/regular,/obj/item/weapon/storage/firstaid/regular,/obj/item/weapon/storage/firstaid/regular,/obj/item/weapon/storage/firstaid/toxin,/obj/item/weapon/storage/firstaid/toxin,/obj/item/weapon/storage/firstaid/toxin,/obj/item/weapon/storage/firstaid/fire,/obj/item/weapon/storage/firstaid/fire,/obj/item/weapon/storage/firstaid/fire,/obj/item/weapon/storage/firstaid/o2,/obj/item/weapon/storage/firstaid/o2,/obj/item/weapon/storage/firstaid/o2,/obj/item/weapon/storage/firstaid/adv,/obj/item/weapon/storage/firstaid/adv,/obj/item/weapon/storage/firstaid/adv,/obj/structure/light/small,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "og" = (/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "oh" = (/obj/structure/light/small,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "oi" = (/obj/structure/sign/flag/germanybanner,/turf/wall/stone,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 1st Floor"})
@@ -1188,7 +1188,6 @@
 "wR" = (/obj/structure/pot,/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
 "wS" = (/obj/structure/closet/crate/rations/water,/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
 "wT" = (/obj/structure/bed/roller,/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
-"wU" = (/obj/structure/vending/medrack,/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
 "wV" = (/obj/structure/sign/redcross,/turf/wall/stone,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
 "wW" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
 "wX" = (/obj/effect/landmark{name = "JoinLateHeer"},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
@@ -1196,8 +1195,6 @@
 "wZ" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/barbwire{dir = 4},/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
 "xa" = (/obj/structure/barbwire{dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
 "xb" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
-"xc" = (/obj/structure/table/wood,/obj/item/weapon/storage/firstaid/surgery,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
-"xd" = (/obj/structure/table/wood,/obj/structure/bed/chair/wood{dir = 8},/obj/structure/light/small,/obj/item/weapon/storage/firstaid/surgery,/turf/floor/carpet,/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 0; name = "Reichstag - 2nd Floor"})
 "xe" = (/obj/effect/landmark{name = "JoinLateRC"},/turf/floor/tiled/white,/area/prishtina/houses/sov_one)
 "xf" = (/obj/effect/decal/cleanable/generic,/obj/effect/landmark{name = "JoinLateRC"},/turf/floor/tiled/white,/area/prishtina/houses/sov_one)
 "xg" = (/obj/structure/sign/flag/medical,/turf/wall/sandstone,/area/prishtina/houses/sov_one)
@@ -1228,6 +1225,8 @@
 "xF" = (/obj/structure/table,/obj/item/weapon/gun/projectile/pistol/_45/gibber,/turf/floor/bluegrid,/area/prishtina/admin)
 "xG" = (/obj/structure/table,/obj/item/weapon/gun/projectile/pistol/luger/gibber,/turf/floor/bluegrid,/area/prishtina/admin)
 "xH" = (/obj/structure/table,/obj/item/weapon/gun/projectile/pistol/mauser/gibber,/turf/floor/bluegrid,/area/prishtina/void{base_turf = /turf/floor/dirt; location = 1; name = "Streets"})
+"xI" = (/obj/structure/table/iron,/obj/item/weapon/storage/backpack/satchel_surg,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/medical{base_turf = /turf/floor/dirt})
+"xJ" = (/obj/item/weapon/storage/backpack/satchel_surg,/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "blue2"; location = 1; name = "Reichstag - Roof"})
 
 (1,1,1) = {"
 abababababababacadaeafafafagahacababababababaiajakakakakakakakakakakajajakakakakakakajakakakakakajakakakakakakakakakakakakakakakakakakakakakakakakajalxhxhxhxhxhxhxhxhxhxhxhxhakakakakakakanakakakakakak
@@ -1324,7 +1323,7 @@ blblblblblblblblblblblblblblblblblblblblblblblblblblblblmCmCuBmCmCblblcablbljhjh
 dSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdScMeKdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSdSiWafafafafjsixaItbjHucumueunjAsUuoupuqjAucjHurupjAupusjHucjAutupucjHjA
 aIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIaIjPjPaIjPjPmNaIaIaIaIaIaIaIaIaIaIaIaIaIaIchafafafafafcyaIjAjHjHuuueuvjAsUjHjHjHucjHjHwEuxjAjHjHunjHjAueunuyjHjA
 awawmOawawawawmOawawaHcicicicjcinbckckcjcjcjcjcjarararclclclnoclcmcncncmjIclclcoclarararcpcqcqcrcqcqcsctcscsctcscscucvjJcucwcucxrrchafrsrsrsafcyaIwFucwGjHuejHsUjAjAjAsUjAjAjAuzucjAsUjAjAuAsUtVjAuCjAjA
-rtakakrtakrtakakrtrtalcicAcBcCcAdecBcAjQcFdUcHcjarararcIcJcKcLoboccJcJcJcNcNcOcOcParararcqcQcRcScTcUcscVeacWcWikcscYcZdadbcZcZdcrrruafrsrsrsafcyaItbjHucjHuDuEsUjHwHucjHuuuxjHuFumjHjHucjHjHjHjHjHjHjHtA
+rtakakrtakrtakakrtrtalcicAcBcCcAdecBcAjQcFdUcHcjarararcIcJcKcLcJcJcJcJcJcNxIcOcOcParararcqcQcRcScTcUcscVeacWcWikcscYcZdadbcZcZdcrrruafrsrsrsafcyaItbjHucjHuDuEsUjHwHucjHuuuxjHuFumjHjHucjHjHjHjHjHjHjHtA
 akakrtakakakakarakakalcjcHdditdecBdUcBitdfcBjRcjarararcldhcJdidjdicJcJcJdkdkdlcOcIarararcplHcSiudmdncscWdodpdqdrctcZcZcZdsdtcZcwrrruafrvrvrvrwryrOsUjHjHsUjHuetVjAjAjAjAjAjAjAjAtVsUjAwFjAjAjAjAjAsUjAjA
 akrtakasrtakrtakrtakalcjducBdUdgizdvdgiAcBiBdeciarararcIcJcJdicJdycJiCdjdzcJdAcJclarararcpdBcSdCdDdEcscWdFdGdHiDnqcZdJiEiFdLcZcwrrruafafafafrwryrOucjHsUjHjHjHuzjHsUsUjHjAjHjHueuGtVuHjHjHjHjAjHjHjHuIjA
 akakrtakakrtakasakakalcjdMdvcBdgdvdUcBdNcAdfdOcjarararcIdPcJdidldiiCiGiCdAcJcJcJclarararcpdQdRiHcScSctcWiIiJcWcWcsdVcZiEdWcZdXcurrrurPrQrRrSrwryrOsUsUjHumjHjHjAugjHuJupjAuKupsUuIuLupuMupsUjAupuNsUuOjA
@@ -1451,14 +1450,14 @@ hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhohrhrhrhrhrhrhrhrhrhshsnihsnyprpshohshomUmUmUhomU
 hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhohshshshshshshshshshspvhsnypwprhspxhspxmUotouhoovowoxmUpxhspuhspxhshshsptpzhshshshshshshshshshshshohjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhj
 hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhohshshshsmWhshshshshspvhsnymWhshshohsosnIoyozhomUmUmUmUoshspupKhohshshsptpzhshshshshshshshshshshshohjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhj
 hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhopLnpnppMhohohohohohohohohohohohohooAhohohohohohohohohohohshspNhohohsmWhshshshshshshshohomWhshshshohjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhj
-hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhonMmUmUnEhohomZmUmZmUmZnNncndnehohohshomUjjoChooqoymUpOoshshshshohohohohohohohohohohonfngonnhonngnghjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhj
+hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhonMmUmUnEhohomZmUmZmUmZnNncndndhohohshomUjjoChooqoymUpOoshshshshohohohohohohohohohohonfngonnhonngnghjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhj
 hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhonMmUmUnEpBmUmZmUmZmUmZnjmUnkndndhohspxmUotoDhoovoEmUmUpxhspPpHhomUmUnlmUmUnmnmnmmUmUngnnnpnpkpnrhphjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhj
-hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhonMmUmUnEpBmUnsmUntmUnumUnvnwnxndhohsosmUmUmUhomUmUmUmUoshspDhspxnznAnBnwmUmUmUmUmUmUnCnDmUmUmUnEhphjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhj
+hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhonMmUmUnEpBmUnsmUntmUnumUnvnwndndhohsosmUmUmUhomUmUmUmUoshspDhspxnznAnBnwmUmUmUmUmUmUnCnDmUmUmUnEhphjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhj
 hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhonMmUmUnEnFhomZmUmZmUmZmUnGnHnIhohohshohohohohohohohohohohshsmYhonJnAnKoomUnLnLnLnLmUnfngpEmUmUnEhphjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhj
 hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhonMmUmUnEnFhomZmUmZmUmZmUmUnNnwhohohshonIoxoChomUmUmUmUospHpQhshonJnAnOmUmUmUmUmUmUmUnfngpEmUnPnQhphjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhj
 hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhonMmUmUnEpBmUmUmUnumUnRnjmUmUnSnThohspxmUoFoDhoovotoGmUpxhsoVmYhomUnAoHoomUnLnLnLnLmUngjkmUmUnVnWhphjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhj
 hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhonMmUmUnEpBmUmUmUmUmUmUmUmUnXnGnIhohsosmUmUmUhooqoBoGoCoshsoVhspxnznAnOnwmUmUmUmUmUmUngnDmUmUnYnEhphjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhj
-hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhopRpSpTpUhohonZoandoexcxdodofhohohohshohohohohohohohohohohshshshohomUogmUohnLnLnLnLohnfngojokolomhphjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhj
+hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhopRpSpTpUhohonZoanenxndobodoeofhohohshohohohohohohohohohohshshshohomUogmUohnLnLnLnLohnfngojokolomhphjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhj
 hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhopVpWpXpYhohohohohohohohohohohohohooAhomUoBozhooqoxmUmUoshspHpHhohohohohohohohohohohongngonnhonngnghjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhj
 hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhopZpDqaqblmhshspIpIhshsnihsnyprpshohspxmUotouhoovoImUmUwshsoVqdhooJoLoKhopFpIhshshspIhspIhspIhspIhohjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhj
 hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhohsqeqfoVhshspIhshshspvhsnynyprpshohsosmUmUmUhomUmUmUoCoshshsmYwtoJoJoJhopGhshspIhshshspIhshshshshohjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhj
@@ -1564,9 +1563,9 @@ hqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhuhwhwhwhwhwiahwcXhwcXcXdwhIhwwZhDhxhxhxhxhxhxhxhx
 hqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhuhwhxhxhxhwhwhwhwcXhwjahwhwhwwZhKjbhxhxhxhxhxhxhxhxhxhxhxhxhxhxibidiehwdwjcjcjcjcjcjcjchwhxhxhxhwhuhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhq
 hqhqhqhqhqhqhqhqhqhqhqhqhqhqhuhuhWhxhxhxhWjdjdjdjdjdjehwcXcXwZhMhLhLhxhxhxtehxhxhxhxvThxhxhxhNmDwShwdwhwcGhwhwcGhwcXhwhwhxhxhxhwhuhuhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhq
 hqhqhqhqhqhqhqhqhqhqhqhqhqhqhuhuhywThwwThyhxhxhwhwhwhwhwhIhwxahyhLjfjfjfhLjUiiijilhLhLhLhOifhNhwcXimhwhIhIcXhwinhwhxhxhwhwcGhwhwhuhuhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhq
-hqhqhqhqhqhqhqhqhqhqhqhqhqhqhuhuwUwThwhwwThxhxcXcXcXindwhwdwhJhWhLjfjfjfhLhLhOhQhRhLhLhLhLiohLhwcXhwhIhwcXcXhwhwhwhxhxhwhwhwhwhwhuhuhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhq
+hqhqhqhqhqhqhqhqhqhqhqhqhqhqhuhuocwThwhwwThxhxcXcXcXindwhwdwhJhWhLjfjfjfhLhLhOhQhRhLhLhLhLiohLhwcXhwhIhwcXcXhwhwhwhxhxhwhwhwhwhwhuhuhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhq
 hqhqhqhqhqhqhqhqhqhqhqhqhqhqhuhuhwhwhwhwhwhxwVhwcXcXhwcXhwcXhwhwhLhLhLhLhLhLhLhLhLhLhLhLhLhLhLhwcXhwcXhwcXhwcXhwjghxhxhwhwhwhwhwhuhuhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhq
-hqhqhqhqhqhqhqhqhqhqhqhqhqhqhuhuhThwhwhwhwhwhwcXhwcXhwhUhVhWxbhWhLhXhLhXhLhXhLhLhLhLhXhLhXhLhXhwhwhJhWhVhWhVhYhWhWhWhwhwhwhwhwhThuhuhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhq
+hqhqhqhqhqhqhqhqhqhqhqhqhqhqhuhuhThwxJhwhwhwhwcXhwcXhwhUhVhWxbhWhLhXhLhXhLhXhLhLhLhLhXhLhXhLhXhwhwhJhWhVhWhVhYhWhWhWhwhwhwhwhwhThuhuhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhq
 hqhqhqhqhqhqhqhqhqhqhqhqhqhqhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhq
 hqhqhqhqhqhqhqhqhqhqhqhqhqhqhuhuhuhuhuhuhuhqhqhqhqhqhqhqhqhqhqhqhqhuhuhuhuhuhuhuhuhuhuhuhuhuhuhqhqhqhqhqhqhqhqhqhqhqhqhuhuhuhuhuhuhuhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhq
 hqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhqhq

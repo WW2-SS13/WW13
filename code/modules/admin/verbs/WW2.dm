@@ -496,10 +496,10 @@
 					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE USA HIGH COMMAND TO US SOLDIERS:</b>" : "<b>MESSAGE TO PARTISANS FROM ADMINS:</b>"
 					H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
-		src << "You sent '[msg]' to all USA Soldiers."
-		message_admins("[key_name(src)] sent '[msg]' to all USA Soldiers")
+		src << "You sent '[msg]' to all USA soldiers."
+		message_admins("[key_name(src)] sent '[msg]' to all USA soldiers")
 
-/client/proc/message_japness)
+/client/proc/message_japanese()
 	set category = "Special"
 	set name = "Message japanese"
 
@@ -522,8 +522,8 @@
 					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE JAPANESE EMPEROR TO JAPANESE SOLDIERS:</b>" : "<b>MESSAGE TO PARTISANS FROM ADMINS:</b>"
 					H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
-		src << "You sent '[msg]' to all USA Soldiers."
-		message_admins("[key_name(src)] sent '[msg]' to all USA Soldiers")
+		src << "You sent '[msg]' to all Japanese soldiers."
+		message_admins("[key_name(src)] sent '[msg]' to all Japanese soldiers")
 
 var/german_civilian_mode = FALSE
 var/soviet_civilian_mode = FALSE

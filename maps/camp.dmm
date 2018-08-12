@@ -103,8 +103,8 @@
 "bY" = (/obj/structure/bed/chair/wood,/turf/floor/wood,/area/prishtina/german/medical{base_turf = /turf/floor/dirt; capturable = 0})
 "bZ" = (/obj/structure/bed/chair/wood,/obj/structure/light/small{dir = 1},/turf/floor/wood,/area/prishtina/german/medical{base_turf = /turf/floor/dirt; capturable = 0})
 "ca" = (/obj/structure/curtain/medical,/turf/floor/tiled/white,/area/prishtina/german/medical{base_turf = /turf/floor/dirt; capturable = 0})
-"cb" = (/obj/structure/vending/medrack,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical{base_turf = /turf/floor/dirt; capturable = 0})
-"cc" = (/obj/structure/vending/med_cabinet,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical{base_turf = /turf/floor/dirt; capturable = 0})
+"cb" = (/obj/structure/vending/med_cabinet,/obj/structure/light/small{dir = 1},/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical{base_turf = /turf/floor/dirt; capturable = 0})
+"cc" = (/obj/structure/vending/medrack,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical{base_turf = /turf/floor/dirt; capturable = 0})
 "cd" = (/obj/structure/sink{step_y = 0; pixel_y = 27},/obj/structure/bed/chair/wheelchair,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical{base_turf = /turf/floor/dirt; capturable = 0})
 "ce" = (/obj/structure/table/reinforced,/obj/item/weapon/bone_saw,/obj/item/weapon/hemostat,/obj/item/weapon/reagent_containers/glass/rag,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical{base_turf = /turf/floor/dirt; capturable = 0})
 "cf" = (/obj/structure/table/reinforced,/obj/item/weapon/FixOVein,/obj/item/weapon/bonesetter,/obj/item/weapon/retractor,/obj/structure/light/small{dir = 1},/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical{base_turf = /turf/floor/dirt; capturable = 0})
@@ -737,7 +737,7 @@
 "oi" = (/obj/item/clothing/under/shorts/red,/turf/floor/dirt,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
 "oj" = (/obj/item/clothing/under/shorts/blue,/turf/floor/dirt,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
 "ok" = (/obj/snow_maker,/obj/item/weapon/storage/fancy/cigarettes{desc = "Good quality german cigarettes."; name = "Wehrbauer Zigaretten"},/obj/item/weapon/storage/fancy/cigarettes{desc = "Good quality german cigarettes."; name = "Wehrbauer Zigaretten"},/obj/item/weapon/storage/fancy/cigarettes{desc = "Good quality german cigarettes."; name = "Wehrbauer Zigaretten"},/obj/item/weapon/storage/fancy/cigarettes{desc = "Good quality german cigarettes."; name = "Wehrbauer Zigaretten"},/obj/item/weapon/storage/fancy/cigarettes{desc = "Good quality german cigarettes."; name = "Wehrbauer Zigaretten"},/obj/item/weapon/storage/fancy/cigarettes{desc = "Good quality german cigarettes."; name = "Wehrbauer Zigaretten"},/obj/structure/closet/crate/empty,/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
-"ol" = (/obj/structure/closet/crate/waltherammo,/turf/floor/wood,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; capturable = 0})
+"ol" = (/obj/structure/closet/crate/mauserammo,/turf/floor/wood,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; capturable = 0})
 "om" = (/obj/structure/railing,/obj/structure/railing{dir = 4},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
 "on" = (/obj/structure/table/wood,/obj/item/weapon/flame/candle,/obj/item/weapon/material/kitchen/utensil/spoon,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
 "oo" = (/obj/structure/table/wood,/obj/item/weapon/material/kitchen/utensil/spoon,/obj/item/trash/snack_bowl,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
@@ -748,7 +748,6 @@
 "ot" = (/obj/effect/decal/cleanable/dirt,/obj/item/weapon/storage/firstaid/surgery,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/medical{base_turf = /turf/floor/dirt})
 "ou" = (/obj/structure/railing,/obj/structure/railing{dir = 8},/obj/structure/vending/guard_weaponrack,/turf/floor/wood,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; capturable = 0})
 "ov" = (/obj/structure/vending/guard_weaponrack,/obj/structure/railing,/turf/floor/wood,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; capturable = 0})
-"ow" = (/obj/structure/closet/crate/mp40kammo,/obj/structure/light/small{dir = 4},/turf/floor/wood,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; capturable = 0})
 
 (1,1,1) = {"
 aaaaaaaaaaaaababababababababababababababababababadadadabababababababababababababababababababababaeababababababababababaeababababaeababababababaeababababababababababababababababababababababababababababababababababababaeababababababababaiajaiakaiaiaial
@@ -820,7 +819,7 @@ abababacabababaeabaeabababaeabbbbebbbscwcxcxcxcxcxcwbHbHcybYbYbYcaczczczcAcBbMbG
 abababaeabababacabababababababbbbebbbscwcxocofofcxcNbHbHbMcOcPcPcacQcRcScTcUbMbGbPcVcWcXcVbPbHbbbebbbvbvbvbIcYbJbQdaeDfcdccmdddeeDeDdfbQbJbJbJbScudCeEeEeEeEdlcucubSbJbKbvbvbbbbbxbiaDabababaeababababababmmababaeabababaeabababababababmmabmmmmababababab
 ababababababababababacababababbbbebbbscwcxdmdndndodpbHbHbMdqdrdqbMbMbObMbObMbMbGbPbPdsdsbPbPiFaDaDaDiGdtdtdtdudvbQbQbQbQbQdwdwbQbQbQbQbQbJbJbJdgeEeEeEdCdCeHcucucudgbJbKbvbvbbbbbxbiaDababababababababababababababababmmabababababababababababmmabababmmab
 ababababababababababababacababbbbebbbscwcxdmdDdEcxdFbHbHbHdGbHdGdHbHbHbHbHbHbHbHdIdJbHbHdJdIbHdKdLdKbvbvbvbvdMdvbJdNbJbJdObJbJdObJbJbJbJdPbJdxbScueEeEeEeEomdlcucubSbJbKbvbvbbbbbxbiaDabacacababacacababababmmabababababababmmabababababababababaeaeababab
-abacabababaeabababababaeacabacbbbebbbscwcxdmdQowcxcwbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHdKdLdKbvbvbvbvdMdvbJbJbJbJbJbJbJbJbJbJbJbJdPbJbJdScucudlcucucucucudlbSbJbKbvbvbbbbbxbiaDacabababababacababababmmaeabababmmababababababaeabababababababababab
+abacabababaeabababababaeacabacbbbebbbscwcxdmdQdQcxcwbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHdKdLdKbvbvbvbvdMdvbJbJbJbJbJbJbJbJbJbJbJbJdPbJbJdScucudlcucucucucudlbSbJbKbvbvbbbbbxbiaDacabababababacababababmmaeabababmmababababababaeabababababababababab
 ababababababababacababaeabababbbbebbbscwcxdmololcxcwbHbHdTdTdTdTdUdTdVdUdTdTdUdTdVdUdTdTbHbHiHaDaDaDiSdXdXdXdYdvfdfdfdfdfdfdfdfdfdfdfdfdecbJbJdScucucudlcucuedeRefbSbJbKbvbvbbbbbxbiaDababacababababababababmmaeabababmmababababmmababababmmababababmmabab
 abababaeabababababababababababbbbebbbscwcxdmdndncxcwbHbHdTekeldTemeneoenemeoepeqeoeqepdTbHbHdWbbbebbbvbvbvbIerbJesesesesesesesesesesesesdPbJdxbSetegeuedonefedooefbSbJbKbvbvbbbbbxbiaDabacababababaeababababmmababababababababababmmmmabababababababaeabab
 ababababababaeabacababababababbbbebbbscwcxouovovcxcwbHbHdTeweldTenenexenenexeqeqexeqeqdTbHbHdWbbbebbbvbvbvbIbJbJfdfdfdfdfdfdfdfdfdfdfdfddPbJbJbSedeeefedeRefedevefbSbJbKbvbvbbbbbxbiaDababacabaeabababababababababaeaeabababababaeabababababababababaeabab
