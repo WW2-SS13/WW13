@@ -417,7 +417,7 @@ OTHER
 /obj/item/ammo_magazine/a75/empty
 	initial_ammo = FALSE
 
-/obj/item/ammo_magazine/a762
+/obj/item/ammo_magazine/a792
 	name = "Mg34 drum magazine"
 	icon_state = "mg34_drum"
 ////	origin_tech = "combat=2"
