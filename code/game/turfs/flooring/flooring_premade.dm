@@ -69,6 +69,7 @@
 	icon_state = "dirt"
 	uses_winter_overlay = TRUE
 	may_become_muddy = TRUE
+	available_dirt = 3
 
 /turf/floor/hull
 	name = "hull"
