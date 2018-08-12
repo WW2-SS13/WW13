@@ -237,13 +237,13 @@
 "eC" = (/obj/effect/floor_decal/corner/grey/border{dir = 4},/turf/floor/plating/road,/area/prishtina)
 "eD" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/structure/light/floor/streetlight,/obj/structure/railing{dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina)
 "eE" = (/obj/effect/floor_decal/borderfloor,/obj/structure/railing{dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina)
-"eF" = (/obj/effect/floor_decal/corner/grey/border{dir = 1},/obj/structure/railing{dir = 8},/turf/floor/plating/road,/area/prishtina)
+"eF" = (/obj/structure/filingcabinet/filingcabinet,/obj/structure/railing{dir = 8},/obj/item/weapon/paper,/turf/floor/plating/road,/area/prishtina)
 "eG" = (/obj/effect/floor_decal/corner/grey/bordercorner{dir = 4},/turf/floor/plating/road,/area/prishtina)
 "eH" = (/obj/effect/floor_decal/corner/grey/border{dir = 1},/turf/floor/plating/road,/area/prishtina)
 "eI" = (/obj/effect/floor_decal/corner/grey/border{dir = 1},/obj/structure/barricade,/turf/floor/plating/road,/area/prishtina)
 "eJ" = (/obj/structure/table/iron,/obj/item/weapon/reagent_containers/food/snacks/rawcutlet,/obj/effect/floor_decal/spline/fancy/wood,/turf/floor/wood,/area/prishtina/houses/nml_one)
-"eK" = (/obj/structure/filingcabinet/filingcabinet,/obj/item/weapon/paper,/obj/item/weapon/paper,/obj/structure/light/small{dir = 1},/turf/floor/plating/road,/area/prishtina)
-"eL" = (/obj/structure/table,/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/turf/floor/plating/road,/area/prishtina)
+"eK" = (/obj/structure/light/small{dir = 1},/turf/floor/plating/road,/area/prishtina)
+"eL" = (/obj/structure/bed/chair/wood/red{icon_state = "wooden_chair_red"; dir = 4},/turf/floor/plating/road,/area/prishtina)
 "eM" = (/obj/effect/floor_decal/corner/grey/bordercorner,/turf/floor/plating/road,/area/prishtina)
 "eN" = (/obj/effect/floor_decal/corner/grey/border,/turf/floor/plating/road,/area/prishtina)
 "eO" = (/obj/effect/floor_decal/corner/grey/border,/obj/structure/barricade,/turf/floor/plating/road,/area/prishtina)
@@ -980,6 +980,7 @@
 "sR" = (/obj/structure/closet/crate/medical,/turf/floor/plating/dirt,/area/prishtina)
 "sS" = (/obj/structure/optable,/turf/floor/plating/dirt,/area/prishtina)
 "sT" = (/obj/structure/table/glass,/obj/item/weapon/storage/firstaid/surgery,/turf/floor/plating/dirt,/area/prishtina)
+"sU" = (/obj/structure/table,/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/obj/item/weapon/stamp,/obj/item/weapon/pen,/turf/floor/plating/road,/area/prishtina)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaabacadaeaeaeafagabaaaaaaaaaaaaahahahahahahahahahahahahahahaiaiaiaiajaeaeaeaeaeakamamanamamamamamamamamamamamamamamapapaxaxaxaxaxaxaxaxaxaxaxaxaxaxaxaxaxayaxaxaxaxaxaxayayayaxaxaxaiajaeaeaeaeaeakaiazazaAazazazaAazazazaAazazaiaiaiaiaiaiaiaiaiaiaiai
@@ -1002,7 +1003,7 @@ aaatbjbjbjbjbjasajaedRaeaeaeakaiaiaiazazazazazazazazazazazazazazazazazazazazaias
 atbjbjbjbjbjbjasajaeaeaeaeaeakaiaiaiaiaiaiaiaiaiaiaiaiaiaisMaiaiaiaiaiaiaiaiaiasajaeaeaeaeaesNambUbVambWbXbYamaHbZaHaHamaHaHaHamapapaJaJaJaJaJaJaJaJaJdWbHbHdWaJdWbHbHdWaJaJaJaJaJaJaJaJaJaJaJaJaiajaeaeaeaeaeakaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiai
 bjbjbjbjbjbjbjasajaeaeaeaeaeakaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiasajaeaeaeaeaeepamamamamameqamamamamamamamewbHewamaiaiaiaiaiaiaiaiaiaiaiaidkdkaiaiaidkdkaiaiaiaiaiaiaiaiaiaiaiaiaiaiajaeaeaeaeaeakaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiai
 bjbjbjaiaiaiaiasajaeaeaeaeaeexdndndndndndneydndndndndndndndndndneydndndndndndnasbRaeaeaeaeaeeDasasaseEdndndndneydndndndndndneydndndndndndneydndndndndndndndneydneydndndndndndneydndndndndndndneydodpaeaeaeaeaedqdneydndndndndndndndndneydndndndndndndneydndndndndndn
-bjbjbjaiaiaiaiasasdsdsdsdsdsdrdrdrdrdrdrdrdrdrdrdsdsdsdsdsdrdrdrdrdrdrdrdrdrdrdraeaeaeaeaeaeeFdreKeLePeQeReTeRaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeae
+bjbjbjaiaiaiaiasasdsdsdsdsdsdrdrdrdrdrdrdrdrdrdrdsdsdsdsdsdrdrdrdrdrdrdrdrdrdrdraeaeaeaeaeaeeFeKeLsUePeQeReTeRaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeae
 bjbjbjaiaiaiaiaiajaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefceWeXeYaeadadadadeZaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeae
 aiaiaiaiaiaiaiaiajaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaefafbfceUfceUfcfeffaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaedtaeaeaeaeaeaeae
 aiaiaiaiaiaiaiaiajaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaffgaefhaeaefiaefiaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaedvaedwdvaeaeae

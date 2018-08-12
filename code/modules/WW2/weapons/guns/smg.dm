@@ -372,8 +372,8 @@
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
-	caliber = "c45_smg"
-	magazine_type = /obj/item/ammo_magazine/c45_smg
+	caliber = "11.43×23mm"
+	magazine_type = /obj/item/ammo_magazine/thompson_ammo
 	weight = 3.7
 	firemodes = list(
 		list(name="short burst",	burst=3, burst_delay=1.0, recoil=0.6, move_delay=3, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
@@ -400,9 +400,9 @@
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
-	caliber = "c45_smg"
-	magazine_type = /obj/item/ammo_magazine/c45_smg
-	weight = 4.2
+	caliber = "11.43×23mm"
+	magazine_type = /obj/item/ammo_magazine/thompson_ammo
+	weight = 4.5
 	firemodes = list(
 		list(name="short burst",	burst=3, burst_delay=1.0, recoil=0.9, move_delay=3, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
 		list(name="long burst", 	burst=6, burst_delay=1.4, recoil=1.8, move_delay=4, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
@@ -417,5 +417,33 @@
 	else
 		icon_state = "thompson0"
 		item_state = "thompson0"
+	update_held_icon()
+	return
+
+/obj/item/weapon/gun/projectile/submachinegun/thompson/tommygun
+	name = "Tommy gun"
+	desc = "Used both gangsters or the resistens, the Tommy SMG is almost the same as the Thompson but cheaper ."
+	icon_state = "tommygun"
+	item_state = "tommygun"
+	load_method = MAGAZINE
+	slot_flags = SLOT_BACK|SLOT_BELT
+	w_class = 3
+	caliber = "11.43×23mm"
+	magazine_type = /obj/item/ammo_magazine/thompson_ammo/tommy_ammo
+	weight = 4.2
+	firemodes = list(
+		list(name="short burst",	burst=3, burst_delay=1.0, recoil=0.9, move_delay=3, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
+		list(name="long burst", 	burst=6, burst_delay=1.4, recoil=1.8, move_delay=4, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
+		)
+	sel_mode = 1
+	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
+
+/obj/item/weapon/gun/projectile/submachinegun/thompson/tommygun/update_icon()
+	if (ammo_magazine)
+		icon_state = "tommygun"
+		item_state = "tommygun"
+	else
+		icon_state = "tommygun0"
+		item_state = "tommygun0"
 	update_held_icon()
 	return

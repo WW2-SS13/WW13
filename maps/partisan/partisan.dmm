@@ -90,6 +90,7 @@
 "bL" = (/obj/effect/landmark{name = "JoinLatePartisan"},/obj/structure/multiz/ladder/ww2{area_id = "basement_partisan4"},/turf/floor/wood,/area/prishtina/houses/nml_one)
 "bM" = (/obj/item/weapon/wrench,/turf/floor/dirt,/area/prishtina/houses{base_turf = /turf/floor/dirt; icon_state = "red4"; location = 1; name = "Village"})
 "bN" = (/obj/effect/landmark{name = "JoinLatePartisan"},/turf/floor/wood_broken,/area/prishtina/houses/nml_two)
+"bO" = (/obj/structure/vending/medrack,/turf/floor/dirt,/area/prishtina/german/ss_armory{capturable = 1; icon_state = "blue1"; location = 1; name = "SS Base"})
 "bP" = (/turf/wall/wood,/area/prishtina/houses/nml_four)
 "bQ" = (/obj/structure/oven,/turf/floor/wood,/area/prishtina/houses/nml_four)
 "bR" = (/obj/structure/sink,/turf/floor/wood,/area/prishtina/houses/nml_four)
@@ -281,7 +282,6 @@
 "fw" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/dirt,/area/prishtina/german/ss_armory{capturable = 1; icon_state = "blue1"; location = 1; name = "SS Base"})
 "fx" = (/obj/structure/light/small{dir = 8},/turf/floor/carpet,/area/prishtina/forest)
 "fy" = (/obj/structure/barricade/steel,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/dirt,/area/prishtina/german/ss_armory{capturable = 1; icon_state = "blue1"; location = 1; name = "SS Base"})
-"fz" = (/obj/structure/closet/crate/medical,/turf/floor/dirt,/area/prishtina/german/ss_armory{capturable = 1; icon_state = "blue1"; location = 1; name = "SS Base"})
 "fA" = (/obj/structure/barricade/steel,/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/dirt,/area/prishtina/german/ss_armory{capturable = 1; icon_state = "blue1"; location = 1; name = "SS Base"})
 "fB" = (/obj/structure/barricade/steel,/obj/structure/window/sandbag,/turf/floor/dirt,/area/prishtina/german/ss_armory{capturable = 1; icon_state = "blue1"; location = 1; name = "SS Base"})
 "fC" = (/obj/structure/barricade/steel,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag,/turf/floor/dirt,/area/prishtina/german/ss_armory{capturable = 1; icon_state = "blue1"; location = 1; name = "SS Base"})
@@ -872,7 +872,7 @@ aaaaaaaaaaanaaaaaaaaaaaaaaacabaaaaaaaaaafNfPdTgldCglgmdTeqeqdCiDiDiDehdCdCeaeaea
 aaaaaaaaaaaaaaanaaabaaaaaaaaaaacaaaaaaabfNfPdTgUglgldCdSdTdCdCiDiDiDdCdCdCdCdCdCdCdCdCdCdCdCdTdCdCdCfUdCfUfyfNaaabaaabaaaaaaaaaaababaaaaaaacaaaaaaaaaaabaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaababaaaaaaaadvfVfYfYfVdwdvdvaaaaaaaaacaaababaaaeaeaaabaaaaaaaaaaaaacaaaaaaanaaaaaaaaaaabaaaaabaaaaaaanaaaaaaababab
 aaabacaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaanfNfPdTgUglgUdCdSdTdCdCdCdCdCdCekekekekekekekekekekdCdCizdCdCfUdCfUfyfNaaaaaaaaaaaaaaaaababaaaaababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaanabaaabaaaaaaaaaaaaaaaaaaabdvfVfYfYfVfVfVdvaaaaaaaaaaaaaaabaaaeaeaaaaaaaaaaaaaajyjyjplwjyanaaaaaaaaaaabaaaaabaaaaaaanaaaaaaaaabaa
 aaaaacababaaabaaaaaaaaababaaaaaaaaabaaaafNfPdTglgUgldCgmdTdCdCdCdCdCdCekekekekekekekekekekdCdViBfUdCgUgUdCfyfNabaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaabdvfVfYfYfYfYgedzanaaababaaaaaaabaaanaeaeabaaaaaaaaaajyjpjpjpjpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaa
-aaaaaaaaabaaaaaaaaaaaaaaaaaaaaabaaaaaaaafNfPdTglglgldCdSdTdCdCdCdCdCdCekekekekekekekekekekdCeqiBdCfUgUfUfzfyfNaaaaababaaaaababaaaaaaabaaaaaaaaaaaaabaaaaaaaaaaabaaaaaaaaaaabaaaaaaaaabacabaaaaaaaaaaaadvfVfVfYfYfYfVdvaaanabababaaaaaaaaanaaaeaeaaaaaaaaaajylxlyjpjpabaaaaaaabaaaaaaaaaaaaaaaaabaaaaaaanabaa
+aaaaaaaaabaaaaaaaaaaaaaaaaaaaaabaaaaaaaafNfPdTglglgldCdSdTdCdCdCdCdCdCekekekekekekekekekekdCeqiBdCfUgUfUbOfyfNaaaaababaaaaababaaaaaaabaaaaaaaaaaaaabaaaaaaaaaaabaaaaaaaaaaabaaaaaaaaabacabaaaaaaaaaaaadvfVfVfYfYfYfVdvaaanabababaaaaaaaaanaaaeaeaaaaaaaaaajylxlyjpjpabaaaaaaabaaaaaaaaaaaaaaaaabaaaaaaanabaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaanaaaaaaaaaaaafNfPdTglgldCdCdSfSeqdCdCeqeqeqekekekekekekekekekekdCdBfAfBfBfBfBfBfCgVaaabaaaaaaaaacaaaaaaaaaaaaaaaaaaanabaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaanaaaaaaaaaaaaanaaaadvdwfVfYfYfYfVdvaaacaaaaaaaaaaaaaaanaaaaaeaeaaananaajyaajyaaaajzaaaaaaaaaaaaabababaaaaaaaaaaaaaaanaaaa
 aaabaaabaaabaaacacabaaaaaaaaaaaaabaaaaaafNgbgcgndEgogodTeqdVeqdBeqeqdBdBdCdCdCehdCdCdCfidCdCdCeSeSeSeSgWeSeSgXaaabaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaababababaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaabaadvdvfVfVfYfYfVfVdvaaaaabaaaaaaaaaaaaaaabaaaeaeaeaaabacananabaaaaabaaaaaaaaaaabaaaaababaaaaaaaaaaaaanaaaa
 daaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaefNgfgggggggggggheqeqeqdBdBdCdCdCdCdCdCdCdCdCdCdCfidCdCaeaeaaabaaaaaaabaaaaaaababaaaaababaaaaaaaaaaaaabaaaaaaaaaaabaaaaaaaaaaaaabaaaaaaaaaaaaabaaaaaaaaabaaaadzfVfVfYfYfYfVdvdwabaaababaaabaaaaaaacaaabaeaeaaaaaaaaaaababaaaaananabaaaaaaaaaaaaababaaaaabaaaaaaabaaaa

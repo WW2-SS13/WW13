@@ -16,8 +16,8 @@
 	//Xbags,Ybags for space_orient_objs
 	//Others for slot_orient_objs
 	ConteinerData = list(
-		"Xspace" = 2,
-		"Yspace" = 5,
+		"Xspace" = 4,
+		"Yspace" = 3,
 		"ColCount" = 7,
 		"Xslot" = 5,
 		"Yslot" = 2

@@ -193,11 +193,11 @@
 	icon = 'icons/obj/hydroponics_machines.dmi'
 	icon_state = "plantbgone"
 	item_state = "plantbgone"
-	volume = 100
+	volume = 50
 
 /obj/item/weapon/reagent_containers/spray/plantbgone/New()
 	..()
-	reagents.add_reagent("plantbgone", 100)
+	reagents.add_reagent("pacid", 50)
 
 /obj/item/weapon/reagent_containers/spray/plantbgone/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
 	if (!proximity) return
