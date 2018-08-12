@@ -1,3 +1,4 @@
+
 "aa" = (/obj/structure/barbwire{dir = 4},/turf/floor/dirt,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "ab" = (/turf/floor/dirt,/area/prishtina/island/beach)
 "ac" = (/turf/floor/plating/beach/sand,/area/prishtina/island/beach)

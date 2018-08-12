@@ -417,7 +417,7 @@ OTHER
 /obj/item/ammo_magazine/a75/empty
 	initial_ammo = FALSE
 
-/obj/item/ammo_magazine/mg34_ammo
+/obj/item/ammo_magazine/a792
 	name = "Mg34 drum magazine"
 	icon_state = "mg34_drum"
 ////	origin_tech = "combat=2"
@@ -607,7 +607,7 @@ OTHER
 	name = "magazine (.45 cal)"
 	icon_state = "m1a1"
 	mag_type = MAGAZINE
-	caliber = "11.43×23mm"
+	caliber = "11.43Ã—23mm"
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	ammo_type = /obj/item/ammo_casing/c45_smg
 	max_ammo = 30
@@ -617,7 +617,7 @@ OTHER
 	name = "drum (.45 cal)"
 	icon_state = "m1a1_drum"
 	mag_type = MAGAZINE
-	caliber = "11.43×23mm"
+	caliber = "11.43Ã—23mm"
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	ammo_type = /obj/item/ammo_casing/c45_smg
 	max_ammo = 50
