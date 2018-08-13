@@ -347,7 +347,6 @@
 #include "code\game\objects\structures\kitchen_spike.dm"
 #include "code\game\objects\structures\lattice.dm"
 #include "code\game\objects\structures\lighting.dm"
-#include "code\game\objects\structures\memorial_statue.dm"
 #include "code\game\objects\structures\mirror.dm"
 #include "code\game\objects\structures\mop_bucket.dm"
 #include "code\game\objects\structures\morgue.dm"
@@ -846,7 +845,6 @@
 #include "code\modules\WW2\radio\harness.dm"
 #include "code\modules\WW2\radio\radio.dm"
 #include "code\modules\WW2\sandbags\cover.dm"
-#include "code\modules\WW2\sandbags\dirt_wall.dm"
 #include "code\modules\WW2\sandbags\sandbag.dm"
 #include "code\modules\WW2\sky\sky.dm"
 #include "code\modules\WW2\tank\_defines.dm"
@@ -942,5 +940,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\island\island.dmm"
+#include "maps\occupation\occupation.dmm"
 // END_INCLUDE
