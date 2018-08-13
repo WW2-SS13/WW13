@@ -94,18 +94,18 @@
 /obj/map_metadata/occupation/announce_mission_start(var/preparation_time)
 	world << "<font size=4>Partisans are hiding in this town! The SS have been sent to hunt them down.<br>"
 
-/obj/map_metadata/camp/reinforcements_ready()
+/obj/map_metadata/occupation/reinforcements_ready()
 	return (germans_can_cross_blocks() && soviets_can_cross_blocks())
 
-/obj/map_metadata/camp/short_win_time(faction)
+/obj/map_metadata/occupation/short_win_time(faction)
 	return 1200
 
-/obj/map_metadata/camp/long_win_time(faction)
+/obj/map_metadata/occupation/long_win_time(faction)
 	return 1200
 
 var/no_loop_o = FALSE
 
-/obj/map_metadata/camp/update_win_condition()
+/obj/map_metadata/occupation/update_win_condition()
 	if (!win_condition_specialcheck())
 		return FALSE
 	if (world.time >= 36000)
