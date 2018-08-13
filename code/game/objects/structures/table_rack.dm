@@ -6,6 +6,15 @@
 	flipped = -1
 	low = TRUE
 
+/obj/structure/table/rackz
+	name = "rack"
+	desc = "Different from the Middle Ages version."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "rack2"
+	flipped = -1
+	low = TRUE
+
+
 /obj/structure/table/rack/New()
 	..()
 //	verbs -= /obj/structure/table/verb/do_flip

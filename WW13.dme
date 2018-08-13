@@ -347,7 +347,6 @@
 #include "code\game\objects\structures\kitchen_spike.dm"
 #include "code\game\objects\structures\lattice.dm"
 #include "code\game\objects\structures\lighting.dm"
-#include "code\game\objects\structures\memorial_statue.dm"
 #include "code\game\objects\structures\mirror.dm"
 #include "code\game\objects\structures\mop_bucket.dm"
 #include "code\game\objects\structures\morgue.dm"
@@ -357,6 +356,7 @@
 #include "code\game\objects\structures\railing.dm"
 #include "code\game\objects\structures\safe.dm"
 #include "code\game\objects\structures\sign_flags.dm"
+#include "code\game\objects\structures\signpost.dm"
 #include "code\game\objects\structures\signs.dm"
 #include "code\game\objects\structures\siren.dm"
 #include "code\game\objects\structures\table.dm"
@@ -942,5 +942,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\city\level1.dmm"
+#include "maps\occupation\occupation.dmm"
 // END_INCLUDE

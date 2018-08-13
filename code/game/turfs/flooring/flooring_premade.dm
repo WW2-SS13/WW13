@@ -71,6 +71,18 @@
 	may_become_muddy = TRUE
 	available_dirt = 3
 
+/turf/floor/dirt/dust
+	name = "dust"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "dirt"
+	may_become_muddy = TRUE
+
+/turf/floor/dirt/darksand
+	name = "sand"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "dirt"
+	may_become_muddy = TRUE
+
 /turf/floor/hull
 	name = "hull"
 	icon = 'icons/turf/floors.dmi'
