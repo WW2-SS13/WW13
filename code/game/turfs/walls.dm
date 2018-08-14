@@ -24,9 +24,9 @@ var/list/global/wall_cache = list()
 	var/list/wall_connections = list("0", "0", "0", "0")
 	var/ref_state = "generic"
 	var/tank_destroyable = TRUE
-	hitsounds = list('sound/weapons/bullethit/Asphalt1.wav', 'sound/weapons/bullethit/Asphalt2.wav',\
-				'sound/weapons/bullethit/Asphalt3.wav', 'sound/weapons/bullethit/Asphalt4.wav',\
-				'sound/weapons/bullethit/Asphalt5.wav')
+	hitsounds = list('sound/weapons/bullethit/Asphalt1.ogg', 'sound/weapons/bullethit/Asphalt2.ogg',\
+				'sound/weapons/bullethit/Asphalt3.ogg', 'sound/weapons/bullethit/Asphalt4.ogg',\
+				'sound/weapons/bullethit/Asphalt5.ogg')
 
 
 /turf/wall/void
@@ -41,9 +41,9 @@ var/list/global/wall_cache = list()
 	tank_destroyable = FALSE
 	layer = TURF_LAYER + 0.02 // above lifts
 	desc = "A massive slab of rock in the shape of a wall."
-	hitsounds = list('sound/weapons/bullethit/Grass1.wav', 'sound/weapons/bullethit/Grass2.wav',\
-				'sound/weapons/bullethit/Grass3.wav', 'sound/weapons/bullethit/Grass4.wav',\
-				'sound/weapons/bullethit/Grass5.wav')
+	hitsounds = list('sound/weapons/bullethit/Grass1.ogg', 'sound/weapons/bullethit/Grass2.ogg',\
+				'sound/weapons/bullethit/Grass3.ogg', 'sound/weapons/bullethit/Grass4.ogg',\
+				'sound/weapons/bullethit/Grass5.ogg')
 
 /turf/wall/rockwall/update_icon()
 	return

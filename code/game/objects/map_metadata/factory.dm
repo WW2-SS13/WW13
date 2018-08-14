@@ -1,129 +1,90 @@
-#define NO_WINNER "The search is still going on."
+#define NO_WINNER "No prisoners have escaped."
 
-/obj/map_metadata/occupation
-	ID = MAP_OCCUPATION
-	title = "Occupation (125x125x2)"
-	lobby_icon_state = "occupation"
+/obj/map_metadata/camp
+	ID = MAP_FACTORY
+	title = "Factory"
+	lobby_icon_state = "pow_camp"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall,
 	/area/prishtina/no_mans_land/invisible_wall/inside) // above and underground
-	respawn_delay = 1800
+	respawn_delay = 100
 	squad_spawn_locations = FALSE
-	min_autobalance_players = 50
+	//min_autobalance_players = 50 // aparently less that this will fuck autobalance
 	reinforcements = FALSE
 	faction_organization = list(
-		GERMAN,
-		CIVILIAN)
+		ITALIAN,
+		SOVIET)
 	no_subfaction_chance = FALSE
 	subfaction_is_main_faction = TRUE
 	roundend_condition_sides = list(
-		list(GERMAN) = /area/prishtina/farm1,
+		list(ITALIAN) = /area/prishtina/farm1,
 		list(SOVIET) = /area/prishtina/farm4 // in order to prevent them from winning by capture
 		)
 	available_subfactions = list(
-		SCHUTZSTAFFEL)
-	songs = list(
-		"Occupation:1" = 'sound/music/occupied.ogg'
-		)
-	battle_name = "Occupation"
-	agents = 1
-	agents_in_game = 0
-	custom_loadout = FALSE // so people do not spawn with guns!
-	var/modded_num_of_SS = FALSE
-	faction_distribution_coeffs = list(GERMAN = 0.3, CIVILIAN = 0.70)
-
-/obj/map_metadata/occupation/germans_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 72000 || admin_ended_all_grace_periods)
-
-/obj/map_metadata/occupation/soviets_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 72000 || admin_ended_all_grace_periods)
+		SS_TV)
+	battle_name = "Italian Factory"
+	faction_distribution_coeffs = list(ITALIAN = 0.5, SOVIET = 0.5)
 
 
-/obj/map_metadata/occupation/job_enabled_specialcheck(var/datum/job/J)
+/obj/map_metadata/camp/germans_can_cross_blocks()
+	return (processes.ticker.playtime_elapsed >= 6 || admin_ended_all_grace_periods)
+
+/obj/map_metadata/camp/soviets_can_cross_blocks()
+	return (processes.ticker.playtime_elapsed >= 6 || admin_ended_all_grace_periods)
+
+
+/obj/map_metadata/camp/job_enabled_specialcheck(var/datum/job/J)
 	. = TRUE
-	if (istype(J, /datum/job/german))
-		if (!J.is_SS)
-			. = FALSE
-		else
-			if (istype(J, /datum/job/german/soldier_ss))
-				J.total_positions = max(round(clients.len*0.2), 20)
-			if (istype(J, /datum/job/german/medic_ss))
-				J.total_positions = 2
-			if (istype(J, /datum/job/german/squad_leader_ss))
-				J.total_positions = 2
-				modded_num_of_SS = TRUE
-	else if (istype(J, /datum/job/partisan/civilian))
-		J.total_positions = max(round(clients.len, 15))
-		if (istype(J, /datum/job/partisan/civilian/chef))
-			J.total_positions = 4
-		if (istype(J, /datum/job/partisan/civilian/det))
-			J.total_positions = 2
-		if (istype(J, /datum/job/partisan/civilian/preist))
-			J.total_positions = 2
-		if (istype(J, /datum/job/partisan/civilian/fire))
-			J.total_positions = 3
-		if (istype(J, /datum/job/partisan/civilian/cop))
+	if (istype(J, /datum/job/italian))
+		if (istype(J, /datum/job/italian/soldier))
+			J.total_positions = max(2, round(clients.len*0.25*3))
+		if (istype(J, /datum/job/italian/squad_leader))
 			J.total_positions = 1
-		if (istype(J, /datum/job/partisan/civilian/worker))
-			J.total_positions = 10
-		if (istype(J, /datum/job/partisan/civilian/rich))
-			J.total_positions = 2
-		if (istype(J, /datum/job/partisan/civilian/sci))
-			J.total_positions = 3
-		if (istype(J, /datum/job/partisan/civilian/mayor))
-			J.total_positions = 1
-		if (istype(J, /datum/job/partisan/civilian/librarian))
-			J.total_positions = 2
-		if (istype(J, /datum/job/partisan/civilian/jewl))
-			J.total_positions = 1
-		if (istype(J, /datum/job/partisan/civilian/journalist))
-			J.total_positions = 1
-		if (istype(J, /datum/job/partisan/civilian/writer))
-			J.total_positions = 1
-		if (istype(J, /datum/job/partisan/civilian/hunter))
-			J.total_positions = 3
-		if (istype(J, /datum/job/partisan/civilian/doctor))
-			J.total_positions = 2
-		if (istype(J, /datum/job/partisan/civilian/vio))
-			J.total_positions = 1
-		if (istype(J, /datum/job/partisan/civilian/americanspy))
-			J.total_positions = 1
-		if (istype(J, /datum/job/partisan/civilian/redcross))
-			J.total_positions = 1
+		if (istype(J, /datum/job/italian/medic))
+			J.total_positions = max(1, round(clients.len*0.05*3))
+//	else if (istype(J, /datum/job/partisan/civilian))
+//		J.total_positions = max(5, round(clients.len*0.75))
+	else if (istype(J, /datum/job/soviet))
+		if (istype(J, /datum/job/soviet/soldier))
+			J.total_positions = max(5, round(clients.len*0.45*3))
+		if (istype(J, /datum/job/soviet/medic))
+			J.total_positions = max(1, round(clients.len*0.05*3))
+		if (istype(J, /datum/job/soviet/squad_leader))
+			J.total_positions = max(1, round(clients.len*0.05*3))
 	return .
 
-/obj/map_metadata/occupation/announce_mission_start(var/preparation_time)
-	world << "<font size=4>Partisans are hiding in this town! The SS have been sent to hunt them down.<br>"
+/obj/map_metadata/camp/announce_mission_start(var/preparation_time)
+	world << "<font size=4>ATTACK</font>"
 
-/obj/map_metadata/occupation/reinforcements_ready()
+/obj/map_metadata/camp/reinforcements_ready()
 	return (germans_can_cross_blocks() && soviets_can_cross_blocks())
 
-/obj/map_metadata/occupation/short_win_time(faction)
+/obj/map_metadata/camp/short_win_time(faction)
 	return 1200
 
-/obj/map_metadata/occupation/long_win_time(faction)
+/obj/map_metadata/camp/long_win_time(faction)
 	return 1200
 
-var/no_loop_o = FALSE
 
-/obj/map_metadata/occupation/update_win_condition()
+
+/obj/map_metadata/camp/update_win_condition()
 	if (!win_condition_specialcheck())
 		return FALSE
-	if (world.time >= 72000)
+	if (world.time >= 30000)
 		if (win_condition_spam_check)
 			return FALSE
 		ticker.finished = TRUE
-		var/message = "The round has ended!"
+		var/message = "No prisoners have escaped! The SS Totenkopfverbände guard unit has won the round!"
 		world << "<font size = 4><span class = 'notice'>[message]</span></font>"
 		show_global_battle_report(null)
 		win_condition_spam_check = TRUE
 		return FALSE
-	if ((current_winner && current_loser && world.time > next_win) && no_loop_o == FALSE)
+	if ((current_winner && current_loser && world.time > next_win) && no_loop == FALSE)
 		ticker.finished = TRUE
-		var/message = "Uhh you shouldn't be seeing this."
+		var/message = "A prisoner has escaped! The Soviet prisoners have won the round!"
 		world << "<font size = 4><span class = 'notice'>[message]</span></font>"
 		show_global_battle_report(null)
 		win_condition_spam_check = TRUE
-		no_loop_o = TRUE
+		no_loop = TRUE
 		return FALSE
 	// German major
 	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.33, TRUE))
@@ -131,6 +92,7 @@ var/no_loop_o = FALSE
 			if (last_win_condition != win_condition.hash)
 				current_win_condition = "A [roundend_condition_def2army(roundend_condition_sides[1][1])] soldier is almost escaping the area! They will win in 2 minutes."
 				next_win = world.time +  short_win_time(GERMAN)
+				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[1][1])
 				current_loser = roundend_condition_def2army(roundend_condition_sides[2][1])
 	// German minor
@@ -139,6 +101,7 @@ var/no_loop_o = FALSE
 			if (last_win_condition != win_condition.hash)
 				current_win_condition = "A [roundend_condition_def2army(roundend_condition_sides[1][1])] soldier is almost escaping the area! They will win in 2 minutes."
 				next_win = world.time +  short_win_time(GERMAN)
+				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[1][1])
 				current_loser = roundend_condition_def2army(roundend_condition_sides[2][1])
 	// Soviet major
@@ -147,6 +110,7 @@ var/no_loop_o = FALSE
 			if (last_win_condition != win_condition.hash)
 				current_win_condition = "A [roundend_condition_def2army(roundend_condition_sides[2][1])] soldier is almost escaping the area! They will win in 2 minutes."
 				next_win = world.time +  short_win_time(SOVIET)
+				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[2][1])
 				current_loser = roundend_condition_def2army(roundend_condition_sides[1][1])
 	// Soviet minor
@@ -155,11 +119,17 @@ var/no_loop_o = FALSE
 			if (last_win_condition != win_condition.hash)
 				current_win_condition = "A [roundend_condition_def2army(roundend_condition_sides[2][1])] soldier is almost escaping the area! They will win in 2 minutes."
 				next_win = world.time + short_win_time(SOVIET)
+				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[2][1])
 				current_loser = roundend_condition_def2army(roundend_condition_sides[1][1])
 	else if (win_condition.check(list("REINFORCEMENTS"), list(), list(), 1.0, TRUE))
 		if (last_win_condition != win_condition.hash)
 
+			// let us know why we're changing to this win condition
+			if (current_win_condition != NO_WINNER && current_winner && current_loser)
+				world << "<font size = 3>The escaping prisoner has been recaptured!</font>"
+
+			current_win_condition = "Both sides are out of reinforcements; the round will end in {time} minute{s}."
 
 			if (last_reinforcements_next_win != -1)
 				next_win = last_reinforcements_next_win
@@ -172,6 +142,7 @@ var/no_loop_o = FALSE
 			current_loser = null
 	else
 		if (current_win_condition != NO_WINNER && current_winner && current_loser)
+			world << "<font size = 3>The escaping prisoner has been recaptured!</font>"
 			current_winner = null
 			current_loser = null
 		next_win = -1
