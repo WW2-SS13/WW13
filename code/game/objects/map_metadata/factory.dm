@@ -1,7 +1,7 @@
 #define NO_WINNER "No prisoners have escaped."
 
 /obj/map_metadata/camp
-	ID = MAP_CAMP
+	ID = MAP_FACTORY
 	title = "Factory"
 	lobby_icon_state = "pow_camp"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall,
@@ -21,60 +21,39 @@
 		)
 	available_subfactions = list(
 		SS_TV)
-	battle_name = "Itallian Factory"
-	custom_loadout = FALSE // so people do not spawn with guns!
+	battle_name = "Italian Factory"
 	faction_distribution_coeffs = list(ITALIAN = 0.5, SOVIET = 0.5)
 
 
 /obj/map_metadata/camp/germans_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 600 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 6 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/camp/soviets_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 1800 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 6 || admin_ended_all_grace_periods)
 
 
 /obj/map_metadata/camp/job_enabled_specialcheck(var/datum/job/J)
 	. = TRUE
-	if (istype(J, /datum/job/german))
-		if (!J.is_SS_TV)
-			. = FALSE
-		else
-			if (istype(J, /datum/job/german/soldier_sstv))
-				J.total_positions = max(2, round(clients.len*0.25*3))
-			if (istype(J, /datum/job/german/commander_sstv))
-				J.total_positions = 1
-			if (istype(J, /datum/job/german/squad_leader_sstv))
-				J.total_positions = max(1, round(clients.len*0.05*3))
-			if (istype(J, /datum/job/german/medic_sstv))
-				J.total_positions = max(1, round(clients.len*0.05*3))
-				modded_num_of_SSTV = TRUE
+	if (istype(J, /datum/job/italian))
+		if (istype(J, /datum/job/italian/soldier))
+			J.total_positions = max(2, round(clients.len*0.25*3))
+		if (istype(J, /datum/job/italian/squad_leader))
+			J.total_positions = 1
+		if (istype(J, /datum/job/italian/medic))
+			J.total_positions = max(1, round(clients.len*0.05*3))
 //	else if (istype(J, /datum/job/partisan/civilian))
 //		J.total_positions = max(5, round(clients.len*0.75))
 	else if (istype(J, /datum/job/soviet))
-		if (!J.is_prisoner)
-			. = FALSE
-		else
-			if (istype(J, /datum/job/soviet/soldier_pris))
-				J.total_positions = max(5, round(clients.len*0.45*3))
-			if (istype(J, /datum/job/soviet/medic_pris))
-				J.total_positions = max(1, round(clients.len*0.05*3))
-			if (istype(J, /datum/job/soviet/chef_pris))
-				J.total_positions = max(1, round(clients.len*0.05*3))
-			if (istype(J, /datum/job/soviet/miner_pris))
-				J.total_positions = max(5, round(clients.len*0.15*3))
-			if (istype(J, /datum/job/soviet/janitor_pris))
-				J.total_positions = max(1, round(clients.len*0.05*3))
-			if (istype(J, /datum/job/soviet/collaborator_pris))
-				J.total_positions = max(2, round(clients.len*0.05*3))
-			if (istype(J, /datum/job/soviet/penal_pris))
-				J.total_positions = 8
-			if (istype(J, /datum/job/soviet/squad_leader_pris) && !modded_num_of_prisoners)
-				J.total_positions = max(1, round(clients.len*0.1*3))
-				modded_num_of_prisoners = TRUE
+		if (istype(J, /datum/job/soviet/soldier))
+			J.total_positions = max(5, round(clients.len*0.45*3))
+		if (istype(J, /datum/job/soviet/medic))
+			J.total_positions = max(1, round(clients.len*0.05*3))
+		if (istype(J, /datum/job/soviet/squad_leader))
+			J.total_positions = max(1, round(clients.len*0.05*3))
 	return .
 
 /obj/map_metadata/camp/announce_mission_start(var/preparation_time)
-	world << "<font size=4>Soviets have <b>3 minutes</b> to prepare before the ceasefire ends! Germans can cross after <b>1 minute</b>. <br>The Germans will win if they hold out for 50 minutes without any escapes. The Soviets will win if a prisoner manages to escape.</font><br><br><br><b>PLEASE READ THE WIKI FOR RULES! http://mechahitler.co.nf/wiki/media/index.php?title=Camp_guide</b><br>"
+	world << "<font size=4>ATTACK</font>"
 
 /obj/map_metadata/camp/reinforcements_ready()
 	return (germans_can_cross_blocks() && soviets_can_cross_blocks())
