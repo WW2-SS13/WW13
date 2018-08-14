@@ -23,8 +23,6 @@
 		SS_TV)
 	battle_name = "Itallian Factory"
 	custom_loadout = FALSE // so people do not spawn with guns!
-	var/modded_num_of_SSTV = FALSE
-	var/modded_num_of_prisoners = FALSE
 	faction_distribution_coeffs = list(ITALIAN = 0.5, SOVIET = 0.5)
 
 
@@ -87,7 +85,7 @@
 /obj/map_metadata/camp/long_win_time(faction)
 	return 1200
 
-var/no_loop = FALSE
+
 
 /obj/map_metadata/camp/update_win_condition()
 	if (!win_condition_specialcheck())
