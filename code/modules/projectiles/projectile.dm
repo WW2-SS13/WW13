@@ -504,6 +504,8 @@
 	// for shrapnel
 	bumped = TRUE
 
+	playsound(get_turf(src), safepick(T.hitsounds), 100, 1, 2)
+
 	// hack to make projectiles disappear immediately, not sure why qdel() doesn't work for this
 	loc = null
 
