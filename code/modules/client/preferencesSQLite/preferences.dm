@@ -48,6 +48,7 @@ var/list/preferences_datums = list()
 	var/soviet_ethnicity = RUSSIAN
 	var/body_build = "Default"			//character body build name
 	var/age = 30						//age of character
+	var/scream_type = 1
 
 	var/b_type = "A+"					//blood type (not-chooseable)
 	var/backbag = 2						//backpack type

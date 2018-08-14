@@ -203,6 +203,7 @@
 	if (is_bruised())
 		if (prob(2))
 			spawn owner.emote("me", TRUE, "coughs up blood!")
+			playsound(get_turf(src), pick("woundedcough1", "woundedcough2", "woundedcough3"), 100)
 			owner.drip(10)
 		if (prob(4))
 			spawn owner.emote("me", TRUE, "gasps for air!")

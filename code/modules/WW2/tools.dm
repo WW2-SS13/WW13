@@ -95,3 +95,51 @@
 	icon_state = "ww2_welder_off"
 	on_state = "ww2_welder_on"
 	off_state = "ww2_welder_off"*/
+
+
+/obj/item/weapon/tool
+	name = "tool"
+	desc = "uh shit."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "1"
+	flags = CONDUCT
+	slot_flags = SLOT_BELT
+	force = 1.0
+	throwforce = 1.0
+	item_state = "1"
+	w_class = 1.0
+	matter = list(DEFAULT_WALL_MATERIAL = 50)
+//	origin_tech = "materials=1;engineering=1"
+	attack_verb = list("bashed","whacked")
+	sharp = FALSE
+	edge = FALSE
+
+/obj/item/weapon/tool/repair
+	name = "Repair Kit"
+	icon_state = "1"
+	item_state = "1"
+
+/obj/item/weapon/tool/wire
+	name = "Steel Wire"
+	icon_state = "10"
+	item_state = "10"
+
+/obj/item/weapon/tool/string
+	name = "String"
+	icon_state = "6"
+	item_state = "6"
+
+/obj/item/weapon/tool/tape
+	name = "Tape"
+	icon_state = "7"
+	item_state = "7"
+
+/obj/item/weapon/tool/engine
+	name = "Engine"
+	icon_state = "engine"
+	item_state = "engine"
+
+/obj/item/weapon/tool/parts
+	name = "Parts"
+	icon_state = "12"
+	item_state = "12"

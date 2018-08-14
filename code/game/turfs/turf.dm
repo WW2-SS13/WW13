@@ -70,6 +70,10 @@ var/list/interior_areas = list(/area/prishtina/houses,
 
 //	var/uses_daylight_dynamic_lighting = FALSE
 
+	var/list/hitsounds = list('sound/weapons/bullethit/Grass1.ogg', 'sound/weapons/bullethit/Grass2.ogg',\
+							'sound/weapons/bullethit/Grass3.ogg', 'sound/weapons/bullethit/Grass4.ogg',\
+							'sound/weapons/bullethit/Grass5.ogg')
+
 /turf/New()
 	..()
 	for (var/atom/movable/AM as mob|obj in src)
