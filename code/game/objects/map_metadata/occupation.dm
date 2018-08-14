@@ -32,10 +32,10 @@
 	faction_distribution_coeffs = list(GERMAN = 0.3, CIVILIAN = 0.70)
 
 /obj/map_metadata/occupation/germans_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 36000 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 72000 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/occupation/soviets_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 36000 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 72000 || admin_ended_all_grace_periods)
 
 
 /obj/map_metadata/occupation/job_enabled_specialcheck(var/datum/job/J)
@@ -108,7 +108,7 @@ var/no_loop_o = FALSE
 /obj/map_metadata/occupation/update_win_condition()
 	if (!win_condition_specialcheck())
 		return FALSE
-	if (world.time >= 36000)
+	if (world.time >= 72000)
 		if (win_condition_spam_check)
 			return FALSE
 		ticker.finished = TRUE
