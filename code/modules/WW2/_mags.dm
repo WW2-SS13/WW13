@@ -643,6 +643,21 @@ OTHER
 	max_ammo = 30
 	multiple_sprites = TRUE
 
+////////SHOTGUN SHELLS BOXES//////////////
+
+/obj/item/ammo_magazine/slugshell_box
+	name = "slug shell box"
+	icon_state = "slugbox4"
+//	origin_tech = "combat=2"
+	mag_type = MAGAZINE
+	caliber = "shotgun"
+	w_class = 3
+	matter = list(DEFAULT_WALL_MATERIAL = 4500)
+	ammo_type = /obj/item/ammo_casing/shotgun/pellet
+	max_ammo = 25
+	multiple_sprites = TRUE
+	is_box = TRUE
+
 /////////////////////FLAREGUNS//////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////

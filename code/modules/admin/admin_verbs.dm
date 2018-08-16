@@ -533,6 +533,8 @@ var/list/admin_verbs_host = list(
 			return FALSE
 		if ("Small Bomb")
 			explosion(epicenter, 1, 2, 3, 3)
+		if ("Flash Bomb")
+			explosion(epicenter, 0, 0, 0, 20)
 		if ("Medium Bomb")
 			explosion(epicenter, 2, 3, 4, 4)
 		if ("Big Bomb")

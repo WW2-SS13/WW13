@@ -313,6 +313,13 @@
 			shower << msg5
 		if (msg6)
 			shower << msg6
+		if (msg7)
+			shower << msg7
+		if (msg8)
+			shower << msg8
+		if (msg9)
+			shower << msg9
+
 
 /client/proc/message_russians()
 	set category = "Special"
@@ -524,6 +531,33 @@
 
 		src << "You sent '[msg]' to all Japanese soldiers."
 		message_admins("[key_name(src)] sent '[msg]' to all Japanese soldiers")
+
+/client/proc/message_polish_insurgents()
+	set category = "Special"
+	set name = "Message Polish insurgents"
+
+	var/msg = input(usr, "Send what?", "Message Polish insurgents") as text
+
+	if (!msg)
+		return
+
+	var/ick_ock = input(usr, "Make this an IC message?", "Message Polish insurgents") in list("Yes", "No")
+
+	if (ick_ock == "Yes")
+		ick_ock = TRUE
+	else
+		ick_ock = FALSE
+
+	if (msg)
+		if (!ick_ock || !radio2germans(msg))
+			for (var/mob/living/carbon/human/H in player_list)
+				if (istype(H) && H.client)
+					if (H.original_job && list(GERMAN, ITALIAN).Find(H.original_job.base_type_flag()))
+						var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE POLISH INSURGENTS HIGH COMMAND:</b>" : "<b>MESSAGE TO THE GERMAN TEAM FROM ADMINS:</b>"
+						H << "[msg_start] <span class = 'notice'>[msg]</span>"
+
+		src << "You sent '[msg]' to the Polish insurgents."
+		message_admins("[key_name(src)] sent '[msg]' to the Polish insurgents. (IC = [ick_ock ? "yes" : "no"])")
 
 var/german_civilian_mode = FALSE
 var/soviet_civilian_mode = FALSE

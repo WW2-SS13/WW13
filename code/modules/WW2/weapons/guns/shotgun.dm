@@ -101,7 +101,8 @@
 	item_state = "cshotgun"
 //	origin_tech = "combat=5;materials=2"
 	max_shells = 6 //match the ammo box capacity, also it can hold a round in the chamber anyways, for a total of 8.
-	ammo_type = /obj/item/ammo_casing/shotgun
+	caliber = "shotgun"
+	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	force = 15
 	throwforce = 30
 	weight = 3.4
