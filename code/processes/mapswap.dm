@@ -12,7 +12,8 @@
 		MAP_ISLAND = 10,
 		MAP_PARTISAN = 0,
 		MAP_VILLAGE = 0,
-		MAP_OCCUPATION = 0
+		MAP_OCCUPATION = 0,
+		MAP_FACTORY = 0
 	)
 
 	var/ready = TRUE
