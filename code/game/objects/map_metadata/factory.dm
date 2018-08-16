@@ -7,19 +7,22 @@
 	/area/prishtina/no_mans_land/invisible_wall/inside) // above and underground
 	respawn_delay = 100
 	squad_spawn_locations = FALSE
-	//min_autobalance_players = 50 // aparently less that this will fuck autobalance
+	min_autobalance_players = 100 // aparently less that this will fuck autobalance
 	reinforcements = TRUE
 	faction_organization = list(
 		ITALIAN,
+		GERMAN,
 		SOVIET)
+	available_subfactions = list(ITALIAN = 100)
 	no_subfaction_chance = FALSE
 	subfaction_is_main_faction = TRUE
 	roundend_condition_sides = list(
 	       list(ITALIAN) = /area/prishtina/houses/ger_one,
+	       list(GERMAN) = /area/prishtina/houses/ger_one,
 	       list(SOVIET) = /area/prishtina/houses/ger_one)
 	available_subfactions = list(ITALIAN)
 	battle_name = "Italian Factory"
-	faction_distribution_coeffs = list(ITALIAN = 0.5, SOVIET = 0.5)
+	faction_distribution_coeffs = list(GERMAN = 0.5, SOVIET = 0.5)
 
 
 /obj/map_metadata/factory/germans_can_cross_blocks()
@@ -33,21 +36,22 @@
 	. = TRUE
 	if (istype(J, /datum/job/italian))
 		if (istype(J, /datum/job/italian/soldier))
-			J.total_positions = max(2, round(clients.len*0.25*3))
+			J.total_positions = max(2, round(clients.len*3))
 		if (istype(J, /datum/job/italian/squad_leader))
-			J.total_positions = 1
+			J.total_positions = max(1, round(clients.len*0.5))
 		if (istype(J, /datum/job/italian/medic))
-			J.total_positions = max(1, round(clients.len*0.05*3))
+			J.total_positions = max(1, round(clients.len*0.5))
 //	else if (istype(J, /datum/job/partisan/civilian))
 //		J.total_positions = max(5, round(clients.len*0.75))
 	else if (istype(J, /datum/job/soviet))
 		if (istype(J, /datum/job/soviet/soldier))
-			J.total_positions = max(5, round(clients.len*0.45*3))
+			J.total_positions = max(5, round(clients.len*3))
 		if (istype(J, /datum/job/soviet/medic))
-			J.total_positions = max(1, round(clients.len*0.05*3))
+			J.total_positions = max(1, round(clients.len*0.5))
 		if (istype(J, /datum/job/soviet/squad_leader))
-			J.total_positions = max(1, round(clients.len*0.05*3))
-	. = FALSE
+			J.total_positions = max(1, round(clients.len*0.5))
+	else if (istype(J, /datum/job/german))
+		. = FALSE
 	return .
 
 /obj/map_metadata/factory/announce_mission_start(var/preparation_time)
