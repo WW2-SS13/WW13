@@ -26,17 +26,17 @@
 
 
 /obj/map_metadata/factory/germans_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 120 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 1800 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/factory/soviets_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 120 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 1800 || admin_ended_all_grace_periods)
 
 
 /obj/map_metadata/factory/job_enabled_specialcheck(var/datum/job/J)
 	. = TRUE
 	if (istype(J, /datum/job/italian))
 		if (istype(J, /datum/job/italian/soldier))
-			J.total_positions = max(2, round(clients.len*3))
+			J.total_positions = max(5, round(clients.len*3))
 		if (istype(J, /datum/job/italian/squad_leader))
 			J.total_positions = max(1, round(clients.len*0.5))
 		if (istype(J, /datum/job/italian/medic))
@@ -46,10 +46,11 @@
 	else if (istype(J, /datum/job/soviet))
 		if (istype(J, /datum/job/soviet/soldier))
 			J.total_positions = max(5, round(clients.len*3))
-		if (istype(J, /datum/job/soviet/medic))
+		else if (istype(J, /datum/job/soviet/medic))
 			J.total_positions = max(1, round(clients.len*0.5))
-		if (istype(J, /datum/job/soviet/squad_leader))
+		else if (istype(J, /datum/job/soviet/squad_leader))
 			J.total_positions = max(1, round(clients.len*0.5))
+		else J.total_positions = 0
 	else if (istype(J, /datum/job/german))
 		. = FALSE
 	return .
