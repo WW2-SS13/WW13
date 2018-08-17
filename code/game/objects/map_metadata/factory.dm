@@ -8,7 +8,7 @@
 	respawn_delay = 100
 	squad_spawn_locations = FALSE
 	min_autobalance_players = 100 // aparently less that this will fuck autobalance
-	reinforcements = TRUE
+	reinforcements = FALSE
 	faction_organization = list(
 		ITALIAN,
 		GERMAN,
