@@ -730,6 +730,7 @@
 "ob" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/barbwire{dir = 4},/turf/floor/dirt/darksand,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "blue3"; name = "1st Line Trenches"})
 "oc" = (/turf/floor/dirt{icon_state = "oldsmoothdarkdirt"},/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "blue4"; name = "Mountains"})
 "od" = (/obj/structure/wild/burnedbush,/turf/floor/dirt{icon_state = "oldsmoothdarkdirt"},/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "blue4"; name = "Mountains"})
+"oe" = (/obj/structure/wild/rock,/turf/floor/dirt{icon_state = "oldsmoothdarkdirt"},/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "blue4"; name = "Mountains"})
 "of" = (/obj/structure/wild/bush,/turf/floor/dirt{icon_state = "oldsmoothdarkdirt"},/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "blue4"; name = "Mountains"})
 "og" = (/obj/structure/barbwire{dir = 4},/turf/floor/dirt/darksand,/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "red3"; name = "Jungle"})
 "oh" = (/obj/structure/wild/burnedtree,/turf/floor/dirt{icon_state = "oldsmoothdarkdirt"},/area/prishtina/island/beach{base_turf = /turf/floor/plating/dirt; icon_state = "blue4"; name = "Mountains"})
