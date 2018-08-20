@@ -120,6 +120,7 @@
 "cp" = (/obj/effect/floor_decal/rust,/obj/effect/floor_decal/rust,/obj/structure/sign/nosmoking_2,/turf/wall/iron,/area/prishtina/forest)
 "cq" = (/obj/structure/plating,/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_one)
 "cr" = (/obj/effect/floor_decal/rust,/obj/structure/rustpipe{icon_state = "trubas"; dir = 8},/turf/wall/iron,/area/prishtina/forest)
+"cs" = (/turf/floor/plating/beach/water/deep,/area/prishtina/forest)
 "ct" = (/obj/effect/decal/cleanable/blood/drip,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "cu" = (/obj/structure/simple_door/wood{name = "Overseer's Office"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "cv" = (/obj/structure/closet/crate/trashcart,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
@@ -143,7 +144,7 @@
 "cN" = (/obj/effect/damagedfloor/rust,/turf/wall/indestructable,/area/prishtina/forest)
 "cO" = (/obj/structure/simple_door/iron{name = "Control Room"},/obj/structure/plating,/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_one)
 "cP" = (/obj/structure/table/rackz,/obj/structure/plating,/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_eight)
-"cQ" = (/obj/structure/plating,/obj/structure/closet/crate/glass,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"cQ" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 8},/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "cR" = (/obj/structure/plating,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "cS" = (/obj/structure/plating,/obj/structure/rustpipe{icon_state = "burnbarrel"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "cT" = (/obj/effect/floor_decal/rust,/obj/effect/floor_decal/rust,/turf/wall/iron,/area/prishtina/forest)
@@ -153,10 +154,10 @@
 "cX" = (/obj/structure/bed/chair/office/dark,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "cY" = (/obj/effect/damagedfloor/rust,/obj/structure/sign/signnew/radiation,/turf/wall/iron,/area/prishtina/forest)
 "cZ" = (/obj/structure/table/rackz,/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"da" = (/obj/structure/rustpipe{icon_state = "panel_1"; name = "Broken Machine"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"da" = (/obj/structure/light/small,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "db" = (/obj/structure/rustpipe{icon_state = "burnbarrel"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"dc" = (/obj/structure/conveyor{icon_state = "conveyor0"; dir = 8},/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"dd" = (/obj/structure/conveyor{icon_state = "conveyor0"; dir = 8},/obj/structure/plasticflaps,/obj/item/weapon/gun/projectile/heavy/mk12,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"dc" = (/obj/structure/catwalk,/obj/item/weapon/attachment/scope/adjustable/sniper_scope,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"dd" = (/obj/structure/closet/crate/medical,/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "de" = (/obj/structure/closet/crate/tokarevs,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "df" = (/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/turf/floor/plating/grass/wild,/area/prishtina/no_mans_land/invisible_wall)
 "dg" = (/obj/structure/table/wood,/obj/item/weapon/stamp,/turf/floor/wood,/area/prishtina/houses/ger_eight)
@@ -174,8 +175,8 @@
 "ds" = (/obj/effect/decal/cleanable/blood/oil,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dt" = (/obj/structure/extinguisher_cabinet{pixel_x = 1},/obj/structure/rustpipe{icon_state = "trubas"; dir = 10},/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "du" = (/obj/effect/floor_decal/rust,/obj/structure/rustpipe{icon_state = "trubas"; dir = 4},/obj/structure/rustpipe{icon_state = "trubas"; dir = 1},/turf/wall/iron,/area/prishtina/forest)
-"dv" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 1},/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
-"dw" = (/obj/structure/grille/fence,/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
+"dv" = (/turf/floor/plating/beach/water/deep,/area/prishtina)
+"dw" = (/turf/floor/plating/beach/water/sewage,/area/prishtina/forest)
 "dx" = (/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/no_mans_land/invisible_wall)
 "dy" = (/obj/structure/plating,/obj/structure/plating,/obj/item/trash{icon_state = "base5"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dz" = (/obj/structure/plating,/obj/structure/plating,/obj/structure/plating,/turf/floor/wood,/area/prishtina/houses/ger_eight)
@@ -184,7 +185,7 @@
 "dC" = (/obj/structure/plating,/obj/item/clothing/under/wrench,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dD" = (/obj/structure/plating,/obj/item/trash{icon_state = "base1"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dE" = (/obj/structure/plating,/obj/item/weapon/vehicle_fueltank/empty,/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"dF" = (/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/no_mans_land/invisible_wall)
+"dF" = (/turf/floor/plating/beach/water/sewage,/area/prishtina)
 "dG" = (/obj/structure/plating,/obj/structure/plating,/obj/structure/closet/crate/trashcart,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dH" = (/obj/structure/plating,/obj/structure/plating,/obj/effect/decal/cleanable/blood/oil,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dI" = (/obj/structure/catwalk,/obj/structure/plating,/obj/structure/plating,/turf/floor/wood,/area/prishtina/houses/ger_eight)
@@ -202,14 +203,15 @@
 "dU" = (/obj/structure/plating,/obj/item/weapon/wrench,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dV" = (/obj/effect/floor_decal/rust,/obj/structure/sign/fire,/turf/wall/iron,/area/prishtina/forest)
 "dW" = (/obj/structure/simple_door/iron{name = "Workshop"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"dX" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 1},/turf/floor/plating/beach/water/sewage,/area/prishtina/forest)
 "dY" = (/obj/structure/closet/crate/artillery,/obj/effect/decal/cleanable/cobweb,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dZ" = (/obj/structure/closet/crate/colts,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "ea" = (/obj/structure/closet/crate/german_grenade,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "eb" = (/obj/structure/closet/crate/kar98kammo,/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"ec" = (/obj/structure/closet/crate/barbwire,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"ec" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 1},/obj/structure/catwalk,/obj/structure/light/small,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "ed" = (/obj/structure/table/wood,/obj/item/artillery_shell/casing,/obj/item/clothing/suit/storage/vest/gru,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "ee" = (/obj/structure/table/wood,/obj/item/clothing/under/oilworker,/obj/effect/decal/cleanable/cobweb{icon_state = "cobweb1"; dir = 4},/obj/item/clothing/head/welding,/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"ef" = (/obj/structure/table/wood,/obj/item/weapon/gun/projectile/heavy/mk12,/obj/item/weapon/screwdriver,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"ef" = (/obj/item/clothing/accessory/storage/webbing,/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "eg" = (/obj/structure/closet/crate/maximbelt,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "eh" = (/obj/structure/closet/crate/lugers,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "ei" = (/obj/structure/closet/crate/mauserammo,/turf/floor/wood,/area/prishtina/houses/ger_eight)
@@ -220,7 +222,7 @@
 "en" = (/obj/structure/closet/crate/trashcart,/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "eo" = (/obj/effect/decal/cleanable/cobweb,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "ep" = (/obj/structure/barbwire,/obj/structure/barbwire{dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/no_mans_land/invisible_wall)
-"eq" = (/obj/item/flashlight/lantern,/obj/item/flashlight/lantern,/obj/item/flashlight/lantern,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"eq" = (/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/turf/floor/plating/beach/water/deep,/area/prishtina/forest)
 "er" = (/obj/structure/table/wood,/obj/item/weapon/paper{icon_state = "pismo_opened"; info = "Test"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "es" = (/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "et" = (/obj/structure/table/wood,/obj/item/weapon/pen/blue,/turf/floor/wood,/area/prishtina/houses/ger_eight)
@@ -242,56 +244,89 @@
 "eJ" = (/obj/structure/grille/fence{icon_state = "1"; dir = 8},/turf/floor/dirt,/area/prishtina/forest)
 "eK" = (/obj/effect/landmark{name = "JoinLateIT"},/turf/floor/dirt,/area/prishtina/forest)
 "eL" = (/obj/map_metadata/factory,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"eM" = (/obj/structure/grille/fence,/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/turf/floor/plating/beach/water/deep,/area/prishtina/forest)
+"eN" = (/obj/structure/grille/fence,/turf/floor/plating/beach/water/deep,/area/prishtina/forest)
+"eO" = (/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/beach/water/deep,/area/prishtina/no_mans_land/invisible_wall)
+"eP" = (/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/turf/floor/plating/beach/water/sewage,/area/prishtina/forest)
+"eQ" = (/obj/structure/conveyor{icon_state = "conveyor0"; dir = 8},/obj/structure/plasticflaps,/obj/item/weapon/gun/launcher/rocket/panzerfaust,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"eR" = (/obj/structure/table/wood,/obj/item/weapon/screwdriver,/obj/item/weapon/gun/launcher/rocket/panzerfaust,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"eS" = (/obj/item/weapon/attachment/bayonet,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
+"eT" = (/obj/item/weapon/attachment/bayonet,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"eU" = (/obj/item/weapon/gun/projectile/submachinegun/fedorov,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"eV" = (/obj/item/weapon/gun/projectile/submachinegun/bly,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"eW" = (/obj/item/weapon/gun/projectile/submachinegun/fedorov,/turf/floor/dirt,/area/prishtina/forest)
+"eX" = (/obj/item/weapon/attachment/bayonet,/turf/floor/dirt,/area/prishtina/forest)
+"eY" = (/obj/item/weapon/gun/projectile/submachinegun/kis,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"eZ" = (/obj/item/weapon/gun/projectile/submachinegun/pps,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"fa" = (/obj/structure/conveyor{icon_state = "conveyor0"; dir = 8},/obj/item/weapon/gun/projectile/submachinegun/ovp,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fb" = (/obj/structure/table/wood,/obj/item/weapon/stamp,/obj/item/weapon/gun/projectile/submachinegun/modello38,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fc" = (/obj/structure/table/wood,/obj/item/weapon/gun/projectile/submachinegun/ovp,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fd" = (/obj/structure/plating,/obj/structure/light/small/red{icon_state = "firelight1"},/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_one)
+"fe" = (/obj/effect/decal/cleanable/cobweb,/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"ff" = (/obj/effect/decal/cleanable/blood/writing,/obj/structure/light/small{icon_state = "bulb1"; dir = 4},/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fg" = (/obj/structure/plating,/obj/structure/closet/crate/glass,/obj/structure/light/small/red{icon_state = "firelight0"; dir = 1},/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fh" = (/obj/structure/plating,/obj/structure/rustpipe{icon_state = "burnbarrel"},/obj/structure/light/small/red{icon_state = "firelight0"; dir = 1},/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fi" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 4},/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fj" = (/obj/structure/bed/chair/office/dark,/obj/structure/light/small{icon_state = "bulb1"; dir = 4},/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fk" = (/obj/structure/rustpipe{icon_state = "panel_1"; name = "Broken Machine"},/obj/structure/light/small/red{icon_state = "firelight0"; dir = 1},/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fl" = (/obj/structure/conveyor{icon_state = "conveyor0"; dir = 8},/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fm" = (/obj/structure/plating,/obj/structure/light/small/red{icon_state = "firelight0"; dir = 1},/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fn" = (/obj/structure/conveyor{icon_state = "conveyor0"; dir = 8},/obj/item/weapon/ore/iron,/obj/item/weapon/attachment/scope/adjustable/sniper_scope,/turf/floor/plating/under,/area/prishtina/houses/ger_eight)
+"fo" = (/obj/structure/plating,/obj/item/weapon/storage/firstaid/surgery,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fp" = (/obj/structure/plating,/obj/structure/light/small/red{icon_state = "firelight1"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fq" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fr" = (/obj/structure/closet/crate/barbwire,/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fs" = (/obj/item/weapon/attachment/scope/adjustable/sniper_scope,/turf/floor/plating/grass/wild,/area/prishtina/forest)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaaaaaaaaabaaacaaaaadaaaaaaaaaaaaacaeaeaaaaaaaaaaaaaeaeaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaabafabaaaaacaaagahaiajaaakaaaeaeaeaeaeaeaeaeaeaeaeaeaeaealaeaaaaaaadaaaaaaaaacaaaa
-aaaaaaaaaaaaaaaaaaababafafaaaaaaaaamanaaaoaaaaapaeaeaeaeaeaqaeaeaeaeaeaeaeaeaeaaajaoaaaiaaacaaaaaaaa
-aaarasasasasasasasatauauasasasasasasaraaaaaaaaaeaeaeaeaeaeaqaqaeaeaeaeaeaeacaaaaahaaahaaavaaakaaaaaa
-aaawaxayazazazazazaAaBaAazazazazazaCawaaaaaaaaaaaaaaaaaaaaaDaeaaaaaaaaaaaaaaaaaaagahaEanaFaaaaaaaaaa
-aaawaGaaaaaaaaaaaaafababaaaaaaaaaaaHarasasasasasasasasasasasasasasasasasasasasasasasasaraaaaaaaaaaaa
-aaawaGaaaIaIaIaIaJaIaKaIaIaIaIaLaaaMaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaOawaaaaaaacaaaa
-aaawaGaaaIaPaQaRaSaTaUaVaWaXaXaYaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaHawaaaaaaaaaaaa
-aaawaGaaaIbaaXbbaXaXbbaXaXaXaXaYaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaHawaaaaaaaaaaaa
-aaawaGaaaIbcaXaXaXaXbdaXaXaXaXaLaaaMaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNbeaZaZaHawaaaaaaaaaaaa
-aaawaGaaaIbfbfaYbhbfbiaXaXaXaXaIaaaHaIbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjaIaGaZaZaHawaaaaaaaaaaaa
-aaawaGaaaIcZblaXaXbmbnbobpbqbqbrbsbtbubsbsbsbsbsbsbsbsbsbsbsbsbsbsbsbsbsbsbvbwaGaZaZaHawaaaaaaaaaaaa
-aaawaGaaaIbxaXaXaXaXaXbyboaXaXaIaaaHbwaaaabzbzbzbzbzaaaaaaaaaaaaaaaaaDaDaabAbwaGaZaZaHawaDaFaaaaaaaa
-aaawaGaaaIaXbBaXbCbCbEbFbGaXaXaIaaaHbwaaaebzbzbzbzbzaabHaaaaaaaaaaaaaaaaaabIbwaGaZaZaHawaaanaaaaaaaa
-aabJbKafaIaXbLaXbgbCbCbFbGaXaXaIaaaHbwaaaebzbzbzbzbzaaaIbjbjbjbjbjbjbjbjbjbNaIaGaZaZaHarasaraFaaaaaa
-aabJbOabbPbQbRbQbQbQbQbSbGaXaXaIaaaHbwaaaebTbTbTbTbTaabwbUaNaNaNaNaNaNaNaNbVaNbeaZaZaOaNaHbWaaaaaaaa
-bXbYbZaaaIaXbLbncacacacbccaXaXaIaaaHbwaaaebTcdcecfbTaabwaGaaaaaaaaaaaaaaaabIaaaaaZaZaaaaaHbWaaaaaaaa
-aabYbZaaaIaXbLaYaXaXaXbdaXaXaXaIaaaybwaacgbTchcichbTaabwaGaaaacjckckckckckclcmcncococpaaaHbWbXbXbXbX
-aabYaGaaaIaXbLaIaIaIaIaKaIaIaIaIaaaybwaabHbTcqbkcqbTaabwayaaaacreoctctcuctaXaXctaXaXcmaaaHbWaaaaaaaa
-aaawaGaaaIaXbLaIababafafcvaaaaaaaaaHbwaaaebTbTcqbTbTaabwaGaaaacraXcwcxcyckckckczcAcAcBaaaHbWaaaabHaa
-aaawaGaaaIaXbLaIabcCcDcDcEcEaNaNaNaObwaaaebzcFcqcFbzaabwaGaaaacGckckckcHaaaaaacmctaXcIaaaHbWaaaaaaaa
-aaawaGaaaIaXcJaIabcKaIcLcLcMbjbjbjbjaIaaaIaIcNcOcNaIaabwaGaaaaaaaaaaaaaaaaaaaacmctaXcIaaaHbWaaaaaabH
-aaawaGaaaIaXaXaIaaaaaaaaaaaaaaaaaaaaaaaaaIcPcQcRcSaIaaaaaaaaaacTcmcmcmcUcmcmcmcVaXaXcWaaaHbWaaaaaDaa
-aaawaGaaaIaXcXaIaaaaaaaaaaaaaaaaaaaaaaaIcYcRcRcRcRaIaIaIaIaIaIcmbDdadbaPdcdddcdeaXaXcWabaHdfabaaaaaa
-aaawaGaaaIaXdgaIaIaIaIaIaIaIaIaIaIaIdhaIcRdidjdkdldmdndodpdqdrcmaXaXaXaXaXbbdsaXaXdtdudvdwdxafaaaaaa
-aaawaGaaaIaXaXaYcRcRcRcRcRcRcRcRcRcRcRcRdydzdididAbbdBdCbbdDdEcodsaXaXaXaXaXaXaXaXbdcIaaaHdFababaaaa
-aaawaGaaaIaXaXaYcRcRcRcRcRcRcRcRcRcRcRcRdGdzdHdIdIdJdJdKdJdJdJcoaXaXaXdLbqbqbqdMbqdNcIaaaHbWaaaaaaaa
-aaawaGaaaIdOaXaIaIaIaIaIaIdPdQdPaIaIaIcRdidzdRdkdldmdndodpdqdrcmaXcTcmcrcmcmcmcmcmdSclaaaHbWaaaabHaa
-aaawaGaaaIaIaIaIaaaaaaaaaaaIaXaIaaaaaIcRdidzdididTbbcRdBbbdUcRcmaXcmafafabaaaaaaaaaaaaaaaHbWaaaaaaaa
-aaawaGaaaaaaaaaaaaaaaaaaaaaIaXaIaaaaaIcRdidzdididicRcRcRcRcRcRcmaXcmafafababaaaaaaaaaaaaaHbWaaaaaabH
-aaawbUaNaNaNaNaNayaOaaaaaaaIaXaIaaaaaIcScRcSaIaIaIaIaIaIaIaIcmdVdWcmcmabcmcmcmcmcmcmcmaaaHbWaaaaaDaa
-aaarasasasasasasasasaraaaaaIctaIaaaaaIaIaIaIaIbHaaaaaabwaGaacmaXaXaXaXcmcmdYdZeaebeccmaaaHbWaaaaaaaa
-aaaaaaaaaaawaaaaaaaaaaaaaaaIctaIaaaaaaaaaaaaaaaaaaaaaabwaGaacmaXbMaXaXaXaXaXaXaXdsaXcmaaaHbWaaaaaaaa
-aaaaaaaaaaarbjbjbjbjbjbjbjaIaXaIbjbjbjbjbjbjbjaIaaaaaabwayaacmedeeefaXcmcmegeheiaXejcmaaaHbWaaaabHaa
-aaaaaaaaaaawbUaNaNaNaNaNaNaIaXaIaNaNaNaNaNayaObwaaaaaabwayaacTcmcmcmcmaacmcmcmcnekcncTaaaHbWaaaabHaa
-aaaaaaaaaaawaGaeaaaaaaaaaaelctelaaaaaaaaaaaaaHembjbjbjemaGaaaaaaaaaaaaaaaaaaaaenaaaaaaaaaHbWaaaaaaaa
-aaaaaaaaaaawaGaeaIaIaIaIaIaIdQaIaIaIaIaIaIaaaMaNaNaNaNaNbUaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaObWaaaaaaaa
-aaaaaaaaaaawaGaeaIeoaXaXaXaXctaXaXaXaXaXaIaaaHepasasasarasasasasasasasasasasasasasasasasasaraaeqaaaa
+aaaaaaaaaaaaaaaaaaaaaaeSaaacaaaaadaaaaaaddaaaaacaeaeaaaaaaaaaaaaaeaeaeaeaeaaaaaaeTeUaaaaefaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaabafabeVaaacaaagahaiajaaakaaeWaeaeaeaeaeaeaeaeaeaeaeaeaealaeeTaaaaadefefddaaacaaaa
+aaaaaaaaaaaaaaaaaaababafeSeTeTeTaaamanaaaoefaaapaeaeaeaeaeaqaeaeaeaeaeaeaeaeeXaaajaoeTaiaaacaaeYaaaa
+arasasasasasasasasatauauasasasasasasaraaefaaefaeaeaeaeaeaeaqaqaeaeaeaeaeaeacaaeZahaaahaaavaaakaaaaaa
+awaxazayazazazazazaAaBaAazazazazazaCawaaaaaaaaaaaaaaaaaaaaaDaeaaaaaaaaaaaaaaaaaaagahaEanaFaaaaaaaaaa
+awaGbzaaaaaaaaaaaaafababaaaaaaaaaaaHarasasasasasasasasasasasasasasasasasasasasasasasasaraaaaaaaaaaaa
+awaGbzaaaIaIaIaIaJaIaKaIaIaIaIaLcQaMaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaOawaaaaaaacaaaa
+awaGbzaaaIaPaQaRaSaTaUaVaWaXaXaYaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaHawaaaaaaaaaaaa
+awaGbzaaaIbaaXbbaXaXbbaXaXaXaXaYaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaHawaaaaaaaaaaaa
+awaGbzaaaIbcaXaXdaaXbdaXaXaXaXaLcQaMaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNbeaZaZaHawaaaaaaaaaaaa
+awaGbzaaaIbfbfaYbhbfbiaXaXaXaXaIaaaHaIbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjaIaGaZaZaHawaaaaaaaaaaaa
+awaGbzaaaIcZblaXaXbmbnbobpbqbqbrbsbtbubsbsbsbsbsbsbsbsbsbsbsbsbsbsbsbsbsbsbvbwaGaZaZaHawaaaaaaaaaaaa
+awaGbzaaaIbxaXaXaXaXaXbyboaXaXaIaaaHbwaaaabzbzbzbzbzaaaaaaaaaaaaaaaaaDaDaabAbwaGaZaZaHawaDaFaaaaaaaa
+awaGbzaaaIaXbBaXbCbCbEbFbGaXaXaIaaaHbwaaaebzbzbzbzbzaabHaaaaaaaaaaaaaaaaaabIbwaGaZaZaHawaaanaaaaaaaa
+bJbKbzafaIaXbLaXbgdcbCbFbGaXaXaIaaaHbwaaaebzbzbzbzbzaaaIbjbjbjbjbjbjbjbjbjbNaIaGaZaZaHaraNaNaNaNaNar
+bJbObzabbPbQbRbQecbQbQbSbGaXaXaIaaaHbwaaaebTbTbTbTbTaabwbUaNaNaNaNaNaNaNaNbVaNbeaZaZaOasasasasasasbW
+bYbZbzaaaIaXbLbncacacacbccaXaXaIaaaHbwaaaebTcdcecfbTaabwaGaaaaaaaaaaaaaaaabIaaaaaZaZaaaabzbzaaaaaHbW
+bYbZbzaaaIaXbLaYaXaXaXbdaXaXaXaIaaaybwaacgbTchcichbTaabwaGaaaacjckckckckckclcmcncococpaabzbzbXbXaHbW
+bYaGbzaaaIaXbLaIaIaIaIaKaIaIaIaIaaaybwaabHbTfdbkfdbTaabwayaaaacrfectctcuctaXaXctaXaXcmcsbzbzaaaaaHbW
+awaGbzaaaIaXbLaIababafafcvaaaaaaaaaHbwaaaebTbTcqbTbTaabwaGaaaacraXcwcxcyckckckczcAcAcBcsbzbzaaaaaHbW
+awaGbzaaaIaXffaIabcCcDcDcEcEaNaNaNaObwaaaebzcFcqcFbzaabwaGaaaacGckckckcHaaaaaacmctaXcIcsdvbzaaaaaHbW
+awaGbzaaaIaXcJaIabcKaIcLcLcMbjbjbjbjaIaaaIaIcNcOcNaIaabwaGaaaaaaaaaaaaaaaaaaaacmctaXcIdwdvbzaaaaaHbW
+awaGbzaaaIaXaXaIaaaaaaaaaaaaaaaaaaaaaaaaaIcPfgcRfhaIaaaaaaaaaacTcmcmcmcUcmcmcmcVaXficWdwdvbzaaaaaHbW
+awaGbzaaaIaXfjaIaaaaaaaaaaaaaaaaaaaaaaaIcYcRcRcRcRaIaIaIaIaIaIcmbDfkdbaPfaeQfldeaXaXcWdwdFdvcsaaaHdf
+awaGbzaaaIaXfbaIaIaIaIaIaIaIaIaIaIaIdhaIfmdidjdkdldmdnfndpdqdrcmaXaXaXaXaXbbdsaXaXdtdudXdFdFeqcseMdx
+awaGbzaaaIaXaXaYcRfmcRcRcRcRcRcRcRcRfocRdydzdididAbbdBdCbbdDdEcodsaXaXaXaXaXaXaXaXbdcIdwdFdFcscseNeO
+awaGbzaaaIaXaXaYcRcRcRcRfpcRcRcRfpcRcRcRdGdzdHdIdIdJdJdKdJdJdJcoaXaXaXdLbqbqbqdMbqdNcIdwdFdFcsaaaHbW
+awaGbzaaaIdOaXaIaIaIaIaIaIdPdQdPaIaIaIcRdidzdRdkdldmdndodpdqdrcmaXcTcmcrcmcmcmcmcmdScldwdFdFcsaaaHbW
+awaGbzaaaIaIaIaIaaaaaaaaaaaIaXaIaaaaaIcRdidzdididTbbcRdBbbdUcRcmaXcmePePdwdwdwdwdwdwdwdwdFdvcsaaaHbW
+awaGbzaaaaaaaaaaaaaaaaaaaaaIaXaIaaaaaIcRdidzdididicRfpcRcRfpcRcmaXcmePePdwdwdwdwdwdwdwdwdvdvcsaaaHbW
+awbUaNaNaNaNaNaNayaOaaaaaaaIaXaIaaaaaIcSfpcSaIaIaIaIaIaIaIaIcmdVdWcmcmdwcmcmcmcmcmcmcmcsdvdvaaaaaHbW
+arasasasasasasasasasaraaaaaIctaIaaaaaIaIaIaIaIbHaaaaaabwaGaacmaXaXfqaXcmcmdYdZeaebfrcmcsdvbzaaaaaHbW
+aaaaaaaaaaawaaaaaaaaaaaaaaaIctaIaaaaaaaaaaaaaaaaaaaaaabwaGaacmaXbMaXaXaXaXaXaXaXdsaXcmcsbzbzaaaaaHbW
+aaaaaaaaaaarbjbjbjbjbjbjbjaIaXaIbjbjbjbjbjbjbjaIaaaaaabwayaacmedeeeRaXcmcmegeheiaXejcmcsbzbzaaaaaHbW
+aaaaaaaaaaawbUaNaNaNaNaNaNaIaXaIaNaNaNaNaNayaObwaaaaaabwayaacTcmcmcmcmaacmcmcmcnekcncTaabzbzaaaaaHbW
+aaaaaaaaaaawaGaeaaaaaaaaaaelctelaaaaaaaaaaaaaHembjbjbjemaGaaaaaaaaaaaaaaaaaaaaenaaaaaaaabzbzaaaaaHbW
+aaaaaaaaaaawaGaeaIaIaIaIaIaIdQaIaIaIaIaIaIaaaMaNaNaNaNaNbUaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaObW
+aaaaaaaaaaawaGaeaIeoaXaXaXaXctaXaXaXaXaXaIaaaHepasasasarasasasasasasasasasasasasasasasasasasasasasar
 aaaaaaaaaaawaGaeaIaXaXaXcteresetaXaXaXaXaIaaaHawaaaaaaanbHaaaabHaaaaaaaabHbHbHaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaawaGaeaIaXaXaXaXdgeuevaXaXaXaXaIaaaHawaaaaaaaaaEaaaaewaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaawaGaeaIaXaXctaXaXaXaXaXaXaXaXaIaaaHawaaaaaaaaexahaaaaaaaaaaaaeyaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaawaGaeaIezaXaXcXaXaXaXcXaXaXcXaIaaaHawaaaaaaaaaaaaaaaaaaaaeAaaaaaaaaaaaaaaaaaaaaaaaabHaaaa
-aaaaaaaaaaawaGaeaIeBeCaXeseDeEeDesaXaXesaIaaaHawaaaaaaaaeFaaadeGaaaaaaaaaaaaaaaaaaaaaaaaaaaDaabHbHaa
-aaaaeHaaaaawaGaeaIaIaIaIaIaIaIaIaIaIaIaIaIaaaHawaaaaaaaaeHaaaaaaaaaaaaaabHaaaaaaaaaaaaaaaabHaaaDaaaa
-aaaaaaaaeyawaGaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaHawaaaaaeaaaaaaaaaaaaeyaDaaaqaqaeaabHaaaaaaaaaaaDaaaaaa
-aaaaaaaaaaawbUeIeIeJeJeJeJeJeJeJeJeJeJeJeJeJaOawaaaaaeaebHaaaaaaaeaeaqaecgaeaeaebHbHaaaaaaaabHaaaaaa
-aaaaeGeFaaarasasasasasasasasasasasasasasasasasaraaaaaDaeaqbHaaeKaeaeaecgaeaeaeaecgaeaeaaaaaaaaaaaaaa
+aaaaaaaaaaawaGaeaIaXaXctaXaXaXaXaXaXaXaXaIaaaHawaaaaaaaaexahfsaaaaddaaaaeyaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaawaGaeaIezaXaXcXaXaXaXcXaXaXcXaIaaaHawaaaaaaeTaaaaaaaaeTaaeAaaaaaaaaaaaaaaaaaaaaaaaabHaaaa
+aaaaaaaaaaawaGaeaIeBeCaXfceDeEeDesaXaXesaIaaaHawaaaaaaaaeFaaadeGaaaaeTaaaaaaaaaaaaaaaaaaaaaDaabHbHaa
+aaaaeHaaaaawaGaeaIaIaIaIaIaIaIaIaIaIaIaIaIaaaHawaaaaaaaaeHaaaaaaefaaaaaabHaaaaaaaaaaaaaaaabHaaaDaaaa
+eTaaaaaaeyawaGaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaHawaaaaaeaaaaaaefaaaaeyaDaaaqaqaeaabHaaaaaaaaaaaDaaaaaa
+aaefaaaaaaawbUeIeIeJeJeJeJeJeJeJeJeJeJeJeJeJaOawaaaaaeaebHaaaaaaaeaeaqaecgaeaeaebHbHaaaaaaaabHaaaaaa
+eTddeGeFaaarasasasasasasasasasasasasasasasasasaraaaaaDaeaqbHaaeKaeaeaecgaeaeaeaecgaeaeaaaaaaaaaaaaaa
 aaaaaaaaaFanamahaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabHaacgaeaeaeaeaeaeaqaeaeaecgaeaeaaaaaaaaaaaaaaaa
-aaaaaaaaewaaexaaeyadaaeAaaeyaaaaaaaaaaaaaaaaaaaaaeaeaecgaeaaaaaaaeaeaeaaaeaeaabHaaaaaaaaaaaaaaaaaaaa
+aaeTefaaewaaexaaeyadaaeAaaeyaaaaaaaaaaaaaaaaaaaaaeaeaecgaeaaaaaaaeaeaeaaaeaeaabHaaaaaaaaaaaaaaaaaaaa
 eLaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaaaabHaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
