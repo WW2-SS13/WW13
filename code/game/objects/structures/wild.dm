@@ -1,7 +1,11 @@
 /obj/structure/wild
 	icon = 'icons/obj/wild.dmi'
+	icon_state = "tree"
 	anchored = TRUE
 	var/sways = FALSE
+	var/amount = 0 //how much wood to drop. 0 = none
+	var/health = 100
+	var/maxhealth = 100
 /*
 /obj/structure/wild/New()
 	..()*/
@@ -13,6 +17,9 @@
 				return
 */
 /obj/structure/wild/Destroy()
+	if (amount > 0)
+		var/obj/item/stack/material/wood/wooddrop = new /obj/item/stack/material/wood
+		wooddrop.amount = amount
 	for (var/obj/o in get_turf(src))
 		if (o.special_id == "seasons")
 			qdel(o)
@@ -40,6 +47,28 @@
 			return TRUE
 	else
 		return ..()
+/obj/structure/wild/attackby(obj/item/W as obj, mob/user as mob)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(istype(W,/obj/item/weapon/material/hatchet))
+		health -= 25
+	else
+		switch(W.damtype)
+			if ("fire")
+				health -= W.force * TRUE
+			if ("brute")
+				health -= W.force * 0.20
+
+	playsound(get_turf(src), 'sound/weapons/smash.ogg', 100)
+	user.do_attack_animation(src)
+	try_destroy()
+	..()
+
+/obj/structure/wild/proc/try_destroy()
+	if (health <= 0)
+		visible_message("<span class='danger'>The [src] is broken into pieces!</span>")
+		qdel(src)
+		return
+
 
 /obj/structure/wild/bullet_act(var/obj/item/projectile/proj)
 	if (prob(proj.damage - 30)) // makes shrapnel unable to take down trees
@@ -52,6 +81,8 @@
 	opacity = TRUE
 	density = TRUE
 	sways = TRUE
+	amount = 3
+
 
 /obj/structure/wild/tree/fire_act(temperature)
 	if (prob(15 * (temperature/500)))
@@ -72,12 +103,28 @@
 	opacity = TRUE
 	density = TRUE
 	sways = FALSE
+	amount = 2
 
 /obj/structure/wild/palm/fire_act(temperature)
 	if (prob(15 * (temperature/500)))
 		visible_message("<span class = 'warning'>[src] collapses.</span>")
 		qdel(src)
 
+/obj/structure/wild/tree/try_destroy()
+	if (health <= 0)
+		visible_message("<span class='danger'>The [src] is broken into pieces!</span>")
+		var/obj/item/stack/material/wood/dropwood = new /obj/item/stack/material/wood(get_turf(src))
+		dropwood.amount = 3
+		qdel(src)
+		return
+
+/obj/structure/wild/palm/try_destroy()
+	if (health <= 0)
+		visible_message("<span class='danger'>The [src] is broken into pieces!</span>")
+		var/obj/item/stack/material/wood/dropwood = new /obj/item/stack/material/wood(get_turf(src))
+		dropwood.amount = 2
+		qdel(src)
+		return
 /obj/structure/wild/palm/New()
 	..()
 	icon_state = pick("palm1","palm2")
@@ -109,11 +156,27 @@ obj/structure/wild/burnedbush
 	opacity = FALSE
 	density = FALSE
 
-obj/structure/wild/junglebush
+obj/structure/wild/largejungle
+	name = "large jungle bush"
+	icon = 'icons/obj/flora/largejungleflora.dmi'
+	icon_state = "bush1"
+	opacity = FALSE
+	density = FALSE
+
+
+/*obj/structure/wild/junglebush
 	name = "jungle vegetation"
 	icon_state = "jungle1"
 	opacity = FALSE
 	density = FALSE
+*/
+obj/structure/wild/junglebush
+	name = "jungle vegetation"
+	icon = 'icons/obj/flora/jungleflora.dmi'
+	icon_state = "1"
+	opacity = FALSE
+	density = FALSE
+	var/healthamount = 1
 
 obj/structure/wild/burnedtree
 	name = "burned tree"
@@ -126,6 +189,7 @@ obj/structure/wild/rock
 	icon_state = "rock1"
 	opacity = FALSE
 	density = FALSE
+	amount = 0
 
 /obj/structure/wild/bush/New()
 	..()
@@ -148,10 +212,18 @@ obj/structure/wild/rock
 
 	icon_state = "burnedbush[rand(1,5)]"
 
-/obj/structure/wild/junglebush/New()
+/obj/structure/wild/largejungle/New()
+	..()
+
+	icon_state = "bush[rand(1,6)]"
+/*/obj/structure/wild/junglebush/New()
 	..()
 
 	icon_state = "jungle[rand(1,6)]"
+*/
+/obj/structure/wild/junglebush/New()
+	..()
+	icon_state = "[rand(1,30)]"
 
 
 /obj/structure/wild/burnedtree/New()
@@ -163,3 +235,33 @@ obj/structure/wild/rock
 	..()
 
 	icon_state = "rock[rand(1,5)]"
+
+/obj/structure/wild/jungle
+	name = "jungle tree"
+	icon = 'icons/obj/flora/jungletreesmaller.dmi'
+	icon_state = "tree1"
+	opacity = TRUE
+	density = TRUE
+	sways = FALSE
+	bound_height = 64
+	bound_width = 32
+	amount = 6
+	health = 200
+	maxhealth = 200
+
+/obj/structure/wild/jungle/fire_act(temperature)
+	if (prob(15 * (temperature/500)))
+		visible_message("<span class = 'warning'>[src] collapses.</span>")
+		qdel(src)
+
+/obj/structure/wild/jungle/New()
+	..()
+	icon_state = "tree[rand(1,7)]"
+
+/obj/structure/wild/jungle/try_destroy()
+	if (health <= 0)
+		visible_message("<span class='danger'>The [src] is broken into pieces!</span>")
+		var/obj/item/stack/material/wood/dropwood = new /obj/item/stack/material/wood(get_turf(src))
+		dropwood.amount = 6
+		qdel(src)
+		return
