@@ -156,6 +156,14 @@ obj/structure/wild/burnedbush
 	opacity = FALSE
 	density = FALSE
 
+obj/structure/wild/largejungle
+	name = "large jungle bush"
+	icon = 'icons/obj/flora/largejungleflora.dmi'
+	icon_state = "bush1"
+	opacity = FALSE
+	density = FALSE
+
+
 /*obj/structure/wild/junglebush
 	name = "jungle vegetation"
 	icon_state = "jungle1"
@@ -204,6 +212,10 @@ obj/structure/wild/rock
 
 	icon_state = "burnedbush[rand(1,5)]"
 
+/obj/structure/wild/largejungle/New()
+	..()
+
+	icon_state = "bush[rand(1,6)]"
 /*/obj/structure/wild/junglebush/New()
 	..()
 
