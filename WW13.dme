@@ -323,6 +323,7 @@
 #include "code\game\objects\map_metadata\camp.dm"
 #include "code\game\objects\map_metadata\city.dm"
 #include "code\game\objects\map_metadata\escort.dm"
+#include "code\game\objects\map_metadata\factory.dm"
 #include "code\game\objects\map_metadata\forest.dm"
 #include "code\game\objects\map_metadata\forest_new.dm"
 #include "code\game\objects\map_metadata\island.dm"
@@ -942,5 +943,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\city\level1.dmm"
+#include "maps\factory\factory.dmm"
 // END_INCLUDE

@@ -647,7 +647,7 @@ OTHER
 
 /obj/item/ammo_magazine/slugshell_box
 	name = "slug shell box"
-	icon_state = "slugbox4"
+	icon_state = "slugbox"
 //	origin_tech = "combat=2"
 	mag_type = MAGAZINE
 	caliber = "shotgun"
