@@ -46,14 +46,14 @@ var/process/open_space/OS_controller = null
 				// ingore objects that have any form of invisibility
 				if (o.invisibility) continue
 				var/image/temp2 = image(o, dir=o.dir, layer = o.layer)
-				temp2.plane = plane
+				temp2.plane = FLOOR_PLANE
 				temp2.color = o.color//rgb(127,127,127)
 				temp2.overlays += o.overlays
 				o_img += temp2
 			overlays += o_img
 
 		var/image/over_OS_darkness = image('icons/turf/floors.dmi', "black_open")
-		over_OS_darkness.plane = OVER_OPENSPACE_PLANE
+		over_OS_darkness.plane = GAME_PLANE
 		over_OS_darkness.layer = MOB_LAYER
 		overlays += over_OS_darkness
 

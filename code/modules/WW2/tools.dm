@@ -17,6 +17,7 @@
 	sharp = FALSE
 	edge = TRUE
 	slot_flags = SLOT_BACK|SLOT_BELT
+	var/dig_speed = 7
 
 /obj/item/weapon/shovel/spade
 	name = "spade"
@@ -27,26 +28,31 @@
 	throwforce = 20.0
 	w_class = 2.0
 	weight = 1.18
+	dig_speed = 1
 
 /obj/item/weapon/shovel/spade/russia
 	name = "lopata"
 	icon_state = "lopata"
 	item_state = "lopata"
+	dig_speed = 4
 
 /obj/item/weapon/shovel/spade/german
 	name = "feldspaten"
 	icon_state = "german_shovel2"
 	item_state = "lopata"
+	dig_speed = 3
 
 /obj/item/weapon/shovel/spade/japan
 	name = "japanese field shovel"
 	icon_state = "lopata"
 	item_state = "lopata"
+	dig_speed = 4
 
 /obj/item/weapon/shovel/spade/usa
 	name = "american field shovel"
 	icon_state = "german_shovel2"
 	item_state = "lopata"
+	dig_speed = 3
 
 /obj/item/weapon/shovel/spade/mortar
 	name = "spade mortar"
@@ -55,6 +61,7 @@
 	desc = "A 37mm mortar that also functions as a shovel. Very heavy."
 	weight = 20
 	heavy = TRUE
+	dig_speed = 2
 
 /obj/item/weapon/shovel/spade/mortar/New()
 	..()
