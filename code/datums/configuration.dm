@@ -249,25 +249,25 @@ var/list/gamemode_cache = list()
 					max_expected_players = text2num(value)
 
 				if ("global_config_path")
-					if (list("null", "Null", "NULL", "nil", "Nil", "NILL").Find(value))
+					if(value in list("null", "Null", "NULL", "nil", "Nil", "NILL"))
 						config.global_config_path = null
 					else
 						config.global_config_path = value
 
 				if ("resource_website")
-					if (!list("null", "Null", "NULL", "nil", "Nil", "NILL").Find(value))
+					if (!(value in list("null", "Null", "NULL", "nil", "Nil", "NILL")))
 						config.resource_website = value
 					else
 						config.resource_website = null
 
 				if ("scripts_directory")
-					if (!list("null", "Null", "NULL", "nil", "Nil", "NILL").Find(value))
+					if (!(value in list("null", "Null", "NULL", "nil", "Nil", "NILL")))
 						config.scripts_directory = value
 					else
 						config.scripts_directory = null
 				// allows the global_config to override us with YES/NO
 				if ("hub")
-					if (!value || !list("yes", "Yes", "YES", "no", "No", "NO").Find(value))
+					if (!value || !(value in list("yes", "Yes", "YES", "no", "No", "NO")))
 						config.hub = TRUE
 					else
 						switch (lowertext(value))
@@ -483,7 +483,7 @@ var/list/gamemode_cache = list()
 					config.abandon_allowed = FALSE
 
 				if ("usewhitelist")
-					if (!value || !list("yes", "Yes", "YES", "no", "No", "NO").Find(value))
+					if (!value || !(value in list("yes", "Yes", "YES", "no", "No", "NO")))
 						config.usewhitelist = TRUE
 					else
 						switch (lowertext(value))

@@ -6,6 +6,18 @@
 
 /obj/screen/plane_master/proc/backdrop(mob/mymob)
 
+/obj/screen/plane_master/floor
+	name = "floor plane master"
+	plane = FLOOR_PLANE
+	blend_mode = BLEND_OVERLAY
+	appearance_flags = PLANE_MASTER
+	invisibility     = INVISIBILITY_LIGHTING
+
+/obj/screen/plane_master/floor/backdrop(mob/mymob)
+	filters = list()
+	if(istype(mymob) && mymob.client)
+		filters += filter(type="drop_shadow", x=0, y=-2, size=4, border=4, color="#04080FAA")
+
 /obj/screen/plane_master/game_world
 	name = "game world plane master"
 	plane = GAME_PLANE
