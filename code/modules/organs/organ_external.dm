@@ -308,20 +308,24 @@
 			//Check edge eligibility
 			var/edge_eligible = FALSE
 			if (edge)
+/*
 				if (istype(used_weapon,/obj/item))
 					var/obj/item/W = used_weapon
 					if (W.w_class >= w_class)
 						edge_eligible = TRUE
 				else
 					edge_eligible = TRUE
+*/
+				edge_eligible = TRUE
 
-			if (edge_eligible && brute >= max_damage / DROPLIMB_THRESHOLD_EDGE && prob(brute))
+
+			if (edge_eligible && (brute + brute_dam * 1.2) >= max_damage && prob(brute + brute_dam * 0.75))
 				droplimb(0, DROPLIMB_EDGE)
-			else if (burn >= max_damage / DROPLIMB_THRESHOLD_DESTROY && prob(burn/3))
+			else if (burn + burn_dam >= max_damage && prob((burn + burn_dam * 0.75)/3))
 				droplimb(0, DROPLIMB_BURN)
-			else if ((brute + brute_dam * 0.75) >= max_damage / DROPLIMB_THRESHOLD_DESTROY && prob(brute))
+			else if ((brute + brute_dam) >= max_damage && prob(brute + brute_dam * (edge ? 0.25 : 0.75 )))
 				droplimb(0, DROPLIMB_BLUNT)
-			else if (brute >= max_damage / DROPLIMB_THRESHOLD_TEAROFF && prob(brute/3))
+			else if ((brute + brute_dam) >= max_damage && prob((brute + brute_dam * 0.75)/3))
 				droplimb(0, DROPLIMB_EDGE)
 
 	return update_damstate()
@@ -771,6 +775,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	switch(disintegrate)
 		if (DROPLIMB_EDGE)
+			update_icon()
 			compile_icon()
 			add_blood(victim)
 			var/matrix/M = matrix()
@@ -779,7 +784,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			if (!clean)
 				// Throw limb around.
 				if (src && istype(loc,/turf))
-					throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+					throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,2),30)
 				dir = 2
 		if (DROPLIMB_BURN)
 			new /obj/effect/decal/cleanable/ash(get_turf(victim))
