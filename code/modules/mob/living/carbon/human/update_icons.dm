@@ -552,8 +552,22 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[GLOVES_LAYER]	= standing
 	else
 		if (blood_DNA)
-			var/image/bloodsies	= image("icon" = species.blood_mask, "icon_state" = "bloodyhands")
-			bloodsies.color = hand_blood_color
+			var/image/bloodsies
+			var/hands_num = 0 // 0 means no hands, 1 left hand, 2 right hand, and 3 both hands
+			for (var/obj/item/organ/external/hand/H in organs)
+				if(istype(H, /obj/item/organ/external/hand/right))
+					hands_num += 2
+				else
+					hands_num += 1
+			switch (hands_num)
+				if (1)
+					bloodsies = image("icon" = species.blood_mask, "icon_state" = "bloodyhands_l")
+				if (2)
+					bloodsies = image("icon" = species.blood_mask, "icon_state" = "bloodyhands_r")
+				if (3)
+					bloodsies = image("icon" = species.blood_mask, "icon_state" = "bloodyhands")
+			if(bloodsies)
+				bloodsies.color = hand_blood_color
 			overlays_standing[GLOVES_LAYER]	= bloodsies
 		else
 			overlays_standing[GLOVES_LAYER]	= null
@@ -634,8 +648,22 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[SHOES_LAYER] = standing
 	else
 		if (feet_blood_DNA)
-			var/image/bloodsies = image("icon" = species.blood_mask, "icon_state" = "shoeblood")
-			bloodsies.color = feet_blood_color
+			var/image/bloodsies
+			var/feet_num = 0 // 0 means no feet, 1 left foot, 2 right foot, 3 both feet
+			for (var/obj/item/organ/external/foot/F in organs)
+				if(istype(F, /obj/item/organ/external/foot/right))
+					feet_num += 2
+				else
+					feet_num += 1
+			switch (feet_num)
+				if (1)
+					bloodsies = image("icon" = species.blood_mask, "icon_state" = "shoeblood_l")
+				if (2)
+					bloodsies = image("icon" = species.blood_mask, "icon_state" = "shoeblood_r")
+				if (3)
+					bloodsies = image("icon" = species.blood_mask, "icon_state" = "shoeblood")
+			if(bloodsies)
+				bloodsies.color = feet_blood_color
 			overlays_standing[SHOES_LAYER] = bloodsies
 		else
 			overlays_standing[SHOES_LAYER] = null
