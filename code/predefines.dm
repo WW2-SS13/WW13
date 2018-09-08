@@ -220,6 +220,7 @@
 #define	NOREACT                4096 // Reagents don't react inside this container.
 #define BLOCKHEADHAIR          4    // Temporarily removes the user's hair overlay. Leaves facial hair.
 #define BLOCKHAIR              8192 // Temporarily removes the user's hair, facial and otherwise.
+#define BLOCKFACEHAIR          16384// Temporarily removes the user's facial hair overlay. Leaves head hair.
 
 // Flags for pass_flags.
 #define PASSTABLE  TRUE
