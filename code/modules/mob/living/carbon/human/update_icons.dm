@@ -119,11 +119,11 @@ Please contact me on #coderbus IRC. ~Carn x
 #define GLASSES_LAYER			11
 #define BELT_LAYER_ALT			12
 #define SUIT_STORE_LAYER		13
-#define BACK_LAYER				14
-#define HAIR_LAYER				15		//TODO: make part of head layer?
-#define EARS_LAYER				16
-#define FACEMASK_LAYER			17
-#define HEAD_LAYER				18
+#define HAIR_LAYER				14
+#define EARS_LAYER				15		//TODO: make part of head layer?
+#define FACEMASK_LAYER			16
+#define HEAD_LAYER				17
+#define BACK_LAYER				18
 #define COLLAR_LAYER			19
 #define HANDCUFF_LAYER			20
 #define LEGCUFF_LAYER			21
@@ -345,7 +345,7 @@ var/global/list/damage_icon_parts = list()
 	//base icons
 	var/icon/face_standing	= new /icon('icons/mob/human_face.dmi',"hair_a_s")
 
-	if (f_style)
+	if (f_style && !(head && (head.flags_inv & BLOCKFACEHAIR)) && !(wear_mask && (wear_mask.flags_inv & BLOCKFACEHAIR)))
 		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
 		if (facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype() in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")

@@ -114,7 +114,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		head = null
 		if (istype(W, /obj/item))
 			var/obj/item/I = W
-			if (I.flags_inv & (HIDEMASK|BLOCKHAIR|BLOCKHEADHAIR))
+			if (I.flags_inv & (HIDEMASK|BLOCKHAIR|BLOCKHEADHAIR|BLOCKFACEHAIR))
 				update_hair(0)	//rebuild hair
 				update_inv_ears(0)
 				update_inv_wear_mask(0)
@@ -135,7 +135,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		wear_mask = null
 		if (istype(W, /obj/item))
 			var/obj/item/I = W
-			if (I.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR))
+			if (I.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR|BLOCKFACEHAIR))
 				update_hair(0)	//rebuild hair
 				update_inv_ears(0)
 		if (internal)
@@ -205,7 +205,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			update_inv_back(redraw_mob)
 		if (slot_wear_mask)
 			wear_mask = W
-			if (wear_mask.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR))
+			if (wear_mask.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR|BLOCKFACEHAIR))
 				update_hair(redraw_mob)	//rebuild hair
 				update_inv_ears(0)
 			W.equipped(src, slot)
@@ -261,7 +261,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			update_inv_gloves(redraw_mob)
 		if (slot_head)
 			head = W
-			if (head.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR|HIDEMASK))
+			if (head.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR|BLOCKFACEHAIR|HIDEMASK))
 				update_hair(redraw_mob)	//rebuild hair
 				update_inv_ears(0)
 				update_inv_wear_mask(0)
