@@ -645,8 +645,8 @@ OTHER
 
 ////////SHOTGUN SHELLS BOXES//////////////
 
-/obj/item/ammo_magazine/slugshell_box
-	name = "slug shell box"
+/obj/item/ammo_magazine/shell_box
+	name = "shell ammo box"
 	icon_state = "slugbox"
 //	origin_tech = "combat=2"
 	mag_type = MAGAZINE
@@ -657,6 +657,16 @@ OTHER
 	max_ammo = 25
 	multiple_sprites = TRUE
 	is_box = TRUE
+
+/obj/item/ammo_magazine/slugshell_box/buckshot_shellbox
+	name = "buckshot ammo box"
+	icon_state = "buckshotbox"
+	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
+
+/obj/item/ammo_magazine/slugshell_box/buckshot_shellbox
+	name = "slug ammo box"
+	icon_state = "slugbox"
+	ammo_type = /obj/item/ammo_casing/shotgun
 
 /////////////////////FLAREGUNS//////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
