@@ -150,6 +150,8 @@ bullet_act
 
 		blood_splatter(behind,src,TRUE)
 
+		playsound(get_turf(src), "bullethitflesh", 100, TRUE)
+
 		if (prob(P.KD_chance/2) && !is_on_train() && !KD_check)
 			SpinAnimation(5,1)
 			if (behind)
