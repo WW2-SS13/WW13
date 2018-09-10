@@ -119,11 +119,11 @@ Please contact me on #coderbus IRC. ~Carn x
 #define GLASSES_LAYER			11
 #define BELT_LAYER_ALT			12
 #define SUIT_STORE_LAYER		13
-#define BACK_LAYER				14
-#define HAIR_LAYER				15		//TODO: make part of head layer?
-#define EARS_LAYER				16
-#define FACEMASK_LAYER			17
-#define HEAD_LAYER				18
+#define HAIR_LAYER				14
+#define EARS_LAYER				15		//TODO: make part of head layer?
+#define FACEMASK_LAYER			16
+#define HEAD_LAYER				17
+#define BACK_LAYER				18
 #define COLLAR_LAYER			19
 #define HANDCUFF_LAYER			20
 #define LEGCUFF_LAYER			21
@@ -345,7 +345,7 @@ var/global/list/damage_icon_parts = list()
 	//base icons
 	var/icon/face_standing	= new /icon('icons/mob/human_face.dmi',"hair_a_s")
 
-	if (f_style)
+	if (f_style && !(head && (head.flags_inv & BLOCKFACEHAIR)) && !(wear_mask && (wear_mask.flags_inv & BLOCKFACEHAIR)))
 		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
 		if (facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype() in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
@@ -552,8 +552,22 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[GLOVES_LAYER]	= standing
 	else
 		if (blood_DNA)
-			var/image/bloodsies	= image("icon" = species.blood_mask, "icon_state" = "bloodyhands")
-			bloodsies.color = hand_blood_color
+			var/image/bloodsies
+			var/hands_num = 0 // 0 means no hands, 1 left hand, 2 right hand, and 3 both hands
+			for (var/obj/item/organ/external/hand/H in organs)
+				if(istype(H, /obj/item/organ/external/hand/right))
+					hands_num += 2
+				else
+					hands_num += 1
+			switch (hands_num)
+				if (1)
+					bloodsies = image("icon" = species.blood_mask, "icon_state" = "bloodyhands_l")
+				if (2)
+					bloodsies = image("icon" = species.blood_mask, "icon_state" = "bloodyhands_r")
+				if (3)
+					bloodsies = image("icon" = species.blood_mask, "icon_state" = "bloodyhands")
+			if(bloodsies)
+				bloodsies.color = hand_blood_color
 			overlays_standing[GLOVES_LAYER]	= bloodsies
 		else
 			overlays_standing[GLOVES_LAYER]	= null
@@ -634,8 +648,22 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[SHOES_LAYER] = standing
 	else
 		if (feet_blood_DNA)
-			var/image/bloodsies = image("icon" = species.blood_mask, "icon_state" = "shoeblood")
-			bloodsies.color = feet_blood_color
+			var/image/bloodsies
+			var/feet_num = 0 // 0 means no feet, 1 left foot, 2 right foot, 3 both feet
+			for (var/obj/item/organ/external/foot/F in organs)
+				if(istype(F, /obj/item/organ/external/foot/right))
+					feet_num += 2
+				else
+					feet_num += 1
+			switch (feet_num)
+				if (1)
+					bloodsies = image("icon" = species.blood_mask, "icon_state" = "shoeblood_l")
+				if (2)
+					bloodsies = image("icon" = species.blood_mask, "icon_state" = "shoeblood_r")
+				if (3)
+					bloodsies = image("icon" = species.blood_mask, "icon_state" = "shoeblood")
+			if(bloodsies)
+				bloodsies.color = feet_blood_color
 			overlays_standing[SHOES_LAYER] = bloodsies
 		else
 			overlays_standing[SHOES_LAYER] = null
