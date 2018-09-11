@@ -12,10 +12,10 @@ var/list/global/floor_cache = list()
 /turf/floor/trench/New()
 	if (!icon_state)
 		icon_state = "trench"
-	over_OS_darkness = image('icons/turf/floors.dmi', "black_open")
-	over_OS_darkness.plane = GAME_PLANE
-	over_OS_darkness.layer = 25
-	over_OS_darkness.blend_mode = BLEND_MULTIPLY
+	//over_OS_darkness = image('icons/turf/floors.dmi', "black_open")
+	//over_OS_darkness.plane = GAME_PLANE
+	//over_OS_darkness.layer = 25
+	//over_OS_darkness.blend_mode = BLEND_MULTIPLY
 	..()
 	spawn(4)
 		if (src)
@@ -113,13 +113,13 @@ var/list/global/floor_cache = list()
 	..()
 
 
-/turf/floor/plating/grass/attackby(obj/item/C as obj, /mob/user as mob)
+/turf/floor/plating/grass/attackby(obj/item/C as obj, mob/user as mob)
 	if (istype(C, /obj/item/weapon/shovel))
 		var/obj/item/weapon/shovel/S = C
 		visible_message("<span class = 'notice'>[user] starts to remove grass layer.</span>")
 		if (!do_after(user, (10 - S.dig_speed)*10, src))
 			return
 		visible_message("<span class = 'notice'>[user] removes grass layer.</span>")
-		ChangeTurf(/turf/floor/trench)
+		ChangeTurf(/turf/floor/plating/dirt)
 		return
 	..()
