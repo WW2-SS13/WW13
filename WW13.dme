@@ -807,6 +807,7 @@
 #include "code\modules\WW2\snow.dm"
 #include "code\modules\WW2\structures.dm"
 #include "code\modules\WW2\syringes.dm"
+#include "code\modules\WW2\trench.dm"
 #include "code\modules\WW2\tools.dm"
 #include "code\modules\WW2\vending.dm"
 #include "code\modules\WW2\wax.dm"
