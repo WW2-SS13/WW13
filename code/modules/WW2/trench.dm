@@ -105,6 +105,7 @@ var/list/global/floor_cache = list()
 			if(1)
 				//icon_state = ""
 				visible_message("<span class = 'notice'>[user] digs.</span>")
+				user << ("<span class = 'notice'>You need to dig this tile one more time to make a trench.</span>")
 				return
 			if(2)
 				visible_message("<span class = 'notice'>[user] makes a trench.</span>")
