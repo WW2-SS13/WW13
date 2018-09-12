@@ -308,20 +308,24 @@
 			//Check edge eligibility
 			var/edge_eligible = FALSE
 			if (edge)
+/*
 				if (istype(used_weapon,/obj/item))
 					var/obj/item/W = used_weapon
 					if (W.w_class >= w_class)
 						edge_eligible = TRUE
 				else
 					edge_eligible = TRUE
+*/
+				edge_eligible = TRUE
 
-			if (edge_eligible && brute >= max_damage / DROPLIMB_THRESHOLD_EDGE && prob(brute))
+
+			if (edge_eligible && (brute + brute_dam * 1.2) >= max_damage && prob(brute + brute_dam * 0.75))
 				droplimb(0, DROPLIMB_EDGE)
-			else if (burn >= max_damage / DROPLIMB_THRESHOLD_DESTROY && prob(burn/3))
+			else if (burn + burn_dam >= max_damage && prob((burn + burn_dam * 0.75)/3))
 				droplimb(0, DROPLIMB_BURN)
-			else if (brute >= max_damage / DROPLIMB_THRESHOLD_DESTROY && prob(brute))
+			else if ((brute + brute_dam) >= max_damage && prob(brute + brute_dam * (edge ? 0.25 : 0.75 )))
 				droplimb(0, DROPLIMB_BLUNT)
-			else if (brute >= max_damage / DROPLIMB_THRESHOLD_TEAROFF && prob(brute/3))
+			else if ((brute + brute_dam) >= max_damage && prob((brute + brute_dam * 0.75)/3))
 				droplimb(0, DROPLIMB_EDGE)
 
 	return update_damstate()
@@ -735,38 +739,33 @@ Note that amputating the affected organ does in fact remove the infection from t
 				"<span class='moderate'><b>Your [name] flashes away into ashes!</b></span>",\
 				"<span class='danger'>You hear a crackling sound[gore].</span>")
 		if (DROPLIMB_BLUNT)
-			if (!istype(src, /obj/item/organ/external/head))
-				var/gore = "[(status & ORGAN_ROBOT) ? "": " in shower of gore"]"
-				var/gore_sound = "[(status & ORGAN_ROBOT) ? "rending sound of tortured metal" : "sickening splatter of gore"]"
-				owner.visible_message(
-					"<span class='danger'>\The [owner]'s [name] explodes[gore]!</span>",\
-					"<span class='moderate'><b>Your [name] explodes[gore]!</b></span>",\
-					"<span class='danger'>You hear the [gore_sound].</span>")
-				playsound(owner, 'sound/effects/gore/chop6.ogg', 100 , FALSE)//Splat.
-			else
-				owner.death()
-				playsound(owner, 'sound/effects/gore/chop6.ogg', 100 , FALSE)//Splat.
+			var/gore = "[(status & ORGAN_ROBOT) ? "": " in shower of gore"]"
+			var/gore_sound = "[(status & ORGAN_ROBOT) ? "rending sound of tortured metal" : "sickening splatter of gore"]"
+			owner.visible_message(
+				"<span class='danger'>\The [owner]'s [name] explodes[gore]!</span>",\
+				"<span class='moderate'><b>Your [name] explodes[gore]!</b></span>",\
+				"<span class='danger'>You hear the [gore_sound].</span>")
+			playsound(owner, 'sound/effects/gore/chop6.ogg', 100 , FALSE)//Splat.
 
 	var/mob/living/carbon/human/victim = owner //Keep a reference for post-removed().
 	var/obj/item/organ/external/parent_organ = parent
 
-	if (disintegrate != DROPLIMB_BLUNT || !istype(src, /obj/item/organ/external/head))
-		removed(null, ignore_children)
+	removed(null, ignore_children)
 
-		victim.traumatic_shock += 60
+	victim.traumatic_shock += 60
 
-		if (parent_organ)
-			var/datum/wound/lost_limb/W = new (src, disintegrate, clean)
-			if (clean)
-				parent_organ.wounds |= W
-				parent_organ.update_damages()
-			else
-				var/obj/item/organ/external/stump/stump = new (victim, FALSE, src)
-				if (status & ORGAN_ROBOT)
-					stump.robotize()
-				stump.wounds |= W
-				victim.organs |= stump
-				stump.update_damages()
+	if (parent_organ)
+		var/datum/wound/lost_limb/W = new (src, disintegrate, clean)
+		if (clean)
+			parent_organ.wounds |= W
+			parent_organ.update_damages()
+		else
+			var/obj/item/organ/external/stump/stump = new (victim, FALSE, src)
+			if (status & ORGAN_ROBOT)
+				stump.robotize()
+			stump.wounds |= W
+			victim.organs |= stump
+			stump.update_damages()
 
 	spawn(1)
 		victim.updatehealth()
@@ -776,6 +775,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	switch(disintegrate)
 		if (DROPLIMB_EDGE)
+			update_icon()
 			compile_icon()
 			add_blood(victim)
 			var/matrix/M = matrix()
@@ -784,7 +784,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			if (!clean)
 				// Throw limb around.
 				if (src && istype(loc,/turf))
-					throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+					throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,2),30)
 				dir = 2
 		if (DROPLIMB_BURN)
 			new /obj/effect/decal/cleanable/ash(get_turf(victim))
@@ -793,15 +793,15 @@ Note that amputating the affected organ does in fact remove the infection from t
 					I.loc = get_turf(src)
 			qdel(src)
 		if (DROPLIMB_BLUNT)
-			if (!istype(src, /obj/item/organ/external/head))
-				var/obj/effect/decal/cleanable/blood/gibs/gore = new victim.species.single_gib_type(get_turf(victim))
-				if (victim.species.flesh_color)
-					gore.fleshcolor = victim.species.flesh_color
-				if (victim.species.blood_color)
-					gore.basecolor = victim.species.blood_color
-				gore.update_icon()
-				gore.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+			var/obj/effect/decal/cleanable/blood/gibs/gore = new victim.species.single_gib_type(get_turf(victim))
+			if (victim.species.flesh_color)
+				gore.fleshcolor = victim.species.flesh_color
+			if (victim.species.blood_color)
+				gore.basecolor = victim.species.blood_color
+			gore.update_icon()
+			gore.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,2),30)
 
+			if (!istype(src, /obj/item/organ/external/head))
 				for (var/obj/item/organ/I in internal_organs)
 					I.removed()
 					if (istype(loc,/turf))
@@ -814,7 +814,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 					I.loc = get_turf(src)
 					I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
-				qdel(src)
+			qdel(src)
 
 /****************************************************
 			   HELPERS
@@ -1225,7 +1225,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	can_stand = TRUE
 
 /obj/item/organ/external/foot/removed()
-	if (owner) owner.u_equip(owner.shoes)
+	if (owner)
+		owner.u_equip(owner.shoes)
+		owner.update_inv_shoes()
 	..()
 
 /obj/item/organ/external/foot/right
@@ -1252,7 +1254,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	can_grasp = TRUE
 
 /obj/item/organ/external/hand/removed()
-	owner.u_equip(owner.gloves)
+	if(owner)
+		owner.u_equip(owner.gloves)
+		owner.update_inv_gloves()
 	..()
 
 /obj/item/organ/external/hand/right
@@ -1269,7 +1273,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	icon_name = "head"
 	name = "head"
 	min_broken_damage = 38
-	max_damage = 57
+	max_damage = 70
 	w_class = 3
 	body_part = HEAD
 	vital = TRUE

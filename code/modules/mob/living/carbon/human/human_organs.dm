@@ -56,7 +56,7 @@
 
 	var/limbs_count = 4
 	var/obj/item/organ/external/E = organs_by_name["l_foot"]
-	if (E.status & ORGAN_DESTROYED)
+	if (!E || (E.status & ORGAN_DESTROYED))
 		limbs_count--
 
 	E = organs_by_name["r_foot"]

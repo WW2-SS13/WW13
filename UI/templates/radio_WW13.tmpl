@@ -114,6 +114,14 @@ Used In File(s): /code/game/objects/item/devices/radio/radio.dm
 	<div class="item">
 		<div class="itemContentWide">
 			Supply Points: {{:data.supply_points}}<br>
+			<big>Request Special Reinforcements:</big>
+			{{for data.special_reinforcements_requests}}	
+				<br>
+				{{:value}}
+				<br>
+				<center>{{:helper.link("Request", null, {'request' : value})}}</center>
+				<br>
+			{{/for}}
 			<big>Supply Drop Crates:</big>
 			{{for data.supply_crate_objects}}	
 				<br>

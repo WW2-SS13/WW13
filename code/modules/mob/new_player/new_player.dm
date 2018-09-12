@@ -397,8 +397,55 @@
 
 /mob/new_player/proc/LateSpawnForced(rank, needs_random_name = FALSE, var/reinforcements = FALSE)
 
+	if(spawning)
+		return
 	spawning = TRUE
 	close_spawn_windows()
+
+	var/list/special_reinforcement_choices = list() //Stuff for special reinforcement types.
+	var/list/special_reinforcement_list = list()
+
+	if(rank == "Soldat")
+		special_reinforcement_list = processes.supply.german_special_reinforcements
+	else if(rank == "Sovietsky Soldat")
+		special_reinforcement_list = processes.supply.soviet_special_reinforcements
+
+	for(var/special_reinforcement in special_reinforcement_list)
+		if(special_reinforcement_list[special_reinforcement] > 0)
+			special_reinforcement_choices += special_reinforcement
+	special_reinforcement_choices += rank
+
+	if(special_reinforcement_choices.len > 1)
+		var/chosen_special_reinforcement = WWinput(src, "You have the potential for special reinforcement. Choose your unit type.", "Special Reinforcement", rank, special_reinforcement_choices)
+		if(chosen_special_reinforcement != rank)
+			if(rank == "Soldat")
+				switch(chosen_special_reinforcement)
+					if("Medic")
+						rank = "Sanitäter"
+					if("Engineer")
+						rank = "Pionier"
+					if("Sniper")
+						rank = "Scharfschütze"
+					if("Anti-Tank Soldier")
+						rank = "Panzer-Soldat"
+					if("Flamethrower Soldier")
+						rank = "Flammenwerfersoldat"
+					if("Machinegunner")
+						rank = "Maschinengewehrschütze"
+				processes.supply.german_special_reinforcements[chosen_special_reinforcement] -= 1
+			if(rank == "Sovietsky Soldat")
+				switch(chosen_special_reinforcement)
+					if("Medic")
+						rank = "Sanitar"
+					if("Engineer")
+						rank = "Boyevoy Saper"
+					if("Sniper")
+						rank = "Snaiper"
+					if("Anti-Tank Soldier")
+						rank = "Protivotankovyy Soldat"
+					if("Machinegunner")
+						rank = "Pulemetchik"
+				processes.supply.soviet_special_reinforcements[chosen_special_reinforcement] -= 1
 
 	job_master.AssignRole(src, rank, TRUE, reinforcements)
 	var/mob/living/character = create_character(job2mobtype(rank))	//creates the human and transfers vars and mind

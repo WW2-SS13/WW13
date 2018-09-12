@@ -1187,3 +1187,44 @@
 	icon_state = "m38_mask"
 	item_state = "m38_mask"
 	filtered_gases = list("xylyl_bromide", "mustard_gas", "white_phosphorus_gas", "chlorine_gas", "zyklon_b")
+
+/obj/item/clothing/mask/shemagh
+	name = "shemagh"
+	desc = "Protects your face from wind, dust and sand. It can also be adjusted. All in all, a practical item of clothing!"
+	icon_state = "shemagh1"
+	item_state = "shemagh1"
+	flags_inv = BLOCKHEADHAIR|BLOCKFACEHAIR
+	var/state = 1 //1 = Hides everything, 2 = Hides head, 3 = Hides face, 4 = Doesn't hide anything, covers neck
+
+/obj/item/clothing/mask/shemagh/New()
+	spawn(1)
+		if(istype(loc,/mob))
+			state = rand(1,4)
+			change_position()
+
+/obj/item/clothing/mask/shemagh/attack_self(var/mob/user)
+	change_position()
+
+/obj/item/clothing/mask/shemagh/proc/change_position()
+	var/mob/living/carbon/human/H = usr
+	switch(state)
+		if(1)
+			state = 2
+			flags_inv = BLOCKHEADHAIR
+			H << "You adjust [src] to reveal your face."
+		if(2)
+			state = 3
+			flags_inv = BLOCKFACEHAIR
+			H << "You adjust [src] to cover your mouth."
+		if(3)
+			state = 4
+			flags_inv = null
+			H << "You adjust [src] to cover your neck."
+		if(4)
+			state = 1
+			flags_inv = BLOCKHAIR
+			H << "You adjust [src] to cover your head."
+	icon_state = "shemagh[state]"
+	item_state = "shemagh[state]"
+	H.update_inv_wear_mask(0)
+	H.update_inv_head()

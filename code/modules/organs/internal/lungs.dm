@@ -207,5 +207,6 @@
 			owner.drip(10)
 		if (prob(4))
 			spawn owner.emote("me", TRUE, "gasps for air!")
+			playsound(get_turf(src), "gasp_male2", 100)
 			owner.losebreath += 15
 	#endif
