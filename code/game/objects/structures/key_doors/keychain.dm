@@ -45,13 +45,13 @@
 	if (loc == user)
 		if (!keys.len)
 			return
-		else
-			var/obj/item/weapon/key/which = WWinput(user, "Take out which key?", "Keychain", keys[1], keys)
-			if (which && which.loc == src && (loc == user || locate(src) in get_step(user, user.dir) || locate(src) in get_turf(user)))
-				user.put_in_hands(which)
-				keys -= which
-				update_icon_state()
-				visible_message("<span class = 'notice'>[user] takes a key from their keychain.</span>", "<span class = 'notice'>You take out [which].</span>")
+		var/obj/item/weapon/key/which = WWinput(user, "Take out which key?", "Keychain", keys[1], keys)
+		//if (which && which.loc == src && (loc == user || locate(src) in get_step(user, user.dir) || locate(src) in get_turf(user)))
+		if (which && which.loc == src && loc == user)
+			user.put_in_hands(which)
+			keys -= which
+			update_icon_state()
+			visible_message("<span class = 'notice'>[user] takes a key from their keychain.</span>", "<span class = 'notice'>You take out [which].</span>")
 	else
 		..(user)
 
