@@ -802,25 +802,25 @@ var/global/list/global_colour_matrix = null
 		if("special")
 			global_colour_matrix = list()
 			var/global_colour_matrix_temp = list()
-			src << "<span class='notice'>Input num between 0 and 1.</span>"
+			src << "<span class='notice'>Input num between -1 and 1.</span>"
 			for(var/i = 0, i <= 9, i++)
 				switch(i)
 					if(1)
-						global_colour_matrix_temp += CLAMP01(input("Red to Red") as num)
+						global_colour_matrix_temp += input("Red to Red") as num
 					if(2)
-						global_colour_matrix_temp += CLAMP01(input("Red to Green") as num)
+						global_colour_matrix_temp += input("Red to Green") as num
 					if(3)
-						global_colour_matrix_temp += CLAMP01(input("Red to Blue") as num)
+						global_colour_matrix_temp += input("Red to Blue") as num
 					if(4)
-						global_colour_matrix_temp += CLAMP01(input("Green to Red") as num)
+						global_colour_matrix_temp += input("Green to Red") as num
 					if(5)
-						global_colour_matrix_temp += CLAMP01(input("Green to Green") as num)
+						global_colour_matrix_temp += input("Green to Green") as num
 					if(6)
-						global_colour_matrix_temp += CLAMP01(input("Green to Blue") as num)
+						global_colour_matrix_temp += input("Green to Blue") as num
 					if(7)
-						global_colour_matrix_temp += CLAMP01(input("Blue to Red") as num)
+						global_colour_matrix_temp += input("Blue to Red") as num
 					if(8)
-						global_colour_matrix_temp += CLAMP01(input("Blue to Green") as num)
+						global_colour_matrix_temp += input("Blue to Green") as num
 					if(9)
-						global_colour_matrix_temp += CLAMP01(input("Blue to Blue") as num)
+						global_colour_matrix_temp += input("Blue to Blue") as num
 			global_colour_matrix = global_colour_matrix_temp

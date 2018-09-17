@@ -9,6 +9,7 @@
 		/obj/item/clothing/accessory/storage/webbing = 50,
 		/obj/item/clothing/under/sovuni = 50,
 		/obj/item/clothing/head/helmet/sovhelm = 50,
+		/obj/item/clothing/mask/shemagh = 50,
 		/obj/item/clothing/shoes/swat/wrappedboots = 50,
 		/obj/item/clothing/head/ushanka = 25,
 		/obj/item/clothing/mask/gas/soviet = 25,
@@ -28,6 +29,7 @@
 		/obj/item/clothing/under/geruni = 50,
 		/obj/item/clothing/head/helmet/gerhelm = 50,
 		/obj/item/clothing/head/caphat/gercap/fieldcap2 = 50,
+		/obj/item/clothing/mask/shemagh = 50,
 		/obj/item/clothing/shoes/swat = 50,
 		/obj/item/clothing/mask/gas/german = 25,
 		/obj/item/weapon/storage/belt/german_basic = 15,
@@ -45,6 +47,7 @@
 		/obj/item/clothing/under/usuni3 = 10,
 		/obj/item/clothing/head/helmet/ushelm = 50,
 		/obj/item/clothing/head/helmet/usnco = 50,
+		/obj/item/clothing/mask/shemagh = 50,
 		/obj/item/clothing/shoes/usboots = 50,
 		/obj/item/clothing/mask/gas/usa = 25,
 		/obj/item/weapon/storage/backpack/usa = 15
@@ -60,6 +63,7 @@
 		/obj/item/clothing/under/usuni2 = 20,
 		/obj/item/clothing/under/usuni3 = 10,
 		/obj/item/clothing/head/helmet/ushelm_mar = 50,
+		/obj/item/clothing/mask/shemagh = 50,
 		/obj/item/clothing/shoes/usboots = 50,
 		/obj/item/clothing/mask/gas/usa = 25,
 		/obj/item/weapon/storage/backpack/usa = 15

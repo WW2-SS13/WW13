@@ -807,6 +807,7 @@
 #include "code\modules\WW2\snow.dm"
 #include "code\modules\WW2\structures.dm"
 #include "code\modules\WW2\syringes.dm"
+#include "code\modules\WW2\trench.dm"
 #include "code\modules\WW2\tools.dm"
 #include "code\modules\WW2\vending.dm"
 #include "code\modules\WW2\wax.dm"
@@ -943,5 +944,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\factory\factory.dmm"
+#include "maps\island\island.dmm"
 // END_INCLUDE

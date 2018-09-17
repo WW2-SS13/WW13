@@ -42,7 +42,7 @@ bullet_act
 					crush()
 					qdel(src)
 			else
-				user << "<span class = 'notice'>You don't know how to butcher people.</span>"
+				return ..(W, user)
 	else
 		return ..(W, user)
 
@@ -145,10 +145,15 @@ bullet_act
 				KD_check = TRUE
 				break
 
+		// P.firer_original_dir is more accurate, since P.dir is never explicitly set? - Kachnov
+		var/turf/behind = get_step(src, P.firer_original_dir ? P.firer_original_dir : P.dir)
+
+		blood_splatter(behind,src,TRUE)
+
+		playsound(get_turf(src), "bullethitflesh", 100, TRUE)
+
 		if (prob(P.KD_chance/2) && !is_on_train() && !KD_check)
 			SpinAnimation(5,1)
-			// P.firer_original_dir is more accurate, since P.dir is never explicitly set? - Kachnov
-			var/turf/behind = get_step(src, P.firer_original_dir ? P.firer_original_dir : P.dir)
 			if (behind)
 				if (behind.density || locate(/obj/structure) in behind)
 					var/turf/slammed_into = behind

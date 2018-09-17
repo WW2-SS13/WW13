@@ -60,6 +60,7 @@
 #define HIDEFACE 0x8 // Dictates whether we appear as "Unknown".
 
 #define BLOCKHEADHAIR   0x20    // Hides the user's hair overlay. Leaves facial hair.
+#define BLOCKFACEHAIR   0x80    // Hides the user's facial hair overlay. Leaves head hair.
 #define BLOCKHAIR       0x40    // Hides the user's hair, facial and otherwise.
 
 // Slots.

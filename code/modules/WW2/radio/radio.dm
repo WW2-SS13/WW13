@@ -155,6 +155,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		notyetmoved = FALSE
 		if (loc)
 			setup_announcement_system("Arrivals Announcements", (faction == GERMAN ? DE_BASE_FREQ : SO_BASE_FREQ))
+			setup_announcement_system("Special Reinforcements Announcements", (faction == GERMAN ? DE_SUPPLY_FREQ : SO_SUPPLY_FREQ))
 			setup_announcement_system("Supplydrop Announcements", (faction == GERMAN ? DE_SUPPLY_FREQ : SO_SUPPLY_FREQ))
 			setup_announcement_system("Supply Train Announcements", (faction == GERMAN ? DE_SUPPLY_FREQ : SO_SUPPLY_FREQ))
 			setup_announcement_system("Reinforcements Announcements", (faction == GERMAN ? DE_BASE_FREQ : SO_BASE_FREQ))
@@ -242,17 +243,26 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	data["supply_points"] = processes.supply.points[faction]
 
 	var/list/supply_crate_objects = list()
+	var/list/special_reinforcements_requests = list()
 	switch (faction)
 		if (GERMAN)
 			supply_crate_objects = processes.supply.german_crate_types.Copy()
+			special_reinforcements_requests = processes.supply.german_special_reinforcements.Copy()
 		if (SOVIET)
 			supply_crate_objects = processes.supply.soviet_crate_types.Copy()
+			special_reinforcements_requests = processes.supply.soviet_special_reinforcements.Copy()
+
+	for (var/key in special_reinforcements_requests)
+		special_reinforcements_requests[key] = null
+		special_reinforcements_requests -= key
+		special_reinforcements_requests += "[key] ([processes.supply.reinforcements_costs[key]] points)"
 
 	for (var/key in supply_crate_objects)
 		supply_crate_objects[key] = null
 		supply_crate_objects -= key
 		supply_crate_objects += "[key] ([processes.supply.crate_costs[key]] points)"
 
+	data["special_reinforcements_requests"] = special_reinforcements_requests
 	data["supply_crate_objects"] = supply_crate_objects
 
 	var/list/chanlist = list_channels(user)
@@ -618,6 +628,17 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	else if (href_list["spec_freq"])
 		frequency = (text2num(href_list["spec_freq"]))
 		. = TRUE
+	else if (href_list["request"])
+		var/split_request = splittext(href_list["request"], " (")
+		var/item = split_request[1]
+		var/points = text2num(replacetext(split_request[2], ")", ""))
+		var/choices = list()
+		switch (faction)
+			if (GERMAN)
+				choices = processes.supply.german_special_reinforcements
+			if (SOVIET)
+				choices = processes.supply.soviet_special_reinforcements
+		request_reinforcements(item, choices[item], points)
 	else if (href_list["purchase"])
 		var/split_purchase = splittext(href_list["purchase"], " (")
 		var/item = split_purchase[1]
@@ -645,6 +666,20 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		nanomanager.update_uis(src)
 
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, TRUE)
+
+/obj/item/radio/proc/request_reinforcements(var/itemname, var/path, var/pointcost = FALSE)
+
+	if (processes.supply.points[faction] <= pointcost)
+		return
+
+	announce("[itemname] special reinforcement has been requested.", "Special Reinforcements Announcements")
+	processes.supply.points[faction] -= pointcost
+
+	switch(faction)
+		if (GERMAN)
+			processes.supply.german_special_reinforcements[itemname] += 1
+		if (SOVIET)
+			processes.supply.soviet_special_reinforcements[itemname] += 1
 
 /obj/item/radio/proc/purchase(var/itemname, var/path, var/pointcost = FALSE)
 

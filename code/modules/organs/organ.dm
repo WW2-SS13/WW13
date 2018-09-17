@@ -5,6 +5,7 @@ var/list/organ_cache = list()
 	icon = 'icons/obj/surgery.dmi'
 	var/dead_icon
 	var/mob/living/carbon/human/owner = null
+	var/mob/living/carbon/human/original_owner = null
 	var/status = 0
 	var/vital //Lose a vital limb, die immediately.
 	var/damage = 0 // amount of damage to the organ
@@ -56,6 +57,7 @@ var/list/organ_cache = list()
 		max_damage = min_broken_damage * 2
 	if (istype(holder))
 		owner = holder
+		original_owner = holder
 		species = all_species["Human"]
 		if (holder.dna)
 			dna = holder.dna.Clone()
@@ -388,3 +390,7 @@ var/list/organ_cache = list()
 					var/obj/item/weapon/reagent_containers/food/snacks/meat/human/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat/human(get_turf(src))
 					meat.name = "[name] meatsteak"
 				qdel(src)
+
+/obj/item/organ/throw_impact(atom/hit_atom)
+	if(!robotic)
+		blood_splatter(src,original_owner,1)

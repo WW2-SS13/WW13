@@ -74,6 +74,8 @@
 
 	var/useless = FALSE
 
+	var/can_hit_in_trench = 1
+
 /obj/item/projectile/Destroy()
 	projectile_list -= src
 	..()
@@ -415,83 +417,91 @@
 	if (!T || !istype(T))
 		return FALSE
 
-	if ((bumped && !forced) || (permutated.Find(T)))
+	if ((bumped && !forced) || (T in permutated))
 		return FALSE
 
 	var/passthrough = TRUE //if the projectile should continue flying
 	var/passthrough_message = null
 
-	if (T.density)
+	if(can_hit_in_trench == 1)
+		if(kill_count < (initial(kill_count) - 1))
+			if(!istype(T, /turf/floor/trench))
+				can_hit_in_trench = 0
+			else
+				can_hit_in_trench = -1
+
+	if (T.density || (can_hit_in_trench == -1 && !istype(T, /turf/floor/trench)))
 		passthrough = FALSE
 	else
-		// needs to be its own loop for reasons
-		for (var/obj/O in T.contents)
-			if (O == original)
-				var/hitchance = 60 // a light, for example. This was 66%, but that was unusually accurate, thanks BYOND
-				if (isstructure(O) && !istype(O, /obj/structure/light))
-					hitchance = 100
-				else if (!isitem(O) && isnonstructureobj(O)) // a tank, for example.
-					hitchance = 100
-				else if (isitem(O)) // any item
-					var/obj/item/I = O
-					hitchance = 25 * I.w_class // a pistol would be 50%
-				if (prob(hitchance))
-					do_bullet_act(O)
-					bumped = TRUE
-					loc = null
-					qdel(src)
-					return FALSE
-				else
-					O.visible_message("<span class = 'warning'>\The [src] narrowly misses [O]!</span>")
-					if (isitem(O) || (O.density && O.anchored)) // since it was on the ground
+		if(!istype(T, /turf/floor/trench) || can_hit_in_trench)
+			// needs to be its own loop for reasons
+			for (var/obj/O in T.contents)
+				if (O == original)
+					var/hitchance = 60 // a light, for example. This was 66%, but that was unusually accurate, thanks BYOND
+					if (isstructure(O) && !istype(O, /obj/structure/light))
+						hitchance = 100
+					else if (!isitem(O) && isnonstructureobj(O)) // a tank, for example.
+						hitchance = 100
+					else if (isitem(O)) // any item
+						var/obj/item/I = O
+						hitchance = 25 * I.w_class // a pistol would be 50%
+					if (prob(hitchance))
+						do_bullet_act(O)
 						bumped = TRUE
 						loc = null
 						qdel(src)
 						return FALSE
-				break
-		for (var/atom/movable/AM in T.contents)
-			if (!untouchable.Find(AM))
-				if (isliving(AM) && AM != firer)
-					var/mob/living/L = AM
-					if (!L.lying || T == get_turf(original) || execution)
-						// if they have a neck grab on someone, that person gets hit instead
-						var/obj/item/weapon/grab/G = locate() in L
-						if (G && G.state >= GRAB_NECK && G.affecting.stat < UNCONSCIOUS)
-							visible_message("<span class='danger'>\The [L] uses [G.affecting] as a shield!</span>")
-							//if (Bump(G.affecting, forced=1))
-							//	bumped = TRUE // for shrapnel
-							//	return FALSE
-							G.affecting.pre_bullet_act(src)
-							attack_mob(G.affecting)
-							if (!G.affecting.lying)
-								passthrough = FALSE
-						else
-							L.pre_bullet_act(src)
-							attack_mob(L)
-							if (!L.lying)
-								passthrough = FALSE
-				else if (isobj(AM) && AM != firedfrom)
-					var/obj/O = AM
-					if (O.density || istype(O, /obj/structure/window/classic)) // hack
-						O.pre_bullet_act(src)
-						if (O.bullet_act(src, def_zone) != PROJECTILE_CONTINUE)
-							if (O && !O.gcDestroyed)
-								if (O.density && !istype(O, /obj/structure))
+					else
+						O.visible_message("<span class = 'warning'>\The [src] narrowly misses [O]!</span>")
+						if (isitem(O) || (O.density && O.anchored)) // since it was on the ground
+							bumped = TRUE
+							loc = null
+							qdel(src)
+							return FALSE
+					break
+			for (var/atom/movable/AM in T.contents)
+				if (!(AM in untouchable))
+					if (isliving(AM) && AM != firer)
+						var/mob/living/L = AM
+						if (!L.lying || T == get_turf(original) || execution)
+							// if they have a neck grab on someone, that person gets hit instead
+							var/obj/item/weapon/grab/G = locate() in L
+							if (G && G.state >= GRAB_NECK && G.affecting.stat < UNCONSCIOUS)
+								visible_message("<span class='danger'>\The [L] uses [G.affecting] as a shield!</span>")
+								//if (Bump(G.affecting, forced=1))
+								//	bumped = TRUE // for shrapnel
+								//	return FALSE
+								G.affecting.pre_bullet_act(src)
+								attack_mob(G.affecting)
+								if (!G.affecting.lying)
 									passthrough = FALSE
-								else if (istype(O, /obj/structure))
-									var/obj/structure/S = O
-									if (!S.CanPass(src, original))
+							else
+								L.pre_bullet_act(src)
+								attack_mob(L)
+								if (!L.lying)
+									passthrough = FALSE
+					else if (isobj(AM) && AM != firedfrom)
+						var/obj/O = AM
+						if (O.density || istype(O, /obj/structure/window/classic)) // hack
+							O.pre_bullet_act(src)
+							if (O.bullet_act(src, def_zone) != PROJECTILE_CONTINUE)
+								if (O && !O.gcDestroyed)
+									if (O.density && !istype(O, /obj/structure))
 										passthrough = FALSE
-						//				log_debug("ignored [S] (1)")
-									else if (S.density)
-										if (!S.climbable)
-											passthrough_message = "<span class = 'warning'>The [name] penetrates through \the [S]!</span>"
-	//		else
-		//		log_debug("ignored [AM] (2)")
+									else if (istype(O, /obj/structure))
+										var/obj/structure/S = O
+										if (!S.CanPass(src, original))
+											passthrough = FALSE
+							//				log_debug("ignored [S] (1)")
+										else if (S.density)
+											if (!S.climbable)
+												passthrough_message = "<span class = 'warning'>The [name] penetrates through \the [S]!</span>"
+		//		else
+			//		log_debug("ignored [AM] (2)")
 
 	//penetrating projectiles can pass through things that otherwise would not let them
 	++penetrating
-	if (T.density && penetrating > 0)
+	if ((T.density && penetrating > 0) && (can_hit_in_trench != -1))
 		if (check_penetrate(T))
 			passthrough = TRUE
 			passthrough_message = "<span class = 'warning'>The bullet penetrates \the [T]!</span>"
@@ -543,7 +553,7 @@
 			on_impact(loc) //for any final impact behaviours
 			qdel(src)
 			return
-		if (firer && map.check_prishtina_block(firer, loc) && !map.allow_bullets_through_blocks.Find(get_area(src):type))
+		if (firer && map.check_prishtina_block(firer, loc) && !((get_area(src):type) in map.allow_bullets_through_blocks))
 			qdel(src)
 			return
 		if ((!( current ) || loc == current))
