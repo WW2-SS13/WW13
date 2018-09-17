@@ -23,6 +23,27 @@
 	var/obj/item/weapon/gun/projectile/automatic/stationary/kord/MG = null
 	pixel_x = -32
 
+/obj/tankequip
+	density = FALSE
+	anchored = TRUE
+	var/broken = FALSE
+	var/occupied = FALSE
+	icon = 'icons/WW2/tanks/equipment.dmi'
+	iconstate = "error"
+
+/obj/tankequip/gunner
+	iconstate = "gunner"
+
+/obj/tankequip/driver
+	iconstate = "driver"
+	
+/obj/tankequip/loader
+	iconstate = "loader"
+
+/obj/tankequip/ammocrate
+	iconstate = "ammocrate"
+
+
 /obj/tank/New()
 	..()
 	update_bounding_rectangle()
@@ -190,27 +211,14 @@
 		return FALSE
 
 	if (locked == FALSE)
-		if (next_seat() && !accepting_occupant)
-			tank_message("<span class = 'warning'>[user] starts to go in the [next_seat_name()] of [my_name()].</span>")
+		if (!accepting_occupant)
+			tank_message("<span class = 'warning'>[user] starts to go in the [my_name()].</span>")
 			accepting_occupant = TRUE
 			if (do_after(user, 30, src))
-				tank_message("<span class = 'warning'>[user] gets in the [next_seat_name()] of [my_name()].")
-				assign_seat(user)
+				tank_message("<span class = 'warning'>[user] gets in the [my_name()].")
+				//assign_seat(user)
+				//Add warp here
 				accepting_occupant = FALSE
-				if (!truck && !halftrack)
-					#ifdef MG_TANKS
-					user << "<span class = 'notice'><big>To fire, click your target and be in the back seat.</big></span>"
-					user << "<span class = 'notice'><big>To reload, click the tank with an ammo belt in your active hand.</big></span>"
-					#else
-					user << "<span class = 'notice'><big>To fire, use SPACE and be in the back seat.</big></span>"
-					#endif
-					user << "<span class = 'notice'><big>To speak to others in this tank, use the prefix ':t'.</big></span>"
-				else if (truck && !halftrack)
-					user << "<span class = 'notice'><big>To speak to others in this truck, use the prefix ':t'.</big></span>"
-				else if (truck && halftrack)
-					user << "<span class = 'notice'><big>To fire, click your target and be in the back seat.</big></span>"
-					user << "<span class = 'notice'><big>To reload, click the tank with an ammo belt in your active hand.</big></span>"
-					user << "<span class = 'notice'><big>To speak to others in this truck, use the prefix ':t'.</big></span>"
 				return TRUE
 			else
 				tank_message("<span class = 'warning'>[user] stops going in [my_name()].</span>")
