@@ -34,17 +34,70 @@
 /obj/tankequip/gunner
 	iconstate = "gunner"
 
+/obj/tankequip/gunner/MouseDrop_T(var/atom/dropping, var/mob/user as mob)
+
+	if (dropping != user)
+		return FALSE
+
+	if (!ishuman(user))
+		return FALSE
+
+	if (!accepting_occupant)
+		tank_message("<span class = 'warning'>[user] starts to go in the gunner seat.</span>")
+		accepting_occupant = TRUE
+		if (do_after(user, 15, src))
+			tank_message("<span class = 'warning'>[user] gets in the gunner seat.")
+			occupied = TRUE
+			gunner_seat(user)
+			accepting_occupant = FALSE
+			return TRUE
+		else
+			tank_message("<span class = 'warning'>[user] stops going in gunner seat.</span>")
+			accepting_occupant = FALSE
+			return FALSE
+
 /obj/tankequip/driver
 	iconstate = "driver"
-	
+
+/obj/tankequip/driver/MouseDrop_T(var/atom/dropping, var/mob/user as mob)
+
+	if (dropping != user)
+		return FALSE
+
+	if (!ishuman(user))
+		return FALSE
+
+	if (!accepting_occupant)
+		tank_message("<span class = 'warning'>[user] starts to go in the driver seat.</span>")
+		accepting_occupant = TRUE
+		if (do_after(user, 15, src))
+			tank_message("<span class = 'warning'>[user] gets in the driver seat.")
+			occupied = TRUE
+			driver_seat(user)
+			accepting_occupant = FALSE
+			return TRUE
+		else
+			tank_message("<span class = 'warning'>[user] stops going in driver seat.</span>")
+			accepting_occupant = FALSE
+			return FALSE
+
 /obj/tankequip/loader
 	iconstate = "loader"
+	var/loaded = TRUE
+
+/obj/tankequip/loader/attackby(var/obj/item/WW2/tank/shell, var/mob/user as mob)
+	loaded = TRUE
 
 /obj/tankequip/ammocrate
 	iconstate = "ammocrate"
 	
+/obj/tankequip/ammocrate/attack_hand(var/mob/user as mob)
+	new/obj/item/WW2/tank/shell(src)
+	
 /obj/tankequip/hatch
 	iconstate = "hatch"
+
+/obj/tankequip/hatch/attack_hand(var/mob/user as mob)
 
 
 /obj/tank/New()
@@ -284,6 +337,10 @@
 /obj/tank/proc/receive_backseat_command(x)
 	#ifndef MG_TANKS
 	if (x == "FIRE")
-		if (!did_critical_damage)
-			Fire()
+		if (loaded)
+			if (!did_critical_damage)
+				Fire()
+		else
+			playsound(src, 'sound/effects/truck_horn.ogg', 100, TRUE)
+			//replace with no ammo click
 	#endif
