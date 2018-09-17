@@ -65,6 +65,12 @@
 		else if ((fire_back_seat && drive_front_seat) && !truck_full)
 			return "back seat"
 
+/obj/tank/proc/driver_seat(var/mob/user)
+	drive_front_seat = user
+
+/obj/tank/proc/gunner_seat(var/mob/user)
+	fire_back_seat  = user
+
 /obj/tank/proc/assign_seat(var/mob/user)
 	if (!truck)
 		if (!fire_back_seat && !drive_front_seat)
@@ -217,21 +223,5 @@
 			user.client.eye = user
 			user.client.perspective = MOB_PERSPECTIVE
 		user.visible_message("<span class = 'danger'>[user] gets out of [my_name()].</span>", "<span class = 'notice'><big>You get out of [my_name()].<big></span>")
-		if (user == drive_front_seat)
-			drive_front_seat = null
-		if (user == fire_back_seat)
-			fire_back_seat = null
-		if (user == back_seat_1)
-			back_seat_1 = null
-		if (user == back_seat_2)
-			back_seat_2 = null
-		if (user == back_seat_3)
-			back_seat_3 = null
-		if (user == back_seat_4)
-			back_seat_4 = null
-		if (user == back_seat_5)
-			back_seat_5 = null
-		if (user == back_seat_6)
-			back_seat_6 = null
 	else
 		user << "<span class = 'warning'><big>You fail to leave [my_name()].</big></span>"
