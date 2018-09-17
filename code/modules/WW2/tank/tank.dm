@@ -42,6 +42,9 @@
 
 /obj/tankequip/ammocrate
 	iconstate = "ammocrate"
+	
+/obj/tankequip/hatch
+	iconstate = "hatch"
 
 
 /obj/tank/New()
