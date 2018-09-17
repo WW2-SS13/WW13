@@ -58,10 +58,6 @@
 
 		if (!user) return
 
-		if (world.time - last_fire < fire_delay && last_fire != -1)
-			user << "<span class = 'danger'>You can't fire again so quickly!</span>"
-			return
-
 		playsound(get_turf(src), 'sound/weapons/WW2/tank_fire.ogg', 100)
 
 		last_fire = world.time
