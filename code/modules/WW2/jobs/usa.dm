@@ -433,6 +433,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ushelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/bar(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/usa(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/usa/gear(H), slot_belt)
 	// sidearm
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/_45(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>, a heavy weapons unit. Your job is to assist in front line combat.")

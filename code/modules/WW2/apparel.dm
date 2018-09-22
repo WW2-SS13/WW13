@@ -724,10 +724,33 @@
 		/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen
 		)
 /obj/item/weapon/storage/belt/usa
+	name = "small US belt pouch"
+	desc = "A belt that can hold gear like pistols, ammo and other things."
+	icon_state = "USbelt"
+	item_state = "USbelt"
+	storage_slots = 6
+	max_w_class = 3
+	max_storage_space = 12
+	can_hold = list(
+		/obj/item/ammo_magazine,
+		/obj/item/weapon/material,
+		/obj/item/weapon/gauze_pack,
+		/obj/item/weapon/grenade,
+		/obj/item/weapon/attachment,
+		/obj/item/weapon/gun/projectile/pistol,
+		/obj/item/weapon/gun/projectile/revolver,
+		/obj/item/weapon/melee/classic_baton,
+		/obj/item/flashlight,
+		/obj/item/weapon/handcuffs,
+		/obj/item/ammo_casing/a145,
+		/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen
+		)
+
+/obj/item/weapon/storage/belt/usa/gear
 	name = "US belt pouch"
 	desc = "A belt that can hold gear like pistols, ammo and other things."
-	icon_state = "gerbelt"
-	item_state = "gerbelt"
+	icon_state = "USgear"
+	item_state = "USgear"
 	storage_slots = 12
 	max_w_class = 3
 	max_storage_space = 24
@@ -745,6 +768,15 @@
 		/obj/item/ammo_casing/a145,
 		/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen
 		)
+
+/obj/item/weapon/storage/belt/holster
+	name = "Holster belt "
+	desc = "A belt that can hold almost anything that you want."
+	icon_state = "belt_holster"
+	item_state = "belt_holster"
+	storage_slots = 12
+	max_w_class = 3
+	max_storage_space = 24
 
 /obj/item/weapon/storage/belt/german_basic
 	name = "German soldier belt"
