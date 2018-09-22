@@ -1273,7 +1273,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	icon_name = "head"
 	name = "head"
 	min_broken_damage = 38
-	max_damage = 70
+	max_damage = 100
 	w_class = 3
 	body_part = HEAD
 	vital = TRUE
