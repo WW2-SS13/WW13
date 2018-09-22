@@ -865,7 +865,4 @@
 #include "interface\skin.dmf"
 <<<<<<< HEAD
 #include "maps\city\level1.dmm"
-=======
-#include "maps\island\island.dmm"
->>>>>>> 23a7c64f6377af48f6110ad9a6348ae36d4c60c0
 // END_INCLUDE
