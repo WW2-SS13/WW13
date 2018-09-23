@@ -155,7 +155,7 @@
 /obj/item/ammo_magazine/attack_self(mob/user)
 
 	var/cont = FALSE
-	if (stored_ammo.len > 0 && stored_ammo.len < 20)
+	if (stored_ammo.len > 0 && stored_ammo.len < 30)
 		if ((input(user, "Are you sure you want to empty the [src]?", "[src]") in list ("Yes", "No")) == "Yes")
 			cont = TRUE
 
