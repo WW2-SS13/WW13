@@ -285,6 +285,55 @@ WW 2 WEAPONS MAGS N AMMO
 	projectile_type = /obj/item/projectile/bullet/rifle/a9x39
 	caliber = "a9x39"
 
+	////////SHOTGUN SHELLS////////
+
+/obj/item/ammo_casing/shotgun
+	name = "shotgun slug"
+	desc = "A 12 gauge slug."
+	icon_state = "slshell"
+	spent_icon = "slshell_casing"
+	caliber = "shotgun"
+	projectile_type = /obj/item/projectile/bullet/shotgun
+	matter = list(DEFAULT_WALL_MATERIAL = 360)
+	weight = 0.227
+
+/obj/item/ammo_casing/shotgun/pellet
+	name = "shotgun shell"
+	desc = "A 12 gauge shell."
+	icon_state = "gshell"
+	spent_icon = "gshell_casing"
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun
+	matter = list(DEFAULT_WALL_MATERIAL = 360)
+
+/obj/item/ammo_casing/shotgun/blank
+	name = "shotgun shell"
+	desc = "A blank shell."
+	icon_state = "blshell"
+	spent_icon = "blshell_casing"
+	projectile_type = /obj/item/projectile/bullet/blank
+	matter = list(DEFAULT_WALL_MATERIAL = 90)
+
+/obj/item/ammo_casing/shotgun/practice
+	name = "shotgun shell"
+	desc = "A practice shell."
+	icon_state = "pshell"
+	spent_icon = "pshell_casing"
+	projectile_type = /obj/item/projectile/bullet/shotgun/practice
+	matter = list("metal" = 90)
+
+/obj/item/ammo_casing/shotgun/beanbag
+	name = "beanbag shell"
+	desc = "A beanbag shell."
+	icon_state = "bshell"
+	spent_icon = "bshell_casing"
+	projectile_type = /obj/item/projectile/bullet/shotgun/beanbag
+	matter = list(DEFAULT_WALL_MATERIAL = 180)
+
+/obj/item/ammo_casing/shotgun/stunshell/emp_act(severity)
+	if (prob(100/severity)) BB = null
+	update_icon()
+
+
 /**********************
 		ROCKETS
 **********************/

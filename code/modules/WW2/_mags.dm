@@ -643,6 +643,29 @@ OTHER
 	max_ammo = 30
 	multiple_sprites = TRUE
 
+///////SHOTGUN SHELL BOXES//////////////
+
+/obj/item/ammo_magazine/shotgun_ammobox
+	name = "shotgun slug ammo box"
+	icon_state = "slugbox"
+//	origin_tech = "combat=2"
+	mag_type = MAGAZINE
+	caliber = "shotgun"
+	w_class = 3
+	matter = list(DEFAULT_WALL_MATERIAL = 4500)
+	ammo_type = /obj/item/ammo_casing/shotgun
+	max_ammo = 25
+	multiple_sprites = TRUE
+	is_box = TRUE
+
+/obj/item/ammo_magazine/shogun_ammobox/shell
+	ammo_type = /obj/item/ammo_casing/shotgun/pellet
+	icon_state = "shellbox"
+
+/obj/item/ammo_magazine/shogun_ammobox/bucketshot
+	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
+	icon_state = "buckshotbox"
+
 /////////////////////FLAREGUNS//////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
