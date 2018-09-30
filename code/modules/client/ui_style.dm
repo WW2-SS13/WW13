@@ -1,6 +1,5 @@
 /var/all_ui_styles = list(
 	"WW13Style",
-	"randysandy",
 	"ErisStyle",
 	"midnight",
 	/*"Midnight"     = 'icons/mob/screen/midnight.dmi',
