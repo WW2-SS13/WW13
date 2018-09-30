@@ -787,7 +787,6 @@
 #include "code\modules\WW2\fluff_objs.dm"
 #include "code\modules\WW2\fuel.dm"
 #include "code\modules\WW2\gasser.dm"
-#include "code\modules\WW2\handheld_flags.dm"
 #include "code\modules\WW2\hats.dm"
 #include "code\modules\WW2\helmet.dm"
 #include "code\modules\WW2\helpers.dm"
