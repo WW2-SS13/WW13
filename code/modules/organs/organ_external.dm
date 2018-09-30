@@ -319,13 +319,13 @@
 				edge_eligible = TRUE
 
 
-			if (edge_eligible && (brute + brute_dam * 1.2) >= max_damage && prob(brute + brute_dam * 0.75))
+			if (edge_eligible && brute >= max_damage / DROPLIMB_THRESHOLD_EDGE && prob(brute))
 				droplimb(0, DROPLIMB_EDGE)
-			else if (burn + burn_dam >= max_damage && prob((burn + burn_dam * 0.75)/3))
+			else if (burn >= max_damage / DROPLIMB_THRESHOLD_DESTROY && prob(burn/3))
 				droplimb(0, DROPLIMB_BURN)
-			else if ((brute + brute_dam) >= max_damage && prob(brute + brute_dam * (edge ? 0.25 : 0.75 )))
+			else if ((brute + brute_dam * 0.75) >= max_damage / DROPLIMB_THRESHOLD_DESTROY && prob(brute))
 				droplimb(0, DROPLIMB_BLUNT)
-			else if ((brute + brute_dam) >= max_damage && prob((brute + brute_dam * 0.75)/3))
+			else if (brute >= max_damage / DROPLIMB_THRESHOLD_TEAROFF && prob(brute/3))
 				droplimb(0, DROPLIMB_EDGE)
 
 	return update_damstate()
