@@ -53,6 +53,7 @@
 //CHEF
 /datum/job/partisan/civilian/chef
 	title = "Chef"
+	is_occupation = TRUE
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianChef"
 	additional_languages = list( "Russian" = 10, "German" = 70)
@@ -86,6 +87,7 @@
 //DETECTIVE
 /datum/job/partisan/civilian/det
 	title = "Detective"
+	is_occupation = TRUE
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianDetective"
 	additional_languages = list( "Russian" = 10, "German" = 80)
@@ -122,6 +124,7 @@
 //COP
 /datum/job/partisan/civilian/cop
 	title = "Cop"
+	is_occupation = TRUE
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianCop"
 	additional_languages = list( "Russian" = 10, "German" = 80)
@@ -158,6 +161,7 @@
 
 /datum/job/partisan/civilian/worker
 	title = "Construction Worker"
+	is_occupation = TRUE
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianWorker"
 	additional_languages = list( "Russian" = 10, "German" = 70)
@@ -193,6 +197,7 @@
 
 /datum/job/partisan/civilian/rich
 	title = "Rich Banker"
+	is_occupation = TRUE
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianRich"
 	additional_languages = list( "Russian" = 10, "German" = 70)
@@ -227,6 +232,7 @@
 //TODO: Update clothing for scientist and give random chemcials in pockets.
 /datum/job/partisan/civilian/sci
 	title = "Scientist"
+	is_occupation = TRUE
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianScientist"
 	additional_languages = list( "Russian" = 10, "German" = 70, "English" = 50)
@@ -262,6 +268,7 @@
 //Give mayor clothing and german radio
 /datum/job/partisan/civilian/mayor
 	title = "Mayor"
+	is_occupation = TRUE
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianMayor"
 	additional_languages = list( "Russian" = 100, "German" = 100, "English" = 100)
@@ -298,6 +305,7 @@
 //TODO: Better clothing
 /datum/job/partisan/civilian/librarian
 	title = "Librarian"
+	is_occupation = TRUE
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianBook"
 	additional_languages = list( "Russian" = 70, "German" = 70)
@@ -330,8 +338,9 @@
 
 //PREIST
 //TODO: Better clothing
-/datum/job/partisan/civilian/preist
-	title = "Preist"
+/datum/job/partisan/civilian/priest
+	title = "Priest"
+	is_occupation = TRUE
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianGod"
 	additional_languages = list( "Russian" = 70, "German" = 70)
@@ -366,6 +375,7 @@
 //Todo: More MONEY
 /datum/job/partisan/civilian/jewl
 	title = "Jewler"
+	is_occupation = TRUE
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianJewl"
 	additional_languages = list( "Russian" = 10, "German" = 70)
@@ -401,6 +411,7 @@
 //TODO: Fix camera and give war journalist more features and shit.
 /datum/job/partisan/civilian/journalist
 	title = "War Journalist"
+	is_occupation = TRUE
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianWar"
 	additional_languages = list( "Russian" = 100, "German" = 100, "English" = 100)
@@ -438,6 +449,7 @@
 //TODO: Book writing?
 /datum/job/partisan/civilian/writer
 	title = "Writer"
+	is_occupation = TRUE
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianWrite"
 	additional_languages = list( "Russian" = 10, "German" = 70)
@@ -473,6 +485,7 @@
 //TODO: better clothes
 /datum/job/partisan/civilian/hunter
 	title = "Hunter"
+	is_occupation = TRUE
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianHunt"
 	additional_languages = list( "Russian" = 10, "German" = 70)
@@ -509,6 +522,7 @@
 //TODO: not much maybe more supplies
 /datum/job/partisan/civilian/doctor
 	title = "Doctor"
+	is_occupation = TRUE
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianDoc"
 	additional_languages = list( "Russian" = 20, "German" = 80)
@@ -544,6 +558,7 @@
 //FIRE
 /datum/job/partisan/civilian/fire
 	title = "Fire Fighter"
+	is_occupation = TRUE
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianDoc"
 	additional_languages = list( "Russian" = 20, "German" = 80)
@@ -579,6 +594,7 @@
 //TODO: manuscript and clothign
 /datum/job/partisan/civilian/vio
 	title = "Violinist"
+	is_occupation = TRUE
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianVio"
 	additional_languages = list( "Russian" = 10, "German" = 70)
@@ -613,6 +629,7 @@
 
 /datum/job/partisan/civilian/americanspy
 	title = "Construction Worker"
+	is_occupation = TRUE
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilianSpy"
 	additional_languages = list( "Russian" = 100, "German" = 100, "English" = 100)
@@ -646,6 +663,7 @@
 ////////////////////////////////////////////////////////////////////////////
 /datum/job/partisan/civilian/redcross
 	title = "Red Cross"
+	is_occupation = TRUE
 	selection_color = "#530909"
 	spawn_location = "JoinLateRC"
 	is_redcross = TRUE

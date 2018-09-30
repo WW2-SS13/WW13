@@ -41,6 +41,7 @@
 /datum/job/var/is_redcross = FALSE
 /datum/job/var/is_escort = FALSE
 /datum/job/var/is_target = FALSE //for VIP modes
+/datum/job/var/is_occupation = FALSE
 /datum/job/var/rank_abbreviation = null
 
 // new autobalance stuff - Kachnov
