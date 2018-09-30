@@ -284,8 +284,17 @@ macro "hotkeymode"
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
 	elem 
+		name = "F1"
+		command = "adminhelp"
+	elem 
 		name = "CTRL+SHIFT+F1+REP"
 		command = ".options"
+	elem 
+		name = "F3"
+		command = "asay"
+	elem 
+		name = "F4"
+		command = "ooc"
 
 
 menu "menu"
