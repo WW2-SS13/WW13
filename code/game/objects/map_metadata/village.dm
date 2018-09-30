@@ -19,6 +19,16 @@
 	battle_name = "Village Battle"
 	front = "Western"
 
+/obj/map_metadata/village/job_enabled_specialcheck(var/datum/job/J)
+	. = TRUE
+	if (istype(J, /datum/job/partisan/civilian))
+		if (J.is_occupation)
+			. = FALSE
+		else
+			J.total_positions = max(round(clients.len), 15)
+			if (istype(J, /datum/job/partisan/civilian/redcross))
+				J.total_positions = 5
+	return .
 /obj/map_metadata/village/germans_can_cross_blocks()
 	return (processes.ticker.playtime_elapsed >= 4800 || admin_ended_all_grace_periods)
 
