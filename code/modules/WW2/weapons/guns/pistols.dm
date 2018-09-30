@@ -247,21 +247,19 @@
 		icon_state = "nambu0"
 	return
 
-/obj/item/weapon/gun/projectile/pistol/mauser
+/obj/item/weapon/gun/projectile/pistol/feg37m
 	name = "FEG 37M"
 	desc = "The FÉG 37M is a Hungarian semi-automatic pistol based on a design by Rudolf Frommer."
 	icon_state = "feg37m"
 	item_state = "gun"
 	w_class = 2
-	caliber = "7.63x25mm"
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
-	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shells = 10
-	ammo_type = /obj/item/ammo_casing/c763x25mm_mauser
-	magazine_type = /obj/item/ammo_magazine/c763x25mm_mauser
+	caliber = "9x19mm"
+	magazine_type = /obj/item/ammo_magazine/p9x19mm
 	weight = 1.13
 
-/obj/item/weapon/gun/projectile/pistol/mauser/update_icon()
+/obj/item/weapon/gun/projectile/pistol/feg37m/update_icon()
 	..()
 	if (loaded.len)
 		icon_state = "feg37m"
@@ -271,21 +269,19 @@
 		item_state = "gun"
 	return
 
-/obj/item/weapon/gun/projectile/pistol/mauser
+/obj/item/weapon/gun/projectile/pistol/fn1910
 	name = "FN Model 1910"
 	desc = "The FN Model 1910 is a blowback-operated, semi-automatic pistol designed by John Browning and manufactured by Fabrique Nationale of Belgium."
 	icon_state = "fn1910"
 	item_state = "gun"
 	w_class = 2
-	caliber = "7.63x25mm"
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
-	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shells = 10
-	ammo_type = /obj/item/ammo_casing/c763x25mm_mauser
-	magazine_type = /obj/item/ammo_magazine/c763x25mm_mauser
+	caliber = "9x19mm"
+	magazine_type = /obj/item/ammo_magazine/p9x19mm
 	weight = 1.13
 
-/obj/item/weapon/gun/projectile/pistol/mauser/update_icon()
+/obj/item/weapon/gun/projectile/pistol/fn1910/update_icon()
 	..()
 	if (loaded.len)
 		icon_state = "fn1910"
