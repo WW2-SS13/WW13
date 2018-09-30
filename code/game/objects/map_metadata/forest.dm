@@ -32,10 +32,10 @@
 /obj/map_metadata/forest/job_enabled_specialcheck(var/datum/job/J)
 	. = TRUE
 	if (istype(J, /datum/job/partisan/civilian))
+		J.total_positions = max(round(clients.len), 15)
 		if (J.is_occupation)
 			. = FALSE
 		else
-			J.total_positions = max(round(clients.len), 15)
 			if (istype(J, /datum/job/partisan/civilian/redcross))
 				J.total_positions = 5
 	return .
