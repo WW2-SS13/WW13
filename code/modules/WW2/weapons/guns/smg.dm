@@ -372,7 +372,7 @@
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
-	caliber = "11.43×23mm"
+	caliber = "c45_smg"
 	magazine_type = /obj/item/ammo_magazine/thompson_ammo
 	weight = 3.7
 	firemodes = list(
