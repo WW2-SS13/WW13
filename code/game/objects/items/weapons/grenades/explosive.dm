@@ -40,7 +40,8 @@
 		if (!T) return
 
 		if (explosion_size)
-			on_explosion(T)
+			spawn (2)
+				on_explosion(T)
 
 		if (!ismob(loc))
 
