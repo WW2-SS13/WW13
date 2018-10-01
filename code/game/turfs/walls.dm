@@ -196,7 +196,8 @@ var/list/global/wall_cache = list()
 		if (reinf_material)
 			reinf_material.place_dismantled_girder(src, reinf_material)
 		else
-			material.place_dismantled_girder(src)
+			if (material)
+				material.place_dismantled_girder(src)
 		material.place_dismantled_product(src,devastated)
 
 	for (var/obj/O in contents) //Eject contents!
