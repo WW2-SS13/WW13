@@ -455,8 +455,17 @@
 /turf/floor/plating/beach/water/deep
 	name = "Deep Water"
 	icon_state = "seadeep"
-	density = TRUE
+	density = FALSE
 
+/turf/floor/plating/beach/water/deep/CanPass(atom/movable/mover)
+	if (istype(mover, /obj/effect/effect/smoke))
+		return TRUE
+	else if (istype(mover, /obj/item/projectile))
+		return TRUE
+	else if (istype(mover, /mob))
+		return FALSE
+	else
+		return ..()
 /turf/floor/plating/beach/water/get_move_delay()
 	if (locate(/obj/structure/catwalk) in contents)
 		return 0
