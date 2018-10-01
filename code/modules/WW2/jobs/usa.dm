@@ -508,7 +508,7 @@
 	allow_spies = TRUE
 	SL_check_independent = TRUE
 	additional_languages = list("German" = 25)
-
+	is_nonmilitary = TRUE
 	// AUTOBALANCE
 	min_positions = 2
 	max_positions = 10
