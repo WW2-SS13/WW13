@@ -70,6 +70,7 @@
 	uses_winter_overlay = TRUE
 	may_become_muddy = TRUE
 	available_dirt = 3
+	var/trench_stage = 0
 
 /turf/floor/dirt/dust
 	name = "dust"

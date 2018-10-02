@@ -70,7 +70,24 @@
 /obj/item/weapon/shovel/spade/mortar/Destroy()
 	mortar_spade_list -= src
 	..()
-
+/obj/item/weapon/shovel/attack_self(var/mob/user as mob)
+	var/mob/living/carbon/human/H = user
+	var/turf/currentturf = get_turf(src)
+	if ((istype(currentturf, /turf/floor/dirt) || istype(currentturf, /turf/floor/plating/dirt)) && istype(H) && !H.shoveling_dirt)
+		if (currentturf.available_dirt >= 1)
+			H.shoveling_dirt = TRUE
+			visible_message("<span class = 'notice'>[H] starts to shovel dirt into a pile.</span>", "<span class = 'notice'>You start to shovel dirt into a pile.</span>")
+			playsound(src,'sound/effects/shovelling.ogg',100,1)
+			if (do_after(H, rand(45,60)))
+				visible_message("<span class = 'notice'>[H] shovels dirt into a pile.</span>", "<span class = 'notice'>You shovel dirt into a pile.</span>")
+				H.shoveling_dirt = FALSE
+				currentturf.available_dirt -= 1
+				new /obj/item/weapon/dirt_wall(currentturf)
+			else
+				H.shoveling_dirt = FALSE
+		else
+			H << "<span class='notice'>All the loose dirt has been shoveled out of this spot already.</span>"
+			return
 /obj/item/weapon/shovel/spade/mortar/attack_self(var/mob/user as mob)
 	var/target = get_step(user, user.dir)
 	if (target)
