@@ -277,7 +277,7 @@
 			else if (istype(o, /obj/train_lever))
 				return TRUE // pass over it
 
-			else if (istype(o, /obj/structure/window/sandbag))
+			else if (istype(o, /obj/structure/window/sandbag || /obj/structure/window/dirt_wall))
 				if (prob(15))
 					tank_message("<span class = 'danger'>The tank plows through the sandbag wall!</span>")
 					qdel(o)
@@ -418,7 +418,7 @@
 			else if (istype(o, /obj/train_lever))
 				return TRUE // pass over it
 
-			else if (istype(o, /obj/structure/window/sandbag))
+			else if (istype(o, /obj/structure/window/sandbag || /obj/structure/window/dirt_wall))
 				if (prob(20))
 					tank_message("<span class = 'danger'>The truck plows through the sandbag wall!</span>")
 					qdel(o)
