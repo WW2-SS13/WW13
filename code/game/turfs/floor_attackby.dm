@@ -19,7 +19,6 @@
 
 	else if (istype(C, /obj/item/weapon/shovel))
 		var/obj/snow/S = has_snow()
-		var/turf/T = get_turf(user)
 		var/mob/living/carbon/human/H = user
 		if (S && istype(H) && !H.shoveling_snow)
 			H.shoveling_snow = TRUE
@@ -32,20 +31,6 @@
 				qdel(S)
 			else
 				H.shoveling_snow = FALSE
-		else if (istype(T, /turf/floor/dirt) && istype(H) && !H.shoveling_dirt)
-			if (T.available_dirt >= 1)
-				H.shoveling_dirt = TRUE
-				visible_message("<span class = 'notice'>[user] starts to shovel dirt into a pile.</span>", "<span class = 'notice'>You start to shovel dirt into a pile.</span>")
-				playsound(src,'sound/effects/shovelling.ogg',100,1)
-				if (do_after(user, rand(45,60)))
-					visible_message("<span class = 'notice'>[user] shovels dirt into a pile.</span>", "<span class = 'notice'>You shovel dirt into a pile.</span>")
-					H.shoveling_dirt = FALSE
-					T.available_dirt -= 1
-					new /obj/item/weapon/dirt_wall(T)
-				else
-					H.shoveling_dirt = FALSE
-			else
-				user << "<span class='notice'>All the loose dirt has been shoveled out of this spot already.</span>"
 		else
 			return ..(C, user)
 
