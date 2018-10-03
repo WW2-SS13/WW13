@@ -285,7 +285,6 @@
 		list(name="long bursts",	burst=4, burst_delay=1.2, move_delay=4, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
 		)
 
-
 /obj/item/weapon/gun/projectile/semiautomatic/type99/update_icon()
 	..()
 	if (ammo_magazine)

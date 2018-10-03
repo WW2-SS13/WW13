@@ -400,14 +400,6 @@
 	item_state = "itauni_officer"
 	worn_state = "itauni_officer"
 
-/obj/item/clothing/suit/fallsparka
-	name = "Fallschirmjager Parka"
-	desc = "A warm and comfy parka for Fallschirmjagers."
-	icon_state = "fallsparka"
-	item_state = "fallsparka"
-	worn_state = "fallsparka"
-	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
-
 /obj/item/clothing/head/helmet/gerhelm
 	name = GERMAN_HELMET_NAME
 	desc = GERMAN_HELMET_DESC
@@ -1153,6 +1145,14 @@
 	desc =  "A standard ghillie suit."
 	icon_state = "ger_ghillie"
 	item_state = "ger_ghillie"
+	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
+
+/obj/item/clothing/suit/storage/coat/fallsparka
+	name = "Fallschirmjager Parka"
+	desc = "A warm and comfy parka for Fallschirmjagers."
+	icon_state = "fallsparka"
+	item_state = "fallsparka"
+	worn_state = "fallsparka"
 	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
 
 /obj/item/clothing/suit/storage/coat/italian
