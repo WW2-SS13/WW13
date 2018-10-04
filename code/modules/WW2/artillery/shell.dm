@@ -1,6 +1,7 @@
 /obj/item/artillery_shell
 	icon = 'icons/WW2/artillery_shell.dmi'
 	name = "Artillery Shell"
+	icon_state = "shell"
 	w_class = 5.0 // huge
 	var/casing_state = "casing"
 
