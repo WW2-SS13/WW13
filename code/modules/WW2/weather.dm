@@ -91,6 +91,8 @@
 			possibilities += WEATHER_SNOW
 		if ("SPRING")
 			possibilities += WEATHER_RAIN
+		if ("FALL")
+			possibilities += WEATHER_RAIN
 
 	possibilities -= non_possibilities
 

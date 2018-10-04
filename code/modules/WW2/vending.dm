@@ -40,7 +40,7 @@
 	desc = "Basic wear for US Army soldiers."
 	icon_state = "apparel_usa"
 	products = list(
-//		/obj/item/clothing/suit/storage/coat/german = 50,
+		/obj/item/clothing/suit/storage/coat/american = 50,
 		/obj/item/clothing/accessory/storage/webbing = 50,
 		/obj/item/clothing/under/usuni = 50,
 		/obj/item/clothing/under/usuni2 = 20,
@@ -58,7 +58,7 @@
 	desc = "Basic wear for US Marines soldiers."
 	icon_state = "apparel_usa"
 	products = list(
-//		/obj/item/clothing/suit/storage/coat/german = 50,
+		/obj/item/clothing/suit/storage/coat/american = 50,
 		/obj/item/clothing/accessory/storage/webbing = 50,
 		/obj/item/clothing/under/usuni = 50,
 		/obj/item/clothing/under/usuni2 = 20,

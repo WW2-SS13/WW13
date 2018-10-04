@@ -1141,6 +1141,14 @@
 	item_state = "soviet_coat"
 	worn_state = "soviet_coat"
 
+
+/obj/item/clothing/suit/storage/coat/american
+	name = "American Soldier's Coat"
+	desc = "An ordinary winter coat issued to US soldiers."
+	icon_state = "soviet_coat"
+	item_state = "soviet_coat"
+	worn_state = "soviet_coat"
+
 /obj/item/clothing/suit/storage/coat/soviet/officer
 	name = "Soviet Officer's Coat"
 	desc = "An ordinary winter coat issued to Soviet officers."
