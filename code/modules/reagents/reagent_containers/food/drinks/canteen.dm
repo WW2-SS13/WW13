@@ -15,6 +15,21 @@
 	name = "German Soldier's Canteen"
 	isGlass = FALSE
 
+/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/usa
+	icon_state = "canteen_german"
+	name = "American Soldier's Canteen"
+	isGlass = FALSE
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/japanese
+	icon_state = "canteen_soviet"
+	name = "Japanese Soldier's Canteen"
+	isGlass = FALSE
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/italian
+	icon_state = "canteen_soviet"
+	name = "Italian Soldier's Canteen"
+	isGlass = FALSE
+
 /obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/german/officer
 	icon_state = "canteen_german_officer"
 	name = "German Officer's Canteen"
