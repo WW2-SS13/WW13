@@ -476,6 +476,11 @@
 	move_delay = 3
 	color = "#94B21C"
 
+/turf/floor/plating/beach/water/swamp
+	name = "Swamp Water"
+	move_delay = 3
+	color = "#695757"
+
 /turf/floor/plating/beach/water/proc/Extinguish(var/mob/living/L)
 	if (istype(L))
 		L.ExtinguishMob()
@@ -515,7 +520,7 @@
 /turf/floor/plating/dust
 	name = "dust"
 	icon = 'icons/turf/floors.dmi'
-	icon_state = "dust2"
+	icon_state = "dustydirt"
 	interior = FALSE
 	stepsound = "dirt"
 	uses_winter_overlay = FALSE
