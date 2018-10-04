@@ -20,7 +20,13 @@
 	front = "Western"
 	roundend_condition_sides = list(
 		list(GERMAN, ITALIAN) = /area/prishtina/german/command,
-		list(SOVIET) = /area/prishtina/soviet/bunker/command)
+		list(USA) = /area/prishtina/soviet/bunker/command)
+/obj/map_metadata/camp/job_enabled_specialcheck(var/datum/job/J)
+	. = TRUE
+	if (istype(J, /datum/job/usa))
+		if (istype(J, /datum/job/usa/marines_squad_leader))
+			. = FALSE
+		if (istype(J, /datum/job/usa/marines_soldier))
 
 /obj/map_metadata/winter_line/germans_can_cross_blocks()
 	return (processes.ticker.playtime_elapsed >= 3600 || admin_ended_all_grace_periods)
