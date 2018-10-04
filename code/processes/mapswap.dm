@@ -13,7 +13,8 @@
 		MAP_PARTISAN = 0,
 		MAP_VILLAGE = 0,
 //		MAP_OCCUPATION = 0,
-//		MAP_FACTORY = 0
+//		MAP_FACTORY = 0,
+		MAP_WINTER_LINE = 10,
 	)
 
 	var/ready = TRUE

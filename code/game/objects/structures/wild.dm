@@ -229,7 +229,7 @@
 /obj/structure/wild/burnedtree/New()
 	..()
 
-	icon_state = "burnedtree[rand(1,5)]"
+	icon_state = "burnedtree[rand(1,10)]"
 
 /obj/structure/wild/rock/New()
 	..()
