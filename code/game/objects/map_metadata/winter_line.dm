@@ -15,13 +15,13 @@
 	available_subfactions = list(
 		ITALIAN = 100,
 		)
-	faction_distribution_coeffs = list(GERMAN = 0.5, USA = 0.5)
+	faction_distribution_coeffs = list(GERMAN = 0.4, USA = 0.5, ITALIAN = 0.1)
 	battle_name = "Winter Line"
 	front = "Western"
 	roundend_condition_sides = list(
 		list(GERMAN, ITALIAN) = /area/prishtina/german/command,
 		list(USA) = /area/prishtina/soviet/bunker/command)
-/obj/map_metadata/camp/job_enabled_specialcheck(var/datum/job/J)
+/obj/map_metadata/winter_line/job_enabled_specialcheck(var/datum/job/J)
 	. = TRUE
 	if (istype(J, /datum/job/usa))
 		if (istype(J, /datum/job/usa/marines_squad_leader))
