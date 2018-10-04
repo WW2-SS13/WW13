@@ -223,10 +223,6 @@
 			user << "<span class='danger'>Close the shell loading slot first.</span>"
 			return
 
-/*		if (jammed_until > world.time)
-			user << "<span class='danger'>The artillery piece has jammed! You can't fire it until it has unjammed.</span>"
-			return*/
-
 		if (blind_fire_toggle)
 
 			offset_x = FALSE
@@ -288,8 +284,7 @@
 				var/obj/item/artillery_shell/shell = other.use_slot()
 				if (shell && do_after(user, 30, src))
 					other.fire(target_x, target_y, shell)
-		/*			if (prob(7))
-						jammed_until = world.time + rand(70,200) */
+					user << "<span class='danger'>You fire the artillery!</span>"
 				else
 					user << "<span class='danger'>Load a shell in first.</span>"
 					return

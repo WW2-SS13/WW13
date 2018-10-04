@@ -369,7 +369,7 @@
 "he" = (/obj/structure/wild/burnedtree,/obj/structure/barbwire{icon_state = "barbwire"; dir = 8},/turf/floor/dirt,/area/prishtina/german/base_defenses{base_turf = /turf/floor/dirt; name = "German Support Trenches"})
 "hf" = (/obj/item/weapon/attachment/scope/adjustable/binoculars,/obj/structure/table/wood,/turf/floor/trench,/area/prishtina/german/base_defenses{base_turf = /turf/floor/dirt; name = "German Support Trenches"})
 "hg" = (/obj/structure/closet/crate/artillery,/turf/floor/trench,/area/prishtina/german/base_defenses{base_turf = /turf/floor/dirt; name = "German Support Trenches"})
-"hh" = (/obj/structure/artillery/base{icon_state = "base2"},/turf/floor/trench,/area/prishtina/german/base_defenses{base_turf = /turf/floor/dirt; name = "German Support Trenches"})
+"hh" = (/turf/floor/dirt/darksand,/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/barbwire{icon_state = "barbwire"; dir = 8},/turf/floor/dirt/dust,/area/prishtina/german/base_defenses{base_turf = /turf/floor/dirt; name = "German Support Trenches"})
 "hi" = (/obj/structure/closet/crate/artillery_gas,/turf/floor/trench,/area/prishtina/german/base_defenses{base_turf = /turf/floor/dirt; name = "German Support Trenches"})
 "hj" = (/obj/structure/closet/crate/german_grenade,/turf/floor/dirt,/area/prishtina/german/base_defenses{base_turf = /turf/floor/dirt; name = "German Forward Trenches"})
 "hk" = (/obj/structure/closet/crate/german_smoke_grenade,/turf/floor/dirt,/area/prishtina/german/base_defenses{base_turf = /turf/floor/dirt; location = 0; name = "German Bunkers"})
@@ -493,7 +493,7 @@
 "jy" = (/obj/structure/window/sandbag,/obj/structure/barbwire{icon_state = "barbwire"; dir = 8},/turf/wall/rockwall,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/dirt; name = "Allied Support Trenches"})
 "jz" = (/obj/structure/window/sandbag,/obj/structure/barbwire{icon_state = "barbwire"; dir = 8},/turf/floor/dirt,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/dirt; name = "Allied Support Trenches"})
 "jA" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/barbwire{icon_state = "barbwire"; dir = 8},/turf/floor/plating/beach/water/swamp,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/dirt; name = "Allied Support Trenches"})
-"jB" = (/obj/structure/artillery/base{name = "M1 Pack Howitzer"},/turf/floor/trench,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/dirt; name = "Allied Support Trenches"})
+"jB" = (/obj/effect/landmark{name = "artillery_spawn"},/turf/floor/trench,/area/prishtina/german/base_defenses{base_turf = /turf/floor/dirt; name = "German Support Trenches"})
 "jC" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/dirt/darksand,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/dirt; name = "Allied Support Trenches"})
 "jD" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/dirt/darksand,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/dirt; name = "Allied Support Trenches"})
 "jE" = (/obj/structure/window/sandbag,/turf/floor/trench,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/dirt; name = "Allied Support Trenches"})
@@ -566,7 +566,7 @@
 "kT" = (/obj/structure/wild/tallgrass,/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/dirt/darksand,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/dirt; name = "Allied Support Trenches"})
 "kU" = (/turf/floor/dirt/darksand,/area/prishtina/no_mans_land)
 "kV" = (/turf/floor/dirt/darksand,/area/prishtina/no_mans_land/invisible_wall)
-"kW" = (/turf/floor/dirt/darksand,/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/barbwire{icon_state = "barbwire"; dir = 8},/turf/floor/dirt/dust,/area/prishtina/german/base_defenses{base_turf = /turf/floor/dirt; name = "German Support Trenches"})
+"kW" = (/obj/effect/landmark{name = "artillery_spawn"},/turf/floor/trench,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/dirt; name = "Allied Support Trenches"})
 "kX" = (/obj/structure/table/iron,/obj/item/radio/rbs,/turf/floor/trench,/area/prishtina/soviet/bunker/command{name = "Allied Command"})
 "kY" = (/obj/structure/table/iron,/obj/item/radio/rbs/command,/turf/floor/trench,/area/prishtina/soviet/bunker/command{name = "Allied Command"})
 "kZ" = (/obj/structure/table/iron,/obj/item/weapon/folder/yellow,/turf/floor/trench,/area/prishtina/soviet/bunker/command{name = "Allied Command"})
@@ -589,7 +589,7 @@ amamamamamamambUamcYcYcWagahahahahahahahahfOfNfNfNfNdtdtfOahajajajajajahahahahah
 amamamamamamamamamamcYaCaiajajajajajajajajfNembMembMepfNfNajajajajajajajajajajajajajajajajcacacacacacacacacacagrcagrgrcacacbcbcacabZbZcacacacacacacacacaajajajajajajajajajajajajajajajajajajamamamamamam
 amamamamamamamamamcYcYcWaiajebddddddddddeqfNfNbMembMepfNfNerddddddajajddddddddddddddddddddddddddddddddddddajaTbGbGcacacacacacacacacacabJbKajddddddddecddddddddddddddddaAaAaAaAaAaAaMaMddddddedamamamamam
 amamamamamamamcWcWcWcWcWaiajaPcWcYcYeacWesaXeUbMeYeYeZfaaXaPcWcWcWajajcWcWcWdfcYcWaecWcWdfdfayaecWcWaecWaCajbOcdffcfchfgcicifgckcAcCcXcZdgajcWaCcWcWcWcWcWcYaecWaecWeedqdFdFdFdFdFdFdqefcYcWaacYamamamam
-amamamamamamamahahahahahajajaPcYcccYcYcWcYddddddddddddddddbUbUcWcWajajcWaecWcYdecYcWcYcYdfcWaCcYcYcYaacWcWajkWddddddddddddddecececddkWececajcWehcYcYcYcWaedfcYcWdebUeefhfifjfkfkfkfkflaPamcYcWdeamamamam
+amamamamamamamahahahahahajajaPcYcccYcYcWcYddddddddddddddddbUbUcWcWajajcWaecWcYdecYcWcYcYdfcWaCcYcYcYaacWcWajhhddddddddddddddecececddhhececajcWehcYcYcYcWaedfcYcWdebUeefhfifjfkfkfkfkflaPamcYcWdeamamamam
 amamamamamamamajajajajajajajaPaeaNaNaNcWcYaaaecYaacYaEcYcYaabUaacWajajaeaacYcWcWcWcYbUaaaacYaCcWcWcWaecYaCajdscWcWaCaCcWaeaeaeaeaecWaCcWdsajaCehehcYcWaCcWcWcWaCaacYeefmfjfjfkfkfkfkflefamcYcYcYamamamam
 amamamamamamamddddddddddddddcWaOgsgtgsaPcYfofofpfqfofrfrfofsbUcYeaajajcWbUcYfofofofofofofofqfofofoaecWcWcnajajajajajajajajajajajajajajajajajajajajaCfofofqftfofofofoeefufjfjfjfjfjfjflefaacYaeaKamamamam
 amamamamamamamamcWcWcWcWcnekcWaOgugvguaPaadecYcYcYaeaecYcYcYcWcYcWajajcWaCcYaeaycYcYcYaacYcYaEdAaEcccYbUbUcncncWajajajajajajajajajajajajajajajajajcWaeaecYcYcYaeaaaafvfwfjfxfwfwfwfwfyaPfofqfocYamamamam
@@ -604,8 +604,8 @@ amamamamamamamajajajajajajajajajajajajajajajajajajajajajajajajajaPcYamamaeeeajaj
 amamamamamamamajajajajajajajajajajajajajajfAejeiejejajejejeiejejamamamamaeeeajajajajfLfNfNfQfRfNfRfQfNfNfLajajajajajefaeamamcYaHaHaHaHaHcYcYfSajajajajajajajajajajajajajajajajajajajajajajajajajamamamam
 amamamamamamamajfAejejejfTeiejejejejfTfUfUcWcWaeaCcWajcWcWaCdfaaamamamaaaaaeeifVajeifLfWfLfWfXfWfLfWfXfWfLeiejeieieiaeekamamcgazahfngXatbbccdbejejajfYfYejfVeifYfVeieiejfZfZajajfHeieifZeifZfZeiamamamam
 amamamamamamamajgaenenaNenenencWcYaacYcYbUbUcYcYcYcWajcWdebUcYcYbUbUbUcYcYaacYcYajcWhdhdhdhdededhdhdhdheheaeaeaeaxaeaebUcYcYcgaiajajajapbbcYcYbUcWajaedLcYaeaeaeamamamamcWcnajajaxaycYaeaeekaeaeamamamam
-amamamamamamamajahfnahahahfnateffsfofofofogbfqfrfrcYajaecYbUcYcYcYbUcYcYaabUcYcYajaaaacYbUaybUcWcWaaaygcfofogcgcfofpfofpfpcYcgaiajajajapbbbUcYccaeajdLcYaaaxaeaeamamamcYdecWajajaeaeaabUbUamamamamamamam
-amamamamamamamajajajajajajajapaPcWcYbUcYaecYaaaEaEcYajcYcYbUaefofofofofofqfoftfoajaacYbUbUbUcYcWcYcYcYcYcYcYcYbUbUcYcYccbUcYcghfhghhhiajajajajajajajcYcYcYaxaeaeaecYaacYcccYajajcYcYcYcYcYamamamamamamam
+amamamamamamamajahfnahahahfnateffsfofofofogbfqfrfrcYajaecYbUcYcYcYbUcYcYaabUcYcYajaaaacYbUaybUcWcWaaaygcfofogcgcfofpfofpfpcYcgaiajjBajapbbbUcYccaeajdLcYaaaxaeaeamamamcYdecWajajaeaeaabUbUamamamamamamam
+amamamamamamamajajajajajajajapaPcWcYbUcYaecYaaaEaEcYajcYcYbUaefofofofofofqfoftfoajaacYbUbUbUcYcWcYcYcYcYcYcYcYbUbUcYcYccbUcYcghfhgajhiajajajajajajajcYcYcYaxaeaeaecYaacYcccYajajcYcYcYcYcYamamamamamamam
 amamamamamamamejejeieieieieiejcWaacYcccYaeaacYaEcYcYajaacYaaayaacYaabUccaaaeaecYajaacYaaaaaaaCcWehehehcYcYaacYcYcYcYcYcYaacYcYfBfBfBfBfBcYcYcYcYcWcWcWcYcYcYaecYcYaecYcYcYcYajajcYcYaacYcYamamamamamamam
 cjcjcjcjcjcjcjcjdcdcdhdcdcdcdcaIbcbcbcblbcaIbcdCbgbcaJbcbcbcbcbcbcbcaIaIbcaIaIaIaJaIaIaIbcbcdhdcbgetetetetetbcbcdCbtbsbgbcbcdcbcbtbcbcblbcbtgdgegegfgfgggggeghbgbgbcbcblblblaJaJbcbcbgbgdCcjcjcjcjcjcjcj
 cjcjcjcjcjcjcjbgbcbcbcbcbcbcaIaIbcbtbcbcbcbgbcdCdCbcaJbcbcaSaIaIaIbmbcbgbsbsaRbgaJbcbgbcbcbqdcdcbgbcetetetetbcdCbcbtbcbcbgbcdcbcbcbcbtblbcbcbcblbgaIdcdcbcbqbgbgbcbcbgbgbcblaJaJgegdghgegicjcjbccjcjcjcj
@@ -665,7 +665,7 @@ ePePePePePePePePePePePbSbRdIbSbSbSbSiZeQeQbSbSbSbRbSbSbSbSbRbVbRbSeQbSbSbSbSiWjg
 ePePePePePePePiUiUjkjkiUiUiUiUiTbSbRiZbSeQeSbNePiTiTiTjlbVeQbSbSbSbSbSbSbSiTjmjniZiZiZiZiZjoiUiUjkiZiUiUiUiUieinioipieiUiUiUiUiUiUiTbSbRbSbSbSeQbSbSbSbRbSiTiUiUiUiUiUiUiZjpjpjpjpjpiUiUiUiUiUePePePePeP
 ePePePePePePePiZiZiZiZiZiZiZiZjdbSbSiZbSbSdvcxbSePdJdJdJbSeQiTjqjqiUiUiUjrjsiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZipipipipipiZiZiZiZiZiZjibScxbSbSbSbRbVbSbSbRbRiWiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZePePePePeP
 ePePePePePePePiZiZiZiZiZiZiZiZjdeRbSiZbSbNbSbRbSbSdJdJbSbSeQjtjuiYiZiYjvjwiWiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZieipizipieiZiZiZiZiZiZjibSbRdIbSbRbSbVbSbSbSbRiWiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZePePePePeP
-ePePePePePePePbSbSbSbRbRbSiZiZjxiUjyiZiUjziUiUiUiUiUiUiUiUiUjAiZiZjBiZiZjojmiZiZbRbSbSeQbSbSbNbSeQbSbSbSdPdPieieieieieePePePbSiZiZjibRbRbSbSbSbSeQeSeQeQeQiWiZiZbNbSbSbSbSbSbSbSbSbSbVbSbSeSbNePePePePeP
+ePePePePePePePbSbSbSbRbRbSiZiZjxiUjyiZiUjziUiUiUiUiUiUiUiUiUjAiZiZkWiZiZjojmiZiZbRbSbSeQbSbSbNbSeQbSbSbSdPdPieieieieieePePePbSiZiZjibRbRbSbSbSbSeQeSeQeQeQiWiZiZbNbSbSbSbSbSbSbSbSbSbVbSbSeSbNePePePePeP
 ePePePePePePePePbSbNcxbNbSiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZbSbRbSbSbSbSbSbSdJdJbSbSbSdPbRbSeQbVbSePePbSeQiZiZjoiUiUiUiUiUiUiUiUiUiUiUjmiZiZbSbSbSbVbRbReQbSbRbRbRbSbSbNbNbSePePePeP
 ePePePePePePePbSbSbNbNbNbSiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZeQbSjeiTiTiTjljljlbRdJbSbRbRbRbRbRbVbRePePbRbRiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZbSbSiTjeiTiTiTiTjebSbSbSbVbNbNbSePePePeP
 ePePePePePePePbSePePbNbNbSbSbRbRbRbSbSbSbVeQbRbRbSbSeQbSbRbSjCjuiZiZiZiZjDbSbSeQbSbSbRbSbSbSbSbSbSbRdJbSbSbSbNbNiTiTjfiTiTbSbSiZiZiZiZiZiZiZiZjEjEjEjEiZiZjEjEiZbSdJbSbRbRbSbSbSbRbRbNbNbNbRbRbSePePePeP
