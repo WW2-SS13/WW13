@@ -231,7 +231,7 @@
 	products = list(
 		/obj/item/clothing/head/helmet/gerhelm = 10,
 		/obj/item/clothing/under/geruni/falluni = 10,
-		/obj/item/clothing/suit/fallsparka = 10,
+		/obj/item/clothing/suit/storage/coat/fallsparka = 10,
 		/obj/item/clothing/shoes/swat = 10,
 		/obj/item/flashlight = 10,
 		/obj/item/ammo_magazine/kar98k = 20,

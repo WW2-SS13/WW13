@@ -23,7 +23,7 @@ WW 2 WEAPONS MAGS N AMMO
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/mosinbox
-	name = "magazine box (7.62x54mm)"
+	name = "ammo box (7.62x54mm)"
 	icon_state = "mosin_ammo"
 //	origin_tech = "combat=2"
 	mag_type = MAGAZINE
@@ -69,7 +69,7 @@ WW 2 WEAPONS MAGS N AMMO
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/arisakabox
-	name = "magazine box (7.7x58mm)"
+	name = "ammo box (7.7x58mm)"
 	icon_state = "mosin_ammo"
 //	origin_tech = "combat=2"
 	mag_type = MAGAZINE
@@ -103,7 +103,7 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_magazine/garandbox
 	name = "magazine box (30-06)"
-	icon_state = "mosin_ammo"
+	icon_state = "762_abox"
 //	origin_tech = "combat=2"
 	mag_type = MAGAZINE
 	caliber = "c762x63"
@@ -126,6 +126,19 @@ WW 2 WEAPONS MAGS N AMMO
 	max_ammo = 32
 	weight = 0.72
 	multiple_sprites = TRUE
+
+/obj/item/ammo_magazine/ammobox9mm
+	name = "9x19mm ammo box"
+	icon_state = "9mm_abox"
+//	origin_tech = "combat=2"
+	mag_type = MAGAZINE
+	caliber = "9x19mm"
+	w_class = 3
+	matter = list(DEFAULT_WALL_MATERIAL = 4500)
+	ammo_type = /obj/item/ammo_casing/a9_parabellum
+	max_ammo = 200
+	multiple_sprites = TRUE
+	is_box = TRUE
 
 /obj/item/ammo_magazine/bren
 	name = "magazine (.303)"
@@ -417,7 +430,7 @@ OTHER
 /obj/item/ammo_magazine/a75/empty
 	initial_ammo = FALSE
 
-/obj/item/ammo_magazine/a792
+/obj/item/ammo_magazine/a792_drum
 	name = "Mg34 drum magazine"
 	icon_state = "mg34_drum"
 ////	origin_tech = "combat=2"
@@ -622,6 +635,18 @@ OTHER
 	ammo_type = /obj/item/ammo_casing/c45_smg
 	max_ammo = 50
 	multiple_sprites = TRUE
+
+/obj/item/ammo_magazine/abox45cal
+	name = "magazine box (.45 cal)"
+	icon_state = "45_abox"
+//	origin_tech = "combat=2"
+	mag_type = MAGAZINE
+	caliber = "11.43×23mm"
+	matter = list(DEFAULT_WALL_MATERIAL = 4500)
+	ammo_type = /obj/item/ammo_casing/c45_smg
+	max_ammo = 300
+	multiple_sprites = TRUE
+	is_box = TRUE
 
 /obj/item/ammo_magazine/c762x63_smg
 	name = "magazine (30-06)"
