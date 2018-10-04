@@ -27,6 +27,7 @@
 		if (istype(J, /datum/job/usa/marines_squad_leader))
 			. = FALSE
 		if (istype(J, /datum/job/usa/marines_soldier))
+			. = FALSE
 
 /obj/map_metadata/winter_line/germans_can_cross_blocks()
 	return (processes.ticker.playtime_elapsed >= 3600 || admin_ended_all_grace_periods)
