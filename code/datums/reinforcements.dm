@@ -311,13 +311,13 @@ var/datum/reinforcements/reinforcements_master = null
 		for (var/mob/new_player/np in l)
 			if (np) // maybe helps with logged out nps
 				np.LateSpawnForced("Private", TRUE, TRUE)
-				reinforcements_granted[JAPAN] = reinforcements_granted[JAPAN]+1
+				reinforcements_granted[USA] = reinforcements_granted[USA]+1
 				ret = TRUE
 	if (map.front == "Western")
 		for (var/mob/new_player/np in l)
 			if (np) // maybe helps with logged out nps
 				np.LateSpawnForced("Private", TRUE, TRUE)
-				reinforcements_granted[JAPAN] = reinforcements_granted[JAPAN]+1
+				reinforcements_granted[USA] = reinforcements_granted[USA]+1
 				ret = TRUE
 	reinforcement_pool[SOVIET] = list()
 	lock_check()

@@ -562,7 +562,7 @@
 	dat += "<br>"
 	dat += "Round Duration: [roundduration2text()]"
 	dat += "<br>"
-	dat += "<b>Current Autobalance Status</b>: [alive_germans.len] Germans, [alive_russians.len] Soviets, [alive_partisans.len+alive_polish.len] Partisans, [alive_civilians.len] Civilians, [alive_usa.len] Americans, [alive_japan.len] Japanese."
+	dat += "<b>Current Autobalance Status</b>: [alive_germans.len] Germans, [alive_italians.len] Italians, [alive_russians.len] Soviets, [alive_partisans.len+alive_polish.len] Partisans, [alive_civilians.len] Civilians, [alive_usa.len] Americans, [alive_japan.len] Japanese."
 	dat += "<br>"
 	dat += "<i>Jobs available for Penal banned players are marked with an *</i>"
 	dat += "<br>"
