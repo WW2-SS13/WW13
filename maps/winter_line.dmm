@@ -327,7 +327,7 @@
 "go" = (/obj/structure/wild/tallgrass2,/obj/structure/barbwire{dir = 4},/turf/floor/dirt,/area/prishtina/german/base_defenses{base_turf = /turf/floor/dirt; name = "German Forward Trenches"})
 "gp" = (/obj/structure/wild/tallgrass2,/obj/structure/barbwire{dir = 4},/turf/floor/dirt/dust,/area/prishtina/german/base_defenses{base_turf = /turf/floor/dirt; name = "German Forward Trenches"})
 "gq" = (/obj/structure/light/small{dir = 1},/obj/structure/closet/crate/mg34belt,/turf/floor/dirt,/area/prishtina/german/base_defenses{base_turf = /turf/floor/dirt; location = 0; name = "German Bunkers"})
-"gr" = (/turf/floor/dirt/darksand,/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/barbwire{icon_state = "barbwire"; dir = 8},/turf/floor/dirt/dust,/area/prishtina/german/base_defenses{base_turf = /turf/floor/dirt; name = "German Support Trenches"})
+"gr" = (/obj/effect/landmark{name = "JoinLateHeerSO"},/turf/floor/trench,/area/prishtina/german/command{base_turf = /turf/floor/dirt; name = "German Command"})
 "gs" = (/obj/structure/closet/crate/flares,/turf/floor/trench,/area/prishtina/german/base_defenses{base_turf = /turf/floor/dirt; name = "German Support Trenches"})
 "gt" = (/obj/structure/light/small/built{icon_state = "bulb1"; dir = 1},/turf/floor/trench,/area/prishtina/german/base_defenses{base_turf = /turf/floor/dirt; name = "German Support Trenches"})
 "gu" = (/obj/structure/closet/crate/wood,/turf/floor/trench,/area/prishtina/german/base_defenses{base_turf = /turf/floor/dirt; name = "German Support Trenches"})
@@ -566,15 +566,30 @@
 "kT" = (/obj/structure/wild/tallgrass,/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/dirt/darksand,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/dirt; name = "Allied Support Trenches"})
 "kU" = (/turf/floor/dirt/darksand,/area/prishtina/no_mans_land)
 "kV" = (/turf/floor/dirt/darksand,/area/prishtina/no_mans_land/invisible_wall)
+"kW" = (/turf/floor/dirt/darksand,/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/barbwire{icon_state = "barbwire"; dir = 8},/turf/floor/dirt/dust,/area/prishtina/german/base_defenses{base_turf = /turf/floor/dirt; name = "German Support Trenches"})
+"kX" = (/obj/structure/table/iron,/obj/item/radio/rbs,/turf/floor/trench,/area/prishtina/soviet/bunker/command{name = "Allied Command"})
+"kY" = (/obj/structure/table/iron,/obj/item/radio/rbs/command,/turf/floor/trench,/area/prishtina/soviet/bunker/command{name = "Allied Command"})
+"kZ" = (/obj/structure/table/iron,/obj/item/weapon/folder/yellow,/turf/floor/trench,/area/prishtina/soviet/bunker/command{name = "Allied Command"})
+"la" = (/obj/structure/light/small/built{icon_state = "bulb1"; dir = 1},/obj/structure/table/rack,/turf/floor/trench,/area/prishtina/soviet/bunker/command{name = "Allied Command"})
+"lb" = (/obj/structure/siren,/turf/floor/trench,/area/prishtina/soviet/bunker/command{name = "Allied Command"})
+"lc" = (/obj/structure/table/iron,/obj/item/weapon/folder,/turf/floor/trench,/area/prishtina/soviet/bunker/command{name = "Allied Command"})
+"ld" = (/obj/structure/table/iron,/obj/item/weapon/paper_bin,/turf/floor/trench,/area/prishtina/soviet/bunker/command{name = "Allied Command"})
+"le" = (/obj/structure/table/iron,/obj/item/weapon/paper,/obj/item/weapon/pen,/turf/floor/trench,/area/prishtina/soviet/bunker/command{name = "Allied Command"})
+"lf" = (/obj/item/weapon/attachment/scope/adjustable/binoculars,/turf/floor/trench,/area/prishtina/soviet/bunker/command{name = "Allied Command"})
+"lg" = (/obj/structure/bed/chair/wood{dir = 1},/turf/floor/trench,/area/prishtina/soviet/bunker/command{name = "Allied Command"})
+"lh" = (/obj/effect/landmark{name = "JoinLateMARSL"},/turf/floor/dirt,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/dirt; name = "Allied Support Trenches"})
+"li" = (/obj/structure/wild/tallgrass2,/obj/effect/landmark{name = "JoinLateMAR"},/turf/floor/dirt,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/dirt; name = "Allied Support Trenches"})
+"lj" = (/obj/effect/landmark{name = "JoinLateMAR"},/turf/floor/dirt,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/dirt; name = "Allied Support Trenches"})
+"lk" = (/obj/structure/wild/burnedtree,/obj/effect/landmark{name = "JoinLateMAR"},/turf/floor/dirt/darksand,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/dirt; name = "Allied Support Trenches"})
 
 (1,1,1) = {"
 amamamamamamamcYbUaacYcYcYcYcYcYcYamamamcYaHaNaNaHaFaHaFaFbUcYaacccWcYcYaacYcYcYbUaaaacYcYabacadafbibibjakalalaqaqaoboaoasaoauavawbrbraGaLbubxbQbQbTayaabUcYaEaEamambUbUcYaaamamamamaaaeaeamamamamamamam
 amamamamamamambUbUcYbUcWaCaCcWcWcWamcWcWaQaXaYbabEbabMbMaXbPceczczcBcDcWaCcWcncWcWaCcWcncWdadzdSdTbibidUdVdWdXdYdYauboauauauaodZbpbrbraraLbxbxbQbQaBbWbWaCeacWaCcWamcMczczcececBcBcMcWaCcWcWamamamamamam
 amamamamamamambUamcYcYcWagahahahahahahahahfOfNfNfNfNdtdtfOahajajajajajahahahahahahahahahahbXbXbXbXbYbYbXbXbXbXanbXbXdydRbXanbXbXbXbZbZbXanbXbXbXbXbXcacaahahahahahahajajajajajajajajahahahahamamamamamam
-amamamamamamamamamamcYaCaiajajajajajajajajfNembMembMepfNfNajajajajajajajajajajajajajajajajcacacacacacacacacacacacacacacacacbcbcacabZbZcacacacacacacacacaajajajajajajajajajajajajajajajajajajamamamamamam
+amamamamamamamamamamcYaCaiajajajajajajajajfNembMembMepfNfNajajajajajajajajajajajajajajajajcacacacacacacacacacagrcagrgrcacacbcbcacabZbZcacacacacacacacacaajajajajajajajajajajajajajajajajajajamamamamamam
 amamamamamamamamamcYcYcWaiajebddddddddddeqfNfNbMembMepfNfNerddddddajajddddddddddddddddddddddddddddddddddddajaTbGbGcacacacacacacacacacabJbKajddddddddecddddddddddddddddaAaAaAaAaAaAaMaMddddddedamamamamam
 amamamamamamamcWcWcWcWcWaiajaPcWcYcYeacWesaXeUbMeYeYeZfaaXaPcWcWcWajajcWcWcWdfcYcWaecWcWdfdfayaecWcWaecWaCajbOcdffcfchfgcicifgckcAcCcXcZdgajcWaCcWcWcWcWcWcYaecWaecWeedqdFdFdFdFdFdFdqefcYcWaacYamamamam
-amamamamamamamahahahahahajajaPcYcccYcYcWcYddddddddddddddddbUbUcWcWajajcWaecWcYdecYcWcYcYdfcWaCcYcYcYaacWcWajgrddddddddddddddecececddgrececajcWehcYcYcYcWaedfcYcWdebUeefhfifjfkfkfkfkflaPamcYcWdeamamamam
+amamamamamamamahahahahahajajaPcYcccYcYcWcYddddddddddddddddbUbUcWcWajajcWaecWcYdecYcWcYcYdfcWaCcYcYcYaacWcWajkWddddddddddddddecececddkWececajcWehcYcYcYcWaedfcYcWdebUeefhfifjfkfkfkfkflaPamcYcWdeamamamam
 amamamamamamamajajajajajajajaPaeaNaNaNcWcYaaaecYaacYaEcYcYaabUaacWajajaeaacYcWcWcWcYbUaaaacYaCcWcWcWaecYaCajdscWcWaCaCcWaeaeaeaeaecWaCcWdsajaCehehcYcWaCcWcWcWaCaacYeefmfjfjfkfkfkfkflefamcYcYcYamamamam
 amamamamamamamddddddddddddddcWaOgsgtgsaPcYfofofpfqfofrfrfofsbUcYeaajajcWbUcYfofofofofofofofqfofofoaecWcWcnajajajajajajajajajajajajajajajajajajajajaCfofofqftfofofofoeefufjfjfjfjfjfjflefaacYaeaKamamamam
 amamamamamamamamcWcWcWcWcnekcWaOgugvguaPaadecYcYcYaeaecYcYcYcWcYcWajajcWaCcYaeaycYcYcYaacYcYaEdAaEcccYbUbUcncncWajajajajajajajajajajajajajajajajajcWaeaecYcYcYaeaaaafvfwfjfxfwfwfwfwfyaPfofqfocYamamamam
@@ -660,12 +675,12 @@ ePePePePePePePePbSbSePbSbSePePbRbNjfjfiTjeiTiTjfjfiTbSbSbSePePbSbSbSbSbRbSbSbRbS
 ePePePePePePePePePePePePbRePePbRbNbNcxbSeQeQbSbNdubSbSbRbSeQbSbSbRbRbSbRbSbSeQbSbSbSjTiZiZjUjUjUjUjUjUjUjUjUjUjUjUjUjUjUjUjUjUiZiZjVbSeReRbSjJjWjXipipjPjPjPjQjNbSdJdJdJbReQbVbVbRbSbSbRePePePePePePePeP
 ePePePePePePePePePePePbSbReQbRbSbSbSbRbSeQjjjeiTiTiTiTiTiTiTjeiTiTiTiTiTiTjeeQbSbRbSiWiZjYbNbNbSbSbSbSbSbSbSbRbSbSbVeReRbSdJdJiZiZjVbSbRbRbSjZkakakakakakakakbjRbSbRbRbSbSbNbNbRbRbSbSbVbVbRbSbSePePePeP
 ePePePePePePePePePePePbNbNeQbSbSbSbSbSbRbViTkciUkdiUiUiUkeiUiUiUiUiUiUiUkcjebRbRbRbRiWiZjYbSbSbSbRcwbSbSbSbNbNbNbNbNbNbSbSbRbSiZiZkfiUiUiUiUiUiUiTkgiTjfjfiTiTiTbSbSbSbRbSbNbNbSbRdJdJbSbSbSbSePePePePeP
-ePePePePePePePePePePePePbNbSbSbSbSbRcxbRbSiWkhkikikhkhkhkikhkikhkhkhkikikhiTcwbSbSbSiWiZjYbSbSbSbSbSbSbSbSbNbNbNbNbSbRbSbSbNjCiZiZkjkkklkmknknkjjDbVbSbSbSbRbReQbSeQeQdxbNbSbSePePdJdJdJbRbSePePePePePeP
-ePePePePePePePePePePePePiUiUiUiUiUiUiUiUiUjmkhkhkhkhkhkhkhkhkhkhkhkhkhkhkhiUiUiUiUiUjmiZjYbSbSbSbSbNbRbSbSbSbSbSbSbSbSbSbSbSjCiZiZkokpkokokokokojDbSbSeQbVbSbSbRbReQeQbNbNbSbRePePdKePePeQePePePePePePeP
+ePePePePePePePePePePePePbNbSbSbSbSbRcxbRbSiWkhkikikXkYkZlalblalcldlelalalfiTcwbSbSbSiWiZjYbSbSbSbSbSbSbSbSbNbNbNbNbSbRbSbSbNjCiZiZkjkkklkmknknkjjDbVbSbSbSbRbReQbSeQeQdxbNbSbSePePdJdJdJbRbSePePePePePeP
+ePePePePePePePePePePePePiUiUiUiUiUiUiUiUiUjmkhkhkhlglgkhkhkhkhlglglgkhkhkhiUiUiUiUiUjmiZjYbSbSbSbSbNbRbSbSbSbSbSbSbSbSbSbSbSjCiZiZkokpkokokokokojDbSbSeQbVbSbSbRbReQeQbNbNbSbRePePdKePePeQePePePePePePeP
 ePePePePePePePePePePePePiZiZiZiZiZiZiZiZiZiZkhkhkhkhkhkhkhkhkhkhkhkhkhkhkhiZiZiZiZiZiZiZjYbSeQeQeQbVbSbSbRbSbSbSeVdPbSeQeQeQkqiZiZkokokokrkrkokoksbSbSbSbVeQeQbSbVbSbRbSbSbSbRePbSbRePePeQePePePePePePeP
 ePePePePePePePePePePePePjUjUjUjUjUjUjUjUjUjUkhkhkhkhkhkhkhkhkhkhkhkhkhkhkhjUjUjUjUjUjUjUktbSbSbRbRbSbSbSbSbVbSbSeQbSbVbScxcwjCiZiZkokokukvkvkwkojoiUiUiUiUiUiUiUiUiUiUiUiUiUiUbSePePePePePePePePePePePeP
-ePePePePePePePePePePePePePbSbSbRbSbSbVcwbSbScEcEcEcFcGcGcHcIcIcJkxcKcLkykybNeSeQkzkzkzkAkAkAbNbSbSbSbSbSbReQbSbSbRbScwbSbSbSjCiZiZkokokuknknkwkoiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZePePePePePePePePePePePePeP
-ePePePePePePePePePePePePbSbRbRbRbReQbVbReQbRcEkycEeWcGeXcHkBkBkCkxkDkEkykybNeSbNbNeSbNbNeSeSbSbRbSbSbSbSbRbVbSbSbSbSbSbSbRbSkFiZiZkGkHkIkJkJkIkGjUjUjUjUjUjUjUjUjUjUjUjUjUjUjUePePePePePePePePePePePePeP
-ePePePePePePePePePePePbSbSbSbSbSbSbSbSbSbSbRcEcEkKkKkLkMkNkOkPcScTcUcVfbcEbNbRcxkQkQkRkSkSkSdxcwbSbSbSbSeQbSbVbSbScwcwcwcwbSbSjHjFjHjHkTjHjHjHkTbVbSbSeQbSbSbRbSbSeQeQbVbSeQePePePePePePePePePePePePePeP
-fcePePePePePePePePePePbNePbSbSbSdPbSbSbScwbScEcEfdfdcNcOcPcQcRfecTcUcVcEcEbRbReQbSbSbSbSbNbSdxbSbRbSbSbSeQbSbSbSbRbRbScwbSbRbSePePePePePbSbSbSbVbSbSbSbSbSbSbSbSbRbRbSbSbSePePePePePePePePePePePePePePeP
+ePePePePePePePePePePePePePbSbSbRbSbSbVcwbSbScEcEcEcFcGcGcHcIcIcJkxcKcLkykylhlieQkzkzkzkAkAkAbNbSbSbSbSbSbReQbSbSbRbScwbSbSbSjCiZiZkokokuknknkwkoiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZePePePePePePePePePePePePeP
+ePePePePePePePePePePePePbSbRbRbRbReQbVbReQbRcEkycEeWcGeXcHkBkBkCkxkDkEkykylhlibNbNeSbNbNeSeSbSbRbSbSbSbSbRbVbSbSbSbSbSbSbRbSkFiZiZkGkHkIkJkJkIkGjUjUjUjUjUjUjUjUjUjUjUjUjUjUjUePePePePePePePePePePePePeP
+ePePePePePePePePePePePbSbSbSbSbSbSbSbSbSbSbRcEcEkKkKkLkMkNkOkPcScTcUcVfbcEljlkcxkQkQkRkSkSkSdxcwbSbSbSbSeQbSbVbSbScwcwcwcwbSbSjHjFjHjHkTjHjHjHkTbVbSbSeQbSbSbRbSbSeQeQbVbSeQePePePePePePePePePePePePePeP
+fcePePePePePePePePePePbNePbSbSbSdPbSbSbScwbScEcEfdfdcNcOcPcQcRfecTcUcVcEcElklkeQbSbSbSbSbNbSdxbSbRbSbSbSeQbSbSbSbRbRbScwbSbRbSePePePePePbSbSbSbVbSbSbSbSbSbSbSbSbRbRbSbSbSePePePePePePePePePePePePePePeP
 "}
