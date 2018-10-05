@@ -42,7 +42,7 @@ var/list/global/floor_cache = list()
 			if(L.grabbed_by && L.grabbed_by.len)
 				var/mob/living/L2 = L.grabbed_by[1].assailant
 				visible_message("<span class = 'notice'>[L2] starts pulling [L] out of trench.</span>")
-				if(!do_after(L2, 50, oldloc))
+				if(!do_after(L2, 35, oldloc))
 					return FALSE
 				if(..())
 					visible_message("<span class = 'notice'>[L2] pulls [L] out of trench.</span>")
@@ -66,7 +66,7 @@ var/list/global/floor_cache = list()
 			if(L.grabbed_by && L.grabbed_by.len)
 				var/mob/living/L2 = L.grabbed_by[1].assailant
 				visible_message("<span class = 'notice'>[L2] starts pulling [L] out of trench.</span>")
-				if(!do_after(L2, 50, src))
+				if(!do_after(L2, 35, src))
 					return FALSE
 				if(..())
 					visible_message("<span class = 'notice'>[L2] pulls [L] out of trench.</span>")
@@ -74,7 +74,7 @@ var/list/global/floor_cache = list()
 					return TRUE
 				return FALSE
 			visible_message("<span class = 'notice'>[L] starts to exit a trench.</span>")
-			if (!do_after(L, 50, src, needhand = FALSE))
+			if (!do_after(L, 35, src, needhand = FALSE))
 				return FALSE
 			if(..())
 				visible_message("<span class = 'notice'>[L] exits a trench.</span>")
