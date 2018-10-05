@@ -1047,13 +1047,13 @@
 /obj/item/weapon/storage/backpack/japan
 	name = "japanese backpack"
 	desc = "You wear this on your back and put items into it."
-	icon_state = "germanpack"
+	icon_state = "japnesspack"
 	item_state_slots = null
 
 /obj/item/weapon/storage/backpack/usa
 	name = "american backpack"
 	desc = "You wear this on your back and put items into it."
-	icon_state = "russianpack"
+	icon_state = "usapack"
 	item_state_slots = null
 
 //portable rations
