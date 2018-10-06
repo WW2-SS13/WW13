@@ -253,8 +253,8 @@
 				if (crates_current < src.crates_max)
 					user << "You load the crate into the truck."
 					crates += user.pulling
-					qdel(user.pulling)
 					crates_current += 1
+					user.pulling.loc = null
 					return
 				else
 					user << "<span class='notice'>The truck is full.</span>"
@@ -272,7 +272,7 @@
 /obj/tank/verb/unload_crate(var/mob/user)
 	set category = null
 	set name = "Unload Crates"
-	set desc = "Unload crates in the truck."
+	set desc = "Unload crates from the truck."
 	set src in oview(1)
 	if (truck)
 		for (var/obj/A in get_turf(user))
@@ -280,14 +280,17 @@
 				user << "<span class='notice'>There's already a crate on your location! Move it first.</span>"
 				return
 		if (crates_current > 0)
-			var/obj/structure/closet/crate/NC = pick(crates)
-			new NC(user.loc)
-			crates_current -= 1
-			crates -= NC
-			user << "You unload a crate from the truck."
+			for (var/obj/structure/closet/crate/NC in crates)
+				NC.forceMove(user.loc)
+				NC.invisibility = 0
+				NC.icon = 'icons/obj/storage.dmi'
+				NC.icon_state = "mil_crate_closed"
+				crates_current -= 1
+				user << "You unload a crate from the truck."
+				return
 		else
 			user << "<span class='notice'>The truck is empty!</span>"
-		return
+			return
 	else
 		user << "<span class='notice'>Only trucks can carry crates.</span>"
 		return

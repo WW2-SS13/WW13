@@ -84,11 +84,11 @@
 		reagents.add_reagent("water",500)		//Adds 500 units to the amount, that already is inside. It'll be 1000.
 
 /obj/structure/reagent_dispensers/fueltank
-	name = "fueltank"
-	desc = "A fueltank. It is used to store high amounts of fuel."
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "weldtank"
-	amount_per_transfer_from_this = 10
+	name = "fuel barrel"
+	desc = "A fuel barrel. It is used to store high amounts of fuel."
+	icon = 'icons/obj/barrel.dmi'
+	icon_state = "barrel"
+	amount_per_transfer_from_this = 25
 	var/modded = FALSE
 	var/obj/item/assembly_holder/rig = null
 	New()
