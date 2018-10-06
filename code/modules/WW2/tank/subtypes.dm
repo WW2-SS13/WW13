@@ -109,6 +109,9 @@
 	back_seat_5 = FALSE
 	back_seat_6 = FALSE
 
+/obj/tank/studebacker/american
+	icon_state = "studebaker_truck_us"
+
 /obj/tank/german/New()
 	..()
 	radio = new/obj/item/radio/feldfu
