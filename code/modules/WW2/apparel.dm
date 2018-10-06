@@ -104,6 +104,13 @@
 	worn_state = GERMAN_UNIFORM_STATE
 	var/rolled = FALSE
 
+/obj/item/clothing/under/geruni/New()
+	..()
+	if (map && map.ID == MAP_GAZALA)
+		icon_state = "afgeruni"
+		item_state = "afgeruni"
+		worn_state = "afgeruni"
+		item_state_slots["slot_w_uniform"] = "afgeruni"
 /obj/item/clothing/under/geruni/gerofficer
 	name = "german officer's uniform"
 	desc = "A fancier, more pressed uniform of the Nazi Army, given to German officers. It has a feel of pride and authority."
@@ -111,6 +118,13 @@
 	item_state = "geruniofficer"
 	worn_state = "geruniofficer"
 
+/obj/item/clothing/under/geruni/gerofficer/New()
+	..()
+	if (map && map.ID == MAP_GAZALA)
+		icon_state = "afgerofficer"
+		item_state = "afgerofficer"
+		worn_state = "afgerofficer"
+		item_state_slots["slot_w_uniform"] = "afgerofficer"
 /obj/item/clothing/under/geruni/kriegsmarine
 	name = "Kriegsmarine sailor uniform"
 	desc = "A dark blue uniform of the Kriegsmarine."
@@ -148,18 +162,33 @@
 	set src in usr
 	if (type != /obj/item/clothing/under/geruni)
 		return // no sprites - Kachnov
-	if (rolled)
-		item_state = "geruni"
-		worn_state = "geruni"
-		item_state_slots["slot_w_uniform"] = "geruni"
-		usr << "<span class = 'danger'>You roll down your uniform's sleeves.</span>"
-		rolled = FALSE
-	else if (!rolled)
-		item_state = "gerunirolledup"
-		worn_state = "gerunirolledup"
-		item_state_slots["slot_w_uniform"] = "gerunirolledup"
-		usr << "<span class = 'danger'>You roll up your uniform's sleeves.</span>"
-		rolled = TRUE
+	if (map && map.ID == MAP_GAZALA)
+		if (rolled)
+			item_state = "afgeruni"
+			worn_state = "afgeruni"
+			item_state_slots["slot_w_uniform"] = "afgeruni"
+			usr << "<span class = 'danger'>You roll down your uniform's sleeves.</span>"
+			rolled = FALSE
+		else if (!rolled)
+			item_state = "afgerunirolledup"
+			worn_state = "afgerunirolledup"
+			item_state_slots["slot_w_uniform"] = "afgerunirolledup"
+			usr << "<span class = 'danger'>You roll up your uniform's sleeves.</span>"
+			rolled = TRUE
+
+	else
+		if (rolled)
+			item_state = "geruni"
+			worn_state = "geruni"
+			item_state_slots["slot_w_uniform"] = "geruni"
+			usr << "<span class = 'danger'>You roll down your uniform's sleeves.</span>"
+			rolled = FALSE
+		else if (!rolled)
+			item_state = "gerunirolledup"
+			worn_state = "gerunirolledup"
+			item_state_slots["slot_w_uniform"] = "gerunirolledup"
+			usr << "<span class = 'danger'>You roll up your uniform's sleeves.</span>"
+			rolled = TRUE
 	update_clothing_icon()
 
 /obj/item/clothing/under/geruni/general
@@ -300,21 +329,39 @@
 	icon_state = "USuni_green"
 	item_state = "USuni_green"
 	worn_state = "USuni_green"
-
+/obj/item/clothing/under/usuni/New()
+	..()
+	if (map && map.ID == MAP_GAZALA)
+		icon_state = "USuni"
+		item_state = "USuni"
+		worn_state = "USuni"
+		item_state_slots["slot_w_uniform"] = "USuni"
 /obj/item/clothing/under/usuni2
 	name = "US Army Light Uniform"
 	desc = "A uniform lacking its jacket. When you don't want to sweat your balls off and you want to be modest."
 	icon_state = "USuni_green2"
 	item_state = "USuni_green2"
 	worn_state = "USuni_green2"
-
+/obj/item/clothing/under/usuni2/New()
+	..()
+	if (map && map.ID == MAP_GAZALA)
+		icon_state = "USuni2"
+		item_state = "USuni2"
+		worn_state = "USuni2"
+		item_state_slots["slot_w_uniform"] = "USuni2"
 /obj/item/clothing/under/usuni3
 	name = "US Army Uniform pants"
 	desc = "A pair of Khaki cotton pants, sometimes you gotta show your other guns to intimidate the enemy... And so you don't sweat your balls off."
 	icon_state = "USuni_green3"
 	item_state = "USuni_green3"
 	worn_state = "USuni_green3"
-
+/obj/item/clothing/under/usuni3/New()
+	..()
+	if (map && map.ID == MAP_GAZALA)
+		icon_state = "USuni3"
+		item_state = "USuni3"
+		worn_state = "USuni3"
+		item_state_slots["slot_w_uniform"] = "USuni3"
 /obj/item/clothing/under/uscapuni
 	name = "US Army Officer Uniform"
 	desc = "A standard uniform of an officer of the United States Army."
@@ -413,6 +460,12 @@
 	desc = GERMAN_HELMET_DESC
 	icon_state = GERMAN_HELMET_STATE
 	item_state = GERMAN_HELMET_STATE
+/obj/item/clothing/head/helmet/gerhelm/New()
+	..()
+	if (map && map.ID == MAP_GAZALA)
+		icon_state = "afgerhelm"
+		item_state = "afgerhelm"
+		worn_state = "afgerhelm"
 
 /obj/item/clothing/head/helmet/polhelm
 	name = "Polish Stahlhelm"
@@ -1111,6 +1164,13 @@
 	icon_state = "nazi_coat"
 	item_state = "nazi_coat"
 	worn_state = "nazi_coat"
+
+/obj/item/clothing/suit/storage/coat/german/New()
+	..()
+	if (map && map.ID == MAP_GAZALA)
+		icon_state = "afgercoat"
+		item_state = "afgercoat"
+		worn_state = "afgercoat"
 
 /obj/item/clothing/suit/storage/coat/sssmock
 	name = "S.S. Smock"

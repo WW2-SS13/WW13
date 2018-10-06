@@ -15,6 +15,7 @@
 //		MAP_OCCUPATION = 0,
 //		MAP_FACTORY = 0,
 		MAP_WINTER_LINE = 10,
+		MAP_GAZALA = 20,
 	)
 
 	var/ready = TRUE

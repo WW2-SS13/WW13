@@ -23,6 +23,9 @@
 	var/obj/item/weapon/gun/projectile/automatic/stationary/kord/MG = null
 	pixel_x = -32
 
+	var/list/crates = list()
+	var/crates_max = 5
+	var/crates_current = 0
 /obj/tank/New()
 	..()
 	update_bounding_rectangle()
@@ -112,9 +115,19 @@
 						tank_message("<span class = 'notice'>[user] locks [my_name()].</span>")
 						locked = TRUE
 					return FALSE
+		else if (istype(src, /obj/tank/american))
+			for (var/obj/item/weapon/key/allied/command_intermediate/key in kc.keys)
+				if (istype(key))
+					if (locked == TRUE)
+						tank_message("<span class = 'notice'>[user] unlocks [my_name()].</span>")
+						locked = FALSE
+					else
+						tank_message("<span class = 'notice'>[user] locks [my_name()].</span>")
+						locked = TRUE
+					return FALSE
 		user << "<span class = 'danger'>None of your keys seem to fit!</span>"
 		return FALSE
-	else if (istype(W, /obj/item/weapon/key/german/command_intermediate) || istype(W, /obj/item/weapon/key/soviet/command_intermediate))
+	else if (istype(W, /obj/item/weapon/key/german/command_intermediate) || istype(W, /obj/item/weapon/key/soviet/command_intermediate) || istype(W, /obj/item/weapon/key/allied/command_intermediate))
 		if (locked == TRUE)
 			tank_message("<span class = 'notice'>[user] unlocks [my_name()].</span>")
 			locked = FALSE
@@ -224,12 +237,63 @@
 	set name = "Horn"
 	set desc = "Sound the horn."
 	set src in oview(1)
-
-	user << "<span class='notice'>HONK!!</span>"
-	playsound(src, 'sound/effects/truck_horn.ogg', 100, TRUE)
+	if (istype(user, /mob/living/carbon/human))
+		user << "<span class='notice'>HONK!!</span>"
+		playsound(src, 'sound/effects/truck_horn.ogg', 100, TRUE)
 	return
 
+/obj/tank/verb/load_crate(var/mob/user)
+	set category = null
+	set name = "Load Crate"
+	set desc = "Load the crate you are pulling into the truck."
+	set src in oview(1)
+	if (truck)
+		if (user.pulling)
+			if (istype(user.pulling,/obj/structure/closet/crate) && user.pulling.anchored == FALSE)
+				if (crates_current < src.crates_max)
+					user << "You load the crate into the truck."
+					crates += user.pulling
+					crates_current += 1
+					user.pulling.loc = null
+					return
+				else
+					user << "<span class='notice'>The truck is full.</span>"
+			else
+				user << "<span class='notice'>Only crates can be loaded!</span>"
+				return
+		else
+			user << "<span class='notice'>You are not pulling a crate!</span>"
+			return
+	else
+		user << "<span class='notice'>Only trucks can carry crates.</span>"
+		return
+	return
 
+/obj/tank/verb/unload_crate(var/mob/user)
+	set category = null
+	set name = "Unload Crates"
+	set desc = "Unload crates from the truck."
+	set src in oview(1)
+	if (truck)
+		for (var/obj/A in get_turf(user))
+			if (istype(A, /obj/structure/closet/crate))
+				user << "<span class='notice'>There's already a crate on your location! Move it first.</span>"
+				return
+		if (crates_current > 0)
+			for (var/obj/structure/closet/crate/NC in crates)
+				NC.forceMove(user.loc)
+				NC.invisibility = 0
+				NC.icon = 'icons/obj/storage.dmi'
+				NC.icon_state = "mil_crate_closed"
+				crates_current -= 1
+				user << "You unload a crate from the truck."
+				return
+		else
+			user << "<span class='notice'>The truck is empty!</span>"
+			return
+	else
+		user << "<span class='notice'>Only trucks can carry crates.</span>"
+		return
 
 /obj/tank/proc/receive_command_from(var/mob/user, x)
 	if (!isliving(user) || user.stat == UNCONSCIOUS || user.stat == DEAD)

@@ -127,7 +127,7 @@
 
 /obj/tank/soviet
 	icon_state = "sov"
-	name = "Soviet T-23 Tank"
+	name = "Soviet T-34 Tank"
 
 /obj/tank/soviet/New()
 	..()
@@ -144,3 +144,15 @@
 	fire_delay = 0.3
 	admin = TRUE
 	locked = FALSE
+
+/obj/tank/american
+	icon_state = "sherman"
+	name = "M3 Sherman Tank"
+
+/obj/tank/american/New()
+	..()
+	radio = new/obj/item/radio/rbs
+	#ifdef MG_TANKS
+	MG = new/obj/item/weapon/gun/projectile/automatic/stationary/kord/maxim(null)
+	MG.invisibility = 101
+	#endif
