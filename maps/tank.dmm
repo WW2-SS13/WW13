@@ -1,0 +1,48 @@
+"a" = (/turf/wall/void,/area/prishtina)
+"b" = (/turf/wall/tankwall,/area/prishtina)
+"c" = (/turf/wall/tankwall{icon_state = "tank"; dir = 4},/area/prishtina)
+"d" = (/turf/wall/tankwall{icon_state = "tank"; dir = 6},/area/prishtina)
+"e" = (/turf/wall/tankwall{icon_state = "tank"; dir = 1},/area/prishtina)
+"f" = (/turf/wall/tankwall{icon_state = "tank"; dir = 9},/area/prishtina)
+"g" = (/turf/wall/tankwall{icon_state = "tank"; dir = 5},/area/prishtina)
+"h" = (/turf/wall/tankwall{icon_state = "tank"; dir = 10},/area/prishtina)
+"i" = (/obj/tank/tankequip/driver,/turf/floor/tiled/airless{icon_state = "steel"; dir = 1},/area/prishtina)
+"j" = (/obj/tank/tankequip/gunner,/turf/floor/tiled/airless{icon_state = "steel"; dir = 1},/area/prishtina)
+"k" = (/turf/floor/tiled/airless{icon_state = "steel"; dir = 1},/area/prishtina)
+"l" = (/obj/tank/tankequip/hatch,/turf/floor/tiled/airless{icon_state = "steel"; dir = 1},/area/prishtina)
+"m" = (/obj/tank/tankequip/ammocrate,/turf/floor/tiled/airless{icon_state = "steel"; dir = 1},/area/prishtina)
+"n" = (/obj/tank/tankequip/loader,/turf/floor/tiled/airless{icon_state = "steel"; dir = 1},/area/prishtina)
+"o" = (/obj/structure/closet/hydrant,/turf/wall/tankwall{icon_state = "tank"; dir = 4},/area/prishtina)
+
+(1,1,1) = {"
+aageefageefageefageefageefaaaa
+aacijcacijcacijcacijcacijcaaaa
+aaoklcaoklcaoklcaoklcaoklcaaaa
+aacmncacmncacmncacmncacmncaaaa
+aadbbhadbbhadbbhadbbhadbbhaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aageefageefageefageefageefaaaa
+aacijcacijcacijcacijcacijcaaaa
+aaoklcaoklcaoklcaoklcaoklcaaaa
+aacmncacmncacmncacmncacmncaaaa
+aadbbhadbbhadbbhadbbhadbbhaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aageefageefageefageefageefaaaa
+aacijcacijcacijcacijcacijcaaaa
+aaoklcaoklcaoklcaoklcaoklcaaaa
+aacmncacmncacmncacmncacmncaaaa
+aadbbhadbbhadbbhadbbhadbbhaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aageefageefageefageefageefaaaa
+aacijcacijcacijcacijcacijcaaaa
+aaoklcaoklcaoklcaoklcaoklcaaaa
+aacmncacmncacmncacmncacmncaaaa
+aadbbhadbbhadbbhadbbhadbbhaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aageefageefageefageefageefaaaa
+aacijcacijcacijcacijcacijcaaaa
+aaoklcaoklcaoklcaoklcaoklcaaaa
+aacmncacmncacmncacmncacmncaaaa
+aadbbhadbbhadbbhadbbhadbbhaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}

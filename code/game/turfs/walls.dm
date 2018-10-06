@@ -34,6 +34,13 @@ var/list/global/wall_cache = list()
 	damage = -100000
 	tank_destroyable = FALSE
 
+/turf/wall/tankwall
+	name = "tank wall"
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "tank"
+	layer = TURF_LAYER + 0.02 // above lifts
+	desc = "A massive wall."
+
 /turf/wall/rockwall
 	name = "cave wall"
 	icon = 'icons/turf/walls.dmi'

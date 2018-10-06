@@ -17,24 +17,31 @@
 	var/next_spam_allowed = -1
 	var/locked = TRUE
 	var/heal_damage[2]
+	var/loaded = TRUE
 	var/named = FALSE
 	var/cooldown = FALSE
 	var/obj/item/radio/radio = null
 	var/obj/item/weapon/gun/projectile/automatic/stationary/kord/MG = null
 	pixel_x = -32
 
-/obj/tankequip
+/obj/shell
+	var/ap = FALSE
+	var/spent = FALSE
+	icon = 'icons/WW2/tankequip.dmi'
+
+/obj/tank/tankequip
 	density = FALSE
 	anchored = TRUE
 	var/broken = FALSE
 	var/occupied = FALSE
-	icon = 'icons/WW2/tanks/equipment.dmi'
-	iconstate = "error"
+	pixel_x = 0
+	icon = 'icons/WW2/tankequip.dmi'
+	icon_state = "error"
 
-/obj/tankequip/gunner
-	iconstate = "gunner"
+/obj/tank/tankequip/gunner
+	icon_state = "gunner"
 
-/obj/tankequip/gunner/MouseDrop_T(var/atom/dropping, var/mob/user as mob)
+/obj/tank/tankequip/gunner/MouseDrop_T(var/atom/dropping, var/mob/user as mob)
 
 	if (dropping != user)
 		return FALSE
@@ -56,10 +63,11 @@
 			accepting_occupant = FALSE
 			return FALSE
 
-/obj/tankequip/driver
-	iconstate = "driver"
+/obj/tank/tankequip/driver
+	icon_state = "driver"
+	var/accepting_driver_occupant = FALSE
 
-/obj/tankequip/driver/MouseDrop_T(var/atom/dropping, var/mob/user as mob)
+/obj/tank/tankequip/driver/MouseDrop_T(var/atom/dropping, var/mob/user as mob)
 
 	if (dropping != user)
 		return FALSE
@@ -67,38 +75,50 @@
 	if (!ishuman(user))
 		return FALSE
 
-	if (!accepting_occupant)
+	if (!accepting_driver_occupant && !occupied)
 		tank_message("<span class = 'warning'>[user] starts to go in the driver seat.</span>")
-		accepting_occupant = TRUE
+		accepting_driver_occupant = TRUE
 		if (do_after(user, 15, src))
 			tank_message("<span class = 'warning'>[user] gets in the driver seat.")
 			occupied = TRUE
 			driver_seat(user)
-			accepting_occupant = FALSE
+			accepting_driver_occupant = FALSE
 			return TRUE
 		else
 			tank_message("<span class = 'warning'>[user] stops going in driver seat.</span>")
-			accepting_occupant = FALSE
+			accepting_driver_occupant = FALSE
 			return FALSE
 
-/obj/tankequip/loader
-	iconstate = "loader"
-	var/loaded = TRUE
+/obj/tank/tankequip/loader
+	icon_state = "loader"
 
-/obj/tankequip/loader/attackby(var/obj/item/WW2/tank/shell, var/mob/user as mob)
+
+/obj/tank/tankequip/loader/attackby(var/obj/item/WW2/tank/shell, var/mob/user as mob)
 	loaded = TRUE
 
-/obj/tankequip/ammocrate
-	iconstate = "ammocrate"
-	
-/obj/tankequip/ammocrate/attack_hand(var/mob/user as mob)
-	new/obj/item/WW2/tank/shell(src)
-	
-/obj/tankequip/hatch
-	iconstate = "hatch"
+/obj/tank/tankequip/ammocrate
+	icon_state = "ammo"
 
-/obj/tankequip/hatch/attack_hand(var/mob/user as mob)
+/obj/tank/tankequip/ammocrate/attack_hand(var/mob/user as mob)
+	new/obj/shell(src)
 
+/obj/tank/tankequip/hatch
+	icon_state = "hatch"
+	var/accepting_hatch_occupant
+
+/obj/tank/tankequip/hatch/attack_hand(var/mob/user as mob)
+	//teleport out of the tank
+	tank_message("<span class = 'warning'>[user] starts to get out of the tank.</span>")
+	accepting_hatch_occupant = TRUE
+	if (do_after(user, 15, src))
+		tank_message("<span class = 'warning'>[user] gets out of the tank.")
+		//get out of le tank
+		accepting_hatch_occupant = FALSE
+		return TRUE
+	else
+		tank_message("<span class = 'warning'>[user] stops getting out of the tank.</span>")
+		accepting_hatch_occupant = FALSE
+		return FALSE
 
 /obj/tank/New()
 	..()
