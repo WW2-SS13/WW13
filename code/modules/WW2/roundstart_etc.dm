@@ -89,6 +89,10 @@ var/GRACE_PERIOD_LENGTH = 7
 	if (map && map.ID == MAP_REICHSTAG)
 		(season = "SPRING")
 		return TRUE
+	// forces Summer in Gazala map
+	if (map && map.ID == MAP_GAZALA)
+		(season = "SUMMER")
+		return TRUE
 
 	// forces Fall in Partisan map
 	if (map && map.ID == MAP_PARTISAN)

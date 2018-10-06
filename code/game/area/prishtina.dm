@@ -126,6 +126,25 @@
 	name = "The Forest"
 	icon_state = "purple1"
 
+/area/prishtina/desert
+	name = "The Desert"
+	icon_state = "purple2"
+	base_turf = /turf/floor/plating/sand
+
+area/prishtina/desert/desert
+	name = "Desert"
+	icon_state = "purple2"
+
+area/prishtina/desert/river
+	name = "River"
+	icon_state = "blue1"
+	base_turf = /turf/floor/plating/beach/water
+
+area/prishtina/desert/oasis
+	name = "Oasis"
+	icon_state = "blue2"
+	base_turf = /turf/floor/dirt
+
 /area/prishtina/forest/north/invisible_wall
 	dynamic_lighting = TRUE
 

@@ -517,7 +517,10 @@
 /obj/structure/sign/department/prison
 	name = "PRISON"
 	icon_state = "prison"
-
+/obj/structure/sign/minen
+	desc = "A sign informing that the area is mined."
+	name = "Mined Area"
+	icon_state = "minen"
 
 //numbers
 /obj/structure/sign/n1
