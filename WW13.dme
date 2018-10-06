@@ -328,6 +328,7 @@
 #include "code\game\objects\map_metadata\forest_new.dm"
 #include "code\game\objects\map_metadata\island.dm"
 #include "code\game\objects\map_metadata\occupation.dm"
+#include "code\game\objects\map_metadata\october.dm"
 #include "code\game\objects\map_metadata\partisan.dm"
 #include "code\game\objects\map_metadata\reichstag.dm"
 #include "code\game\objects\map_metadata\survival.dm"

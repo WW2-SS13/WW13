@@ -105,6 +105,11 @@ var/GRACE_PERIOD_LENGTH = 7
 		(season = "SPRING")
 		return TRUE
 
+	// forces Winter in RO map
+	if (map && map.ID == MAP_OCTOBER)
+		(season = "WINTER")
+		return TRUE
+
 	// forces Winter in Winter Line map
 	if (map && map.ID == MAP_WINTER_LINE)
 		(season = "WINTER")
