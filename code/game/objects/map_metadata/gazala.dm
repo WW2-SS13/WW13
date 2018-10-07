@@ -68,7 +68,7 @@ var/no_loop_g = FALSE
 		return FALSE
 	if ((current_winner && current_loser && world.time > next_win) && no_loop_g == FALSE)
 		ticker.finished = TRUE
-		var/message = "The <b>American Army</b> has sucessfuly defended the road to Gazala! The Afrika Korps halted the attack!"
+		var/message = "The <b>Afrika Korps</b> have captured the road! The Panzer keep advancing!"
 		world << "<font size = 4><span class = 'notice'>[message]</span></font>"
 		show_global_battle_report(null)
 		win_condition_spam_check = TRUE
