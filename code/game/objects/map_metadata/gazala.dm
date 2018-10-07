@@ -78,7 +78,7 @@ var/no_loop_g = FALSE
 	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.33, TRUE))
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.33))
 			if (last_win_condition != win_condition.hash)
-				current_win_condition = "The Afrika Korps have captured the road to Gazala! They will win  in{time} minutes."
+				current_win_condition = "The Afrika Korps have captured the road to Gazala! They will win  in {time} minutes."
 				next_win = world.time + short_win_time(GERMAN)
 				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[1][1])
@@ -87,7 +87,7 @@ var/no_loop_g = FALSE
 	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.01, TRUE))
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.01))
 			if (last_win_condition != win_condition.hash)
-				current_win_condition = "The Afrika Korps have captured the road to Gazala! They will win  in{time} minutes."
+				current_win_condition = "The Afrika Korps have captured the road to Gazala! They will win  in {time} minutes."
 				next_win = world.time + short_win_time(GERMAN)
 				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[1][1])
@@ -96,7 +96,7 @@ var/no_loop_g = FALSE
 	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.33, TRUE))
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.33))
 			if (last_win_condition != win_condition.hash)
-				current_win_condition = "The Afrika Korps have captured the road to Gazala! They will win  in{time} minutes."
+				current_win_condition = "The Afrika Korps have captured the road to Gazala! They will win  in {time} minutes."
 				next_win = world.time + short_win_time(GERMAN)
 				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[2][1])
@@ -105,7 +105,7 @@ var/no_loop_g = FALSE
 	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.01, TRUE))
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.01))
 			if (last_win_condition != win_condition.hash)
-				current_win_condition = "The Afrika Korps have captured the road to Gazala! They will win  in{time} minutes."
+				current_win_condition = "The Afrika Korps have captured the road to Gazala! They will win  in {time} minutes."
 				next_win = world.time + short_win_time(GERMAN)
 				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[2][1])
