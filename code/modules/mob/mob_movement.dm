@@ -483,7 +483,7 @@
 			var/snow_span = "notice"
 
 			if (standing_on_snow)
-				snow_message = "You're slowed down a by the snow."
+				snow_message = "You're slowed down by the snow."
 				standing_on_snow = 0.08
 				if (snow_message && world.time >= mob.next_snow_message)
 					mob << "<span class = '[snow_span]'>[snow_message]</span>"
