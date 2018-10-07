@@ -379,6 +379,8 @@
 	name = "snow"
 	icon = 'icons/turf/snow.dmi'
 	icon_state = "snow"
+	is_snow = TRUE
+
 
 /turf/floor/plating/snow/ex_act(severity)
 	return
