@@ -131,21 +131,22 @@
 /obj/item/mine/proc/trigger(atom/movable/AM)
 	if (world.time < nextCanExplode)
 		return
-	for (var/mob/O in viewers(world.view, loc))
-		O << "<font color='red'>[AM] triggered the [src]!</font>"
-	triggered = TRUE
-	visible_message("<span class = 'red'><b>Click!</b></span>")
-	if (atmine == FALSE)
-		explosion(get_turf(src),-1,1,3)
-	else
-		explosion(get_turf(src),2,2,6)
-		spawn(3)
+	if (istype(AM, /mob/living))
+		for (var/mob/O in viewers(world.view, loc))
+			O << "<font color='red'>[AM] triggered the [src]!</font>"
+		triggered = TRUE
+		visible_message("<span class = 'red'><b>Click!</b></span>")
+		if (atmine == FALSE)
+			explosion(get_turf(src),-1,1,3)
+		else
 			explosion(get_turf(src),2,2,6)
-		spawn(6)
-			explosion(get_turf(src),2,2,6)
-	spawn(9)
-		if (src)
-			qdel(src)
+			spawn(3)
+				explosion(get_turf(src),2,2,6)
+			spawn(6)
+				explosion(get_turf(src),2,2,6)
+		spawn(9)
+			if (src)
+				qdel(src)
 
 //TYPES//
 //Explosive
