@@ -1,7 +1,7 @@
 #define NO_WINNER "The Allies control the road."
 /obj/map_metadata/gazala
 	ID = MAP_GAZALA
-	title = "Road to Gazala (250x150x1)"
+	title = "Road to Gazala (250x100x1)"
 	lobby_icon_state = "afrika"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall,
 	/area/prishtina/no_mans_land/invisible_wall/inside)
