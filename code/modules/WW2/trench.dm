@@ -112,7 +112,8 @@ var/list/global/floor_cache = list()
 				ChangeTurf(/turf/floor/trench)
 		return
 	..()
-
+/turf/floor/plating/beach/sand
+	var/trench_stage = 0
 /turf/floor/plating/beach/sand/attackby(obj/item/C as obj, mob/user as mob)
 	if (istype(C, /obj/item/weapon/shovel))
 		var/obj/item/weapon/shovel/S = C
@@ -132,7 +133,8 @@ var/list/global/floor_cache = list()
 		return
 	..()
 
-
+/turf/floor/plating/sand
+	var/trench_stage = 0
 /turf/floor/plating/sand/attackby(obj/item/C as obj, mob/user as mob)
 	if (istype(C, /obj/item/weapon/shovel))
 		var/obj/item/weapon/shovel/S = C
