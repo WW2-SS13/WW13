@@ -27,10 +27,10 @@
 	faction_distribution_coeffs = list(GERMAN = 0.5, USA = 0.5)
 
 /obj/map_metadata/gazala/germans_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 6000 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/gazala/soviets_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 6000 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/gazala/job_enabled_specialcheck(var/datum/job/J)
 	. = TRUE
@@ -41,7 +41,7 @@
 			. = FALSE
 
 /obj/map_metadata/gazala/announce_mission_start(var/preparation_time)
-	world << "<font size=4>All factions have <b>10 minutes</b> to prepare before the ceasefire ends!<br>The Germans will win if they capture the American HQ. The Americans will win if they manage to defend for <b>45 minutes</b>.</font>"
+	world << "<font size=4>All factions have <b>15 minutes</b> to prepare before the ceasefire ends!<br>The Germans will win if they capture the American HQ. The Americans will win if they manage to defend for <b>45 minutes</b>.</font>"
 
 /obj/map_metadata/gazala/reinforcements_ready()
 	return (germans_can_cross_blocks() && soviets_can_cross_blocks())
