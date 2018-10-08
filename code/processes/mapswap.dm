@@ -1,27 +1,27 @@
 /process/mapswap
 	// map = required players
 	var/list/maps = list(
-		MAP_CITY = 0,
-		MAP_FOREST = 20,
-		MAP_TOWER = 0,
-		MAP_CAMP = 15,
+////		MAP_CITY = 0,
+////		MAP_FOREST = 20,
+////		MAP_TOWER = 0,
+		MAP_CAMP = 0,
 //		MAP_SURVIVAL = 0, until its fixed
-		MAP_REICHSTAG = 0,
+////		MAP_REICHSTAG = 0,
 //		MAP_ESCORT = 15,
 //		MAP_FOREST_NEW = 25,
-		MAP_ISLAND = 10,
-		MAP_PARTISAN = 0,
-		MAP_VILLAGE = 0,
+////		MAP_ISLAND = 10,
+////		MAP_PARTISAN = 0,
+////		MAP_VILLAGE = 0,
 //		MAP_OCCUPATION = 0,
 //		MAP_FACTORY = 0,
-		MAP_WINTER_LINE = 10,
-		MAP_GAZALA = 20,
+////		MAP_WINTER_LINE = 10,
+////		MAP_GAZALA = 20,
 	)
 
 	var/ready = TRUE
 	var/admin_triggered = FALSE
 	var/finished_at = -1
-	var/next_map_title = "City"
+	var/next_map_title = "Camp"
 
 /process/mapswap/setup()
 	name = "mapswap"
