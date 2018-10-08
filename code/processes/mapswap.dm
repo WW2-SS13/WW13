@@ -5,6 +5,8 @@
 ////		MAP_FOREST = 20,
 ////		MAP_TOWER = 0,
 		MAP_CAMP = 0,
+		MAP_STALAG = 0,
+		MAP_RIVER_KWAI = 0,
 //		MAP_SURVIVAL = 0, until its fixed
 ////		MAP_REICHSTAG = 0,
 //		MAP_ESCORT = 15,

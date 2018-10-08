@@ -381,6 +381,13 @@
 	item_state = "USparatrooperuni"
 	worn_state = "USparatrooperuni"
 
+/obj/item/clothing/under/brituni
+	name = "British Army Uniform"
+	desc = "A standard uniform of the Royal Army of the United Kingdom."
+	icon_state = "USparatrooperuni"
+	item_state = "USparatrooperuni"
+	worn_state = "USparatrooperuni"
+
 /obj/item/clothing/under/usuni_mar
 	name = "US Marine Cammo Uniform"
 	desc = "A standard cammo uniform of the United States Marines."

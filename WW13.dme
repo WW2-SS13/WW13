@@ -332,6 +332,8 @@
 #include "code\game\objects\map_metadata\october.dm"
 #include "code\game\objects\map_metadata\partisan.dm"
 #include "code\game\objects\map_metadata\reichstag.dm"
+#include "code\game\objects\map_metadata\river_kwai.dm"
+#include "code\game\objects\map_metadata\stalag.dm"
 #include "code\game\objects\map_metadata\survival.dm"
 #include "code\game\objects\map_metadata\test.dm"
 #include "code\game\objects\map_metadata\tower.dm"
@@ -956,5 +958,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\camp.dmm"
+#include "maps\river_kwai.dmm"
 // END_INCLUDE
