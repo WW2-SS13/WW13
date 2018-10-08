@@ -379,6 +379,8 @@
 	name = "snow"
 	icon = 'icons/turf/snow.dmi'
 	icon_state = "snow"
+	is_snow = TRUE
+
 
 /turf/floor/plating/snow/ex_act(severity)
 	return
@@ -455,8 +457,17 @@
 /turf/floor/plating/beach/water/deep
 	name = "Deep Water"
 	icon_state = "seadeep"
-	density = TRUE
+	density = FALSE
 
+/turf/floor/plating/beach/water/deep/CanPass(atom/movable/mover)
+	if (istype(mover, /obj/effect/effect/smoke))
+		return TRUE
+	else if (istype(mover, /obj/item/projectile))
+		return TRUE
+	else if (istype(mover, /mob))
+		return FALSE
+	else
+		return ..()
 /turf/floor/plating/beach/water/get_move_delay()
 	if (locate(/obj/structure/catwalk) in contents)
 		return 0
@@ -466,6 +477,11 @@
 	name = "Sewage Water"
 	move_delay = 3
 	color = "#94B21C"
+
+/turf/floor/plating/beach/water/swamp
+	name = "Swamp Water"
+	move_delay = 3
+	color = "#695757"
 
 /turf/floor/plating/beach/water/proc/Extinguish(var/mob/living/L)
 	if (istype(L))
@@ -506,7 +522,7 @@
 /turf/floor/plating/dust
 	name = "dust"
 	icon = 'icons/turf/floors.dmi'
-	icon_state = "dust2"
+	icon_state = "dustydirt"
 	interior = FALSE
 	stepsound = "dirt"
 	uses_winter_overlay = FALSE

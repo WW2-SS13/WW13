@@ -473,48 +473,22 @@
 			var/area/F_area = get_area(F)
 			if (F_area.weather == WEATHER_RAIN && F.may_become_muddy && !locate_type(F.contents, /obj/structure/catwalk))
 				F.muddy = TRUE
+			else if (F.is_snow && !locate_type(F.contents, /obj/structure/catwalk))
+				F.muddy = FALSE
+				standing_on_snow = TRUE
 			else
 				F.muddy = FALSE
 
-			var/obj/snow/S = F.has_snow()
 			var/snow_message = ""
 			var/snow_span = "notice"
 
-			if (S)
-				standing_on_snow = TRUE
-				switch (S.amount)
-					if (0.01 to 0.8) // more than none and up to ~1/4 feet
-						standing_on_snow = TRUE
-						snow_message = "You're slowed down a little by the snow."
-					if (0.08 to 0.16) // up to ~1/2 feet
-						standing_on_snow = 1.25
-						snow_message = "You're slowed down a bit by the snow."
-					if (0.16 to 0.30) // up to a ~1 foot
-						standing_on_snow = 1.75
-						snow_message = "You're slowed down quite a bit by the snow."
-						snow_span = "warning"
-					if (0.30 to 0.75) // ~ 2 to 2.5 feet
-						standing_on_snow = 2.25
-						snow_message = "You're seriously being slowed down by the snow. It's almost hard to walk in."
-						snow_span = "warning"
-					if (0.75 to 1.22) // up to 4 feet!
-						standing_on_snow = 4.5
-						snow_message = "There's way too much snow here to properly move."
-						snow_span = "danger"
-					if (1.22 to INFINITY) // no way we can go through this easily
-						standing_on_snow = 18
-						snow_message = "There's way too much snow here to move!"
-						snow_span = "danger"
-
+			if (standing_on_snow)
+				snow_message = "You're slowed down by the snow."
+				standing_on_snow = 0.08
 				if (snow_message && world.time >= mob.next_snow_message)
 					mob << "<span class = '[snow_span]'>[snow_message]</span>"
 					mob.next_snow_message = world.time+100
 
-			else if (F.muddy)
-				standing_on_snow = rand(2,3)
-				if (world.time >= mob.next_mud_message)
-					mob << "<span class = 'warning'>The mud slows you down.</span>"
-					mob.next_mud_message = world.time+100
 
 		if (mob.velocity_lastdir != -1)
 			if (direct != mob.velocity_lastdir)

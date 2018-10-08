@@ -311,13 +311,13 @@ var/datum/reinforcements/reinforcements_master = null
 		for (var/mob/new_player/np in l)
 			if (np) // maybe helps with logged out nps
 				np.LateSpawnForced("Private", TRUE, TRUE)
-				reinforcements_granted[JAPAN] = reinforcements_granted[JAPAN]+1
+				reinforcements_granted[USA] = reinforcements_granted[USA]+1
 				ret = TRUE
 	if (map.front == "Western")
 		for (var/mob/new_player/np in l)
 			if (np) // maybe helps with logged out nps
 				np.LateSpawnForced("Private", TRUE, TRUE)
-				reinforcements_granted[JAPAN] = reinforcements_granted[JAPAN]+1
+				reinforcements_granted[USA] = reinforcements_granted[USA]+1
 				ret = TRUE
 	reinforcement_pool[SOVIET] = list()
 	lock_check()
@@ -534,7 +534,10 @@ datum/reinforcements/proc/lock_check()
 			l += "The Axis base is currently occupied; Reinforcements cannot be deployed."
 		else
 			l += "Axis:: "
-			l += "Deployed: [reinforcements_granted[GERMAN]]/[max_german_reinforcements]"
+			if (map.front == "Eastern" || map.front == "Western")
+				l += "Deployed: [reinforcements_granted[GERMAN]]/[max_german_reinforcements]"
+			else
+				l += "Deployed: [reinforcements_granted[JAPAN]]/[max_japan_reinforcements]"
 			l += "Deploying: [r_german()]/[reinforcement_add_limit_german] ([reinforcement_spawn_req] needed) in [german_countdown] seconds"
 			l += "Locked: [locked[GERMAN] ? "Yes" : "No"]"
 
@@ -544,7 +547,10 @@ datum/reinforcements/proc/lock_check()
 			l += "The Allied base is currently occupied; Reinforcements cannot be deployed."
 		else
 			l += "Allies:: "
-			l += "Deployed: [reinforcements_granted[SOVIET]]/[max_soviet_reinforcements]"
+			if (map.front == "Eastern")
+				l += "Deployed: [reinforcements_granted[SOVIET]]/[max_soviet_reinforcements]"
+			else
+				l += "Deployed: [reinforcements_granted[USA]]/[max_usa_reinforcements]"
 			l += "Deploying: [r_soviet()]/[reinforcement_add_limit_soviet] ([reinforcement_spawn_req] needed) in [soviet_countdown] seconds"
 			l += "Locked: [locked[SOVIET] ? "Yes" : "No"]"
 

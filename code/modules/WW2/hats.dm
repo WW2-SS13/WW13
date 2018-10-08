@@ -26,11 +26,23 @@
 	name = "German commanding officer cap"
 	icon_state = "gerofficercap"
 	item_state = "gerofficercap"
+/obj/item/clothing/head/caphat/gerofficercap/New()
+	..()
+	if (map && map.ID == MAP_GAZALA)
+		icon_state = "afgerofficercap"
+		item_state = "afgerofficercap"
+		worn_state = "afgerofficercap"
 
 /obj/item/clothing/head/caphat/gercap/fieldcap
 	name = "German officer cap"
 	icon_state = "fieldcap"
 	item_state = "fieldcap"
+/obj/item/clothing/head/caphat/gercap/fieldcap/New()
+	..()
+	if (map && map.ID == MAP_GAZALA)
+		icon_state = "affieldcap"
+		item_state = "affieldcap"
+		worn_state = "affieldcap"
 
 /obj/item/clothing/head/caphat/sovtankerhat
 	name = "Soviet Crewman Cap"
@@ -56,6 +68,13 @@
 	name = "German field cap"
 	icon_state = "fieldcap"
 	item_state = "fieldcap"
+
+/obj/item/clothing/head/caphat/gercap/fieldcap2/New()
+	..()
+	if (map && map.ID == MAP_GAZALA)
+		icon_state = "affieldcap"
+		item_state = "affieldcap"
+		worn_state = "affieldcap"
 
 /obj/item/clothing/head/caphat/NKVDcap
 	name = "NKVD Officer Cap"

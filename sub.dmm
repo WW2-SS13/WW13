@@ -1,0 +1,403 @@
+"aa" = (/turf/floor/plating/grass/wild,/area/prishtina)
+"ab" = (/turf/floor/plating/beach/water/deep,/area/prishtina)
+"ac" = (/turf/floor,/area/prishtina)
+"ad" = (/turf/wall/r_wall{icon_state = "armor6"},/area/prishtina)
+"ae" = (/turf/wall/r_wall{icon_state = "armor12"},/area/prishtina)
+"af" = (/turf/wall/r_wall{icon_state = "armor10"},/area/prishtina)
+"ag" = (/turf/wall/r_wall{icon_state = "armor3"},/area/prishtina)
+"ah" = (/obj/structure/table/reinforced,/turf/floor,/area/prishtina)
+"ai" = (/obj/structure/table/reinforced,/obj/item/radio/intercom/fu2,/turf/floor,/area/prishtina)
+"aj" = (/obj/structure/filingcabinet{icon_state = "ork"},/turf/floor,/area/prishtina)
+"ak" = (/obj/structure/dispenser/oxygen,/turf/floor,/area/prishtina)
+"al" = (/turf/wall/r_wall{icon_state = "armor5"},/area/prishtina)
+"am" = (/turf/wall/r_wall{icon_state = "armor9"},/area/prishtina)
+"an" = (/obj/structure/filingcabinet{icon_state = "Lunarb"},/turf/floor,/area/prishtina)
+"ao" = (/obj/structure/filingcabinet{icon_state = "Lunar0"},/turf/floor,/area/prishtina)
+"ap" = (/obj/structure/table/reinforced,/obj/structure/lattice{icon_state = "intact"},/turf/floor,/area/prishtina)
+"aq" = (/obj/structure/table/reinforced,/obj/structure/lattice{icon_state = "intact"},/obj/item/weapon/paper_bundle{icon_state = "paper_stack_words_taped"},/obj/item/weapon/pen,/turf/floor,/area/prishtina)
+"ar" = (/obj/structure/lattice{icon_state = "intact"},/obj/structure/bed/chair/office/light{icon_state = "officechair_white"; dir = 1},/turf/floor,/area/prishtina)
+"as" = (/obj/structure/bed/chair/office/light{icon_state = "officechair_white"; dir = 1},/turf/floor,/area/prishtina)
+"at" = (/obj/structure/lattice{icon_state = "intact"},/turf/floor,/area/prishtina)
+"au" = (/obj/structure/lattice{icon_state = "intact"; dir = 5},/turf/floor,/area/prishtina)
+"av" = (/obj/structure/lattice{icon_state = "intact"; dir = 4},/turf/floor,/area/prishtina)
+"aw" = (/obj/structure/lattice{icon_state = "intact"; dir = 9},/turf/floor,/area/prishtina)
+"ax" = (/obj/structure/bed/chair/office/light{icon_state = "officechair_white"; dir = 8},/turf/floor,/area/prishtina)
+"ay" = (/turf/floor/plating,/area/prishtina)
+"az" = (/turf/wall/r_wall{icon_state = "sarmor10"},/area/prishtina)
+"aA" = (/turf/wall/r_wall{icon_state = "sarmor3"},/area/prishtina)
+"aB" = (/obj/structure/multiz/ladder/up,/turf/floor/plating,/area/prishtina)
+"aC" = (/turf/wall/r_wall{icon_state = "sarmor5"},/area/prishtina)
+"aD" = (/turf/wall/r_wall{icon_state = "sarmor9"},/area/prishtina)
+"aE" = (/obj/structure/multiz/ladder,/turf/floor,/area/prishtina)
+"aF" = (/turf/wall/r_wall{icon_state = "sarmor6"},/area/prishtina)
+"aG" = (/turf/wall/r_wall{icon_state = "sarmor12"},/area/prishtina)
+"aH" = (/turf/floor/tiled{icon_state = "vfloor2"},/area/prishtina)
+"aI" = (/turf/floor/tiled{icon_state = "yellowpatch"},/area/prishtina)
+"aJ" = (/obj/structure/atmospherics_pipe_tank/oxygen{icon_state = "plasma_map"},/turf/floor/tiled{icon_state = "vfloor2"},/area/prishtina)
+"aK" = (/obj/structure/atmospherics_pipe_tank/oxygen,/turf/floor/tiled{icon_state = "vfloor2"},/area/prishtina)
+"aL" = (/obj/structure/atmospherics_pipe_tank/oxygen{icon_state = "air_map"},/turf/floor/tiled{icon_state = "vfloor2"},/area/prishtina)
+"aM" = (/obj/structure/atmospherics_pipe_tank/oxygen{icon_state = "n2o_map"},/turf/floor/tiled{icon_state = "vfloor2"},/area/prishtina)
+"aN" = (/obj/structure/atmospherics_pipe_tank/oxygen{icon_state = "n2"},/turf/floor/tiled{icon_state = "vfloor2"},/area/prishtina)
+"aO" = (/obj/structure/atmospherics_pipe_tank/oxygen{icon_state = "co2"},/turf/floor/tiled{icon_state = "vfloor2"},/area/prishtina)
+"aP" = (/obj/structure/multiz/ladder/up,/turf/floor/tiled{icon_state = "vfloor2"},/area/prishtina)
+"aQ" = (/turf/floor/tiled{icon_state = "vfloor1"},/area/prishtina)
+"aR" = (/turf/floor/tiled{icon_state = "vfloor0"},/area/prishtina)
+"aS" = (/obj/structure/atmospherics_pipe_tank/oxygen{icon_state = "n2"},/turf/floor/tiled{icon_state = "vfloor0"},/area/prishtina)
+"aT" = (/turf/floor/tiled{icon_state = "bcircuitoff"},/area/prishtina)
+"aU" = (/turf/floor/tiled{icon_state = "hullcenter14"},/area/prishtina)
+"aV" = (/turf/floor/tiled{icon_state = "hullcenter12"},/area/prishtina)
+"aW" = (/turf/floor/tiled{icon_state = "hull0"},/area/prishtina)
+"aX" = (/turf/floor/tiled{icon_state = "hullcenter20"},/area/prishtina)
+"aY" = (/turf/floor/tiled{icon_state = "hullcenter18"},/area/prishtina)
+"aZ" = (/turf/floor/tiled{icon_state = "hullcenter22"},/area/prishtina)
+"ba" = (/turf/floor/tiled{icon_state = "hullcenter23"},/area/prishtina)
+"bb" = (/turf/floor/tiled{icon_state = "hullcenter15"},/area/prishtina)
+"bc" = (/turf/floor/tiled{icon_state = "hullcenter25"},/area/prishtina)
+"bd" = (/turf/floor/tiled{icon_state = "hullcenter26"},/area/prishtina)
+"be" = (/turf/floor/tiled{icon_state = "hullcenter21"},/area/prishtina)
+"bf" = (/turf/floor/tiled{icon_state = "hullcenter28"},/area/prishtina)
+"bg" = (/turf/floor/tiled{icon_state = "hullcenter0"},/area/prishtina)
+"bh" = (/turf/floor/tiled{icon_state = "hullcenter24"},/area/prishtina)
+"bi" = (/turf/floor/tiled{icon_state = "hullcenter3"},/area/prishtina)
+"bj" = (/turf/floor/tiled{icon_state = "hullcenter29"},/area/prishtina)
+"bk" = (/turf/floor/tiled{icon_state = "hullcenter27"},/area/prishtina)
+"bl" = (/turf/floor/tiled{icon_state = "hullcenter31"},/area/prishtina)
+"bm" = (/turf/floor/tiled{icon_state = "hullcenter4"},/area/prishtina)
+"bn" = (/turf/floor/tiled{icon_state = "hullcenter30"},/area/prishtina)
+"bo" = (/turf/floor/tiled{icon_state = "hullcenter34"},/area/prishtina)
+"bp" = (/turf/floor/tiled{icon_state = "hullcenter32"},/area/prishtina)
+"bq" = (/turf/floor/tiled{icon_state = "hullcenter11"},/area/prishtina)
+"br" = (/turf/floor/tiled{icon_state = "hullcenter9"},/area/prishtina)
+"bs" = (/turf/wall/r_wall{icon_state = "rwall6"},/area/prishtina)
+"bt" = (/turf/wall/r_wall{icon_state = "rwall10"},/area/prishtina)
+"bu" = (/obj/structure/bed,/obj/item/weapon/bedsheet/brown,/turf/floor/tiled{icon_state = "hullcenter32"},/area/prishtina)
+"bv" = (/obj/structure/bed,/obj/item/weapon/bedsheet/brown,/turf/floor/tiled{icon_state = "hullcenter22"},/area/prishtina)
+"bw" = (/obj/structure/railing{icon_state = "railing0"; dir = 8},/turf/floor/tiled{icon_state = "techfloor_gray"},/area/prishtina)
+"bx" = (/obj/structure/railing{icon_state = "railing0"; dir = 4},/turf/floor/tiled{icon_state = "techfloor_gray"},/area/prishtina)
+"by" = (/obj/structure/bed,/obj/item/weapon/bedsheet/brown,/turf/floor/tiled{icon_state = "hullcenter28"},/area/prishtina)
+"bz" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 8},/turf/floor/tiled{icon_state = "hullcenter14"},/area/prishtina)
+"bA" = (/turf/wall/r_wall{icon_state = "rwall3"},/area/prishtina)
+"bB" = (/turf/wall/r_wall{icon_state = "rwall7"},/area/prishtina)
+"bC" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 4},/turf/floor/tiled{icon_state = "hullcenter22"},/area/prishtina)
+"bD" = (/obj/structure/bed,/obj/item/weapon/bedsheet/brown,/turf/floor/tiled{icon_state = "hullcenter20"},/area/prishtina)
+"bE" = (/obj/structure/railing{icon_state = "railing0"; dir = 8},/turf/floor/tiled{icon_state = "hullcenter23"},/area/prishtina)
+"bF" = (/obj/structure/railing{icon_state = "railing0"; dir = 4},/turf/floor/tiled{icon_state = "hullcenter15"},/area/prishtina)
+"bG" = (/obj/structure/sign/flag/germany{pixel_x = -30},/turf/floor/tiled{icon_state = "hullcenter23"},/area/prishtina)
+"bH" = (/obj/structure/sign/flag/germany{pixel_x = 30},/turf/floor/tiled{icon_state = "hullcenter28"},/area/prishtina)
+"bI" = (/obj/structure/bed,/obj/item/weapon/bedsheet/brown,/turf/floor/tiled{icon_state = "hullcenter26"},/area/prishtina)
+"bJ" = (/obj/structure/railing{icon_state = "railing0"; dir = 8},/turf/floor/tiled{icon_state = "hullcenter0"},/area/prishtina)
+"bK" = (/obj/structure/railing{icon_state = "railing0"; dir = 4},/turf/floor/tiled{icon_state = "hullcenter24"},/area/prishtina)
+"bL" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 8},/turf/floor/tiled{icon_state = "hullcenter0"},/area/prishtina)
+"bM" = (/obj/structure/railing{icon_state = "railing0"; dir = 8},/turf/floor/tiled{icon_state = "hullcenter29"},/area/prishtina)
+"bN" = (/obj/structure/railing{icon_state = "railing0"; dir = 4},/turf/floor/tiled{icon_state = "hullcenter27"},/area/prishtina)
+"bO" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 4},/turf/floor/tiled{icon_state = "hullcenter31"},/area/prishtina)
+"bP" = (/obj/structure/bed,/obj/item/weapon/bedsheet/brown,/turf/floor/tiled{icon_state = "hullcenter29"},/area/prishtina)
+"bQ" = (/obj/structure/bed,/obj/item/weapon/bedsheet/brown,/turf/floor/tiled{icon_state = "hullcenter31"},/area/prishtina)
+"bR" = (/obj/structure/dispenser/oxygen,/turf/floor/tiled{icon_state = "vfloor2"},/area/prishtina)
+"bS" = (/obj/structure/reagent_dispensers/watertank,/turf/floor/tiled{icon_state = "vfloor2"},/area/prishtina)
+"bT" = (/obj/structure/reagent_dispensers/fueltank,/turf/floor/tiled{icon_state = "vfloor2"},/area/prishtina)
+"bU" = (/obj/structure/lattice{icon_state = "intact"; dir = 4},/turf/floor/tiled{icon_state = "vfloor2"},/area/prishtina)
+"bV" = (/turf/floor/tiled{icon_state = "techfloor_endopenonegrid"},/area/prishtina)
+"bW" = (/turf/floor/tiled{icon_state = "techfloor_endopentwogray"},/area/prishtina)
+"bX" = (/turf/floor/tiled{icon_state = "techfloor_endfulltwomix"},/area/prishtina)
+"bY" = (/turf/floor/tiled{icon_state = "techfloor_grid"},/area/prishtina)
+"bZ" = (/turf/floor/tiled{icon_state = "techfloor_lightedcorner_off"},/area/prishtina)
+"ca" = (/turf/floor/tiled{icon_state = "techfloor_neon_off"},/area/prishtina)
+"cb" = (/turf/floor/tiled{icon_state = "techfloor_endopentwomorroredmix"},/area/prishtina)
+"cc" = (/turf/floor/tiled{icon_state = "techfloor_endopentwogrid"},/area/prishtina)
+"cd" = (/turf/floor/tiled{icon_state = "techfloor_endfulltwogrid"},/area/prishtina)
+"ce" = (/turf/floor/tiled{icon_state = "techfloor_gray"},/area/prishtina)
+"cf" = (/turf/floor/tiled{icon_state = "techfloor_lightedcorner_grid_off"},/area/prishtina)
+"cg" = (/turf/floor/tiled{icon_state = "techfloor_lightedcorner_grid"},/area/prishtina)
+"ch" = (/turf/floor/tiled{icon_state = "techfloor_orangefulltwogrid"},/area/prishtina)
+"ci" = (/turf/floor/tiled{icon_state = "techfloor_endopenonemirroredgray"},/area/prishtina)
+"cj" = (/turf/floor/tiled{icon_state = "techfloor_gridcorner"},/area/prishtina)
+"ck" = (/turf/floor/tiled{icon_state = "techfloor_endopenonemirroredgrid"},/area/prishtina)
+"cl" = (/turf/floor/tiled{icon_state = "techfloor_endopentwomix"},/area/prishtina)
+"cm" = (/turf/floor/tiled{icon_state = "techfloor_endfulltwomirroredmix"},/area/prishtina)
+"cn" = (/turf/floor/tiled{icon_state = "techfloor_endfulltwogray"},/area/prishtina)
+"co" = (/turf/floor/tiled{icon_state = "techfloor_lightedcorner"},/area/prishtina)
+"cp" = (/turf/floor/tiled{icon_state = "techfloor_graycorner"},/area/prishtina)
+"cq" = (/turf/floor/tiled{icon_state = "techfloor_endopenonegray"},/area/prishtina)
+"cr" = (/obj/structure/lattice{icon_state = "intact"},/turf/floor/tiled{icon_state = "techfloor_neon_off"},/area/prishtina)
+"cs" = (/obj/structure/multiz/ladder/up,/turf/floor/tiled{icon_state = "techfloor_neon_off"},/area/prishtina)
+"ct" = (/turf/wall/r_wall{icon_state = "rwall12"},/area/prishtina)
+"cu" = (/obj/structure/table/reinforced,/turf/floor/tiled{icon_state = "techfloor_neon_off"},/area/prishtina)
+"cv" = (/turf/wall/r_wall{icon_state = "rwall4"},/area/prishtina)
+"cw" = (/turf/wall/r_wall{icon_state = "rwall9"},/area/prishtina)
+"cx" = (/turf/wall/r_wall{icon_state = "rwall5"},/area/prishtina)
+"cy" = (/obj/transport_lever,/turf/floor/tiled{icon_state = "techfloor_neon_off"},/area/prishtina)
+"cz" = (/obj/structure/atmospherics_pipe_tank/oxygen{icon_state = "n2"},/obj/structure/lattice{icon_state = "intact"},/turf/floor/tiled{icon_state = "techfloor_neon_off"},/area/prishtina)
+"cA" = (/obj/structure/lattice{icon_state = "intact"; dir = 5},/turf/floor/tiled{icon_state = "techfloor_neon_off"},/area/prishtina)
+"cB" = (/obj/structure/lattice{icon_state = "intact"},/obj/structure/lattice{icon_state = "intact"; dir = 4},/turf/floor/tiled{icon_state = "techfloor_neon_off"},/area/prishtina)
+"cC" = (/obj/structure/lattice{icon_state = "intact"; dir = 4},/turf/floor/tiled{icon_state = "techfloor_endopentwogrid"},/area/prishtina)
+"cD" = (/obj/structure/lattice{icon_state = "intact"; dir = 4},/turf/floor/tiled{icon_state = "techfloor_gray"},/area/prishtina)
+"cE" = (/obj/structure/lattice{icon_state = "intact"; dir = 4},/turf/floor/tiled{icon_state = "techfloor_neon_off"},/area/prishtina)
+"cF" = (/obj/structure/lattice{icon_state = "intact"; dir = 9},/turf/floor/tiled{icon_state = "techfloor_neon_off"},/area/prishtina)
+"cG" = (/obj/structure/table/reinforced,/turf/floor/tiled{icon_state = "techfloor_endopenonemirroredgrid"},/area/prishtina)
+"cH" = (/obj/structure/window/reinforced/full,/turf/floor/tiled{icon_state = "techfloor_neon_off"},/area/prishtina)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}
+
+(1,1,2) = {"
+abababababababababababababababababababababababab
+ababababababaFaGaGaGaGaGaGaGaGazabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaIaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaJaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaKaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaLaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaMaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaNaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaOaAabababababababab
+ababababababaAaHaHaHaHaHaHaHbRaAabababababababab
+ababababababaAaHaHaHaHaHaHaPbSaAabababababababab
+ababababababaAaHaHaHaHaHaHaHbTaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHbUbUaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHbUbUaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHbUbUaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHbUbUaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHbUbUaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaAaHaHaHaHaHaHaHaHaAabababababababab
+ababababababaCaGaGaGaGaGaGaGaGaDabababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+"}
+
+(1,1,3) = {"
+abababababababababababababababababababababababab
+ababababababaFaGaGaGaGaGaGaGaGazabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayaQayaQaAabababababababab
+ababababababaAayayayayayaRaQaSaAabababababababab
+ababababababaAayaTayayayaHaRaHaAabababababababab
+ababababababaAaUaVaWaQaQaQaHaQaAabababababababab
+ababababababaAaXaYaZaRaRaRaBaRaAabababababababab
+ababababababaAbabbbcaHaHaHaQaHaAabababababababab
+ababababababaAbdbebfaQaQaQaRaQaAabababababababab
+ababababababaAbgbhbiaRaRaRaHaRaAabababababababab
+ababababababaAbjbkblaHaHaHaHaHaAabababababababab
+ababababababaAbmbnboayayayayayaAabababababababab
+ababababababaAbpbqbrayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaAayayayayayayayayaAabababababababab
+ababababababaCaGaGaGaGaGaGaGaGaDabababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+"}
+
+(1,1,4) = {"
+abababababababababababababababababababababababab
+ababababababbsctctctctctctctctbtabababababababab
+ababababababbAayayayayayayayaybAabababababababab
+ababababababbAayayayayayayayaybAabababababababab
+ababababababbAayayayayayayayaybAabababababababab
+ababababababbAayayayayayayayaybAabababababababab
+ababababababbAayayayayayayayaybAabababababababab
+ababababababbAayayayayayayayaybAabababababababab
+ababababababbBctctctctctctctctbAabababababababab
+ababababababbAayayayayayayayaybAabababababababab
+abababababbsbAayayayayayayayaybAabababababababab
+ababababababbAayayayayayayayaybAabababababababab
+ababababababbAayayayayayayayaybAabababababababab
+ababababababbAbVbWbXbYbZcaayaybAabababababababab
+ababababababbAcbcccdcecfcgchcibAabababababababab
+ababababababbAcjckclcmcncocpcqbAabababababababab
+ababababababbBctctctctctctctctbAabababababababab
+ababababababbAcrcrcacececacacybAabababababababab
+ababababababbAcrcrcacececkcaczbAabababababababab
+ababababababbAcrcrcacececacacrbAabababababababab
+ababababababbAcAcBcCcDcDcEcEcBbAabababababababab
+ababababababbAcacrcacececacscrbAabababababababab
+ababababababbBctcHbtcDcDcEcEcFbAabababababababab
+ababababababbAcucrbAcececacacybAabababababababab
+ababababababbAcucrcacececacacybAabababababababab
+ababababababbAcGcrbAbWbWcacacabAabababababababab
+ababababababbBctctcwcececvctctbAabababababababab
+ababababababbAbubqbvbwbxbvaVbybAabababababababab
+ababababababbAbzaVaWbwbxaXaYbCbAabababababababab
+ababababababbAbDaYbvbEbFbvbbbybAabababababababab
+ababababababbAbGbbbcbdbebdbebHbAabababababababab
+ababababababbAbIbebybJbKbybhbybAabababababababab
+ababababababbAbLbhbibMbNbjbkbObAabababababababab
+ababababababbAbPbkbQbJbKbybhbybAabababababababab
+ababababababbAbjbkblbMbNbjbkblbAabababababababab
+ababababababbActctctctctctctctbAabababababababab
+ababababababbAayayayayayayayaybAabababababababab
+ababababababbAayayayayayayayaybAabababababababab
+ababababababbAayayayayayayayaybAabababababababab
+ababababababbAayayayayayayayaybAabababababababab
+ababababababbAayayayayayayayaybAabababababababab
+ababababababbAayayayayayayayaybAabababababababab
+ababababababbAayayayayayayayaybAabababababababab
+ababababababcxctctctctctctctctcwabababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+"}
+
+(1,1,5) = {"
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+ababababababababadaeaeaeaeaeafababababababababab
+ababababababababagapaiajanaoagababababababababab
+ababababababababagaqaracasacagababababababababab
+ababababababababagatatacacakagababababababababab
+ababababababababagatatacacacagababababababababab
+ababababababababagatatacacacagababababababababab
+ababababababababagatauavavavagababababababababab
+ababababababababagatacacacacagababababababababab
+ababababababababagawacacacaEagababababababababab
+ababababababababagahacacacacagababababababababab
+ababababababababagahaxacacacagababababababababab
+ababababababababagahahahacacagababababababababab
+ababababababababalaeaeaeaeaeamababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+abababababababababababababababababababababababab
+"}

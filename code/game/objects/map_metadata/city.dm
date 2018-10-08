@@ -31,3 +31,14 @@
 
 /obj/map_metadata/city/reinforcements_ready()
 	return (germans_can_cross_blocks() && soviets_can_cross_blocks())
+
+/obj/map_metadata/city/job_enabled_specialcheck(var/datum/job/J)
+	. = TRUE
+	if (istype(J, /datum/job/partisan/civilian))
+		J.total_positions = max(round(clients.len), 15)
+		if (J.is_occupation)
+			. = FALSE
+		else
+			if (istype(J, /datum/job/partisan/civilian/redcross))
+				J.total_positions = 5
+	return .

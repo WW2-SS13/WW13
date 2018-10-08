@@ -428,6 +428,8 @@ var/global/datum/controller/occupations/job_master
 				H.equip_coat(/obj/item/clothing/suit/storage/coat/soviet)
 		else if (istype(job, /datum/job/italian))
 			H.equip_coat(/obj/item/clothing/suit/storage/coat/italian)
+		else if (istype(job, /datum/job/usa))
+			H.equip_coat(/obj/item/clothing/suit/storage/coat/american)
 
 		#define SAFE_SPAWN_TIME 4
 		// Add loadout items. spawn(SAFE_SPAWN_TIME) so it happens after our pockets are filled with default job items

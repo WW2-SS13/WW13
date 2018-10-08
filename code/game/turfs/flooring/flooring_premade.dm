@@ -70,18 +70,21 @@
 	uses_winter_overlay = TRUE
 	may_become_muddy = TRUE
 	available_dirt = 3
+	var/trench_stage = 0
 
 /turf/floor/dirt/dust
-	name = "dust"
+	name = "dusty dirt"
 	icon = 'icons/turf/floors.dmi'
-	icon_state = "dirt"
+	icon_state = "dustydirt"
 	may_become_muddy = TRUE
+	available_dirt = 1
 
 /turf/floor/dirt/darksand
-	name = "sand"
+	name = "dark dirt"
 	icon = 'icons/turf/floors.dmi'
-	icon_state = "dirt"
+	icon_state = "darkydirt2"
 	may_become_muddy = TRUE
+	available_dirt = 3
 
 /turf/floor/hull
 	name = "hull"

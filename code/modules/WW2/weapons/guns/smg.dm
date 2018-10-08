@@ -372,7 +372,7 @@
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
-	caliber = "11.43×23mm"
+	caliber = "c45_smg"
 	magazine_type = /obj/item/ammo_magazine/thompson_ammo
 	weight = 3.7
 	firemodes = list(
@@ -400,7 +400,7 @@
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
-	caliber = "11.43×23mm"
+	caliber = "c45_smg"
 	magazine_type = /obj/item/ammo_magazine/thompson_ammo
 	weight = 4.5
 	firemodes = list(
@@ -422,13 +422,13 @@
 
 /obj/item/weapon/gun/projectile/submachinegun/thompson/tommygun
 	name = "Tommy gun"
-	desc = "Used both gangsters or the resistens, the Tommy SMG is almost the same as the Thompson but cheaper ."
+	desc = "Used both gangsters and the resistence, the Tommy SMG is almost the same as the Thompson, but cheaper."
 	icon_state = "tommygun"
 	item_state = "tommygun"
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
-	caliber = "11.43×23mm"
+	caliber = "c45_smg"
 	magazine_type = /obj/item/ammo_magazine/thompson_ammo/tommy_ammo
 	weight = 4.2
 	firemodes = list(

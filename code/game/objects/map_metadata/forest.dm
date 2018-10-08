@@ -29,6 +29,16 @@
 	zlevels_without_lighting = list(2, 3)
 	battle_name = "Battle of Brest"
 
+/obj/map_metadata/forest/job_enabled_specialcheck(var/datum/job/J)
+	. = TRUE
+	if (istype(J, /datum/job/partisan/civilian))
+		J.total_positions = max(round(clients.len), 15)
+		if (J.is_occupation)
+			. = FALSE
+		else
+			if (istype(J, /datum/job/partisan/civilian/redcross))
+				J.total_positions = 5
+	return .
 /obj/map_metadata/forest/germans_can_cross_blocks()
 	return (mission_announced || admin_ended_all_grace_periods)
 

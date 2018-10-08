@@ -620,7 +620,7 @@ OTHER
 	name = "magazine (.45 cal)"
 	icon_state = "m1a1"
 	mag_type = MAGAZINE
-	caliber = "11.43×23mm"
+	caliber = "c45_smg"
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	ammo_type = /obj/item/ammo_casing/c45_smg
 	max_ammo = 30
@@ -630,7 +630,7 @@ OTHER
 	name = "drum (.45 cal)"
 	icon_state = "m1a1_drum"
 	mag_type = MAGAZINE
-	caliber = "11.43×23mm"
+	caliber = "c45_smg"
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	ammo_type = /obj/item/ammo_casing/c45_smg
 	max_ammo = 50

@@ -582,6 +582,8 @@
 		if (firstmove)
 			for (var/obj/structure/window/sandbag/S in src_loc)
 				_untouchable += S
+			for (var/obj/structure/window/dirt_wall/DW in src_loc)
+				_untouchable += DW
 		else
 			if (firer)
 				for (var/obj/structure/barricade/B in src_loc)

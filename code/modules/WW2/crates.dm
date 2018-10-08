@@ -313,7 +313,7 @@
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/ammo_magazine/c762x63 = DYNAMIC_AMT)
 
-/obj/structure/closet/crate/c762x63_smg
+/obj/structure/closet/crate/bar_ammo
 	name = "(30-06) magazines"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
@@ -348,8 +348,8 @@
 	icon_closed = "mil_crate_closed"
 	paths = list(/obj/item/ammo_magazine/c8mmnambu_smg = DYNAMIC_AMT)
 
-/obj/structure/closet/crate/bar_ammo
-	name = "Fg42 ammo"
+/obj/structure/closet/crate/fg42_ammo
+	name = "FG42 ammo"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"

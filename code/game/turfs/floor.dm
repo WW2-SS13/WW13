@@ -29,7 +29,7 @@
 
 	var/muddy = FALSE
 	var/may_become_muddy = FALSE
-
+	var/is_snow = FALSE
 	var/move_delay = 0
 	plane = FLOOR_PLANE
 

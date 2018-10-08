@@ -41,6 +41,7 @@
 /datum/job/var/is_redcross = FALSE
 /datum/job/var/is_escort = FALSE
 /datum/job/var/is_target = FALSE //for VIP modes
+/datum/job/var/is_occupation = FALSE
 /datum/job/var/rank_abbreviation = null
 
 // new autobalance stuff - Kachnov
@@ -469,6 +470,13 @@
 				gun = new /obj/item/weapon/gun/projectile/pistol/luger(H)
 			else
 				gun = new /obj/item/weapon/gun/projectile/pistol/mauser(H)
+		if (USA)
+			gun = new /obj/item/weapon/gun/projectile/pistol/_45(H)
+		if (JAPAN)
+			gun = new /obj/item/weapon/gun/projectile/pistol/nambu(H)
+		else
+			gun = new /obj/item/weapon/gun/projectile/pistol/luger(H)
+			usr << "Well shit. Something broke in the equipment code. Yell at Harcourt."
 	if (gun)
 		H.equip_to_slot_or_del(gun, slot)
 		if (gun.magazine_type && ammo_check)

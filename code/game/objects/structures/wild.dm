@@ -210,7 +210,7 @@
 /obj/structure/wild/burnedbush/New()
 	..()
 
-	icon_state = "burnedbush[rand(1,5)]"
+	icon_state = "burnedbush[rand(1,9)]"
 
 /obj/structure/wild/largejungle/New()
 	..()
@@ -229,7 +229,7 @@
 /obj/structure/wild/burnedtree/New()
 	..()
 
-	icon_state = "burnedtree[rand(1,5)]"
+	icon_state = "burnedtree[rand(1,10)]"
 
 /obj/structure/wild/rock/New()
 	..()
@@ -265,3 +265,29 @@
 		dropwood.amount = 6
 		qdel(src)
 		return
+
+
+/obj/structure/wild/tallgrass
+	name = "tall grass"
+	icon = 'icons/obj/wild.dmi'
+	icon_state = "tall_grass_1"
+	opacity = FALSE
+	density = FALSE
+	layer = 5.1
+
+/obj/structure/wild/tallgrass2
+	name = "tall grass"
+	icon = 'icons/obj/wild.dmi'
+	icon_state = "tall_grass_5"
+	opacity = FALSE
+	density = FALSE
+
+/obj/structure/wild/tallgrass/New()
+	..()
+	icon_state = "tall_grass_[rand(1,4)]"
+
+/obj/structure/wild/tallgrass2/New()
+	..()
+	icon_state = "tall_grass_[rand(5,8)]"
+/obj/structure/wild/bush/New()
+	..()

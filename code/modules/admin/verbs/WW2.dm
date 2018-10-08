@@ -261,9 +261,9 @@
 		msg6 = null
 	if (map && !map.faction_organization.Find(POLISH_INSURGENTS))
 		msg7 = null
-	if (map && !map.faction_organization.Find(JAPAN))
-		msg8 = null
 	if (map && !map.faction_organization.Find(USA))
+		msg8 = null
+	if (map && !map.faction_organization.Find(JAPAN))
 		msg9 = null
 
 	var/public = "Yes"

@@ -86,31 +86,43 @@ var/GRACE_PERIOD_LENGTH = 7
 		return TRUE
 
 	// forces Spring in Reichstag map
-	if (map && istype(map, /obj/map_metadata/reichstag))
+	if (map && map.ID == MAP_REICHSTAG)
 		(season = "SPRING")
+		return TRUE
+	// forces Summer in Gazala map
+	if (map && map.ID == MAP_GAZALA)
+		(season = "SUMMER")
 		return TRUE
 
 	// forces Fall in Partisan map
-	if (map && istype(map, /obj/map_metadata/partisan))
+	if (map && map.ID == MAP_PARTISAN)
 		(season = "FALL")
 		return TRUE
 
 	// forces Fall in Escort map
-	if (map && istype(map, /obj/map_metadata/escort))
+	if (map && map.ID == MAP_ESCORT)
 		(season = "FALL")
 		return TRUE
 
 	// forces Spring in Island map
-	if (map && istype(map, /obj/map_metadata/island))
+	if (map && map.ID == MAP_ISLAND)
 		(season = "SPRING")
 		return TRUE
 
+	// forces Winter in RO map
+	if (map && map.ID == MAP_OCTOBER)
+		(season = "WINTER")
+		return TRUE
 
+	// forces Winter in Winter Line map
+	if (map && map.ID == MAP_WINTER_LINE)
+		(season = "WINTER")
+		return TRUE
 	// snow is disabled because it breaks the game
-	var/use_snow = FALSE
+	var/use_snow = TRUE
 
 	// first, make all water into ice if it's winter
-	if (season == "WINTER")
+	if (season == "WINTER" || map.ID == MAP_WINTER_LINE)
 		for (var/turf/floor/plating/beach/water/W in turfs)
 			if (!istype(W, /turf/floor/plating/beach/water/sewage))
 				new /turf/floor/plating/beach/water/ice (W)

@@ -31,6 +31,10 @@
 	if (!truck)
 		if (P.firedfrom && istype(P.firedfrom, /obj/item/weapon/gun/projectile/heavy))
 			dam = (P.damage/3 + (P.armor_penetration*20))/50
+		else if (istype(P, /obj/item/weapon/gun/launcher/rocket))
+			dam = 300
+			for (var/mob/living/m in src)
+				m.apply_damage(rand(5,7), BRUTE)
 		else
 			dam = (P.damage/3)/50
 
@@ -49,11 +53,11 @@
 		if (P.firedfrom && istype(P.firedfrom, /obj/item/weapon/gun/projectile/heavy))
 			dam = (P.damage + (P.armor_penetration))
 			for (var/mob/living/m in src)
-				m.apply_damage(rand(2,3), BRUTE)
+				m.apply_damage(rand(3,5), BRUTE)
 		else if (istype(P, /obj/item/weapon/gun/launcher/rocket))
 			dam = 4000
 			for (var/mob/living/m in src)
-				m.apply_damage(rand(2,3), BRUTE)
+				m.apply_damage(rand(8,15), BRUTE)
 		else
 			dam = (P.damage/3)/5
 			for (var/mob/living/m in src)
