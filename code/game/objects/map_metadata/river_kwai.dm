@@ -23,7 +23,7 @@
 		SS_TV)
 	battle_name = "Prisioner's Camp"
 	custom_loadout = FALSE // so people do not spawn with guns!
-//	var/modded_num_of_kempeitai = FALSE
+	var/modded_num_of_kempeitai = FALSE
 	var/modded_num_of_prisoners3 = FALSE
 	faction_distribution_coeffs = list(JAPAN = 0.3, USA = 0.70)
 	songs = list(
@@ -52,7 +52,7 @@
 				J.total_positions = max(1, round(clients.len*0.05*3))
 			if (istype(J, /datum/job/japanese/medic_kp))
 				J.total_positions = max(1, round(clients.len*0.05*3))
-//				modded_num_of_kempeitai = TRUE
+				modded_num_of_kempeitai = TRUE
 //	else if (istype(J, /datum/job/partisan/civilian))
 //		J.total_positions = max(5, round(clients.len*0.75))
 	else if (istype(J, /datum/job/usa))
