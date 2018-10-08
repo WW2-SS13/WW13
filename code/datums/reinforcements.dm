@@ -154,45 +154,45 @@ var/datum/reinforcements/reinforcements_master = null
 				german_countdown = german_countdown_success_reset
 				allow_quickspawn[GERMAN] = FALSE
 	if (map.front == "Pacific")
-		if (reinforcement_pool[SOVIET] && reinforcement_pool[GERMAN])
-			for (var/mob/new_player/np in reinforcement_pool[SOVIET])
+		if (reinforcement_pool[USA] && reinforcement_pool[JAPAN])
+			for (var/mob/new_player/np in reinforcement_pool[USA])
 				if (!np || !np.client)
-					reinforcement_pool[SOVIET] -= np
-			for (var/mob/new_player/np in reinforcement_pool[GERMAN])
+					reinforcement_pool[USA] -= np
+			for (var/mob/new_player/np in reinforcement_pool[JAPAN])
 				if (!np || !np.client)
-					reinforcement_pool[GERMAN] -= np
+					reinforcement_pool[JAPAN] -= np
 
-		soviet_countdown = soviet_countdown - tick_len
-		if (soviet_countdown < 1)
-			if (!reset_soviet_timer())
-				soviet_countdown = soviet_countdown_failure_reset
+		usa_countdown = usa_countdown - tick_len
+		if (usa_countdown < 1)
+			if (!reset_usa_timer())
+				usa_countdown = usa_countdown_failure_reset
 			else
-				soviet_countdown = soviet_countdown_success_reset
-				allow_quickspawn[SOVIET] = FALSE
+				usa_countdown = usa_countdown_success_reset
+				allow_quickspawn[USA] = FALSE
 
-		german_countdown = german_countdown - tick_len
-		if (german_countdown < 1)
-			if (!reset_german_timer())
-				german_countdown = german_countdown_failure_reset
+		japan_countdown = japan_countdown - tick_len
+		if (japan_countdown < 1)
+			if (!reset_japan_timer())
+				japan_countdown = japan_countdown_failure_reset
 			else
-				german_countdown = german_countdown_success_reset
-				allow_quickspawn[GERMAN] = FALSE
+				japan_countdown = japan_countdown_success_reset
+				allow_quickspawn[JAPAN] = FALSE
 	if (map.front == "Western")
-		if (reinforcement_pool[SOVIET] && reinforcement_pool[GERMAN])
-			for (var/mob/new_player/np in reinforcement_pool[SOVIET])
+		if (reinforcement_pool[USA] && reinforcement_pool[GERMAN])
+			for (var/mob/new_player/np in reinforcement_pool[USA])
 				if (!np || !np.client)
-					reinforcement_pool[SOVIET] -= np
+					reinforcement_pool[USA] -= np
 			for (var/mob/new_player/np in reinforcement_pool[GERMAN])
 				if (!np || !np.client)
 					reinforcement_pool[GERMAN] -= np
 
-		soviet_countdown = soviet_countdown - tick_len
-		if (soviet_countdown < 1)
-			if (!reset_soviet_timer())
-				soviet_countdown = soviet_countdown_failure_reset
+		usa_countdown = usa_countdown - tick_len
+		if (usa_countdown < 1)
+			if (!reset_usa_timer())
+				usa_countdown = usa_countdown_failure_reset
 			else
-				soviet_countdown = soviet_countdown_success_reset
-				allow_quickspawn[SOVIET] = FALSE
+				usa_countdown = usa_countdown_success_reset
+				allow_quickspawn[USA] = FALSE
 
 		german_countdown = german_countdown - tick_len
 		if (german_countdown < 1)
