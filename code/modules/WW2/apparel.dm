@@ -743,7 +743,7 @@
 	desc = "A belt that can hold gear like pistols, ammo and other things."
 	icon_state = "USgear"
 	item_state = "USgear"
-	storage_slots = 12
+	storage_slots = 14
 	max_w_class = 3
 	max_storage_space = 24
 	can_hold = list(

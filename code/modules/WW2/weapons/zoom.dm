@@ -130,6 +130,7 @@ Parts of code courtesy of Super3222
 	else if (user.get_active_hand() != loc)
 		if (!silent) user << "You are too distracted to look through \the [src]."
 		return FALSE
+
 	else
 		var/obj/item/organ/eyes/E = H.internal_organs_by_name["eyes"]
 		if (E.is_bruised() || E.is_broken() || H.eye_blind > 0)
