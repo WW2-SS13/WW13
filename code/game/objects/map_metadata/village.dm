@@ -22,7 +22,7 @@
 /obj/map_metadata/village/job_enabled_specialcheck(var/datum/job/J)
 	. = TRUE
 	if (istype(J, /datum/job/usa))
-		if (is_prisoner)
+		if (J.is_prisoner)
 			. = FALSE
 	if (istype(J, /datum/job/partisan/civilian))
 		J.total_positions = max(round(clients.len), 15)

@@ -1043,6 +1043,13 @@
 	item_state = "wrench"
 	worn_state = "wrench"
 
+/obj/item/clothing/under/gulag
+	name = "Gulag Prisoner's Clothing"
+	desc = "Looks worn and dirty."
+	icon_state = "wrench"
+	item_state = "wrench"
+	worn_state = "wrench"
+
 /obj/item/clothing/under/oilworker
 	name = "Oil Worker's Clothing"
 	desc = "Smells like oil and hard work."

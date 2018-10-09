@@ -24,7 +24,7 @@
 /obj/map_metadata/winter_line/job_enabled_specialcheck(var/datum/job/J)
 	. = TRUE
 	if (istype(J, /datum/job/usa))
-		if (is_prisoner)
+		if (J.is_prisoner)
 			. = FALSE
 		if (istype(J, /datum/job/usa/marines_squad_leader))
 			. = FALSE
