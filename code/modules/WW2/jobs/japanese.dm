@@ -614,7 +614,7 @@
 
 	H.make_artillery_officer()
 
-/datum/job/japanese/squad_leader_sstv/get_keys()
+/datum/job/japanese/squad_leader_kp/get_keys()
 	return list(new/obj/item/weapon/key/japan, new/obj/item/weapon/key/japan/medic, new/obj/item/weapon/key/japan/engineer,
 		new/obj/item/weapon/key/japan/QM, new/obj/item/weapon/key/japan/command_intermediate)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

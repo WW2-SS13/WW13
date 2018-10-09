@@ -35,6 +35,8 @@
 /obj/map_metadata/gazala/job_enabled_specialcheck(var/datum/job/J)
 	. = TRUE
 	if (istype(J, /datum/job/usa))
+		if (is_prisoner)
+			. = FALSE
 		if (istype(J, /datum/job/usa/marines_squad_leader))
 			. = FALSE
 		if (istype(J, /datum/job/usa/marines_soldier))

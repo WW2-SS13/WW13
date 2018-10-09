@@ -548,7 +548,7 @@
 /datum/job/usa/soldier_pris
 	title = "Amerikaner Kriegsgefangener"
 	en_meaning = "American POW"
-	rank_abbreviation = "AKg."
+	rank_abbreviation = "AKg"
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLatePOW"
 	allow_spies = TRUE
@@ -585,7 +585,7 @@
 /datum/job/usa/uk_soldier_pris
 	title = "Britische Kriegsgefangener"
 	en_meaning = "British POW"
-	rank_abbreviation = "BKg."
+	rank_abbreviation = "BKg"
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLatePOW"
 	allow_spies = TRUE
