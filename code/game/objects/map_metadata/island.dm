@@ -58,9 +58,9 @@ var/no_loop_i = FALSE
 	if (istype(J, /datum/job/usa))
 		if (J.is_prisoner)
 			. = FALSE
-	if (istype(J, /datum/job/japanese))
-		if (J.is_SSTV)
-			. = FALSE
+//	if (istype(J, /datum/job/japanese))
+//		if (J.is_SSTV)
+//			. = FALSE
 /obj/map_metadata/island/update_win_condition()
 	if (!win_condition_specialcheck())
 		return FALSE
