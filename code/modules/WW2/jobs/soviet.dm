@@ -1371,7 +1371,7 @@ var/first_guard = FALSE
 	H.make_artillery_officer()
 
 /datum/job/soviet/commander_nkvd/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/soviet/command_intermediate, new/obj/item/weapon/key/soviet/command_high,)
+	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/command_intermediate, new/obj/item/weapon/key/soviet/command_high,)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1404,7 +1404,7 @@ var/first_guard = FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/nkvduni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm/MP(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/soviet/MP(H), slot_belt)
-	H.add_note("Role", "You are a <b>[title]</b>, a squad leader for an elite Totenkopfverbande unit. Your job is to follow the Camp Director's orders.")
+	H.add_note("Role", "You are a <b>[title]</b>, a squad leader for a NKVD unit. Your job is to follow the Camp Director's orders.")
 	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start shooting at the prisoners without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave.")
 	H.give_radio()
 	if (secret_ladder_message)
@@ -1429,7 +1429,7 @@ var/first_guard = FALSE
 	H.make_artillery_officer()
 
 /datum/job/soviet/squad_leader_nkvd/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/soviet/command_intermediate,)
+	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/command_intermediate,)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1457,9 +1457,9 @@ var/first_guard = FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/nkvduni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm/MP(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovcap/fieldcap2(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/soviet/MP(H), slot_belt)
-	H.add_note("Role", "You are a <b>[title]</b>, a soldier of the NKVD. Follow the rules of your <b>SS-Untersharffuhrer</b>.")
+	H.add_note("Role", "You are a <b>[title]</b>, a soldier of the NKVD, in charge of a GULAG. Follow the rules of your <b>Starshina</b>.")
 	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start shooting at the prisoners without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave.")
 	H.give_radio()
 	// glorious SS stats
@@ -1477,7 +1477,7 @@ var/first_guard = FALSE
 	return TRUE
 
 /datum/job/soviet/soldier_nkvd/get_keys()
-	return list(new/obj/item/weapon/key/german)
+	return list(new/obj/item/weapon/key/soviet)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1509,7 +1509,7 @@ var/first_guard = FALSE
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/soviet/MP(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
-	H.add_note("Role", "You are a <b>[title]</b>, the camp doctor. Heal your comrades first, follow the orders of the <b>SS-Untersharfuhrer</b>, and maybe help some prisioners.")
+	H.add_note("Role", "You are a <b>[title]</b>, the camp doctor. Heal your comrades first, follow the orders of the <b>Starshina</b>, and maybe help some prisioners.")
 	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start shooting at the prisoners without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave.")
 	H.give_radio()
 
@@ -1528,4 +1528,4 @@ var/first_guard = FALSE
 	return TRUE
 
 /datum/job/soviet/medic_nkvd/get_keys()
-	return list(new/obj/item/weapon/key/german)
+	return list(new/obj/item/weapon/key/soviet)
