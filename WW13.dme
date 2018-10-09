@@ -327,7 +327,6 @@
 #include "code\game\objects\map_metadata\forest.dm"
 #include "code\game\objects\map_metadata\forest_new.dm"
 #include "code\game\objects\map_metadata\gazala.dm"
-#include "code\game\objects\map_metadata\gulag.dm"
 #include "code\game\objects\map_metadata\island.dm"
 #include "code\game\objects\map_metadata\occupation.dm"
 #include "code\game\objects\map_metadata\october.dm"
