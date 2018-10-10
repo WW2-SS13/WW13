@@ -493,3 +493,232 @@
 
 /datum/job/japanese/penal/get_keys()
 	return list(new/obj/item/weapon/key/japan)
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/job/japanese/commander_kp
+	title = "Kenpeitai Tai-i"
+	en_meaning = "POW Guard Captain"
+	rank_abbreviation = "Tai-i"
+	head_position = TRUE
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateSS-Officer"
+	is_SS_TV = TRUE
+	additional_languages = list( "English" = 100)
+	is_officer = TRUE
+	is_commander = TRUE // not a squad leader despite the title
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+	player_threshold = PLAYER_THRESHOLD_HIGHEST - 15
+
+/datum/job/japanese/commander_kp/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/japuni_officer(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/japncohat(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/material/sword/jap_katana(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_r_hand)
+	var/obj/item/clothing/accessory/armband/japanesemp/japanesemp_a = new /obj/item/clothing/accessory/armband/japanesemp(null)
+	var/obj/item/clothing/under/uniform = H.w_uniform
+	uniform.attackby(japanesemp_a, H)
+
+	H.add_note("Role", "You are a <b>[title]</b>, and this camp's director. Keep the prisioners (and the guards) in order!")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start shooting at the prisoners without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave.")
+	H.give_radio()
+	if (secret_ladder_message)
+		H << "<br>[secret_ladder_message]"
+
+	// glorious SS stats
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_HIGH)
+	H.setStat("smg", STAT_VERY_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
+	return TRUE
+
+/datum/job/japanese/commander_kp/update_character(var/mob/living/carbon/human/H)
+	..()
+
+	H.make_artillery_officer()
+
+/datum/job/japanese/commander_kp/get_keys()
+	return list(new/obj/item/weapon/key/japan, new/obj/item/weapon/key/japan/medic, new/obj/item/weapon/key/japan/engineer,
+		new/obj/item/weapon/key/japan/QM, new/obj/item/weapon/key/japan/command_intermediate)
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////
+/datum/job/japanese/squad_leader_kp
+	title = "Kenpeitai Gunso"
+	en_meaning = "POW Guard Squad Leader"
+	rank_abbreviation = "Gu"
+	head_position = TRUE
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateSS-Officer"
+	is_SS_TV = TRUE
+	additional_languages = list( "English" = 100)
+	is_officer = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 3
+	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
+
+/datum/job/japanese/squad_leader_kp/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/japunimp(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/japncohat(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/material/sword/jap_katana(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/japan/MP(H), slot_belt)
+	var/obj/item/clothing/accessory/armband/japanesemp/japanesemp_a = new /obj/item/clothing/accessory/armband/japanesemp(null)
+	var/obj/item/clothing/under/uniform = H.w_uniform
+	uniform.attackby(japanesemp_a, H)
+	H.add_note("Role", "You are a <b>[title]</b>, a squad leader for the Japanese Empire Kenpeitai (Military and Secret Police). Your job is to follow the Camp Director's orders.")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start shooting at the prisoners without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave.")
+	H.give_radio()
+	if (secret_ladder_message)
+		H << "<br>[secret_ladder_message]"
+
+	// glorious SS stats
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_HIGH)
+	H.setStat("smg", STAT_VERY_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
+	return TRUE
+
+/datum/job/japanese/squad_leader_kp/update_character(var/mob/living/carbon/human/H)
+	..()
+
+	H.make_artillery_officer()
+
+/datum/job/japanese/squad_leader_kp/get_keys()
+	return list(new/obj/item/weapon/key/japan, new/obj/item/weapon/key/japan/medic, new/obj/item/weapon/key/japan/engineer,
+		new/obj/item/weapon/key/japan/QM, new/obj/item/weapon/key/japan/command_intermediate)
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/japanese/soldier_kp
+	title = "Kenpeitai Jotohei"
+	en_meaning = "POW Guard"
+	rank_abbreviation = "Jo"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateSS"
+	additional_languages = list( "English" = 30)
+	is_SS_TV = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 4
+	max_positions = 20
+	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
+
+/datum/job/japanese/soldier_kp/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/japunimp(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/japmphat(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/japan/MP(H), slot_belt)
+	var/obj/item/clothing/accessory/armband/japanesemp/japanesemp_a = new /obj/item/clothing/accessory/armband/japanesemp(null)
+	var/obj/item/clothing/under/uniform = H.w_uniform
+	uniform.attackby(japanesemp_a, H)
+	H.add_note("Role", "You are a <b>[title]</b>, a soldier for the Japanese Empire Kenpeitai (Military and Secret Police). Follow the rules of your <b>Gunso</b>.")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start shooting at the prisoners without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave.")
+	H.give_radio()
+	// glorious SS stats
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("survival", STAT_VERY_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
+	return TRUE
+
+/datum/job/japanese/soldier_kp/get_keys()
+	return list(new/obj/item/weapon/key/japan)
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/japanese/medic_kp
+	title = "Kenpeitai Sento-i"
+	en_meaning = "Kenpeitai Medic"
+	rank_abbreviation = "Go" // oGftr for normal medics
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateSS"
+	is_SS_TV = TRUE
+	SL_check_independent = TRUE
+	additional_languages = list( "English" = 75)
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 2
+	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
+
+/datum/job/japanese/medic_kp/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/japunimp(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/japan/MP(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), slot_r_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
+	var/obj/item/clothing/accessory/armband/japanesemp/japanesemp_a = new /obj/item/clothing/accessory/armband/japanesemp(null)
+	var/obj/item/clothing/under/uniform = H.w_uniform
+	uniform.attackby(japanesemp_a, H)
+	H.add_note("Role", "You are a <b>[title]</b>, the camp doctor. Heal your comrades first, follow the orders of the <b>Gunso</b>, and maybe help some prisioners.")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start shooting at the prisoners without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave.")
+	H.give_radio()
+
+	// glorious SS stats
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_VERY_HIGH)
+	H.setStat("survival", STAT_VERY_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
+	return TRUE
+
+/datum/job/japanese/medic_kp/get_keys()
+	return list(new/obj/item/weapon/key/japan)
