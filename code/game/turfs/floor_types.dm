@@ -438,7 +438,7 @@
 
 /turf/floor/plating/beach
 	name = "Beach"
-	icon = 'icons/misc/beach.dmi'
+	icon = 'icons/turf/beach.dmi'
 
 /turf/floor/plating/beach/sand
 	name = "Sand"
@@ -446,7 +446,7 @@
 
 /turf/floor/plating/beach/coastline
 	name = "Coastline"
-	icon = 'icons/misc/beach2.dmi'
+	icon = 'icons/turf/beach2.dmi'
 	icon_state = "sandwater"
 
 /turf/floor/plating/beach/water
@@ -466,6 +466,9 @@
 		return TRUE
 	else if (istype(mover, /mob))
 		return FALSE
+	else if (istype(mover, /obj/tank))
+		move_delay = 3
+		return TRUE
 	else
 		return ..()
 /turf/floor/plating/beach/water/get_move_delay()

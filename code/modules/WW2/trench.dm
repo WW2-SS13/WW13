@@ -43,7 +43,7 @@ var/list/global/floor_cache = list()
 			if(L.grabbed_by && L.grabbed_by.len)
 				var/mob/living/L2 = L.grabbed_by[1].assailant
 				visible_message("<span class = 'notice'>[L2] starts pulling [L] out of trench.</span>")
-				if(!do_after(L2, 35, oldloc))
+				if(!do_after(L2, 20, oldloc))
 					return FALSE
 				if(..())
 					visible_message("<span class = 'notice'>[L2] pulls [L] out of trench.</span>")
@@ -77,10 +77,16 @@ var/list/global/floor_cache = list()
 					L.forceMove(newloc)
 					return TRUE
 				return FALSE
+			var/atom/newlocation = get_step(L,L.dir)
+			if (newlocation.density)
+				return FALSE
+			for (var/atom/A in newlocation)
+				if (A.density)
+					return FALSE
 			if(world.time > message_cooldown + 30)
 				visible_message("<span class = 'notice'>[L] starts to exit a trench.</span>")
 				message_cooldown = world.time
-			if (!do_after(L, 35, src, needhand = FALSE))
+			if (!do_after(L, 20, src, needhand = FALSE))
 				return FALSE
 			if(..())
 				visible_message("<span class = 'notice'>[L] exits a trench.</span>")
