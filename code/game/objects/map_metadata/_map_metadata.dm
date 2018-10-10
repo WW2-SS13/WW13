@@ -190,7 +190,12 @@ var/global/obj/map_metadata/map = null
 	return (soviets_can_cross_blocks() && germans_can_cross_blocks())
 
 /obj/map_metadata/proc/job_enabled_specialcheck(var/datum/job/J)
-	return TRUE
+	if (!J.is_SS_TV)
+		. = FALSE
+	if (!J.is_prisoner)
+		. = FALSE
+	return .
+//	return TRUE
 
 /obj/map_metadata/proc/cross_message(faction)
 	return "<font size = 4>The [faction_const2name(faction)] may now cross the invisible wall!</font>"
