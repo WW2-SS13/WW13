@@ -1,4 +1,4 @@
-/obj/map_metadata/island
+/obj/map_metadata/october
 	ID = MAP_OCTOBER
 	title = "Red October (100x150x2)"
 	lobby_icon_state = "october"
@@ -22,7 +22,7 @@
 		list(SOVIET) = /area/prishtina/german/armory,
 		list(GERMAN) = /area/prishtina/farm4 // area inexistent in this map, in order to prevent the americans from winning by capture
 		)
-	front = "Eastren"
+	front = "Eastern"
 	faction_distribution_coeffs = list(SOVIET = 0.5, GERMAN = 0.5)
 	songs = list(
 		"Song of the Kamikaze:1" = 'sound/music/kamikaze.ogg'
@@ -30,27 +30,27 @@
 	meme = FALSE
 	battle_name = "Battle of Krasny Oktyabr"
 
-/obj/map_metadata/island/germans_can_cross_blocks()
+/obj/map_metadata/october/germans_can_cross_blocks()
 	return (processes.ticker.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)
 
-/obj/map_metadata/island/soviets_can_cross_blocks()
+/obj/map_metadata/october/soviets_can_cross_blocks()
 	return (processes.ticker.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)
 
-/obj/map_metadata/island/announce_mission_start(var/preparation_time)
+/obj/map_metadata/october/announce_mission_start(var/preparation_time)
 	world << "<font size=4>All factions have <b>15 minutes</b> to prepare before the ceasefire ends!<br>The Germans will win if they hold out for <b>45 minutes</b>. The Soviets will win if they capture the German held factory.</font>"
 
-/obj/map_metadata/island/reinforcements_ready()
+/obj/map_metadata/october/reinforcements_ready()
 	return (germans_can_cross_blocks() && soviets_can_cross_blocks())
 
-/obj/map_metadata/island/short_win_time(faction)
+/obj/map_metadata/october/short_win_time(faction)
 	return 1200
 
-/obj/map_metadata/island/long_win_time(faction)
+/obj/map_metadata/october/long_win_time(faction)
 	return 3000
 
 var/no_loop_z = FALSE
 
-/obj/map_metadata/island/update_win_condition()
+/obj/map_metadata/october/update_win_condition()
 	if (!win_condition_specialcheck())
 		return FALSE
 	if (world.time >= 36000)
