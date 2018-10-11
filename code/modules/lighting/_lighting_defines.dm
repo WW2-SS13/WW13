@@ -21,11 +21,11 @@
 #define LIGHTING_BASE_MATRIX \
 	list                     \
 	(                        \
-		0, 0, 0, 0,          \
-		0, 0, 0, 0,          \
-		0, 0, 0, 0,          \
-		0, 0, 0, 0,          \
-		0, 0, 0, 1           \
+	-1, 00, 00, 00,			 \
+	00, -1, 00, 00,			 \
+	00, 00, -1, 00,			 \
+	00, 00, 00, 00,			 \
+	01, 01, 01, 01			 \
 	)                        \
 
 // Helpers so we can (more easily) control the colour matrices.

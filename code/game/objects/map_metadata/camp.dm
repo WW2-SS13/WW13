@@ -2,7 +2,7 @@
 
 /obj/map_metadata/camp
 	ID = MAP_CAMP
-	title = "POW Camp (125x125x2)"
+	title = "New POW Camp (125x125x2)"
 	lobby_icon_state = "pow_camp"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall,
 	/area/prishtina/no_mans_land/invisible_wall/inside) // above and underground
@@ -12,12 +12,14 @@
 	reinforcements = FALSE
 	faction_organization = list(
 		GERMAN,
-		SOVIET)
+		SOVIET,
+		USA)
 	no_subfaction_chance = FALSE
 	subfaction_is_main_faction = TRUE
 	roundend_condition_sides = list(
 		list(GERMAN) = /area/prishtina/farm1,
-		list(SOVIET) = /area/prishtina/farm4 // in order to prevent them from winning by capture
+		list(SOVIET) = /area/prishtina/farm4,
+		list(USA) = /area/prishtina/farm4
 		)
 	available_subfactions = list(
 		SS_TV)
@@ -27,8 +29,7 @@
 	var/modded_num_of_prisoners = FALSE
 	faction_distribution_coeffs = list(GERMAN = 0.3, SOVIET = 0.70)
 	songs = list(
-		"The Great Escape:1" = 'sound/music/the_great_escape.ogg',
-		"Bridge Over the River Kwai:1" = 'sound/music/bridge_over_river_kwai.ogg',
+		"The Great Escape:1" = 'sound/music/the_great_escape.ogg'
 		)
 
 /obj/map_metadata/camp/germans_can_cross_blocks()
@@ -53,6 +54,12 @@
 			if (istype(J, /datum/job/german/medic_sstv))
 				J.total_positions = max(1, round(clients.len*0.05*3))
 				modded_num_of_SSTV = TRUE
+	if (istype(J, /datum/job/usa))
+		if (!J.is_special)
+			. = FALSE
+		else
+			if (istype(J, /datum/job/usa/paratrooper))
+				J.total_positions = 5
 //	else if (istype(J, /datum/job/partisan/civilian))
 //		J.total_positions = max(5, round(clients.len*0.75))
 	else if (istype(J, /datum/job/soviet))
@@ -79,7 +86,7 @@
 	return .
 
 /obj/map_metadata/camp/announce_mission_start(var/preparation_time)
-	world << "<font size=4>Soviets have <b>3 minutes</b> to prepare before the ceasefire ends! Germans can cross after <b>1 minute</b>. <br>The Germans will win if they hold out for 50 minutes without any escapes. The Soviets will win if a prisoner manages to escape.</font><br><br><br><b>PLEASE READ THE WIKI FOR RULES! http://mechahitler.co.nf/wiki/media/index.php?title=Camp_guide</b><br>"
+	world << "<font size=4>Americans have <b>5 minutes</b> to prepare before the ceasefire ends! <br>The Germans will win if they hold out for 30 minutes without any escapes. The Americans will win if a prisoner manages to escape.</font><br><br><br><br>"
 
 /obj/map_metadata/camp/reinforcements_ready()
 	return (germans_can_cross_blocks() && soviets_can_cross_blocks())
@@ -104,13 +111,14 @@ var/no_loop2 = FALSE
 		show_global_battle_report(null)
 		win_condition_spam_check = TRUE
 		return FALSE
-	if ((current_winner && current_loser && world.time > next_win) && no_loop2 == FALSE)
+	if (world.time >= 30000)
+		if (win_condition_spam_check)
+			return FALSE
 		ticker.finished = TRUE
-		var/message = "A prisoner has escaped! The Soviet prisoners have won the round!"
+		var/message = "No prisoners have escaped! The SS Totenkopfverbände guard unit has won the round!"
 		world << "<font size = 4><span class = 'notice'>[message]</span></font>"
 		show_global_battle_report(null)
 		win_condition_spam_check = TRUE
-		no_loop2 = TRUE
 		return FALSE
 	// German major
 	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.33, TRUE))
