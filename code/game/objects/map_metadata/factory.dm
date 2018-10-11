@@ -17,8 +17,8 @@
 	no_subfaction_chance = FALSE
 	subfaction_is_main_faction = TRUE
 	roundend_condition_sides = list(
-	       list(ITALIAN) = /area/prishtina/houses/ger_one,
-	       list(GERMAN) = /area/prishtina/houses/ger_one,
+	       list(ITALIAN) = /area/prishtina/houses/ger_two,
+	       list(GERMAN) = /area/prishtina/houses/ger_two,
 	       list(SOVIET) = /area/prishtina/houses/ger_one)
 	available_subfactions = list(ITALIAN)
 	battle_name = "Italian Factory"

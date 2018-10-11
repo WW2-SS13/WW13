@@ -4,7 +4,7 @@
 		MAP_CITY = 0,
 		MAP_FOREST = 20,
 		MAP_TOWER = 0,
-//		MAP_CAMP = 0,
+		MAP_CAMP = 16,
 //		MAP_STALAG = 0,
 		MAP_RIVER_KWAI = 16,
 //		MAP_GULAG = 0,
@@ -16,7 +16,7 @@
 		MAP_PARTISAN = 0,
 		MAP_VILLAGE = 0,
 //		MAP_OCCUPATION = 0,
-//		MAP_FACTORY = 0,
+		MAP_FACTORY = 0,
 		MAP_WINTER_LINE = 10,
 		MAP_GAZALA = 20,
 	)
