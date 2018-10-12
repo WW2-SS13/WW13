@@ -683,6 +683,8 @@
 "ng" = (/obj/item/weapon/grenade/smokebomb/usa,/obj/item/weapon/grenade/smokebomb/usa,/obj/item/weapon/grenade/smokebomb/usa,/turf/floor/plating/grass/wild,/area/prishtina/farm2{capturable = 0; icon_state = "red1"; name = "Forest"})
 "nh" = (/obj/item/weapon/grenade/explosive/mk2,/obj/item/weapon/grenade/explosive/mk2,/obj/item/weapon/grenade/explosive/mk2,/obj/item/weapon/grenade/explosive/mk2,/turf/floor/plating/grass/wild,/area/prishtina/farm2{capturable = 0; icon_state = "red1"; name = "Forest"})
 "ni" = (/obj/item/clothing/accessory/storage/webbing,/obj/item/clothing/accessory/storage/webbing,/obj/item/clothing/accessory/storage/webbing,/obj/item/clothing/accessory/storage/webbing,/obj/item/clothing/accessory/storage/webbing,/obj/item/clothing/accessory/storage/webbing,/turf/floor/plating/grass/wild,/area/prishtina/farm2{capturable = 0; icon_state = "red1"; name = "Forest"})
+"nj" = (/obj/structure/closet/crate/rations/water,/turf/floor/plating/grass/wild,/area/prishtina/farm2{capturable = 0; icon_state = "red1"; name = "Forest"})
+"nk" = (/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/farm1{name = "Escape Area 4"})
 "nl" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
 "nm" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
 "nn" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/light/small,/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
@@ -740,10 +742,10 @@
 "ov" = (/obj/structure/vending/guard_weaponrack,/obj/structure/railing,/turf/floor/wood,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; capturable = 0})
 
 (1,1,1) = {"
-aaaaaaaaaaaaababababababababababababababababababadadadabababababababababababababababababababababacababababababababababacababababacababababababacababababababababababababababababababababababababababababababababababababacababmQababababmMaeafaeagaeaeaeaf
-aaaaahaaaaaaababababababababababababababababababadadadabababababababababaiaiababacabababababababababababababababababababababababacabababababacacababacabababababababababababababababababababababababacacacababababacababnfabmMabacmQmMmRabagaeaeaeaeaeagae
-aaaaaaaaaaaaababaiababaiabababacaiababaiababababadadadababababaiabababababababababababaiababababababababaiabababababababababababacabababababababababacababababababababacababababababababababababababababacababababacabnfmMababababmNabmSmOaeaeafaeaeaeaeae
-aaaaaaahaaajababaiabababababababaiababaiababababadadadababababaiababababababababababababababacababababaiaiababaiababaiababababababababababababababababacababababaiababababababababaiaiaiabacababababababaiababababababababmYngnemPabnfababagafaeaeaeaeaeae
+aaaaaaaaaaaaabababababababababababababababababaenknknkaeababababababababababababababababababababacababababababababababacababababacababababababacababababababababababababababababababababababababababababababababababababacababmQababababmMaeafaeagaeaeaeaf
+aaaaahaaaaaaabababababababababababababababababaenknknkaeababababababababaiaiababacabababababababababababababababababababababababacabababababacacababacabababababababababababababababababababababababacacacababababacababnfabmMabacmQmMmRabagaeaeaeaeaeagae
+aaaaaaaaaaaaababaiababaiabababacaiababaiabababaenknknkaeabababaiabababababababababababaiababababababababaiabababababababababababacabababababababababacababababababababacababababababababababababababababacababababacabnfmMababababmNabmSmOaeaeafaeaeaeaeae
+aaaaaaahaaajababaiabababababababaiababaiababababadadadababababaiababababababababababababababacababababaiaiababaiababaiababababababababababababababababacababababaiababababababababaiaiaiabacababababababaiababababababababmYngnemPabnfabnjagafaeaeaeaeaeae
 akaaaaaaaaaaabababababababababaiaiabababababababadadadadababababababaiaiaiababacacaiabababababaiabababababababaiaiabaiababababababababababaiababaiaiababababababaiaiababacababababababababacababababababaiababababababaiaiabnhabniabmMabmMaeaeaeaeaeaeaeae
 aaahaaaaahaaababababababababababababababababababadadadadababababababababababababababaiabaiababaiaiababababacababababababababababacababaiaiaiabababababababababababaiababacabaiababababacababababaiabababaiabababacacababaimMmZnaabndabababnbaeagaeaeagagae
 aaaaahahaaaaababababacabababababababaiaiababababadadadadabababababacababababababababababababababaiabababacacabababababaiabaiaiaiaiaiabababababababababaiababababababababababababababababababababaiaiabababacabacacabababaiaiababnfaiababncabababababababab

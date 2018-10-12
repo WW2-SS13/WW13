@@ -52,14 +52,14 @@
 			if (istype(J, /datum/job/german/squad_leader_sstv))
 				J.total_positions = max(1, round(clients.len*0.05*3))
 			if (istype(J, /datum/job/german/medic_sstv))
-				J.total_positions = max(1, round(clients.len*0.05*3))
+				J.total_positions = max(1, round(clients.len*0.1*3))
 				modded_num_of_SSTV = TRUE
 	if (istype(J, /datum/job/usa))
 		if (!J.is_special)
 			. = FALSE
 		else
 			if (istype(J, /datum/job/usa/paratrooper))
-				J.total_positions = 5
+				J.total_positions = max(2, round(clients.len*0.05*3))
 //	else if (istype(J, /datum/job/partisan/civilian))
 //		J.total_positions = max(5, round(clients.len*0.75))
 	else if (istype(J, /datum/job/soviet))
@@ -92,17 +92,17 @@
 	return (germans_can_cross_blocks() && soviets_can_cross_blocks())
 
 /obj/map_metadata/camp/short_win_time(faction)
-	return 1200
+	return 900
 
 /obj/map_metadata/camp/long_win_time(faction)
-	return 1200
+	return 900
 
 var/no_loop2 = FALSE
 
 /obj/map_metadata/camp/update_win_condition()
 	if (!win_condition_specialcheck())
 		return FALSE
-	if (world.time >= 30000)
+	if (world.time >= 20000)
 		if (win_condition_spam_check)
 			return FALSE
 		ticker.finished = TRUE
@@ -111,7 +111,7 @@ var/no_loop2 = FALSE
 		show_global_battle_report(null)
 		win_condition_spam_check = TRUE
 		return FALSE
-	if (world.time >= 30000)
+	if (world.time >= 20000)
 		if (win_condition_spam_check)
 			return FALSE
 		ticker.finished = TRUE
