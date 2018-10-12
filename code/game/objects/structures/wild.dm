@@ -76,12 +76,25 @@
 		qdel(src)
 
 /obj/structure/wild/tree
-	name = "tree"
+	name = "small tree"
 	icon_state = "tree"
 	opacity = TRUE
 	density = TRUE
 	sways = TRUE
 	amount = 3
+
+/obj/structure/wild/tree/live_tree
+	name = "tree"
+	icon = 'icons/obj/flora/bigtrees.dmi'
+	icon_state = "tree_1"
+	opacity = TRUE
+	density = TRUE
+	sways = FALSE
+	amount = 5
+
+/obj/structure/wild/tree/live_tree/New()
+	..()
+	icon_state = "tree_[rand(1,5)]"
 
 
 /obj/structure/wild/tree/fire_act(temperature)
