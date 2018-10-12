@@ -1,0 +1,152 @@
+"aa" = (/turf/floor/plating/sand,/area/prishtina)
+"ab" = (/turf/floor/plating/asteroid,/area/prishtina)
+"ac" = (/turf/floor/plating/dust,/area/prishtina)
+"ad" = (/turf/wall/sandstone,/area/prishtina)
+"ae" = (/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
+"af" = (/obj/structure/bed/chair/wood/red,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
+"ag" = (/obj/structure/table/wood,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
+"ah" = (/obj/structure/table/wood/poker,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 4},/area/prishtina)
+"ai" = (/obj/structure/table/wood/poker,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
+"aj" = (/obj/structure/simple_door/sandstone,/turf/floor/plating/metroz{icon_state = "metroedges"; dir = 8},/area/prishtina)
+"ak" = (/turf/floor/plating/metro{icon_state = "metrofull"; dir = 1},/area/prishtina)
+"al" = (/obj/structure/table/wood,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 8},/area/prishtina)
+"am" = (/turf/floor/plating/metro{icon_state = "metrofull"; dir = 9},/area/prishtina)
+"an" = (/turf/floor/plating/style{icon_state = "hexabrick2"},/area/prishtina)
+"ao" = (/turf/floor/plating/style{icon_state = "graytile04"},/area/prishtina)
+"ap" = (/turf/floor/plating/road,/area/prishtina)
+"aq" = (/turf/floor/plating/style{icon_state = "graytile03"},/area/prishtina)
+"ar" = (/obj/structure/table/wood,/obj/structure/chemical_dispenser/beer,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
+"as" = (/obj/structure/closet/cabinet,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
+"at" = (/turf/floor/plating/style{icon_state = "oldtile"},/area/prishtina)
+"au" = (/obj/structure/sink/kitchen,/turf/floor/plating/style{icon_state = "darkbrowntile"},/area/prishtina)
+"av" = (/obj/structure/simple_door/sandstone,/turf/floor/plating/style{icon_state = "basket03"},/area/prishtina)
+"aw" = (/obj/structure/table/wood,/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"ax" = (/turf/floor/plating/style{icon_state = "darkbrowntile"},/area/prishtina)
+"ay" = (/turf/floor/plating/style{icon_state = "basket03"},/area/prishtina)
+"az" = (/turf/floor/plating/style{icon_state = "marblediamond"},/area/prishtina)
+"aA" = (/turf/floor/plating/style{icon_state = "checker03"},/area/prishtina)
+"aB" = (/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"aD" = (/turf/floor/plating/style{icon_state = "whiteceramic"},/area/prishtina)
+"aE" = (/turf/floor/plating/style{icon_state = "mahogany"},/area/prishtina)
+"aF" = (/turf/floor/plating/style{icon_state = "escherparquet-gray"},/area/prishtina)
+"aG" = (/obj/structure/bed/chair/wood/red,/turf/floor/plating/metro,/area/prishtina)
+"aH" = (/obj/structure/bed/chair/wood/red{tag = "icon-wooden_chair_red (WEST)"; icon_state = "wooden_chair_red"; dir = 8},/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
+"aI" = (/obj/structure/bed/chair/wood/red{tag = "icon-wooden_chair_red (NORTH)"; icon_state = "wooden_chair_red"; dir = 1},/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
+"aJ" = (/obj/structure/bed/chair/wood,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
+"aK" = (/obj/structure/bed/chair/wood{dir = 4},/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
+"aL" = (/obj/structure/bed/chair/wood{dir = 1},/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
+"aM" = (/obj/structure/table/wood,/obj/item/stack/money,/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"aN" = (/obj/structure/table/wood,/obj/item/stack/material/diamond,/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"aO" = (/obj/effect/floor_decal/industrial/danger{icon_state = "danger"; dir = 9},/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"aP" = (/obj/effect/floor_decal/industrial/danger{icon_state = "danger"; dir = 1},/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"aQ" = (/obj/effect/floor_decal/industrial/danger{icon_state = "danger"; dir = 5},/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"aR" = (/obj/item/weapon/tool/parts,/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"aS" = (/obj/structure/table/wood,/obj/structure/table/wood,/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"aT" = (/obj/structure/table/wood,/obj/item/clothing/accessory/armband/redcross,/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"aU" = (/obj/item/weapon/storage/toolbox/mechanical,/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"aV" = (/obj/item/weapon/tool,/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"aW" = (/obj/item/weapon/generic_MRE_trash,/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"aX" = (/obj/item/weapon/sandbag,/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"aY" = (/obj/item/weapon/schokakola_trash,/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"aZ" = (/obj/effect/floor_decal/industrial/danger{icon_state = "danger"; dir = 8},/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"ba" = (/obj/effect/floor_decal/industrial/danger{icon_state = "danger"; dir = 4},/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"bb" = (/obj/effect/floor_decal/industrial/danger{icon_state = "danger"; dir = 10},/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"bc" = (/obj/effect/floor_decal/industrial/danger,/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"bd" = (/obj/effect/floor_decal/industrial/danger{icon_state = "danger"; dir = 6},/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"be" = (/obj/effect/decal/cleanable/blood/splatter,/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"bf" = (/obj/structure/flag/german,/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"bg" = (/obj/structure/flag/us,/turf/floor/plating/style{icon_state = "slate01"},/area/prishtina)
+"bh" = (/obj/structure/window/classic,/obj/structure/table/wood,/turf/floor/plating/asteroid,/area/prishtina)
+"bi" = (/turf/floor/plating/style{icon_state = "coralsandstone"},/area/prishtina)
+"bj" = (/obj/structure/filingcabinet,/turf/floor/plating/style{icon_state = "coralsandstone"},/area/prishtina)
+"bk" = (/obj/structure/table/wood,/obj/structure/window/classic,/turf/floor/plating/style{icon_state = "coralsandstone"},/area/prishtina)
+"bl" = (/obj/structure/filingcabinet/chestdrawer,/turf/floor/plating/style{icon_state = "coralsandstone"},/area/prishtina)
+"bm" = (/obj/structure/simple_door/sandstone,/turf/floor/plating/style{icon_state = "coralsandstone"},/area/prishtina)
+"bn" = (/obj/structure/bed/chair/office/dark{icon_state = "officechair_dark"; dir = 1},/turf/floor/plating/style{icon_state = "coralsandstone"},/area/prishtina)
+"bo" = (/obj/structure/window/classic,/obj/structure/table/wood,/turf/floor/plating/style{icon_state = "coralsandstone"},/area/prishtina)
+"bp" = (/obj/item/weapon/mop,/turf/floor/plating/style{icon_state = "coralsandstone"},/area/prishtina)
+"bq" = (/obj/structure/device/piano,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
+"br" = (/obj/structure/closet/crate/medical,/turf/floor/plating/style{icon_state = "whiteceramic"},/area/prishtina)
+"bs" = (/obj/structure/closet/chemical,/turf/floor/plating/style{icon_state = "whiteceramic"},/area/prishtina)
+"bt" = (/obj/structure/bed/roller,/turf/floor/plating/style{icon_state = "whiteceramic"},/area/prishtina)
+"bu" = (/obj/structure/table/glass,/obj/item/weapon/storage/firstaid/surgery,/turf/floor/plating/style{icon_state = "whiteceramic"},/area/prishtina)
+"bv" = (/obj/structure/optable,/turf/floor/plating/style{icon_state = "whiteceramic"},/area/prishtina)
+"bw" = (/obj/structure/simple_door/sandstone,/turf/floor/plating/style{icon_state = "whiteceramic"},/area/prishtina)
+"bx" = (/obj/structure/table/wood,/obj/item/weapon/tray,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
+"by" = (/turf/floor/wood_broken{icon_state = "wood"},/area/prishtina)
+"bz" = (/turf/floor/wood_broken{icon_state = "broken3"},/area/prishtina)
+"bA" = (/turf/floor/wood_broken{icon_state = "broken2"},/area/prishtina)
+"bB" = (/turf/floor/dirt/dust,/area/prishtina)
+"bC" = (/obj/item/weapon/vehicle_fueltank/empty,/turf/floor/wood_broken{icon_state = "wood"},/area/prishtina)
+"bD" = (/turf/floor/wood_broken{icon_state = "broken1"},/area/prishtina)
+"bE" = (/turf/wall/stone,/area/prishtina)
+"bF" = (/turf/floor/wood_broken,/area/prishtina)
+"bG" = (/obj/structure/barricade,/turf/floor/wood_broken{icon_state = "wood"},/area/prishtina)
+"bH" = (/obj/structure/barricade,/turf/floor/wood_broken{icon_state = "broken2"},/area/prishtina)
+"bI" = (/obj/structure/iv_drip,/turf/floor/plating/style{icon_state = "whiteceramic"},/area/prishtina)
+"bJ" = (/obj/structure/girder,/turf/floor/wood_broken{icon_state = "wood"},/area/prishtina)
+"bK" = (/obj/item/stack/material/sandstone,/turf/floor/wood_broken{icon_state = "broken3"},/area/prishtina)
+"bL" = (/obj/item/stack/material/sandstone,/turf/floor/dirt/dust,/area/prishtina)
+
+(1,1,1) = {"
+aaaaaaaaabababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadadadadadadadadadadadabababadadadadadadadadadadadad
+aaaaaaaaabababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadaoaoaoaoaoaoaoaoaoaoaoaoaoadabababadaeafaGaeafafaeaeaJaJad
+aaaaaaaaabababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadaoaobEaobEaoaoaoaoaoaoaoaobEabababadaeagagaHagagaKahaiaiad
+ababaaaaabababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadaoaoaobEaoaoaoaoaoaoaoaoaoaoabababadaeagagaeagagaeaiaiaiad
+abababaaabababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadaoaobEaobEaoaoaoaoaoaoaoaoaoabababajaeaeaeakaeaIaeaeaLaead
+acacacacabababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadaoaoaoaoaoaoaoaoaoaoaoaoaoadabababajaeagagaebxagaeagagarad
+acacacacabababacacacacabaaaaaaaaaaaaaaaaaaaaaaananaaaaaaaaababaoaoaoaoaoaoaoaoaoaoaoaoaoadabababadaeagagaHagalaeagaeaead
+acacacacabababacacacacacabababaaaaaaaaaaaaaaaaananaaaaaaacacabacaobEaobEaoaoaoaoaoaoaoaoaoabababadaeaeaIaeaeaeaeagamasad
+abacacacabababacacacacacabababaaaaaaaaaaaaaqaaananaaaaaaacabaqaoaoaobEaoaoaoaoaoaoaoaoaoaoabababadbqaHaeaeaeaeaeaeaeaead
+aaabacacabababacacacacacacacacaaaaaaaaaaaaaqaaananaaaaacaqababaoaobEaobEaoaoaoaoaoaoaoaoadabababadadadadadadadadadadadad
+aaaaabababababaaababaaabacacacabaaaaaaaaaaaaaaaaaaaaacaqabacadaoaoaoaoaoaoaoaoaoaoaoaoaoadabababadaxaxaxauadayayayayayad
+aaaaaaaaabababaaaaaaaaaaaaacacacabaaaaaaaaazaaaAaaacabacabaaadadadadadadadadadadadadadadadabababadaxaxaxaxadayayayayayad
+aaaaaaaaabababaaaaaaaaaaaaaaacacacacacababazaaaAabaqacacabaaaaaDaaaEaaaxaFaaaaaaaaaaaaaaaaabababadadavadadadayayayayayad
+aaaaaaaaabababaaaaaaaaaaaaaaabacacacabacabaaaaaaaaabaaaaaaaaaaaDaaaEaaaxaFaaaaaaaaaaaaaaaaabababbhayayayayadadadavadadad
+aaaaaaaaabababaaaaaaaaaaaaaaaaababacacacabababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababavayayayayadatatatatatad
+aaaaaaaaabababaaaaaaaaaaaaaaaaaaabacacacabababababacababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababavayayayayavatatatatatad
+aaaaaaaaabababaaaaaaaaaaaaaaaaaaaaaaababacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababadayayayayadatatatatatad
+aaaaaaaaabababaaaaaaaaaaaaaaaaaaaaaaaaabacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababadadadadadadadadadadadad
+aaaaaaaaabababaaaaaaaaaaaaaaaaaaaaaaaaaaacabacababacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababadaDbrbrbsaDaDaDaDaDaDad
+aaaaaaaaabababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababadaDaDaDaDaDbtaDbtaDaDad
+aaaaaaaaabababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababbwaDaDbIaDaDaDaDaDaDaDad
+aaaaaaaaabababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababbwaDaDaDaDaDbtaDbtaDaDad
+aaaaaaaaabababadadadadadadadadadadaBaBaBaBaBaBaBaBaBaBaBaBaBaBaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababadaDaDaDaDaDaDaDaDaDaDad
+aaaaaaaaabababadbibjbjbjbjbjbjbiadaBaBawaMaBaBaBaBaBaOaPaQaBaBaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababadaDaDaDaDaDaDaDaDaDaDad
+aaaaaaaaabababadbibibibibibibibibkaBaBaNawaBaXaBaBaBaZbfbaaBaBaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababadaDaDbubvaDbubvaDaDaDad
+aaaaaaaaabababadbibjbjbjbjbjbjbiadaBaBaBaBaBaBaBaBaBbbbcbdaBaBaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababadaDaDaDaDaDaDaDaDaDaDad
+aaaaaaaaabababadbibibibibibibibibkaBaBawawaBaBaBaBaRaBaBaSaBaBaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababadadadadadadadadadadadad
+aaaaaaaaabababbibibjbjbjbjbjbjbiadaBaBawawaBaBaBaBaBaBaBaTaBaBababababababababababababababababababababababababababababab
+aaaaaaaaabababbibibibibibibibibibkaBaBaBaBaBaBaBaBbeaBawawaBaBababababababababababababababababababababababababababababab
+aaaaaaaaabababadbibibibibibibibiadaBaBaBaWaBaUaBaBaBaBaBaBaBaBaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababadadbyadadbyadadadadadad
+aaaaaaaaabababadbiblbibiblbibibibmaBaBaBaBaBaBaBaBaVaBaBbeaBaBaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababadbybybyadbybybyadbybyad
+aaaaaaaaabababadbibibnbibibnbibiadaBaBaOaPaQaBaBaBaBaBaBaBaBaBaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababadbybybybybybybyadbybyad
+aaaaaaaaabababadbibibibibibibibiboaBaBaZbgbaaBaWaBaBaBaBaBaBaBaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababbybybybyadbybybyadbybyad
+aaaaaaaaabababadbibibibibibibibpadaBaBbbbcbdaBaBaBaBaBaYaBaBaBaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababadadadadadadadadadbybyad
+aaaaaaaaabababadadadadadadadadadadaBaBaBaBaBaBaBaBaBaBaBaBaBaBaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababadbybybyadbybyadbybybyad
+abababababababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababbybybybybybybyadbybybyad
+abababababababababababababababababababaaapapapapapapapapapaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababadbybybyadbybyadbybybyad
+abababababababababababababababababababaaapapapapapapapapapaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababadadadadadadadadbJbyadad
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababaaapapapapapapapapapaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababadbybybybybybybybybybyad
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababaaapapapapapapapapapaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababadbybybybybzbybGbybAbyad
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababaaapapapapapapapapapaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababbBbKbybCbybybybGbGbybyad
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababaaapapapapapapapapapaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababbBbBbybBbybDbybybybGbGbyad
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababaaapapapapapapapapapaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababbLbBbLbBbybybybybybybGbyad
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababbBbBbBbyadadbFadbHbGadadad
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababbBbLbBaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababababababababababababababababababababababababababadadadadabababadadadadabadadabadad
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababababababababababababazazazazazazazazazazazazazazadatatatatatatatatadatatatatatatat
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababababababababababababazazazazazazazazazazazazazazadatatatatatatatatadatatatatatatat
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababaaaaaaaaaaaaaaaaaaaaazazazazazazazazazazazazazazadatatatatatatatatadatatatatatatat
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababaaaaaaaaaaaaaaaaaaaaazazazazazazazazazazazazazazadatatatatatatatatadatatatatatatat
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababaaaaaaaaaaaaaaaaaaaaazazazazazazazazazazazazazazadatatatatatatatatadatatatatatatat
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababaaaaaaaaaaaaaaaaaaaaazazazazazazazazazazazazazazadadadadatatadadadadadadadatatadad
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+apapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+apapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+apapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+apapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+apapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+"}

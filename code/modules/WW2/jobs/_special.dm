@@ -34,6 +34,7 @@
 /datum/job/var/is_primary = TRUE
 /datum/job/var/is_secondary = FALSE
 /datum/job/var/is_paratrooper = FALSE
+/datum/job/var/is_special = FALSE
 /datum/job/var/is_sturmovik = FALSE
 /datum/job/var/is_guard = FALSE
 /datum/job/var/is_tankuser = FALSE

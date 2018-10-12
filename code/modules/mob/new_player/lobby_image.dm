@@ -1,5 +1,6 @@
 /var/obj/effect/lobby_image = new/obj/effect/lobby_image()
 
+
 /obj/effect/lobby_image
 	name = "Lobby"
 	desc = ""

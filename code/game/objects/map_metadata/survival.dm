@@ -12,8 +12,8 @@
 	no_subfaction_chance = FALSE
 	subfaction_is_main_faction = TRUE
 	roundend_condition_sides = list(
-		list(CIVILIAN) = /area/prishtina/german/bunker, // faster than /area/prishtina/german, less subtypess - Kachnov
-		list(PILLARMEN) = /area/prishtina/sewers)
+		list(CIVILIAN) = /area/prishtina/farm1, // faster than /area/prishtina/german, less subtypess - Kachnov
+		list(PILLARMEN) = /area/prishtina/farm1)
 	faction_organization = list(
 		CIVILIAN,
 		PILLARMEN)
@@ -25,7 +25,7 @@
 	meme = FALSE
 
 /obj/map_metadata/survival/specialfaction_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 4500)
+	return (processes.ticker.playtime_elapsed >= 2000)
 
 /obj/map_metadata/survival/announce_mission_start(var/preparation_time)
 	world << "<font size=4>This is a Survival Map. You are a <b>Civilian</b>, who got lost inside the forest when running from the frontlines, but there is something very wrong going on here...<span class = 'danger'> Try to survive.</span></font>"
@@ -57,4 +57,12 @@
 /obj/map_metadata/survival/win_condition_specialcheck()
 	if (processes.ticker.ticks % 5 == 0)
 		return (!alive_n_of_side(PILLARMEN) || !alive_n_of_side(CIVILIAN))
-	return FALSE
+	if (world.time >= 9000)
+		if (win_condition_spam_check)
+			return FALSE
+		var/message = "The civilians have survived!"
+		world << "<font size = 4><span class = 'notice'>[message]</span></font>"
+		show_global_battle_report(null)
+		win_condition_spam_check = TRUE
+		return FALSE
+	return TRUE

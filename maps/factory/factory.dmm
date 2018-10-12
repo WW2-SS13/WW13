@@ -60,7 +60,7 @@
 "bh" = (/obj/effect/damagedfloor/rust,/obj/structure/sign/clock,/turf/wall/iron,/area/prishtina/houses/ger_eight)
 "bi" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 8},/obj/effect/damagedfloor/rust,/turf/wall/iron,/area/prishtina/houses/ger_eight)
 "bj" = (/obj/structure/barbwire{dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"bk" = (/obj/structure/plating,/obj/item/remains{name = "Assistant Taislin"},/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_one)
+"bk" = (/obj/structure/plating,/obj/structure/rustpipe{icon_state = "panel_1"; name = "Mk2 Colossus Pressure Regulator"},/obj/structure/sign/flag/germanybanner,/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_one)
 "bl" = (/obj/structure/table/wood,/obj/item/radio/intercom/a7b{name = "Fried Radio"},/obj/item/clothing/glasses/welding,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "bm" = (/obj/item/weapon/shovel,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "bn" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 9},/obj/effect/damagedfloor/rust,/turf/wall/iron,/area/prishtina/houses/ger_eight)
@@ -105,12 +105,12 @@
 "ca" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 1},/obj/effect/damagedfloor/rust,/turf/wall/iron,/area/prishtina/houses/ger_eight)
 "cb" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 1},/obj/structure/rustpipe{icon_state = "trubas"; dir = 8},/obj/effect/damagedfloor/rust,/turf/wall/iron,/area/prishtina/houses/ger_eight)
 "cc" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 5},/obj/effect/damagedfloor/rust,/turf/wall/iron,/area/prishtina/houses/ger_eight)
-"cd" = (/obj/structure/plating,/obj/structure/rustpipe{icon_state = "panel_1"; name = "Mk2 Colossus Pressure Regulator"},/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_one)
+"cd" = (/obj/structure/plating,/obj/structure/rustpipe{icon_state = "panel_1"; name = "Mk2 Colossus Computer"},/obj/structure/sign/flag/sovietbanner,/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_one)
 "ce" = (/obj/structure/processing_unit_console{name = "Main Access Terminal"},/obj/effect/damagedfloor/rust,/turf/wall/indestructable,/area/prishtina/houses/ger_one)
-"cf" = (/obj/structure/plating,/obj/structure/rustpipe{icon_state = "panel_1"; name = "Mk2 Colossus Computer"},/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_one)
+"cf" = (/obj/structure/plating,/obj/structure/bed/chair/office/dark{icon_state = "officechair_dark"; dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_two)
 "cg" = (/obj/structure/wild/bush/tame,/turf/floor/dirt,/area/prishtina/forest)
 "ch" = (/obj/structure/plating,/obj/structure/bed/chair/office/dark{icon_state = "officechair_dark"; dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_one)
-"ci" = (/obj/structure/plating,/obj/item/clothing/head/radiation,/obj/item/stack/material/uranium,/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_one)
+"ci" = (/obj/structure/plating,/obj/item/clothing/head/radiation,/obj/item/stack/material/uranium,/turf/floor/plating/grass/wild,/area/prishtina)
 "cj" = (/obj/effect/floor_decal/rust,/obj/effect/floor_decal/rust,/obj/structure/rustpipe{icon_state = "trubas"; dir = 10},/turf/wall/iron,/area/prishtina/forest)
 "ck" = (/obj/effect/floor_decal/rust,/obj/structure/rustpipe{icon_state = "trubas"; dir = 1},/turf/wall/iron,/area/prishtina/forest)
 "cl" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 5},/turf/wall/iron,/area/prishtina/forest)
@@ -118,7 +118,7 @@
 "cn" = (/obj/effect/floor_decal/rust,/obj/structure/sign/nosmoking_2,/turf/wall/iron,/area/prishtina/forest)
 "co" = (/obj/structure/simple_door/iron{name = "Munitions Factory"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "cp" = (/obj/effect/floor_decal/rust,/obj/effect/floor_decal/rust,/obj/structure/sign/nosmoking_2,/turf/wall/iron,/area/prishtina/forest)
-"cq" = (/obj/structure/plating,/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_one)
+"cq" = (/obj/structure/plating,/obj/structure/light/small/red{icon_state = "firelight1"},/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_two)
 "cr" = (/obj/effect/floor_decal/rust,/obj/structure/rustpipe{icon_state = "trubas"; dir = 8},/turf/wall/iron,/area/prishtina/forest)
 "cs" = (/turf/floor/plating/beach/water/deep,/area/prishtina/forest)
 "ct" = (/obj/effect/decal/cleanable/blood/drip,/turf/floor/wood,/area/prishtina/houses/ger_eight)
@@ -277,6 +277,8 @@
 "fq" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "fr" = (/obj/structure/closet/crate/barbwire,/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "fs" = (/obj/item/weapon/attachment/scope/adjustable/sniper_scope,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"ft" = (/obj/structure/plating,/turf/floor/plating/grass/wild,/area/prishtina)
+"fu" = (/obj/structure/plating,/obj/item/remains{name = "Assistant Taislin"},/turf/floor/plating/grass/wild,/area/prishtina)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaeSaaacaaaaadaaaaaaddaaaaacaeaeaaaaaaaaaaaaaeaeaeaeaeaaaaaaeTeUaaaaefaaaaaaaaaa
@@ -295,11 +297,11 @@ awaGbzaaaIbxaXaXaXaXaXbyboaXaXaIaaaHbwaaaabzbzbzbzbzaaaaaaaaaaaaaaaaaDaDaabAbwaG
 awaGbzaaaIaXbBaXbCbCbEbFbGaXaXaIaaaHbwaaaebzbzbzbzbzaabHaaaaaaaaaaaaaaaaaabIbwaGaZaZaHawaaanaaaaaaaa
 bJbKbzafaIaXbLaXbgdcbCbFbGaXaXaIaaaHbwaaaebzbzbzbzbzaaaIbjbjbjbjbjbjbjbjbjbNaIaGaZaZaHaraNaNaNaNaNar
 bJbObzabbPbQbRbQecbQbQbSbGaXaXaIaaaHbwaaaebTbTbTbTbTaabwbUaNaNaNaNaNaNaNaNbVaNbeaZaZaOasasasasasasbW
-bYbZbzaaaIaXbLbncacacacbccaXaXaIaaaHbwaaaebTcdcecfbTaabwaGaaaaaaaaaaaaaaaabIaaaaaZaZaaaabzbzaaaaaHbW
-bYbZbzaaaIaXbLaYaXaXaXbdaXaXaXaIaaaybwaacgbTchcichbTaabwaGaaaacjckckckckckclcmcncococpaabzbzbXbXaHbW
-bYaGbzaaaIaXbLaIaIaIaIaKaIaIaIaIaaaybwaabHbTfdbkfdbTaabwayaaaacrfectctcuctaXaXctaXaXcmcsbzbzaaaaaHbW
-awaGbzaaaIaXbLaIababafafcvaaaaaaaaaHbwaaaebTbTcqbTbTaabwaGaaaacraXcwcxcyckckckczcAcAcBcsbzbzaaaaaHbW
-awaGbzaaaIaXffaIabcCcDcDcEcEaNaNaNaObwaaaebzcFcqcFbzaabwaGaaaacGckckckcHaaaaaacmctaXcIcsdvbzaaaaaHbW
+bYbZbzaaaIaXbLbncacacacbccaXaXaIaaaHbwaaaebTbkcecdbTaabwaGaaaaaaaaaaaaaaaabIaaaaaZaZaaaabzbzaaaaaHbW
+bYbZbzaaaIaXbLaYaXaXaXbdaXaXaXaIaaaybwaacgbTcfcichbTaabwaGaaaacjckckckckckclcmcncococpaabzbzbXbXaHbW
+bYaGbzaaaIaXbLaIaIaIaIaKaIaIaIaIaaaybwaabHbTcqfufdbTaabwayaaaacrfectctcuctaXaXctaXaXcmcsbzbzaaaaaHbW
+awaGbzaaaIaXbLaIababafafcvaaaaaaaaaHbwaaaebTbTftbTbTaabwaGaaaacraXcwcxcyckckckczcAcAcBcsbzbzaaaaaHbW
+awaGbzaaaIaXffaIabcCcDcDcEcEaNaNaNaObwaaaebzcFftcFbzaabwaGaaaacGckckckcHaaaaaacmctaXcIcsdvbzaaaaaHbW
 awaGbzaaaIaXcJaIabcKaIcLcLcMbjbjbjbjaIaaaIaIcNcOcNaIaabwaGaaaaaaaaaaaaaaaaaaaacmctaXcIdwdvbzaaaaaHbW
 awaGbzaaaIaXaXaIaaaaaaaaaaaaaaaaaaaaaaaaaIcPfgcRfhaIaaaaaaaaaacTcmcmcmcUcmcmcmcVaXficWdwdvbzaaaaaHbW
 awaGbzaaaIaXfjaIaaaaaaaaaaaaaaaaaaaaaaaIcYcRcRcRcRaIaIaIaIaIaIcmbDfkdbaPfaeQfldeaXaXcWdwdFdvcsaaaHdf

@@ -407,6 +407,44 @@
 	return list(new/obj/item/weapon/key/allied)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/usa/paratrooper
+	title = "Paratrooper"
+	en_meaning = "Paratrooper"
+	rank_abbreviation = "Pfc"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateRA"
+	additional_languages = list( "Russian" = 45, "German" = 25)
+	SL_check_independent = TRUE
+	is_special = TRUE
+
+	// AUTOBALANCE
+	min_positions = 0
+	max_positions = 0
+	player_threshold = PLAYER_THRESHOLD_MEDIUM
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+
+/datum/job/usa/paratrooper/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni_para(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ushelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/springfield(H), slot_back)
+	H.add_note("Role", "You are a <b>[title]</b>, a paratrooper. Your job is to assist in special operations.")
+	H.give_radio()
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
+	H.setStat("medical", STAT_VERY_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+
+/datum/job/usa/sniper/get_keys()
+	return list(new/obj/item/weapon/key/allied)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/usa/heavy_weapon
 	title = "Machinegunner"

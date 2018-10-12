@@ -150,12 +150,12 @@
 
 // TT-30 TOKAREV PISTOL //
 /obj/item/projectile/bullet/rifle/c762mm_tokarev
-	damage = DAMAGE_MEDIUM
+	damage = DAMAGE_MEDIUM + 4
 	penetrating = 0
 
 // C96 MAUSER PISTOL //
 /obj/item/projectile/bullet/rifle/c763x25mm_mauser
-	damage = DAMAGE_MEDIUM
+	damage = DAMAGE_MEDIUM + 5
 	penetrating = 0
 
 // STEN MK3 SMG //
@@ -198,7 +198,7 @@
 
 // Nambu, pistol //
 /obj/item/projectile/bullet/rifle/c8mmnambu
-	damage = DAMAGE_MEDIUM+2
+	damage = DAMAGE_MEDIUM+3
 	penetrating = 0
 
 // Nambu, smg //

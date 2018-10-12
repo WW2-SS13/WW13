@@ -40,7 +40,7 @@
 				var/obj/item/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot", "l_leg", "r_leg"))
 				if (affecting.status & ORGAN_ROBOT)
 					return
-				if (affecting.take_damage(5, FALSE))
+				if (affecting.take_damage(3, FALSE))
 					H.UpdateDamageIcon()
 				H.updatehealth()
 				if (!(H.species && (H.species.flags)))
@@ -51,7 +51,7 @@
 				var/obj/item/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot", "l_leg", "r_leg"))
 				if (affecting.status & ORGAN_ROBOT)
 					return
-				if (affecting.take_damage(10, FALSE))
+				if (affecting.take_damage(8, FALSE))
 					H.UpdateDamageIcon()
 				H.updatehealth()
 				if (!(H.species && (H.species.flags)))
@@ -62,7 +62,7 @@
 				var/obj/item/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot", "l_leg", "r_leg"))
 				if (affecting.status & ORGAN_ROBOT)
 					return
-				if (affecting.take_damage(15, FALSE))
+				if (affecting.take_damage(13, FALSE))
 					H.UpdateDamageIcon()
 				H.updatehealth()
 				if (!(H.species && (H.species.flags)))

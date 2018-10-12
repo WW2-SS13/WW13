@@ -1,0 +1,97 @@
+"a" = (/turf/floor/plating/metroz{icon_state = "metroedges"; dir = 4},/area/prishtina)
+"b" = (/turf/floor/plating/metroz{icon_state = "metroedges"; dir = 8},/area/prishtina)
+"c" = (/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
+"d" = (/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"e" = (/turf/floor/plating/track,/area/prishtina)
+"f" = (/turf/floor/plating/dirt{icon_state = "surface2"; dir = 10},/area/prishtina)
+"g" = (/obj/structure/girder,/turf/floor/plating/dirt{icon_state = "surface2"; dir = 10},/area/prishtina)
+"h" = (/turf/floor/plating,/area/prishtina)
+"i" = (/obj/train_connector,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"j" = (/turf/wall/rockwall,/area/prishtina)
+"k" = (/turf/floor/plating/metro{icon_state = "metrofull"; dir = 9},/area/prishtina)
+"l" = (/obj/structure/girder,/turf/wall/rockwall,/area/prishtina)
+"m" = (/turf/floor/plating/metro{icon_state = "metrofull"; dir = 8},/area/prishtina)
+"n" = (/turf/floor/plating/metro{icon_state = "metrofull"; dir = 4},/area/prishtina)
+"o" = (/turf/floor/plating/metro{icon_state = "metrofull"; dir = 1},/area/prishtina)
+"p" = (/turf/floor/plating/metro,/area/prishtina)
+"q" = (/turf/wall/indestructable,/area/prishtina)
+"r" = (/obj/train_lever/german,/turf/floor/plating,/area/prishtina)
+"s" = (/obj/structure/window/sandbag,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"t" = (/obj/structure/window/sandbag,/turf/floor/plating/metroz{icon_state = "metroedges"; dir = 8},/area/prishtina)
+"u" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"v" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"w" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag_66%"; icon_state = "sandbag_66%"; dir = 2},/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"x" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
+"y" = (/obj/structure/simple_door/key_door/anyone/train,/turf/floor/plating,/area/prishtina)
+"z" = (/obj/structure/closet/crate/artillery_gas,/turf/floor/plating,/area/prishtina)
+"A" = (/obj/item/artillery_shell/gaseous/yellow_cross/white_phosphorus,/turf/floor/plating,/area/prishtina)
+"B" = (/obj/item/artillery_shell/gaseous/yellow_cross/white_phosphorus,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"C" = (/obj/structure/closet/crate/artillery_gas,/turf/floor/plating/dirt{icon_state = "surface2"; dir = 10},/area/prishtina)
+"D" = (/obj/item/stack/material/steel,/turf/floor/plating/dirt{icon_state = "surface2"; dir = 10},/area/prishtina)
+"E" = (/obj/item/stack/material/steel,/turf/floor/plating,/area/prishtina)
+"F" = (/obj/item/stack/material/steel,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"G" = (/obj/item/weapon/crowbar/prybar,/turf/floor/plating,/area/prishtina)
+"H" = (/obj/item/weapon/newspaper,/turf/floor/plating,/area/prishtina)
+"I" = (/obj/item/weapon/tool/engine,/turf/floor/plating,/area/prishtina)
+"J" = (/obj/item/weapon/tool/parts,/turf/floor/plating,/area/prishtina)
+"K" = (/obj/structure/window/sandbag{icon_state = "sandbag_33%"; dir = 1},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"L" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 1},/turf/floor/plating/metroz{icon_state = "metroedges"; dir = 8},/area/prishtina)
+"M" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"N" = (/obj/item/weapon/sandbag,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
+"O" = (/obj/item/stack/material/barbwire,/turf/floor/plating/metroz{icon_state = "metroedges"; dir = 8},/area/prishtina)
+"P" = (/obj/item/weapon/vehicle_fueltank/empty,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
+"Q" = (/obj/item/weapon/plastique/russian,/turf/floor/plating/metroz{icon_state = "metroedges"; dir = 8},/area/prishtina)
+"R" = (/obj/item/weapon/plastique/russian,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
+
+(1,1,1) = {"
+cccaqqqqqffdededbccc
+cccaqhhhqffdededbccc
+cccaqhhhqggdededbccc
+cccaqhhhqggdededbccc
+cccaqhhhqffdededbccc
+cccaqhhhqffdededbccc
+cccaqhhhqggdededbccc
+cccaqhhhqggdededbccc
+cccaqqyqqffdededbccc
+cccadeiedDfdededbccc
+cccadqqyqqgdededbccc
+cccadqzhAqgdededbccc
+cccadhhhhhfBededbccc
+cccadhhAdfCdededbccc
+cccadqhhzDgdededbccc
+cccadqqyqggdededbccc
+cccadeiedffdededbccc
+cccadeqqyqqdededbccc
+cccadeqhhhqdededbccc
+cccadehhhhhdededbccc
+cccadehhhhhdededbccc
+cccadeqhhEqdededbccc
+cccadeqqyqgFededbccc
+cccadededggdededbccc
+cccadqqyqqfdedeKLccc
+cccadqhhhqfdedeMOccc
+cccadhhhEhgdedewbccc
+cccadhhhhEgdededbccc
+cccadqhhhqfdededbccc
+cccadqqyqqfdededbccc
+cccadeiedggdededbccc
+cccaqqyqqggdededbccc
+cccaqhhhqffdededbccc
+cccahGhhIffdededbccc
+cccahhhHhggdededbccc
+cccaqhJhjggdededbcPc
+cccaqhrjjjfdedestxcc
+cccaqqjjjjjdedeubNcc
+cccadejjjlgjedevQccc
+cccadejjjggjedewbccc
+cccadjjejjjjjjedbcRc
+cccadejjjjjjjjjdbRcc
+cccadejjjgljjjedbccc
+cccadejjjggjjjjdbccc
+jccadjjjjjjjjjjjbccc
+cjcajjjjjjjjjjjjbccc
+kjcajjjejlljjjjjjccm
+jjnajjjjjjjjjjjjbopm
+jmpjjjjjjjjjjjjjbjkj
+jjjjjjjjjjjjjjjjjjjj
+"}

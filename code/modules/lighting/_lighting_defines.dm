@@ -21,12 +21,12 @@
 #define LIGHTING_BASE_MATRIX \
 	list                     \
 	(                        \
-		0, 0, 0, 0,          \
-		0, 0, 0, 0,          \
-		0, 0, 0, 0,          \
-		0, 0, 0, 0,          \
-		0, 0, 0, 1           \
-	)                        \
+	0, 0, 0, 0,			 \
+	0, 0, 0, 0,			 \
+	0, 0, 0, 0,			 \
+	0, 0, 0, 0,			 \
+	0, 0, 0, 1			 \
+	)                       \
 
 // Helpers so we can (more easily) control the colour matrices.
 #define RR 1
