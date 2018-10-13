@@ -498,14 +498,14 @@
 	..()
 	if (!istype(src, /turf/floor/plating/beach/water/ice))
 		if (!istype(src, /turf/floor/plating/beach/water/sewage))
-			overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=layer+0.1)
+			overlays += image("icon"='icons/turf/beach.dmi',"icon_state"="water5","layer"=layer+0.1)
 		else
-			var/image/I = image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=layer+0.1)
+			var/image/I = image("icon"='icons/turf/beach.dmi',"icon_state"="water5","layer"=layer+0.1)
 			I.color = color
 			I.alpha = 155
 			overlays += I
 			alpha = 155
-			I = image("icon"='icons/misc/beach.dmi',"icon_state"="plating","layer"=layer-0.1)
+			I = image("icon"='icons/turf/beach.dmi',"icon_state"="plating","layer"=layer-0.1)
 			underlays += I
 
 /turf/floor/plating/beach/water/ice

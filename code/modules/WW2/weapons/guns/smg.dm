@@ -209,6 +209,7 @@
 		list(name="long bursts",	burst=6, burst_delay=1.2, recoil=0.8, move_delay=4, dispersion = list(1.4, 1.6, 1.6, 1.6, 1.8)),
 		)
 
+//WW1 gun don't know why this is in here//
 //	can_wield = TRUE
 
 	sel_mode = 1
