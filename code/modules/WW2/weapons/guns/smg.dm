@@ -373,7 +373,7 @@
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
-	caliber = "c45_smg"
+	caliber = "c45"
 	magazine_type = /obj/item/ammo_magazine/thompson_ammo
 	weight = 3.7
 	firemodes = list(
@@ -401,7 +401,7 @@
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
-	caliber = "c45_smg"
+	caliber = "c45"
 	magazine_type = /obj/item/ammo_magazine/thompson_ammo
 	weight = 4.5
 	firemodes = list(
@@ -429,7 +429,7 @@
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
-	caliber = "c45_smg"
+	caliber = "c45"
 	magazine_type = /obj/item/ammo_magazine/thompson_ammo/tommy_ammo
 	weight = 4.2
 	firemodes = list(

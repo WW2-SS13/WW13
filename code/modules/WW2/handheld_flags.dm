@@ -7,7 +7,7 @@
 	force = 4.0
 	throwforce = 1.0
 	item_state = "white_flag"
-	w_class = 4.0
+	w_class = 5.0
 	matter = list(DEFAULT_WALL_MATERIAL = 50)
 //	origin_tech = "materials=1;engineering=1"
 	attack_verb = list("bashed", "thrashed", "whacked")

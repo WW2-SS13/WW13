@@ -87,7 +87,7 @@
 	icon_state = "colt"
 	item_state = "gun"
 	w_class = 2
-	caliber = "c45cal"
+	caliber = "c45"
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/c45m

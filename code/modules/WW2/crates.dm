@@ -307,18 +307,18 @@
 	paths = list(/obj/item/ammo_magazine/c77x58_smg = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/m1garand
-	name = "M1Garand clips"
+	name = "M1 Garand clips"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
-	paths = list(/obj/item/ammo_magazine/c762x63 = DYNAMIC_AMT)
+	paths = list(/obj/item/ammo_magazine/c30 = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/bar_ammo
 	name = "(30-06) magazines"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
-	paths = list(/obj/item/ammo_magazine/c762x63_smg = DYNAMIC_AMT)
+	paths = list(/obj/item/ammo_magazine/c30_smg = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/c45m
 	name = "M1911 ammo"

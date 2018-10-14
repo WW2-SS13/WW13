@@ -182,11 +182,11 @@
 	w_class = 4
 	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shells = 8
-	caliber = "c762x63"
+	caliber = "c30-06"
 //	origin_tech = "combat=4;materials=2"
 	slot_flags = SLOT_BACK
-	ammo_type = /obj/item/ammo_casing/c762x63
-	magazine_type = /obj/item/ammo_magazine/c762x63
+	ammo_type = /obj/item/ammo_casing/c30
+	magazine_type = /obj/item/ammo_magazine/c30
 	weight = 4.3
 	firemodes = list(
 		list(name="single shot",burst=1, move_delay=2, fire_delay=6)
@@ -240,13 +240,13 @@
 	name = "M1918 BAR"
 	desc = "An american Light Machine Gun. Uses 30-06 rounds."
 	icon_state = "bar"
-	item_state = "dp0"
+	item_state = "bar"
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK
 	w_class = 4
-	caliber = "c762x63_smg"
-	magazine_type = /obj/item/ammo_magazine/c762x63_smg
-	ammo_type = /obj/item/ammo_casing/c762x63_smg
+	caliber = "c30-06"
+	magazine_type = /obj/item/ammo_magazine/c30_smg
+	ammo_type = /obj/item/ammo_casing/c30
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
 
 	firemodes = list(
