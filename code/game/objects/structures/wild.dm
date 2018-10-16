@@ -49,7 +49,7 @@
 		return ..()
 /obj/structure/wild/attackby(obj/item/W as obj, mob/user as mob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if(istype(W,/obj/item/weapon))
+	if(istype(W,/obj/item/weapon/material/hatchet))
 		health -= 25
 	else
 		switch(W.damtype)
