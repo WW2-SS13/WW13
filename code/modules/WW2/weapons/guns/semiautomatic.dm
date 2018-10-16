@@ -320,15 +320,8 @@
 /obj/item/weapon/gun/projectile/semiautomatic/stg/update_icon()
 	if (ammo_magazine)
 		icon_state = "stg"
-/*		if (wielded)
-			item_state = "stg-w"
-		else
-			item_state = "stg"*/
+		item_state = "stg"
 	else
 		icon_state = "stg0"
-/*		if (wielded)
-			item_state = "stg-w"
-		else
-			item_state = "stg0"*/
-	update_held_icon()
+		item_state = "stg0"
 	return
