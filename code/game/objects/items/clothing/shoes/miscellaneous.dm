@@ -42,6 +42,15 @@
 	item_flags = NOSLIP
 	siemens_coefficient = 0.6
 
+/obj/item/clothing/shoes/britboots
+	name = "British military boots"
+	desc = "When you want to turn up the heat."
+	icon_state = "swat"
+	force = WEAPON_FORCE_WEAK
+	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = FALSE)
+	item_flags = NOSLIP
+	siemens_coefficient = 0.6
+
 /obj/item/clothing/shoes/combat //Basically SWAT shoes combined with galoshes.
 	name = "combat boots"
 	desc = "When you REALLY want to turn up the heat"

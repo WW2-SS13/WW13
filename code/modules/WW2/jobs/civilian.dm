@@ -703,3 +703,35 @@
 	create_partisan(H)
 
 	return TRUE
+/////////////////////////////////////////////////////////////
+/datum/job/partisan/civilian/prisoner
+	title = "Zaklyucheny GULAG"
+	en_meaning = "GULAG Prisoner"
+	rank_abbreviation = "Zak"
+	selection_color = "#770e0e"
+	spawn_location = "JoinLatePOW"
+	additional_languages = list( "Russian" = 100 )
+	allow_spies = TRUE
+	is_prisoner = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 2
+	max_positions = 60
+
+/datum/job/partisan/civilian/prisoner/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/gulag(H), slot_w_uniform)
+	H.add_note("Role", "You are a <b>[title]</b>, a disgraced Soviet citizen thrown into the GULAG system in Siberia. Try to survive!")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start attacking the guards without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave. Your objective is to escape and reach one of the corners of the map. Dig tunnels, destroy the fence, and do anything to escape, but be realistic.")
+	H.setStat("strength", STAT_LOW)
+	H.setStat("engineering", STAT_LOW)
+	H.setStat("rifle", STAT_LOW)
+	H.setStat("mg", STAT_LOW)
+	H.setStat("smg", STAT_LOW)
+	H.setStat("pistol", STAT_LOW)
+	H.setStat("heavyweapon", STAT_LOW)
+	H.setStat("medical", STAT_LOW)
+	H.setStat("shotgun", STAT_LOW)
+	return TRUE

@@ -407,6 +407,44 @@
 	return list(new/obj/item/weapon/key/allied)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/usa/paratrooper
+	title = "Paratrooper"
+	en_meaning = "Paratrooper"
+	rank_abbreviation = "Pfc"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateRA"
+	additional_languages = list( "Russian" = 45, "German" = 25)
+	SL_check_independent = TRUE
+	is_special = TRUE
+
+	// AUTOBALANCE
+	min_positions = 0
+	max_positions = 0
+	player_threshold = PLAYER_THRESHOLD_MEDIUM
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+
+/datum/job/usa/paratrooper/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni_para(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ushelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/springfield(H), slot_back)
+	H.add_note("Role", "You are a <b>[title]</b>, a paratrooper. Your job is to assist in special operations.")
+	H.give_radio()
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
+	H.setStat("medical", STAT_VERY_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+
+/datum/job/usa/sniper/get_keys()
+	return list(new/obj/item/weapon/key/allied)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/usa/heavy_weapon
 	title = "Machinegunner"
@@ -544,3 +582,114 @@
 	return list(new/obj/item/weapon/key/allied)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/job/usa/soldier_pris
+	title = "Amerikaner Kriegsgefangener"
+	en_meaning = "American POW"
+	rank_abbreviation = "AKg"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLatePOW"
+	allow_spies = TRUE
+	additional_languages = list("German" = 33, "Japanese" = 15)
+	is_prisoner = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 2
+	max_positions = 60
+
+/datum/job/usa/soldier_pris/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
+	if (prob(80))
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni(H), slot_w_uniform)
+	else
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni2(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/stack/money(H), slot_r_store)
+	H.add_note("Role", "You are a <b>[title]</b>, a captured American soldier. Escape the camp, coordinating with the officers present!")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start attacking the guards without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave. Your objective is to escape and reach one of the corners of the map. Dig tunnels, destroy the fence, and do anything to escape, but be realistic.")
+	H.setStat("strength", STAT_LOW)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+
+/datum/job/usa/uk_soldier_pris
+	title = "Britische Kriegsgefangener"
+	en_meaning = "British POW"
+	rank_abbreviation = "BKg"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLatePOW"
+	allow_spies = TRUE
+	additional_languages = list("German" = 33, "Japanese" = 15)
+	is_prisoner = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 2
+	max_positions = 60
+
+/datum/job/usa/uk_soldier_pris/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/britboots(H), slot_shoes)
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/brituni(H), slot_w_uniform)
+
+	H.equip_to_slot_or_del(new /obj/item/stack/money(H), slot_r_store)
+	H.add_note("Role", "You are a <b>[title]</b>, a captured British soldier. Escape the camp, coordinating with the officers present!")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start attacking the guards without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave. Your objective is to escape and reach one of the corners of the map. Dig tunnels, destroy the fence, and do anything to escape, but be realistic.")
+	H.setStat("strength", STAT_LOW)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+
+/datum/job/usa/squad_leader_pris
+	title = "Allierte Offizier Kriegsgefangener"
+	en_meaning = "Allied Officer POW"
+	rank_abbreviation = "KGO"
+	head_position = FALSE
+	selection_color = "#770e0e"
+	spawn_location = "JoinLatePOW_off"
+	additional_languages = list( "German" = 100, "Japanese" = 100 )
+	is_officer = TRUE
+	SL_check_independent = TRUE
+	is_prisoner = TRUE
+
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 4
+
+/datum/job/usa/squad_leader_pris/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/uscapuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/stack/money(H), slot_l_store)
+	H.equip_to_slot_or_del(new /obj/item/stack/money(H), slot_r_store)
+
+	H.add_note("Role", "You are a <b>[title]</b>. Your job is to lead the other prisioners and organize the escape or takeover of the prison camp.")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start attacking the guards without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave. Your objective is to escape and reach one of the corners of the map. Dig tunnels, destroy the fence, and do anything to escape, but be realistic.")
+	H.setStat("strength", STAT_LOW)
+	H.setStat("engineering", STAT_HIGH)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_MEDIUM_LOW)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE

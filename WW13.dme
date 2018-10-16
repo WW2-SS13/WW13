@@ -326,10 +326,17 @@
 #include "code\game\objects\map_metadata\factory.dm"
 #include "code\game\objects\map_metadata\forest.dm"
 #include "code\game\objects\map_metadata\forest_new.dm"
+<<<<<<< HEAD
+=======
+#include "code\game\objects\map_metadata\gazala.dm"
+#include "code\game\objects\map_metadata\gulag.dm"
+>>>>>>> edba083ea91f9722f6972333f1836a9c8921def7
 #include "code\game\objects\map_metadata\island.dm"
 #include "code\game\objects\map_metadata\occupation.dm"
 #include "code\game\objects\map_metadata\partisan.dm"
 #include "code\game\objects\map_metadata\reichstag.dm"
+#include "code\game\objects\map_metadata\river_kwai.dm"
+#include "code\game\objects\map_metadata\stalag.dm"
 #include "code\game\objects\map_metadata\survival.dm"
 #include "code\game\objects\map_metadata\test.dm"
 #include "code\game\objects\map_metadata\tower.dm"
@@ -954,5 +961,10 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
+<<<<<<< HEAD
 #include "maps\winter_line.dmm"
+=======
+#include "maps\survival\fort.dmm"
+#include "maps\survival\sewers.dmm"
+>>>>>>> edba083ea91f9722f6972333f1836a9c8921def7
 // END_INCLUDE

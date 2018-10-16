@@ -273,7 +273,7 @@
 		C.activate_hand("r")
 
 /obj/screen/inventory/hand/update_icon()
-	if (slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) //Если данный элемент ХУДа отображает левую
+	if (slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) //Г…Г±Г«ГЁ Г¤Г Г­Г­Г»Г© ГЅГ«ГҐГ¬ГҐГ­ГІ Г•Г“Г„Г  Г®ГІГ®ГЎГ°Г Г¦Г ГҐГІ Г«ГҐГўГіГѕ
 		icon_state = "act_hand[slot_id==slot_l_hand ? "-l" : "-r"]"
 	else
 		icon_state = "hand[slot_id==slot_l_hand ? "-l" : "-r"]"
@@ -332,9 +332,10 @@
 	var/mob/living/carbon/human/H = parentmob
 
 	// show our worst status, hunger or thirst
-
+	
 	var/nstatus = Clamp(smart_round(1/(H.nutrition/H.max_nutrition)), 1, 4)
 	var/wstatus = Clamp(smart_round(1/(H.water/H.max_water)), 1, 4)
+
 	icon_state = "nutrition[max(nstatus, wstatus)]"
 
 /obj/screen/nutrition/Click()

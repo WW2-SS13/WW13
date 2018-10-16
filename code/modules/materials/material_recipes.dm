@@ -62,14 +62,14 @@ var/list/engineer_exclusive_recipe_types = list(/obj/structure/girder, /obj/stru
 
 /material/wood/generate_recipes()
 	..()
-	recipes += new/datum/stack_recipe("sandals", /obj/item/clothing/shoes/sandal, TRUE)
+//	recipes += new/datum/stack_recipe("sandals", /obj/item/clothing/shoes/sandal, TRUE)
 	recipes += new/datum/stack_recipe("floor tile", /obj/item/stack/tile/wood, TRUE, 4, 20)
 	recipes += new/datum/stack_recipe("chair", /obj/structure/bed/chair/wood, 3, _time = 7, _one_per_turf = TRUE, _on_floor = TRUE)
 	recipes += new/datum/stack_recipe("coffin", /obj/structure/closet/coffin, 4, _time = 10, _one_per_turf = TRUE, _on_floor = TRUE)
-	recipes += new/datum/stack_recipe("book shelf", /obj/structure/bookcase, 4, _time = 10, _one_per_turf = TRUE, _on_floor = TRUE)
+//	recipes += new/datum/stack_recipe("book shelf", /obj/structure/bookcase, 4, _time = 10, _one_per_turf = TRUE, _on_floor = TRUE)
 	recipes += new/datum/stack_recipe("door", /obj/structure/simple_door/key_door/anyone/wood, 5, _time = 30, _one_per_turf = TRUE, _on_floor = TRUE)
 	recipes += new/datum/stack_recipe("table", /obj/structure/table/wood, 4, _time = 7, _one_per_turf = TRUE, _on_floor = TRUE)
-	recipes += new/datum/stack_recipe("window frame", /obj/structure/window_frame, 3, _time = 30, _one_per_turf = TRUE, _on_floor = TRUE)
+//	recipes += new/datum/stack_recipe("window frame", /obj/structure/window_frame, 3, _time = 30, _one_per_turf = TRUE, _on_floor = TRUE)
 	recipes += new/datum/stack_recipe("makeshift knife grip", /obj/item/weapon/material/makeshift_knife_grip, TRUE, _on_floor = TRUE, _supplied_material = "[name]")
 
 /material/barbedwire/generate_recipes()

@@ -381,6 +381,13 @@
 	item_state = "USparatrooperuni"
 	worn_state = "USparatrooperuni"
 
+/obj/item/clothing/under/brituni
+	name = "British Army Uniform"
+	desc = "A standard uniform of the Royal Army of the United Kingdom."
+	icon_state = "USparatrooperuni"
+	item_state = "USparatrooperuni"
+	worn_state = "USparatrooperuni"
+
 /obj/item/clothing/under/usuni_mar
 	name = "US Marine Cammo Uniform"
 	desc = "A standard cammo uniform of the United States Marines."
@@ -1024,6 +1031,13 @@
 /obj/item/clothing/under/wrench
 	name = "Mechanic's Clothing"
 	desc = "Smells like oil and hard work."
+	icon_state = "wrench"
+	item_state = "wrench"
+	worn_state = "wrench"
+
+/obj/item/clothing/under/gulag
+	name = "Gulag Prisoner's Clothing"
+	desc = "Looks worn and dirty."
 	icon_state = "wrench"
 	item_state = "wrench"
 	worn_state = "wrench"

@@ -1314,3 +1314,218 @@ var/first_guard = FALSE
 /datum/job/soviet/NKVD/get_keys()
 	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/medic, new/obj/item/weapon/key/soviet/engineer,
 		new/obj/item/weapon/key/soviet/QM, new/obj/item/weapon/key/soviet/command_intermediate)
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////GUARDS///////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/job/soviet/commander_nkvd
+	title = "NKVD Kapitan"
+	en_meaning = "NKVD Camp Director"
+	rank_abbreviation = "Kap"
+	head_position = TRUE
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateSS-Officer"
+	is_SS_TV = TRUE
+	additional_languages = list( "English" = 100, "Ukrainian" = 75)
+	is_officer = TRUE
+	is_commander = TRUE // not a squad leader despite the title
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+	player_threshold = PLAYER_THRESHOLD_HIGHEST - 15
+
+/datum/job/soviet/commander_nkvd/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/nkvduni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/NKVDcap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/soviet/MP(H), slot_belt)
+
+	H.add_note("Role", "You are a <b>[title]</b>, and this camp's director. Keep the prisioners (and the guards) in order!")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start shooting at the prisoners without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave.")
+	H.give_radio()
+	if (secret_ladder_message)
+		H << "<br>[secret_ladder_message]"
+
+	// glorious SS stats
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_HIGH)
+	H.setStat("smg", STAT_VERY_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
+	return TRUE
+
+/datum/job/soviet/commander_nkvd/update_character(var/mob/living/carbon/human/H)
+	..()
+
+	H.make_artillery_officer()
+
+/datum/job/soviet/commander_nkvd/get_keys()
+	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/command_intermediate, new/obj/item/weapon/key/soviet/command_high,)
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////
+/datum/job/soviet/squad_leader_nkvd
+	title = "NKVD Starshina"
+	en_meaning = "NKVD Squad Leader"
+	rank_abbreviation = "Str"
+	head_position = TRUE
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateSS-Officer"
+	is_SS_TV = TRUE
+	additional_languages = list( "English" = 100, "Ukrainian" = 75)
+	is_officer = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 3
+	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
+
+/datum/job/soviet/squad_leader_nkvd/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/nkvduni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm/MP(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/soviet/MP(H), slot_belt)
+	H.add_note("Role", "You are a <b>[title]</b>, a squad leader for a NKVD unit. Your job is to follow the Camp Director's orders.")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start shooting at the prisoners without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave.")
+	H.give_radio()
+	if (secret_ladder_message)
+		H << "<br>[secret_ladder_message]"
+
+	// glorious SS stats
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_HIGH)
+	H.setStat("smg", STAT_VERY_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
+	return TRUE
+
+/datum/job/soviet/squad_leader_nkvd/update_character(var/mob/living/carbon/human/H)
+	..()
+
+	H.make_artillery_officer()
+
+/datum/job/soviet/squad_leader_nkvd/get_keys()
+	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/command_intermediate,)
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/soviet/soldier_nkvd
+	title = "NKVD Strazha"
+	en_meaning = "NKVD Guard"
+	rank_abbreviation = "Efr"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateSS"
+	additional_languages = list( "English" = 40, "Ukrainian" = 20)
+	is_SS_TV = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 4
+	max_positions = 20
+	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
+
+/datum/job/soviet/soldier_nkvd/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/nkvduni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovcap/fieldcap2(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/soviet/MP(H), slot_belt)
+	H.add_note("Role", "You are a <b>[title]</b>, a soldier of the NKVD, in charge of a GULAG. Follow the rules of your <b>Starshina</b>.")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start shooting at the prisoners without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave.")
+	H.give_radio()
+	// glorious SS stats
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("survival", STAT_VERY_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
+	return TRUE
+
+/datum/job/soviet/soldier_nkvd/get_keys()
+	return list(new/obj/item/weapon/key/soviet)
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/soviet/medic_nkvd
+	title = "NKVD Doktor"
+	en_meaning = "NKVD Medic"
+	rank_abbreviation = "Ser" // oGftr for normal medics
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateSS"
+	is_SS_TV = TRUE
+	SL_check_independent = TRUE
+	additional_languages = list( "English" = 60, "Ukrainian" = 25)
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 2
+	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
+
+/datum/job/soviet/medic_nkvd/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/nkvduni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/soviet/MP(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), slot_r_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
+	H.add_note("Role", "You are a <b>[title]</b>, the camp doctor. Heal your comrades first, follow the orders of the <b>Starshina</b>, and maybe help some prisioners.")
+	H.add_note("Rules", "ATTENTION! This is a <b>HIGH-ROLEPLAY</b> map! <b>DO NOT</b> start shooting at the prisoners without a reason, and act reallisticaly. If you do not want to play in a HIGH RP gamemode, please leave.")
+	H.give_radio()
+
+	// glorious SS stats
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_VERY_HIGH)
+	H.setStat("survival", STAT_VERY_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
+	return TRUE
+
+/datum/job/soviet/medic_nkvd/get_keys()
+	return list(new/obj/item/weapon/key/soviet)

@@ -561,6 +561,30 @@
 		icon_state = pick("concrete10", "concrete11")
 		return
 
+/turf/floor/plating/metro
+	name = "metrofull"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "metrofull"
+	interior = TRUE
+
+/turf/floor/plating/metroz
+	name = "metroedges"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "metroedges"
+	interior = TRUE
+
+/turf/floor/plating/track
+	name = "track"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "rail_strait"
+	interior = TRUE
+
+/turf/floor/plating/style
+	name = "style"
+	icon = 'icons/turf/stylefloor.dmi'
+	icon_state = "sandstone"
+	interior = TRUE
+
 /turf/floor/plating/road
 	name = "road"
 	icon = 'icons/turf/floors.dmi'
