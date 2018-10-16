@@ -25,7 +25,7 @@
 	gun_type = GUN_TYPE_MG
 
 /obj/item/weapon/gun/projectile/automatic/mini_uzi
-	name = "improper Uzi"
+	name = "\improper Uzi"
 	desc = "The UZI is a lightweight, fast firing gun. For when you want someone dead. Uses .45 rounds."
 	icon_state = "mini-uzi"
 	w_class = 3
@@ -33,7 +33,7 @@
 	max_shells = 15
 	caliber = ".45"
 //	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
-	ammo_type = /obj/item/ammo_casing/c45
+	ammo_type = /obj/item/ammo_casing/c45cal
 
 /obj/item/weapon/gun/projectile/automatic/c20r
 	name = "submachine gun"

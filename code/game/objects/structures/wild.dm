@@ -49,7 +49,7 @@
 		return ..()
 /obj/structure/wild/attackby(obj/item/W as obj, mob/user as mob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if(istype(W,/obj/item/weapon))
+	if(istype(W,/obj/item/weapon/material/hatchet))
 		health -= 25
 	else
 		switch(W.damtype)
@@ -111,7 +111,7 @@
 
 /obj/structure/wild/palm
 	name = "palm tree"
-	icon = 'icons/turf/beach2.dmi'
+	icon = 'icons/misc/beach2.dmi'
 	icon_state = "palm1"
 	opacity = TRUE
 	density = TRUE

@@ -47,7 +47,26 @@
 	new_player_mob_list -= src
 
 /mob/new_player/say(var/message)
-	return
+	message = sanitize(message)
+
+	if (!message)
+		return
+
+	log_say("New Player/[key] : [message]")
+
+	if (client)
+		if (client.prefs.muted & MUTE_DEADCHAT)
+			src << "<span class = 'red'>You cannot talk in lobbychat (muted).</span>"
+			return
+
+		if (client.handle_spam_prevention(message,MUTE_DEADCHAT))
+			return
+
+	for (var/new_player in new_player_mob_list)
+		if (new_player:client) // sanity check
+			new_player << "<span class = 'ping'><small>["\["]LOBBY["\]"]</small></span> <span class='deadsay'><b>[capitalize(key)]</b>:</span> [capitalize(message)]"
+
+	return TRUE
 
 /mob/new_player/verb/new_player_panel()
 	set src = usr
