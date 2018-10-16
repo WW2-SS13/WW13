@@ -126,10 +126,6 @@
 	return shock_damage
 
 /mob/living/carbon/swap_hand()
-	var/active_hand = get_active_hand()
-	if (active_hand && istype(active_hand,/obj/item/weapon/attachment/scope))
-		var/obj/item/weapon/attachment/scope/scope = active_hand
-		scope.zoom(src,0)
 	hand = !( hand )
 	for (var/obj/screen/inventory/hand/H in HUDinventory)
 		H.update_icon()

@@ -124,14 +124,12 @@ Parts of code courtesy of Super3222
 		if (user.client.pixel_x || user.client.pixel_y) //Keep people from looking through two scopes at once
 			if (!silent) user << "You are too distracted to look through \the [src]."
 			return FALSE
-
 		if (user.get_active_hand() != src)
 			if (!silent) user << "You are too distracted to look through \the [src]."
 			return FALSE
 	else if (user.get_active_hand() != loc)
 		if (!silent) user << "You are too distracted to look through \the [src]."
 		return FALSE
-
 	else
 		var/obj/item/organ/eyes/E = H.internal_organs_by_name["eyes"]
 		if (E.is_bruised() || E.is_broken() || H.eye_blind > 0)
