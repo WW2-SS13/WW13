@@ -209,6 +209,7 @@
 		list(name="long bursts",	burst=6, burst_delay=1.2, recoil=0.8, move_delay=4, dispersion = list(1.4, 1.6, 1.6, 1.6, 1.8)),
 		)
 
+//WW1 gun don't know why this is in here//
 //	can_wield = TRUE
 
 	sel_mode = 1
@@ -372,7 +373,7 @@
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
-	caliber = "c45_smg"
+	caliber = "c45"
 	magazine_type = /obj/item/ammo_magazine/thompson_ammo
 	weight = 3.7
 	firemodes = list(
@@ -400,7 +401,7 @@
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
-	caliber = "c45_smg"
+	caliber = "c45"
 	magazine_type = /obj/item/ammo_magazine/thompson_ammo
 	weight = 4.5
 	firemodes = list(
@@ -428,7 +429,7 @@
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
-	caliber = "c45_smg"
+	caliber = "c45"
 	magazine_type = /obj/item/ammo_magazine/thompson_ammo/tommy_ammo
 	weight = 4.2
 	firemodes = list(

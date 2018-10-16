@@ -79,7 +79,7 @@
 //	origin_tech = list(TECH_COMBAT = 2)
 	caliber = "c45cal"
 	matter = list(DEFAULT_WALL_MATERIAL = 2250)
-	ammo_type = /obj/item/ammo_casing/c45cal
+	ammo_type = /obj/item/ammo_casing/c45
 	max_ammo = 30
 
 /obj/item/ammo_magazine/c9mm/empty

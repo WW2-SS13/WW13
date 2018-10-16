@@ -23,7 +23,7 @@ WW 2 WEAPONS MAGS N AMMO
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/mosinbox
-	name = "magazine box (7.62x54mm)"
+	name = "ammo box (7.62x54mm)"
 	icon_state = "mosin_ammo"
 //	origin_tech = "combat=2"
 	mag_type = MAGAZINE
@@ -69,7 +69,7 @@ WW 2 WEAPONS MAGS N AMMO
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/arisakabox
-	name = "magazine box (7.7x58mm)"
+	name = "ammo box (7.7x58mm)"
 	icon_state = "mosin_ammo"
 //	origin_tech = "combat=2"
 	mag_type = MAGAZINE
@@ -81,35 +81,35 @@ WW 2 WEAPONS MAGS N AMMO
 	multiple_sprites = TRUE
 	is_box = TRUE
 
-/obj/item/ammo_magazine/c762x63
+/obj/item/ammo_magazine/c30
 	name = "Clip (30-06), 8 rds."
 	icon_state = "clip"
-	caliber = "c762x63"
+	caliber = "c30-06"
 	matter = list(DEFAULT_WALL_MATERIAL = 360)
-	ammo_type = /obj/item/ammo_casing/c762x63
+	ammo_type = /obj/item/ammo_casing/c30
 	max_ammo = 8
 	weight = 0.05
 	multiple_sprites = TRUE
 
-/obj/item/ammo_magazine/c762x63_5
+/obj/item/ammo_magazine/c30_5
 	name = "Clip (30-06), 5 rds."
 	icon_state = "clip"
-	caliber = "c762x63"
+	caliber = "c30-06"
 	matter = list(DEFAULT_WALL_MATERIAL = 360)
-	ammo_type = /obj/item/ammo_casing/c762x63
+	ammo_type = /obj/item/ammo_casing/c30
 	max_ammo = 5
 	weight = 0.05
 	multiple_sprites = TRUE
 
-/obj/item/ammo_magazine/garandbox
-	name = "magazine box (30-06)"
-	icon_state = "mosin_ammo"
+/obj/item/ammo_magazine/ammobox30cal
+	name = "ammo box (30-06)"
+	icon_state = "762_abox"
 //	origin_tech = "combat=2"
 	mag_type = MAGAZINE
-	caliber = "c762x63"
+	caliber = "c30-06"
 	w_class = 3
 	matter = list(DEFAULT_WALL_MATERIAL = 4500)
-	ammo_type = /obj/item/ammo_casing/c762x63
+	ammo_type = /obj/item/ammo_casing/c30
 	max_ammo = 50
 	multiple_sprites = TRUE
 	is_box = TRUE
@@ -126,6 +126,19 @@ WW 2 WEAPONS MAGS N AMMO
 	max_ammo = 32
 	weight = 0.72
 	multiple_sprites = TRUE
+
+/obj/item/ammo_magazine/ammobox9mm
+	name = "9x19mm ammo box"
+	icon_state = "9mm_abox"
+//	origin_tech = "combat=2"
+	mag_type = MAGAZINE
+	caliber = "9x19mm"
+	w_class = 3
+	matter = list(DEFAULT_WALL_MATERIAL = 4500)
+	ammo_type = /obj/item/ammo_casing/a9_parabellum
+	max_ammo = 200
+	multiple_sprites = TRUE
+	is_box = TRUE
 
 /obj/item/ammo_magazine/bren
 	name = "magazine (.303)"
@@ -238,7 +251,7 @@ WW 2 WEAPONS MAGS N AMMO
 //	origin_tech = "combat=2"
 	mag_type = MAGAZINE
 	matter = list(DEFAULT_WALL_MATERIAL = 600)
-	caliber = "a9mm_para_luger"
+	caliber = "9x19mm"
 	ammo_type = /obj/item/ammo_casing/a9_parabellum_luger
 	max_ammo = 8
 	weight = 0.0143
@@ -260,9 +273,9 @@ WW 2 WEAPONS MAGS N AMMO
 	name = "M1911 magazine (.45)"
 	icon_state = "45"
 	mag_type = MAGAZINE
-	ammo_type = /obj/item/ammo_casing/c45cal
+	ammo_type = /obj/item/ammo_casing/c45
 	matter = list(DEFAULT_WALL_MATERIAL = 525) //metal costs are very roughly based around TRUE .45 casing = 75 metal
-	caliber = "c45cal"
+	caliber = "c45"
 	max_ammo = 7
 	multiple_sprites = TRUE
 
@@ -349,7 +362,7 @@ WW 2 WEAPONS MAGS N AMMO
 	icon_state = "m38"
 	caliber = "9x19mm"
 	mag_type = MAGAZINE
-	ammo_type = /obj/item/ammo_casing/s9x19mm
+	ammo_type = /obj/item/ammo_casing/p9x19mm
 	max_ammo = 40
 	weight = 0.82
 	multiple_sprites = TRUE
@@ -417,7 +430,7 @@ OTHER
 /obj/item/ammo_magazine/a75/empty
 	initial_ammo = FALSE
 
-/obj/item/ammo_magazine/a792
+/obj/item/ammo_magazine/a792_drum
 	name = "Mg34 drum magazine"
 	icon_state = "mg34_drum"
 ////	origin_tech = "combat=2"
@@ -607,9 +620,9 @@ OTHER
 	name = "magazine (.45 cal)"
 	icon_state = "m1a1"
 	mag_type = MAGAZINE
-	caliber = "c45_smg"
+	caliber = "c45"
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
-	ammo_type = /obj/item/ammo_casing/c45_smg
+	ammo_type = /obj/item/ammo_casing/c45
 	max_ammo = 30
 	multiple_sprites = TRUE
 
@@ -617,19 +630,31 @@ OTHER
 	name = "drum (.45 cal)"
 	icon_state = "m1a1_drum"
 	mag_type = MAGAZINE
-	caliber = "c45_smg"
+	caliber = "c45"
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
-	ammo_type = /obj/item/ammo_casing/c45_smg
+	ammo_type = /obj/item/ammo_casing/c45
 	max_ammo = 50
 	multiple_sprites = TRUE
 
-/obj/item/ammo_magazine/c762x63_smg
+/obj/item/ammo_magazine/abox45cal
+	name = "magazine box (.45 cal)"
+	icon_state = "45_abox"
+//	origin_tech = "combat=2"
+	mag_type = MAGAZINE
+	caliber = "c45"
+	matter = list(DEFAULT_WALL_MATERIAL = 4500)
+	ammo_type = /obj/item/ammo_casing/c45
+	max_ammo = 400
+	multiple_sprites = TRUE
+	is_box = TRUE
+
+/obj/item/ammo_magazine/c30_smg
 	name = "magazine (30-06)"
 	icon_state = "fg42"
 	mag_type = MAGAZINE
-	caliber = "c762x63_smg"
+	caliber = "c30"
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
-	ammo_type = /obj/item/ammo_casing/c762x63_smg
+	ammo_type = /obj/item/ammo_casing/c30_smg
 	max_ammo = 20
 	multiple_sprites = TRUE
 

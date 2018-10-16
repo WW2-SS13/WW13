@@ -239,10 +239,10 @@
 	desc = "American bolt-action rifle chambered in 30-06 Springfield ammunition. Mostly used as a sniper rifle."
 	icon_state = "springfield"
 	item_state = "springfield"
-	caliber = "c762x63"
+	caliber = "c30-06"
 	fire_sound = 'sound/weapons/kar_shot.ogg'
-	ammo_type = /obj/item/ammo_casing/c762x63
-	magazine_type = /obj/item/ammo_magazine/c762x63_5
+	ammo_type = /obj/item/ammo_casing/c30
+	magazine_type = /obj/item/ammo_magazine/c30_5
 	bolt_safety = TRUE
 	effectiveness_mod = 0.98
 

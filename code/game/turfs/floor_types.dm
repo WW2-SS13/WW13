@@ -438,7 +438,7 @@
 
 /turf/floor/plating/beach
 	name = "Beach"
-	icon = 'icons/misc/beach.dmi'
+	icon = 'icons/turf/beach.dmi'
 
 /turf/floor/plating/beach/sand
 	name = "Sand"
@@ -446,7 +446,7 @@
 
 /turf/floor/plating/beach/coastline
 	name = "Coastline"
-	icon = 'icons/misc/beach2.dmi'
+	icon = 'icons/turf/beach2.dmi'
 	icon_state = "sandwater"
 
 /turf/floor/plating/beach/water
@@ -466,6 +466,9 @@
 		return TRUE
 	else if (istype(mover, /mob))
 		return FALSE
+	else if (istype(mover, /obj/tank))
+		move_delay = 3
+		return TRUE
 	else
 		return ..()
 /turf/floor/plating/beach/water/get_move_delay()
@@ -495,14 +498,14 @@
 	..()
 	if (!istype(src, /turf/floor/plating/beach/water/ice))
 		if (!istype(src, /turf/floor/plating/beach/water/sewage))
-			overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=layer+0.1)
+			overlays += image("icon"='icons/turf/beach.dmi',"icon_state"="water5","layer"=layer+0.1)
 		else
-			var/image/I = image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=layer+0.1)
+			var/image/I = image("icon"='icons/turf/beach.dmi',"icon_state"="water5","layer"=layer+0.1)
 			I.color = color
 			I.alpha = 155
 			overlays += I
 			alpha = 155
-			I = image("icon"='icons/misc/beach.dmi',"icon_state"="plating","layer"=layer-0.1)
+			I = image("icon"='icons/turf/beach.dmi',"icon_state"="plating","layer"=layer-0.1)
 			underlays += I
 
 /turf/floor/plating/beach/water/ice

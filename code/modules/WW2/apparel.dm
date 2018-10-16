@@ -454,14 +454,6 @@
 	item_state = "itauni_officer"
 	worn_state = "itauni_officer"
 
-/obj/item/clothing/suit/fallsparka
-	name = "Fallschirmjager Parka"
-	desc = "A warm and comfy parka for Fallschirmjagers."
-	icon_state = "fallsparka"
-	item_state = "fallsparka"
-	worn_state = "fallsparka"
-	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
-
 /obj/item/clothing/head/helmet/gerhelm
 	name = GERMAN_HELMET_NAME
 	desc = GERMAN_HELMET_DESC
@@ -811,7 +803,7 @@
 	desc = "A belt that can hold gear like pistols, ammo and other things."
 	icon_state = "USgear"
 	item_state = "USgear"
-	storage_slots = 12
+	storage_slots = 14
 	max_w_class = 3
 	max_storage_space = 24
 	can_hold = list(
@@ -1118,15 +1110,17 @@
 	desc = "You wear this on your back and put items into it."
 	icon_state = "germanpack"
 	item_state_slots = null
+
 /obj/item/weapon/storage/backpack/japan
 	name = "japanese backpack"
 	desc = "You wear this on your back and put items into it."
-	icon_state = "germanpack"
+	icon_state = "japnesspack"
 	item_state_slots = null
+
 /obj/item/weapon/storage/backpack/usa
 	name = "american backpack"
 	desc = "You wear this on your back and put items into it."
-	icon_state = "russianpack"
+	icon_state = "usapack"
 	item_state_slots = null
 
 //portable rations
@@ -1235,6 +1229,14 @@
 	desc =  "A standard ghillie suit."
 	icon_state = "ger_ghillie"
 	item_state = "ger_ghillie"
+	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
+
+/obj/item/clothing/suit/storage/coat/fallsparka
+	name = "Fallschirmjager Parka"
+	desc = "A warm and comfy parka for Fallschirmjagers."
+	icon_state = "fallsparka"
+	item_state = "fallsparka"
+	worn_state = "fallsparka"
 	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
 
 /obj/item/clothing/suit/storage/coat/italian

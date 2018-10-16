@@ -103,7 +103,7 @@ WW 2 WEAPONS MAGS N AMMO
 	desc = "A 9mm parabellum bullet casing."
 	icon_state = "pistol_bullet_anykind"
 	spent_icon = "pistol_bullet_casing"
-	caliber = "a9mm_para_luger"
+	caliber = "9x19mm"
 	weight = 0.0095
 	projectile_type = /obj/item/projectile/bullet/rifle/a9_parabellum_luger
 
@@ -123,40 +123,40 @@ WW 2 WEAPONS MAGS N AMMO
 	weight = 0.0095
 	projectile_type = /obj/item/projectile/bullet/rifle/c8mmnambu_smg
 
-/obj/item/ammo_casing/c45cal
+/obj/item/ammo_casing/c45l
 	desc = "A .45 bullet casing."
 	icon_state = "pistol_bullet_anykind"
 	spent_icon = "pistol_bullet_casing"
-	caliber = "c45cal"
+	caliber = "c45"
 	projectile_type = /obj/item/projectile/bullet/rifle/c45cal
 
-/obj/item/ammo_casing/c45_smg
+/obj/item/ammo_casing/c45
 	desc = "A .45 bullet casing."
 	icon_state = "pistol_bullet_anykind"
 	spent_icon = "pistol_bullet_casing"
-	caliber = "c45_smg"
+	caliber = "c45"
 	projectile_type = /obj/item/projectile/bullet/rifle/c45_smg
 
-/obj/item/ammo_casing/c762x63
+/obj/item/ammo_casing/c30
 	desc = "A 30-06 bullet casing."
-	icon_state = "kclip-bullet"
-	spent_icon = "kclip-casing"
-	caliber = "c762x63"
+	icon_state = "kclipe-bullet"
+	spent_icon = "kclipe-casing"
+	caliber = "c30-06"
 	projectile_type = /obj/item/projectile/bullet/rifle/c762x63
 
 /obj/item/ammo_casing/bren
 	desc = "A .303 bullet casing."
-	icon_state = "kclip-bullet"
-	spent_icon = "kclip-casing"
+	icon_state = "kclipe-bullet"
+	spent_icon = "kclipe-casing"
 	caliber = ".303"
 	projectile_type = /obj/item/projectile/bullet/rifle/bren
 
 
-/obj/item/ammo_casing/c762x63_smg
+/obj/item/ammo_casing/c30_smg
 	desc = "A 30-06 bullet casing."
-	icon_state = "kclip-bullet"
-	spent_icon = "kclip-casing"
-	caliber = "c762x63_smg"
+	icon_state = "kclipe-bullet"
+	spent_icon = "kclipe-casing"
+	caliber = "c30-06"
 	projectile_type = /obj/item/projectile/bullet/rifle/c762x63_smg
 
 
@@ -217,14 +217,6 @@ WW 2 WEAPONS MAGS N AMMO
 	spent_icon = "pistol_bullet_casing"
 	weight = 0.00952
 	projectile_type = /obj/item/projectile/bullet/rifle/p9x19mm
-
-/obj/item/ammo_casing/s9x19mm
-	desc = "A 9x19mm Parabellum bullet casing."
-	caliber = "9x19mm"
-	icon_state = "pistol_bullet_anykind"
-	spent_icon = "pistol_bullet_casing"
-	weight = 0.00952
-	projectile_type = /obj/item/projectile/bullet/rifle/s9x19mm
 
 /*
 /obj/item/ammo_casing/svt
