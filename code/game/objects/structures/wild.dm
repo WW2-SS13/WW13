@@ -111,7 +111,7 @@
 
 /obj/structure/wild/palm
 	name = "palm tree"
-	icon = 'icons/turf/beach2.dmi'
+	icon = 'icons/misc/beach2.dmi'
 	icon_state = "palm1"
 	opacity = TRUE
 	density = TRUE

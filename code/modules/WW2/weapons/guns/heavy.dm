@@ -83,7 +83,7 @@
 
 
 /obj/item/weapon/gun/projectile/heavy/mk12
-	name = "improper MK12"
+	name = "\improper MK12"
 	desc = "Heavy scoped rifle."
 	icon_state = "mk12_loaded"
 	item_state = "mk12_loaded"

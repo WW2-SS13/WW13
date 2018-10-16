@@ -806,7 +806,7 @@ var/first_fallschirm = TRUE
 		for (var/v in 1 to 4)
 			uniform.attackby(new /obj/item/ammo_magazine/kar98k(null), H)
 
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/coat/fallsparka(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/fallsparka(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/german/paratrooper(H), slot_back)
@@ -1720,7 +1720,7 @@ var/first_fallschirm = TRUE
 	var/obj/item/clothing/under/uniform = H.w_uniform
 	uniform.attackby(webbing, H)
 	uniform.attackby(new /obj/item/ammo_magazine/kar98k(null), H)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/coat/fallsparka(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/fallsparka(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_r_hand)
