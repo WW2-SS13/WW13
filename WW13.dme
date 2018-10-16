@@ -330,7 +330,6 @@
 #include "code\game\objects\map_metadata\gulag.dm"
 #include "code\game\objects\map_metadata\island.dm"
 #include "code\game\objects\map_metadata\occupation.dm"
-#include "code\game\objects\map_metadata\october.dm"
 #include "code\game\objects\map_metadata\partisan.dm"
 #include "code\game\objects\map_metadata\reichstag.dm"
 #include "code\game\objects\map_metadata\river_kwai.dm"
@@ -793,6 +792,7 @@
 #include "code\modules\WW2\fluff_objs.dm"
 #include "code\modules\WW2\fuel.dm"
 #include "code\modules\WW2\gasser.dm"
+#include "code\modules\WW2\handheld_flags.dm"
 #include "code\modules\WW2\hats.dm"
 #include "code\modules\WW2\helmet.dm"
 #include "code\modules\WW2\helpers.dm"
@@ -959,6 +959,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\survival\fort.dmm"
-#include "maps\survival\sewers.dmm"
+#include "maps\winter_line.dmm"
 // END_INCLUDE

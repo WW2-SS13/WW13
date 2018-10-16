@@ -38,18 +38,21 @@ var/list/global/floor_cache = list()
 /turf/floor/trench/Enter(atom/movable/O, atom/oldloc)
 	if(isliving(O))
 		var/mob/living/L = O
+		var/message_cooldown
 		if(!istype(oldloc, /turf/floor/trench))
 			if(L.grabbed_by && L.grabbed_by.len)
 				var/mob/living/L2 = L.grabbed_by[1].assailant
 				visible_message("<span class = 'notice'>[L2] starts pulling [L] out of trench.</span>")
-				if(!do_after(L2, 35, oldloc))
+				if(!do_after(L2, 20, oldloc))
 					return FALSE
 				if(..())
 					visible_message("<span class = 'notice'>[L2] pulls [L] out of trench.</span>")
 					L.forceMove(src)
 					return TRUE
 				return FALSE
-			visible_message("<span class = 'notice'>[L] starts to enter a trench.</span>")
+			if(world.time > message_cooldown + 30)
+				visible_message("<span class = 'notice'>[L] starts to enter a trench.</span>")
+				message_cooldown = world.time
 			if (!do_after(L, 5, src, needhand = FALSE))
 				return FALSE
 			if(..())
@@ -62,6 +65,7 @@ var/list/global/floor_cache = list()
 /turf/floor/trench/Exit(atom/movable/O, atom/newloc)
 	if(isliving(O))
 		var/mob/living/L = O
+		var/message_cooldown
 		if(!istype(newloc, /turf/floor/trench))
 			if(L.grabbed_by && L.grabbed_by.len)
 				var/mob/living/L2 = L.grabbed_by[1].assailant
@@ -73,8 +77,16 @@ var/list/global/floor_cache = list()
 					L.forceMove(newloc)
 					return TRUE
 				return FALSE
-			visible_message("<span class = 'notice'>[L] starts to exit a trench.</span>")
-			if (!do_after(L, 35, src, needhand = FALSE))
+			var/atom/newlocation = get_step(L,L.dir)
+			if (newlocation.density)
+				return FALSE
+			for (var/atom/A in newlocation)
+				if (A.density)
+					return FALSE
+			if(world.time > message_cooldown + 30)
+				visible_message("<span class = 'notice'>[L] starts to exit a trench.</span>")
+				message_cooldown = world.time
+			if (!do_after(L, 20, src, needhand = FALSE))
 				return FALSE
 			if(..())
 				visible_message("<span class = 'notice'>[L] exits a trench.</span>")

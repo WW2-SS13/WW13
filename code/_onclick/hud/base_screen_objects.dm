@@ -332,9 +332,9 @@
 	var/mob/living/carbon/human/H = parentmob
 
 	// show our worst status, hunger or thirst
-	
-	var/nstatus = Clamp(smart_round(1/(H.nutrition/H.max_nutrition)), 1, 4)
-	var/wstatus = Clamp(smart_round(1/(H.water/H.max_water)), 1, 4)
+
+	var/nstatus = 0 //Clamp(smart_round(1/(H.nutrition/H.max_nutrition)), 1, 4)
+	var/wstatus = 0 //Clamp(smart_round(1/(H.water/H.max_water)), 1, 4)
 
 	icon_state = "nutrition[max(nstatus, wstatus)]"
 

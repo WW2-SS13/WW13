@@ -17,3 +17,11 @@
 /obj/item/clothing/accessory/badge/WW2/gold
 	icon = 'icons/obj/clothing/badges.dmi'
 	icon_state = "gold"
+
+/obj/item/clothing/accessory/badge/WW2/sov
+	icon = 'icons/WW2/flags.dmi'
+	worn_state = "sv"
+
+/obj/item/clothing/accessory/badge/WW2/ger
+	icon = 'icons/WW2/flags.dmi'
+	worn_state = "gr"

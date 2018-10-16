@@ -42,6 +42,8 @@
 "P" = (/obj/item/weapon/vehicle_fueltank/empty,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
 "Q" = (/obj/item/weapon/plastique/russian,/turf/floor/plating/metroz{icon_state = "metroedges"; dir = 8},/area/prishtina)
 "R" = (/obj/item/weapon/plastique/russian,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
+"S" = (/obj/effect/landmark{name = "JoinLatePartisan"},/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
+"T" = (/obj/effect/decal/cleanable/dirt,/obj/effect/landmark{name = "JoinLatePartisan"},/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina)
 
 (1,1,1) = {"
 cccaqqqqqffdededbccc
@@ -86,9 +88,9 @@ cccadejjjlgjedevQccc
 cccadejjjggjedewbccc
 cccadjjejjjjjjedbcRc
 cccadejjjjjjjjjdbRcc
-cccadejjjgljjjedbccc
-cccadejjjggjjjjdbccc
-jccadjjjjjjjjjjjbccc
+cccadejjjgljjjedbSSS
+cccadejjjggjjjjdbSTS
+jccadjjjjjjjjjjjbSSS
 cjcajjjjjjjjjjjjbccc
 kjcajjjejlljjjjjjccm
 jjnajjjjjjjjjjjjbopm
