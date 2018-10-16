@@ -17,6 +17,7 @@
 #define MAP_RIVER_KWAI "RIVER_KWAI"
 #define MAP_STALAG "STALAG"
 #define MAP_GULAG "GULAG"
+#define MAP_TRAIN "TRAIN"
 
 #define MODE_WAR 1
 #define MODE_GERMAN_OCCUPATION 2

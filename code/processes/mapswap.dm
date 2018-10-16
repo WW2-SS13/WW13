@@ -19,6 +19,7 @@
 		MAP_FACTORY = 0,
 		MAP_WINTER_LINE = 10,
 		MAP_GAZALA = 20,
+		MAP_TRAIN = 0
 	)
 
 	var/ready = TRUE
