@@ -18,4 +18,5 @@ Manager +@ +PERMISSIONS
 Senator +EVERYTHING
 Senate Chairman +EVERYTHING
 Host +EVERYTHING
+Judge +MENTOR +STEALTH 
 Debug Host +EVERYTHING
