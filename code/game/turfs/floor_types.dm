@@ -466,6 +466,9 @@
 		return TRUE
 	else if (istype(mover, /mob))
 		return FALSE
+	else if (istype(mover, /obj/tank))
+		move_delay = 3
+		return TRUE
 	else
 		return ..()
 /turf/floor/plating/beach/water/get_move_delay()
