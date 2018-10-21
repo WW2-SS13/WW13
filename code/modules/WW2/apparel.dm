@@ -504,13 +504,13 @@
 	icon_state = "UShelm_nco"
 	item_state = "UShelm_nco"
 
-/obj/item/clothing/head/helmet/ushelm/2lt
+/obj/item/clothing/head/helmet/ushelm/lt2
 	name = "US 2Lt. helmet"
 	desc = "A simple steel helmet worn by American GIs, with a the markings of a 2nd Lt. in the front."
 	icon_state = "UShelm_2lt"
 	item_state = "UShelm_2lt"
 
-/obj/item/clothing/head/helmet/ushelm/1lt
+/obj/item/clothing/head/helmet/ushelm/lt1
 	name = "US 1Lt. helmet"
 	desc = "A simple steel helmet worn by American GIs, with a the markings of a 1nd Lt. in the front."
 	icon_state = "UShelm_1lt"
@@ -521,7 +521,6 @@
 	desc = "A simple steel helmet worn by American GIs, with a the markings of a Captain in the front."
 	icon_state = "UShelm_cap"
 	item_state = "UShelm_cap"
-
 
 /obj/item/clothing/head/helmet/fire
 	name = "Firefighter cap"

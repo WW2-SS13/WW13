@@ -1750,7 +1750,7 @@ var/first_fallschirm = TRUE
 	en_meaning = "Militia"
 	rank_abbreviation = "Vlkst"
 	selection_color = "#4c4ca5"
-	spawn_location = "JoinLateHeer"
+	spawn_location = "JoinLateHeerVolks"
 	is_reichstag = TRUE
 	SL_check_independent = TRUE
 

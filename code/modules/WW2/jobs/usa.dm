@@ -71,7 +71,7 @@
 	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni_mp(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/usmphelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ushelm/usmphelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/usa/MP(H), slot_belt)
 	var/obj/item/clothing/accessory/armband/usmp/usmp_a = new /obj/item/clothing/accessory/armband/usmp(null)
 	var/obj/item/clothing/under/uniform = H.w_uniform
@@ -117,7 +117,7 @@
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ushelm_nco(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ushelm/nco(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/thompson(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>. Your job is to lead offensive units of the US Army force according to the <b>Captain</b>'s orders.")
@@ -212,7 +212,7 @@
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ushelm_med(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ushelm/med(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_med(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/grease(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), slot_l_hand)
@@ -512,7 +512,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni2(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ushelm_mar_nco(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ushelm/mar_nco(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/thompson(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>. Your job is to lead a squad of marines according to the <b>Captain</b>'s orders.")
@@ -560,7 +560,7 @@
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni(H), slot_w_uniform)
 	else
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni2(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ushelm_mar(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ushelm/mar(H), slot_head)
 	H.add_note("Role", "You are a <b>[title]</b>, a soldier specialized in amphibious operations. Your mission is to spearhead the American forces and capture the beachhead.")
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_HIGH)

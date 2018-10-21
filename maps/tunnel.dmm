@@ -68,7 +68,6 @@
 "bp" = (/obj/structure/closet/crate/sandbags,/turf/floor/plating,/area/prishtina/german/bunker)
 "bq" = (/obj/item/ammo_magazine/c792x57_fg42,/turf/floor/plating,/area/prishtina/german/bunker)
 "br" = (/obj/structure/closet/crate/rations/soviet_solids,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
-"bs" = (/obj/structure/girder,/turf/wall/rockwall,/area/prishtina/houses/ger_eight)
 "bt" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina/houses/ger_eight)
 "bu" = (/obj/item/weapon/plastique/russian,/turf/floor/plating/metroz{icon_state = "metroedges"; dir = 8},/area/prishtina/houses/ger_eight)
 "bv" = (/obj/item/weapon/gun/projectile/shotgun/pump/combat/ithaca37,/obj/item/ammo_magazine/shogun_ammobox/shell,/obj/item/ammo_magazine/shogun_ammobox/shell,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
@@ -131,16 +130,16 @@ aaaaaaabarararaRarahahadaeaYbCaYaXagagag
 aaaaaaabalaraSaraTahahadaeaYaeadafaaaWaa
 aaaaaaabalaraZaTaTaTacadaeaYaebdbebfbgbg
 aaaaaaabalalaTaTaTaTaTadaeaYaeblafbmbobr
-aaaaaaabadaeaTaTaTbsahaTaeaYaebtbubobvbw
-aaaaaaabadaeaTaTaTahahaTaeaYaeaLafbybybz
-aaaaaaabadaTaTaeaTaTaTaTaTaTaeadbAbvbBbv
+aaaaaaabadaeaTaTaTaTaTaTaeaYaebtbubobvbw
+aaaaaaabadaeaTaTaTaTaTaTaeaYaeaLafbybybz
+aaaaaaabadaTaTaTaTaTaTaTaTaTaeadbAbvbBbv
 aaaaaaabadaeaTaTaTaTaTaTaTaTaTadafbBbDbD
-aaaaaaabadaeaTaTaTahbsaTaTaTaeadafbEbEbE
-aaaaaaabadaeaTaTaTahahaTaTaTaTadafbEbFbE
+aaaaaaabadaeaTaTaTaTaTaTaTaTaeadafbEbEbE
+aaaaaaabadaeaTaTaTaTaTaTaTaTaTadafbEbFbE
 aTaaaaabadaTaTaTaTaTaTaTaTaTaTbGafbEbEbE
-aaaTaaabaTaTaTaTaTaTaTaTaTaTaTaTafaaaaaa
-bHaTaaabaTaTaTbIaTbsbsaTaTaTaTaTaTaaaabK
+aTaTaaabaTaTaTaTaTaTaTaTaTaTaTaTafaaaaaa
+aTaTaaabaTaTaTbIaTaTaTaTaTaTaTaTaTaaaabK
 aTaTbLabaTaTaTaTaTaTaTaTaTaTaTaTafbMbObK
-aTbKbOaTaTaTaTaTaTaTaTaTaTaTaTaTafaTbHaT
+aTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTafaTbHaT
 aTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaT
 "}

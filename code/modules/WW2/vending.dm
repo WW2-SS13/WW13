@@ -63,7 +63,7 @@
 		/obj/item/clothing/under/usuni = 50,
 		/obj/item/clothing/under/usuni2 = 20,
 		/obj/item/clothing/under/usuni3 = 10,
-		/obj/item/clothing/head/helmet/ushelm_mar = 50,
+		/obj/item/clothing/head/helmet/ushelm/mar = 50,
 		/obj/item/clothing/mask/shemagh = 50,
 		/obj/item/clothing/shoes/usboots = 50,
 		/obj/item/clothing/mask/gas/usa = 25,
