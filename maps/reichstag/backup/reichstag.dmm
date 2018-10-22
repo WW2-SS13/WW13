@@ -1241,7 +1241,7 @@
 "xU" = (/obj/item/weapon/newspaper,/obj/item/ammo_casing/a762x51,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/ger_two)
 "xV" = (/obj/effect/decal/cleanable/mucus,/obj/item/weapon/paper,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/ger_two)
 "xW" = (/obj/item/ammo_casing/a762x51,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/ger_two)
-"xX" = (/obj/item/weapon/plastique/russian,/turf/floor/plating/road,/area/prishtina/soviet{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red1"; name = "Soviet Front"})
+"xX" = (/obj/item/weapon/handheld_flags/russian,/turf/floor/plating/road,/area/prishtina/soviet{base_turf = /turf/floor/dirt; capturable = 0; icon_state = "red1"; name = "Soviet Front"})
 
 (1,1,1) = {"
 abababababababacadaeafafafagahacababababababaiajakakakakakakakakakakajajakakakakakakajakakakakakajakakakakakakakakakakakakakakakakakakakakakakakakajalxhxhxhxhxhxhxhxhxhxhxhxhakakakakakakanakakakakakak
