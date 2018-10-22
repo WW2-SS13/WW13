@@ -716,8 +716,8 @@
 	SL_check_independent = TRUE
 
 	// AUTOBALANCE
-	min_positions = 2
-	max_positions = 60
+	min_positions = 0
+	max_positions = 0
 
 /datum/job/partisan/civilian/prisoner/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE

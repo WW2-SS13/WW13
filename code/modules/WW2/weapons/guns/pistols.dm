@@ -151,7 +151,7 @@
 /obj/item/weapon/gun/projectile/revolver/nagant_revolver
 	name = "Nagant Revolver"
 	desc = "Russian officer's revolver."
-	icon_state = "nagant"
+	icon_state = "nagant-R"
 	item_state = "revolver"
 	w_class = 2
 	caliber = "7.62x38mmR"
@@ -166,9 +166,9 @@
 /obj/item/weapon/gun/projectile/revolver/nagant_revolver/update_icon()
 	..()
 	if (loaded.len)
-		icon_state = "nagant"
+		icon_state = "nagant-R"
 	else
-		icon_state = "nagant"
+		icon_state = "nagant-R"
 	return
 
 /obj/item/weapon/gun/projectile/pistol/glisenti
@@ -210,7 +210,7 @@
 	return
 
 /obj/item/weapon/gun/projectile/pistol/waltherpp
-	name = "Walther P38"
+	name = "Walther PP"
 	desc = "Standard issue German pistol. The Walther PP is chambered in 9x19mm Parabellum rounds with a 8 rounds box detachable magazine. Lighter then the P38."
 	icon_state = "waltherpp"
 	item_state = "gun"
