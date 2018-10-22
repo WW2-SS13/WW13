@@ -51,5 +51,6 @@
 /obj/item/weapon/handheld_flags/ukr
 	name = "Ukrain flag"
 	desc = "Ukrain taken over by russia but with this flag they will fight for independens"
+
 	icon_state = "ukr_flag"
 	item_state = "ukr_flag"

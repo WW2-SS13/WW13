@@ -864,6 +864,7 @@
 #include "code\modules\WW2\radio\radio.dm"
 #include "code\modules\WW2\sandbags\cover.dm"
 #include "code\modules\WW2\sandbags\dirt_wall.dm"
+#include "code\modules\WW2\sandbags\halfwall.dm"
 #include "code\modules\WW2\sandbags\sandbag.dm"
 #include "code\modules\WW2\sky\sky.dm"
 #include "code\modules\WW2\tank\_defines.dm"
@@ -959,5 +960,6 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
+#include "maps\rooftops.dmm"
 #include "maps\tunnel.dmm"
 // END_INCLUDE
