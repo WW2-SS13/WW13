@@ -12,14 +12,14 @@
 "al" = (/obj/structure/window/sandbag,/turf/floor/plating/grass/wild,/area/prishtina)
 "am" = (/obj/structure/multiz/stairs{icon_state = "rampup"; dir = 4},/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "hydrofloor"},/area/prishtina/houses)
 "an" = (/obj/structure/barricade/steel,/obj/structure/barbwire{dir = 4; icon_state = "barbwire"; pixel_y = 0; tag = "icon-barbwire (EAST)"},/turf/floor/plating/road,/area/prishtina)
-"ao" = (/obj/structure/closet/crate/lugers,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/plating/grass/wild,/area/prishtina/houses)
-"ap" = (/obj/structure/closet/crate/lugerammo,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/plating/grass/wild,/area/prishtina/houses)
-"aq" = (/obj/structure/closet/crate/steel,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/plating/grass/wild,/area/prishtina/houses)
-"ar" = (/obj/structure/closet/crate/wood,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/plating/grass/wild,/area/prishtina/houses)
+"ao" = (/obj/structure/closet/crate/lugers,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/wood_broken,/area/prishtina/houses)
+"ap" = (/obj/structure/closet/crate/lugerammo,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/wood,/area/prishtina/houses)
+"aq" = (/obj/structure/closet/crate/steel,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/wood,/area/prishtina/houses)
+"ar" = (/obj/structure/closet/crate/wood,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/wood_broken,/area/prishtina/houses)
 "as" = (/obj/structure/window/classic/reinforced,/turf/floor/plating/road,/area/prishtina/houses)
 "at" = (/obj/structure/simple_door/key_door/german,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "grimy"},/area/prishtina/houses)
-"au" = (/obj/structure/light/small{dir = 8},/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/plating/grass/wild,/area/prishtina/houses)
-"av" = (/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/plating/grass/wild,/area/prishtina/houses)
+"au" = (/obj/structure/light/small{dir = 8},/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/wood,/area/prishtina/houses)
+"av" = (/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/wood_broken,/area/prishtina/houses)
 "aw" = (/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
 "ax" = (/obj/structure/simple_door/key_door/german,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "hydrofloor"},/area/prishtina/houses)
 "ay" = (/obj/structure/table/wood,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "grimy"},/area/prishtina/houses)
@@ -34,7 +34,7 @@
 "aH" = (/obj/effect/landmark{name = "JoinLateSS-Officer"},/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "grimy"},/area/prishtina/houses)
 "aI" = (/obj/structure/optable,/turf/floor/carpet,/area/prishtina/houses)
 "aJ" = (/obj/structure/closet/crate/medical,/obj/item/weapon/storage/firstaid/surgery,/turf/floor/carpet,/area/prishtina/houses)
-"aK" = (/obj/structure/simple_door/key_door/german,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/plating/grass/wild,/area/prishtina/houses)
+"aK" = (/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/wood,/area/prishtina/houses)
 "aL" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/turf/floor/carpet,/area/prishtina/houses)
 "aM" = (/obj/structure/bed/chair/wood/red{tag = "icon-wooden_chair_red (EAST)"; icon_state = "wooden_chair_red"; dir = 4},/turf/floor/carpet,/area/prishtina/houses)
 "aN" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/turf/floor/carpet,/area/prishtina/houses)
@@ -98,7 +98,7 @@
 "bT" = (/obj/structure/window/sandbag{tag = "icon-sandbag_66%"; icon_state = "sandbag_66%"; dir = 2},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
 "bU" = (/obj/structure/window/sandbag,/turf/floor/plating/cobblestone/vertical,/area/prishtina)
 "bV" = (/obj/structure/window/sandbag{tag = "icon-sandbag_66%"; icon_state = "sandbag_66%"; dir = 2},/turf/floor/plating/cobblestone/vertical,/area/prishtina)
-"bW" = (/obj/item/weapon/gun/projectile/automatic/stationary/mg34stat,/obj/structure/window/sandbag{tag = "icon-sandbag_66%"; icon_state = "sandbag_66%"; dir = 2},/turf/floor/plating/cobblestone/vertical,/area/prishtina)
+"bW" = (/obj/structure/simple_door/key_door/german,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/wood,/area/prishtina/houses)
 "bX" = (/obj/structure/window/sandbag,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
 "bY" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
 "bZ" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
@@ -108,7 +108,7 @@
 "cd" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_33%"; dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
 "ce" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/grass/wild,/area/prishtina)
 "cf" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
-"cg" = (/turf/floor/plating/beach/water,/area/prishtina)
+"cg" = (/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/obj/structure/railing{dir = 8},/turf/floor/plating/beach/water,/area/prishtina)
 "ch" = (/obj/structure/siren,/turf/floor/plating/cobblestone/vertical,/area/prishtina)
 "ci" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
 "cj" = (/turf/wall/gold,/area/prishtina)
@@ -121,43 +121,43 @@
 "cq" = (/obj/structure/table/wood,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
 "cr" = (/obj/structure/light/small,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
 "cs" = (/obj/structure/barricade,/obj/structure/barbwire,/turf/floor/plating/road,/area/prishtina)
-"ct" = (/obj/structure/bed/chair/wood,/obj/structure/light/small{dir = 1},/obj/structure/bed/chair/office/dark{icon_state = "F6"},/obj/effect/landmark{name = "JoinLateSS-Officer"},/turf/floor/plating/grass/wild,/area/prishtina/houses)
-"cu" = (/obj/structure/filingcabinet/chestdrawer,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/plating/grass/wild,/area/prishtina/houses)
-"cv" = (/obj/structure/closet/crate/barbwire,/turf/floor/plating/grass/wild,/area/prishtina/houses)
-"cw" = (/obj/structure/closet/crate/flammenwerfer_fueltanks,/turf/floor/plating/grass/wild,/area/prishtina/houses)
-"cx" = (/obj/structure/closet/crate/german_grenade,/obj/structure/light/small{dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/houses)
-"cy" = (/obj/structure/closet/crate/german_grenade2,/turf/floor/plating/grass/wild,/area/prishtina/houses)
-"cz" = (/obj/structure/closet/crate/german_smoke_grenade,/turf/floor/plating/grass/wild,/area/prishtina/houses)
-"cA" = (/obj/structure/window/classic/reinforced,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/plating/grass/wild,/area/prishtina/houses)
-"cB" = (/obj/structure/table/wood,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/plating/grass/wild,/area/prishtina/houses)
-"cC" = (/obj/structure/sink{dir = 8; pixel_x = -12},/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/plating/grass/wild,/area/prishtina/houses)
-"cD" = (/obj/structure/closet/crate/panzerfaust,/turf/floor/plating/grass/wild,/area/prishtina/houses)
+"ct" = (/obj/structure/anti_tank,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"cu" = (/obj/structure/anti_tank,/obj/structure/barbwire{dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"cv" = (/obj/structure/barbwire{dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"cw" = (/obj/structure/anti_tank,/obj/structure/barbwire,/turf/floor/plating/cobblestone/vertical,/area/prishtina)
+"cx" = (/obj/structure/barbwire,/turf/floor/plating/cobblestone/vertical,/area/prishtina)
+"cy" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/item/weapon/gun/projectile/automatic/stationary/mg34stat{dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"cz" = (/obj/structure/bed/chair/wood,/obj/structure/light/small{dir = 1},/obj/structure/bed/chair/office/dark{icon_state = "F6"},/obj/effect/landmark{name = "JoinLateSS-Officer"},/turf/floor/wood,/area/prishtina/houses)
+"cA" = (/obj/structure/filingcabinet/chestdrawer,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/wood,/area/prishtina/houses)
+"cB" = (/obj/structure/closet/crate/barbwire,/turf/floor/plating/road,/area/prishtina/houses)
+"cC" = (/obj/structure/closet/crate/flammenwerfer_fueltanks,/turf/floor/plating/road,/area/prishtina/houses)
+"cD" = (/obj/structure/closet/crate/german_grenade,/obj/structure/light/small{dir = 1},/turf/floor/plating/road,/area/prishtina/houses)
 "cE" = (/obj/structure/toilet,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/plating/grass/wild,/area/prishtina/houses)
 "cF" = (/turf/floor/dirt,/area/prishtina)
 "cG" = (/obj/structure/barbwire,/turf/floor/dirt,/area/prishtina)
-"cH" = (/obj/structure/closet/crate/mp40kammo,/turf/floor/plating/grass/wild,/area/prishtina/houses)
-"cI" = (/obj/structure/closet/crate/kar98kammo,/turf/floor/plating/grass/wild,/area/prishtina/houses)
+"cH" = (/obj/structure/closet/crate/german_grenade2,/turf/floor/plating/road,/area/prishtina/houses)
+"cI" = (/obj/structure/closet/crate/german_smoke_grenade,/turf/floor/plating/road,/area/prishtina/houses)
 "cJ" = (/obj/structure/simple_door/wood,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/plating/grass/wild,/area/prishtina/houses)
 "cK" = (/obj/structure/wild/burnedtree,/turf/floor/plating/grass/wild,/area/prishtina)
 "cL" = (/obj/structure/flag/german,/turf/floor/plating/grass/wild,/area/prishtina)
 "cM" = (/obj/structure/sign/flag/germany{pixel_y = 32},/turf/floor/plating/grass/wild,/area/prishtina)
 "cN" = (/obj/structure/siren,/turf/floor/plating/grass/wild,/area/prishtina)
-"cO" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/item/weapon/gun/projectile/automatic/stationary/mg34stat{icon_state = "mg34stat"; dir = 8},/turf/floor/plating/dirt,/area/prishtina)
-"cP" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/dirt,/area/prishtina)
+"cO" = (/obj/structure/window/classic/reinforced,/turf/floor/wood,/area/prishtina/houses)
+"cP" = (/obj/structure/table/wood,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/wood,/area/prishtina/houses)
 "cQ" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/grass/wild,/area/prishtina)
 "cR" = (/obj/structure/barbwire,/turf/floor/plating/dirt,/area/prishtina)
-"cS" = (/obj/structure/closet/crate/mg34belt,/turf/floor/plating/grass/wild,/area/prishtina)
-"cT" = (/obj/structure/bed,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/obj/effect/landmark{name = "JoinLateSS"},/turf/floor/plating/grass/wild,/area/prishtina/houses)
-"cU" = (/obj/structure/closet,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/weapon/gun/projectile/submachinegun/mp40,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/plating/grass/wild,/area/prishtina/houses)
-"cV" = (/obj/structure/window/classic/reinforced,/turf/wall/gold,/area/prishtina/houses)
+"cS" = (/obj/structure/sink{dir = 8; pixel_x = -12},/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/plating/road,/area/prishtina/houses)
+"cT" = (/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/plating/road,/area/prishtina/houses)
+"cU" = (/obj/structure/closet/crate/panzerfaust,/turf/floor/plating/road,/area/prishtina/houses)
+"cV" = (/obj/structure/closet/crate/mp40kammo,/turf/floor/plating/road,/area/prishtina/houses)
 "cW" = (/obj/structure/barricade,/obj/structure/barbwire{dir = 4},/turf/floor/plating/dirt,/area/prishtina/no_mans_land/invisible_wall)
 "cX" = (/obj/structure/barricade,/obj/structure/barbwire{dir = 4},/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
 "cY" = (/obj/structure/barricade,/obj/structure/barbwire{dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/no_mans_land/invisible_wall)
 "cZ" = (/obj/structure/barricade,/obj/structure/barbwire{dir = 4},/obj/structure/sign/securearea,/turf/floor/plating/grass/wild,/area/prishtina/no_mans_land/invisible_wall)
 "da" = (/obj/structure/sign/wide/barrier{anchored = 0},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/invisible_wall)
 "db" = (/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/invisible_wall)
-"dc" = (/obj/structure/bed,/obj/structure/light/small,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/obj/effect/landmark{name = "JoinLateSS"},/turf/floor/plating/grass/wild,/area/prishtina/houses)
-"dd" = (/obj/structure/oven,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/plating/grass/wild,/area/prishtina/houses)
+"dc" = (/obj/structure/closet/crate/kar98kammo,/turf/floor/plating/road,/area/prishtina/houses)
+"dd" = (/obj/structure/simple_door/key_door/german,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/plating/road,/area/prishtina/houses)
 "de" = (/obj/structure/anti_tank,/turf/floor/plating/dirt,/area/prishtina)
 "df" = (/obj/structure/anti_tank,/turf/floor/plating/grass/wild,/area/prishtina)
 "dg" = (/obj/structure/anti_tank,/turf/floor/dirt,/area/prishtina)
@@ -226,6 +226,28 @@
 "er" = (/obj/structure/closet/crate/medical,/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/main_area/inside)
 "es" = (/obj/structure/light/small{dir = 4},/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/main_area/inside)
 "et" = (/obj/structure/light/small,/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/main_area/inside)
+"eu" = (/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/turf/floor/plating/beach/water,/area/prishtina)
+"ev" = (/obj/structure/railing{dir = 4},/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/turf/floor/plating/beach/water,/area/prishtina)
+"ew" = (/obj/structure/railing{dir = 8},/turf/floor/plating/beach/water,/area/prishtina)
+"ex" = (/obj/structure/railing{dir = 4},/turf/floor/plating/beach/water,/area/prishtina)
+"ey" = (/obj/structure/railing,/obj/structure/railing{dir = 8},/turf/floor/plating/beach/water,/area/prishtina)
+"ez" = (/obj/structure/railing,/turf/floor/plating/beach/water,/area/prishtina)
+"eA" = (/obj/structure/railing,/obj/structure/railing{dir = 4},/turf/floor/plating/beach/water,/area/prishtina)
+"eB" = (/obj/structure/barbwire{dir = 4},/turf/floor/dirt,/area/prishtina)
+"eC" = (/obj/structure/barbwire{dir = 4},/turf/floor/plating/grass/wild,/area/prishtina)
+"eD" = (/obj/structure/barbwire{dir = 4},/turf/floor/plating/dirt,/area/prishtina)
+"eE" = (/obj/structure/barricade,/turf/floor/plating/grass/wild,/area/prishtina)
+"eF" = (/obj/structure/barricade,/turf/wall/wood,/area/prishtina)
+"eG" = (/obj/structure/simple_door/key_door/german,/turf/floor/plating/grass/wild,/area/prishtina)
+"eH" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/item/weapon/gun/projectile/automatic/stationary/mg34stat{icon_state = "mg34stat"; dir = 8},/turf/floor/plating/road,/area/prishtina)
+"eI" = (/turf/floor/plating/road,/area/prishtina)
+"eJ" = (/obj/structure/closet/crate/mg34belt,/turf/floor/plating/road,/area/prishtina)
+"eK" = (/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/wall/wood,/area/prishtina/houses)
+"eL" = (/obj/structure/bed,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/obj/effect/landmark{name = "JoinLateSS"},/turf/floor/wood,/area/prishtina/houses)
+"eM" = (/obj/structure/closet,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/weapon/gun/projectile/submachinegun/mp40,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/wood,/area/prishtina/houses)
+"eN" = (/turf/wall/wood,/area/prishtina)
+"eO" = (/obj/structure/bed,/obj/structure/light/small,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/obj/effect/landmark{name = "JoinLateSS"},/turf/floor/wood,/area/prishtina/houses)
+"eP" = (/obj/structure/oven,/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/floor/wood,/area/prishtina/houses)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -241,29 +263,29 @@ aaaaaaabababababaaaaaaaaagagahagagahagagadadadadadafafadadadadadagagahagagahagag
 aaaaabaiaiaiaiaiaiaaaaaaagagagagajakakagadalalaladafafadalalaladagakakamagagagagaeananananananananananananananananaaaaaa
 aaaaabaiaoapaqaraiababaaagagagagajakakagagasasasahatatahasasasagagakakamagagagagabababadadadadadadadadadadababababaaaaaa
 aaaaabaiauavavaraiadabawagagagagagaxaxagayazazazaAaBaBaAazazazayagaxaxagagagagagaaaaababababababababababababaaaaaaaaaaaa
-aaababaiavavavavaiadadawasaCaDaEaFaDaDataBaGaGaGaBaHaHaBaGaGaGaBataDaDaIaEaIaJagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaabadaiaiaKaiaiaiadadawasaLaMaNaOaPaDataBaBaBaBaBaHaHaBaBaBaBaBataDaDaDaQaDaDagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaabadadadafadadadadaRawagaSaMaOaOaPaTagaUaBahagaVaBaBaWagahaBaXaYaZaSaOaOaOaJagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaabaRadadafadadadadadawagaSaMbaaNaPaSagbbaBbcahbdaBaBbeahayaBbfagaDaSaDaDaDbgagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaababaiaKavavaKaiadadawasaCaDaEaFaDaDataBaGaGaGaBaHaHaBaGaGaGaBataDaDaIaEaIaJagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaabadaiaibWaiaiaiadadawasaLaMaNaOaPaDataBaBaBaBaBaHaHaBaBaBaBaBataDaDaDaQaDaDagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaabadadadafadadadadaRawagaSaMaOaOaPaTagaUaBagagaVaBaBaWagagaBaXaYaZaSaOaOaOaJagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaabaRadadafadadadadadawagaSaMbaaNaPaSagbbaBbcagbdaBaBbeagayaBbfagaDaSaDaDaDbgagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaabadadadafadadadadaRawasaLaMaNaOaPaDataBaBaBbhaBaBaBaBbiaBaBaBataDaLaQaDaDbgagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaabadadaRafadadadadadawasaCaMaOaOaPaDataBaBaBbjaBaBaBaBbkaBaBaBataDaLaDaDblblagaaaaabababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaabadadadafadadaRadadawagaDaDbmaFaDaSagaybnbnbnbobpaBbobqbnbnbragbsaOaObmaDaDagawababadabababababababababaaaaaaaaaaaaaa
 aaananananbtanananananbuagagbvagagagagagagasasasahatatahasasasagagagagagagaxagagawadadadaRadadadadadadadabababababababaa
-aaabadadadafaRadadadadawasbwbxbxbybzbAagawawawawawafafawawawawawagbBbCbDbEakbFasawaRadadadadadadaRadadadaRadadaRadadabaa
-aaabadaRadafadaRadadadawasbGbxbxbxbxbxagawafafafafafafafafafafawagbHakakakakbIasawadaRadadadadaRadadadadadadadadadadabaa
-aaabadadadafadadadaRadawagbJbKbLbMbNbOagawafafafafafafafafafafawagbPbQbRbRbEbFagbuananananananaeaeadadaRadadadaRadadabaa
-aaabadadadafaRadadadadawagagahasasagagbSbTbUafafbVbWbUbVafafbVbXbSagagasasahagagawadadaRadadadaRanadadadadadadadadaRabaa
-aaabaRadadafadadaRadadawawawawawawawawawawafafafafafafafafafafawawawawawawawawawawadadadadadadadanaeaeaeaeaeaeaeaeaeanaa
+aaabadadadafaRadadadadawasbwbxbxbybzbAagawawawawctafafctawawawawagbBbCbDbEakbFasctaRadadadadadadaRadadadaRadadaRadadabaa
+aaabadaRadafadaRadadadawasbGbxbxbxbxbxagctafafafafafafafafafafctagbHakakakakbIasawadaRadadadadaRadadadadadadadadadadabaa
+aaabadadadafadadadaRadctagbJbKbLbMbNbOagawafafafafafafafafafafawagbPbQbRbRbEbFagbuananananananaeaeadadaRadadadaRadadabaa
+aaabadadadafaRdfadadadawagagahasasagagbSbTbUafafbVbVbUbVafafbVbXbSagagasasahagagawadadaRadadadaRanadadadadadadadadaRabaa
+aaabaRaddfafadadaRadadawawcucvcvcvcvcuawawafafafafafafafafafafawawcucvcvcvcvcuawawadadadadadadadanaeaeaeaeaeaeaeaeaeanaa
 aaabadadaRafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafadaRadadanadadadadaRadadadabaaaa
 aaabadadadadafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafadadaRanadadadadadadadadabaaaa
-aaababadadaRafafafafafafafafafafafafafafafbYbZbZbZafafbZbZbZcaafafafafafafafafafafafafafafadadadanadaRadadadadadaRabaaaa
-aaaaabadadadafafafafafafafafafafafafafafcbccafafafafafafafafcccdafafafafafafafafafafafafafafadadceadadadadadadadadabaaaa
-aaaaabaRadadafafafafafafafafafafafafafafcfafafafcgcgcgcgafchafciafafafafafafafafafafafafafafafafawafafafafafadadadabaaaa
-aaaaabadadadafafafafafafafafafafafafafafcfafafafcgcjckcgafafafciafafafafafafafafafafafafafafafafawafafafafafadaRadabaaaa
-aaaaabadaRadafafafafafafafafafafafafafafcfafafafcgcjcjcgafafafciafafafafafafafafafafafafafafafafawafafafafafadadadabaaaa
-aaaaababadadafafafafafafafafafafafafafafcfafafafcgcgcgcgafafafciafafafafafafafafafafafafafafafafawafafafafafadadadabaaaa
-aaaaaaabadadafafafafafafafafafafafafafafclccafafafafafafafafcccmafafafafafafafafafafafafafafadadceadafafafafadadababaaaa
-aaaaaaabadaRadafafafafafafafafafafafafafafcnbXbXbXafafbXbXbXcoafafafafafafafafafafafafafafadadadaeadafafafafadaRabaaaaaa
+aaababadadaRafafafafafafafafafafafafafafafbYbZbZbZafafbZbZbZcaafcwafafafafafafafafafafafafadadadanadaRadadadadadaRabaaaa
+aaaaabadadadafafafafafafafafafafafafafafcbccafafafafafafafafcccdcxafafafafafafafafafafafafafadadceadadadadadadadadabaaaa
+aaaaabaRadadafafafafafafafafafafafafafafcfafafafcgeueuevafchafcicxafafafafafafafafafafafafafafafawafafafafafadadadabaaaa
+aaaaabadadadafafafafafafafafafafafafafafcfafafafewcjckexafafafcycxafafafafafafafafafafafafafafafawafafafafafadaRadabaaaa
+aaaaabadaRadafafafafafafafafafafafafafafcfafafafewcjcjexafafafcicxafafafafafafafafafafafafafafafawafafafafafadadadabaaaa
+aaaaababadadafafafafafafafafafafafafafafcfafafafeyezezeAafafafcicxafafafafafafafafafafafafafafafawafafafafafadadadabaaaa
+aaaaaaabadadafafafafafafafafafafafafafafclccafafafafafafafafcccmcxafafafafafafafafafafafafafadadceadafafafafadadababaaaa
+aaaaaaabadaRadafafafafafafafafafafafafafafcnbXbXbXafafbXbXbXcoafcwafafafafafafafafafafafafadadadaeadafafafafadaRabaaaaaa
 aaaaaaababadadafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafadaRadaeadafafafafadadabaaaaaa
 aaaaaaaaabadadadafafafafafafafafafafafafafafafafafafafafafafafafafafcpafafafafafafafafafadadadadaeaRafafafafadadabaaaaaa
 aaaaaaaaabadaRadadadafafafafafafafafafawawawafafafawawawafafafawawawcpafafafafafafafadadadaRadadaeadafafafafadadabaaaaaa
@@ -276,32 +298,32 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacjcqawcrawawcjcqawcrawawcjcqawcrawawcjaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacjcjcjcjcjcjcjcjcjcjcjcjcjcjcjcjcjcjcjaaaaaaaaaaaaaaaaaaaaaaababadafafafafadababaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaRadafafafafadadabaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiaiaiaiaiaiaiaiaiaiaiaaababadadafafafafaRadabaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababcsababaiavctcuaicvcwcxcyczaiaiaiadadadafafafafadadabaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaababababababababaaaaaaaaaaababababababadcsababcAavcBcBaicCavavavcDaicEaiadadaRafafafafadadabaaaaaa
-aaaaaaaaaaaaaaaaaaabababadaRcFcFaRadabababababababadcGadaRadadcsadabaiavavavaicHcHavcIcIaicJaiadadadafafafafadadababaaaa
-aaaaaaaaaaaaaaababcFcFcFaRcFcFcFcFadcKadcGaRadaRadadcGcFadadadcsadcLaiaiaKaiaiaiaiaKaiaiaiadaRadadadafafafafadadadabaaaa
-aaaaaaaaaaabababadcFaRadadadcFadadadadadcGadadadadaRadcFadadaRcsadadaRcMadadadadadadadcMcNadadadadadafafafafadadadabaaaa
-aaaaaaaaababcFadafafafafafafafafafafafafcFafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafadaRadabaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababcsababaiaKczcAaicBcCcDcHcIaiaiaiadadadafafafafadadabaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaababababababababaaaaaaaaaaababababababadcsababcOaKcPcPaicScTcTcTcUaicEaiadadaRafafafafadadabaaaaaa
+aaaaaaaaaaaaaaaaaaabababadaRcFcFaRadabababababababadcGadaRadadcsadabaiaKaKaKaicVcVcTdcdcaicJaiadadadafafafafadadababaaaa
+aaaaaaaaaaaaaaababcFcFcFaRcFcFcFcFadcKadcGaRadaRadadcGcFadadadcsadcLaiaibWaiaiaiaiddaiaiaiadaRadadadafafafafadadadabaaaa
+aaaaaaaaaaabababadcFaRadadadcFadadadadadcGadadadadaRadcFadadaRcsadadaRcMafadadadadafadcMcNadadadadadafafafafadadadabaaaa
+aaaaaaaaababcFadafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafadaRadabaaaa
 aaaaaaabcFcFaRadafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafadadababaaaa
 aaaaaaabcFcFadadafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafadadabaaaaaa
-aaaaaaabcFadadaRafafafafafafafafafafafcFafafafafafcFcFafafafafafafafafafafafafafafafafafafafafafafafafafafafadababaaaaaa
-aaaaaaabadadcFadafafafafadadadadaRadadcGcFadadaRadadcGaRadadadcOabadadadadadadadadadadadadadadadadadadadadadababaaaaaaaa
-aaaaaaabadaRadadafafafafadaRadadadadadcGaRadadcGcFaRcGadcFaRadcPadadadadaiaiaiaKaiaiaiaicQcQadadaRadadababababaaaaaaaaaa
-aaaaaaabadadadadafafafafadadadaRadaRabababababcRabababaRcGcFadcsadadcQcQaiavavavavavavaiadadadadababababaaaaaaaaaaaaaaaa
-aaaaaaabcFcFadadafafafafadaRadadabababaaaaaaaaaaaaaaababcRaRadcsaRcSadadcAcTavcTavcTcUcVadababababaaaaaaaaaaaaaaaaaaaaaa
-aaaaaacWcXcXcYcZdadbdbdbcZcYcXcXcWaaaaaaaaaaaaaaaaaaaaaaabababcsabababaRaicTavdcavcTddaiababaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaabcFadadadafafafafadcFcFcFaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababaiaiaiaiaiaiaiaiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaadeadadaddfafafafafadcFdgcFaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaabadadadadafafafafadadcFcFaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaacFadadadadafafafafdfadadabcFaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababdhabaaaaaaaaaaaa
-aaaaaacFcFadadadafafafafadadadadababaaaaaaaaaaaaaaaaaaaaababababaaaaaaaaaaaaaaaaaaaaaaaaaaabababababdiadadababababaaaaaa
-aaaaaacFcFadaddfafafafafadadadadadabdjababababababababababadadababababababdkdkdkdkabababababdldldladadaddmdmdmadabababaa
-aaaacFcFcFadadadafafafafadadadadadaddnadadadadadadadadadadadadadadadadadadadadadadaddoaddpaddldldladdqaddmdmdmadadadabab
-aaaacFcFadadadadafafafafafafafafafafdbafafafafafafafafafafafafafafafafafafafafafdrafafafafafdsdsdsafafafdtdtdtafafafafaf
-aaaaabdeadadadadafafafafafafafafafafdbafafafafafafafafafafafafafafafafafafafafafafafafdududuafafafafdrafafafafafafafafaf
+aaaaaaabcFadadaRafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafadababaaaaaa
+aaaaaaabadadcFadafafafafadadadadaRadadcGcFadadadadadcGadadadeEeFeFeGeFeFeFadadafadadadadadadadadadadadadadadababaaaaaaaa
+aaaaaaabadaRadadafafafafadaRadadadadadcGadadadcGcFadcGadcFadeEeHeIeIeIeIaiaiaibWaiaiaiaicQcQadadaRadadababababaaaaaaaaaa
+aaaaaaabadadadadafafafafadadadaRadaRabababababcRabababadcGcFeEeFeIeIeIeIaiaKaKaKaKaKaKaiadadadadababababaaaaaaaaaaaaaaaa
+aaaaaaabcFcFadadafafafafadaRadadabababaaaaaaaaaaaaaaababcRadadeFeJeJeIeIeKeLaKeLaKeLeMcOadababababaaaaaaaaaaaaaaaaaaaaaa
+aaaaaacWcXcXcYcZdadbdbdbcZcYcXcXcWaaaaaaaaaaaaaaaaaaaaaaabababeFeNeNeNeNaieLaKeOaKeLePaiababaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaabeBadadadafafafafadcFcFcFaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababaiaiaiaiaiaiaiaiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaadeadadaddfafafafafeCcFdgcFaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaabadeCadeCafafafafadadeBcFaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaacFadeCadadafafafafdfadadabcFaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababdhabaaaaaaaaaaaa
+aaaaaacFeBadadadafafafafadeCadadeDabaaaaaaaaaaaaaaaaaaaaababababaaaaaaaaaaaaaaaaaaaaaaaaaaabababababdiadadababababaaaaaa
+aaaaaacFcFadeCdfafafafafadadadadadabdjababababababababababadadababababababdkdkdkdkabababababdldldladadaddmdmdmadabababaa
+aaaaaacFcFeCadadafafafafadeCadadadaddnadadadadadadadadadadadadadadadadadadadadadadaddoaddpaddldldladdqaddmdmdmadadadabab
+aaaaaacFeCadadadafafafafafafafafafafdbafafafafafafafafafafafafafafafafafafafafafdrafafafafafdsdsdsafafafdtdtdtafafafafaf
+aaaaaadeadadeCadafafafafafafafafafafdbafafafafafafafafafafafafafafafafafafafafafafafafdududuafafafafdrafafafafafafafafaf
 aaaaaaababadadadafafafafafafafafafafdbafafafafafafafafafafafafafafafafafafafafafafdvafdududuafafafdwdwdwafdxdyafafafafaf
 aaaaaaaaabababadafafafafafafafafafafdbafafafafafafafafafafafafafafafafafafdzafafafafafdududuafdAafdwdwdwafafafafafafafaf
-aaaaaaaaaaaaababababababababababababdjababababababababababababababababababababababababdBabababababdCdCdCababdDababababab
+aaaaaaaaaaaaabeDababababababababababdjababababababababababababababababababababababababdBabababababdCdCdCababdDababababab
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
 

@@ -363,7 +363,6 @@
 #include "code\game\objects\structures\railing.dm"
 #include "code\game\objects\structures\safe.dm"
 #include "code\game\objects\structures\sign_flags.dm"
-#include "code\game\objects\structures\signpost.dm"
 #include "code\game\objects\structures\signs.dm"
 #include "code\game\objects\structures\siren.dm"
 #include "code\game\objects\structures\table.dm"
@@ -790,6 +789,7 @@
 #include "code\modules\WW2\crates.dm"
 #include "code\modules\WW2\doctor_handbook.dm"
 #include "code\modules\WW2\factory_objs.dm"
+#include "code\modules\WW2\flags.dm"
 #include "code\modules\WW2\fluff_objs.dm"
 #include "code\modules\WW2\fuel.dm"
 #include "code\modules\WW2\gasser.dm"
@@ -959,6 +959,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\rooftops.dmm"
 #include "maps\tunnel.dmm"
 // END_INCLUDE
