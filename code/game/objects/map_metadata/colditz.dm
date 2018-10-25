@@ -2,7 +2,6 @@
 /obj/map_metadata/colditz
 	ID = MAP_COLDITZ
 	title = "Castle Colditz (100x100x5)"
-	lobby_icon_state = "colditz"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall,
 	/area/prishtina/no_mans_land/invisible_wall/inside)
 	respawn_delay = 1800
