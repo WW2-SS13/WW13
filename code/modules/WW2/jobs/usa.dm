@@ -591,7 +591,7 @@
 	spawn_location = "JoinLatePOW"
 	allow_spies = TRUE
 	additional_languages = list("German" = 33, "Japanese" = 15)
-	is_prisoner = TRUE
+	is_prisoner_unique = FALSE
 	SL_check_independent = TRUE
 
 	// AUTOBALANCE
@@ -629,6 +629,7 @@
 	allow_spies = TRUE
 	additional_languages = list("German" = 33, "Japanese" = 15)
 	is_prisoner = TRUE
+	is_prisoner_unique = TRUE
 	SL_check_independent = TRUE
 
 	// AUTOBALANCE
@@ -661,6 +662,7 @@
 	en_meaning = "Allied Officer POW"
 	rank_abbreviation = "KGO"
 	head_position = FALSE
+	is_prisoner_unique = TRUE
 	selection_color = "#770e0e"
 	spawn_location = "JoinLatePOW_off"
 	additional_languages = list( "German" = 100, "Japanese" = 100 )
