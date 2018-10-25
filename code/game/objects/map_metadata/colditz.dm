@@ -41,11 +41,11 @@
 			J.min_positions = 5
 			J.max_positions = 5
 			J.total_positions = 5
-		if (istype(J, /datum/job/german/soldier_ss))
+		else if (istype(J, /datum/job/german/soldier_ss))
 			J.min_positions = 50
 			J.max_positions = 50
 			J.total_positions = 50
-		if (istype(J, /datum/job/german/medic_ss))
+		else if (istype(J, /datum/job/german/medic_ss))
 			J.min_positions = 15
 			J.max_positions = 15
 			J.total_positions = 15
@@ -53,6 +53,10 @@
 			. = FALSE
 
 	if (istype(J, /datum/job/usa))
+		if (istype(J, /datum/job/usa/marines_squad_leader))
+			. = FALSE
+		if (istype(J, /datum/job/usa/marines_soldier))
+			. = FALSE
 		if (J.is_prisoner_unique)
 			. = FALSE
 	return .
