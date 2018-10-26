@@ -52,11 +52,15 @@
 			. = FALSE
 
 	if (istype(J, /datum/job/usa))
-		if (istype(J, /datum/job/usa/marines_squad_leader))
-			. = FALSE
-		if (istype(J, /datum/job/usa/marines_soldier))
-			. = FALSE
 		if (J.is_prisoner_unique)
+			. = FALSE
+		else if (istype(J, /datum/job/usa/soldier_pris))
+			J.min_positions = 15
+			J.max_positions = 15
+			J.total_positions = 15
+		else if (istype(J, /datum/job/usa/marines_squad_leader))
+			. = FALSE
+		else if (istype(J, /datum/job/usa/marines_soldier))
 			. = FALSE
 	return .
 
