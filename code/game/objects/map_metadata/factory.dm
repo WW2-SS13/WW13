@@ -17,8 +17,8 @@
 	no_subfaction_chance = FALSE
 	subfaction_is_main_faction = TRUE
 	roundend_condition_sides = list(
-	       list(ITALIAN) = /area/prishtina/houses/ger_two,
-	       list(GERMAN) = /area/prishtina/houses/ger_two,
+	       list(ITALIAN) = /area/prishtina/houses/ger_one,
+	       list(GERMAN) = /area/prishtina/houses/ger_one,
 	       list(SOVIET) = /area/prishtina/houses/ger_one)
 	available_subfactions = list(ITALIAN)
 	battle_name = "Italian Factory"
@@ -56,7 +56,7 @@
 	return .
 
 /obj/map_metadata/factory/announce_mission_start(var/preparation_time)
-	world << "<font size=4>ATTACK</font>"
+	world << "<font size=4>The Soviets must defende the reactor from the italians </font>"
 
 /obj/map_metadata/factory/reinforcements_ready()
 	return (germans_can_cross_blocks() && soviets_can_cross_blocks())

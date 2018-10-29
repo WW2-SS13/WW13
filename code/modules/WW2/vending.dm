@@ -338,7 +338,7 @@
 	/obj/item/weapon/storage/firstaid/toxin = 5,
 	/obj/item/weapon/storage/firstaid/o2 = 5,
 	/obj/item/weapon/storage/firstaid/adv = 5,
-	/obj/item/weapon/storage/firstaid/combat = 3,
+	/obj/item/weapon/storage/firstaid/combat = 2,
 	/obj/item/weapon/storage/firstaid/surgery = 3,
 	/obj/item/weapon/storage/firstaid/injectorpack = 5,
 

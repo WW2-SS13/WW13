@@ -419,11 +419,12 @@
 		ick_ock = FALSE
 
 	if (msg)
-		for (var/mob/living/carbon/human/H in player_list)
-			if (istype(H) && H.client)
-				if (H.original_job && H.original_job.base_type_flag() == GERMAN && istype(H.original_job, /datum/job/german/paratrooper))
-					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE GERMAN HIGH COMMAND TO THE PARATROOPER SQUAD:</b>" : "<b>MESSAGE TO THE PARATROOPER SQUAD FROM ADMINS:</b>"
-					H << "[msg_start] <span class = 'notice'>[msg]</span>"
+		if (!ick_ock || !radio2germans(msg))
+			for (var/mob/living/carbon/human/H in player_list)
+				if (istype(H) && H.client)
+					if (H.original_job && H.original_job.base_type_flag() == GERMAN && istype(H.original_job, /datum/job/german/paratrooper))
+						var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE GERMAN HIGH COMMAND TO THE PARATROOPER SQUAD:</b>" : "<b>MESSAGE TO THE PARATROOPER SQUAD FROM ADMINS:</b>"
+						H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
 		src << "You sent '[msg]' to the paratroopers."
 		message_admins("[key_name(src)] sent '[msg]' to the paratroopers")
@@ -497,11 +498,12 @@
 		ick_ock = FALSE
 
 	if (msg)
-		for (var/mob/living/carbon/human/H in player_list)
-			if (istype(H) && H.client)
-				if (H.original_job || H.original_job.base_type_flag() == USA)
-					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE USA HIGH COMMAND TO US SOLDIERS:</b>" : "<b>MESSAGE TO PARTISANS FROM ADMINS:</b>"
-					H << "[msg_start] <span class = 'notice'>[msg]</span>"
+		if (!ick_ock || !radio2soviets(msg))
+			for (var/mob/living/carbon/human/H in player_list)
+				if (istype(H) && H.client)
+					if (H.original_job || H.original_job.base_type_flag() == USA)
+						var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE USA HIGH COMMAND TO US SOLDIERS:</b>" : "<b>MESSAGE TO PARTISANS FROM ADMINS:</b>"
+						H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
 		src << "You sent '[msg]' to all USA soldiers."
 		message_admins("[key_name(src)] sent '[msg]' to all USA soldiers")
@@ -523,11 +525,12 @@
 		ick_ock = FALSE
 
 	if (msg)
-		for (var/mob/living/carbon/human/H in player_list)
-			if (istype(H) && H.client)
-				if (H.original_job || H.original_job.base_type_flag() == JAPAN)
-					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE JAPANESE EMPEROR TO JAPANESE SOLDIERS:</b>" : "<b>MESSAGE TO PARTISANS FROM ADMINS:</b>"
-					H << "[msg_start] <span class = 'notice'>[msg]</span>"
+		if (!ick_ock || !radio2germans(msg))
+			for (var/mob/living/carbon/human/H in player_list)
+				if (istype(H) && H.client)
+					if (H.original_job || H.original_job.base_type_flag() == JAPAN)
+						var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE JAPANESE EMPEROR TO JAPANESE SOLDIERS:</b>" : "<b>MESSAGE TO PARTISANS FROM ADMINS:</b>"
+						H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
 		src << "You sent '[msg]' to all Japanese soldiers."
 		message_admins("[key_name(src)] sent '[msg]' to all Japanese soldiers")
@@ -549,7 +552,7 @@
 		ick_ock = FALSE
 
 	if (msg)
-		if (!ick_ock || !radio2germans(msg))
+		if (!ick_ock)
 			for (var/mob/living/carbon/human/H in player_list)
 				if (istype(H) && H.client)
 					if (H.original_job && list(GERMAN, ITALIAN).Find(H.original_job.base_type_flag()))
