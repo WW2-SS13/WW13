@@ -1134,7 +1134,10 @@ var/first_fallschirm = TRUE
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/coat/sssmock(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm/sshelm(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
+	if (prob(85))
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/mp40(H), slot_back)
+	else
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
 	H.add_note("Role", "You are a <b>[title]</b>, a soldier for an elite SS unit. Your job is to follow the orders of the <b>SS-Untersharffuhrer</b>.")
 	H.give_radio()
 

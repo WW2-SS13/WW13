@@ -321,6 +321,7 @@
 #include "code\game\objects\items\weapons\tanks\tanks.dm"
 #include "code\game\objects\map_metadata\_map_metadata.dm"
 #include "code\game\objects\map_metadata\camp.dm"
+#include "code\game\objects\map_metadata\chateau.dm"
 #include "code\game\objects\map_metadata\city.dm"
 #include "code\game\objects\map_metadata\colditz.dm"
 #include "code\game\objects\map_metadata\escort.dm"
