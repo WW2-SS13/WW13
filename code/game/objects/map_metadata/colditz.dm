@@ -17,7 +17,7 @@
 	subfaction_is_main_faction = FALSE
 	roundend_condition_sides = list(
 		list(GERMAN) = /area/prishtina/german/resting_area_1,
-		list(SOVIET) = /area/prishtina/farm4 // area inexistent in this map, in order to prevent the germans from winning by capture
+		list(USA) = /area/prishtina/farm4 // area inexistent in this map, in order to prevent the germans from winning by capture
 		)
 	available_subfactions = list()
 	battle_name = "Castle Colditz"
