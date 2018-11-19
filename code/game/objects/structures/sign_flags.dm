@@ -68,6 +68,16 @@
 	desc = "Soyuz nerushimy respublik svobodnyh!"
 	icon_state = "sov_flag"
 
+/obj/structure/sign/flag/soviet/part1
+	name = "Soviet Union flag"
+	desc = "Soyuz nerushimy respublik svobodnyh!"
+	icon_state = "sov_flag_p1"
+
+/obj/structure/sign/flag/soviet/part2
+	name = "Soviet Union flag"
+	desc = "Soyuz nerushimy respublik svobodnyh!"
+	icon_state = "sov_flag_p2"
+
 /obj/structure/sign/flag/germany2
 	name = "Third Reich flag"
 	desc = "Ein Volk, ein Reich, ein Fuhrer!"

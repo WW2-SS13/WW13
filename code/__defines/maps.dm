@@ -19,6 +19,7 @@
 #define MAP_GULAG "GULAG"
 #define MAP_TRAIN "TRAIN"
 #define MAP_COLDITZ "COLDITZ"
+#define MAP_CHATEAU "CHATEAU"
 
 #define MODE_WAR 1
 #define MODE_GERMAN_OCCUPATION 2

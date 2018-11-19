@@ -1,27 +1,24 @@
 #define NO_WINNER "No one has won."
 
-/obj/map_metadata/factory
-	ID = MAP_FACTORY
-	title = "Factory"
+/obj/map_metadata/chateau
+	ID = MAP_CHATEAU
+	title = "Chateau"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall,
 	/area/prishtina/no_mans_land/invisible_wall/inside) // above and underground
-	respawn_delay = 100
+	respawn_delay = TRUE
 	squad_spawn_locations = FALSE
 	min_autobalance_players = 100 // aparently less that this will fuck autobalance
 	reinforcements = FALSE
 	faction_organization = list(
-		ITALIAN,
 		GERMAN,
-		SOVIET)
-	available_subfactions = list(ITALIAN = 100)
+		CIVILIAN,
+		USA)
+	available_subfactions = list(SCHUTZSTAFFEL = 100)
 	no_subfaction_chance = FALSE
 	subfaction_is_main_faction = TRUE
 	roundend_condition_sides = list(
-	       list(ITALIAN) = /area/prishtina/houses/ger_one,
-	       list(GERMAN) = /area/prishtina/houses/ger_one,
-	       list(SOVIET) = /area/prishtina/houses/ger_one)
-	available_subfactions = list(ITALIAN)
-	battle_name = "Italian Factory"
+	       list(GERMAN) = /area/prishtina/german/main_area/inside)
+	battle_name = "The battle of Chateau"
 	faction_distribution_coeffs = list(GERMAN = 0.5, SOVIET = 0.5)
 
 
@@ -34,25 +31,25 @@
 
 /obj/map_metadata/factory/job_enabled_specialcheck(var/datum/job/J)
 	. = TRUE
-	if (istype(J, /datum/job/italian))
-		if (istype(J, /datum/job/italian/soldier))
-			J.total_positions = max(5, round(clients.len*3))
-		if (istype(J, /datum/job/italian/squad_leader))
+	if (istype(J, /datum/job/usa))
+		if (istype(J, /datum/job/usa/soldier))
+			J.total_positions = max(6, round(clients.len*4))
+		if (istype(J, /datum/job/usa/squad_leader))
+			J.total_positions = max(1, round(clients.len*1))
+		if (istype(J, /datum/job/usa/medic))
 			J.total_positions = max(1, round(clients.len*0.5))
-		if (istype(J, /datum/job/italian/medic))
+		if (istype(J, /datum/job/usa/MP))
 			J.total_positions = max(1, round(clients.len*0.5))
 //	else if (istype(J, /datum/job/partisan/civilian))
 //		J.total_positions = max(5, round(clients.len*0.75))
-	else if (istype(J, /datum/job/soviet))
-		if (istype(J, /datum/job/soviet/soldier))
-			J.total_positions = max(5, round(clients.len*3))
-		else if (istype(J, /datum/job/soviet/medic))
+	else if (istype(J, /datum/job/german))
+		if (istype(J, /datum/job/german/soldier_ss))
+			J.total_positions = max(6, round(clients.len*3))
+		else if (istype(J, /datum/job/german/medic_ss))
 			J.total_positions = max(1, round(clients.len*0.5))
 		else if (istype(J, /datum/job/soviet/squad_leader))
 			J.total_positions = max(1, round(clients.len*0.5))
 		else J.total_positions = 0
-	else if (istype(J, /datum/job/german))
-		. = FALSE
 	return .
 
 /obj/map_metadata/factory/announce_mission_start(var/preparation_time)

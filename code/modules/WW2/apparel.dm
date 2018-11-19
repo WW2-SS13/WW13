@@ -484,36 +484,35 @@
 	icon_state = "UShelm"
 	item_state = "UShelm"
 
-/obj/item/clothing/head/helmet/ushelm_med
+/obj/item/clothing/head/helmet/ushelm/med
 	name = "US Medical helmet"
 	desc = "A simple steel helmet worn by American GIs, with medical decals."
 	icon_state = "UShelm_med"
 	item_state = "UShelm_med"
 
-/obj/item/clothing/head/helmet/ushelm_nco
+/obj/item/clothing/head/helmet/ushelm/nco
 	name = "US NCO helmet"
 	desc = "A simple steel helmet worn by American GIs, with a white bar in the back, identifying a NCO."
 	icon_state = "UShelm_nco"
 	item_state = "UShelm_nco"
 
-/obj/item/clothing/head/helmet/ushelm_2lt
+/obj/item/clothing/head/helmet/ushelm/lt2
 	name = "US 2Lt. helmet"
 	desc = "A simple steel helmet worn by American GIs, with a the markings of a 2nd Lt. in the front."
 	icon_state = "UShelm_2lt"
 	item_state = "UShelm_2lt"
 
-/obj/item/clothing/head/helmet/ushelm_1lt
+/obj/item/clothing/head/helmet/ushelm/lt1
 	name = "US 1Lt. helmet"
 	desc = "A simple steel helmet worn by American GIs, with a the markings of a 1nd Lt. in the front."
 	icon_state = "UShelm_1lt"
 	item_state = "UShelm_1lt"
 
-/obj/item/clothing/head/helmet/ushelm_cap
+/obj/item/clothing/head/helmet/ushelm/cap
 	name = "US Captain helmet"
 	desc = "A simple steel helmet worn by American GIs, with a the markings of a Captain in the front."
 	icon_state = "UShelm_cap"
 	item_state = "UShelm_cap"
-
 
 /obj/item/clothing/head/helmet/fire
 	name = "Firefighter cap"
@@ -521,19 +520,19 @@
 	icon_state = "germpcapworn"
 	item_state = "germanfirefightinggeneralscap"
 
-/obj/item/clothing/head/helmet/ushelm_mar
+/obj/item/clothing/head/helmet/ushelm/mar
 	name = "US Marines camo helmet"
 	desc = "The regular American M1 but with a frogskin camo cover."
 	icon_state = "UShelm_mar"
 	item_state = "UShelm_mar"
 
-/obj/item/clothing/head/helmet/ushelm_mar_nco
+/obj/item/clothing/head/helmet/ushelm/mar_nco
 	name = "US Marines NCO camo helmet"
 	desc = "The regular American M1 but with a frogskin camo cover. It has the markings of a NCO."
 	icon_state = "UShelm_mar_nco"
 	item_state = "UShelm_mar_nco"
 
-/obj/item/clothing/head/helmet/usmphelm
+/obj/item/clothing/head/helmet/ushelm/usmphelm
 	name = "US MP helmet"
 	desc = "A standard US Military Police helmet."
 	icon_state = "USMPhelm"
@@ -1114,7 +1113,7 @@
 /obj/item/weapon/storage/backpack/japan
 	name = "japanese backpack"
 	desc = "You wear this on your back and put items into it."
-	icon_state = "japppack"
+	icon_state = "jappack"
 	item_state_slots = null
 
 /obj/item/weapon/storage/backpack/usa

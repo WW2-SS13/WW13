@@ -658,11 +658,11 @@ OTHER
 	multiple_sprites = TRUE
 	is_box = TRUE
 
-/obj/item/ammo_magazine/shogun_ammobox/shell
+/obj/item/ammo_magazine/shotgun_ammobox/shell
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet
 	icon_state = "shellbox"
 
-/obj/item/ammo_magazine/shogun_ammobox/bucketshot
+/obj/item/ammo_magazine/shotgun_ammobox/bucketshot
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	icon_state = "buckshotbox"
 

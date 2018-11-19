@@ -538,6 +538,17 @@
     dir = 5
     icon_state = "fwindow"
 
+/obj/structure/window/reinforced/full/indestructable
+	icon_state = "fwindow" // so we look better on the map
+	color = "#FF0000"
+
+/obj/structure/window/reinforced/full/indestructable/New(var/newloc)
+	icon_state = initial(icon_state)
+	..(newloc,"admin glass")
+
+/obj/structure/window/reinforced/full/indestructable/ex_act(severity)
+	return FALSE
+
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
 	desc = "It looks rather strong and opaque. Might take a few good hits to shatter it."

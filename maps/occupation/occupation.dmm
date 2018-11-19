@@ -362,16 +362,15 @@
 "gX" = (/obj/structure/oven,/turf/floor/carpet,/area/prishtina/houses/nml_one)
 "gY" = (/obj/structure/wild/tree/anchored,/turf/floor/plating/grass/wild,/area/prishtina)
 "gZ" = (/obj/effect/floor_decal/plaque{name = "Krasny Oktyobr Factory"},/turf/wall/brick,/area/prishtina)
-"ha" = (/obj/structure/light/small{dir = 8},/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/turf/floor/plating/road,/area/prishtina)
+"ha" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/structure/light/floor/streetlight,/turf/floor/plating/road,/area/prishtina)
 "hb" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/effect/floor_decal/industrial/warning/dust,/obj/structure/railing{dir = 8},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
 "hc" = (/obj/effect/floor_decal/industrial/warning/dust,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
-"hd" = (/obj/structure/light/small{dir = 4},/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/effect/floor_decal/industrial/warning/dust,/obj/structure/railing{dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"hd" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/effect/floor_decal/industrial/warning/dust,/obj/structure/railing{dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
 "he" = (/obj/effect/decal/cleanable/dirt,/turf/floor/dirt,/area/prishtina/houses/nml_one)
 "hf" = (/obj/item/ammo_casing/a9_parabellum,/turf/floor/wood_broken{icon_state = "broken3"},/area/prishtina/houses/nml_one)
 "hg" = (/turf/floor/wood_broken{icon_state = "broken2"},/area/prishtina/houses/nml_one)
 "hh" = (/obj/effect/floor_decal/plaque{name = "Housing Block #109"},/turf/wall/brick,/area/prishtina/houses/nml_one)
 "hi" = (/obj/structure/simple_door/key_door/anyone/wood{name = "Home"},/turf/floor/carpet,/area/prishtina/houses/nml_one)
-"hj" = (/obj/structure/light/small{dir = 1},/turf/floor/plating/asteroid,/area/prishtina)
 "hk" = (/obj/structure/wild/tree/anchored{icon_state = "tree3"},/turf/floor/plating/grass/wild,/area/prishtina)
 "hl" = (/obj/structure/wild/tree/anchored{icon_state = "tree6"},/turf/floor/plating/grass/wild,/area/prishtina)
 "hm" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/structure/railing,/turf/floor/plating/road,/area/prishtina)
@@ -1015,7 +1014,7 @@ aiaiaiaiaiaiaiaiaiaiftaiaiftaiaiftaifJftaifIftglaiaiftaiaiaiaiftaiaiaiaiaiaeaegm
 aiaiaiaiaiaiaiaiaiaifvfJfJftfJfJftfJfJftfJfJftgsaiaiftaiaiaiaiftaiaiaiaiaigtaegmgugvgwgwgwgxfAfWfSgygyfSgzfSfSaxfSgBfSaxgpaHgDgDgDgDgDaHaxapaxgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqaxajaeaeaeaeaeakaiazaWaWbBazaWaWbBazaWaWgEazaWaWbBazaWaWbBazaWshgFaz
 fBfBfBfBfBfBfBfBfBaiftftftftftftftftftftftftftgGaiaifvftftftftftaiaiaiaiaigHgIgJgKgLgMgMgMgNgOfVfSgygyfSfSgPfSaxgygyfSaxgQaHgRgSgTgRgUaHaxapaxgqgqgqgqgqgqgqgqgqgqgqgVgVgqgqgVgVgqgqgVgWgqgqgVgVaxbRaeaeaeaeaebTaiazaWaWgXazaWaWgXazaWaWgXazaWaWgXazaWaWgXazaWaWgXaz
 aifFaifFaifFaifFaoerererererererererererergZeseteugZerererererererererererereraohahbhchchchdbTfVfThefSfShfhggyaxaxaxaxaxaHaHdQdQdQdQdQaHaxapaxgqgqgqgqgqgqgqgqgqgqgqgVgWgqgqgVgVgqgqgVgVgqgqgVgVaxajaeaeaeaeaeakaihhazhiazazazhiazazazhiazazazhiazazazhiazazazhiazaz
-fFaifFaifFaifFaiezeAeAeAeAeAeAeAeAeAeAeAeAeAeBaeeCeAeAeAeAeAeAeAeAeAeAeAeAeAeAhjhmhpfyfyfyhshtfVfSgygzfSgPhggzgPaHddaHhuaHaHhvaHaHaHaHaHaxapaxgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqaxajaeaeaeaeaeakaifHaHaHaHddaHaHaHddaHaHaHddaHaHaHddaHaHaHddaHaHaHaz
+fFaifFaifFaifFaiezeAeAeAeAeAeAeAeAeAeAeAeAeAeBaeeCeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAhmhpfyfyfyhshtfVfSgygzfSgPhggzgPaHddaHhuaHaHhvaHaHaHaHaHaxapaxgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqaxajaeaeaeaeaeakaifHaHaHaHddaHaHaHddaHaHaHddaHaHaHddaHaHaHddaHaHaHaz
 fEfEfEfEfEfEfEfEaoeAazazaAazazazaAazazeAeAeAeBaeeGeHeHeHeHeHeHeHeHeHeHeHeHeHeHeHeIaeaeaeaeaeakfWfSfSgPfSfSgygPaHaHgPaHbHhwaHaHaHhwaHaHaHaxapaxgqgqgqhxgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqaxajaeaeaeaeaeakaihyaHaHaHaHaHaHaHaHaHaHaHaHaHaHaHaHaHaHaHaHaHaHaHaz
 fEaifEaifEaifEaiezeAazaHaHaHddaHaHaHazeAeAeAeBaeeMeNeNeNeNeNeNeNeNeNeNeNeNeNeNeNeOaeaeaeaeaeakaxaJaJaJaJaJaJaJaJaJaJaJaJaJaJaJbmbmbmaJaJaxapaxhzgqgqgVgqgqgqgqgqgqgqgqhAgqgqhAgqgqhAgqgqhAgqgqhBhCeSaeaeaeaeaeakaifHaHaHaHaHaHaHaHaHaHaHaHaHaHaHaHaHaHaHaHaHaHaHaHaz
 fEfEfEfEfEfEfEfEezeAaAaHhDhDaHhDhDaHaAeAeAeAeBaeeCeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAgZaeaeaeaeaeakaxhFddhGhIhJhKaJhLaJhMhTaJaHaHddaHaHaHddaHaxapaxgqgqgqgVgqgqgqgqgqgqgqgqgrgqgqgrgqgqgrgqgqgrgqgqgqhUajaeaeaeaeaeakaihhazazazazazazazazazazazazazazazazazazazazazazazaz

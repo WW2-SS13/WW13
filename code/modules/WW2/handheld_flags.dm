@@ -38,7 +38,7 @@
 
 /obj/item/weapon/handheld_flags/polish
 	name = "Polish flag"
-	desc = "Polend one's a great nation hase now fallen into the german hands with this flag you will charge your follow soldiers to combat so fight for the motherland and to free your contry"
+	desc = "Poland one's a great nation hase now fallen into the german hands with this flag you will charge your follow soldiers to combat so fight for the fatherland and to free your contry"
 	icon_state = "pol_flag"
 	item_state = "pol_flag"
 
@@ -49,7 +49,7 @@
 	item_state = "jap_flag"
 
 /obj/item/weapon/handheld_flags/ukr
-	name = "Ukrain flag"
-	desc = "Ukrain taken over by russia but with this flag they will fight for independens"
+	name = "Ukrainian flag"
+	desc = "Ukrainian taken over by russia but with this flag they will fight for independens"
 	icon_state = "ukr_flag"
 	item_state = "ukr_flag"

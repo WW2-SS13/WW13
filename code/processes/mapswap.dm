@@ -21,6 +21,7 @@
 		MAP_GAZALA = 20,
 		MAP_TRAIN = 0,
 		MAP_COLDITZ = 0
+//		MAP_CHATEAU
 	)
 
 	var/ready = TRUE

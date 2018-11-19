@@ -68,10 +68,9 @@
 "bp" = (/obj/structure/closet/crate/sandbags,/turf/floor/plating,/area/prishtina/german/bunker)
 "bq" = (/obj/item/ammo_magazine/c792x57_fg42,/turf/floor/plating,/area/prishtina/german/bunker)
 "br" = (/obj/structure/closet/crate/rations/soviet_solids,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
-"bs" = (/obj/map_metadata/train,/turf/wall/rockwall,/area/prishtina/houses/ger_eight)
 "bt" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina/houses/ger_eight)
 "bu" = (/obj/item/weapon/plastique/russian,/turf/floor/plating/metroz{icon_state = "metroedges"; dir = 8},/area/prishtina/houses/ger_eight)
-"bv" = (/obj/item/weapon/gun/projectile/shotgun/pump/combat/ithaca37,/obj/item/ammo_magazine/shotgun_ammobox/shell,/obj/item/ammo_magazine/shotgun_ammobox/shell,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
+"bv" = (/obj/item/weapon/gun/projectile/shotgun/pump/combat/ithaca37,/obj/item/ammo_magazine/shogun_ammobox/shell,/obj/item/ammo_magazine/shogun_ammobox/shell,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
 "bw" = (/obj/structure/closet/crate/rations/water,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
 "bx" = (/obj/item/weapon/gun/projectile/semiautomatic/stg,/turf/floor/plating,/area/prishtina/german/bunker)
 "by" = (/obj/item/weapon/gun/projectile/submachinegun/kis,/obj/item/ammo_magazine/s9x19mm,/obj/item/ammo_magazine/s9x19mm,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
@@ -84,6 +83,7 @@
 "bF" = (/obj/effect/decal/cleanable/dirt,/obj/effect/landmark{name = "JoinLatePartisan"},/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
 "bG" = (/obj/structure/sign/flag/poland,/turf/wall/rockwall,/area/prishtina/houses/ger_eight)
 "bH" = (/turf/floor/plating/metro{icon_state = "metrofull"; dir = 9},/area/prishtina/houses/ger_eight)
+"bI" = (/obj/map_metadata/train,/turf/floor/plating/track,/area/prishtina/houses/ger_eight)
 "bJ" = (/obj/structure/sign/flag/germanybanner,/turf/wall/indestructable,/area/prishtina/german/bunker)
 "bK" = (/turf/floor/plating/metro{icon_state = "metrofull"; dir = 8},/area/prishtina/houses/ger_eight)
 "bL" = (/turf/floor/plating/metro{icon_state = "metrofull"; dir = 4},/area/prishtina/houses/ger_eight)
@@ -138,7 +138,7 @@ aaaaaaabadaeaTaTaTaTaTaTaTaTaeadafbEbEbE
 aaaaaaabadaeaTaTaTaTaTaTaTaTaTadafbEbFbE
 aTaaaaabadaTaTaTaTaTaTaTaTaTaTbGafbEbEbE
 aTaTaaabaTaTaTaTaTaTaTaTaTaTaTaTafaaaaaa
-aTaTaaabaTaTaTbsaTaTaTaTaTaTaTaTaTaaaabK
+aTaTaaabaTaTaTbIaTaTaTaTaTaTaTaTaTaaaabK
 aTaTbLabaTaTaTaTaTaTaTaTaTaTaTaTafbMbObK
 aTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTafaTbHaT
 aTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaT
