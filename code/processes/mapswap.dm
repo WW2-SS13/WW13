@@ -20,8 +20,8 @@
 		MAP_WINTER_LINE = 10,
 		MAP_GAZALA = 20,
 		MAP_TRAIN = 0,
-		MAP_COLDITZ = 0
-//		MAP_CHATEAU
+		MAP_COLDITZ = 0,
+		MAP_CHATEAU = 0
 	)
 
 	var/ready = TRUE
