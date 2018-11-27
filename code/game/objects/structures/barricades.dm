@@ -44,23 +44,34 @@
 				if (D.use(1))
 					health = maxhealth
 					visible_message("<span class='notice'>[user] repairs \the [src].</span>")
+					return
+
+	if (istype(W, /obj/item/weapon/crowbar))
+		if (anchored)
+			user.visible_message("<span class = 'notice'>\The [user] starts to dissasemble \the [src] with [W].</span>")
+			if(do_after(user,100))
+				user.visible_message("<span class = 'notice'>\The [user] finishes dissasembling through \the [src]!</span>")
+				playsound(loc, 'sound/items/crowbar.ogg', 50, TRUE)
+				var/destroyd
+				for(destroyd=0, destroyd<3, destroyd++)
+				material.place_dismantled_product(get_turf(src))
+				qdel(src)
 				return
-		return
-	else
-		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		switch(W.damtype)
-			if ("fire")
-				health -= W.force * TRUE
-			if ("brute")
-				health -= W.force * 0.75
 
-		playsound(get_turf(src), 'sound/weapons/smash.ogg', 100)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	switch(W.damtype)
+		if ("fire")
+			health -= W.force * TRUE
+		if ("brute")
+			health -= W.force * 0.75
 
-		user.do_attack_animation(src)
+	playsound(get_turf(src), 'sound/weapons/smash.ogg', 100)
 
-		try_destroy()
+	user.do_attack_animation(src)
 
-		..()
+	try_destroy()
+
+	..()
 
 /obj/structure/barricade/proc/try_destroy()
 	if (health <= 0)

@@ -31,7 +31,7 @@
 "aE" = (/obj/structure/table/wood,/obj/item/weapon/stamp,/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; icon_state = "green1"; name = "German Resting area"})
 "aF" = (/obj/item/weapon/storage/backpack/german,/obj/item/weapon/storage/backpack/german,/obj/item/weapon/storage/backpack/german,/obj/item/weapon/storage/backpack/german,/obj/item/weapon/storage/backpack/german,/obj/item/weapon/storage/backpack/german,/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; icon_state = "green1"; name = "German Resting area"})
 "aG" = (/obj/effect/landmark{name = "JoinLateHeer-S4"},/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; icon_state = "green1"; name = "German Resting area"})
-"aH" = (/obj/structure/largecrate,/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; icon_state = "green1"; name = "German Resting area"})
+"aH" = (/obj/item/weapon/handheld_flags/russian,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
 "aI" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/item/weapon/storage/firstaid/surgery,/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; icon_state = "green2"; name = "German Hospital"})
 "aJ" = (/obj/structure/bed/roller,/obj/effect/decal/cleanable/blood/drip,/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; icon_state = "green2"; name = "German Hospital"})
 "aK" = (/obj/structure/bed/roller,/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; icon_state = "green2"; name = "German Hospital"})
@@ -40,7 +40,7 @@
 "aN" = (/obj/structure/closet/crate/lugers,/turf/floor/wood,/area/prishtina/german/armory{base_turf = /turf/floor/wood_broken; capturable = 0})
 "aO" = (/obj/effect/landmark{name = "JoinLateHeer"},/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; icon_state = "green1"; name = "German Resting area"})
 "aP" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/wood,/area/prishtina/german/base_defenses{base_turf = /turf/floor/wood_broken; location = 0})
-"aQ" = (/obj/structure/flag/german,/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; icon_state = "green1"; name = "German Resting area"})
+"aQ" = (/obj/structure/light/small,/obj/item/weapon/handheld_flags/russian,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/wood; name = "Sov base"})
 "aR" = (/obj/effect/landmark{name = "JoinLateHeer-S4"},/turf/floor/wood_broken,/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; icon_state = "green1"; name = "German Resting area"})
 "aS" = (/obj/effect/landmark{name = "JoinLateHeer-S3"},/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; icon_state = "green1"; name = "German Resting area"})
 "aT" = (/obj/effect/landmark{name = "JoinLateHeer-S1"},/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; icon_state = "green1"; name = "German Resting area"})
@@ -252,6 +252,7 @@
 "eR" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/blue,/turf/floor/wood,/area/prishtina/soviet/bunker/resting_area{base_turf = /turf/floor/wood})
 "eS" = (/obj/structure/light/small,/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
 "eT" = (/obj/item/weapon/paper,/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
+"eU" = (/obj/item/weapon/handheld_flags/german,/turf/floor/wood,/area/prishtina/german/bunker{base_turf = /turf/floor/wood_broken; icon_state = "green1"; name = "German Resting area"})
 "eV" = (/turf/wall/indestructable/black,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
 "eW" = (/turf/wall/wood,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
 "eX" = (/obj/structure/window_frame,/obj/structure/barricade/steel,/obj/structure/curtain/open/privacy,/turf/wall/wood,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
@@ -751,7 +752,7 @@ ababaaaabZcbcZdadadacGcbdbcJcpcqcrcMcMdccqcucPddcucbcwcPdecwcbcxcPdfcxcbdgdgcbcU
 ababaaaabZcbcbcbcbcbcbcbdjcJdkcqcqdlcqcqcqcbcIcbcbcbcbcIcbcbcbcbcIcbcbcbdmdmcbdncUohohcVohohohohcWcaaaabaeaeaeaaabababab
 ababaaaabZdodpdqdqdqdrcbdscJcJdtdudvdwdxdycGcGcGckcGcGcGcGckdzcGcGcGckcGcGcGcGcUdAdhdidBohcXohdCcCcaaaabdEaaaaaaabababab
 ababaaaabZcEdFdGdHdGdGcIcJdIcJcGcGcGcGcGdJcGdKdKdKdKdKdLcGcGdMcGcGcGdNdJcGcGcGcUcUdDdicVcXohohdCcWcaaaabdEdEdEaaabababab
-ababaaaabZdodpdGdPdGdrcbdQcJcJdRcGcGcGdScGdTcGdTdRdJcGcGdUdScGcGcGcGdScGcGcGcGcUdVdOdWdBcXohohdCcCcaaaabaaaadEaaabababab
+ababaaaabZdodpdGdPdGdrcbdQcJcJdRaHcGaHaQaHdTcGdTdRdJcGcGdUdScGcGcGcGdScGcGcGcGcUdVdOdWdBcXohohdCcCcaaaabaaaadEaaabababab
 ababaaaabZcbcbcbcbcbcbcbdYcJcJdZdZeadZdZdZebecebebebedeeedededcbcIcbcbcbdmdmcbdncUohcXcVohohohohcWcaaaabdEdEdEaaabababab
 ababaaaabZcbcZefefefcGcbegcJehdZeiejekeidZelemeneoebepeqeqepedercPesercbdgdgcbcUcUohohdBohohohohcCcaaaabaaaaaaaaabababab
 ababaaaabZcEcFcGetetcGcIcJcKehdZbNejejevdZelemewexebeyeqeqeyedezcPcPezcbcScTcbeAeBdXohcVohcXohohcWcaaaabaaaaaaaaabababab
@@ -920,10 +921,10 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababab
 aaaaaaaaadadadadadadadadadadadadadadadadadadadadadadadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
 aaaaaaaaadafafafafafafafafagafafafafafagafafahaiafafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
-aaaaaaaaadafajakalamaobzbzapaqarasatauavawaxayazaAafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
-aaaaaaaaadafaBaBaCanaDbzoiawaEaraFaGawawaHaIaJaKaLafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
-aaaaaaaaadafaMaNaCamaPbzbzaOawaraQaRaOaSaTaUaJaJaVafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
-aaaaaaaaadafaWaWaCanaZbzbzaOaraXaOaGaOaSaTaYbabbaLafadababababaeaeaeababababababababababababababababaaaaaaaaaaaaaaababab
+aaaaaaaaadafajakalamaobzbzapaqarasatauaveUaxayazaAafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
+aaaaaaaaadafaBaBaCanaDbzoiawaEaraFaGeUeUeUaIaJaKaLafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
+aaaaaaaaadafaMaNaCamaPbzbzaOawarawaRaOaSaTaUaJaJaVafadabababababababababababababababababababababababaaaaaaaaaaaaaaababab
+aaaaaaaaadafaWaWaCanaZbzbzaOarawaOaGaOaSaTaYbabbaLafadababababaeaeaeababababababababababababababababaaaaaaaaaaaaaaababab
 aaaaaaaaadafbcaCaCamojbzbzbdbeawbfaGbgaSaTbhbibibjagadababababababaeababababababababababababababababaaaaaaaaaaaaaaababab
 aaaaaaaaadafbcaCaCanaPoibzaOawawbeaGbkaSaTbhbiblbmbvadabaeaeabaeaeaeababababababababababababababababaaaaaaaaaaaaaaababab
 aaaaaaaaadafbcaCaCamaPbzbzaOawarawarbnaSaTbhbobpbqagadababababaeababababababababababababababababababaaaaaaaaaaaaaaababab

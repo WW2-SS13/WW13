@@ -454,14 +454,6 @@
 	item_state = "itauni_officer"
 	worn_state = "itauni_officer"
 
-/obj/item/clothing/suit/fallsparka
-	name = "Fallschirmjager Parka"
-	desc = "A warm and comfy parka for Fallschirmjagers."
-	icon_state = "fallsparka"
-	item_state = "fallsparka"
-	worn_state = "fallsparka"
-	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
-
 /obj/item/clothing/head/helmet/gerhelm
 	name = GERMAN_HELMET_NAME
 	desc = GERMAN_HELMET_DESC
@@ -492,36 +484,35 @@
 	icon_state = "UShelm"
 	item_state = "UShelm"
 
-/obj/item/clothing/head/helmet/ushelm_med
+/obj/item/clothing/head/helmet/ushelm/med
 	name = "US Medical helmet"
 	desc = "A simple steel helmet worn by American GIs, with medical decals."
 	icon_state = "UShelm_med"
 	item_state = "UShelm_med"
 
-/obj/item/clothing/head/helmet/ushelm_nco
+/obj/item/clothing/head/helmet/ushelm/nco
 	name = "US NCO helmet"
 	desc = "A simple steel helmet worn by American GIs, with a white bar in the back, identifying a NCO."
 	icon_state = "UShelm_nco"
 	item_state = "UShelm_nco"
 
-/obj/item/clothing/head/helmet/ushelm_2lt
+/obj/item/clothing/head/helmet/ushelm/lt2
 	name = "US 2Lt. helmet"
 	desc = "A simple steel helmet worn by American GIs, with a the markings of a 2nd Lt. in the front."
 	icon_state = "UShelm_2lt"
 	item_state = "UShelm_2lt"
 
-/obj/item/clothing/head/helmet/ushelm_1lt
+/obj/item/clothing/head/helmet/ushelm/lt1
 	name = "US 1Lt. helmet"
 	desc = "A simple steel helmet worn by American GIs, with a the markings of a 1nd Lt. in the front."
 	icon_state = "UShelm_1lt"
 	item_state = "UShelm_1lt"
 
-/obj/item/clothing/head/helmet/ushelm_cap
+/obj/item/clothing/head/helmet/ushelm/cap
 	name = "US Captain helmet"
 	desc = "A simple steel helmet worn by American GIs, with a the markings of a Captain in the front."
 	icon_state = "UShelm_cap"
 	item_state = "UShelm_cap"
-
 
 /obj/item/clothing/head/helmet/fire
 	name = "Firefighter cap"
@@ -529,19 +520,19 @@
 	icon_state = "germpcapworn"
 	item_state = "germanfirefightinggeneralscap"
 
-/obj/item/clothing/head/helmet/ushelm_mar
+/obj/item/clothing/head/helmet/ushelm/mar
 	name = "US Marines camo helmet"
 	desc = "The regular American M1 but with a frogskin camo cover."
 	icon_state = "UShelm_mar"
 	item_state = "UShelm_mar"
 
-/obj/item/clothing/head/helmet/ushelm_mar_nco
+/obj/item/clothing/head/helmet/ushelm/mar_nco
 	name = "US Marines NCO camo helmet"
 	desc = "The regular American M1 but with a frogskin camo cover. It has the markings of a NCO."
 	icon_state = "UShelm_mar_nco"
 	item_state = "UShelm_mar_nco"
 
-/obj/item/clothing/head/helmet/usmphelm
+/obj/item/clothing/head/helmet/ushelm/usmphelm
 	name = "US MP helmet"
 	desc = "A standard US Military Police helmet."
 	icon_state = "USMPhelm"
@@ -811,7 +802,7 @@
 	desc = "A belt that can hold gear like pistols, ammo and other things."
 	icon_state = "USgear"
 	item_state = "USgear"
-	storage_slots = 12
+	storage_slots = 14
 	max_w_class = 3
 	max_storage_space = 24
 	can_hold = list(
@@ -1118,15 +1109,17 @@
 	desc = "You wear this on your back and put items into it."
 	icon_state = "germanpack"
 	item_state_slots = null
+
 /obj/item/weapon/storage/backpack/japan
 	name = "japanese backpack"
 	desc = "You wear this on your back and put items into it."
-	icon_state = "germanpack"
+	icon_state = "jappack"
 	item_state_slots = null
+
 /obj/item/weapon/storage/backpack/usa
 	name = "american backpack"
 	desc = "You wear this on your back and put items into it."
-	icon_state = "russianpack"
+	icon_state = "uspack"
 	item_state_slots = null
 
 //portable rations
@@ -1201,6 +1194,14 @@
 	item_state = "ss_coat"
 	worn_state = "ss_coat"
 
+/obj/item/clothing/suit/storage/coat/fallsparka
+	name = "Fallschirmjager Parka"
+	desc = "A warm and comfy parka for Fallschirmjagers."
+	icon_state = "fallsparka"
+	item_state = "fallsparka"
+	worn_state = "fallsparka"
+	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
+
 /obj/item/clothing/suit/storage/coat/german/officer
 	name = "German Officer's Coat"
 	desc = "An ordinary winter coat issued to Wehrmacht officers."
@@ -1214,7 +1215,6 @@
 	icon_state = "soviet_coat"
 	item_state = "soviet_coat"
 	worn_state = "soviet_coat"
-
 
 /obj/item/clothing/suit/storage/coat/american
 	name = "American Soldier's Coat"

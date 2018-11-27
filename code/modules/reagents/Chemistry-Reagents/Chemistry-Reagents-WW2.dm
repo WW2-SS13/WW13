@@ -99,7 +99,7 @@ var/mob/living/carbon/human/next_gas_flesh_message = -1
 /datum/reagent/toxin/mustard_gas
 	name = "Mustard Gas"
 	id = "mustard_gas"
-	description = "A deadly gas." // todo: better description - Kachnov
+	description = "A deadly gas that was used a ton in ww1 but now again it's used by the germans kill men by the tousens." // todo: better description - Kachnov
 	reagent_state = GAS
 	color = "#A2CD5A"
 	strength = 30
@@ -115,7 +115,7 @@ var/mob/living/carbon/human/next_gas_flesh_message = -1
 /datum/reagent/toxin/mustard_gas/white_phosphorus
 	name = "White Phosphorus Gas"
 	id = "white_phosphorus_gas"
-	description = "A deadly gas." // todo: better description - Kachnov
+	description = "A white deadly gas that burns you up like a torche." // todo: better description - Kachnov
 	reagent_state = GAS
 	color = "#FFFFFF"
 	strength = 30
@@ -132,7 +132,7 @@ var/mob/living/carbon/human/next_gas_flesh_message = -1
 /datum/reagent/toxin/chlorine_gas
 	name = "Chlorine Gas"
 	id = "chlorine_gas"
-	description = "A deadly gas." // todo: better description - Kachnov
+	description = "A colour less deadly gas that will kill you in seconds." // todo: better description - Kachnov
 	reagent_state = GAS
 	color = "#ffd700"
 	strength = 30

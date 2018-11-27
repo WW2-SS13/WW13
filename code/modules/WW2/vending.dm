@@ -63,7 +63,7 @@
 		/obj/item/clothing/under/usuni = 50,
 		/obj/item/clothing/under/usuni2 = 20,
 		/obj/item/clothing/under/usuni3 = 10,
-		/obj/item/clothing/head/helmet/ushelm_mar = 50,
+		/obj/item/clothing/head/helmet/ushelm/mar = 50,
 		/obj/item/clothing/mask/shemagh = 50,
 		/obj/item/clothing/shoes/usboots = 50,
 		/obj/item/clothing/mask/gas/usa = 25,
@@ -238,7 +238,7 @@
 	products = list(
 		/obj/item/clothing/head/helmet/gerhelm = 10,
 		/obj/item/clothing/under/geruni/falluni = 10,
-		/obj/item/clothing/suit/fallsparka = 10,
+		/obj/item/clothing/suit/storage/coat/fallsparka = 10,
 		/obj/item/clothing/shoes/swat = 10,
 		/obj/item/flashlight = 10,
 		/obj/item/ammo_magazine/kar98k = 20,
@@ -338,7 +338,7 @@
 	/obj/item/weapon/storage/firstaid/toxin = 5,
 	/obj/item/weapon/storage/firstaid/o2 = 5,
 	/obj/item/weapon/storage/firstaid/adv = 5,
-	/obj/item/weapon/storage/firstaid/combat = 3,
+	/obj/item/weapon/storage/firstaid/combat = 2,
 	/obj/item/weapon/storage/firstaid/surgery = 3,
 	/obj/item/weapon/storage/firstaid/injectorpack = 5,
 

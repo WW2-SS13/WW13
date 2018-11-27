@@ -1,0 +1,145 @@
+"aa" = (/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
+"ab" = (/turf/floor/plating/metroz{icon_state = "metroedges"; dir = 4},/area/prishtina/houses/ger_eight)
+"ac" = (/turf/floor/plating/dirt{icon_state = "surface2"; dir = 10},/area/prishtina/houses/ger_eight)
+"ad" = (/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina/houses/ger_eight)
+"ae" = (/turf/floor/plating/track,/area/prishtina/houses/ger_eight)
+"af" = (/turf/floor/plating/metroz{icon_state = "metroedges"; dir = 8},/area/prishtina/houses/ger_eight)
+"ag" = (/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/no_mans_land/invisible_wall/inside)
+"ah" = (/obj/structure/girder,/turf/floor/plating/dirt{icon_state = "surface2"; dir = 10},/area/prishtina/houses/ger_eight)
+"ai" = (/obj/train_connector,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina/houses/ger_eight)
+"aj" = (/turf/wall/indestructable,/area/prishtina/german/bunker)
+"ak" = (/obj/item/stack/material/steel,/turf/floor/plating/dirt{icon_state = "surface2"; dir = 10},/area/prishtina/houses/ger_eight)
+"al" = (/turf/wall/indestructable,/area/prishtina/houses/ger_eight)
+"am" = (/obj/structure/simple_door/key_door/anyone/train,/turf/floor/plating,/area/prishtina/houses/ger_eight)
+"an" = (/obj/structure/closet/crate/artillery_gas,/turf/floor/plating,/area/prishtina/houses/ger_eight)
+"ao" = (/turf/wall/brick,/area/prishtina/void/caves)
+"ap" = (/turf/wall/brick,/area/prishtina/german/outside)
+"aq" = (/turf/wall/indestructable,/area/prishtina)
+"ar" = (/turf/floor/plating,/area/prishtina/houses/ger_eight)
+"as" = (/obj/item/artillery_shell/gaseous/yellow_cross/white_phosphorus,/turf/floor/plating,/area/prishtina/houses/ger_eight)
+"at" = (/turf/floor/tiled/dark,/area/prishtina/houses/ger_eight)
+"au" = (/obj/structure/closet/crate/sandbags,/turf/floor/plating,/area/prishtina/houses/ger_eight)
+"av" = (/obj/item/artillery_shell/gaseous/yellow_cross/white_phosphorus,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina/houses/ger_eight)
+"aw" = (/obj/structure/closet/crate/artillery_gas,/turf/floor/plating/dirt{icon_state = "surface2"; dir = 10},/area/prishtina/houses/ger_eight)
+"ax" = (/turf/wall/brick,/area/prishtina/houses/ger_eight)
+"ay" = (/obj/structure/simple_door/key_door/anyone/train,/turf/floor/plating,/area/prishtina)
+"az" = (/obj/structure/simple_door/iron,/turf/floor/tiled/dark,/area/prishtina/houses/ger_eight)
+"aA" = (/obj/structure/closet/crate/radiation,/turf/floor/plating,/area/prishtina/houses/ger_eight)
+"aB" = (/obj/structure/closet/crate/panzerfaust,/turf/floor/plating,/area/prishtina/houses/ger_eight)
+"aC" = (/obj/item/stack/material/steel,/turf/floor/plating,/area/prishtina/houses/ger_eight)
+"aD" = (/obj/item/stack/material/steel,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina/houses/ger_eight)
+"aE" = (/obj/structure/window/sandbag{icon_state = "sandbag_33%"; dir = 1},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina/houses/ger_eight)
+"aF" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 1},/turf/floor/plating/metroz{icon_state = "metroedges"; dir = 8},/area/prishtina/houses/ger_eight)
+"aG" = (/obj/item/weapon/gun/projectile/semiautomatic/g41,/obj/item/weapon/gun/projectile/semiautomatic/g41,/obj/structure/closet/crate/kar98kammo,/turf/floor/plating,/area/prishtina/houses/ger_eight)
+"aH" = (/obj/structure/closet/crate/kar98kammo,/turf/floor/plating,/area/prishtina/houses/ger_eight)
+"aI" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina/houses/ger_eight)
+"aJ" = (/obj/item/stack/material/barbwire,/turf/floor/plating/metroz{icon_state = "metroedges"; dir = 8},/area/prishtina/houses/ger_eight)
+"aK" = (/obj/item/weapon/gun/projectile/semiautomatic/g41,/turf/floor/plating,/area/prishtina/houses/ger_eight)
+"aL" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag_66%"; icon_state = "sandbag_66%"; dir = 2},/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina/houses/ger_eight)
+"aM" = (/obj/structure/closet/crate/kar98kammo,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina/houses/ger_eight)
+"aN" = (/obj/item/weapon/gun/projectile/semiautomatic/g41,/obj/item/weapon/gun/projectile/semiautomatic/g41,/turf/floor/plating,/area/prishtina/houses/ger_eight)
+"aO" = (/obj/structure/siren,/turf/floor/plating,/area/prishtina/houses/ger_eight)
+"aP" = (/obj/item/weapon/crowbar/prybar,/turf/floor/plating,/area/prishtina/houses/ger_eight)
+"aQ" = (/obj/item/weapon/tool/engine,/turf/floor/plating,/area/prishtina/houses/ger_eight)
+"aR" = (/obj/item/weapon/newspaper,/turf/floor/plating,/area/prishtina/houses/ger_eight)
+"aS" = (/obj/item/weapon/tool/parts,/turf/floor/plating,/area/prishtina/houses/ger_eight)
+"aT" = (/turf/wall/rockwall,/area/prishtina/houses/ger_eight)
+"aU" = (/obj/structure/vending/SSweaponrack,/turf/floor/plating,/area/prishtina/german/bunker)
+"aV" = (/turf/floor/plating/metroz{icon_state = "metroedges"; dir = 4},/area/prishtina/no_mans_land/invisible_wall/inside)
+"aW" = (/obj/item/weapon/vehicle_fueltank/empty,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
+"aX" = (/turf/floor/plating/metroz{icon_state = "metroedges"; dir = 8},/area/prishtina/no_mans_land/invisible_wall/inside)
+"aY" = (/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina/no_mans_land/invisible_wall/inside)
+"aZ" = (/obj/train_lever/german,/turf/floor/plating,/area/prishtina/houses/ger_eight)
+"ba" = (/obj/structure/vending/SSequipment,/turf/floor/plating,/area/prishtina/german/bunker)
+"bb" = (/obj/structure/closet/crate/rations/water,/turf/floor/plating,/area/prishtina/german/bunker)
+"bc" = (/obj/effect/landmark{name = "JoinLateSS"},/turf/floor/plating,/area/prishtina/german/bunker)
+"bd" = (/obj/structure/window/sandbag,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina/houses/ger_eight)
+"be" = (/obj/structure/window/sandbag,/turf/floor/plating/metroz{icon_state = "metroedges"; dir = 8},/area/prishtina/houses/ger_eight)
+"bf" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
+"bg" = (/obj/item/weapon/gun/projectile/submachinegun/pps,/obj/item/ammo_magazine/c762x25mm_pps,/obj/item/ammo_magazine/c762x25mm_pps,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
+"bh" = (/turf/floor/plating,/area/prishtina/german/bunker)
+"bi" = (/turf/wall/brick,/area/prishtina)
+"bj" = (/obj/structure/girder,/turf/floor/plating/dirt{icon_state = "surface2"; dir = 10},/area/prishtina/no_mans_land/invisible_wall/inside)
+"bk" = (/obj/structure/sign/flag/germany,/turf/wall/indestructable,/area/prishtina/german/bunker)
+"bl" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina/houses/ger_eight)
+"bm" = (/obj/item/weapon/sandbag,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
+"bn" = (/obj/item/weapon/gun/projectile/semiautomatic/fg42,/turf/floor/plating,/area/prishtina/german/bunker)
+"bo" = (/obj/item/weapon/gun/projectile/submachinegun/fedorov,/obj/item/ammo_magazine/c762x25mm_pps,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
+"bp" = (/obj/structure/closet/crate/sandbags,/turf/floor/plating,/area/prishtina/german/bunker)
+"bq" = (/obj/item/ammo_magazine/c792x57_fg42,/turf/floor/plating,/area/prishtina/german/bunker)
+"br" = (/obj/structure/closet/crate/rations/soviet_solids,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
+"bt" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina/houses/ger_eight)
+"bu" = (/obj/item/weapon/plastique/russian,/turf/floor/plating/metroz{icon_state = "metroedges"; dir = 8},/area/prishtina/houses/ger_eight)
+"bv" = (/obj/item/weapon/gun/projectile/shotgun/pump/combat/ithaca37,/obj/item/ammo_magazine/shogun_ammobox/shell,/obj/item/ammo_magazine/shogun_ammobox/shell,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
+"bw" = (/obj/structure/closet/crate/rations/water,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
+"bx" = (/obj/item/weapon/gun/projectile/semiautomatic/stg,/turf/floor/plating,/area/prishtina/german/bunker)
+"by" = (/obj/item/weapon/gun/projectile/submachinegun/kis,/obj/item/ammo_magazine/s9x19mm,/obj/item/ammo_magazine/s9x19mm,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
+"bz" = (/obj/structure/closet/crate/rations/soviet_liquids,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
+"bA" = (/obj/item/weapon/gun/projectile/submachinegun/stenmk2,/obj/item/ammo_magazine/mp40/c9x19mm_stenmk2,/obj/item/ammo_magazine/mp40/c9x19mm_stenmk2,/turf/floor/plating/metroz{icon_state = "metroedges"; dir = 8},/area/prishtina/houses/ger_eight)
+"bB" = (/obj/item/weapon/plastique/russian,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
+"bC" = (/turf/floor/plating/track,/area/prishtina/no_mans_land/invisible_wall/inside)
+"bD" = (/obj/item/weapon/gun/projectile/submachinegun/bly,/obj/item/ammo_magazine/bly,/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
+"bE" = (/obj/effect/landmark{name = "JoinLatePartisan"},/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
+"bF" = (/obj/effect/decal/cleanable/dirt,/obj/effect/landmark{name = "JoinLatePartisan"},/turf/floor/plating/metro{icon_state = "metrofull"; dir = 10},/area/prishtina/houses/ger_eight)
+"bG" = (/obj/structure/sign/flag/poland,/turf/wall/rockwall,/area/prishtina/houses/ger_eight)
+"bH" = (/turf/floor/plating/metro{icon_state = "metrofull"; dir = 9},/area/prishtina/houses/ger_eight)
+"bI" = (/obj/map_metadata/train,/turf/floor/plating/track,/area/prishtina/houses/ger_eight)
+"bJ" = (/obj/structure/sign/flag/germanybanner,/turf/wall/indestructable,/area/prishtina/german/bunker)
+"bK" = (/turf/floor/plating/metro{icon_state = "metrofull"; dir = 8},/area/prishtina/houses/ger_eight)
+"bL" = (/turf/floor/plating/metro{icon_state = "metrofull"; dir = 4},/area/prishtina/houses/ger_eight)
+"bM" = (/turf/floor/plating/metro{icon_state = "metrofull"; dir = 1},/area/prishtina/houses/ger_eight)
+"bN" = (/obj/structure/simple_door/iron,/turf/floor/tiled/dark,/area/prishtina/german/outside)
+"bO" = (/turf/floor/plating/metro,/area/prishtina/houses/ger_eight)
+
+(1,1,1) = {"
+aaaaaaabajajbkajajacacadaeadaeadafaaaaaa
+aaaaaaabajaUbabbajacacadaeadaeadafaaaaaa
+aaaaaaabajbcbcbcajahahadaeadaeadafaaaaaa
+aaaaaaabajbcbcbcajahahadaeadaeadafaaaaaa
+aaaaaaabajbcbcbcajacacadaeadaeadafaaaaaa
+aaaaaaabajbhbhbhajacacadaeadaeadafaaaaaa
+aaaaaaabajbnbhbpajahahadaeadaeadafaaaaaa
+aaaaaaabajbqbhbxajahahadaeadaeadafaaaaaa
+agagagaVajbJbhbJajacacadaeadaeadafaaaaaa
+aaaaaaaVadaeaiaeadakacadaeadaeadaXagagag
+aaaaaaaVadalalamalalahalaeadaeadaXaobNap
+aaaaaaaVadalanarasalahadaealaeadaXaoatat
+aaaaaaaVadarararauaracavaeadaeadaXaoatat
+aaaaaaaVadararasadacawadaladaeadaXaoatat
+aaaaaaaVadalararanakahadaeadaeadaXaoatat
+aaaaaaaVaYaqaqayaqbjbjaYbCaYbCaYaXbiatat
+aaaaaaabadaeaiaeadacacadaeadaeadafaxatat
+aaaaaaabadaealalamalaladaeadaeadafaxazax
+aaaaaaabadaealaAararaladaeadaeadafaaaaaa
+aaaaaaabadaearararararadaeadaeadafaaaaaa
+aaaaaaabadaearararararadaeadaeadafaaaaaa
+aaaaaaabadaealaBaraCaladaeadaeadafaaaaaa
+aaaaaaabadaealalamalahaDaeadaeadafaaaaaa
+aaaaaaabadaeadaeadahahadaeadaeadafaaaaaa
+aaaaaaabadalalamalalacadaeadaeaEaFaaaaaa
+aaaaaaabadalaGaraHalacadaeadaeaIaJaaaaaa
+aaaaaaabadararaKaCarahadaeadaeaLafaaaaaa
+aaaaaaabaMaraNararaCahadaeadaeadafaaaaaa
+aaaaaaabadalaHararalacadaeadaeadafaaaaaa
+aaaaaaabadalalamalalacadaeadaeadafaaaaaa
+aaaaaaabadaeaiaeadahahadaeadaeadafaaaaaa
+aaaaaaabalalamalalahahadaeadaeadafaaaaaa
+aaaaaaabalaOararalacacadaeadaeadafaaaaaa
+aaaaaaabaraPararaQacacadaeadaeadafaaaaaa
+aaaaaaabarararaRarahahadaeaYbCaYaXagagag
+aaaaaaabalaraSaraTahahadaeaYaeadafaaaWaa
+aaaaaaabalaraZaTaTaTacadaeaYaebdbebfbgbg
+aaaaaaabalalaTaTaTaTaTadaeaYaeblafbmbobr
+aaaaaaabadaeaTaTaTaTaTaTaeaYaebtbubobvbw
+aaaaaaabadaeaTaTaTaTaTaTaeaYaeaLafbybybz
+aaaaaaabadaTaTaTaTaTaTaTaTaTaeadbAbvbBbv
+aaaaaaabadaeaTaTaTaTaTaTaTaTaTadafbBbDbD
+aaaaaaabadaeaTaTaTaTaTaTaTaTaeadafbEbEbE
+aaaaaaabadaeaTaTaTaTaTaTaTaTaTadafbEbFbE
+aTaaaaabadaTaTaTaTaTaTaTaTaTaTbGafbEbEbE
+aTaTaaabaTaTaTaTaTaTaTaTaTaTaTaTafaaaaaa
+aTaTaaabaTaTaTbIaTaTaTaTaTaTaTaTaTaaaabK
+aTaTbLabaTaTaTaTaTaTaTaTaTaTaTaTafbMbObK
+aTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTafaTbHaT
+aTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaT
+"}

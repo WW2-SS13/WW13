@@ -1,34 +1,34 @@
 "aa" = (/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"ab" = (/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
-"ac" = (/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"ad" = (/obj/structure/closet/crate/sandbags,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"ab" = (/obj/effect/decal/cleanable/dirt,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"ac" = (/obj/item/weapon/attachment/bayonet,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
+"ad" = (/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "ae" = (/turf/floor/dirt,/area/prishtina/forest)
-"af" = (/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
-"ag" = (/obj/structure/closet/crate/rations/soviet_solids,/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"ah" = (/obj/item/weapon/plastique/russian,/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"ai" = (/obj/structure/closet/crate/rations/soviet_liquids,/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"aj" = (/obj/structure/flag/soviet,/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"ak" = (/obj/structure/closet/crate/soviet_smoke_grenade,/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"al" = (/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/dirt,/area/prishtina/forest)
-"am" = (/obj/item/flashlight/lantern,/obj/item/flashlight/lantern,/obj/item/flashlight/lantern,/obj/item/flashlight/lantern,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"af" = (/obj/structure/closet/crate/sandbags,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"ag" = (/obj/structure/closet/crate/medical,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"ah" = (/obj/item/weapon/attachment/bayonet,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"ai" = (/obj/item/weapon/gun/projectile/submachinegun/fedorov,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"aj" = (/obj/item/clothing/accessory/storage/webbing,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"ak" = (/obj/item/weapon/gun/projectile/submachinegun/bly,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"al" = (/obj/structure/closet/crate/rations/soviet_solids,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"am" = (/obj/item/weapon/plastique/russian,/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "an" = (/obj/item/weapon/wirecutters/boltcutters,/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"ao" = (/obj/effect/landmark{name = "JoinLateRASL"},/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"ap" = (/obj/effect/landmark{name = "JoinLateRAMedic"},/turf/floor/dirt,/area/prishtina/forest)
-"aq" = (/obj/structure/wild/tree,/turf/floor/dirt,/area/prishtina/forest)
+"ao" = (/obj/structure/closet/crate/rations/soviet_liquids,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"ap" = (/obj/structure/flag/soviet,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"aq" = (/obj/structure/closet/crate/soviet_smoke_grenade,/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "ar" = (/obj/effect/damagedfloor/rust,/turf/wall/iron,/area/prishtina/no_mans_land/invisible_wall)
 "as" = (/obj/structure/barbwire{dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/no_mans_land/invisible_wall)
-"at" = (/obj/structure/barbwire{dir = 4},/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/no_mans_land/invisible_wall)
-"au" = (/obj/structure/barbwire{dir = 4},/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/no_mans_land/invisible_wall)
-"av" = (/obj/effect/landmark{name = "JoinLateRAMedic"},/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"at" = (/obj/effect/decal/cleanable/dirt,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
+"au" = (/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
+"av" = (/obj/item/weapon/gun/projectile/submachinegun/fedorov,/turf/floor/dirt,/area/prishtina/forest)
 "aw" = (/obj/structure/barbwire,/turf/floor/plating/grass/wild,/area/prishtina/no_mans_land/invisible_wall)
 "ax" = (/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/obj/structure/grille/fence{icon_state = "1"; dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "ay" = (/obj/structure/grille/broken,/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "az" = (/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"aA" = (/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
-"aB" = (/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
+"aA" = (/obj/structure/barbwire{dir = 4},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/no_mans_land/invisible_wall)
+"aB" = (/obj/structure/barbwire{dir = 4},/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/no_mans_land/invisible_wall)
 "aC" = (/obj/structure/grille/fence,/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "aD" = (/obj/structure/wild/bush/tame,/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"aE" = (/obj/item/flashlight/lantern,/obj/item/flashlight/lantern,/obj/item/flashlight/lantern,/obj/item/flashlight/lantern,/obj/item/flashlight/lantern,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"aE" = (/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/dirt,/area/prishtina/forest)
 "aF" = (/obj/item/flashlight/lantern,/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "aG" = (/obj/structure/grille/fence{icon_state = "1"; dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "aH" = (/obj/structure/grille/fence,/turf/floor/plating/grass/wild,/area/prishtina/forest)
@@ -76,8 +76,8 @@
 "bx" = (/obj/item/weapon/wrench,/obj/item/weapon/wirecutters/boltcutters,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "by" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 10},/obj/structure/rustpipe{icon_state = "trubas"; dir = 4},/obj/structure/catwalk,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "bz" = (/turf/floor/plating/grass/wild,/area/prishtina)
-"bA" = (/obj/structure/wild/bush/tame,/obj/structure/rustpipe{icon_state = "trubas"; dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"bB" = (/obj/effect/decal/cleanable/blood/gibs{icon_state = "u_madman"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"bA" = (/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
+"bB" = (/obj/structure/grille/fence{dir = 4; icon_state = "1"; pixel_y = 8},/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
 "bC" = (/obj/structure/catwalk,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "bD" = (/obj/structure/table/rackz,/obj/item/weapon/shovel/spade/russia,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "bE" = (/obj/structure/catwalk,/obj/item/clothing/head/welding,/turf/floor/wood,/area/prishtina/houses/ger_eight)
@@ -85,12 +85,11 @@
 "bG" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 4},/obj/effect/damagedfloor/rust,/turf/wall/iron,/area/prishtina/houses/ger_eight)
 "bH" = (/obj/structure/wild/tree,/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "bI" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"bJ" = (/obj/structure/barbwire,/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/no_mans_land/invisible_wall)
-"bK" = (/obj/structure/grille/fence{icon_state = "1"; dir = 1},/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"bJ" = (/obj/item/weapon/handheld_flags/russian,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"bK" = (/obj/item/weapon/handheld_flags/italian,/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "bL" = (/obj/effect/decal/cleanable/blood/writing,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "bM" = (/obj/structure/bed/chair/office/light,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "bN" = (/obj/structure/barbwire{dir = 4},/obj/structure/rustpipe{icon_state = "trubas"; dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"bO" = (/obj/structure/grille/fence{icon_state = "1"; dir = 1},/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
 "bP" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 1},/obj/effect/damagedfloor/rust,/turf/wall/iron,/area/prishtina/forest)
 "bQ" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 1},/obj/structure/catwalk,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "bR" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 1},/obj/structure/catwalk,/obj/effect/decal/cleanable/blood/writing,/turf/floor/wood,/area/prishtina/houses/ger_eight)
@@ -99,18 +98,18 @@
 "bU" = (/obj/structure/grille/fence{icon_state = "1"; dir = 1},/obj/structure/grille/fence{icon_state = "1"; dir = 8},/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "bV" = (/obj/structure/grille/fence{icon_state = "1"; dir = 8},/obj/structure/rustpipe{icon_state = "trubas"; dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "bW" = (/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/no_mans_land/invisible_wall)
-"bX" = (/turf/floor/plating/grass/wild,/area/prishtina/no_mans_land/invisible_wall)
-"bY" = (/obj/structure/barbwire,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/no_mans_land/invisible_wall)
+"bX" = (/turf/floor/plating/beach/water/swamp,/area/prishtina/forest)
+"bY" = (/obj/structure/barbwire,/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/no_mans_land/invisible_wall)
 "bZ" = (/obj/structure/grille/fence{icon_state = "1"; dir = 1},/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
 "ca" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 1},/obj/effect/damagedfloor/rust,/turf/wall/iron,/area/prishtina/houses/ger_eight)
 "cb" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 1},/obj/structure/rustpipe{icon_state = "trubas"; dir = 8},/obj/effect/damagedfloor/rust,/turf/wall/iron,/area/prishtina/houses/ger_eight)
 "cc" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 5},/obj/effect/damagedfloor/rust,/turf/wall/iron,/area/prishtina/houses/ger_eight)
 "cd" = (/obj/structure/plating,/obj/structure/rustpipe{icon_state = "panel_1"; name = "Mk2 Colossus Computer"},/obj/structure/sign/flag/sovietbanner,/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_one)
 "ce" = (/obj/structure/processing_unit_console{name = "Main Access Terminal"},/obj/effect/damagedfloor/rust,/turf/wall/indestructable,/area/prishtina/houses/ger_one)
-"cf" = (/obj/structure/plating,/obj/structure/bed/chair/office/dark{icon_state = "officechair_dark"; dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_two)
+"cf" = (/obj/item/flashlight/lantern,/obj/item/flashlight/lantern,/obj/item/flashlight/lantern,/obj/item/flashlight/lantern,/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "cg" = (/obj/structure/wild/bush/tame,/turf/floor/dirt,/area/prishtina/forest)
 "ch" = (/obj/structure/plating,/obj/structure/bed/chair/office/dark{icon_state = "officechair_dark"; dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_one)
-"ci" = (/obj/structure/plating,/obj/item/clothing/head/radiation,/obj/item/stack/material/uranium,/turf/floor/plating/grass/wild,/area/prishtina)
+"ci" = (/obj/structure/grille/fence{icon_state = "1"; dir = 1},/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "cj" = (/obj/effect/floor_decal/rust,/obj/effect/floor_decal/rust,/obj/structure/rustpipe{icon_state = "trubas"; dir = 10},/turf/wall/iron,/area/prishtina/forest)
 "ck" = (/obj/effect/floor_decal/rust,/obj/structure/rustpipe{icon_state = "trubas"; dir = 1},/turf/wall/iron,/area/prishtina/forest)
 "cl" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 5},/turf/wall/iron,/area/prishtina/forest)
@@ -118,29 +117,28 @@
 "cn" = (/obj/effect/floor_decal/rust,/obj/structure/sign/nosmoking_2,/turf/wall/iron,/area/prishtina/forest)
 "co" = (/obj/structure/simple_door/iron{name = "Munitions Factory"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "cp" = (/obj/effect/floor_decal/rust,/obj/effect/floor_decal/rust,/obj/structure/sign/nosmoking_2,/turf/wall/iron,/area/prishtina/forest)
-"cq" = (/obj/structure/plating,/obj/structure/light/small/red{icon_state = "firelight1"},/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_two)
+"cq" = (/obj/effect/landmark{name = "JoinLateRASL"},/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "cr" = (/obj/effect/floor_decal/rust,/obj/structure/rustpipe{icon_state = "trubas"; dir = 8},/turf/wall/iron,/area/prishtina/forest)
 "cs" = (/turf/floor/plating/beach/water/deep,/area/prishtina/forest)
 "ct" = (/obj/effect/decal/cleanable/blood/drip,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "cu" = (/obj/structure/simple_door/wood{name = "Overseer's Office"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"cv" = (/obj/structure/closet/crate/trashcart,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
+"cv" = (/obj/effect/decal/cleanable/dirt,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina)
 "cw" = (/obj/structure/bed/chair/office/dark,/obj/structure/noose,/obj/item/remains/human,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "cx" = (/obj/structure/table/wood,/obj/item/clothing/accessory/armband/engine,/obj/item/weapon/haircomb,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "cy" = (/obj/effect/floor_decal/rust,/obj/structure/rustpipe{icon_state = "trubas"; dir = 10},/turf/wall/iron,/area/prishtina/forest)
 "cz" = (/obj/effect/floor_decal/rust,/obj/effect/floor_decal/rust,/obj/structure/rustpipe{icon_state = "trubas"; dir = 1},/turf/wall/iron,/area/prishtina/forest)
 "cA" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 1},/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "cB" = (/obj/effect/floor_decal/rust,/obj/structure/rustpipe{icon_state = "trubas"; dir = 6},/turf/wall/iron,/area/prishtina/forest)
-"cC" = (/obj/structure/grille/fence,/obj/structure/grille/fence{icon_state = "1"; dir = 8},/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
-"cD" = (/obj/structure/grille/fence{icon_state = "1"; dir = 8},/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
-"cE" = (/obj/structure/grille/fence{icon_state = "1"; dir = 8},/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
+"cC" = (/obj/effect/decal/cleanable/liquid_fuel,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
+"cD" = (/obj/structure/grille/fence{icon_state = "1"; dir = 1},/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
+"cE" = (/obj/effect/decal/cleanable/liquid_fuel,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina)
 "cF" = (/obj/effect/damagedfloor/rust,/obj/structure/sign/signnew/radiation,/turf/wall/indestructable,/area/prishtina)
 "cG" = (/obj/effect/floor_decal/rust,/obj/effect/floor_decal/rust,/obj/structure/rustpipe{icon_state = "trubas"; dir = 9},/turf/wall/iron,/area/prishtina/forest)
 "cH" = (/obj/effect/floor_decal/rust,/obj/effect/floor_decal/rust,/obj/structure/rustpipe{icon_state = "trubas"; dir = 5},/turf/wall/iron,/area/prishtina/forest)
 "cI" = (/obj/effect/floor_decal/rust,/obj/structure/rustpipe{icon_state = "trubas"; dir = 4},/turf/wall/iron,/area/prishtina/forest)
-"cJ" = (/obj/effect/decal/cleanable/blood/gibs{icon_state = "gibhead"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"cK" = (/obj/structure/grille/fence,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
-"cL" = (/obj/structure/barbwire{dir = 4},/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
-"cM" = (/obj/structure/barbwire{dir = 4},/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
+"cK" = (/obj/structure/barbwire,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/no_mans_land/invisible_wall)
+"cL" = (/obj/structure/grille/fence{icon_state = "1"; dir = 1},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
+"cM" = (/obj/structure/plating,/obj/item/clothing/head/radiation,/obj/item/stack/material/uranium,/obj/item/clothing/suit/radiation,/obj/item/remains{name = "Assistant Taislin"},/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_one)
 "cN" = (/obj/effect/damagedfloor/rust,/turf/wall/indestructable,/area/prishtina/forest)
 "cO" = (/obj/structure/simple_door/iron{name = "Control Room"},/obj/structure/plating,/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_one)
 "cP" = (/obj/structure/table/rackz,/obj/structure/plating,/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_eight)
@@ -157,13 +155,13 @@
 "da" = (/obj/structure/light/small,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "db" = (/obj/structure/rustpipe{icon_state = "burnbarrel"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dc" = (/obj/structure/catwalk,/obj/item/weapon/attachment/scope/adjustable/sniper_scope,/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"dd" = (/obj/structure/closet/crate/medical,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"dd" = (/obj/effect/landmark{name = "JoinLateRAMedic"},/turf/floor/dirt,/area/prishtina/forest)
 "de" = (/obj/structure/closet/crate/tokarevs,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "df" = (/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/turf/floor/plating/grass/wild,/area/prishtina/no_mans_land/invisible_wall)
 "dg" = (/obj/structure/table/wood,/obj/item/weapon/stamp,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dh" = (/obj/effect/damagedfloor/rust,/obj/structure/sign/nosmoking_1,/turf/wall/iron,/area/prishtina/forest)
-"di" = (/obj/structure/plating,/obj/structure/plating,/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"dj" = (/obj/structure/plating,/obj/structure/plating,/obj/item/trash{icon_state = "base12"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"di" = (/turf/floor/plating/beach/water/swamp,/area/prishtina)
+"dj" = (/obj/structure/plating,/obj/item/trash{icon_state = "base12"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dk" = (/obj/structure/conveyor_switch,/obj/structure/plating,/obj/structure/plating,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dl" = (/obj/structure/conveyor{icon_state = "conveyor0"; dir = 8},/obj/item/weapon/ore/coal,/turf/floor/plating/under,/area/prishtina/houses/ger_eight)
 "dm" = (/obj/structure/conveyor{icon_state = "conveyor0"; dir = 8},/obj/structure/plasticflaps,/obj/item/weapon/ore/coal,/turf/floor/plating/under,/area/prishtina/houses/ger_eight)
@@ -177,17 +175,17 @@
 "du" = (/obj/effect/floor_decal/rust,/obj/structure/rustpipe{icon_state = "trubas"; dir = 4},/obj/structure/rustpipe{icon_state = "trubas"; dir = 1},/turf/wall/iron,/area/prishtina/forest)
 "dv" = (/turf/floor/plating/beach/water/deep,/area/prishtina)
 "dw" = (/turf/floor/plating/beach/water/sewage,/area/prishtina/forest)
-"dx" = (/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/no_mans_land/invisible_wall)
-"dy" = (/obj/structure/plating,/obj/structure/plating,/obj/item/trash{icon_state = "base5"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"dz" = (/obj/structure/plating,/obj/structure/plating,/obj/structure/plating,/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"dA" = (/obj/structure/plating,/obj/structure/plating,/obj/item/weapon/wrench,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"dx" = (/obj/structure/conveyor_switch,/obj/structure/plating,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"dy" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 1},/turf/floor/plating/beach/water/deep,/area/prishtina/forest)
+"dz" = (/obj/structure/grille/fence,/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/turf/floor/plating/beach/water/sewage,/area/prishtina/forest)
+"dA" = (/turf/floor/plating/beach/water/sewage,/area/prishtina/no_mans_land/invisible_wall)
 "dB" = (/obj/structure/plating,/obj/structure/closet/crate/empty,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dC" = (/obj/structure/plating,/obj/item/clothing/under/wrench,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dD" = (/obj/structure/plating,/obj/item/trash{icon_state = "base1"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dE" = (/obj/structure/plating,/obj/item/weapon/vehicle_fueltank/empty,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dF" = (/turf/floor/plating/beach/water/sewage,/area/prishtina)
-"dG" = (/obj/structure/plating,/obj/structure/plating,/obj/structure/closet/crate/trashcart,/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"dH" = (/obj/structure/plating,/obj/structure/plating,/obj/effect/decal/cleanable/blood/oil,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"dG" = (/obj/structure/plating,/obj/item/trash{icon_state = "base5"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"dH" = (/obj/structure/grille/fence,/turf/floor/plating/beach/water/sewage,/area/prishtina/forest)
 "dI" = (/obj/structure/catwalk,/obj/structure/plating,/obj/structure/plating,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dJ" = (/obj/structure/catwalk,/obj/structure/plating,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dK" = (/obj/structure/catwalk,/obj/structure/plating,/obj/effect/decal/cleanable/blood/oil,/turf/floor/wood,/area/prishtina/houses/ger_eight)
@@ -197,70 +195,70 @@
 "dO" = (/obj/effect/decal/cleanable/cobweb{icon_state = "cobweb1"; dir = 4},/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dP" = (/obj/effect/damagedfloor/rust,/obj/structure/sign/securearea,/turf/wall/iron,/area/prishtina/forest)
 "dQ" = (/obj/structure/simple_door/wood{name = "Offices"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"dR" = (/obj/structure/plating,/obj/structure/plating,/obj/item/clothing/under/wrench,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"dR" = (/obj/structure/plating,/obj/structure/closet/crate/trashcart,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dS" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 9},/turf/wall/iron,/area/prishtina/forest)
-"dT" = (/obj/structure/plating,/obj/structure/plating,/obj/item/weapon/vehicle_fueltank/empty,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"dT" = (/obj/structure/plating,/obj/effect/decal/cleanable/blood/oil,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dU" = (/obj/structure/plating,/obj/item/weapon/wrench,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dV" = (/obj/effect/floor_decal/rust,/obj/structure/sign/fire,/turf/wall/iron,/area/prishtina/forest)
 "dW" = (/obj/structure/simple_door/iron{name = "Workshop"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"dX" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 1},/turf/floor/plating/beach/water/sewage,/area/prishtina/forest)
+"dX" = (/obj/structure/grille/fence{icon_state = "1"; dir = 1},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "dY" = (/obj/structure/closet/crate/artillery,/obj/effect/decal/cleanable/cobweb,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "dZ" = (/obj/structure/closet/crate/colts,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "ea" = (/obj/structure/closet/crate/german_grenade,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "eb" = (/obj/structure/closet/crate/kar98kammo,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "ec" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 1},/obj/structure/catwalk,/obj/structure/light/small,/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"ed" = (/obj/structure/table/wood,/obj/item/artillery_shell/casing,/obj/item/clothing/suit/storage/vest/gru,/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"ee" = (/obj/structure/table/wood,/obj/item/clothing/under/oilworker,/obj/effect/decal/cleanable/cobweb{icon_state = "cobweb1"; dir = 4},/obj/item/clothing/head/welding,/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"ef" = (/obj/item/clothing/accessory/storage/webbing,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"ed" = (/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"ee" = (/obj/structure/plating,/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_one)
+"ef" = (/obj/structure/wild/tree,/turf/floor/dirt,/area/prishtina/forest)
 "eg" = (/obj/structure/closet/crate/maximbelt,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "eh" = (/obj/structure/closet/crate/lugers,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "ei" = (/obj/structure/closet/crate/mauserammo,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "ej" = (/obj/structure/closet/crate/mg34ammo,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "ek" = (/obj/structure/simple_door/wood{name = "Supply Warehouse"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"el" = (/turf/wall/iron,/area/prishtina/forest)
+"el" = (/obj/structure/closet/crate/trashcart,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
 "em" = (/obj/structure/barbwire,/obj/structure/barbwire{dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "en" = (/obj/structure/closet/crate/trashcart,/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "eo" = (/obj/effect/decal/cleanable/cobweb,/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"ep" = (/obj/structure/barbwire,/obj/structure/barbwire{dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/no_mans_land/invisible_wall)
+"ep" = (/obj/item/weapon/attachment/bayonet,/turf/floor/dirt,/area/prishtina/forest)
 "eq" = (/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/turf/floor/plating/beach/water/deep,/area/prishtina/forest)
 "er" = (/obj/structure/table/wood,/obj/item/weapon/paper{icon_state = "pismo_opened"; info = "Test"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "es" = (/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"et" = (/obj/structure/table/wood,/obj/item/weapon/pen/blue,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"et" = (/obj/structure/grille/fence,/obj/structure/grille/fence{icon_state = "1"; dir = 8},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
 "eu" = (/obj/structure/bed/chair/office/dark{icon_state = "officechair_dark"; dir = 1},/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"ev" = (/obj/structure/table/wood,/obj/item/weapon/paper,/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"ew" = (/obj/structure/closet/crate/rations/german_liquids,/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"ex" = (/obj/structure/closet/crate/rations/german_solids,/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"ey" = (/obj/effect/landmark{name = "JoinLateIT"},/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"ev" = (/obj/structure/grille/fence{icon_state = "1"; dir = 8},/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
+"ew" = (/obj/item/weapon/gun/projectile/submachinegun/kis,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"ex" = (/obj/item/weapon/gun/projectile/submachinegun/pps,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"ey" = (/obj/effect/landmark{name = "JoinLateRAMedic"},/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "ez" = (/obj/structure/bed/chair/office/dark,/obj/effect/decal/cleanable/blood/drip,/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"eA" = (/obj/effect/landmark{name = "JoinLateIT-Medic"},/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"eA" = (/obj/item/flashlight/lantern,/obj/item/flashlight/lantern,/obj/item/flashlight/lantern,/obj/item/flashlight/lantern,/obj/item/flashlight/lantern,/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "eB" = (/obj/structure/table/wood,/obj/item/weapon/gun/projectile/pistol/luger,/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"eC" = (/obj/effect/decal/cleanable/blood/splatter{icon_state = "mfloor2"},/obj/item/remains,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"eC" = (/obj/structure/grille/fence{icon_state = "1"; dir = 8},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
 "eD" = (/obj/structure/filingcabinet/filingcabinet,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "eE" = (/obj/structure/filingcabinet/chestdrawer,/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"eF" = (/obj/effect/landmark{name = "JoinLateIT-Officer"},/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"eG" = (/obj/structure/flag/italian,/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"eH" = (/obj/structure/closet/crate/german_smoke_grenade,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"eF" = (/obj/structure/closet/crate/rations/german_liquids,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"eG" = (/obj/structure/closet/crate/rations/german_solids,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"eH" = (/obj/item/weapon/attachment/scope/adjustable/sniper_scope,/turf/floor/plating/grass/wild,/area/prishtina/forest)
 "eI" = (/obj/structure/grille/broken,/turf/floor/dirt,/area/prishtina/forest)
 "eJ" = (/obj/structure/grille/fence{icon_state = "1"; dir = 8},/turf/floor/dirt,/area/prishtina/forest)
-"eK" = (/obj/effect/landmark{name = "JoinLateIT"},/turf/floor/dirt,/area/prishtina/forest)
-"eL" = (/obj/map_metadata/factory,/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"eM" = (/obj/structure/grille/fence,/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/turf/floor/plating/beach/water/deep,/area/prishtina/forest)
-"eN" = (/obj/structure/grille/fence,/turf/floor/plating/beach/water/deep,/area/prishtina/forest)
-"eO" = (/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/beach/water/deep,/area/prishtina/no_mans_land/invisible_wall)
+"eK" = (/obj/effect/landmark{name = "JoinLateIT"},/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"eL" = (/obj/effect/landmark{name = "JoinLateIT-Medic"},/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"eM" = (/obj/structure/grille/fence,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
+"eN" = (/obj/effect/damagedfloor/rust,/obj/effect/decal/cleanable/dirt,/turf/wall/iron,/area/prishtina/forest)
+"eO" = (/obj/structure/barbwire{dir = 4},/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
 "eP" = (/obj/effect/decal/cleanable/blood/oil{name = "Waste"},/turf/floor/plating/beach/water/sewage,/area/prishtina/forest)
 "eQ" = (/obj/structure/conveyor{icon_state = "conveyor0"; dir = 8},/obj/structure/plasticflaps,/obj/item/weapon/gun/launcher/rocket/panzerfaust,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "eR" = (/obj/structure/table/wood,/obj/item/weapon/screwdriver,/obj/item/weapon/gun/launcher/rocket/panzerfaust,/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"eS" = (/obj/item/weapon/attachment/bayonet,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
-"eT" = (/obj/item/weapon/attachment/bayonet,/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"eU" = (/obj/item/weapon/gun/projectile/submachinegun/fedorov,/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"eV" = (/obj/item/weapon/gun/projectile/submachinegun/bly,/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"eW" = (/obj/item/weapon/gun/projectile/submachinegun/fedorov,/turf/floor/dirt,/area/prishtina/forest)
-"eX" = (/obj/item/weapon/attachment/bayonet,/turf/floor/dirt,/area/prishtina/forest)
-"eY" = (/obj/item/weapon/gun/projectile/submachinegun/kis,/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"eZ" = (/obj/item/weapon/gun/projectile/submachinegun/pps,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"eS" = (/obj/structure/barbwire{dir = 4},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/sand{name = "Tainted Soil"},/area/prishtina/forest)
+"eT" = (/obj/effect/landmark{name = "JoinLateIT-Officer"},/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"eU" = (/obj/structure/flag/italian,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"eV" = (/obj/structure/closet/crate/german_smoke_grenade,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"eW" = (/obj/effect/landmark{name = "JoinLateIT"},/turf/floor/dirt,/area/prishtina/forest)
+"eX" = (/obj/map_metadata/factory,/turf/floor/plating/grass/wild,/area/prishtina/forest)
+"eY" = (/obj/effect/floor_decal/rust,/turf/wall/iron,/area/prishtina/no_mans_land/invisible_wall)
+"eZ" = (/obj/structure/grille/fence{icon_state = "1"; dir = 8},/turf/floor/plating/grass/wild,/area/prishtina)
 "fa" = (/obj/structure/conveyor{icon_state = "conveyor0"; dir = 8},/obj/item/weapon/gun/projectile/submachinegun/ovp,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "fb" = (/obj/structure/table/wood,/obj/item/weapon/stamp,/obj/item/weapon/gun/projectile/submachinegun/modello38,/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"fc" = (/obj/structure/table/wood,/obj/item/weapon/gun/projectile/submachinegun/ovp,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fc" = (/obj/structure/barbwire{dir = 4},/obj/effect/damagedfloor/rust,/turf/wall/iron,/area/prishtina/no_mans_land/invisible_wall)
 "fd" = (/obj/structure/plating,/obj/structure/light/small/red{icon_state = "firelight1"},/turf/floor/plating/grass/wild,/area/prishtina/houses/ger_one)
 "fe" = (/obj/effect/decal/cleanable/cobweb,/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "ff" = (/obj/effect/decal/cleanable/blood/writing,/obj/structure/light/small{icon_state = "bulb1"; dir = 4},/turf/floor/wood,/area/prishtina/houses/ger_eight)
@@ -276,59 +274,64 @@
 "fp" = (/obj/structure/plating,/obj/structure/light/small/red{icon_state = "firelight1"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "fq" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/turf/floor/wood,/area/prishtina/houses/ger_eight)
 "fr" = (/obj/structure/closet/crate/barbwire,/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/turf/floor/wood,/area/prishtina/houses/ger_eight)
-"fs" = (/obj/item/weapon/attachment/scope/adjustable/sniper_scope,/turf/floor/plating/grass/wild,/area/prishtina/forest)
-"ft" = (/obj/structure/plating,/turf/floor/plating/grass/wild,/area/prishtina)
-"fu" = (/obj/structure/plating,/obj/item/remains{name = "Assistant Taislin"},/turf/floor/plating/grass/wild,/area/prishtina)
+"ft" = (/obj/effect/decal/cleanable/blood/drip,/obj/structure/light/small{icon_state = "bulb1"; dir = 4},/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fu" = (/obj/structure/table/wood,/obj/item/artillery_shell/casing,/obj/item/clothing/suit/storage/vest/gru,/obj/effect/decal/cleanable/cobweb{icon_state = "cobweb1"; dir = 4},/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fv" = (/obj/structure/table/wood,/obj/item/clothing/under/oilworker,/obj/item/clothing/head/welding,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fw" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 8},/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fx" = (/obj/effect/decal/cleanable/blood/splatter{icon_state = "mfloor2"},/obj/item/remains{name = "Chief of Weapons production Eddy"},/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fy" = (/obj/structure/table/wood,/obj/item/weapon/gun/projectile/submachinegun/ovp,/obj/structure/light/small,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fz" = (/obj/structure/table/wood,/obj/structure/light/small,/turf/floor/wood,/area/prishtina/houses/ger_eight)
+"fA" = (/obj/effect/decal/cleanable/dirt,/obj/structure/plating,/turf/floor/wood,/area/prishtina/houses/ger_eight)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaaaaaaaaeSaaacaaaaadaaaaaaddaaaaacaeaeaaaaaaaaaaaaaeaeaeaeaeaaaaaaeTeUaaaaefaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaabafabeVaaacaaagahaiajaaakaaeWaeaeaeaeaeaeaeaeaeaeaeaeaealaeeTaaaaadefefddaaacaaaa
-aaaaaaaaaaaaaaaaaaababafeSeTeTeTaaamanaaaoefaaapaeaeaeaeaeaqaeaeaeaeaeaeaeaeeXaaajaoeTaiaaacaaeYaaaa
-arasasasasasasasasatauauasasasasasasaraaefaaefaeaeaeaeaeaeaqaqaeaeaeaeaeaeacaaeZahaaahaaavaaakaaaaaa
-awaxazayazazazazazaAaBaAazazazazazaCawaaaaaaaaaaaaaaaaaaaaaDaeaaaaaaaaaaaaaaaaaaagahaEanaFaaaaaaaaaa
-awaGbzaaaaaaaaaaaaafababaaaaaaaaaaaHarasasasasasasasasasasasasasasasasasasasasasasasasaraaaaaaaaaaaa
-awaGbzaaaIaIaIaIaJaIaKaIaIaIaIaLcQaMaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaOawaaaaaaacaaaa
+aaaaaaaaaaaaaaaaaaababacaaadaaaaafaabJaaagaaaaadaeaeaaaaaaaaaaaaaeaeaeaeaeaaaaaaahaiaaaaajaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaatauatakaaadaaalamaoapaaaqaaavaeaeaeaeaeaeaeaeaeaeaeaeaeaEaeahaaaaafajajagaaadaaaa
+aaaaaaaaaaaaaaaaaaatatauacahahahaacfanbJcqajaaddaeaeaeaeaeefaeaeaeaeaeaeaeaeepbJapcqahaoaaadaaewaaaa
+arasasasasasasasasaAaBaBasasasasasasaraaajaaajaeaeaeaeaeaeefefaeaeaeaeaeaeadaaexbJamamaaeyaaaqaaaaaa
+awaxazayazazazazazbAbBbAazazazazazaCawaaaaaaaaaaaaaaaaaaaaaDaeaaaaaaaaaaaaaaaaaaalameAanaFaaaaaaaaaa
+awaGbzaaababaaaaaaauatatabaaaaaaaaaHarasasasasasasasasasasasasasasasasasasasasasasasasaraaaaaaaaaaaa
+awaGbzaaaIaIaIaIaJaIaKaIaIaIaIaLcQaMaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaOawaaaaaaadaaaa
 awaGbzaaaIaPaQaRaSaTaUaVaWaXaXaYaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaHawaaaaaaaaaaaa
 awaGbzaaaIbaaXbbaXaXbbaXaXaXaXaYaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZaHawaaaaaaaaaaaa
 awaGbzaaaIbcaXaXdaaXbdaXaXaXaXaLcQaMaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNbeaZaZaHawaaaaaaaaaaaa
 awaGbzaaaIbfbfaYbhbfbiaXaXaXaXaIaaaHaIbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjbjaIaGaZaZaHawaaaaaaaaaaaa
 awaGbzaaaIcZblaXaXbmbnbobpbqbqbrbsbtbubsbsbsbsbsbsbsbsbsbsbsbsbsbsbsbsbsbsbvbwaGaZaZaHawaaaaaaaaaaaa
-awaGbzaaaIbxaXaXaXaXaXbyboaXaXaIaaaHbwaaaabzbzbzbzbzaaaaaaaaaaaaaaaaaDaDaabAbwaGaZaZaHawaDaFaaaaaaaa
-awaGbzaaaIaXbBaXbCbCbEbFbGaXaXaIaaaHbwaaaebzbzbzbzbzaabHaaaaaaaaaaaaaaaaaabIbwaGaZaZaHawaaanaaaaaaaa
-bJbKbzafaIaXbLaXbgdcbCbFbGaXaXaIaaaHbwaaaebzbzbzbzbzaaaIbjbjbjbjbjbjbjbjbjbNaIaGaZaZaHaraNaNaNaNaNar
-bJbObzabbPbQbRbQecbQbQbSbGaXaXaIaaaHbwaaaebTbTbTbTbTaabwbUaNaNaNaNaNaNaNaNbVaNbeaZaZaOasasasasasasbW
-bYbZbzaaaIaXbLbncacacacbccaXaXaIaaaHbwaaaebTbkcecdbTaabwaGaaaaaaaaaaaaaaaabIaaaaaZaZaaaabzbzaaaaaHbW
-bYbZbzaaaIaXbLaYaXaXaXbdaXaXaXaIaaaybwaacgbTcfcichbTaabwaGaaaacjckckckckckclcmcncococpaabzbzbXbXaHbW
-bYaGbzaaaIaXbLaIaIaIaIaKaIaIaIaIaaaybwaabHbTcqfufdbTaabwayaaaacrfectctcuctaXaXctaXaXcmcsbzbzaaaaaHbW
-awaGbzaaaIaXbLaIababafafcvaaaaaaaaaHbwaaaebTbTftbTbTaabwaGaaaacraXcwcxcyckckckczcAcAcBcsbzbzaaaaaHbW
-awaGbzaaaIaXffaIabcCcDcDcEcEaNaNaNaObwaaaebzcFftcFbzaabwaGaaaacGckckckcHaaaaaacmctaXcIcsdvbzaaaaaHbW
-awaGbzaaaIaXcJaIabcKaIcLcLcMbjbjbjbjaIaaaIaIcNcOcNaIaabwaGaaaaaaaaaaaaaaaaaaaacmctaXcIdwdvbzaaaaaHbW
-awaGbzaaaIaXaXaIaaaaaaaaaaaaaaaaaaaaaaaaaIcPfgcRfhaIaaaaaaaaaacTcmcmcmcUcmcmcmcVaXficWdwdvbzaaaaaHbW
-awaGbzaaaIaXfjaIaaaaaaaaaaaaaaaaaaaaaaaIcYcRcRcRcRaIaIaIaIaIaIcmbDfkdbaPfaeQfldeaXaXcWdwdFdvcsaaaHdf
-awaGbzaaaIaXfbaIaIaIaIaIaIaIaIaIaIaIdhaIfmdidjdkdldmdnfndpdqdrcmaXaXaXaXaXbbdsaXaXdtdudXdFdFeqcseMdx
-awaGbzaaaIaXaXaYcRfmcRcRcRcRcRcRcRcRfocRdydzdididAbbdBdCbbdDdEcodsaXaXaXaXaXaXaXaXbdcIdwdFdFcscseNeO
-awaGbzaaaIaXaXaYcRcRcRcRfpcRcRcRfpcRcRcRdGdzdHdIdIdJdJdKdJdJdJcoaXaXaXdLbqbqbqdMbqdNcIdwdFdFcsaaaHbW
-awaGbzaaaIdOaXaIaIaIaIaIaIdPdQdPaIaIaIcRdidzdRdkdldmdndodpdqdrcmaXcTcmcrcmcmcmcmcmdScldwdFdFcsaaaHbW
-awaGbzaaaIaIaIaIaaaaaaaaaaaIaXaIaaaaaIcRdidzdididTbbcRdBbbdUcRcmaXcmePePdwdwdwdwdwdwdwdwdFdvcsaaaHbW
-awaGbzaaaaaaaaaaaaaaaaaaaaaIaXaIaaaaaIcRdidzdididicRfpcRcRfpcRcmaXcmePePdwdwdwdwdwdwdwdwdvdvcsaaaHbW
-awbUaNaNaNaNaNaNayaOaaaaaaaIaXaIaaaaaIcSfpcSaIaIaIaIaIaIaIaIcmdVdWcmcmdwcmcmcmcmcmcmcmcsdvdvaaaaaHbW
-arasasasasasasasasasaraaaaaIctaIaaaaaIaIaIaIaIbHaaaaaabwaGaacmaXaXfqaXcmcmdYdZeaebfrcmcsdvbzaaaaaHbW
-aaaaaaaaaaawaaaaaaaaaaaaaaaIctaIaaaaaaaaaaaaaaaaaaaaaabwaGaacmaXbMaXaXaXaXaXaXaXdsaXcmcsbzbzaaaaaHbW
-aaaaaaaaaaarbjbjbjbjbjbjbjaIaXaIbjbjbjbjbjbjbjaIaaaaaabwayaacmedeeeRaXcmcmegeheiaXejcmcsbzbzaaaaaHbW
-aaaaaaaaaaawbUaNaNaNaNaNaNaIaXaIaNaNaNaNaNayaObwaaaaaabwayaacTcmcmcmcmaacmcmcmcnekcncTaabzbzaaaaaHbW
-aaaaaaaaaaawaGaeaaaaaaaaaaelctelaaaaaaaaaaaaaHembjbjbjemaGaaaaaaaaaaaaaaaaaaaaenaaaaaaaabzbzaaaaaHbW
+awaGbzaaaIbxaXaXaXaXaXbyboaXaXaIaaaHbwaaaabzbzbzbzbzaaaaaaaaaaaaaaaaaDaDaabIbwaGaZaZayawaDaFaaaaaaaa
+awaGbzaaaIaXaXaXbCbCbEbFbGaXaXaIaaaHbwaaaebzbzbzbzbzaabHaaaaaaaaaaaaaaaaaabIbwaGaZaZaHawaaanaaaaaaaa
+bYcicvcCaIaXbLaXbgdcbCbFbGaXaXaIaaaHbwaaaebzbzbzbzbzaaaIbjbjbjbjbjbjbjbjbjbNaIaGaZaZaHawaaaaaaaaaaaa
+bYcDcEcCbPbQbRbQecbQbQbSbGaXaXaIaaaHbwaaaebTbTbTbTbTaabwbUaNaNaNaNaNaNaNaNbVaNbeaZaZaHeYasasasasaseY
+cKbZcvcCaIaXbLbncacacacbccaXaXaIaaaHbwaaaebTbkcecdbTaabwaGaaaaaaaaaaaaaaaabIaaaaaZaZaOaNeZeZaNaNaMbW
+cKcLcvataIaXbLaYaXaXaXbdaXaXaXaIaaaybwaacgbTchcMchbTaabwaGaaaacjckckckckckclcmcncococpbXdibzaaaaaHbW
+cKdXcvaaaIedbLaIaIaIaIaKaIaIaIaIaaaybwaabHbTfdeefdbTaabwayaaaacrfectctcuctaXaXctaXaXcmdwdibzaaaaaHbW
+awaGbzaaaIaXbLaIatatauauelabaaaaaaaHbwaaaebTbTeebTbTaabwaGaaaacraXcwcxcyckckckczcAcAcBdwdidiaaaaaHbW
+awaGbzaaaIaXffaIateteveveCeCaNaNaNaObwaaaebzcFeecFbzaabwaGaaaacGckckckcHaaaaaacmctaXcIdwdFdiaaaaaHbW
+awaGbzaaaIaXaXaIateMeNeOeOeSbjbjbjbjaIaaaIaIcNcOcNaIaabwaGaaaaaaaaaaaaaaaaaaaacmctaXcIdwdFdiaaaaaHbW
+awaGbzaaaIaXaXaIaaaHaaaaaaaaaaaaaaaaaaaaaIcPfgcRfhaIaaaaaGaaaacTcmcmcmcUcmcmcmcVaXficWdwdFdibXbXaHbW
+awaGbzaaaIaXfjaIaaaHaaaaaaaaaaaaaaaaaaaIcYcRcRcRcRaIaIaIaIaIaIcmbDfkdbaPfaeQfldeaXaXcWcsdFdFdwbXaHdf
+awaGbzaaaIaXfbaIaIaIaIaIaIaIaIaIaIaIdhaIfmcRdjdxdldmdnfndpdqdrcmaXaXaXaXaXbbdsaXaXdtdudydvdvePdwdzdA
+awaGbzaaaIaXaXaYcRfmcRcRcRcRcRcRcRcRfocRdGcRcRcRdUbbdBdCbbdDdEcodsaXaXaXaXaXaXaXaXbdcIcsdvdvdwdwdHdA
+awaGbzaaaIaXaXaYcRcRcRcRfpcRfAcRfpcRcRcRdRcRdTdIdIdJdJdKdJdJdJcoaXaXaXdLbqbqbqdMbqdNcIcsdvdvdwbXaHbW
+awaGbzaaaIdOaXaIaIaIaIaIaIdPdQdPaIaIaIcRcRcRdCdkdldmdndodpdqdrcmaXcTcmcrcmcmcmcmcmdSclcsdvdvdwbXaHbW
+awaGbzaaaIaIaIaIaaaaaaaaaaaIaXaIaaaaaIcRcRcRcRcRdEbbcRdBbbdUcRcmaXcmeqeqcscscscscscscscsdvdFdwbXaHbW
+awaGbzaaaaaaaaaaaaaaaaaaaaaIaXaIaaaaaIcRcRcRcRcRcRcRfpcRcRfpcRcmaXcmeqeqcscscscscscscscsdFdFdwbXaHbW
+awbUaNaNaNaNbeaaaaaaaaaaaaaIaXaIaaaaaIcSfpcSaIaIaIaIaIaIaIaIcmdVdWcmcmcmcmcmcmcmcmcmcmdwdFdFbXbXaHbW
+arasasasasfcaGaaaaaaaaaaaaaIftaIaaaaaIaIaIaIaIbHaaaaaabwaGaacmaXaXfqaXcmcmdYdZeaebfrcmdwdFdibXaaaHbW
+aaaaaaaaaaawaGaaaaaaaaaaaaaIctaIaaaaaaaaaaaaaaaaaaaaaabwaGaacmaXbMaXaXaXaXaXaXaXdsaXcmdwdidiaaaaaHbW
+aaaaaaaaaaawaGbjbjbjbjbjbjaIaXaIbjbjbjbjbjbjbjaIaaaaaabwayaacmfufveRaXcmcmegeheiaXejcmdwdibzaaaaaHbW
+aaaaaaaaaaawbUaNaNaNaNaNaNaIaXaIaNaNaNaNaNayaObwaaaaaabwayaacTcmcmcmcmcmcmcmcmcnekcncTbXdibzaaaaaHbW
+aaaaaaaaaaawaGaeaaaaaaaaaaaIctaIaaaaaaaaaaaaaHembjbjbjemaGaaaaaaaaaaaaaaaaaaaaenaaaaaaaabzbzaaaaaHbW
 aaaaaaaaaaawaGaeaIaIaIaIaIaIdQaIaIaIaIaIaIaaaMaNaNaNaNaNbUaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNaObW
-aaaaaaaaaaawaGaeaIeoaXaXaXaXctaXaXaXaXaXaIaaaHepasasasarasasasasasasasasasasasasasasasasasasasasasar
-aaaaaaaaaaawaGaeaIaXaXaXcteresetaXaXaXaXaIaaaHawaaaaaaanbHaaaabHaaaaaaaabHbHbHaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaawaGaeaIaXaXaXaXdgeuevaXaXaXaXaIaaaHawaaaaaaaaaEaaaaewaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaawaGaeaIaXaXctaXaXaXaXaXaXaXaXaIaaaHawaaaaaaaaexahfsaaaaddaaaaeyaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaawaGaeaIezaXaXcXaXaXaXcXaXaXcXaIaaaHawaaaaaaeTaaaaaaaaeTaaeAaaaaaaaaaaaaaaaaaaaaaaaabHaaaa
-aaaaaaaaaaawaGaeaIeBeCaXfceDeEeDesaXaXesaIaaaHawaaaaaaaaeFaaadeGaaaaeTaaaaaaaaaaaaaaaaaaaaaDaabHbHaa
-aaaaeHaaaaawaGaeaIaIaIaIaIaIaIaIaIaIaIaIaIaaaHawaaaaaaaaeHaaaaaaefaaaaaabHaaaaaaaaaaaaaaaabHaaaDaaaa
-eTaaaaaaeyawaGaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaHawaaaaaeaaaaaaefaaaaeyaDaaaqaqaeaabHaaaaaaaaaaaDaaaaaa
-aaefaaaaaaawbUeIeIeJeJeJeJeJeJeJeJeJeJeJeJeJaOawaaaaaeaebHaaaaaaaeaeaqaecgaeaeaebHbHaaaaaaaabHaaaaaa
-eTddeGeFaaarasasasasasasasasasasasasasasasasasaraaaaaDaeaqbHaaeKaeaeaecgaeaeaeaecgaeaeaaaaaaaaaaaaaa
-aaaaaaaaaFanamahaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabHaacgaeaeaeaeaeaeaqaeaeaecgaeaeaaaaaaaaaaaaaaaa
-aaeTefaaewaaexaaeyadaaeAaaeyaaaaaaaaaaaaaaaaaaaaaeaeaecgaeaaaaaaaeaeaeaaaeaeaabHaaaaaaaaaaaaaaaaaaaa
-eLaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaaaabHaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaawaGaeaIeoaXaXaXfqedfqaXaXaXaXaIaaaHarasasasasasasasasasasasasasasasasasasasasasasasasasar
+aaaaaaaaaaawaGaeaIaXaXaXcteresedaXaXaXaXaIaaaHawaaaaaaanbHaaaabHaaaaaaaabHbHbHaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaawaGaeaIfwaXedaXdgeuedaXaXaXfiaIaaaHawaaaaaaaaeAaaaaeFaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaawaGaeaIaXaXctaXaXaXaXedaXaXaXaIaaaHawaaaaaaaaeGameHaaaaagaaaaeKaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaawaGaeaIezedaXcXaXaXaXcXaXaXcXaIaaaHawaaaaaaahaaaaaabKahaaeLaaaaaaaaaaaaaaaaaaaaaaaabHaaaa
+aaaaaaaaaaawaGaeaIeBfxaXfyeDeEeDfzaXaXesaIaaaHawaaaaaaaaeTaaafeUaaaaahaaaaaaaaaaaaaaaaaaaaaDaabHbHaa
+aaaaeVaaaaawaGaeaIaIaIaIaIaIaIaIaIaIaIaIaIaaaHawaaaaaaaaeVaaaabKajaaaaaabHaaaaaaaaaaaaaaaabHaaaDaaaa
+ahaaaaaaeKawaGaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaHawaaaaaeaaaaaaajaaaaeKaDaaefefaeaabHaaaaaaaaaaaDaaaaaa
+aaajbKaaaaawbUeIeIeJeJeJeJeJeJeJeJeJeJeJeJeJaOawaaaaaeaebHaaaaaaaeaeefaecgaeaeaebHbHaaaaaaaabHaaaaaa
+ahageUeTaaarasasasasasasasasasasasasasasasasasaraaaaaDaeefbHaaeWaeaeaecgaeaeaeaecgaeaeaaaaaaaaaaaaaa
+aaaabKaaaFancfamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabHaacgaeaeaeaeaeaeefaeaeaecgaeaeaaaaaaaaaaaaaaaa
+aaahajaaeFaaeGaaeKafaaeLaaeKaaaaaaaaaaaaaaaaaaaaaeaeaecgaeaaaaaaaeaeaeaaaeaeaabHaaaaaaaaaaaaaaaaaaaa
+eXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaaaabHaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
