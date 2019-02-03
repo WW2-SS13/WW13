@@ -23,7 +23,8 @@
 		list(USA) = /area/prishtina/farm4 // area inexistent in this map, in order to prevent the americans from winning by capture
 		)
 	front = "Pacific"
-	faction_distribution_coeffs = list(USA = 0.42, JAPAN = 0.58)
+	faction_distribution_coeffs = list(USA = 0.4, JAPAN = 0.6)
+	var/modded_num_of_prisoners3 = FALSE
 	songs = list(
 		"Song of the Kamikaze:1" = 'sound/music/kamikaze.ogg',
 		"Blood On the Risers(Gory Gory):1" = 'sound/music/gory.ogg',
@@ -58,6 +59,14 @@ var/no_loop_i = FALSE
 	if (istype(J, /datum/job/usa))
 		if (J.is_prisoner)
 			. = FALSE
+		else
+			if (istype(J, /datum/job/usa/soldier_prisoner))
+				J.total_positions = max(0, round(clients.len*0.*0))
+			if (istype(J, /datum/job/usa/uk_soldier_prisoner))
+				J.total_positions = max(0, round(clients.len*0.*0))
+			if (istype(J, /datum/job/usa/squad_leader_prisoner) && !modded_num_of_prisoners3)
+				J.total_positions = max(0, round(clients.len*0.*0))
+				modded_num_of_prisoners3 = TRUE
 //	if (istype(J, /datum/job/japanese))
 //		if (J.is_SSTV)
 //			. = FALSE

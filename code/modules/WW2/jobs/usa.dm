@@ -583,7 +583,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/datum/job/usa/soldier_pris
+/datum/job/usa/soldier_prisoner
 	title = "Amerikaner Kriegsgefangener"
 	en_meaning = "American POW"
 	rank_abbreviation = "AKg"
@@ -598,7 +598,7 @@
 	min_positions = 2
 	max_positions = 60
 
-/datum/job/usa/soldier_pris/equip(var/mob/living/carbon/human/H)
+/datum/job/usa/soldier_prisoner/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)
@@ -620,7 +620,7 @@
 	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
-/datum/job/usa/uk_soldier_pris
+/datum/job/usa/uk_soldier_prisoner
 	title = "Britische Kriegsgefangener"
 	en_meaning = "British POW"
 	rank_abbreviation = "BKg"
@@ -636,7 +636,7 @@
 	min_positions = 2
 	max_positions = 60
 
-/datum/job/usa/uk_soldier_pris/equip(var/mob/living/carbon/human/H)
+/datum/job/usa/uk_soldier_prisoner/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/britboots(H), slot_shoes)
@@ -657,7 +657,7 @@
 	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
-/datum/job/usa/squad_leader_pris
+/datum/job/usa/squad_leader_prisoner
 	title = "Allierte Offizier Kriegsgefangener"
 	en_meaning = "Allied Officer POW"
 	rank_abbreviation = "KGO"
@@ -675,7 +675,7 @@
 	min_positions = 1
 	max_positions = 4
 
-/datum/job/usa/squad_leader_pris/equip(var/mob/living/carbon/human/H)
+/datum/job/usa/squad_leader_prisoner/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/usboots(H), slot_shoes)

@@ -16,6 +16,7 @@
 		ITALIAN = 100,
 		)
 	faction_distribution_coeffs = list(GERMAN = 0.4, USA = 0.5, ITALIAN = 0.1)
+	var/modded_num_of_prisoners3 = FALSE
 	battle_name = "Winter Line"
 	front = "Western"
 	roundend_condition_sides = list(
@@ -26,6 +27,14 @@
 	if (istype(J, /datum/job/usa))
 		if (J.is_prisoner)
 			. = FALSE
+		else
+			if (istype(J, /datum/job/usa/soldier_prisoner))
+				J.total_positions = max(0, round(clients.len*0.*0))
+			if (istype(J, /datum/job/usa/uk_soldier_prisoner))
+				J.total_positions = max(0, round(clients.len*0.*0))
+			if (istype(J, /datum/job/usa/squad_leader_prisoner) && !modded_num_of_prisoners3)
+				J.total_positions = max(0, round(clients.len*0.*0))
+				modded_num_of_prisoners3 = TRUE
 		if (istype(J, /datum/job/usa/marines_squad_leader))
 			. = FALSE
 		if (istype(J, /datum/job/usa/marines_soldier))

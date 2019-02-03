@@ -59,11 +59,11 @@
 		if (!J.is_prisoner)
 			. = FALSE
 		else
-			if (istype(J, /datum/job/usa/soldier_pris))
+			if (istype(J, /datum/job/usa/soldier_prisoner))
 				J.total_positions = max(10, round(clients.len*0.45*3))
-			if (istype(J, /datum/job/usa/uk_soldier_pris))
+			if (istype(J, /datum/job/usa/uk_soldier_prisoner))
 				J.total_positions = max(10, round(clients.len*0.45*3))
-			if (istype(J, /datum/job/usa/squad_leader_pris) && !modded_num_of_prisoners3)
+			if (istype(J, /datum/job/usa/squad_leader_prisoner) && !modded_num_of_prisoners3)
 				J.total_positions = max(1, round(clients.len*0.1*3))
 				modded_num_of_prisoners3 = TRUE
 	return .

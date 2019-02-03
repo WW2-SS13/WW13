@@ -25,6 +25,7 @@
 		"Panzer Rollen in Afrika vor:1" = 'sound/music/panzer_rollen.ogg',
 		"Panzerlied:1" = 'sound/music/panzerlied.ogg')
 	faction_distribution_coeffs = list(GERMAN = 0.5, USA = 0.5)
+	var/modded_num_of_prisoners3 = FALSE
 
 /obj/map_metadata/gazala/germans_can_cross_blocks()
 	return (processes.ticker.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)
@@ -37,6 +38,14 @@
 	if (istype(J, /datum/job/usa))
 		if (J.is_prisoner)
 			. = FALSE
+		else
+			if (istype(J, /datum/job/usa/soldier_prisoner))
+				J.total_positions = max(0, round(clients.len*0.*0))
+			if (istype(J, /datum/job/usa/uk_soldier_prisoner))
+				J.total_positions = max(0, round(clients.len*0.*0))
+			if (istype(J, /datum/job/usa/squad_leader_prisoner) && !modded_num_of_prisoners3)
+				J.total_positions = max(0, round(clients.len*0.*0))
+				modded_num_of_prisoners3 = TRUE
 		if (istype(J, /datum/job/usa/marines_squad_leader))
 			. = FALSE
 		if (istype(J, /datum/job/usa/marines_soldier))
