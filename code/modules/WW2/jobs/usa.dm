@@ -242,7 +242,7 @@
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateRADr"
 	is_nonmilitary = TRUE
-	additional_languages = list( "English" = 100, "Russian" = 20, "German" = 35)
+	additional_languages = list( "English" = 100, "Russian" = 20, "German" = 35, "Japanese" = 30)
 	SL_check_independent = TRUE
 
 	// AUTOBALANCE

@@ -109,6 +109,11 @@ var/GRACE_PERIOD_LENGTH = 7
 		(season = "SPRING")
 		return TRUE
 
+	// forces spring in Saipan map
+	if (map && map.ID == MAP_SAIPAN)
+		(season = "SPRING")
+		return TRUE
+
 	// forces Winter in RO map
 	if (map && map.ID == MAP_OCTOBER)
 		(season = "WINTER")
