@@ -329,7 +329,6 @@
 	update_icon()
 
 /obj/screen/nutrition/update_icon()
-	var/mob/living/carbon/human/H = parentmob
 
 	// show our worst status, hunger or thirst
 
