@@ -573,7 +573,8 @@
 	set category = null
 	set src in usr
 	if (type != /obj/item/clothing/head/helmet/japncohat)
-		return // no sprites - Kachnov
+		return
+	else
 		if (toggled)
 			item_state = "japNCOhat"
 			worn_state = "japNCOhat"
