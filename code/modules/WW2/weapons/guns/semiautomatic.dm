@@ -248,7 +248,7 @@
 	magazine_type = /obj/item/ammo_magazine/c762x63_smg
 	ammo_type = /obj/item/ammo_casing/c762x63_smg
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
-
+	effectiveness_mod = 1.00
 	firemodes = list(
 		list(name="semi automatic",	burst=1, burst_delay=0.8, move_delay=2, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6)),
 		list(name="short bursts",	burst=3, burst_delay=1.0, move_delay=3, dispersion = list(0.4, 0.8, 0.8, 0.8, 1.0)),
@@ -278,6 +278,7 @@
 	magazine_type = /obj/item/ammo_magazine/c77x58_smg
 	ammo_type = /obj/item/ammo_casing/c77x58_smg
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
+	effectiveness_mod = 0.95
 
 	firemodes = list(
 		list(name="semi automatic",	burst=1, burst_delay=0.8, move_delay=2, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6)),
