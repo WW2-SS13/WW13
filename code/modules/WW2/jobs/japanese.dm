@@ -255,7 +255,7 @@
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/color/white(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/doctor(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/japuni_med(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_med(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(H), slot_gloves)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical(H), slot_belt)

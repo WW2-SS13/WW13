@@ -563,17 +563,30 @@
 	item_state = "USNCOhat"
 
 /obj/item/clothing/head/helmet/japncohat
-	name = "Japanese NCO cap"
-	desc = "A Japanese NCO cap."
+	name = "Japanese cap"
+	desc = "A Japanese cap worn by officers and soldiers alike."
 	icon_state = "japNCOhat"
 	item_state = "japNCOhat"
+	var/toggled = FALSE
 
-
-/obj/item/clothing/head/helmet/japhat
-	name = "Japanese open cap"
-	desc = "An open Japanese cat."
-	icon_state = "japextendedcap"
-	item_state = "japextendedcap"
+/obj/item/clothing/head/helmet/japncohat/verb/toggle_flaps()
+	set category = null
+	set src in usr
+	if (type != /obj/item/clothing/head/helmet/japncohat)
+		return // no sprites - Kachnov
+		if (toggled)
+			item_state = "japNCOhat"
+			worn_state = "japNCOhat"
+			item_state_slots["slot_w_uniform"] = "japNCOhat"
+			usr << "<span class = 'danger'>You put down your cap's flaps.</span>"
+			toggled = FALSE
+		else if (!toggled)
+			item_state = "japextendedcap"
+			worn_state = "japextendedcap"
+			item_state_slots["slot_w_uniform"] = "japextendedcap"
+			usr << "<span class = 'danger'>You put up your cap's flaps.</span>"
+			toggled = TRUE
+	update_clothing_icon()
 
 /obj/item/clothing/head/helmet/gerhelm/proc/transform2soviet()
 	name = SOVIET_HELMET_NAME

@@ -22,3 +22,20 @@
 		job_master.EquipRank(src, "SS-Schutze")
 		spawn (50) // must be here or they won't spawn, it seems - Kachnov
 			death()
+
+/mob/living/carbon/human/corpse/jap
+	gender = MALE
+
+/mob/living/carbon/human/corpse/jap/New()
+	..()
+	icon_state = "body_m_s"
+	var/spawntime = 0
+	if (!job_master)
+		spawntime = 300
+	spawn (spawntime)
+		if (!job_master)
+			qdel(src)
+			return
+		job_master.EquipRank(src, "Nitohei")
+		spawn (50) // must be here or they won't spawn, it seems - Kachnov
+			death()
