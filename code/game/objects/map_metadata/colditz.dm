@@ -54,7 +54,7 @@
 	if (istype(J, /datum/job/usa))
 		if (J.is_prisoner_unique)
 			. = FALSE
-		else if (istype(J, /datum/job/usa/soldier_pris))
+		else if (istype(J, /datum/job/usa/soldier_prisoner))
 			J.min_positions = 15
 			J.max_positions = 15
 			J.total_positions = 15

@@ -19,7 +19,7 @@
 "as" = (/obj/structure/closet/crate/bint,/turf/floor/plating/dust,/area/prishtina/german/main_area)
 "at" = (/obj/structure/closet/crate/punji_sticks,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/german/main_area)
 "au" = (/obj/structure/barricade/steel,/turf/floor/plating/grass/wild,/area/prishtina/german/main_area)
-"av" = (/turf/floor/plating/grass/wild,/area/prishtina/german/medical)
+"av" = (/turf/floor/plating/grass/wild,/area/prishtina/german/command/office)
 "aw" = (/turf/wall/wood,/area/prishtina/german/medical)
 "ax" = (/obj/item/weapon/gun/projectile/pistol/nambu,/obj/item/weapon/gun/projectile/pistol/nambu,/obj/item/weapon/gun/projectile/pistol/nambu,/obj/structure/table/rack,/turf/floor/plating/dust,/area/prishtina/german/main_area)
 "ay" = (/turf/wall/rockwall{density = 1; name = "cliff"; opacity = 1},/area/prishtina)
@@ -54,12 +54,12 @@
 "bb" = (/obj/structure/closet/crate/empty,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/turf/floor/trench,/area/prishtina)
 "bc" = (/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka{desc = "a bottle of Japanese sake."; name = "Sake"},/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka{desc = "a bottle of Japanese sake."; name = "Sake"},/turf/floor/trench,/area/prishtina)
 "bd" = (/obj/structure/closet/crate/empty,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/turf/floor/trench,/area/prishtina)
-"be" = (/obj/structure/table/wood,/obj/item/megaphone,/turf/floor/plating/grass/wild,/area/prishtina)
-"bf" = (/obj/structure/table/wood,/obj/item/weapon/phone/tohighcommand/german,/turf/floor/plating/grass/wild,/area/prishtina)
+"be" = (/obj/structure/table/wood,/obj/item/megaphone,/turf/floor/plating/grass/wild,/area/prishtina/german/command/office)
+"bf" = (/obj/structure/table/wood,/obj/item/weapon/phone/tohighcommand/german,/turf/floor/plating/grass/wild,/area/prishtina/german/command/office)
 "bg" = (/obj/effect/landmark{name = "JoinLateHeerMP"},/turf/floor/plating/grass/wild,/area/prishtina/german/main_area)
-"bh" = (/obj/structure/table/wood,/obj/item/weapon/paper,/obj/item/weapon/pen,/turf/floor/plating/grass/wild,/area/prishtina)
-"bi" = (/obj/structure/light/small/red{dir = 4},/turf/floor/plating/grass/wild,/area/prishtina)
-"bj" = (/obj/structure/light/small/red{dir = 8},/turf/floor/plating/grass/wild,/area/prishtina)
+"bh" = (/obj/structure/table/wood,/obj/item/weapon/paper,/obj/item/weapon/pen,/turf/floor/plating/grass/wild,/area/prishtina/german/command/office)
+"bi" = (/obj/structure/light/small/red{dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/german/command/office)
+"bj" = (/obj/structure/light/small/red{dir = 8},/turf/floor/plating/grass/wild,/area/prishtina/german/command/office)
 "bk" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/german/main_area)
 "bl" = (/obj/structure/window/classic,/obj/structure/barricade/steel,/obj/structure/curtain/medical,/turf/floor/wood,/area/prishtina/german/medical)
 "bm" = (/obj/structure/curtain/medical,/turf/floor/wood,/area/prishtina/german/medical)
@@ -92,12 +92,12 @@
 "bN" = (/obj/structure/wild/largejungle,/turf/floor/plating/grass/wild,/area/prishtina)
 "bO" = (/obj/structure/closet/hideout,/turf/floor/plating/grass/wild,/area/prishtina)
 "bP" = (/obj/structure/closet/cabinet{anchored = 1; desc = "Something looks strange in this bush..."; icon = 'icons/obj/wild.dmi'; icon_closed = "small_bush"; icon_opened = "small_bush"; icon_state = "small_bush"; name = "weird bush"; opened = 1},/turf/floor/plating/sand,/area/prishtina)
-"bQ" = (/obj/structure/table/wood,/obj/item/weapon/pen,/obj/item/weapon/paper_bin,/turf/floor/plating/grass/wild,/area/prishtina)
-"bR" = (/obj/effect/landmark{name = "JoinLateHeerCO"},/obj/effect/landmark{name = "JoinLateHeerSO"},/turf/floor/plating/grass/wild,/area/prishtina)
-"bS" = (/obj/effect/landmark{name = "JoinLateHeerXO"},/obj/effect/landmark{name = "JoinLateHeerSO"},/turf/floor/plating/grass/wild,/area/prishtina)
-"bT" = (/obj/structure/table/wood,/obj/item/weapon/paper_bin,/turf/floor/plating/grass/wild,/area/prishtina)
-"bU" = (/obj/structure/light/small/red,/turf/floor/plating/grass/wild,/area/prishtina)
-"bV" = (/obj/structure/simple_door/key_door/japan/command_intermediate{name = "Japanese Command Room"},/turf/floor/plating/grass/wild,/area/prishtina)
+"bQ" = (/obj/structure/table/wood,/obj/item/weapon/pen,/obj/item/weapon/paper_bin,/turf/floor/plating/grass/wild,/area/prishtina/german/command/office)
+"bR" = (/obj/effect/landmark{name = "JoinLateHeerCO"},/obj/effect/landmark{name = "JoinLateHeerSO"},/turf/floor/plating/grass/wild,/area/prishtina/german/command/office)
+"bS" = (/obj/effect/landmark{name = "JoinLateHeerXO"},/obj/effect/landmark{name = "JoinLateHeerSO"},/turf/floor/plating/grass/wild,/area/prishtina/german/command/office)
+"bT" = (/obj/structure/table/wood,/obj/item/weapon/paper_bin,/turf/floor/plating/grass/wild,/area/prishtina/german/command/office)
+"bU" = (/obj/structure/light/small/red,/turf/floor/plating/grass/wild,/area/prishtina/german/command/office)
+"bV" = (/obj/structure/simple_door/key_door/japan/command_intermediate{name = "Japanese Command Room"},/turf/floor/plating/grass/wild,/area/prishtina/german/command/office)
 "bW" = (/obj/structure/window/sandbag,/turf/floor/trench,/area/prishtina)
 "bX" = (/obj/structure/window/sandbag,/turf/floor/plating/grass/wild,/area/prishtina)
 "bY" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/trench,/area/prishtina)
@@ -263,12 +263,12 @@
 "fc" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/barbwire{dir = 4},/turf/floor/plating/beach/water,/area/prishtina)
 
 (1,1,1) = {"
-acamanamanaoapaqarararasatauaaaaaaaaabaaaaaaaaaaaaaaavawawawawawawawawawavaaaaaaaaaaaaaaaaaaaaayayayayaabebfbhbfbeaaaabiayayayayayayayayayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-axaEaEaEaEaEaDaEaEaEaEaFaFaGaaaaaaaaaaaaabaaaaaaaaaaawaHaIaHaIaHaIazaIaJawaaaaaaaaaaaaaaaaaaaaaaayayaybjbQbRaabSbTaaaaaaayayayayayayayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aKaEaEaEaEaEaEaEaEaEaEaFaLauaaaaaaaaaaaaababaaaabMaaawaIaIaIaIaIaIazaIaMawaaaaaaaaaaaaaaaaaaaaaaaaayayaaaaaaaaaaaaaaaaaaaaayayayayayayaaaaaaaaaaaaaabLaaaaaaaaaabKaaaaaaaaaaaaaaaaaabLaaaaaaaaaaaaaaaaaa
-aKaEaEaEaEaEaEaEaEaEaEaFaNauaabLaaaaaaaaaaabaaaaaaaaawaHaIaHaIaHaIaIaIaOawaaaaaaaaaaaaaaaaaaaaaaaaaaayayaabUaaaaaabUayaybVayayayayayaaaaaaaaaaaaaaaaaaaaaabOaaaaaaaaaaaabLaaaabKaaaaaaaaaaaaaaaabKaaaaaa
+acamanamanaoapaqarararasatauaaaaaaaaabaaaaaaaaaaaaaaaaawawawawawawawawawaaaaaaaaaaaaaaaaaaaaaaayayayayavbebfbhbfbeavavbiayayayayayayayayayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+axaEaEaEaEaEaDaEaEaEaEaFaFaGaaaaaaaaaaaaabaaaaaaaaaaawaHaIaHaIaHaIazaIaJawaaaaaaaaaaaaaaaaaaaaaaayayaybjbQbRavbSbTavavavayayayayayayayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aKaEaEaEaEaEaEaEaEaEaEaFaLauaaaaaaaaaaaaababaaaabMaaawaIaIaIaIaIaIazaIaMawaaaaaaaaaaaaaaaaaaaaaaaaayayavavavavavavavavavavayayayayayayaaaaaaaaaaaaaabLaaaaaaaaaabKaaaaaaaaaaaaaaaaaabLaaaaaaaaaaaaaaaaaa
+aKaEaEaEaEaEaEaEaEaEaEaFaNauaabLaaaaaaaaaaabaaaaaaaaawaHaIaHaIaHaIaIaIaOawaaaaaaaaaaaaaaaaaaaaaaaaaaayayavbUavavavbUayaybVayayayayayaaaaaaaaaaaaaaaaaaaaaabOaaaaaaaaaaaabLaaaabKaaaaaaaaaaaaaaaabKaaaaaa
 aPaQaRaSaTaKaKaUaVaWaXaYaLauaaaaaaaabMaaaaababaabNaaawaZaIaIaIaIaIaIaIaIawaaaaaaaaaaaaaaaaaaaaaaaaaaaaayayayayayayayayaaaaayayayayayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabNaaaaaaaaaaaaaa
-aPaQaEaEaEaAaEaEbgaFaFaFaFbkaaaaaaaaaaaaaaababaabOaaavawawblawawawawbmawavaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaayayayayayaaayayayayayaaaaaaaaaaaaaaaaaaaaaabKaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aPaQaEaEaEaAaEaEbgaFaFaFaFbkaaaaaaaaaaaaaaababaabOaaaaawawblawawawawbmawaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaayayayayayaaayayayayayaaaaaaaaaaaaaaaaaaaaaabKaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 bnbobpbqbrbsbsbsbsbsbsbsbsbtaaaaaaaaaaaaaaababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabNaabLaaaaaaaaaaaabOaaaaaaaaaaaaaaaaaaaaaa
 auaGauauauaGbuaGaGaGaGaGaGauaabKaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabLaaaaaaaaaaaabLaaaaaaaabLaaaaaa
 aaaaaaaaaaaaaaaaaaaaaabKaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaabLaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabLaaaaaaaaaaaaaaaaaaaaaaaaaaaabKaaaaaaaaaaaaaaaaaaaaaa
