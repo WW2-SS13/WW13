@@ -770,22 +770,7 @@
 			client.prefs.randomize_appearance_for (new_character)
 		else
 			// no more traps - Kachnov
-			var/datum/job/J = original_job
-			var/J_flag = J.base_type_flag()
 			var/client_prefs_original_gender = client.prefs.gender
-
-			if (list(PARTISAN, CIVILIAN).Find(J_flag))
-				client.prefs.gender = client.prefs.ukrainian_gender
-			else if (J_flag == GERMAN)
-				client.prefs.gender = client.prefs.german_gender
-			else if (J_flag == SOVIET)
-				client.prefs.gender = client.prefs.russian_gender
-			else if (J_flag == ITALIAN)
-				client.prefs.gender = client.prefs.italian_gender
-			else if (J_flag == USA)
-				client.prefs.gender = client.prefs.english_gender
-			else if (J_flag == JAPAN)
-				client.prefs.gender = client.prefs.japanese_gender
 
 			// traps came back, this should fix them for good - Kachnov
 			new_character.gender = client.prefs.gender
