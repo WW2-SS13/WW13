@@ -21,9 +21,6 @@
 		)
 	available_subfactions = list(
 		SCHUTZSTAFFEL)
-	songs = list(
-		"Occupation:1" = 'sound/music/occupied.ogg'
-		)
 	battle_name = "Occupation"
 	agents = 1
 	agents_in_game = 0

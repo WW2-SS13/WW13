@@ -149,7 +149,8 @@
 /obj/structure/artillery/base/Move()
 	global.valid_coordinates["[x],[y]"] = 0
 	..()
-	other.loc = (get_step(src, dir) || loc)
+	if (other)
+		other.loc = (get_step(src, dir) || loc)
 	global.valid_coordinates["[x],[y]"] = 1
 
 /obj/structure/artillery/base/New()
@@ -280,7 +281,7 @@
 			if (abs(offset_x) + abs(offset_y) < 20)
 				user << "<span class='danger'>This location is too close to fire to.</span>"
 				return
-			else
+			else if (other)
 				var/obj/item/artillery_shell/shell = other.use_slot()
 				if (shell && do_after(user, 30, src))
 					other.fire(target_x, target_y, shell)
@@ -304,7 +305,8 @@
 				var/obj/o = new/obj/item/artillery_shell/casing(get_step(src, dir))
 				o.icon_state = casing_state
 				user << "<span class='danger'>The casing falls out of the artillery.</span>"
-				other.drop_casing = FALSE
+				if (other)
+					other.drop_casing = FALSE
 				playsound(get_turf(src), 'sound/effects/Stamp.wav', 100, TRUE)
 
 	if (href_list["close"])

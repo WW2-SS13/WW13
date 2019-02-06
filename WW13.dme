@@ -52,7 +52,6 @@
 #include "code\__defines\WWinput.dm"
 #include "code\__defines\zoom.dm"
 #include "code\_helpers\areas.dm"
-#include "code\_helpers\atmospherics.dm"
 #include "code\_helpers\datum_pool.dm"
 #include "code\_helpers\directions.dm"
 #include "code\_helpers\distance.dm"
@@ -963,5 +962,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\saipan.dmm"
+#include "maps\partisan\partisan.dmm"
 // END_INCLUDE
