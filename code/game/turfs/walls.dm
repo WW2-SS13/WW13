@@ -198,7 +198,8 @@ var/list/global/wall_cache = list()
 		else
 			if (material)
 				material.place_dismantled_girder(src)
-		material.place_dismantled_product(src,devastated)
+		if (material)
+			material.place_dismantled_product(src,devastated)
 
 	for (var/obj/O in contents) //Eject contents!
 		if (istype(O,/obj/item/weapon/contraband/poster))

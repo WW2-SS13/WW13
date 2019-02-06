@@ -27,9 +27,6 @@
 	songs = list(
 		"Song of the Kamikaze:1" = 'sound/music/kamikaze.ogg',
 		"Blood On the Risers(Gory Gory):1" = 'sound/music/gory.ogg',
-		"Battotai:1" = 'sound/music/battotai.ogg',
-		"American March:1" = 'sound/music/american_march.ogg',
-		"Marine's Hymn (Halls of Montezuma):1" = 'sound/music/montezuma.ogg',
 		)
 	meme = FALSE
 	battle_name = "Battle of Peleliu"

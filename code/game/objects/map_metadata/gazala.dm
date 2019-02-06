@@ -22,7 +22,6 @@
 	front = "Western"
 	battle_name = "battle of the road to Gazala"
 	songs = list(
-		"Panzer Rollen in Afrika vor:1" = 'sound/music/panzer_rollen.ogg',
 		"Panzerlied:1" = 'sound/music/panzerlied.ogg')
 	faction_distribution_coeffs = list(GERMAN = 0.5, USA = 0.5)
 

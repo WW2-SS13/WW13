@@ -20,8 +20,6 @@
 	ambience = list()
 	times_of_day = list("Night")
 	zlevels_without_lighting = list(2)
-	songs = list(
-		"Dark Part 3 Michael Meara:1" = 'sound/music/dark.ogg')
 	meme = FALSE
 
 /obj/map_metadata/survival/specialfaction_can_cross_blocks()
