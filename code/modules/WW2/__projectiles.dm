@@ -37,49 +37,49 @@
 
 // MOSIN
 /obj/item/projectile/bullet/rifle/a762x54
-	damage = DAMAGE_HIGH - 1
+	damage = DAMAGE_MEDIUM_HIGH
 	penetrating = 2
-	armor_penetration = 100
+	armor_penetration = 70
 
 // KAR
 /obj/item/projectile/bullet/rifle/a792x57
-	damage = DAMAGE_HIGH + 5
+	damage =DAMAGE_MEDIUM_HIGH + 3
 	penetrating = 2
-	armor_penetration = 100
+	armor_penetration = 75
 
 
 // ARISAKA
 /obj/item/projectile/bullet/rifle/a77x58
-	damage = DAMAGE_HIGH + 3
+	damage = DAMAGE_MEDIUM_HIGH + 1
 	penetrating = 2
 	armor_penetration = 100
 
 //TYPE 92 HMG
 /obj/item/projectile/bullet/rifle/a77x58_weaker
-	damage = DAMAGE_MEDIUM - 3
+	damage = DAMAGE_MEDIUM - 5
 	penetrating = 1
 
 // M1GARAND
 /obj/item/projectile/bullet/rifle/c762x63
-	damage = DAMAGE_HIGH + 4
+	damage = DAMAGE_MEDIUM_HIGH + 2
 	penetrating = 2
 	armor_penetration = 100
 
 // BAR
 /obj/item/projectile/bullet/rifle/c762x63_smg
-	damage = DAMAGE_MEDIUM_HIGH
+	damage = DAMAGE_MEDIUM - 2
 	penetrating = 2
 	armor_penetration = 100
 
 // TYPE 99 LMG
 /obj/item/projectile/bullet/rifle/c77x58_smg
-	damage = DAMAGE_MEDIUM_HIGH-1
+	damage = DAMAGE_MEDIUM - 1
 	penetrating = 2
 	armor_penetration = 100
 
 // MG34
 /obj/item/projectile/bullet/rifle/a792x57_weaker
-	damage = DAMAGE_MEDIUM - 4
+	damage = DAMAGE_MEDIUM - 6
 	penetrating = 1
 
 /obj/item/projectile/bullet/rifle/a762x25
@@ -145,7 +145,7 @@
 	penetrating = 3
 
 /obj/item/projectile/bullet/rifle/a556x45
-	damage = DAMAGE_VERY_HIGH
+	damage = DAMAGE_MEDIUM_HIGH - 6
 	penetrating = 3
 
 // TT-30 TOKAREV PISTOL //
@@ -187,7 +187,7 @@
 
 // CARCANO M1891 //
 /obj/item/projectile/bullet/rifle/c65x52mm
-	damage = DAMAGE_HIGH
+	damage = DAMAGE_MEDIUM_HIGH - 2
 	penetrating = 2
 	armor_penetration = 100
 
