@@ -593,6 +593,7 @@
 	additional_languages = list("German" = 33, "Japanese" = 15)
 	is_prisoner_unique = FALSE
 	SL_check_independent = TRUE
+	is_prisoner = TRUE
 
 	// AUTOBALANCE
 	min_positions = 2
