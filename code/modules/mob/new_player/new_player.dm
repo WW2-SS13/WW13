@@ -270,18 +270,18 @@
 		if (!ticker || ticker.current_state != GAME_STATE_PLAYING)
 			src << "<span class = 'red'>The round is either not ready, or has already finished.</span>"
 			return
-
-		if (client.next_normal_respawn > world.realtime && !config.no_respawn_delays)
-			var/wait = ceil((client.next_normal_respawn-world.realtime)/600)
-			if (check_rights(R_ADMIN, FALSE, src))
-				if ((WWinput(src, "If you were a normal player, you would have to wait [wait] more minutes to respawn. Do you want to bypass this? You can still join as a reinforcement.", "Admin Respawn", "Yes", list("Yes", "No"))) == "Yes")
-					var/msg = "[key_name(src)] bypassed a [wait] minute wait to respawn."
-					log_admin(msg)
-					message_admins(msg)
-					LateChoices()
-					return TRUE
-			WWalert(src, "Because you died in combat, you must wait [wait] more minutes to respawn. You can still join as a reinforcement.", "Error")
-			return FALSE
+		if (client)
+			if (client.next_normal_respawn > world.realtime && !config.no_respawn_delays)
+				var/wait = ceil((client.next_normal_respawn-world.realtime)/600)
+				if (check_rights(R_ADMIN, FALSE, src))
+					if ((WWinput(src, "If you were a normal player, you would have to wait [wait] more minutes to respawn. Do you want to bypass this? You can still join as a reinforcement.", "Admin Respawn", "Yes", list("Yes", "No"))) == "Yes")
+						var/msg = "[key_name(src)] bypassed a [wait] minute wait to respawn."
+						log_admin(msg)
+						message_admins(msg)
+						LateChoices()
+						return TRUE
+				WWalert(src, "Because you died in combat, you must wait [wait] more minutes to respawn. You can still join as a reinforcement.", "Error")
+				return FALSE
 		LateChoices()
 		return TRUE
 
@@ -770,22 +770,7 @@
 			client.prefs.randomize_appearance_for (new_character)
 		else
 			// no more traps - Kachnov
-			var/datum/job/J = original_job
-			var/J_flag = J.base_type_flag()
 			var/client_prefs_original_gender = client.prefs.gender
-
-			if (list(PARTISAN, CIVILIAN).Find(J_flag))
-				client.prefs.gender = client.prefs.ukrainian_gender
-			else if (J_flag == GERMAN)
-				client.prefs.gender = client.prefs.german_gender
-			else if (J_flag == SOVIET)
-				client.prefs.gender = client.prefs.russian_gender
-			else if (J_flag == ITALIAN)
-				client.prefs.gender = client.prefs.italian_gender
-			else if (J_flag == USA)
-				client.prefs.gender = client.prefs.english_gender
-			else if (J_flag == JAPAN)
-				client.prefs.gender = client.prefs.japanese_gender
 
 			// traps came back, this should fix them for good - Kachnov
 			new_character.gender = client.prefs.gender

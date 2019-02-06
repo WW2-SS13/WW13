@@ -23,8 +23,7 @@
 	times_of_day = list("Early Morning")
 
 	songs = list(
-		"Russian Theme:1" = 'sound/music/wow_russian_theme.ogg',
-		"Brave Soldat:1" = 'sound/music/wow_brave_soldat.ogg')
+		"Russian Theme:1" = 'sound/music/wow_russian_theme.ogg',)
 	faction_distribution_coeffs = list(GERMAN = 0.5, SOVIET = 0.5)
 
 /obj/map_metadata/train/germans_can_cross_blocks()
