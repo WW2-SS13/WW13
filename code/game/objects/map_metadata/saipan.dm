@@ -37,7 +37,7 @@
 	return (processes.ticker.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/saipan/soviets_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 18000 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/saipan/announce_mission_start(var/preparation_time)
 	world << "<font size=4>All factions have <b>10 minutes</b> to prepare before the ceasefire ends!<br>The Japanese will win if they succesfully take the beach in their <b>banzai attack!</b>. The Americans will win if they hold the beach for 40 minutes and repel the Japanese banzai attack!.</font>"
@@ -71,7 +71,7 @@ var/no_loop_s = FALSE
 /obj/map_metadata/saipan/update_win_condition()
 	if (!win_condition_specialcheck())
 		return FALSE
-	if (world.time >= 40000)
+	if (world.time >= 27000)
 		if (win_condition_spam_check)
 			return FALSE
 		ticker.finished = TRUE
@@ -92,38 +92,38 @@ var/no_loop_s = FALSE
 	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.33, TRUE))
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.33))
 			if (last_win_condition != win_condition.hash)
-				current_win_condition = "The Imperial Japanese Army has the control over most of the beach! They will win in {time} minutes."
-				next_win = world.time +  short_win_time(JAPAN)
+				current_win_condition = "The Japanese have captured the beach! They will win in {time} minutes."
+				next_win = world.time + short_win_time(JAPAN)
 				announce_current_win_condition()
-				current_winner = "Imperial Japanese Army"
-				current_loser = "US Army"
-	// German minor
+				current_winner = roundend_condition_def2army(roundend_condition_sides[1][1])
+				current_loser = roundend_condition_def2army(roundend_condition_sides[2][1])
+	// JAPAN minor
 	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.01, TRUE))
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.01))
 			if (last_win_condition != win_condition.hash)
-				current_win_condition = "The Imperial Japanese Army has the control over most of the beach! They will win in {time} minutes."
-				next_win = world.time +  short_win_time(JAPAN)
+				current_win_condition = "The Japanese have captured the beach! They will win in {time} minutes."
+				next_win = world.time + short_win_time(JAPAN)
 				announce_current_win_condition()
-				current_winner = "Imperial Japanese Army"
-				current_loser = "US Army"
-	// Soviet major
+				current_winner = roundend_condition_def2army(roundend_condition_sides[1][1])
+				current_loser = roundend_condition_def2army(roundend_condition_sides[2][1])
+	// USA major
 	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.33, TRUE))
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.33))
 			if (last_win_condition != win_condition.hash)
-				current_win_condition =  "The Imperial Japanese Army has the control over most of the Fortress! They will win in {time} minutes."
-				next_win = world.time +  short_win_time(JAPAN)
+				current_win_condition = "The Japanese have captured the beach! They will win in {time} minutes."
+				next_win = world.time + short_win_time(JAPAN)
 				announce_current_win_condition()
-				current_winner = "Imperial Japanese Army"
-				current_loser = "US Army"
-	// Soviet minor
+				current_winner = roundend_condition_def2army(roundend_condition_sides[2][1])
+				current_loser = roundend_condition_def2army(roundend_condition_sides[1][1])
+	// USA minor
 	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.01, TRUE))
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.01))
 			if (last_win_condition != win_condition.hash)
-				current_win_condition = "The Imperial Japanese Army has the control over most of the Fortress! They will win in {time} minutes."
+				current_win_condition = "The Japanese have captured the beach! They will win in {time} minutes."
 				next_win = world.time + short_win_time(JAPAN)
 				announce_current_win_condition()
-				current_winner = "Imperial Japanese Army"
-				current_loser = "US Army"
+				current_winner = roundend_condition_def2army(roundend_condition_sides[2][1])
+				current_loser = roundend_condition_def2army(roundend_condition_sides[1][1])
 	else
 		if (current_win_condition != NO_WINNER && current_winner && current_loser)
 			world << "<font size = 3>The Americans have recaptured the beach!</font>"

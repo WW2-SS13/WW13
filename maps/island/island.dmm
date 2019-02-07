@@ -410,7 +410,7 @@
 "hT" = (/obj/structure/multiz/ladder/ww2{area_id = "down3"},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "hU" = (/obj/structure/multiz/ladder/ww2{area_id = "down5"},/turf/floor/wood_broken,/area/prishtina/houses)
 "hV" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/road,/area/prishtina/soviet/immediate_outside_defenses{base_turf = /turf/floor/plating/road; name = "Landing Crafts"})
-"hW" = (/obj/structure/multiz/ladder/ww2{area_id = "down4"},/turf/floor/wood_broken,/area/prishtina/houses)
+"hW" = (/obj/structure/multiz/ladder/ww2{area_id = "down1"},/turf/floor/wood_broken,/area/prishtina/houses)
 "hX" = (/obj/structure/bed/chair/office{dir = 1},/turf/floor/plating/road,/area/prishtina/soviet/immediate_outside_defenses{base_turf = /turf/floor/plating/road; name = "Landing Crafts"})
 "hY" = (/turf/wall/rockwall,/area/prishtina/void/caves)
 "hZ" = (/turf/floor/dirt,/area/prishtina/void/caves)
