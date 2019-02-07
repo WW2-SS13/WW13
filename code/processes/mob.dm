@@ -58,13 +58,14 @@
 				catchBadType(M)
 				mob_list -= M
 				continue
-			M.Life()
-			if (world.time - M.last_movement > 7)
-				M.velocity = 0
-			if (ishuman(M) && M.client)
-				zoom_processing_mobs |= M
-			else
-				zoom_processing_mobs -= M
+			if (M)
+				M.Life()
+				if (world.time - M.last_movement > 7)
+					M.velocity = 0
+				if (ishuman(M) && M.client)
+					zoom_processing_mobs |= M
+				else
+					zoom_processing_mobs -= M
 		catch (var/exception/e)
 			catchException(e)
 
