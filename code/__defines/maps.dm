@@ -21,6 +21,7 @@
 #define MAP_TRAIN "TRAIN"
 #define MAP_COLDITZ "COLDITZ"
 #define MAP_CHATEAU "CHATEAU"
+#define MAP_OMAHA "OMAHA"
 
 #define MODE_WAR 1
 #define MODE_GERMAN_OCCUPATION 2

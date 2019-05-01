@@ -91,11 +91,6 @@
 	icon_state = "uia_cap"
 	item_state = "uia_cap"
 
-/obj/item/clothing/head/japanesebandana
-	name = "Japanese bandana"
-	icon_state = "japanesebandana"
-	item_state = "japanesebandana"
-
 /obj/item/clothing/head/glorioushat
 	name = "Glorious Holy Hand Hat"
 	icon_state = "glorioushat"
