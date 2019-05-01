@@ -28,7 +28,7 @@
 	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/japuni_officer(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/japncohat(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/japoffcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/type100(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/material/sword/jap_katana(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_r_hand)
@@ -123,7 +123,7 @@
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/japuni_officer(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/japuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/japncohat(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/type100(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_r_hand)
@@ -170,8 +170,12 @@
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	var/randhelm = rand(1,2)
+	if (randhelm == 1)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/japanhelm(H), slot_head)
+	else if (randhelm == 2)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/japhelm/bandana(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/japuni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/japanhelm(H), slot_head)
 	H.add_note("Role", "You are a <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.")
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_HIGH)
@@ -212,7 +216,7 @@
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/japuni_med(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/japuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/japanhelm_med(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_med(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/type100(H), slot_r_hand)
@@ -258,6 +262,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/japuni_med(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_med(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(H), slot_gloves)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/japncohat(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), slot_r_hand)
@@ -472,7 +477,7 @@
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/japuni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/japanesebandana(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/jap_headband(H), slot_head)
 
 	H.add_note("Role", "You are a <b>[title]</b>, a disgraced soldier serving as a Kamikaze suicide bomber. You are stripped of your ranks, and even below the average Nitohei. Your mission is to charge the enemy and blow yourself up, returning honor to your family!")
 //	H.give_radio() no radio for criminals!

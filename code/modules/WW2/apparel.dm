@@ -295,7 +295,7 @@
 /////////////////////////////JAPAN/////////////////////////
 /obj/item/clothing/under/japuni
 	name = "Japanese Army Uniform"
-	desc = "A standard uniform of the Imperial Japanese Army, with the red color of the Infantry."
+	desc = "A standard uniform of the Imperial Japanese Army, specifically Infantry."
 	icon_state = "japuni"
 	item_state = "japuni"
 	worn_state = "japuni"
@@ -543,6 +543,31 @@
 	desc = "A standard IJA helmet."
 	icon_state = "japanhelm"
 	item_state = "japanhelm"
+	flags_inv = BLOCKHEADHAIR
+
+/obj/item/clothing/head/helmet/japhelm/attackby(obj/item/W as obj, mob/user as mob)
+	if (!istype(W)) return//I really don't understand why this check is needed
+	if (istype(W, /obj/item/clothing/head/jap_headband))
+		playsound(loc, 'sound/machines/click.ogg', 75, TRUE)
+		user << "<span class='notice'>You place the heabdand on the helmet.</span>"
+		new/obj/item/clothing/head/helmet/japhelm/bandana(user.loc)
+		qdel(src)
+		qdel(W)
+
+/obj/item/clothing/head/helmet/japhelm/bandana
+	name = "japanese helmet"
+	desc = "A typical rounded steel helmet. This one has a headband attached to it."
+	icon_state = "japhelm_bandana"
+	item_state = "japhelm_bandana"
+	worn_state = "japhelm_bandana"
+	flags_inv = BLOCKHEADHAIR
+
+/obj/item/clothing/head/jap_headband
+	name = "Japanese Headband"
+	desc = "A headband worn by japanese soldiers."
+	icon_state = "japbandana"
+	item_state = "japbandana"
+	worn_state = "japbandana"
 
 /obj/item/clothing/head/helmet/japanhelm_med
 	name = "Japanese medical helmet"
@@ -576,15 +601,42 @@
 		return
 	else
 		if (toggled)
-			item_state = "japNCOhat"
-			worn_state = "japNCOhat"
-			item_state_slots["slot_w_uniform"] = "japNCOhat"
+			item_state = "japcap"
+			worn_state = "japcap"
+			item_state_slots["slot_w_uniform"] = "japcap"
 			usr << "<span class = 'danger'>You put down your cap's flaps.</span>"
 			toggled = FALSE
 		else if (!toggled)
 			item_state = "japextendedcap"
 			worn_state = "japextendedcap"
 			item_state_slots["slot_w_uniform"] = "japextendedcap"
+			usr << "<span class = 'danger'>You put up your cap's flaps.</span>"
+			toggled = TRUE
+	update_clothing_icon()
+
+/obj/item/clothing/head/helmet/japoffcap
+	name = "Japanese Officer Cap"
+	desc = "A Japanese cap worn by high ranking officers, like lieutenant or captain."
+	icon_state = "japoffcap"
+	item_state = "japoffcap"
+	var/toggled = FALSE
+
+/obj/item/clothing/head/helmet/japoffcap/verb/toggle_flaps()
+	set category = null
+	set src in usr
+	if (type != /obj/item/clothing/head/helmet/japncohat)
+		return
+	else
+		if (toggled)
+			item_state = "japoffcap"
+			worn_state = "japoffcap"
+			item_state_slots["slot_w_uniform"] = "japoffcap"
+			usr << "<span class = 'danger'>You put down your cap's flaps.</span>"
+			toggled = FALSE
+		else if (!toggled)
+			item_state = "japoffcap_extended"
+			worn_state = "japoffcap_extended"
+			item_state_slots["slot_w_uniform"] = "japoffcap_extended"
 			usr << "<span class = 'danger'>You put up your cap's flaps.</span>"
 			toggled = TRUE
 	update_clothing_icon()
