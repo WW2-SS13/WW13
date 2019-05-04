@@ -6,7 +6,7 @@
 		MAP_TOWER = 0,
 //		MAP_CAMP = 16,
 //		MAP_STALAG = 0,
-		MAP_RIVER_KWAI = 16,
+//		MAP_RIVER_KWAI = 16,
 //		MAP_GULAG = 0,
 //		MAP_SURVIVAL = 0,
 		MAP_REICHSTAG = 0,
