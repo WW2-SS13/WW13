@@ -7,6 +7,11 @@
 	name = "beret"
 	icon_state = "ru_beret"
 
+/obj/item/clothing/head/japanesebandana
+	name = "Japanese bandana"
+	icon_state = "japanesebandana"
+	item_state = "japanesebandana"
+
 /obj/item/clothing/head/caphat/sovcap
 	name = "Soviet cap"
 	icon_state = "sovcap"
