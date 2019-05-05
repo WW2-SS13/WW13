@@ -578,7 +578,7 @@
 "lf" = (/obj/structure/table/iron,/obj/item/weapon/storage/box/cups,/turf/floor/wood,/area/prishtina/soviet/bunker{base_turf = /turf/floor/plating/beach/water/deep; location = 0; name = "Ship Lower Deck"})
 "lg" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka{desc = "a bottle of Japanese sake."; name = "Sake"},/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka{desc = "a bottle of Japanese sake."; name = "Sake"},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "lh" = (/obj/item/weapon/flame/candle,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
-"li" = (/obj/structure/table/wood,/obj/item/clothing/head/japanesebandana,/obj/item/clothing/head/japanesebandana,/obj/item/clothing/head/japanesebandana,/obj/item/clothing/head/japanesebandana,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
+"li" = (/obj/structure/table/wood,/obj/item/clothing/head/jap_headband,/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "lj" = (/obj/effect/landmark{name = "JoinLateHeerSO"},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; icon_state = "blue3"; name = "Japanese Cave HQ"})
 "lk" = (/obj/effect/landmark{name = "JoinLateHeerDr"},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; name = "Japanese Caves"})
 "ll" = (/obj/effect/landmark{name = "JoinLateHeerXO"},/turf/floor/dirt,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; icon_state = "blue3"; name = "Japanese Cave HQ"})

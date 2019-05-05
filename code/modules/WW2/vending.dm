@@ -77,7 +77,7 @@
 //		/obj/item/clothing/suit/storage/coat/german = 50,
 		/obj/item/clothing/accessory/storage/webbing = 50,
 		/obj/item/clothing/under/japuni = 50,
-		/obj/item/clothing/head/helmet/japanhelm = 50,
+		/obj/item/clothing/head/helmet/japhelm = 50,
 		/obj/item/clothing/head/helmet/japncohat = 25,
 		/obj/item/clothing/shoes/swat/wrappedboots = 50,
 		/obj/item/clothing/mask/gas/japan = 25,
