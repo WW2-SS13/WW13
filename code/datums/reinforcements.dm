@@ -129,7 +129,7 @@ var/datum/reinforcements/reinforcements_master = null
 		else if (!locked[USA])
 			usa_countdown = usa_countdown_success_reset*2
 			world << "<font size = 3>Due to harsh combat in other areas on the front, American reinforcements will not be available for a while.</font>"
-	if (map.front == "Eastern")
+	if (map.front)
 		if (reinforcement_pool[SOVIET] && reinforcement_pool[GERMAN])
 			for (var/mob/new_player/np in reinforcement_pool[SOVIET])
 				if (!np || !np.client)
@@ -153,54 +153,9 @@ var/datum/reinforcements/reinforcements_master = null
 			else
 				german_countdown = german_countdown_success_reset
 				allow_quickspawn[GERMAN] = FALSE
-	if (map.front == "Pacific")
-		if (reinforcement_pool[USA] && reinforcement_pool[JAPAN])
-			for (var/mob/new_player/np in reinforcement_pool[USA])
-				if (!np || !np.client)
-					reinforcement_pool[USA] -= np
-			for (var/mob/new_player/np in reinforcement_pool[JAPAN])
-				if (!np || !np.client)
-					reinforcement_pool[JAPAN] -= np
+	else
+		world << "OH FUCK SOMETHING IS WRONG"
 
-		usa_countdown = usa_countdown - tick_len
-		if (usa_countdown < 1)
-			if (!reset_usa_timer())
-				usa_countdown = usa_countdown_failure_reset
-			else
-				usa_countdown = usa_countdown_success_reset
-				allow_quickspawn[USA] = FALSE
-
-		japan_countdown = japan_countdown - tick_len
-		if (japan_countdown < 1)
-			if (!reset_japan_timer())
-				japan_countdown = japan_countdown_failure_reset
-			else
-				japan_countdown = japan_countdown_success_reset
-				allow_quickspawn[JAPAN] = FALSE
-	if (map.front == "Western")
-		if (reinforcement_pool[USA] && reinforcement_pool[GERMAN])
-			for (var/mob/new_player/np in reinforcement_pool[USA])
-				if (!np || !np.client)
-					reinforcement_pool[USA] -= np
-			for (var/mob/new_player/np in reinforcement_pool[GERMAN])
-				if (!np || !np.client)
-					reinforcement_pool[GERMAN] -= np
-
-		usa_countdown = usa_countdown - tick_len
-		if (usa_countdown < 1)
-			if (!reset_usa_timer())
-				usa_countdown = usa_countdown_failure_reset
-			else
-				usa_countdown = usa_countdown_success_reset
-				allow_quickspawn[USA] = FALSE
-
-		german_countdown = german_countdown - tick_len
-		if (german_countdown < 1)
-			if (!reset_german_timer())
-				german_countdown = german_countdown_failure_reset
-			else
-				german_countdown = german_countdown_success_reset
-				allow_quickspawn[GERMAN] = FALSE
 
 /datum/reinforcements/proc/add(var/mob/new_player/np, side)
 
