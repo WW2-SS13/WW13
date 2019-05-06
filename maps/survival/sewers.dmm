@@ -98,9 +98,7 @@
 "bV" = (/obj/structure/catwalk,/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/structure/railing{dir = 4},/turf/floor/plating/beach/water/sewage,/area/prishtina/sewers)
 "bW" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/structure/barbwire,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/sewers)
 "bX" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/structure/barbwire,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/sewers)
-"bY" = (/obj/effect/landmark{name = "JoinLatePillarMan"},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/sewers)
 "bZ" = (/obj/structure/multiz/stairs{dir = 8},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/sewers)
-"ca" = (/obj/effect/landmark{name = "JoinLateVampire"},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/sewers)
 "cb" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/effect/decal/cleanable/vomit,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/sewers)
 "cc" = (/obj/structure/multiz/stairs{dir = 4},/turf/floor/plating/beach/water/sewage,/area/prishtina/sewers)
 "cd" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/mucus,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/sewers)
@@ -165,9 +163,9 @@ bbacababababbSagaebTaaauaabnajbUaaaaaaacaaaaacaaaaaaajaaababababababaaadaeahaaaa
 bbacaaaaaaaaaaagaeahaaauacauajajajajajajajajajajajajajaaababababababacadaeahacaaajaaabababababababababaabQaDbRacabababababaabaaaabababababaa
 bbbbbbajajaTaUbVaeahacauaabnauauacaaacaaaubnaaaaaaacajacababababababacagaeahacaaajaaabababababababababacbWaCbXaaabababababacajacabababababaa
 acacacaaaaaaaaadaeahacauaaacaaacaaauauauauauauaucEaaajaaababababababaaagaeahacaaajaaaaaaaaaaaaaaaaaaabacadaeahaaabababababaaajacabababababaa
-ababababababaaagaeahacauauauauauauaubYaubYaubYaucHaaajaaaaaaacacaaaaaaagaeaiacaaajacaabaajajajajajaaabaaadaeahaaabababababaaajacabababababaa
+ababababababaaagaeahacauauauauauauauauauauauauaucHaaajaaaaaaacacaaaaaaagaeaiacaaajacaabaajajajajajaaabaaadaeahaaabababababaaajacabababababaa
 ababababababacagaeahaaauauauauauauauauauauauaucHcHacajbZauaubnbnauaubwadaeaiaaaaajacaaajaaacaaacajaaabacadaeahaaaaaaacacacaaajacabababababaa
-aaaaababababacaZaebfaaauauauauaucacacacacacacacacaaaajaaaaaaacaaaaaaaaadaeahaaaaajaaaaajaaaaaaacajaaabaccbaeaAccaTajajajajajajacabababababaa
+aaaaababababacaZaebfaaauauauauauauauauauauauauauauaaajaaaaaaacaaaaaaaaadaeahaaaaajaaaaajaaaaaaacajaaabaccbaeaAccaTajajajajajajacabababababaa
 baaaababababacaSaeahaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaajaaababababababaaadaeahbnaaajaaaaajajajaaaaajaaabacadaeahaaaaaaaaaaaaaaajaaabababababaa
 ajacababababacagaeaiacaabaajajajajajajajajajajajajajajacababababababacadaeaiauauajacaaajajajaaaaajaaabaaadaeahaaabababababaaajaaabababababaa
 ajaaababababaaadaecdacaaajaaaaaaacaaaaaaacaaaaacaaaaaaaaababababababacadaeaiaaauajacaaajajajaaacajaaabaaadaeahacabababababacajaaabababababaa
