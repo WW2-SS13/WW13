@@ -404,9 +404,9 @@
 	item_state = SOVIET_UNIFORM_STATE
 	worn_state = SOVIET_UNIFORM_STATE
 
-/obj/item/clothing/under/ghillie
-	name = "Camo Uniform"
-	desc = "A soldiers camo unifrom. Sturdy, comfy, and makes you less visible in autumn."
+/obj/item/clothing/under/sovuni/camo
+	name = "Soviet Camo Uniform"
+	desc = "A camo uniform for Soviet soldiers. Sturdy, comfy, and makes you less visible in autumn."
 	icon_state = "sovunicamo"
 	item_state = "sovunicamo"
 	worn_state = "sovunicamo"
@@ -662,7 +662,7 @@
 	icon_state = "gerhelm_MP"
 	item_state = "gerhelm_MP"
 
-/obj/item/clothing/head/helmet/ghillie
+/obj/item/clothing/head/helmet/gerhelm/ghillie
 	name = "Ghilie Suit Hood"
 	desc =  "A standard ghillie suit helm."
 	icon_state = "ger_ghillie"
