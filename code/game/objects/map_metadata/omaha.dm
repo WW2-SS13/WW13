@@ -39,7 +39,7 @@
 	return (processes.ticker.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/omaha/announce_mission_start(var/preparation_time)
-	world << "<font size=4>All factions have <b>15 minutes</b> to prepare before the ceasefire ends!<br>The Japanese will win if they hold out for <b>45 minutes</b>. The Americans will win if they capture the Japanese caves.</font>"
+	world << "<font size=4>All factions have <b>15 minutes</b> to prepare before the ceasefire ends!<br>The Germans will win if they hold out for <b>45 minutes</b>. The Americans will win if they capture the German Airfield!</font>"
 
 /obj/map_metadata/omaha/reinforcements_ready()
 	return (germans_can_cross_blocks() && soviets_can_cross_blocks())

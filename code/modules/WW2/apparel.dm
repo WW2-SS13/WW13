@@ -538,11 +538,11 @@
 	icon_state = "USMPhelm"
 	item_state = "USMPhelm"
 
-/obj/item/clothing/head/helmet/japanhelm
+/obj/item/clothing/head/helmet/japhelm
 	name = "Japanese Army helmet"
 	desc = "A standard IJA helmet."
-	icon_state = "japanhelm"
-	item_state = "japanhelm"
+	icon_state = "japhelm"
+	item_state = "japhelm"
 	flags_inv = BLOCKHEADHAIR
 
 /obj/item/clothing/head/helmet/japhelm/attackby(obj/item/W as obj, mob/user as mob)
@@ -590,8 +590,8 @@
 /obj/item/clothing/head/helmet/japncohat
 	name = "Japanese cap"
 	desc = "A Japanese cap worn by officers and soldiers alike."
-	icon_state = "japNCOhat"
-	item_state = "japNCOhat"
+	icon_state = "japcap"
+	item_state = "japcap"
 	var/toggled = FALSE
 
 /obj/item/clothing/head/helmet/japncohat/verb/toggle_flaps()
