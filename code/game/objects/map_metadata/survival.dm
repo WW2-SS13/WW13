@@ -18,9 +18,9 @@
 	no_subfaction_chance = FALSE
 	subfaction_is_main_faction = TRUE
 	roundend_condition_sides = list(
-	       list(ITALIAN) = /area/prishtina/houses/ger_one,
-	       list(GERMAN) = /area/prishtina/houses/ger_one,
-	       list(SOVIET) = /area/prishtina/houses/ger_one)
+	       list(ITALIAN) = /area/prishtina/italian_base,
+	       list(GERMAN) = /area/prishtina/italian_base,
+	       list(SOVIET) = /area/prishtina/soviet)
 	available_subfactions = list(ITALIAN)
 	battle_name = "Soviet Thicket"
 	faction_distribution_coeffs = list(GERMAN = 0.5, SOVIET = 0.5)
