@@ -36,29 +36,6 @@
 	return (processes.ticker.playtime_elapsed >= 1800 || admin_ended_all_grace_periods)
 
 
-/obj/map_metadata/gulag/job_enabled_specialcheck(var/datum/job/J)
-	. = TRUE
-	if (istype(J, /datum/job/partisan/civilian))
-		if (!J.is_prisoner)
-			. = FALSE
-		else
-			if (istype(J, /datum/job/partisan/civilian/prisoner))
-				J.total_positions = max(12, round(clients.len*3))
-//	else if (istype(J, /datum/job/partisan/civilian))
-//		J.total_positions = max(5, round(clients.len*0.75))
-	else if (istype(J, /datum/job/soviet))
-		if (!J.is_SS_TV)
-			. = FALSE
-		else
-			if (istype(J, /datum/job/soviet/soldier_nkvd))
-				J.total_positions = max(2, round(clients.len*0.25*3))
-			if (istype(J, /datum/job/soviet/commander_nkvd))
-				J.total_positions = 1
-			if (istype(J, /datum/job/soviet/squad_leader_nkvd))
-				J.total_positions = max(1, round(clients.len*0.05*3))
-			if (istype(J, /datum/job/soviet/medic_nkvd))
-				J.total_positions = max(1, round(clients.len*0.05*3))
-				modded_num_of_SSTV = TRUE
 	return .
 
 /obj/map_metadata/gulag/announce_mission_start(var/preparation_time)
