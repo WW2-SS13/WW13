@@ -220,7 +220,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
-	paths = list(/obj/item/ammo_magazine/a762 = DYNAMIC_AMT)
+	paths = list(/obj/item/ammo_magazine/a792 = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/mp43ammo
 	name = "Mp43 ammo crate"
