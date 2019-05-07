@@ -313,7 +313,7 @@ var/const/enterloopsanity = 100
 
 /turf/proc/update_blood_overlays()
 	return
-.
+
 /turf/proc/wet_floor(var/wet_val = TRUE)
 	if (wet_val < wet)
 		return
