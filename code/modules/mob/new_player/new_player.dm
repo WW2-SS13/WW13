@@ -1,5 +1,7 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 
+var/FUCKYOU = FALSE
+
 /proc/job2mobtype(rank)
 	for (var/datum/job/J in job_master.occupations)
 		if (J.title == rank)
@@ -41,6 +43,9 @@
 	spawn (10)
 		if (client)
 			movementMachine_clients -= client
+
+proc/AutoBalanceRepair()
+	FUCKYOU = TRUE
 
 /mob/new_player/Destroy()
 	..()
@@ -697,7 +702,7 @@
 					dat[v] = replacetext(dat[v], "&&[key]&&", "")
 					replaced_faction_title = TRUE
 
-	if (!any_available_jobs)
+	if (!any_available_jobs && !FUCKYOU)
 		src << "<span class = 'danger'><font size = 3>All roles are disabled by autobalance! Please join a reinforcements queue to play.</font></span>"
 		return
 

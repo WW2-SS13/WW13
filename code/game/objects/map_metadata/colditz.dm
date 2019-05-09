@@ -61,6 +61,10 @@
 			. = FALSE
 		else if (istype(J, /datum/job/usa/marines_soldier))
 			. = FALSE
+		else if (istype(J, /datum/job/usa/soldier))
+			J.min_positions = 50
+			J.max_positions = 50
+			J.total_positions = 50
 	return .
 
 /obj/map_metadata/colditz/announce_mission_start(var/preparation_time)
@@ -74,8 +78,6 @@
 
 /obj/map_metadata/colditz/long_win_time(faction)
 	return 3000
-
-var/no_loop_c = FALSE
 
 /obj/map_metadata/colditz/update_win_condition()
 	if (!win_condition_specialcheck())

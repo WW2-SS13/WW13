@@ -184,14 +184,14 @@
 "dB" = (/obj/structure/light/small,/turf/floor/carpet,/area/prishtina/german/medical)
 "dC" = (/obj/effect/landmark{name = "JoinLateRA-S3"},/turf/floor/plating/dirt,/area/prishtina)
 "dD" = (/obj/effect/landmark{name = "JoinLateRAMP"},/turf/floor/plating/dirt,/area/prishtina)
-"dE" = (/turf/wall/rockwall,/area/prishtina/german)
+"dE" = (/obj/effect/landmark{name = "JoinLateRASL"},/turf/floor/plating/dirt,/area/prishtina)
 "dF" = (/obj/structure/toilet,/turf/floor/plating/grass/wild,/area/prishtina/german/base_defenses)
 "dG" = (/obj/structure/closet/crate/mp40kammo,/turf/floor/plating/road,/area/prishtina/german/base_defenses)
-"dH" = (/obj/structure/table/wood,/turf/floor/tiled{icon_state = "neutralfull"},/area/prishtina/houses)
+"dH" = (/obj/effect/landmark{name = "JoinLateRASL"},/turf/floor/plating/road,/area/prishtina)
 "dI" = (/obj/structure/closet/crate/kar98kammo,/turf/floor/plating/road,/area/prishtina/german/base_defenses)
 "dJ" = (/obj/structure/simple_door/wood,/turf/floor/plating/grass/wild,/area/prishtina/german/base_defenses)
 "dK" = (/obj/structure/flag/german,/turf/floor/plating/grass/wild,/area/prishtina/german/base_defenses)
-"dL" = (/turf/wall/rockwall,/area/prishtina/houses)
+"dL" = (/obj/structure/closet/crate/rations/water,/turf/floor/plating/dirt,/area/prishtina)
 "dM" = (/obj/structure/simple_door/key_door/german,/turf/floor/plating/road,/area/prishtina/german/base_defenses)
 "dN" = (/obj/structure/sign/flag/germany{pixel_y = 32},/turf/floor/plating/grass/wild,/area/prishtina/german/base_defenses)
 "dO" = (/obj/structure/siren,/turf/floor/plating/grass/wild,/area/prishtina/german/base_defenses)
@@ -199,33 +199,12 @@
 "dQ" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/german/base_defenses)
 "dR" = (/obj/structure/bed/chair/office/dark,/turf/floor/wood,/area/prishtina/german/base_defenses)
 "dS" = (/obj/structure/closet,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/weapon/gun/projectile/submachinegun/mp40,/turf/floor/wood,/area/prishtina/german/base_defenses)
-"dT" = (/turf/wall/rockwall,/area/prishtina/german/main_area/inside)
-"dU" = (/obj/structure/bed,/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/prison)
-"dV" = (/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/prison)
-"dW" = (/obj/structure/toilet{tag = "icon-toilet00 (EAST)"; icon_state = "toilet00"; dir = 8},/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/prison)
-"dX" = (/obj/structure/toilet{tag = "icon-toilet00 (EAST)"; icon_state = "toilet00"; dir = 4},/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/prison)
-"dY" = (/obj/structure/light/small/red{dir = 8},/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/prison)
-"dZ" = (/obj/effect/landmark{name = "JoinLateCivilian"},/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/prison)
-"ea" = (/obj/structure/simple_door/key_door/german{name = "Isolation"},/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/prison)
-"eb" = (/obj/structure/light/small/red{dir = 4},/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/prison)
-"ec" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/bottle/wine,/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/prison)
-"ed" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/wine,/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/prison)
-"ee" = (/obj/item/weapon/stool/prison,/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/prison)
+"dT" = (/obj/structure/closet/crate/rations/soviet_solids,/turf/floor/plating/dirt,/area/prishtina)
+"dU" = (/obj/structure/closet/crate/rations/soviet_liquids,/turf/floor/plating/dirt,/area/prishtina)
+"dV" = (/obj/structure/table/wood,/obj/item/weapon/gun/projectile/heavy/ptrd,/turf/floor/carpet,/area/prishtina/german/medical)
+"dW" = (/obj/structure/table/wood,/obj/item/ammo_magazine/ptrdbox,/obj/item/ammo_magazine/ptrdbox,/turf/floor/carpet,/area/prishtina/german/medical)
+"dX" = (/obj/structure/closet/crate/ptrdammo,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/base_defenses)
 "ef" = (/turf/wall/iron,/area/prishtina/german/main_area/inside)
-"eg" = (/turf/floor/tiled{icon_state = "neutralfull"},/area/prishtina/german/main_area/inside)
-"eh" = (/obj/structure/closet/crate/sandbags,/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/main_area/inside)
-"ei" = (/obj/item/weapon/gun/projectile/automatic/stationary/kord/mg34,/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/main_area/inside)
-"ej" = (/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/main_area/inside)
-"ek" = (/obj/structure/light/small{dir = 1},/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/main_area/inside)
-"el" = (/obj/structure/closet/crate/bettymines,/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/main_area/inside)
-"em" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/bottle/wine,/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/main_area/inside)
-"en" = (/obj/structure/table/wood,/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/main_area/inside)
-"eo" = (/obj/structure/closet/crate/mg34ammo,/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/main_area/inside)
-"ep" = (/obj/structure/light/small{dir = 8},/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/main_area/inside)
-"eq" = (/obj/structure/simple_door/key_door/german{name = "Isolation"},/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/main_area/inside)
-"er" = (/obj/structure/closet/crate/medical,/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/main_area/inside)
-"es" = (/obj/structure/light/small{dir = 4},/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/main_area/inside)
-"et" = (/obj/structure/light/small,/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/main_area/inside)
 "eu" = (/obj/structure/simple_door/key_door/german,/turf/floor/tiled{icon_state = "cafeteria"},/area/prishtina/german/kitchen)
 "ev" = (/turf/wall/iron,/area/prishtina/german/gearing)
 "ew" = (/obj/structure/simple_door/key_door/german,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "hydrofloor"},/area/prishtina/german/gearing)
@@ -239,7 +218,6 @@
 "eE" = (/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/base_defenses)
 "eF" = (/obj/structure/barricade,/turf/wall/wood,/area/prishtina)
 "eG" = (/obj/structure/window/classic/reinforced,/obj/structure/curtain/open,/turf/floor/plating/road,/area/prishtina/german/kitchen)
-"eH" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/bottle/wine,/turf/floor/tiled{icon_state = "neutralfull"},/area/prishtina/german/main_area/inside)
 "eI" = (/turf/floor/plating/road,/area/prishtina)
 "eJ" = (/turf/floor/tiled{icon_state = "cafeteria"},/area/prishtina/german/kitchen)
 "eK" = (/obj/structure/closet/crate/rations/german_meat,/obj/structure/light/small{dir = 1},/turf/floor/tiled{icon_state = "cafeteria"},/area/prishtina/german/kitchen)
@@ -336,18 +314,7 @@
 "gx" = (/obj/tank/sdkfz251,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/base_defenses)
 "gy" = (/obj/structure/table/wood,/obj/item/weapon/vehicle_fueltank,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/base_defenses)
 "gz" = (/obj/structure/light/small,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/base_defenses)
-"gA" = (/obj/structure/light/small{dir = 1},/turf/floor/tiled{icon_state = "neutralfull"},/area/prishtina/german/main_area/inside)
-"gB" = (/obj/structure/table/wood,/turf/floor/tiled{icon_state = "neutralfull"},/area/prishtina/german/main_area/inside)
-"gC" = (/obj/structure/reagent_dispensers/beerkeg,/turf/floor/tiled{icon_state = "lfweb"},/area/prishtina/german/main_area/inside)
 "gD" = (/obj/structure/barricade,/obj/structure/barbwire,/turf/floor/plating/road,/area/prishtina/german/base_defenses)
-"gE" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTHWEST)"; icon_state = "spline_fancy"; dir = 9},/turf/floor/carpet,/area/prishtina/german/main_area/inside)
-"gF" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTHEAST)"; icon_state = "spline_fancy"; dir = 5},/turf/floor/carpet,/area/prishtina/german/main_area/inside)
-"gG" = (/obj/structure/multiz/stairs{icon_state = "rampbottom"; dir = 8},/turf/wall/iron,/area/prishtina/german/main_area/inside)
-"gH" = (/obj/structure/multiz/stairs{icon_state = "rampup"; dir = 4},/turf/wall/iron,/area/prishtina/german/main_area/inside)
-"gI" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (WEST)"; icon_state = "spline_fancy"; dir = 8},/turf/floor/carpet,/area/prishtina/german/main_area/inside)
-"gJ" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (EAST)"; icon_state = "spline_fancy"; dir = 4},/turf/floor/carpet,/area/prishtina/german/main_area/inside)
-"gK" = (/obj/structure/light/small{dir = 8},/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (WEST)"; icon_state = "spline_fancy"; dir = 8},/turf/floor/carpet,/area/prishtina/german/main_area/inside)
-"gL" = (/obj/structure/light/small{dir = 8},/turf/floor/tiled{icon_state = "neutralfull"},/area/prishtina/german/main_area/inside)
 "gM" = (/obj/structure/light/floor/streetlight,/turf/floor/plating/dirt,/area/prishtina)
 "gN" = (/obj/effect/floor_decal/corner/grey/border{dir = 1},/turf/floor/plating/road,/area/prishtina/german/base_defenses)
 "gO" = (/turf/floor/plating/road,/area/prishtina/german/base_defenses)
@@ -359,11 +326,8 @@
 "gU" = (/turf/wall/wood,/area/prishtina/german/base_defenses)
 "gV" = (/obj/structure/simple_door/key_door/german,/turf/floor/wood,/area/prishtina/german/base_defenses)
 "gW" = (/turf/floor/wood,/area/prishtina/german/base_defenses)
-"gX" = (/obj/structure/window/sandbag,/turf/floor/tiled{icon_state = "neutralfull"},/area/prishtina/german/main_area/inside)
 "gY" = (/obj/structure/closet/crate/mg34belt,/turf/floor/plating/road,/area/prishtina/german/base_defenses)
 "gZ" = (/obj/structure/bed/chair/office/dark{icon_state = "F6"},/turf/wall/wood,/area/prishtina/german/base_defenses)
-"ha" = (/obj/structure/light/small{dir = 4},/turf/floor/tiled{icon_state = "neutralfull"},/area/prishtina/german/main_area/inside)
-"hb" = (/obj/structure/light/small{dir = 4},/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (EAST)"; icon_state = "spline_fancy"; dir = 4},/turf/floor/carpet,/area/prishtina/german/main_area/inside)
 "hc" = (/obj/structure/window/classic/reinforced,/turf/floor/wood,/area/prishtina/german/base_defenses)
 "hd" = (/turf/wall/rockwall,/area/prishtina/no_mans_land/invisible_wall)
 "he" = (/obj/structure/bed,/obj/effect/landmark{name = "JoinLateSS"},/turf/floor/wood,/area/prishtina/german/base_defenses)
@@ -384,18 +348,10 @@
 "ht" = (/obj/structure/vending/SSweaponrack,/turf/floor/carpet,/area/prishtina/german/medical)
 "hu" = (/obj/structure/vending/usaapparel,/turf/floor/plating/dirt,/area/prishtina)
 "hv" = (/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/plating/dirt,/area/prishtina)
-"hw" = (/obj/effect/floor_decal/spline/fancy/wood/corner{dir = 1},/turf/floor/carpet,/area/prishtina/german/main_area/inside)
-"hx" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTH)"; icon_state = "spline_fancy"; dir = 1},/turf/floor/carpet,/area/prishtina/german/main_area/inside)
-"hy" = (/obj/effect/floor_decal/spline/fancy/wood/corner{dir = 4},/turf/floor/carpet,/area/prishtina/german/main_area/inside)
-"hz" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (SOUTHWEST)"; icon_state = "spline_fancy"; dir = 10},/turf/floor/carpet,/area/prishtina/german/main_area/inside)
-"hA" = (/obj/effect/floor_decal/spline/fancy/wood,/turf/floor/carpet,/area/prishtina/german/main_area/inside)
-"hB" = (/obj/structure/light/small,/obj/effect/floor_decal/spline/fancy/wood,/turf/floor/carpet,/area/prishtina/german/main_area/inside)
-"hC" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (SOUTHEAST)"; icon_state = "spline_fancy"; dir = 6},/turf/floor/carpet,/area/prishtina/german/main_area/inside)
-"hD" = (/obj/structure/simple_door/key_door/german,/turf/floor/tiled{icon_state = "neutralfull"},/area/prishtina/german/main_area/inside)
-"hE" = (/obj/effect/landmark{name = "JoinLateSS"},/turf/floor/tiled{icon_state = "neutralfull"},/area/prishtina/german/main_area/inside)
+"hF" = (/obj/map_metadata/chateau,/turf/wall/rockwall,/area/prishtina)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahF
 aaaaaaaaaaaaaaaaaaaaaaaaababababababababababababababababababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaabadadadadadadadadadadadadadadadadadadadadadadadadadadadadabaaaaaaaaasasasasasasasasasasasaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaababadadadadadadadadadadadadadadadadadadadadadadadadadadadadabaaaaaaaaasataxaxaxayazaAaAaAasaaaaaa
@@ -414,11 +370,11 @@ aaabadadadafadadadadaRawcbccbVaDaDbZcdbvcebAefefcfbAbAcgefefbAchcickclcmcmcmbQbB
 aaabaRadadafadadadadadawcbccbVcnbXbZccbvcobAbcagcpbAbAcqagbxbAcrbBbNclbNbNbNcubBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaabadadadafadadadadaRawbEbUbVbXaDbZbGbJbAbAbAcvbAbAbAbAcwbAbAbAbMbNcxcabNbNcAbBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaabadadaRafadadadadadawcbaTbVaDaDbZbGbJbAbAbAcybAbAbAbAczbAbAbAbMbNcxbNbNbNhsbBaaaaabababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaabadadadafadadaRadadawbvaZbGcEbIbGccbvbxcJcJcJcPcSbAcPcTcJcJddbBdhcmcmdBbNhtbBawababadabababababababababaaaaaaaaaaaaaa
+aaabadadadafadadaRadadawbvaZbGcEbIbGccbvbxcJcJcJcPcSbAcPcTcJcJddbBdhdVdWdBbNhtbBawababadabababababababababaaaaaaaaaaaaaa
 aaananananbtanananananbubvbveubvbvbvbvbvefbjbjbjbkblblbkbjbjbjefevevevevevewevevawadadadaRadadadadadadadabababababababaa
 aaexeyeyeyezeAeyeyeyeyeEeGbmeJbYeKeLeMeOeEeEeEeEePezezePeEeEeEeEeveRfkflfmfnfofpctaRadadadadadadaRadadadaRadadaRadadabaa
 aaexeyeAeyezeyeAeyeyeyeEeGfqeJeJeJeJeJeOePezezezezezezezezezezePagfrfncsfnfnfsfpawadaRadadadadaRadadadadadadadadadadabaa
-aaexeyeyeyezeyeyeyeAeyePeOftfufvfwfxfyeOeEezezezezezezezezezezeEagfzfAfBfBfmfoevbuananananananaeaeadadaRadadadaRadadabaa
+aaexeyeyeyezeyeyeyeAeyePeOftfufvfwfxfyeOeEezezezezezezezezezezdXagfzfAfBfBfmfoevbuananananananaeaeadadaRadadadaRadadabaa
 aaexeyeyeyezeAfCeyeyeyeEfDeOeOeGeGeOeOfEfFfGezezfHfHfGfHezezfHfIfJevevfpfpevevfKeEeyeyeAeyeyeyeAanadadadadadadadadaRabaa
 aaexeAeyfCezeyeyeAeyeyfLeEfMfNfNfNfNfMfLeEezezezezezezezezezezeEfLfMfNfNfNfNfMeEfLeyeyeyeyeyeyeyanaeaeaeaeaeaeaeaeaeanaa
 aaexeyeyeAezezezezezezezezezezezezezezezezezezezezezezezezezezezezezezezezezezezezezezezeyeAeyeyfOadadadadaRadadadabaaaa
@@ -461,10 +417,10 @@ hdaaaaabeBadadaddseIeIduadcFcFcFaaaahdhdhdhdhdhdhdhdhdhdaaaaaaaaaaaafTfTgUgUgUgU
 aaaaaadeadadaddfdseIeIdueCcFdgcFaaaahdaaaaaaaaaaaaaaaaaahdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaabadeCadeCdseIeIduadadeBcFaaaahdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaacFadeCadaddseIeIdudfadadabcFaahdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahhhihhhjhjaaaaaaaaaaaa
-aaaaaacFeBadadaddseIeIduadeCadadeDabhdaaaaaaaaaaaaaaaaaaababababaaaaaaaaaaaaaaaaaaaaaaaaaadoababababdiadadababhuhuaaaaaa
-aaaaaacFcFadeCdfdseIeIduadadadadadabdjababababababababababadadababababababdkdkdkdkabababababdldldleZhleZdmdmdmadabababaa
-aaaaaacFcFeCadaddseIeIdugaeCadadadaddnadadadadadadadadadadgaadadadadadadadadadadadadadaddpgadldldladdqaddmdmdmadeZadabab
-aaaaaacFeCadadaddseIeIdydrdrdrdrdrdrdzdrdrdrdrdrdrdrdrdrdrdrdrdrdrdrdrdrdrdrdrdrdAhmdrhndrhkeSeSeSdrdrhkeTeTeTdrdrdrdrdr
+aaaaaacFeBadadaddseIeIduadeCadadeDabhdaaaaaaaaaaaaaaaaaaababababaaaaaaaaaaaaaaaaaaaaaaaaaadodLabababdiadadabhuhuhuaaaaaa
+aaaaaacFcFadeCdfdseIeIduadadadadadabdjababababababababababadadababababababdkdkdkdkabdTdUdLabdldldleZhleZdmdmdmadabhuhuaa
+aaaaaacFcFeCadaddseIeIdugaeCadadadaddnadadadadadadadadadadgaadadadadadadadadadadadadadaddpgadldldladdqaddmdmdmadeZaddEab
+aaaaaacFeCadadaddseIeIdydrdrdrdrdrdrdzdrdrdrdrdrdrdrdrdrdrdrdrdrdrdrdrdrdrdrdrdrdAhmdrhndrhkeSeSeSdrdrhkeTeTeTdrdrdrdrdH
 aaaaaadeadadeCaddseIeIeIeIeIeIeIeIeIdweIeIeIeIeIeIeIeIeIeIeIeIeIeIeIeIeIeIeIeIeIeIeIeIeUeUeUeIhoeIhkeVhkeIeIeIeIhohkeIeI
 aaaaaaababadadaddseIeIeIeIeIeIeIeIeIdweIeIeIeIeIeIeIeIeIeIeIeIeIeIeIeIeIeIeIeIeIeIeWeIeUeUeUeIhoeIeXeXeXeIeYeIhkhoeIeIeI
 aaaaaaaaabababadfafbfbfbfbfbfbfbfbfbfcfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfdfbfbfbfbfbfefefefbfffbfgfgfgfbfbfbfbfbfbfbfb
@@ -473,79 +429,79 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
 
 (1,1,2) = {"
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaadEdEdEdEdEdEdEefefefefefaaaaaaaaefefefefefdTdTdEdEdEdEdEaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaadEdEdEdEdEdEdEefeHgAeHefefefefefefeHgAgBefdTdEdEdEdEdEdEaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaefefefefefagefefgBegeHefgCgCgCgCefdHeggBefefefefefefefefaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaefgEgFgGefdTdTaggBeggBefejejejejefeHeggBefdTdTefgHgEgFefaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaefgIgJgGefdLdLaggBeggBefejejejejefgBeggBefdTdTaggHgIgJefaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaabkgKgJbkefefefagenejenefgLgXgXhaefenejenefefagefbkgIhbbkaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaefgIhwhxhxhxhxgFejejejegegegegegegejejejgEhxhxhxhxhygJefaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaadEefhzhAhBhAhAhAhCejetejegegegegegegejetejhzhAhAhAhBhAhCefaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaefefefbkefefefefefefefefbkhDhDbkefefefefefefefefbkefefefaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagdUdVdWefegegegegagdXdVdUagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagdYdZdVeaegegegegeadVdZebagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagecedeeagegegegegageeedecagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagagagagaggLegeghaagagagagagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagdUdVdWagegegegegagdXdVdUagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagdYdZdVeaegegegegeadVdZebagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagecedeeefegegegegageeedecagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaefefefefefegeghEegefefefefefaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaefeheiejekegegegegekejehelefaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaefefefefefefefehejejejeghEhEegejejejejefefefefefefefefaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaefememememenefeoejejejeghEhEegejejejejefenenememenemefaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaefepejejejejeqerejejejegegegegejejejejeqejejejejejesefaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaefejejejejejefejejejetegegegegetejejejefejejejejejejefaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaefefefefefefefefefefefefbkbkefefefefefefefefefefefefefaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
 "}

@@ -747,7 +747,7 @@ window "rpane"
 		background-color = #40628a
 		border = line
 		saved-params = "is-checked"
-		text = "Rules"
+		text = "Maps"
 		command = "rules"
 		group = "rpanemode"
 	elem "discord"

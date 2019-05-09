@@ -328,7 +328,6 @@
 #include "code\game\objects\map_metadata\forest.dm"
 #include "code\game\objects\map_metadata\forest_new.dm"
 #include "code\game\objects\map_metadata\gazala.dm"
-#include "code\game\objects\map_metadata\gulag.dm"
 #include "code\game\objects\map_metadata\island.dm"
 #include "code\game\objects\map_metadata\occupation.dm"
 #include "code\game\objects\map_metadata\omaha.dm"
@@ -963,5 +962,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\omaha.dmm"
+#include "maps\chateau.dmm"
 // END_INCLUDE

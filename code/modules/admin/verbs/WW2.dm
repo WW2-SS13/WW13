@@ -137,6 +137,12 @@
 
 	message_admins("[key_name(src)] reset the roundstart autobalance for [_clients] players.")
 
+/client/proc/repairautobalance()
+	set category = "Special"
+	set name = "Repair Autobalance"
+	AutoBalanceRepair()
+
+
 /client/proc/end_all_grace_periods()
 	set category = "Special"
 	set name = "End All Grace Periods"

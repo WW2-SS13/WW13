@@ -178,19 +178,19 @@ FORUMURL http://ww13.boards.net/
 DONATIONURL https://www.paypal.me/WW13Server
 
 ## rules address
-RULESURL http://mechahitler.co.nf/lebensraum/rules.html
+RULESURL http://mechahitler2.co.nf/lebensraum/rules.html
 
 ## discord address
 DISCORDURL https://discord.gg/PVqjqCv
 
 ## Wiki address
-WIKIURL http://mechahitler.co.nf/wiki/media/index.php?title=Main_Page
+WIKIURL http://mechahitler2.co.nf/wiki/media/index.php?title=Main_Page
 
 ## Website address
 WEBSITEURL http://mechahitler.co.nf/
 
 ##Rules address
-# RULESURL http://mechahitler.co.nf/lebensraum/rules.html
+# RULESURL https://affectedarc07.github.io/SS13WebMap/
 
 ##Github address
 GITHUBURL https://github.com/WW2-SS13/WW13/issues

@@ -1,66 +1,66 @@
+#define NO_WINNER "No one has won."
+
+
 /obj/map_metadata/survival
 	ID = MAP_SURVIVAL
-	title = "Survival (70x70x2)"
-	lobby_icon_state = "su"
-	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall/inside)
-	allow_bullets_through_blocks = list(/area/prishtina/no_mans_land/invisible_wall/inside)
-	event_faction = PILLARMEN
-	min_autobalance_players = 100
-	respawn_delay = 0
-	valid_weather_types = list()
+	title = "Thicket"
+	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall,
+	/area/prishtina/no_mans_land/invisible_wall/inside) // above and underground
+	respawn_delay = 100
+	squad_spawn_locations = FALSE
+	min_autobalance_players = 100 // aparently less that this will fuck autobalance
 	reinforcements = FALSE
+	faction_organization = list(
+		ITALIAN,
+		GERMAN,
+		SOVIET)
+	available_subfactions = list(ITALIAN = 100)
 	no_subfaction_chance = FALSE
 	subfaction_is_main_faction = TRUE
 	roundend_condition_sides = list(
-		list(CIVILIAN) = /area/prishtina/farm1, // faster than /area/prishtina/german, less subtypess - Kachnov
-		list(PILLARMEN) = /area/prishtina/farm1)
-	faction_organization = list(
-		CIVILIAN,
-		PILLARMEN)
-	ambience = list()
-	times_of_day = list("Night")
-	zlevels_without_lighting = list(2)
-	meme = FALSE
+	       list(ITALIAN) = /area/prishtina/italian_base,
+	       list(GERMAN) = /area/prishtina/italian_base,
+	       list(SOVIET) = /area/prishtina/soviet)
+	available_subfactions = list(ITALIAN)
+	battle_name = "Soviet Thicket"
+	faction_distribution_coeffs = list(GERMAN = 0.5, SOVIET = 0.5)
 
-/obj/map_metadata/survival/specialfaction_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 2000)
 
-/obj/map_metadata/survival/announce_mission_start(var/preparation_time)
-	world << "<font size=4>This is a Survival Map. You are a <b>Civilian</b>, who got lost inside the forest when running from the frontlines, but there is something very wrong going on here...<span class = 'danger'> Try to survive.</span></font>"
+/obj/map_metadata/survival/germans_can_cross_blocks()
+	return (processes.ticker.playtime_elapsed >= 1800 || admin_ended_all_grace_periods)
+
+/obj/map_metadata/survival/soviets_can_cross_blocks()
+	return (processes.ticker.playtime_elapsed >= 1800 || admin_ended_all_grace_periods)
+
 
 /obj/map_metadata/survival/job_enabled_specialcheck(var/datum/job/J)
 	. = TRUE
-	if (istype(J, /datum/job/partisan/civilian))
-		J.total_positions = max(1, round(clients.len*3))
-	if (istype(J, /datum/job/pillarman/vampire))
-		J.total_positions = max(2, round(clients.len/3))
-	if (istype(J, /datum/job/pillarman/pillarman))
-		J.total_positions = 0
+	if (istype(J, /datum/job/italian))
+		if (istype(J, /datum/job/italian/soldier))
+			J.total_positions = max(5, round(clients.len*3))
+		if (istype(J, /datum/job/italian/squad_leader))
+			J.total_positions = max(1, round(clients.len*0.5))
+		if (istype(J, /datum/job/italian/medic))
+			J.total_positions = max(1, round(clients.len*0.5))
+//	else if (istype(J, /datum/job/partisan/civilian))
+//		J.total_positions = max(5, round(clients.len*0.75))
+	else if (istype(J, /datum/job/soviet))
+		if (istype(J, /datum/job/soviet/soldier))
+			J.total_positions = max(5, round(clients.len*3))
+		else if (istype(J, /datum/job/soviet/medic))
+			J.total_positions = max(1, round(clients.len*0.5))
+		else if (istype(J, /datum/job/soviet/squad_leader))
+			J.total_positions = max(1, round(clients.len*0.5))
+		else
+			. = FALSE
+	else if (istype(J, /datum/job/german))
+		. = FALSE
 	return .
 
-/obj/map_metadata/survival/cross_message(faction)
-	if (faction == CIVILIAN)
-		return "<font size = 4>A horrible chill runs down your spine...</font>"
-	return "<font size = 4>The [faction_const2name(faction)] may now cross the invisible wall!</font>"
+/obj/map_metadata/survival/announce_mission_start(var/preparation_time)
+	world << "<font size=4>The battle begins!</font>"
 
+/obj/map_metadata/survival/reinforcements_ready()
+	return (germans_can_cross_blocks() && soviets_can_cross_blocks())
 
-// pillarmap is special; the round ends ALMOST immediately when one faction has completely died: used to be immediately, but falling down counts as being dead so that's a thing
-/obj/map_metadata/survival/short_win_time(faction)
-	return 300
-
-/obj/map_metadata/survival/long_win_time(faction)
-	return 300
-
-// avoid checking this too often, alive_n_of_side is expensive-ish
-/obj/map_metadata/survival/win_condition_specialcheck()
-	if (processes.ticker.ticks % 5 == 0)
-		return (!alive_n_of_side(PILLARMEN) || !alive_n_of_side(CIVILIAN))
-	if (world.time >= 9000)
-		if (win_condition_spam_check)
-			return FALSE
-		var/message = "The civilians have survived!"
-		world << "<font size = 4><span class = 'notice'>[message]</span></font>"
-		show_global_battle_report(null)
-		win_condition_spam_check = TRUE
-		return FALSE
-	return TRUE
+	#undef NO_WINNER
