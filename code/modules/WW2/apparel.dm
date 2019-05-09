@@ -591,6 +591,7 @@
 	name = "Japanese cap"
 	desc = "A Japanese cap worn by officers and soldiers alike."
 	icon_state = "japcap"
+	worn_state = "japcap"
 	item_state = "japcap"
 	var/toggled = FALSE
 
@@ -619,6 +620,7 @@
 	desc = "A Japanese cap worn by high ranking officers, like lieutenant or captain."
 	icon_state = "japoffcap"
 	item_state = "japoffcap"
+	worn_state = "japoffcap"
 	var/toggled = FALSE
 
 /obj/item/clothing/head/helmet/japoffcap/verb/toggle_flaps()

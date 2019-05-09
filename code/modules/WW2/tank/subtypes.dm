@@ -159,3 +159,42 @@
 	MG = new/obj/item/weapon/gun/projectile/automatic/stationary/kord/maxim(null)
 	MG.invisibility = 101
 	#endif
+
+/obj/tank/japanese
+	icon_state = "jap"
+	name = "Type 4 Chi-to"
+
+/obj/tank/japanese/New()
+	..()
+	radio = new/obj/item/radio/feldfu
+	#ifdef MG_TANKS
+	MG = new/obj/item/weapon/gun/projectile/automatic/stationary/type92stat(null)
+	MG.invisibility = 101
+	#endif
+
+/obj/tank/japanese/admin
+	movement_delay = 0.1
+	slow_movement_delay = 0.1
+	fast_movement_delay = 0.1
+	fire_delay = 0.3
+	admin = TRUE
+	locked = FALSE
+
+/obj/tank/isuzu //trucks are a subtype of tanks because they are basically the same except for the gun.
+	icon_state = "isuzu_t44"
+	name = "Isuzu Type 44"
+	truck = TRUE
+	movement_delay = 1.25
+	slow_movement_delay = 1.25
+	fast_movement_delay = 2.5 // reversed because trucks are faster on asphalt and slower on dirt/grass
+	icon = 'icons/WW2/truck_v.dmi' // I don't know why but we start out southfacing
+	horizontal_icon = 'icons/WW2/truck_h.dmi'
+	vertical_icon = 'icons/WW2/truck_v.dmi'
+	locked = TRUE
+	truck_full = FALSE
+	back_seat_1 = FALSE
+	back_seat_2 = FALSE
+	back_seat_3 = FALSE
+	back_seat_4 = FALSE
+	back_seat_5 = FALSE
+	back_seat_6 = FALSE

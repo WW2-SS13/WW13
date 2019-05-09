@@ -127,7 +127,7 @@
 					return FALSE
 		user << "<span class = 'danger'>None of your keys seem to fit!</span>"
 		return FALSE
-	else if (istype(W, /obj/item/weapon/key/german/command_intermediate) || istype(W, /obj/item/weapon/key/soviet/command_intermediate) || istype(W, /obj/item/weapon/key/allied/command_intermediate))
+	else if (istype(W, /obj/item/weapon/key/german/command_intermediate) || istype(W, /obj/item/weapon/key/soviet/command_intermediate) || istype(W, /obj/item/weapon/key/allied/command_intermediate) || istype(W, /obj/item/weapon/key/japan/command_intermediate))
 		if (locked == TRUE)
 			tank_message("<span class = 'notice'>[user] unlocks [my_name()].</span>")
 			locked = FALSE
