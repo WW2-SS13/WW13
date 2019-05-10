@@ -25,12 +25,13 @@ var/list/global/floor_cache = list()
 					var/turf/floor/FF = get_step(src,direction)
 					FF.update_icon() //so siding get updated properly
 
+
 /decl/flooring/trench
 	name = "trench"
 	desc = "Hole in the ground."
 	icon = 'icons/WW2/trench.dmi'
 	icon_base = "trench"
-	flags = TURF_HAS_EDGES | SMOOTH_ONLY_WITH_ITSELF
+	flags = SMOOTH_ONLY_WITH_ITSELF
 
 /turf/floor/plating/dirt
 	var/trench_stage = 0
@@ -117,6 +118,8 @@ var/list/global/floor_cache = list()
 			if(1)
 				//icon_state = ""
 				visible_message("<span class = 'notice'>[user] digs.</span>")
+				var/turf = get_turf(src)
+				new /obj/item/weapon/dirt_wall(turf)
 				user << ("<span class = 'notice'>You need to dig this tile one more time to make a trench.</span>")
 				return
 			if(2)
