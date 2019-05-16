@@ -295,7 +295,7 @@
 	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
-	H.setStat("medical", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_VERY_HIGH)
 	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
