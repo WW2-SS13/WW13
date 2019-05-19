@@ -120,69 +120,13 @@
 	icon_state = "puppy"
 	icon_living = "puppy"
 	icon_dead = "puppy_dead"
-	gender = MALE
-	var/turns_since_scan = FALSE
-	var/obj/movement_target
-	response_help  = "annoys"
-	response_disarm = "provokes"
-	response_harm   = "assaults"
 
 //pupplies cannot wear anything.
 /mob/living/simple_animal/corgi/puppy/Topic(href, href_list)
 	if (href_list["remove_inv"] || href_list["add_inv"])
-		usr << "<span class = 'red'>[src] already is wearing their commanding hat.</span>"
+		usr << "<span class = 'red'>[src] already is wearing their commanding hat. .</span>"
 		return
 	..()
-
-/mob/living/simple_animal/corgi/puppy/Life()
-	..()
-
-	//Feeding, chasing food, FOOOOODDDD
-	if (!stat && !resting && !buckled)
-		turns_since_scan++
-		if (turns_since_scan > 5)
-			turns_since_scan = FALSE
-			if ((movement_target) && !(isturf(movement_target.loc) || ishuman(movement_target.loc) ))
-				movement_target = null
-				stop_automated_movement = FALSE
-			if ( !movement_target || !(movement_target.loc in oview(src, 3)) )
-				movement_target = null
-				stop_automated_movement = FALSE
-				for (var/obj/item/weapon/reagent_containers/food/snacks/S in oview(src,3))
-					if (isturf(S.loc) || ishuman(S.loc))
-						movement_target = S
-						break
-			if (movement_target)
-				stop_automated_movement = TRUE
-				step_to(src,movement_target,1)
-				sleep(3)
-				step_to(src,movement_target,1)
-				sleep(3)
-				step_to(src,movement_target,1)
-
-				if (movement_target)		//Not redundant due to sleeps, Item can be gone in 6 decisecomds
-					if (movement_target.loc.x < x)
-						set_dir(WEST)
-					else if (movement_target.loc.x > x)
-						set_dir(EAST)
-					else if (movement_target.loc.y < y)
-						set_dir(SOUTH)
-					else if (movement_target.loc.y > y)
-						set_dir(NORTH)
-					else
-						set_dir(SOUTH)
-
-					if (isturf(movement_target.loc) )
-						UnarmedAttack(movement_target)
-					else if (ishuman(movement_target.loc) && prob(20))
-						visible_emote("stares at the [movement_target] that [movement_target.loc] has with anger.")
-
-		if (prob(1))
-			visible_emote(pick("heils.","shows visible stress."))
-			spawn(0)
-				for (var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
-					set_dir(i)
-					sleep(1)
 
 
 //LISA! SQUEEEEEEEEE~
@@ -194,12 +138,11 @@
 	icon_state = "lisa"
 	icon_living = "lisa"
 	icon_dead = "lisa_dead"
-	response_help  = "annoys"
-	response_disarm = "provokes"
-	response_harm   = "assaults"
-	gender = MALE
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
 	var/turns_since_scan = FALSE
-	var/obj/movement_target
+	var/puppies = FALSE
 
 //Lisa already has a cute bow!
 /mob/living/simple_animal/corgi/Lisa/Topic(href, href_list)
@@ -211,48 +154,28 @@
 /mob/living/simple_animal/corgi/Lisa/Life()
 	..()
 
-	//Feeding, chasing food, FOOOOODDDD
 	if (!stat && !resting && !buckled)
 		turns_since_scan++
-		if (turns_since_scan > 5)
+		if (turns_since_scan > 15)
 			turns_since_scan = FALSE
-			if ((movement_target) && !(isturf(movement_target.loc) || ishuman(movement_target.loc) ))
-				movement_target = null
-				stop_automated_movement = FALSE
-			if ( !movement_target || !(movement_target.loc in oview(src, 3)) )
-				movement_target = null
-				stop_automated_movement = FALSE
-				for (var/obj/item/weapon/reagent_containers/food/snacks/S in oview(src,3))
-					if (isturf(S.loc) || ishuman(S.loc))
-						movement_target = S
+			var/alone = TRUE
+			var/ian = FALSE
+			for (var/mob/M in oviewers(7, src))
+				if (istype(M, /mob/living/simple_animal/corgi/Ian))
+					if (M.client)
+						alone = FALSE
 						break
-			if (movement_target)
-				stop_automated_movement = TRUE
-				step_to(src,movement_target,1)
-				sleep(3)
-				step_to(src,movement_target,1)
-				sleep(3)
-				step_to(src,movement_target,1)
-
-				if (movement_target)		//Not redundant due to sleeps, Item can be gone in 6 decisecomds
-					if (movement_target.loc.x < x)
-						set_dir(WEST)
-					else if (movement_target.loc.x > x)
-						set_dir(EAST)
-					else if (movement_target.loc.y < y)
-						set_dir(SOUTH)
-					else if (movement_target.loc.y > y)
-						set_dir(NORTH)
 					else
-						set_dir(SOUTH)
+						ian = M
+				else
+					alone = FALSE
+					break
+			if (alone && ian && puppies < 4)
+				new /mob/living/simple_animal/corgi/puppy(loc)
 
-					if (isturf(movement_target.loc) )
-						UnarmedAttack(movement_target)
-					else if (ishuman(movement_target.loc) && prob(20))
-						visible_emote("stares at the [movement_target] that [movement_target.loc] has with anger.")
 
 		if (prob(1))
-			visible_emote(pick("grooms their mustache.","shows visible stress."))
+			visible_emote(pick("dances around","chases her tail"))
 			spawn(0)
 				for (var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					set_dir(i)
