@@ -343,7 +343,7 @@
 	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
-	H.setStat("medical", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_VERY_HIGH)
 	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
@@ -1200,7 +1200,7 @@ var/first_fallschirm = TRUE
 	H.setStat("smg", STAT_MEDIUM_HIGH)
 	H.setStat("pistol", STAT_VERY_HIGH)
 	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
-	H.setStat("medical", STAT_NORMAL)
+	H.setStat("medical", STAT_VERY_HIGH)
 	H.setStat("survival", STAT_VERY_HIGH)
 	H.setStat("shotgun", STAT_NORMAL)
 	H.setStat("stamina", STAT_VERY_HIGH)
