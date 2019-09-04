@@ -21,7 +21,7 @@
 	isGlass = FALSE
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/japanese
-	icon_state = "canteen_soviet"
+	icon_state = "canteen_japanese"
 	name = "Japanese Soldier's Canteen"
 	isGlass = FALSE
 
