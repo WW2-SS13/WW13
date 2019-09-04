@@ -12,14 +12,12 @@
 	reinforcements = FALSE
 	faction_organization = list(
 		GERMAN,
-		SOVIET,
-		USA)
+		SOVIET)
 	no_subfaction_chance = FALSE
 	subfaction_is_main_faction = TRUE
 	roundend_condition_sides = list(
 		list(GERMAN) = /area/prishtina/farm1,
 		list(SOVIET) = /area/prishtina/farm4,
-		list(USA) = /area/prishtina/farm4
 		)
 	available_subfactions = list(
 		SS_TV)
@@ -27,7 +25,7 @@
 	custom_loadout = FALSE // so people do not spawn with guns!
 	var/modded_num_of_SSTV = FALSE
 	var/modded_num_of_prisoners = FALSE
-	faction_distribution_coeffs = list(GERMAN = 0.3, SOVIET = 0.70)
+	faction_distribution_coeffs = list(GERMAN = 0.3, SOVIET = 0.7)
 	songs = list(
 		"The Great Escape:1" = 'sound/music/the_great_escape.ogg'
 		)
@@ -54,12 +52,6 @@
 			if (istype(J, /datum/job/german/medic_sstv))
 				J.total_positions = max(1, round(clients.len*0.1*3))
 				modded_num_of_SSTV = TRUE
-	if (istype(J, /datum/job/usa))
-		if (!J.is_special)
-			. = FALSE
-		else
-			if (istype(J, /datum/job/usa/paratrooper))
-				J.total_positions = max(2, round(clients.len*0.05*3))
 //	else if (istype(J, /datum/job/partisan/civilian))
 //		J.total_positions = max(5, round(clients.len*0.75))
 	else if (istype(J, /datum/job/soviet))
