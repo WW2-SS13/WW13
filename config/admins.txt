@@ -7,7 +7,6 @@
 
 # not_a_user - Admin
 Harcourt - Host
-Desion134 - Host
 Awware - Debug Host
 Asaka232 - Primary Admin
 Kanoha Shinobi - Primary Admin
