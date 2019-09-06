@@ -14,6 +14,10 @@
 		/obj/item/clothing/head/ushanka = 25,
 		/obj/item/clothing/mask/gas/soviet = 25,
 		/obj/item/clothing/under/sovuni/camo = 5,
+		/obj/item/clothing/under/sovuni/gorka = 5,
+		/obj/item/clothing/under/sovuni/gorkacamo = 5,
+		/obj/item/clothing/suit/storage/vest/heavy/rugc = 5,
+		/obj/item/clothing/suit/storage/vest/heavy/rug = 5,
 		/obj/item/weapon/storage/belt/soviet_basic = 15,
 		/obj/item/weapon/storage/backpack/soviet = 15
 	)
