@@ -7,7 +7,7 @@
 
 # not_a_user - Admin
 Harcourt - Host
-Awware - Debug Host
-Asaka232 - Primary Admin
-Kanoha Shinobi - Primary Admin
-SadChildz - Primary Admin
+
+Bob Cool - Primary Admin
+14Kostas88 - Primary Admin
+

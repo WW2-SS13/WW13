@@ -54,6 +54,13 @@
 	flags_inv = BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
 
+/obj/item/clothing/head/headscarf
+	name = "scarf"
+	desc = "It's unspeakably stylish"
+	icon_state = "zhan_scarf"
+	flags_inv = BLOCKHAIR
+	body_parts_covered = HEAD|FACE|EYES
+
 /obj/item/clothing/head/nursehat
 	name = "nurse's hat"
 	desc = "It allows quick identification of trained medical personnel."
