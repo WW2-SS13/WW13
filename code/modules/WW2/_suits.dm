@@ -9,7 +9,7 @@
 /obj/item/clothing/suit/storage/vest/heavy/ru
 	name = "russian armor vest"
 	icon_state = "ru_armor"
-	slowdown = 2
+	slowdown = 3
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(melee = 60, bullet = 50, laser = 20, energy = 30, bomb = 40, bio = FALSE, rad = FALSE)
 
@@ -31,3 +31,17 @@
 	slowdown = FALSE
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	armor = list(melee = 30, bullet = 10, laser = 20, energy = 25, bomb = 20, bio = FALSE, rad = FALSE)
+
+/obj/item/clothing/suit/storage/vest/heavy/rug
+	name = "russian mountain vest"
+	icon_state = "gorka_jacket"
+	slowdown = 1
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(melee = 50, bullet = 20, laser = 20, energy = 30, bomb = 20, bio = FALSE, rad = FALSE)
+
+/obj/item/clothing/suit/storage/vest/heavy/rugc
+	name = "russian camo mountain vest"
+	icon_state = "gorka_jacket_ss"
+	slowdown = 1
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(melee = 50, bullet = 20, laser = 20, energy = 30, bomb = 20, bio = FALSE, rad = FALSE)

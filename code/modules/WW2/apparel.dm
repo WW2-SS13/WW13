@@ -411,6 +411,21 @@
 	item_state = "sovunicamo"
 	worn_state = "sovunicamo"
 
+/obj/item/clothing/under/sovuni/gorka
+	name = "Soviet Mountain Uniform"
+	desc = "A camo uniform for Soviet soldiers. Sturdy, comfy, and makes you less visible in autumn."
+	icon_state = "gorka"
+	item_state = "gorka"
+	worn_state = "gorka"
+
+/obj/item/clothing/under/sovuni/gorkacamo
+	name = "Soviet Camo Mountain Uniform"
+	desc = "A camo uniform for Soviet soldiers. Sturdy, comfy, and makes you less visible in autumn."
+	icon_state = "gorka_ss"
+	item_state = "gorka_ss"
+	worn_state = "gorka_ss"
+
+
 /obj/item/clothing/under/sovuni/officer
 	name = "Soviet Officer's uniform"
 	desc = "A fancier, more pressed uniform of the Red Army, given to Soviet officers. It has a feel of pride and authority."
@@ -719,7 +734,8 @@
 	name = "CN-42 bulletproof vest"
 	desc = "A heavy vest used by Soviet Sturmovik. Used for deflecting shrapnel and some bullets."
 	icon_state = "cn42"
-	armor = list(melee = 50)
+	slowdown = 2
+	armor = list(melee = 60, bullet = 40)
 	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
 
 /obj/item/clothing/suit/armor/press
