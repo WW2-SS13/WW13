@@ -100,8 +100,8 @@
 	                                                  // (also affects temperature processing)
 
 	var/list/heat_discomfort_strings = list(
-		"You feel sweat drip down your neck.",
-		"You feel uncomfortably warm.",
+		"You feel your skin burning!",
+		"Your whole body feels like it's melting!",
 		"Your skin prickles in the heat."
 		)
 
