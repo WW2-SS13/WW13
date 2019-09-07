@@ -21,11 +21,10 @@
 	var/cooldown = FALSE
 	var/obj/item/radio/radio = null
 	var/obj/item/weapon/gun/projectile/automatic/stationary/kord/MG = null
-	pixel_x = -32
-
 	var/list/crates = list()
 	var/crates_max = 5
 	var/crates_current = 0
+	pixel_x = -32
 /obj/tank/New()
 	..()
 	update_bounding_rectangle()
