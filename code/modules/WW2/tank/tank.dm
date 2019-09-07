@@ -24,7 +24,7 @@
 	var/list/crates = list()
 	var/crates_max = 5
 	var/crates_current = 0
-	pixel_x = -32
+	pixel_x = -16
 /obj/tank/New()
 	..()
 	update_bounding_rectangle()
