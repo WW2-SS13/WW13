@@ -25,6 +25,7 @@
 	back_seat_4 = FALSE
 	back_seat_5 = FALSE
 	back_seat_6 = FALSE
+	pixel_x = 0
 
 /obj/tank/ambulance //trucks are a subtype of tanks because they are basically the same except for the gun.
 	icon_state = "ambulance"
@@ -44,6 +45,7 @@
 	back_seat_4 = FALSE
 	back_seat_5 = FALSE
 	back_seat_6 = FALSE
+	pixel_x = 0
 
 /obj/tank/sdkfz251 //basically a type of truck, but with a MG
 	icon_state = "sdkfz251"
@@ -64,6 +66,7 @@
 	back_seat_4 = FALSE
 	back_seat_5 = FALSE
 	back_seat_6 = FALSE
+	pixel_x = 0
 
 /obj/tank/sdkfz251/polish //basically a type of truck, but with a MG
 	icon_state = "szary_wilk"
@@ -84,6 +87,7 @@
 	back_seat_4 = FALSE
 	back_seat_5 = FALSE
 	back_seat_6 = FALSE
+	pixel_x = 0
 
 /obj/tank/sdkfz251/New()
 	..()
@@ -108,6 +112,7 @@
 	back_seat_4 = FALSE
 	back_seat_5 = FALSE
 	back_seat_6 = FALSE
+	pixel_x = 0
 
 /obj/tank/studebacker/american
 	icon_state = "studebaker_truck_us"
@@ -198,3 +203,4 @@
 	back_seat_4 = FALSE
 	back_seat_5 = FALSE
 	back_seat_6 = FALSE
+	pixel_x = 0

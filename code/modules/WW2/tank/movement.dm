@@ -74,7 +74,7 @@
 		if (hascall(target, "has_snow") && target:has_snow())
 			if (!truck)
 				if (prob(25))
-					internal_tank_message("<span class = 'notice'><big>Your tank gets stuck in the snow.</big></span>")
+					internal_tank_message("<span class = 'notice'><big>Your truck gets stuck in the snow.</big></span>")
 				else
 					next_movement = world.time + (movement_delay*1.5)
 			else
@@ -140,36 +140,36 @@
 			if (EAST)
 			//	bound_x = round_to_multiple_of_32(32)
 				bound_width = round_to_multiple_of_32(142)
-				bound_height = round_to_multiple_of_32(75)
+				bound_height = round_to_multiple_of_32(64)
 			if (WEST)
 			//	bound_x = round_to_multiple_of_32(96)
 				bound_width = round_to_multiple_of_32(142)
-				bound_height = round_to_multiple_of_32(75)
+				bound_height = round_to_multiple_of_32(64)
 			if (NORTH)
 			//	bound_y = -round_to_multiple_of_32(64)
 			//	bound_x = round_to_multiple_of_32(64)
-				bound_width = round_to_multiple_of_32(113, TRUE)
-				bound_height = round_to_multiple_of_32(89)
+				bound_width = round_to_multiple_of_32(98, TRUE)
+				bound_height = round_to_multiple_of_32(64)
 			if (SOUTH)
 			//	bound_x = round_to_multiple_of_32(64)
-				bound_width = round_to_multiple_of_32(113, TRUE)
-				bound_height = round_to_multiple_of_32(89)
+				bound_width = round_to_multiple_of_32(98, TRUE)
+				bound_height = round_to_multiple_of_32(64)
 	else
 		switch (dir)
 			if (EAST)
-				bound_x = -32
+			//	bound_x = -32
 				bound_width = 128
 				bound_height = 64
 			if (WEST)
-				bound_x = -32
+			//	bound_x = -32
 				bound_width = 128
 				bound_height = 64
 			if (NORTH)
-				bound_x = -32
+			//	bound_x = -32
 				bound_width = 64
 				bound_height = 64
 			if (SOUTH)
-				bound_x = -32
+			//	bound_x = -32
 				bound_width = 64
 				bound_height = 64
 /obj/tank/proc/handle_passing_target_turf(var/turf/t)

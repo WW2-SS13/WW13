@@ -62,6 +62,7 @@
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
 	weight = 3.97
+	fire_sound = 'sound/weapons/mp40.ogg'
 	caliber = "9x19mm"
 	magazine_type = /obj/item/ammo_magazine/mp40
 
