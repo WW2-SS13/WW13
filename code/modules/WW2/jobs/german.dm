@@ -1077,7 +1077,7 @@ var/first_fallschirm = TRUE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/ssofficercap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/stg(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>, a squad leader for an elite SS unit. Your job is to work alongside normal <b>Gruppenfuhrer</b>s and the <b>Hauptmann</b>, while setting your own goals.")
@@ -1295,7 +1295,7 @@ var/first_fallschirm = TRUE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssformalofc(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/ssofficercap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/luger, slot_belt)
 
@@ -1356,7 +1356,7 @@ var/first_fallschirm = TRUE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/ssofficercap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german/SSTV(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>, a squad leader for an elite Totenkopfverbande unit. Your job is to follow the Camp Director's orders.")
@@ -2122,7 +2122,7 @@ var/first_fallschirm = TRUE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/ssofficercap(H), slot_head)
 	if (prob(75))
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/stg(H), slot_back)
 	else

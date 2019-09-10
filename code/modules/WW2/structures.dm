@@ -43,9 +43,7 @@
 /obj/structure/flag
 	icon = 'icons/obj/flags.dmi'
 	layer = MOB_LAYER + 0.01
-	bound_width = 32
-	bound_height = 32
-	density = TRUE
+	density = FALSE
 	anchored = TRUE
 
 /obj/structure/flag/ex_act(severity)

@@ -1,5 +1,4 @@
 "aa" = (/turf/floor/plating/grass/wild,/area/prishtina/farm1{name = "Escape Area 1"})
-"ab" = (/obj/item/weapon/gun/projectile/automatic/bren,/obj/structure/wild/tree/anchored,/turf/floor/plating/grass/wild,/area/prishtina/farm2{capturable = 0; icon_state = "red1"; name = "Forest"})
 "ac" = (/obj/structure/wild/bush/tame,/turf/floor/plating/grass/wild,/area/prishtina/farm2{capturable = 0; icon_state = "red1"; name = "Forest"})
 "ad" = (/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/farm2{capturable = 0; icon_state = "red1"; name = "Forest"})
 "ae" = (/turf/floor/plating/grass/wild,/area/prishtina/farm1{name = "Escape Area 4"})
@@ -666,7 +665,6 @@
 "mW" = (/obj/structure/underground{alpha = 135; icon_state = "rock"; layer = 4},/turf/floor/plating/grass/wild,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
 "mX" = (/obj/structure/underground{alpha = 135; icon_state = "rock"; layer = 4},/obj/structure/underground{alpha = 135; icon_state = "rock"; layer = 4},/turf/floor/dirt,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
 "na" = (/turf/floor/plating/grass/wild,/area/prishtina/farm2{capturable = 0; icon_state = "red1"; name = "Forest"})
-"nc" = (/obj/item/weapon/gun/projectile/automatic/bren,/turf/floor/plating/grass/wild,/area/prishtina/farm2{capturable = 0; icon_state = "red1"; name = "Forest"})
 "nk" = (/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/farm1{name = "Escape Area 4"})
 "nl" = (/obj/structure/light/small{dir = 4},/turf/floor/wood,/area/prishtina/german/armory{base_turf = /turf/floor/dirt; capturable = 0})
 "nm" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
@@ -730,12 +728,12 @@
 
 (1,1,1) = {"
 aaaaaaaaaaaanananananananananananananananananaaenknknkaenanananananananananananananananananananaacnanananananananananaacnanananaacnanananananaacnanananananananananananananananananananananananananananananananananananaacnanaalnananananaaeafaeagaeaeaeaf
-aaaaahaaaaaanananananananananananananananananaaenknknkaenanananananananaaiainanaacnananananananananananananananananananananananaacnananananaacacnanaacnananananananananananananananananananananananaacacacnanananaacnanananananancacnanancagaeaeaeaeaeagae
-aaaaaaaaaaaananaainanaainananaacainanaainananaaenknknkaenananaainananananananananananaainanananananananaainananananananananananaacnananananananananaacnanananananananaacnanananananananananananananananaacnanananaacnanananaabnanananaalncaeaeafaeaeaeaeae
-aaaaaaahaaajnanaainananananananaainanaainanananaadadadnanananaainanananananananananananananaacnanananaaiainanaainanaainanananananananananananananananaacnanananaainanananananananaaiaiainaacnanananananaainanananananananancnanaalnaalnanaagafaeaeaeaeaeae
-akaaaaaaaaaanananananananananaaiainananananananaadadadadnanananananaaiaiainanaacacainananananaainananananananaaiainaainanananananananananaainanaaiainanananananaaiainanaacnanananananananaacnanananananaainanananananaaiainananananaacnaabaeaeaeaeaeaeaeae
-aaahaaaaahaananananananananananananananananananaadadadadnanananananananananananananaainaainanaaiainanananaacnanananananananananaacnanaaiaiainananananananananananaainanaacnaainanananaacnanananaainananaainananaacacnanaainaacnanananancnaaeaeagaeaeagagae
-aaaaahahaaaananananaacnananananananaaiainanananaadadadadnananananaacnanananananananananananananaainananaacacnananananaainaaiaiaiaiainananananananananaainanananananananananananananananananananaaiainananaacnaacacnananaaiainanancainanancnananananananana
+aaaaahaaaaaanananananananananananananananananaaenknknkaenanananananananaaiainanaacnananananananananananananananananananananananaacnananananaacacnanaacnananananananananananananananananananananananaacacacnanananaacnananananananaacnananaagaeaeaeaeaeagae
+aaaaaaaaaaaananaainanaainananaacainanaainananaaenknknkaenananaainananananananananananaainanananananananaainananananananananananaacnananananananananaacnanananananananaacnanananananananananananananananaacnanananaacnanananaalnanananaalnaaeaeafaeaeaeaeae
+aaaaaaahaaajnanaainananananananaainanaainanananaadadadnanananaainanananananananananananananaacnanananaaiainanaainanaainanananananananananananananananaacnanananaainanananananananaaiaiainaacnanananananaainananananananananananaalnaalnanaagafaeaeaeaeaeae
+akaaaaaaaaaanananananananananaaiainananananananaadadadadnanananananaaiaiainanaacacainananananaainananananananaaiainaainanananananananananaainanaaiainanananananaaiainanaacnanananananananaacnanananananaainanananananaaiainananananaacnaalaeaeaeaeaeaeaeae
+aaahaaaaahaananananananananananananananananananaadadadadnanananananananananananananaainaainanaaiainanananaacnanananananananananaacnanaaiaiainananananananananananaainanaacnaainanananaacnanananaainananaainananaacacnanaainaacnanananananaaeaeagaeaeagagae
+aaaaahahaaaananananaacnananananananaaiainanananaadadadadnananananaacnanananananananananananananaainananaacacnananananaainaaiaiaiaiainananananananananaainanananananananananananananananananananaaiainananaacnaacacnananaaiainananaainanananananananananana
 aaaaaaaaahahnaaiainananananananananananaainanananaadadadnanananaainanaainanaaiaiainananaacnanananananaainananananananananananananaainanananaainanananananananaainanaaiacnanananananananananananananananananaainanananananananananaainaacnanaacnaaiaiainana
 aaaaaaaaaaaanaainanananananananananananaaiainananaadadadnanananananananananaainananananananananaainananananaaiainananananaaiainanaacnanananananaacnanananananananananananananananaainananaainanananaainananaainanaainanaacacnananananaainananananananaaina
 nanananananananananananananaaiaiaiainananananananaadadadnanananananananaainanananananananananananananananananananananananananananananananananananananananananananananananananananananananaainanananananananaainananananananananaaiacaiainanananananananana

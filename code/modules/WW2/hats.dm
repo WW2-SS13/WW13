@@ -38,6 +38,11 @@
 		item_state = "afgerofficercap"
 		worn_state = "afgerofficercap"
 
+/obj/item/clothing/head/caphat/ssofficercap
+	name = "SS commanding officer cap"
+	icon_state = "sscap"
+	item_state = "sscap"
+
 /obj/item/clothing/head/caphat/gercap/fieldcap
 	name = "German officer cap"
 	icon_state = "fieldcap"
