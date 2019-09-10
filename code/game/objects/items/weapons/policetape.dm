@@ -43,7 +43,7 @@ var/list/tape_roll_applications = list()
 		hazard_overlays["[EAST]"]	= new/image('icons/effects/warning_stripes.dmi', icon_state = "E")
 		hazard_overlays["[SOUTH]"]	= new/image('icons/effects/warning_stripes.dmi', icon_state = "S")
 		hazard_overlays["[WEST]"]	= new/image('icons/effects/warning_stripes.dmi', icon_state = "W")
-
+/*
 /obj/item/taperoll/police
 	name = "police tape"
 	desc = "A roll of police tape used to block off crime scenes from the public."
@@ -103,7 +103,7 @@ var/list/tape_roll_applications = list()
 	desc = "A length of medical tape. Better not cross it."
 	req_one_access = list(access_medical)
 	color = COLOR_GREEN
-
+*/
 /obj/item/taperoll/update_icon()
 	overlays.Cut()
 	var/image/overlay = image(icon = src.icon)
