@@ -1,14 +1,45 @@
 "a" = (/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone)
 "b" = (/obj/structure/rwall,/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
-"c" = (/obj/item/radio/loudspeaker/german,/obj/structure/plating,/obj/structure/table/rack,/obj/item/ammo_magazine/c763x25mm_mauser,/obj/item/ammo_magazine/c763x25mm_mauser,/obj/item/ammo_magazine/c763x25mm_mauser,/obj/item/weapon/gun/projectile/pistol/mauser,/obj/effect/floor_decal/industrial/outline/grey,/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"c" = (/obj/structure/window/classic,/obj/structure/plating,/obj/structure/barricade,/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
 "d" = (/obj/structure/plating,/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
-"e" = (/obj/structure/window/classic,/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
-"f" = (/obj/effect/landmark{name = "Fallschirm"},/obj/structure/plating,/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
-"g" = (/obj/item/radio/loudspeaker/german{dir = 1},/obj/structure/plating,/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
-"h" = (/obj/structure/plating,/obj/structure/vending/paratrooper,/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"e" = (/obj/structure/rwall,/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone)
+"f" = (/obj/structure/plating,/obj/lift_lever/soviet{name = "Plane Flight Stick"},/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"g" = (/obj/structure/plating,/obj/structure/table/iron,/obj/structure/rustpipe{icon_state = "panel_1"; name = "Broken Machine"},/obj/structure/processing_unit_console{name = "Flight Console"},/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"h" = (/obj/structure/rustpipe{icon_state = "panel_1"; name = "Broken Machine"},/obj/structure/plating,/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
 "i" = (/obj/structure/plating,/obj/structure/table/rack,/obj/item/ammo_magazine/c763x25mm_mauser,/obj/item/ammo_magazine/c763x25mm_mauser,/obj/item/ammo_magazine/c763x25mm_mauser,/obj/item/weapon/gun/projectile/pistol/mauser,/obj/effect/floor_decal/industrial/outline/grey,/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
-"j" = (/obj/structure/plating,/obj/structure/table/rack,/obj/item/weapon/storage/backpack/german/paratrooper,/obj/effect/floor_decal/industrial/outline/grey,/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
-"k" = (/obj/item/radio/loudspeaker/german,/obj/structure/plating,/obj/structure/table/rack,/obj/item/weapon/storage/backpack/german/paratrooper,/obj/effect/floor_decal/industrial/outline/grey,/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"j" = (/obj/structure/plating,/obj/structure/simple_door/key_door/german/command_high{health = 10000; initial_health = 10000; name = "Cockpit Door"},/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"k" = (/obj/structure/plating,/obj/structure/bed/chair{icon_state = "chair_preview"; dir = 1},/obj/structure/plating,/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"l" = (/obj/structure/rwall,/turf/floor/plating/grass/wild,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"m" = (/obj/structure/plating,/obj/structure/bed/chair{dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"n" = (/obj/structure/plating,/turf/floor/plating/grass/wild,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"o" = (/obj/structure/plating,/obj/structure/bed/chair{icon_state = "chair_preview"; dir = 8},/turf/floor/plating/grass/wild,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"p" = (/obj/structure/plating,/obj/structure/closet,/obj/item/clothing/under/geruni/falluni,/turf/floor/plating/grass/wild,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"q" = (/obj/structure/plating,/obj/structure/light/small/red{icon_state = "bulb1"; dir = 8},/turf/floor/plating/grass/wild,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"r" = (/obj/structure/plating,/obj/structure/light/small/red{icon_state = "bulb1"; dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"s" = (/obj/structure/plating,/obj/structure/light/small/red{icon_state = "bulb1"; dir = 8},/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"t" = (/obj/structure/plating,/obj/structure/light/small/red{icon_state = "bulb1"; dir = 4},/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"u" = (/obj/structure/plating,/obj/structure/vending/paratrooper,/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"v" = (/obj/structure/plating,/obj/structure/table/rack,/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"w" = (/obj/structure/plating,/obj/structure/light/small/red{dir = 4},/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"x" = (/obj/item/radio/loudspeaker/german{dir = 1},/obj/structure/plating,/obj/structure/table/rack,/obj/item/ammo_magazine/ptrdbox,/obj/item/weapon/gun/projectile/heavy/ptrd,/obj/item/weapon/storage/belt/german,/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"y" = (/obj/structure/plating,/obj/structure/plating,/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"z" = (/obj/structure/rustpipe{icon_state = "panel_1"; name = "Broken Machine"},/obj/structure/plating,/obj/structure/light/small/red{icon_state = "bulb1"; dir = 8},/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"A" = (/obj/structure/plating,/obj/structure/bed/chair{dir = 4},/obj/effect/landmark{name = "Fallschirm"},/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"B" = (/obj/structure/plating,/obj/structure/bed/chair{icon_state = "chair_preview"; dir = 8},/obj/effect/landmark{name = "Fallschirm"},/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"C" = (/obj/structure/window/classic,/obj/structure/plating,/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"D" = (/obj/effect/landmark{name = "Fallschirm"},/obj/structure/plating,/obj/structure/bed/chair{dir = 4},/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"E" = (/obj/effect/landmark{name = "Fallschirm"},/obj/structure/plating,/obj/structure/bed/chair{icon_state = "chair_preview"; dir = 8},/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"F" = (/obj/structure/plating,/obj/structure/bed/chair{dir = 4},/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"G" = (/obj/structure/plating,/obj/structure/bed/chair{icon_state = "chair_preview"; dir = 8},/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"H" = (/obj/structure/plating,/obj/structure/light/small/red{icon_state = "bulb1"; dir = 8},/obj/structure/bed/chair{dir = 4},/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"I" = (/obj/structure/plating,/obj/structure/light/small/red{icon_state = "bulb1"; dir = 4},/obj/structure/bed/chair{icon_state = "chair_preview"; dir = 8},/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"J" = (/obj/structure/plating,/obj/structure/simple_door/key_door/german{name = "Plane door"},/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"K" = (/obj/structure/plating,/obj/structure/table/rack,/obj/item/weapon/storage/backpack/german/paratrooper,/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/light/small/red{icon_state = "bulb1"; dir = 8},/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"L" = (/obj/structure/plating,/obj/structure/table/rack,/obj/item/weapon/storage/backpack/german/paratrooper,/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/light/small/red{dir = 4},/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"M" = (/obj/structure/plating,/obj/structure/vending/paratrooper,/obj/item/radio/loudspeaker/german{dir = 1},/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"N" = (/obj/structure/plating,/obj/structure/light/small/red,/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"O" = (/obj/structure/rustpipe{icon_state = "panel_1"; name = "Broken Machine"},/obj/structure/plating,/obj/structure/light/small/red{dir = 4},/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
+"P" = (/obj/structure/plating,/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/light/small/red{icon_state = "bulb1"; dir = 1},/turf/sky,/area/prishtina/void/sky/paratrooper_drop_zone/plane)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -43,40 +74,40 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabcihjkbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaefdfdfeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabdddddbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaefdfdfeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabdddddbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaefdfdfeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabddgddbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabcbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacfgfcaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabhkykhbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabzyyyObaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbFdGbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbdddbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbjbjbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaallnnnllaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaellmnolleaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeelpnnnpleeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeeelqnnnrleeeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeeeelpnnnpleeeeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeeeeelnnnnnleeeeeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeeeeeelpnnnpleeeeeeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeeeeeeeebsdddtbeeeeeeeeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeeeeeeeeeebuvdvubeeeeeeeeeeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeeeeeeeeeeeeebbbjbbbeeeeeeeeeeeeeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeeeeeeeeeeeeebFPdPGbeeeeeeeeeeeeeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaCDdddECaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabFdddGbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaCDdddECaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabHdddIbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaCDdddECaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabFdddGbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabAdddBbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabsdddwbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaJddxddJaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabddbddbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabdddddbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbKdddLbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbidddibbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbMdddMbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabuNubaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

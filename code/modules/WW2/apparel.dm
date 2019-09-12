@@ -558,7 +558,6 @@
 	desc = "A standard IJA helmet."
 	icon_state = "japhelm"
 	item_state = "japhelm"
-	flags_inv = BLOCKHEADHAIR
 
 /obj/item/clothing/head/helmet/japhelm/attackby(obj/item/W as obj, mob/user as mob)
 	if (!istype(W)) return//I really don't understand why this check is needed
@@ -575,7 +574,6 @@
 	icon_state = "japhelm_bandana"
 	item_state = "japhelm_bandana"
 	worn_state = "japhelm_bandana"
-	flags_inv = BLOCKHEADHAIR
 
 /obj/item/clothing/head/jap_headband
 	name = "Japanese Headband"
@@ -641,7 +639,7 @@
 /obj/item/clothing/head/helmet/japoffcap/verb/toggle_flaps()
 	set category = null
 	set src in usr
-	if (type != /obj/item/clothing/head/helmet/japncohat)
+	if (type != /obj/item/clothing/head/helmet/japoffcap)
 		return
 	else
 		if (toggled)
@@ -1292,6 +1290,13 @@
 	icon_state = "nazimp_coat"
 	item_state = "nazimp_coat"
 	worn_state = "nazimp_coat"
+
+/obj/item/clothing/suit/storage/coat/hugoboss
+	name = "Hugo Boss Coat"
+	desc = "An ordinary winter coat, the same style der fuhrer wore himself."
+	icon_state = "hugo"
+	item_state = "hugo"
+	worn_state = "hugo"
 
 /obj/item/clothing/suit/storage/coat/soviet
 	name = "Soviet Soldier's Coat"
