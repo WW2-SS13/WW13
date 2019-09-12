@@ -180,13 +180,14 @@
 	icon_state = "M1Garand"
 	item_state = "m1garand"
 	w_class = 4
-	load_method = SINGLE_CASING|SPEEDLOADER
-	max_shells = 8
+	load_method = MAGAZINE
 	caliber = "c762x63"
 //	origin_tech = "combat=4;materials=2"
 	slot_flags = SLOT_BACK
-	ammo_type = /obj/item/ammo_casing/c762x63
 	magazine_type = /obj/item/ammo_magazine/c762x63
+	ammo_type = /obj/item/ammo_casing/c762x63
+	auto_eject = TRUE
+	auto_eject_sound = 'sound/weapons/garand-ping.ogg'
 	weight = 4.3
 	firemodes = list(
 		list(name="single shot",burst=1, move_delay=2, fire_delay=6)
