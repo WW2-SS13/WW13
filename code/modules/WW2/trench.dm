@@ -31,7 +31,7 @@ var/list/global/floor_cache = list()
 	desc = "Hole in the ground."
 	icon = 'icons/WW2/trench.dmi'
 	icon_base = "trench"
-	flags = SMOOTH_ONLY_WITH_ITSELF
+	flags = SMOOTH_ONLY_WITH_ITSELF | TURF_HAS_EDGES
 
 /turf/floor/plating/dirt
 	var/trench_stage = 0
