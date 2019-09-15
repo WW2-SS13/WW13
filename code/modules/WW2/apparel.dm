@@ -147,6 +147,13 @@
 	item_state = "germanfirefighteruniform"
 	worn_state = "germanfirefighteruniform"
 
+/obj/item/clothing/under/reporter
+	name = "War Correspondants's uniform"
+	desc = "A fancier, more pressed uniform."
+	icon_state = "Germanwarcorrespondantuniform"
+	item_state = "Germanwarcorrespondantuniform"
+	worn_state = "Germanwarcorrespondantuniform"
+
 
 /obj/item/clothing/under/firefighteroff
 	name = "firefighter's uniform"
@@ -1204,6 +1211,12 @@
 	icon_state = "uspack"
 	item_state_slots = null
 
+/obj/item/weapon/storage/backpack/usafield
+	name = "american field pack"
+	desc = "You wear this on your back and put items into it."
+	icon_state = "usfieldpack"
+	item_state_slots = null
+
 //portable rations
 
 /obj/item/weapon/storage/backpack/german/rations
@@ -1290,6 +1303,7 @@
 	icon_state = "nazimp_coat"
 	item_state = "nazimp_coat"
 	worn_state = "nazimp_coat"
+
 
 /obj/item/clothing/suit/storage/coat/hugoboss
 	name = "Hugo Boss Coat"
