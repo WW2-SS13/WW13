@@ -38,6 +38,7 @@
 	slowdown = 1
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(melee = 50, bullet = 20, laser = 20, energy = 30, bomb = 20, bio = FALSE, rad = FALSE)
+	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
 
 /obj/item/clothing/suit/storage/vest/heavy/rugc
 	name = "russian camo mountain vest"
@@ -45,3 +46,4 @@
 	slowdown = 1
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(melee = 50, bullet = 20, laser = 20, energy = 30, bomb = 20, bio = FALSE, rad = FALSE)
+	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
