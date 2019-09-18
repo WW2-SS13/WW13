@@ -1221,6 +1221,7 @@
 	icon_state = "usfieldpack"
 	item_state_slots = null
 	slowdown = 0.1
+	max_storage_space = 11
 
 //portable rations
 
