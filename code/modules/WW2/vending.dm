@@ -55,7 +55,8 @@
 		/obj/item/clothing/shoes/usboots = 50,
 		/obj/item/clothing/mask/gas/usa = 25,
 		/obj/item/weapon/storage/backpack/usa = 15,
-		/obj/item/weapon/storage/belt/usa = 20
+		/obj/item/weapon/storage/belt/usa = 20,
+		/obj/item/weapon/storage/backpack/usafield = 5
 	)
 /obj/structure/vending/marinesapparel
 	name = "US Marines apparel rack"
@@ -71,7 +72,8 @@
 		/obj/item/clothing/mask/shemagh = 50,
 		/obj/item/clothing/shoes/usboots = 50,
 		/obj/item/clothing/mask/gas/usa = 25,
-		/obj/item/weapon/storage/backpack/usa = 15
+		/obj/item/weapon/storage/backpack/usa = 15,
+		/obj/item/weapon/storage/backpack/usafield = 5
 	)
 /obj/structure/vending/japanapparel
 	name = "Japanese apparel rack"

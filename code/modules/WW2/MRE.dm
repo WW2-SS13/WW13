@@ -28,28 +28,58 @@
 // generic MRE
 
 /obj/item/weapon/reagent_containers/food/snacks/MRE/generic
-	base_state = "mre_food"
-	icon_state = "mre_food"
+	base_state = "mre_box"
+	icon_state = "mre_box"
 	name = "Generic MRE"
 	opens = FALSE
 	trash = /obj/item/weapon/generic_MRE_trash
 
 /obj/item/weapon/generic_MRE_trash
 	icon = 'icons/obj/food.dmi'
-	icon_state = "mre_food_trash"
+	icon_state = "mre_box_open"
 	name = "MRE trash"
 	desc = "The remains of some MRE."
+	w_class = 1
+
+/obj/item/weapon/generic_MRE_trash/german
+	icon_state = "mre_box2_open"
+	name = "MRE trash"
+	desc = "The remains of some MRE."
+	w_class = 1
+
+/obj/item/weapon/generic_MRE_trash/japanese
+	icon_state = "jap_can_open"
+	name = "opened can"
+	desc = "The remains of some canned MRE."
+	w_class = 1
+
+/obj/item/weapon/generic_MRE_trash/american
+	icon_state = "spam_food0"
+	name = "Empty Can"
+	desc = "The remains of some Canned Mystery Meat."
+	w_class = 1
+
+/obj/item/weapon/generic_MRE_trash/soviet
+	icon_state = "wut_empty"
+	name = "Empty Can"
+	desc = "The remains of some Canned Mystery Meat."
 	w_class = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/MRE/generic/german
 	name = "German MRE: Sauerkraut"
 	desc = "A pickled cabbage MRE."
+	icon_state = "mre_box2"
+	base_state = "mre_box2"
 	nutriment_desc = list("pickled cabbage" = 1)
+	trash = /obj/item/weapon/generic_MRE_trash/german
 
 /obj/item/weapon/reagent_containers/food/snacks/MRE/generic/soviet
-	name = "Soviet MRE: Cabbage"
-	desc = "A cabbage MRE."
-	nutriment_desc = list("overcooked cabbage" = 1)
+	name = "Soviet MRE: Mystery Meat"
+	desc = "A Mystery Meat MRE."
+	icon_state = "wut"
+	base_state = "wut"
+	nutriment_desc = list("overcooked dog food like meat" = 1)
+	trash = /obj/item/weapon/generic_MRE_trash/soviet
 
 /obj/item/weapon/reagent_containers/food/snacks/MRE/generic/italian
 	name = "Italian MRE: Spaghetti"
@@ -58,13 +88,19 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/MRE/generic/american
 	name = "American MRE: Canned Meat"
+	base_state = "spam_food"
+	icon_state = "spam_food"
 	desc = "A package of canned meat and vegetables."
 	nutriment_desc = list("canned meat" = 1, "canned vegetables" = 1)
+	trash = /obj/item/weapon/generic_MRE_trash/american
 
 /obj/item/weapon/reagent_containers/food/snacks/MRE/generic/japanese
 	name = "Japanese MRE: Noodles"
+	base_state = "jap_can"
+	icon_state = "jap_can"
 	desc = "A package of precooked noodles and dry meat."
 	nutriment_desc = list("noodles" = 1, "vegetables" = 1, "dried meat")
+	trash = /obj/item/weapon/generic_MRE_trash/japanese
 
 // scho ka kola
 
