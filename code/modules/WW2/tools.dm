@@ -45,7 +45,7 @@
 /obj/item/weapon/shovel/spade/japan
 	name = "japanese field shovel"
 	icon_state = "jap_shovel"
-	item_state = "lopota"
+	item_state = "lopata"
 	dig_speed = 4
 
 /obj/item/weapon/shovel/spade/usa
