@@ -513,7 +513,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/usuni2(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ushelm/mar_nco(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/thompson(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/pump/combat/ithaca37(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>. Your job is to lead a squad of marines according to the <b>Captain</b>'s orders.")
 	H.give_radio()

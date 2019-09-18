@@ -55,7 +55,8 @@
 		/obj/item/clothing/shoes/usboots = 50,
 		/obj/item/clothing/mask/gas/usa = 25,
 		/obj/item/weapon/storage/backpack/usa = 15,
-		/obj/item/weapon/storage/belt/usa = 20
+		/obj/item/weapon/storage/belt/usa = 20,
+		/obj/item/weapon/storage/backpack/usafield = 5
 	)
 /obj/structure/vending/marinesapparel
 	name = "US Marines apparel rack"
@@ -71,7 +72,8 @@
 		/obj/item/clothing/mask/shemagh = 50,
 		/obj/item/clothing/shoes/usboots = 50,
 		/obj/item/clothing/mask/gas/usa = 25,
-		/obj/item/weapon/storage/backpack/usa = 15
+		/obj/item/weapon/storage/backpack/usa = 15,
+		/obj/item/weapon/storage/backpack/usafield = 5
 	)
 /obj/structure/vending/japanapparel
 	name = "Japanese apparel rack"
@@ -174,6 +176,7 @@
 		/obj/item/ammo_magazine/c762x63 = 50,
 		/obj/item/ammo_magazine/c762x63_5 = 10,
 		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/american = 25,
+		/obj/item/ammo_magazine/shotgun_ammobox = 15,
 		/obj/item/weapon/material/knife/boot/tacknife_US = 30,
 		/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/usa = 25,
 	)
