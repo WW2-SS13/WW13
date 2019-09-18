@@ -16,7 +16,7 @@
 		for (var/argument in args)
 			command = "[command] [argument]"
 		log_debug("Executing python3 command '[command]'")
-		return shell("sudo python3 [getScriptDir()]/[command]")
+		return shell("sudo python3 [command]")
 	return FALSE
 
 /process/python/proc/getScriptDir()

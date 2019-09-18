@@ -1192,30 +1192,35 @@
 	desc = "You wear this on your back and put items into it."
 	icon_state = "germanpack"
 	item_state_slots = null
+	slowdown = 0.5
 
 /obj/item/weapon/storage/backpack/italy
 	name = "italian backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "germanpack"
 	item_state_slots = null
+	slowdown = 0.5
 
 /obj/item/weapon/storage/backpack/japan
 	name = "japanese backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "jappack"
 	item_state_slots = null
+	slowdown = 0.5
 
 /obj/item/weapon/storage/backpack/usa
 	name = "american backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "uspack"
 	item_state_slots = null
+	slowdown = 0.5
 
 /obj/item/weapon/storage/backpack/usafield
 	name = "american field pack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "usfieldpack"
 	item_state_slots = null
+	slowdown = 0.1
 
 //portable rations
 
@@ -1245,6 +1250,7 @@
 	desc = "You wear this on your back and put items into it."
 	icon_state = "russianpack"
 	item_state_slots = null
+	slowdown = 0.5
 
 // coats
 
