@@ -44,13 +44,13 @@
 
 /obj/item/weapon/shovel/spade/japan
 	name = "japanese field shovel"
-	icon_state = "lopata"
+	icon_state = "jap_shovel"
 	item_state = "lopata"
 	dig_speed = 4
 
 /obj/item/weapon/shovel/spade/usa
 	name = "american field shovel"
-	icon_state = "german_shovel2"
+	icon_state = "usa_shovel"
 	item_state = "lopata"
 	dig_speed = 3
 
