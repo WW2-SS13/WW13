@@ -47,6 +47,8 @@
 	singular_name = "gauze length"
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
+	amount = 20
+	max_amount = 20
 //	origin_tech = list(TECH_BIO = TRUE)
 
 /obj/item/stack/medical/bruise_pack/attack(mob/living/M as mob, mob/user as mob)
