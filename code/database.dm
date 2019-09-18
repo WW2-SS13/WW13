@@ -70,6 +70,7 @@ var/database/database = null
 				return TRUE*/
 
 	// fixes a common SQL typo
+
 	querytext = replacetext(querytext, " == ", " = ")
 
 	if (findtext(querytext, regex("TABLE.*EXISTS")))

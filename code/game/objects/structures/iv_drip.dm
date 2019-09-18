@@ -2,7 +2,7 @@
 	name = "\improper IV drip"
 	icon = 'icons/obj/iv_drip.dmi'
 	anchored = FALSE
-	density = TRUE
+	density = FALSE
 	var/mob/living/carbon/human/attached = null
 	var/mode = TRUE // TRUE is injecting, FALSE is taking blood.
 	var/obj/item/weapon/reagent_containers/beaker = null

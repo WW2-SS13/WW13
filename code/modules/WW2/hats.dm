@@ -69,6 +69,11 @@
 	icon_state = "km_cap"
 	item_state = "km_cap"
 
+/obj/item/clothing/head/caphat/reporter
+	name = "War Correspondant Cap"
+	icon_state = "germanwarcorrespondanthat"
+	item_state = "germanwarcorrespondanthat"
+
 /obj/item/clothing/head/caphat/nsdap_cap
 	name = "NSDAP Cap"
 	icon_state = "nsdap_cap"

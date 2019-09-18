@@ -265,7 +265,7 @@
 	var/extra_temp = 0
 
 	for (var/obj/fire/F in get_turf(src))
-		extra_temp += ((F.temperature / 100) * rand(15,25))
+		extra_temp += ((F.temperature / 100) * rand(20,25))
 		time_limit += pick(10,20)
 		qdel(F)
 
