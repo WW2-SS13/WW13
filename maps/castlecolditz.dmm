@@ -354,7 +354,7 @@
 "gP" = (/obj/structure/light/small{dir = 8},/turf/floor/wood,/area/prishtina/german/cafeteria)
 "gQ" = (/obj/structure/light/small{dir = 4},/turf/floor/wood,/area/prishtina/german/cafeteria)
 "gR" = (/obj/structure/barricade/steel,/obj/structure/barbwire{dir = 4; icon_state = "barbwire"; pixel_y = 0; tag = "icon-barbwire (EAST)"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/prison)
-"gS" = (/obj/structure/simple_door/key_door/german{health = 500; name = "Cell Door"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/prison)
+"gS" = (/obj/structure/simple_door/key_door/german{health = 1000; name = "Cell Door"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/prison)
 "gT" = (/turf/floor/carpet,/area/prishtina/german/cafeteria)
 "gU" = (/obj/structure/barricade/steel,/obj/structure/barbwire,/turf/floor/wood,/area/prishtina/german/main_area/inside)
 "gV" = (/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/main_area/inside)
