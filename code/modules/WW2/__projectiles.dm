@@ -2,7 +2,7 @@
 
 /obj/item/projectile/bullet/shotgun
 	name = "shotgun slug"
-	damage = DAMAGE_HIGH + 5
+	damage = DAMAGE_HIGH + 10
 	armor_penetration = 60
 
 /obj/item/projectile/bullet/shotgun/beanbag
