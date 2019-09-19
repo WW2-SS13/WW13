@@ -19,6 +19,18 @@
 	anchored = TRUE
 	name = "anti-tank structure"
 
+/obj/structure/anti_tank/attackby(obj/item/W as obj, mob/user as mob)
+	if (istype(W, /obj/item/weapon/wrench))
+		if (anchored)
+			user.visible_message("<span class = 'notice'>\The [user] starts to disassemble \the [src] with [W].</span>")
+			if (!do_after(user,60))
+				user.visible_message("<span class = 'notice'>\The [user] decides not to disassemble \the [src].</span>")
+				return
+			user.visible_message("<span class = 'notice'>\The [user] finishes disassembling \the [src]!</span>")
+			playsound(loc, 'sound/items/Wirecutter.ogg', 50, TRUE)
+			new /obj/item/stack/material/iron(turf)
+			qdel(src)
+			return
 /obj/structure/anti_tank/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if (istype(mover, /obj/item/projectile))
 		if (prob(20))

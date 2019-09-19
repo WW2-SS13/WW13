@@ -487,6 +487,11 @@
 		facedir(direction)
 
 /mob/proc/scramble(var/turf/floor/F)
+	var/grabbed = FALSE
+	for (var/obj/item/weapon/grab/G in grabbed_by)
+		if (G.state >= GRAB_AGGRESSIVE)
+			grabbed = TRUE
+			break
 	if (F.density)
 		return FALSE
 	if (stat || buckled || paralysis || stunned || sleeping || (status_flags & FAKEDEATH) || restrained() || (weakened > 10))
@@ -497,6 +502,8 @@
 	if (scrambling)
 		return FALSE
 	if (map.check_prishtina_block(src, F) || map.check_prishtina_block(src, get_turf(src))) // you somehow got here, fuck you - Kachnov
+		return FALSE
+	if (grabbed)
 		return FALSE
 
 	var/oloc = loc

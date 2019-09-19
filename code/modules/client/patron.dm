@@ -27,6 +27,13 @@
 					return TRUE
 	return FALSE
 
+/client/proc/war_reporter()
+	set category = "Patron"
+	set name = "Join As War Reporter"
+	var/datum/job/j = /datum/job/german/warreporter
+	if (j)
+		j.enabled = !j.enabled
+
 /client/proc/enable_disable_dabs()
 	set category = "Patron"
 	set name = "Enable/Disable Dabbing"

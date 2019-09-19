@@ -14,7 +14,7 @@
 	if (locate(src) in get_step(user, user.dir))
 		if (WWinput(user, "Dismantle this sandbag?", "Dismantle Sandbag", "Yes", list("Yes", "No")) == "Yes")
 			visible_message("<span class='danger'>[user] starts dismantling the sandbag wall.</span>", "<span class='danger'>You start dismantling the sandbag wall.</span>")
-			if (do_after(user, 200, src))
+			if (do_after(user, 150, src))
 				visible_message("<span class='danger'>[user] finishes dismantling the sandbag wall.</span>", "<span class='danger'>You finish dismantling the sandbag wall.</span>")
 				var/turf = get_turf(src)
 				/* it takes 6 sandbags to make a full sandbag.
