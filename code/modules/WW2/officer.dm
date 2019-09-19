@@ -115,7 +115,7 @@ var/list/tier_2_officer_jobtypes = list(
 				G.executing = FALSE
 				targeted_organ = old_targeted_organ
 				if (!enemy)
-					next_execute = world.realtime + 600
+					next_execute = world.realtime + 400
 				break
 
 /proc/check_coords_check()
