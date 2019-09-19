@@ -426,7 +426,7 @@
 	if(can_hit_in_trench == 1)
 		if(kill_count < (initial(kill_count) - 1))
 			if(!istype(T, /turf/floor/trench))
-				if(prob(80))
+				if(prob(75))
 					can_hit_in_trench = 0
 			else
 				can_hit_in_trench = -1
