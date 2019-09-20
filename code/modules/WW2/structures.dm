@@ -28,7 +28,6 @@
 				return
 			user.visible_message("<span class = 'notice'>\The [user] finishes disassembling \the [src]!</span>")
 			playsound(loc, 'sound/items/Wirecutter.ogg', 50, TRUE)
-			new /obj/item/stack/material/iron(turf)
 			qdel(src)
 			return
 /obj/structure/anti_tank/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
