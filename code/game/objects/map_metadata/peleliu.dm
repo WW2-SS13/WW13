@@ -65,7 +65,7 @@ var/no_loop_p = FALSE
 			J.max_positions = round(clients.len*0.1)
 			J.total_positions = round(clients.len*0.1)
 		if (istype(J, /datum/job/usa/marines_soldier))
-			J.min_positions = round(clients.len*0.4)
+			J.min_positions = 5
 			J.max_positions = round(clients.len*0.4)
 			J.total_positions = round(clients.len*0.4)
 

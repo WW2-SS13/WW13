@@ -222,6 +222,17 @@ steam.start() -- spawns the effect
 	..()
 	set_light(brightness)
 
+/obj/effect/effect/smoke/illumination/ww2
+	name = "flare"
+	opacity = FALSE
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "sparks"
+
+/obj/effect/effect/smoke/illumination/ww2/New(var/newloc, var/brightness=20, var/lifetime=300)
+	time_to_live=lifetime
+	..()
+	set_light(brightness)
+
 /////////////////////////////////////////////
 // Bad smoke
 /////////////////////////////////////////////
