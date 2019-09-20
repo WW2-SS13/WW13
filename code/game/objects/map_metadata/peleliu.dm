@@ -54,29 +54,17 @@ var/no_loop_p = FALSE
 /obj/map_metadata/peleliu/job_enabled_specialcheck(var/datum/job/J)
 	. = TRUE
 	if (istype(J, /datum/job/usa))
-		if (J.is_prisoner)
-			. = FALSE
-		if (!istype(J, /datum/job/usa/marines_squad_leader))
-			. = FALSE
-		if (!istype(J, /datum/job/usa/marines_soldier))
-			. = FALSE
+		. = FALSE
 		if (istype(J, /datum/job/usa/marines_squad_leader))
+			. = TRUE
 			J.min_positions = 1
 			J.max_positions = round(clients.len*0.1)
 			J.total_positions = round(clients.len*0.1)
 		if (istype(J, /datum/job/usa/marines_soldier))
+			. = TRUE
 			J.min_positions = 5
 			J.max_positions = round(clients.len*0.4)
 			J.total_positions = round(clients.len*0.4)
-
-		else
-			if (istype(J, /datum/job/usa/soldier_prisoner))
-				J.total_positions = max(0, round(clients.len*0.*0))
-			if (istype(J, /datum/job/usa/uk_soldier_prisoner))
-				J.total_positions = max(0, round(clients.len*0.*0))
-			if (istype(J, /datum/job/usa/squad_leader_prisoner) && !modded_num_of_prisoners3)
-				J.total_positions = max(0, round(clients.len*0.*0))
-				modded_num_of_prisoners3 = TRUE
 //	if (istype(J, /datum/job/japanese))
 //		if (J.is_SSTV)
 //			. = FALSE
