@@ -57,14 +57,14 @@ var/no_loop_p = FALSE
 		. = FALSE
 		if (istype(J, /datum/job/usa/marines_squad_leader))
 			. = TRUE
-			J.min_positions = 1
-			J.max_positions = round(clients.len*0.1)
-			J.total_positions = round(clients.len*0.1)
+			J.min_positions = 10
+			J.max_positions = 10
+			J.total_positions = 10
 		if (istype(J, /datum/job/usa/marines_soldier))
 			. = TRUE
-			J.min_positions = 5
-			J.max_positions = round(clients.len*0.4)
-			J.total_positions = round(clients.len*0.4)
+			J.min_positions = 50
+			J.max_positions = 50
+			J.total_positions = 50
 //	if (istype(J, /datum/job/japanese))
 //		if (J.is_SSTV)
 //			. = FALSE
