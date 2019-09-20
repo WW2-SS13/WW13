@@ -1,0 +1,595 @@
+"aa" = (/obj/structure/barbwire{icon_state = "barbwire"; dir = 8},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"ab" = (/obj/structure/anti_tank,/turf/floor/dirt/dust,/area/prishtina/island/beach)
+"ac" = (/turf/floor/trench,/area/prishtina/island/beach)
+"ad" = (/obj/structure/vending/japanapparel,/turf/floor/trench,/area/prishtina/island/beach)
+"ae" = (/obj/structure/vending/japanequipment,/turf/floor/trench,/area/prishtina/island/beach)
+"af" = (/turf/floor/dirt/dust,/area/prishtina/island/beach)
+"ag" = (/obj/structure/barbwire{icon_state = "barbwire"; dir = 8},/turf/floor/dirt,/area/prishtina/island/beach)
+"ah" = (/obj/structure/barbwire{icon_state = "barbwire"; dir = 8},/turf/floor/dirt/darksand,/area/prishtina/island/beach)
+"ai" = (/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"aj" = (/turf/floor/dirt/darksand,/area/prishtina/island/beach)
+"ak" = (/obj/structure/sink/puddle,/turf/floor/trench,/area/prishtina/island/beach)
+"al" = (/obj/structure/pot,/turf/floor/trench,/area/prishtina/island/beach)
+"am" = (/turf/floor/dirt,/area/prishtina/island/beach)
+"an" = (/obj/structure/reagent_dispensers/fueltank,/turf/floor/dirt,/area/prishtina/island/beach)
+"ao" = (/obj/structure/closet/crate/rations/water,/turf/floor/trench,/area/prishtina/island/beach)
+"ap" = (/obj/structure/table/iron,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/japanese,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/japanese,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/japanese,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/japanese,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/japanese,/turf/floor/trench,/area/prishtina/island/beach)
+"aq" = (/obj/structure/table/iron,/turf/floor/trench,/area/prishtina/island/beach)
+"ar" = (/obj/structure/table/iron,/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/japanese,/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/japanese,/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/japanese,/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/japanese,/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/japanese,/turf/floor/trench,/area/prishtina/island/beach)
+"as" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"at" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"au" = (/obj/structure/flag/japanese,/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"av" = (/obj/tank/japanese,/turf/floor/dirt,/area/prishtina/island/beach)
+"aw" = (/obj/tank/isuzu,/turf/floor/dirt,/area/prishtina/island/beach)
+"ax" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"ay" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"az" = (/obj/structure/anti_tank,/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"aA" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"aB" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"aC" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"aD" = (/obj/structure/flag/japanese{step_x = 0},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"aE" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 1},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"aF" = (/obj/structure/barbwire{icon_state = "barbwire"; dir = 1},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"aG" = (/turf/wall/stone,/area/prishtina/houses)
+"aH" = (/obj/structure/simple_door/key_door/japan,/turf/floor/plating/concrete,/area/prishtina/houses)
+"aI" = (/obj/structure/sign/flag/japanese,/turf/wall/stone,/area/prishtina/houses)
+"aJ" = (/obj/structure/vending/japanapparel,/turf/floor/plating/concrete,/area/prishtina/houses)
+"aK" = (/turf/floor/plating/concrete,/area/prishtina/houses)
+"aL" = (/obj/structure/window/classic,/obj/structure/barricade/steel,/turf/floor/plating/concrete,/area/prishtina/houses)
+"aM" = (/obj/structure/bed,/obj/item/weapon/bedsheet/red,/turf/floor/plating/concrete,/area/prishtina/houses)
+"aN" = (/turf/wall/stone,/area/prishtina/island/beach)
+"aO" = (/turf/floor/plating/concrete,/area/prishtina/island/beach)
+"aP" = (/obj/structure/sign/portrait/hirohito{step_x = 7},/turf/wall/stone,/area/prishtina/houses)
+"aQ" = (/obj/structure/sign/portrait/hirohito{step_x = 25},/turf/floor/plating/concrete,/area/prishtina/houses)
+"aR" = (/obj/structure/sign/portrait/hirohito{step_x = 6},/turf/wall/stone,/area/prishtina/houses)
+"aS" = (/obj/structure/sign/portrait/hirohito{step_x = 26},/turf/floor/plating/concrete,/area/prishtina/houses)
+"aT" = (/obj/structure/barricade/steel,/turf/floor/plating/concrete,/area/prishtina/houses)
+"aU" = (/obj/structure/simple_door/key_door/japan/command_intermediate,/turf/floor/plating/concrete,/area/prishtina/houses)
+"aV" = (/obj/structure/barricade/steel,/obj/structure/sign/flag/japanese,/turf/floor/plating/concrete,/area/prishtina/houses)
+"aW" = (/obj/structure/table/wood,/obj/structure/noose,/turf/floor/plating/concrete,/area/prishtina/houses)
+"aX" = (/obj/structure/barricade/steel,/turf/floor/plating/concrete,/area/prishtina/island/beach)
+"aY" = (/obj/structure/simple_door/key_door/japan,/turf/floor/dirt/darksand,/area/prishtina/island/beach)
+"aZ" = (/obj/structure/window/sandbag,/turf/floor/plating/concrete,/area/prishtina/island/beach)
+"ba" = (/obj/structure/window/sandbag{tag = "icon-sandbag_66%"; icon_state = "sandbag_66%"; dir = 2},/turf/floor/plating/concrete,/area/prishtina/island/beach)
+"bb" = (/obj/structure/table/iron,/turf/floor/plating/concrete,/area/prishtina/houses)
+"bc" = (/obj/structure/table/iron,/obj/structure/bedsheetbin,/turf/floor/plating/concrete,/area/prishtina/houses)
+"bd" = (/obj/structure/table/wood,/obj/item/megaphone,/obj/item/megaphone,/turf/floor/plating/concrete,/area/prishtina/houses)
+"be" = (/obj/structure/table/wood,/obj/item/clothing/accessory/armband/japanesemp,/obj/item/clothing/accessory/armband/japanesemp,/obj/item/clothing/accessory/armband/japanesemp,/obj/item/clothing/accessory/armband/japanesemp,/obj/item/clothing/accessory/armband/japanesemp,/obj/item/clothing/accessory/armband/japanesemp,/obj/item/clothing/accessory/armband/japanesemp,/obj/item/clothing/accessory/armband/japanesemp,/obj/item/clothing/accessory/armband/japanesemp,/obj/item/clothing/accessory/armband/japanesemp,/turf/floor/plating/concrete,/area/prishtina/houses)
+"bf" = (/obj/structure/table/wood,/obj/item/weapon/phone/tohighcommand/german,/turf/floor/plating/concrete,/area/prishtina/houses)
+"bg" = (/obj/structure/sign/portrait/hirohito{step_x = 0; step_y = 4},/turf/wall/stone,/area/prishtina/houses)
+"bh" = (/obj/structure/sign/portrait/hirohito{step_x = 0; step_y = 3},/turf/wall/stone,/area/prishtina/houses)
+"bi" = (/obj/structure/barbwire{icon_state = "barbwire"; dir = 1},/turf/floor/dirt/darksand,/area/prishtina/island/beach)
+"bj" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/structure/window/sandbag,/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"bk" = (/obj/structure/window/sandbag,/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"bl" = (/obj/structure/window/sandbag{tag = "icon-sandbag_66%"; icon_state = "sandbag_66%"; dir = 2},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"bm" = (/obj/structure/window/sandbag,/turf/floor/dirt/darksand,/area/prishtina/island/beach)
+"bn" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag_66%"; icon_state = "sandbag_66%"; dir = 2},/turf/floor/dirt/darksand,/area/prishtina/island/beach)
+"bo" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag,/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"bp" = (/obj/structure/barricade/steel,/obj/structure/window_frame,/turf/floor/plating/concrete,/area/prishtina/island/beach)
+"bq" = (/obj/structure/simple_door/key_door/japan,/turf/floor/plating/concrete,/area/prishtina/island/beach)
+"br" = (/obj/structure/barbwire{icon_state = "barbwire"; dir = 1},/turf/floor/dirt/dust,/area/prishtina/island/beach)
+"bs" = (/obj/structure/window/sandbag,/turf/floor/dirt/dust,/area/prishtina/island/beach)
+"bt" = (/obj/structure/window/sandbag{icon_state = "sandbag"; dir = 8},/turf/floor/dirt/dust,/area/prishtina/island/beach)
+"bu" = (/obj/structure/siren,/turf/floor/dirt/dust,/area/prishtina/island/beach)
+"bv" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/turf/floor/dirt/dust,/area/prishtina/island/beach)
+"bw" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/turf/floor/dirt/dust,/area/prishtina/island/beach)
+"bx" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/dirt/dust,/area/prishtina/island/beach)
+"by" = (/obj/structure/artillery/base{name = "Type 88 75mm AA"},/turf/floor/dirt/dust,/area/prishtina/island/beach)
+"bz" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/barbwire{icon_state = "barbwire"; dir = 8},/turf/floor/dirt/dust,/area/prishtina/island/beach)
+"bA" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 1},/obj/structure/barbwire{icon_state = "barbwire"; dir = 8},/turf/floor/dirt/dust,/area/prishtina/island/beach)
+"bB" = (/obj/structure/window/sandbag{icon_state = "sandbag"; dir = 4},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"bC" = (/obj/structure/window/sandbag{icon_state = "sandbag"; dir = 8},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"bD" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/window/sandbag{icon_state = "sandbag"; dir = 4},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"bE" = (/obj/structure/closet/crate/type92belt,/turf/floor/trench,/area/prishtina/island/beach)
+"bF" = (/obj/item/weapon/gun/projectile/automatic/stationary/type92stat,/turf/floor/trench,/area/prishtina/island/beach)
+"bG" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 1},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"bH" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/flag/japanese{step_x = 24},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"bI" = (/turf/wall/stone,/area/prishtina/german/armory)
+"bJ" = (/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"bK" = (/obj/structure/sign/flag/japanese,/turf/wall/stone,/area/prishtina/german/armory)
+"bL" = (/obj/structure/bed/roller,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"bM" = (/obj/structure/closet/crate/medical,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"bN" = (/obj/structure/closet/crate/gauze,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"bO" = (/obj/structure/optable,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"bP" = (/obj/structure/barricade/steel,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"bQ" = (/obj/structure/closet/crate/wood,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"bR" = (/obj/structure/closet/crate/sandbags,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"bS" = (/obj/structure/table/rack,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/obj/item/ammo_magazine/a77x58,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"bT" = (/obj/structure/table/iron,/obj/item/weapon/handheld_flags/jap,/obj/item/weapon/handheld_flags/jap,/obj/item/weapon/handheld_flags/jap,/obj/item/weapon/handheld_flags/jap,/obj/item/weapon/handheld_flags/jap,/obj/item/weapon/handheld_flags/jap,/obj/item/weapon/handheld_flags/jap,/obj/item/weapon/handheld_flags/jap,/obj/item/weapon/handheld_flags/jap,/obj/item/weapon/handheld_flags/jap,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"bU" = (/obj/structure/table/iron,/obj/item/clothing/accessory/armband/japanesemp,/obj/item/clothing/accessory/armband/japanesemp,/obj/item/clothing/accessory/armband/japanesemp,/obj/item/clothing/accessory/armband/japanesemp,/obj/item/clothing/accessory/armband/japanesemp,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"bV" = (/obj/structure/table/iron,/obj/item/weapon/material/sword/jap_katana,/obj/item/weapon/material/sword/jap_katana,/obj/item/weapon/material/sword/jap_katana,/obj/item/weapon/material/sword/jap_katana,/obj/item/weapon/material/sword/jap_katana,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"bW" = (/obj/structure/table/iron,/obj/item/megaphone,/obj/item/megaphone,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"bX" = (/obj/effect/decal/cleanable/cobweb{icon_state = "cobweb1"; dir = 8},/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"bY" = (/obj/structure/barricade/steel,/obj/structure/sign/flag/medical,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"bZ" = (/obj/structure/curtain/medical,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"ca" = (/obj/structure/closet/crate/punji_sticks,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"cb" = (/obj/structure/closet/crate/bettymines,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"cc" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"cd" = (/obj/structure/vending/medrack,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"ce" = (/obj/structure/closet/crate/steel,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"cf" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_33%"; dir = 4},/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"cg" = (/obj/structure/window/sandbag{icon_state = "sandbag"; dir = 8},/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"ch" = (/obj/structure/vending/med_cabinet,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"ci" = (/obj/structure/closet/crate/barbwire,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"cj" = (/obj/structure/window/sandbag{icon_state = "sandbag"; dir = 4},/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"ck" = (/obj/structure/barbwire{icon_state = "barbwire"; dir = 1},/turf/floor/dirt,/area/prishtina/island/beach)
+"cl" = (/obj/structure/window/sandbag,/turf/floor/dirt,/area/prishtina/island/beach)
+"cm" = (/obj/structure/closet/crate/c8mmnambu,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"cn" = (/obj/structure/closet/crate/c8mmnambu_smg,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"co" = (/obj/structure/window/sandbag{icon_state = "sandbag"; dir = 8},/turf/floor/dirt,/area/prishtina/island/beach)
+"cp" = (/obj/structure/siren,/turf/floor/dirt,/area/prishtina/island/beach)
+"cq" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/turf/floor/dirt,/area/prishtina/island/beach)
+"cr" = (/obj/structure/closet/crate/bayonets,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"cs" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"ct" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/turf/floor/dirt,/area/prishtina/island/beach)
+"cu" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/dirt,/area/prishtina/island/beach)
+"cv" = (/obj/structure/closet/crate/jap_type91,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"cw" = (/obj/structure/closet/crate/a77x58,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"cx" = (/obj/structure/artillery/base{name = "Type 88 75mm AA"},/turf/floor/dirt,/area/prishtina/island/beach)
+"cy" = (/obj/structure/siren,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"cz" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/barbwire{icon_state = "barbwire"; dir = 8},/turf/floor/dirt,/area/prishtina/island/beach)
+"cA" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 1},/obj/structure/barbwire{icon_state = "barbwire"; dir = 8},/turf/floor/dirt,/area/prishtina/island/beach)
+"cB" = (/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"cC" = (/obj/structure/closet/crate/jap_type97,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"cD" = (/obj/structure/barricade/steel,/obj/structure/sign/flag/japanese,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"cE" = (/obj/effect/decal/cleanable/cobweb,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"cF" = (/obj/structure/closet/crate/flares,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"cG" = (/obj/structure/closet/crate/type99ammo,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"cH" = (/obj/structure/closet/crate/type92belt,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"cI" = (/obj/effect/floor_decal/grass_edge,/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"cJ" = (/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"cK" = (/obj/effect/floor_decal/grass_edge,/turf/floor/dirt/darksand,/area/prishtina/island/beach)
+"cL" = (/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 4},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"cM" = (/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 8},/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 4},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"cN" = (/obj/effect/floor_decal/grass_edge/corner{icon_state = "grass_edge_corner"; dir = 1},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"cO" = (/obj/effect/floor_decal/grass_edge,/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 8},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"cP" = (/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 4},/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 8},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"cQ" = (/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 8},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"cR" = (/obj/effect/floor_decal/grass_edge,/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 4},/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 8},/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 1},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"cS" = (/obj/effect/floor_decal/grass_edge,/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 4},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"cT" = (/obj/effect/floor_decal/grass_edge,/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 4},/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 8},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"cU" = (/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 6},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"cV" = (/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 10},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"cW" = (/obj/effect/floor_decal/grass_edge,/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 1},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"cX" = (/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 6},/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 1},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"cY" = (/obj/effect/floor_decal/grass_edge,/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 1},/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 8},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"cZ" = (/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 9},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"da" = (/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 5},/obj/effect/floor_decal/grass_edge,/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 8},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"db" = (/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 1},/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 4},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"dc" = (/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 1},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"dd" = (/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 4},/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 1},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"de" = (/obj/effect/floor_decal/grass_edge,/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 9},/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 4},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"df" = (/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 8},/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 1},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"dg" = (/obj/effect/floor_decal/grass_edge,/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 1},/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 4},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"dh" = (/obj/effect/floor_decal/grass_edge,/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 4},/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 9},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"di" = (/obj/effect/floor_decal/grass_edge,/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 8},/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 5},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"dj" = (/obj/effect/floor_decal/grass_edge,/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 9},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"dk" = (/obj/structure/wild/tallgrass2,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"dl" = (/obj/effect/floor_decal/grass_edge/corner{icon_state = "grass_edge_corner"; dir = 8},/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 4},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"dm" = (/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 6},/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 9},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"dn" = (/obj/effect/floor_decal/grass_edge,/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 5},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"do" = (/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 1},/obj/effect/floor_decal/grass_edge,/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"dp" = (/obj/effect/floor_decal/grass_edge{icon_state = "grass_edge"; dir = 5},/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"dq" = (/obj/structure/flag/japanese{step_x = 0},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"dr" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"ds" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"dt" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"du" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/window/sandbag{icon_state = "sandbag"; dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"dv" = (/obj/structure/closet/crate/a77x58,/turf/floor/trench,/area/prishtina/island/beach)
+"dw" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"dx" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"dy" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"dz" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/window/sandbag{icon_state = "sandbag"; dir = 8},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"dA" = (/obj/structure/anti_tank,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"dB" = (/obj/structure/barbwire{icon_state = "barbwire"; dir = 8},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"dC" = (/obj/structure/wild/bush,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"dD" = (/obj/structure/closet/hideout/beach,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"dE" = (/obj/structure/wild/junglebush,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"dF" = (/obj/structure/wild/largejungle,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"dG" = (/obj/structure/wild/jungle,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"dH" = (/obj/structure/wild/burnedtree,/turf/floor/dirt/darksand,/area/prishtina/island/beach)
+"dI" = (/obj/structure/sink/puddle,/turf/floor/dirt,/area/prishtina/island/beach)
+"dJ" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/dirt,/area/prishtina/island/beach)
+"dK" = (/turf/wall/wood,/area/prishtina/houses)
+"dL" = (/obj/structure/wild/burnedbush,/turf/floor/dirt/darksand,/area/prishtina/island/beach)
+"dM" = (/obj/structure/wild/rock,/turf/floor/dirt/darksand,/area/prishtina/island/beach)
+"dN" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"dO" = (/turf/floor/wood,/area/prishtina/houses)
+"dP" = (/obj/structure/window/classic,/obj/structure/barricade/steel,/turf/floor/wood,/area/prishtina/houses)
+"dQ" = (/obj/structure/simple_door/wood,/turf/floor/wood,/area/prishtina/houses)
+"dR" = (/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/houses)
+"dS" = (/obj/structure/table/wood,/obj/structure/noose,/turf/floor/wood,/area/prishtina/houses)
+"dT" = (/obj/structure/flag/japanese,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"dU" = (/obj/structure/window/sandbag{tag = "icon-sandbag_66%"; icon_state = "sandbag_66%"; dir = 2},/turf/floor/dirt,/area/prishtina/island/beach)
+"dV" = (/obj/structure/window/sandbag,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"dW" = (/turf/wall/wood,/area/prishtina/island/beach)
+"dX" = (/obj/structure/simple_door/wood,/turf/floor/wood,/area/prishtina/island/beach)
+"dY" = (/obj/structure/window/classic,/turf/floor/wood,/area/prishtina/houses)
+"dZ" = (/turf/floor/wood,/area/prishtina/island/beach)
+"ea" = (/obj/structure/window/classic,/turf/floor/wood,/area/prishtina/island/beach)
+"eb" = (/obj/structure/bookcase,/turf/floor/wood,/area/prishtina/houses)
+"ec" = (/obj/structure/sign/flag/japanese,/turf/wall/wood,/area/prishtina/island/beach)
+"ed" = (/obj/structure/window/sandbag,/turf/floor/wood_broken,/area/prishtina/island/beach)
+"ee" = (/turf/floor/wood_broken,/area/prishtina/island/beach)
+"ef" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag_66%"; icon_state = "sandbag_66%"; dir = 2},/turf/floor/wood_broken,/area/prishtina/island/beach)
+"eg" = (/obj/structure/window/sandbag{icon_state = "sandbag"; dir = 8},/obj/structure/window/sandbag,/turf/floor/wood_broken,/area/prishtina/island/beach)
+"eh" = (/turf/wall/rockwall{name = "mountain"; opacity = 1},/area/prishtina/island/beach)
+"ei" = (/turf/wall/rockwall,/area/prishtina/island/beach)
+"ej" = (/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"ek" = (/obj/structure/sign/flag/japanese,/turf/wall/rockwall{name = "mountain"; opacity = 1},/area/prishtina/island/beach)
+"el" = (/obj/structure/closet/crate/bayonets,/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"em" = (/obj/structure/closet/crate/c8mmnambu_smg,/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"en" = (/obj/structure/closet/crate/type99ammo,/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"eo" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"ep" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"eq" = (/obj/structure/sign/minen,/turf/floor/dirt/darksand,/area/prishtina/island/beach)
+"er" = (/obj/structure/closet/crate/a77x58,/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"es" = (/obj/structure/sink/puddle,/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"et" = (/obj/structure/closet/crate/type92belt,/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"eu" = (/obj/structure/sign/minen,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"ev" = (/turf/wall/rockwall,/area/prishtina/void/caves)
+"ew" = (/obj/structure/sign/flag/japanese,/turf/wall/rockwall,/area/prishtina/void/caves)
+"ex" = (/obj/structure/siren,/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"ey" = (/obj/structure/sign/flag/japanese,/turf/wall/rockwall,/area/prishtina/island/beach)
+"ez" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"eA" = (/obj/structure/barricade/steel,/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"eB" = (/obj/item/weapon/gun/projectile/automatic/stationary/type92stat,/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"eC" = (/obj/item/mine/betty{anchored = 1; icon_state = "mine_armed"},/turf/floor/dirt/darksand,/area/prishtina/island/beach)
+"eD" = (/obj/structure/barricade/steel,/turf/floor/plating/asteroid,/area/prishtina/island/beach)
+"eE" = (/turf/wall/rockwall{name = "mountain"; opacity = 1},/area/prishtina/void/caves)
+"eF" = (/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/dirt/darksand,/area/prishtina/island/beach)
+"eG" = (/obj/structure/wild/burnedbush,/turf/wall/rockwall{name = "mountain"; opacity = 1},/area/prishtina/island/beach)
+"eH" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/obj/item/weapon/gun/projectile/automatic/stationary/type92stat{icon_state = "Type92HMG"; dir = 8},/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"eI" = (/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"eJ" = (/obj/structure/wild/burnedbush,/turf/wall/rockwall,/area/prishtina/island/beach)
+"eK" = (/obj/structure/closet/crate/punji_sticks,/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"eL" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/window/sandbag{icon_state = "sandbag"; dir = 8},/obj/structure/siren,/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"eM" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"eN" = (/obj/structure/closet/crate/bettymines,/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"eO" = (/obj/structure/barbwire,/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"eP" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"eQ" = (/obj/structure/window/sandbag{icon_state = "sandbag"; dir = 8},/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"eR" = (/obj/structure/anti_tank,/turf/floor/dirt/darksand,/area/prishtina/island/beach)
+"eS" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 1},/turf/floor/dirt/darksand,/area/prishtina/island/beach)
+"eT" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/dirt/darksand,/area/prishtina/island/beach)
+"eU" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/dirt/darksand,/area/prishtina/island/beach)
+"eV" = (/obj/structure/closet/crate/c8mmnambu,/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"eW" = (/obj/structure/closet/crate/gauze,/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"eX" = (/obj/structure/wild/burnedbush,/turf/floor/dirt,/area/prishtina/island/beach)
+"eY" = (/obj/item/mine/betty{anchored = 1; icon_state = "mine_armed"},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"eZ" = (/turf/floor/plating/beach/water/swamp,/area/prishtina/island/beach)
+"fa" = (/obj/structure/window/classic,/obj/structure/barricade/steel,/turf/floor/wood,/area/prishtina/island/beach)
+"fb" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 1},/turf/floor/dirt,/area/prishtina/island/beach)
+"fc" = (/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/island/beach)
+"fd" = (/obj/structure/simple_door/key_door/japan,/turf/floor/wood,/area/prishtina/island/beach)
+"fe" = (/obj/structure/barricade/steel,/obj/structure/window_frame,/turf/floor/wood,/area/prishtina/island/beach)
+"ff" = (/obj/structure/wild/largejungle,/turf/floor/dirt,/area/prishtina/island/beach)
+"fg" = (/obj/structure/wild/bush,/turf/floor/dirt,/area/prishtina/island/beach)
+"fh" = (/obj/structure/barricade/steel,/obj/structure/sign/flag/medical,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fi" = (/obj/structure/vending/medrack,/turf/floor/dirt,/area/prishtina/island/beach)
+"fj" = (/obj/structure/vending/medrack,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fk" = (/obj/structure/vending/med_cabinet,/turf/floor/dirt,/area/prishtina/island/beach)
+"fl" = (/obj/structure/barbwire,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fm" = (/obj/structure/window/sandbag{icon_state = "sandbag"; dir = 8},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fn" = (/obj/structure/bed/roller,/turf/floor/dirt,/area/prishtina/island/beach)
+"fo" = (/obj/structure/bed/roller,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fp" = (/obj/structure/barbwire,/turf/floor/dirt,/area/prishtina/island/beach)
+"fq" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag_66%"; icon_state = "sandbag_66%"; dir = 2},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fr" = (/obj/structure/barricade/steel,/obj/structure/sign/flag/medical,/turf/floor/dirt,/area/prishtina/island/beach)
+"fs" = (/obj/structure/flag/us,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"ft" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/siren,/turf/floor/dirt,/area/prishtina/island/beach)
+"fu" = (/obj/item/weapon/storage/backpack/satchel_surg,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fv" = (/obj/structure/closet/crate/sandbags,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fw" = (/obj/structure/closet/crate/wood,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fx" = (/obj/structure/table/wood,/obj/item/weapon/plastique/russian,/obj/item/weapon/plastique/russian,/obj/item/weapon/plastique/russian,/obj/item/weapon/plastique/russian,/obj/item/weapon/plastique/russian,/obj/item/weapon/plastique/russian,/obj/item/weapon/plastique/russian,/obj/item/weapon/plastique/russian,/obj/item/weapon/plastique/russian,/obj/item/weapon/plastique/russian,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fy" = (/obj/structure/closet/crate/barbwire,/turf/floor/dirt,/area/prishtina/island/beach)
+"fz" = (/obj/structure/closet/crate/steel,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fA" = (/obj/structure/window/sandbag{icon_state = "sandbag"; dir = 4},/obj/structure/table/wood,/obj/item/weapon/phone/tohighcommand/soviet{faction = "USA"},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fB" = (/obj/structure/anti_tank,/turf/floor/dirt,/area/prishtina/island/beach)
+"fC" = (/obj/structure/closet/crate/type92belt{name = ".30 Cal belts crate"},/turf/floor/dirt,/area/prishtina/island/beach)
+"fD" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"fE" = (/obj/structure/closet/crate/m1garand,/turf/floor/dirt,/area/prishtina/island/beach)
+"fF" = (/obj/structure/closet/crate/US_mk2,/turf/floor/dirt,/area/prishtina/island/beach)
+"fG" = (/obj/structure/closet/crate/US_mk2,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fH" = (/obj/structure/closet/crate/bar_ammo,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fI" = (/obj/structure/table/wood,/obj/item/weapon/flammenwerfer_fueltank{desc = "A tank of flamethrower fuel."; name = "flamethrower fuel tank"},/obj/item/weapon/flammenwerfer_fueltank{desc = "A tank of flamethrower fuel."; name = "flamethrower fuel tank"},/obj/item/weapon/flammenwerfer_fueltank{desc = "A tank of flamethrower fuel."; name = "flamethrower fuel tank"},/obj/item/weapon/flammenwerfer_fueltank{desc = "A tank of flamethrower fuel."; name = "flamethrower fuel tank"},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fJ" = (/obj/structure/closet/crate/mortar_shells,/turf/floor/dirt,/area/prishtina/island/beach)
+"fK" = (/obj/structure/reagent_dispensers/fueltank,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fL" = (/obj/structure/closet/crate/Thompson_ammo,/turf/floor/dirt,/area/prishtina/island/beach)
+"fM" = (/obj/structure/closet/crate/US_smokegernade,/turf/floor/dirt,/area/prishtina/island/beach)
+"fN" = (/obj/structure/closet/crate/bar_ammo,/turf/floor/dirt,/area/prishtina/island/beach)
+"fO" = (/obj/structure/closet/crate/rations/german_solids,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fP" = (/obj/structure/closet/crate/bayonets,/turf/floor/dirt,/area/prishtina/island/beach)
+"fQ" = (/obj/structure/closet/crate/mortar_shells,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fR" = (/obj/structure/closet/crate/rations/german_liquids,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fS" = (/obj/structure/barbwire{icon_state = "barbwire"; dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fT" = (/obj/structure/reagent_dispensers/watertank,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fU" = (/obj/structure/vending/usaapparel,/turf/floor/dirt,/area/prishtina/island/beach)
+"fV" = (/obj/structure/vending/usaquipment,/turf/floor/dirt,/area/prishtina/island/beach)
+"fW" = (/obj/item/weapon/handheld_flags/usa,/obj/item/weapon/handheld_flags/usa,/obj/item/weapon/handheld_flags/usa,/obj/item/weapon/handheld_flags/usa,/obj/item/weapon/handheld_flags/usa,/turf/floor/dirt,/area/prishtina/island/beach)
+"fX" = (/obj/structure/closet/crate/rations/german_meat,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"fY" = (/obj/structure/table/wood,/obj/item/weapon/storage/backpack/flammenwerfer/m2,/obj/item/weapon/storage/backpack/flammenwerfer/m2,/turf/floor/dirt,/area/prishtina/island/beach)
+"fZ" = (/obj/structure/pot,/turf/floor/dirt,/area/prishtina/island/beach)
+"ga" = (/obj/structure/window/sandbag{icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 1},/turf/floor/dirt,/area/prishtina/island/beach)
+"gb" = (/obj/structure/vending/usaquipment,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"gc" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/american,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/american,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/american,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/american,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/american,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"gd" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/american,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/american,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/american,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/american,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/american,/turf/floor/dirt,/area/prishtina/island/beach)
+"ge" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/usa,/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/usa,/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/usa,/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/usa,/turf/floor/dirt,/area/prishtina/island/beach)
+"gf" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/usa,/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/usa,/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/usa,/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/usa,/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/usa,/turf/floor/dirt,/area/prishtina/island/beach)
+"gg" = (/obj/structure/window/sandbag{icon_state = "sandbag"; dir = 4},/turf/floor/dirt,/area/prishtina/island/beach)
+"gh" = (/obj/item/ammo_magazine/shotgun_ammobox,/turf/floor/dirt,/area/prishtina/island/beach)
+"gi" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/american,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/american,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/american,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/american,/turf/floor/dirt,/area/prishtina/island/beach)
+"gj" = (/obj/structure/vending/usaapparel,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"gk" = (/obj/item/weapon/shovel/spade/mortar,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"gl" = (/obj/item/weapon/shovel/spade/mortar,/obj/item/weapon/shovel/spade/mortar,/obj/item/weapon/shovel/spade/mortar,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"gm" = (/obj/structure/table/wood,/obj/item/weapon/gun/projectile/shotgun/pump/combat/ithaca37,/obj/item/ammo_magazine/shotgun_ammobox,/obj/item/ammo_magazine/shotgun_ammobox,/turf/floor/dirt,/area/prishtina/island/beach)
+"gn" = (/obj/structure/table/wood,/obj/item/weapon/gun/projectile/automatic/bren,/obj/item/weapon/gun/projectile/automatic/bren,/obj/item/ammo_magazine/bren,/obj/item/ammo_magazine/bren,/obj/item/ammo_magazine/bren,/obj/item/ammo_magazine/bren,/obj/item/ammo_magazine/bren,/obj/item/ammo_magazine/bren,/turf/floor/dirt,/area/prishtina/island/beach)
+"go" = (/obj/structure/closet/crate/flares,/turf/floor/trench,/area/prishtina/island/beach)
+"gp" = (/obj/structure/table/wood,/obj/item/weapon/gun/projectile/semiautomatic/m1garand,/obj/item/weapon/gun/projectile/semiautomatic/m1garand,/obj/item/weapon/gun/projectile/semiautomatic/m1garand,/obj/item/weapon/gun/projectile/semiautomatic/m1garand,/turf/floor/dirt,/area/prishtina/island/beach)
+"gq" = (/obj/structure/table/wood,/obj/item/weapon/gun/projectile/submachinegun/stenmk2,/obj/item/weapon/gun/projectile/submachinegun/stenmk2,/turf/floor/dirt,/area/prishtina/island/beach)
+"gr" = (/obj/item/flashlight/lantern,/turf/floor/wood,/area/prishtina/houses)
+"gs" = (/obj/item/flashlight/lantern,/turf/floor/dirt,/area/prishtina/island/beach)
+"gt" = (/obj/structure/table/wood,/obj/item/weapon/gun/projectile/submachinegun/thompson,/obj/item/weapon/gun/projectile/submachinegun/thompson,/obj/item/ammo_magazine/thompson_ammo,/obj/item/ammo_magazine/thompson_ammo,/obj/item/ammo_magazine/thompson_ammo,/obj/item/ammo_magazine/thompson_ammo,/obj/item/ammo_magazine/thompson_ammo,/obj/item/ammo_magazine/thompson_ammo,/turf/floor/dirt,/area/prishtina/island/beach)
+"gu" = (/obj/structure/table/wood,/obj/item/weapon/gun/projectile/heavy/ptrd,/obj/item/ammo_magazine/ptrdbox,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"gv" = (/obj/structure/table/wood,/obj/item/flashlight/lantern,/turf/floor/wood,/area/prishtina/houses)
+"gw" = (/obj/item/flashlight/lantern,/turf/floor/wood,/area/prishtina/island/beach)
+"gx" = (/obj/item/flashlight/lantern,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"gy" = (/obj/item/weapon/beartrap,/obj/item/weapon/beartrap,/obj/item/weapon/beartrap,/obj/item/weapon/beartrap,/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"gz" = (/obj/item/flashlight/lantern,/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"gA" = (/obj/item/stack/material/rope,/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"gB" = (/obj/item/stack/material/wood,/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"gC" = (/obj/item/weapon/beartrap,/obj/item/weapon/beartrap,/obj/item/weapon/beartrap,/turf/floor/plating/asteroid,/area/prishtina/void/caves)
+"gD" = (/obj/item/flashlight/lantern,/turf/floor/dirt/darksand,/area/prishtina/island/beach)
+"gE" = (/obj/structure/wild/bush,/obj/item/stack/material/wood,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"gF" = (/obj/item/stack/material/cloth,/turf/floor/wood,/area/prishtina/island/beach)
+"gG" = (/obj/item/stack/material/wood,/turf/floor/trench,/area/prishtina/island/beach)
+"gH" = (/obj/item/stack/material/rope,/turf/floor/wood,/area/prishtina/island/beach)
+"gI" = (/obj/item/stack/material/barbwire,/turf/floor/dirt/darksand,/area/prishtina/island/beach)
+"gJ" = (/obj/item/stack/material/wood,/turf/floor/dirt/darksand,/area/prishtina/island/beach)
+"gK" = (/obj/item/trash/tastybread,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"gL" = (/obj/item/trash/sosjerky,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"gM" = (/obj/structure/closet/crate/flares,/turf/floor/dirt,/area/prishtina/island/beach)
+"gN" = (/obj/item/trash/pistachios,/turf/floor/dirt,/area/prishtina/island/beach)
+"gO" = (/obj/item/weapon/beartrap,/turf/floor/dirt,/area/prishtina/island/beach)
+"gP" = (/obj/structure/window/sandbag{icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag_66%"; icon_state = "sandbag_66%"; dir = 2},/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/flask/barflask,/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"gQ" = (/obj/item/trash/semki,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"gR" = (/obj/item/trash/snack_bowl,/turf/floor/dirt,/area/prishtina/island/beach)
+"gS" = (/obj/structure/table/wood,/obj/item/clothing/suit/storage/coat/german/ghillie,/obj/item/clothing/suit/storage/coat/german/ghillie,/obj/item/weapon/attachment/scope/adjustable/sniper_scope,/obj/item/clothing/head/helmet/gerhelm/ghillie,/obj/item/clothing/head/helmet/gerhelm/ghillie,/turf/floor/dirt,/area/prishtina/island/beach)
+"gT" = (/obj/structure/table/wood,/obj/item/weapon/attachment/scope/adjustable/sniper_scope,/turf/floor/plating/grass/wild,/area/prishtina/island/beach)
+"gU" = (/obj/structure/table/wood,/obj/item/weapon/gun/projectile/semiautomatic/bar,/obj/item/weapon/gun/projectile/semiautomatic/bar,/obj/item/ammo_magazine/c762x63_smg,/obj/item/ammo_magazine/c762x63_smg,/obj/item/ammo_magazine/c762x63_smg,/obj/item/ammo_magazine/c762x63_smg,/obj/item/ammo_magazine/c762x63_smg,/obj/item/ammo_magazine/c762x63_smg,/turf/floor/dirt,/area/prishtina/island/beach)
+"gV" = (/obj/structure/table/wood,/obj/item/weapon/gun/launcher/rocket/panzerfaust,/obj/item/weapon/gun/launcher/rocket/panzerfaust,/obj/item/weapon/gun/launcher/rocket/panzerfaust,/obj/item/weapon/gun/launcher/rocket/panzerfaust,/turf/floor/dirt,/area/prishtina/island/beach)
+"gW" = (/obj/structure/table/wood,/obj/item/weapon/gun/projectile/submachinegun/grease,/obj/item/weapon/gun/projectile/submachinegun/grease,/obj/item/weapon/gun/projectile/submachinegun/grease,/obj/item/weapon/gun/projectile/submachinegun/grease,/obj/item/ammo_magazine/thompson_ammo,/obj/item/ammo_magazine/thompson_ammo,/obj/item/ammo_magazine/thompson_ammo,/obj/item/ammo_magazine/thompson_ammo,/obj/item/ammo_magazine/thompson_ammo,/obj/item/ammo_magazine/thompson_ammo,/turf/floor/dirt,/area/prishtina/island/beach)
+"gX" = (/obj/structure/table/wood,/obj/item/weapon/attachment/scope/adjustable/binoculars,/obj/item/weapon/grenade/explosive/f1,/turf/floor/dirt,/area/prishtina/island/beach)
+"gY" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"gZ" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"ha" = (/obj/structure/window/sandbag{tag = "icon-sandbag_66%"; icon_state = "sandbag_66%"; dir = 2},/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"hb" = (/obj/structure/window/sandbag,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+"hc" = (/obj/item/weapon/gun/projectile/automatic/stationary/type92stat,/turf/floor/plating/concrete,/area/prishtina/german/armory)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacadacacaeacaaaaaaaaaaaaaaaaaaaaacacacacacacaaaaaaaaaaaaaaaaaaaaacadacacaeacaaaaaaaaaaafabababafafabababafaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagagagagagagaaaaaaaaaaaaaaaaaaaaaaaaaaaaahahah
+aaaaaaaiaiacacacadacacaeacacacaaaaaaaaaaaaacacacacacacacacacacaaaaaaaaaaaaacacacadacacaeacacacaiaiaiafafafafafafafafafafaiaaaaaaaaaiaiaiaiaiaiaaaaaaaiaiaiagagagagagagaiaiaaaaaaaaaaaaaiaiaiaiaaaaajacah
+aiaiaiaiaiacacacadacacaeacacacaaaaaaaaaaaaacacakacalalacakacacaaaaaaaaaaaaacacacadacacaeacacacaiaiaiafafafafafafafafafafaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiamamamamamamaiaiaiaiaiaiaiaiaiaiaiaiaiaiajajaj
+aiaiaiaiacacacacadacacaeacacacacaaaaaaaaacacacacacacacacacacacacaaaaaaaaacacacacadacacaeacacacacaiaiafafafafafajajajafafaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiamamamamamamaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiai
+aiaiaiaiacacacacadacacaeacacacacacacacacacacacacacacacacacacacacacacacacacacacacadacacaeacacacacaiaiafafafafajajacajafafaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaianamamamamamamanaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiai
+aiaiaiaiacacacacacacacacacacacacacacacacacacacacacaoaoacacacacacacacacacacacacacacacacacacacacacaiaiafafafafajacacajafafaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiananamamamamamamananaiaiaiaiaiaiaiaiaiaiaiaiaiaiai
+aiaiaiaiacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaiaiafafafafajajajajafafaiaiaiaiaiaiaiaiaiaiaiaiaiaiamamamamamamamamamamamamaiaiaiaiaiaiaiaiaiaiaiaiaiai
+aiaiaiaiacacacacacacacacacacacacacacacacacacacapapaqararacacacacacacacacacacakacacacacacacakacacaiaiafafafafafafafafafafaiasamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamataiaiaiaiai
+aiaiaiaiacacakacacacacacacakacacaaaaaaaaacacacapapaqararacacacacaaaaaaaaacacacacacacacacacacacacaiaiafafafafafafafafafafaiasamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamataiaiaiaiai
+aiaiaiaiaiacacacacacacacacacacaiauaiaiauaiacacacacacacacacacacaiauaiaiauaiacacacacacacacacacacaiaiaiafafafafafafafafafafaiasavamamamamavamamamamavamamamamamamamamamamamawamamawamamawamamamataiaiaiaiai
+aiaiaiaiaiacacacacacacacacacacaiaiaiaiaiaiacacacacacacacacacacaiaiaiaiaiaiacacacacacacacacacacaiaiaiafafafafafafafafafafaiaxamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamayaiaiaiaiai
+aiaiaiaiaiaiaiacacacacacacaiaiaiaiaiazaiaiaiaiacacacacacacaiaiaiaiaiaiaiaiaiaiacacacacacacaiaiaiaiaiafafafafafafafafafafaiaiaAaAaAaAaAaAaAaAaAaAaAaBamamamamamamamamamamamamaCaAaAaAaAaAaAaAaiaiaiaiaiai
+aiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiajajajaiaiaiaiaiaiaiaiaiaiaiaiaiaiafafafafafafafafafafaiaiaiaiaiaiaiazaaaiaiaiaiaDaAaBamamamamamamamamaEaAaDaiaiaiaiaiaiaiaiaiaiaiaiai
+aiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiajacajaiaiaiaiaiaiaiaiaiaiaiaiazaiafafafafafafafafafafaiaiaiaiaiaiaiaiaaaaaaaaazaiaiaiafafafafafafafafaiaiaiaiaiaiaiaiaiaiaiaiaiazaiai
+aiaiaiaiaiaiaiaaazaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiazaiajajajaiaiaiaiaiaiaiaiaiaiaiaiaFaiafafafafafafafafafafaiaiazaiaiaiaiaiaiaiaiaiaFaiaiaiafafafafafafafafaiaiaiaiaiaiaiaiaiaiaiaiaiaFaiai
+aiaiaiaiaiaiaaaaaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaFaiaiaiaiaiaiaiaiaiazaiaiaiaiaiaiaFaFafafafafafafafafafafaiaFaFaiaiaiaiajajajaiaiaFaiaiaiafafafafafafafafaiaiaiaiaiaiaiaaaaazaiaiaiaFaFai
+aiazaaaaaaaaaaaiaiaiaiaiajajajajaiaiaiaiaiaiaiaiazaiaiaiaiaiaiaFaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaFafajajajafafafafafafaiaFaiaiaiaiaiajacajaiaFaFaiaiaiafafafafafafafafaiaiaiaiaiaiaaaaaiaiaiaiaiaiaFai
+aiaiaiaiaiaiaiaiaiaiaiaiajacacajaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaFaFaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaFafajacajafafafafafafaFaFaiaiaiaiaiajajajaiaFaiaiaiaiafafafafafafafafaiaiaiaiazaaaaaiaiaiaiajajajaFai
+aiaiaiaiaiaiaiaiaiaiaiaiajacajajaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaFaiaiaiaiaiaiaiaiaiaiaiaiaiaiaaaaazafajajajafafafafafafaFaiaiaiaiaiaiaiaiaiaiazaiaiaiaiafafafafafafafafafafaiaiaiaiaiaiaiaiaiajacajaFai
+aiaiajajajaiaiaiaiaiaiaiajajajaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiazaiaiaiaiaiaiaiaiaiazaaaaaaaaaaaiaiafafafafafafafafafafazaaaaaaaiaiaiaiaiaiaiaiaiafafafafafafafafafafafaiaiaiaiaiaiaiaiaiaiaiajajajazai
+aiaiajacajaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaGaGaGaHaIaGaGaiaiaiaGaGaGaHaIaGaGaiaiaiaiaiaiaiaiaiafafafafafafafafafafaiaiaiaaaaaiaiaiaiaiaiafafafafafafafafafafafafafaiaiafaiaiaiaiaiaiaiaiaiaiaiaiai
+aiaiajajajaiaiaiaiaiaiaiaiaiaiaiaiaiazaiajajajaiaGaJaKaKaKaJaGaiaiaiaGaJaKaKaKaJaGaiaiaiaiaiaiaiaiaiafafafafafafafafafafaiaiaiaiaaazaiaiaiaiaiaiaiaiafafafafafafaiaiaiaiafafafaiaiaiaiaiazaaaiaiaiaiaiai
+aiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaFaiajacajaiaLaMaKaKaKaMaLaiaiaiaLaMaKaKaKaMaLaiaiaiaiaiaiaiaiaiafafafafafafafafafafaiaiaiaiaiaiaiaiaiafafaiafaiafafafafaiaiaiafaiafafaiaiaiaiaiaiaiaiaaaaaiaiaiaiai
+aiaiaiaiaiaiaaaaazaiaiaiaiaiaiaiaiaiaFaFajajajaiaGaKaKaKaKaKaGaiaiaiaGaKaKaKaKaKaGaiaiaiaiaiaiaiaiaiafafafafafafafafafafaiaiaiaiaiaiaiaiaiaiaiaiafafaiafafafaiafaiafaiaiaiaiafaiaiaiaiaiaiaiaaaaazaiaiai
+aiaiaiaaaaaaaaaiaiaiaiaiaiaiaiaiaiaiaiaFaiaiaiaiaGaKaKaKaKaKaGaiaiaiaGaKaKaKaKaKaGaiaiaiaiaiaiazaiaiafafafafafafafafafafaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiafaiaiafaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiai
+aiaiaaaaaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaFaFaiaiaiaLaMaKaKaKaMaLaiaiaiaLaMaKaKaKaMaLaiaiaiaiaiaiaiaiaiafafafafafafafafafafaiaiaiaiaiaiaiaiaiaiafafafaiaiaiafaiaiaiafaiaiaiaiafaiaiaiaiaiaiaiaiaiaiaiaiaiai
+aiazaaaiaiaiaiaNaNaNajajajajaNaNaNaNaiaiaFaiaiaiaGaKaKaKaKaKaGaiaiaiaGaKaKaKaKaKaGaiaiaiaiaiaiaiaiaiafafafafafafafafafafaiaiazaGaGaLaGaGaGaGaGaGaGaLaGaGaiaiaiaiaiaiaiaiaiaiaiaiaiaiazaaaaaiaiaiaiaiaiai
+aiaiaiaiaiaiaiaNaOaOajacacajajaOaOaNaiaiaFaFaiaiaPaKaKaKaKaQaGaiaiaiaRaKaKaKaKaSaGaiaiaiaiaiaiaiaiaiafafafafafafafafafafaiaiaiaGaJaKaTaKaKaTaKaKaTaKaJaGaiaiaiafaiaiaiaiaiaiaiaiaiaiaiaiaaaaaiaiaiaiaiai
+aiaiaiaiaiaiaiaNaOaOajacacacajaOaOaNaiaiaiazaiaiaLaMaKaKaKaMaLaiaiaiaLaMaKaKaKaMaLaiaiaiaiaiaiaiaiaiafafafafafafafafafafaiaiaiaGaKaKaTaUaTaVaTaUaTaKaKaGaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaaaaaaaaaaazai
+aiaiajajajajaiaNaOaOajajacajajaOaOaNaiaiaiaiaiaiaGaKaKaKaKaKaGaiaiaiaGaKaKaKaKaKaGaiaiaiaiaiaiaiaiaiafafafafafafafafafafaiaiaiaUaKaKaKaKaKaKaKaKaKaKaKaUaiaiaiaiaiazaaaaaaaaazaiaiaiaiaiaiaiaiaiaiaiaFai
+aiaiajacacajaiaNaOaOaOajajajaOaOaOaNaiaiaiaiaiaiaGaKaKaKaKaKaGaiaiaiaGaKaKaKaKaKaGaiaiaiaiaiaiaiaiaiafafafafajajajafafafaiaiaiaUaKaKaKaKaKaWaKaKaKaKaKaUaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaFai
+aiaiajajajajaiaNaOaOaOaOaXaOaOaOaOaNaiaiaiaiaiaiaLaMaKaKaKaMaLaiaiaiaLaMaKaKaKaMaLaiaiaiajajajaiaiaiafafafafajacajafafafaiaiaiaGaKaKaKaKaKaKaKaKaKaKaKaGaiaiazaNaNaNaYajajaiaiaiaiaiaaaaazaiaiaiaiaiaFai
+aiaiaiaiaiaiaiaNaZbaaNaNaNaNaNaZaZaNaiaiaiaiaiaiaGbbbcaKbcbbaGaiaiaiaGbbbcaKbcbbaGaiaiajajacajaiaiaiafafafafajajajafafafaiaiaiaGaKaKbdbeaKaKaKbebfaKaKaGaiaiaFaNaOajajacajaNaiaiaiaaaaaiaiaiaiaiaiaiaFai
+aiaiaiaiaiaiaiaaaaaaaaaaaaaaaaaaaaaaaiaiaiaiaiaiaGaGaIaHaGaGaGajajaiaGaGaIaHaGaGaGaiajajacacajaiaiaiafafafafafafafafafafaiaiaiaGaGaLaGbgaLaGaLbhaGaLaGaGaiaFaFaNaOajacacajaNaiaiazaaaiaiaiaiaiaiaiaFaFai
+aiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaFayaiaiaiaiajacacajbiayaiaiaiaiaiaxaFajacacajajaiaiaiafafafafafafafafafafaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaFaiaNaOajacajajaNaiaiaiaiaiaiaiaiaiaiaiaFaiai
+aiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaFbjbkaiblaibmbnacacbibjbkaibkaibkboaFajajajajaiaiaiaiafafafafafafafafafafaiaiaiaiaiaiaiazaiaiaiaiaiaiaiaiaiazaiaNaOajacajaOaNaiaiaiaiaiaiaiaiaiaiaiazaiai
+aiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiazaiaiaiaFaaaaaiaaaiaaahajacajaaaaaiaaaiaaaaaiaiaiaiaiaiaiaiaiafafafafafafafafafafaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaNaOajajajaOaNaiazaiaiaiaiaiaiaiaiaiaiaiai
+aiaiaiazaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiajajajaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiafafafafafafafafafafaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaNbpaNbqaNbpaNaiaiaiaiaiaiaiaiaiaiaiaiaiai
+afafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafbrbsbsbsbsbrafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
+afajajajafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafajajajafafafafafafbrbtafbubvbrafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
+afajacajafafafafafafafafafafafafafafafafafafafafafafafajajajafafafafafafafafafafafafafajacajafafafafafafbrbwafafbxbrafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
+afajajajafafafafafafafbsbsbsbsafafafafafafafafafafafajajacajafafafafafafafafafafafafafajajajafafafafafafbrbtbyafbxbrafafafafafafafafafafafafafafafafafafafafafafafafafafbrbsbsbsbsbrafafafafafafafafafaf
+afafafafafafafafafafbrbtbuafbvbrafafafafafafafafafajajacacajafafafafafafafafafafafafafafafafafafafafafafbrbzbzbzbAbrafafafafafafafafafafafafafafafafafafafafafafafafafafbrbtafbubvbrafafafafafafafafafaf
+afafafafafafafafafafbrbwafafbxbrafafafafafafafafafajacacajajafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafajajajafafafafafafafafafafafafafafafafafafafafbrbwafafbxbrafafafafajajajafafaf
+afafafafafafafafafafbrbtafbybxbrafafafafafafafafafajajajajafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafajacajafafafafafafafafafafafafafafafafafafafafbrbtbyafbxbrafafafafajacajafafaf
+afafafafafafafafafafbrbzbzbzbAbrafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafajajajafafafafafafafafafafafafafafafafafafafafbrbzbzbzbAbrafafafafajajajafafaf
+afafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
+afafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
+aiaiaiaiaiaiaiaiaiaiaiaiajajajaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiafajajajafafafafafafaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiai
+aiaiazaiaiaiaiaiaiazaiaiajacajaiaiaiaiaiaiaiaiaiazaiaiaiaiaiazaiaiaiaiaiaiaiaiaiaiaiaiazaiaiaiaiaiaiafajacajafafafafafafaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiai
+aiajajajajaiaiaiaiaFaFaiajajajaiaiaiaiaiaiaiaiaiaFaiaiaiaiaiaaaaaaaaaaazaiaiaiaiaiaiaiaiaiaiaiaiaiaiafajajajafafafafafafaiaiaiaibkaibkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkaibkaiai
+aiajacajajaiaiaiaiaiaFaFaiaiaiaiaiaiazaiaiaiaiaiaFaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiafafafafafafafafafafaiaiaibBacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacbCai
+aiajajajaiaiaiaiaiaiaiaFaiaiaiaiaiaiaiaiaiaiaiaiaFaiaiajajajajaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiafafafafafafafafafafaiaiaibBacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacbCai
+aiaiaiaiaiaiajajajajaiaFaFaiaiaiaiaiaiaiaiaiaiaiaFaiaiajacacajaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiazaiaiafafafafafafafafafafaiaiaiaiaAbDacacacaEaAaAaAaAbDacacacaEaAaAaAaAbDbEbFacaCaAbGaAaAbDacacacaCaAaiai
+aiaiaiaiaiaiajacacajaiaiaFaFaiaiaiaiaiaiaiaiaiaiaFaiajajacajajaiaiaiaiaiaiaaaaazaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiazaaaAaiaAaiaiaiaiaiaiaAbGaAaiaiaiazaiaiaAaiaAaiaiaiaiaiaiaAbGaAaiaiaiai
+aiaiaiaiaiaiajacajajaiaiaiazaiaiaubCaiaiaibHaiaiazaiajacacajaiaiaiaiaiaaaaaaaiaiaiajajajajajaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaaaaaiaiaiaiaiaiaiaiaiaiaiaiaiaaaaaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiai
+aiaiaiazaiaiajajajaiaiaiaiaiaiaiaibCaiaiaiasaiaiaiaiajajajajaiaiazaaaaaaaiaiaiaiaiajacajacajaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiacaiaiaiaaaaaaaaazaiaiaiaiaiaiaiazaaaaaiaiaiaiaiaiazaaaaaaaaaaaiaiaiaiaiaiai
+aiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaibCaiaiaiaxaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiajacacacajaiaiaiaiaaaaazaiaiaiaiaiaiaiaiaiacacaiaiazaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaaaaaaaaaaazaiai
+aiaiaFbIbIbIbIbIbIbIbIbIbIbIbIbIbIbJbJbKbJbJbIbIbIbIbIbIbIbIbIbIbIbIbIbIbIaFaiaiaiajajacajajaiaiaiaaaaaiaiajajajajajaiaiaiaiaiaiaiaaaaaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiai
+aiaiaFbIbLbJbMbNbJbObJbPbPbQbJbRbJbJbJbJbJbJbJbJbJbJbSbPbPbJbTbUbVbWbJbXbIaFaiaiaiaiajajajaiaiaiaaaaaiaiaiajacacacajaiaiaiaiaiaiaaaaaiaiaiajajajaiazaaaaaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiai
+aiaiaFbIbLbJbLbJbJbJbJbPbPbRbJbRbJbJbJbJbJbJbJbJbJbJbSbPbPbJbJbJbJbJbJbJbIaFaiaiaiaiaiaiaiaiaiaiazaiaiaiaiajajacacajaiaiaiaiaiazaaaiaiaiaiajacajajaiaiaaaaaaaaaaazaaaaaaaiaiaiaiaaaaaaaaaaaaazaiaiaiaiai
+aiaiaubIbPbPbYbZbZbYbPbPbPcabJcbbJbJbJbJbJbJbJbJbJbJbSbPbPbJbJbJbJbJbJbJbIauaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiajajajajaiaiaiaiaiaiaiaiaiaiaiajacacajaiaiaiaiaiaiaiaiaiaiaaaaaaaaazaaaiaiaiaiaiaiaiaiazaiai
+aiaiaiccbJbJbJbJbJbJcdbPbPcebJcbbJbJbJbJbJbJbJbJbJbJbSbPbPbJbJbJbJbJbJbJcfaiaiaiaiamaiaiamaiamaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiajajajajaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiai
+aiaiaicgbJbJbJbJbJbJchbPbPcibJbJbJbJbJbJbJbJbJbJbJbJbSbPbPbJbJbJbJbJbJbJcjaiaiaiaiaiamaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiazaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiai
+aiaiaicgbJbJbJbJbJbJbJbJbJbJbJbJbJbJcbcmcncrbJbJbJbJbJbJbJbJbJbJbJbJbJbJcsaiaiaiaiamaiaiamamamamamamamamamamamamamamamamckclclclclckamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamam
+aiaiaFbIbJbJbJbJbJbJbJbJbJbJbJbJbJbJcvbPbPcwbJbJbJbJbJbJbJbJbJbJbJbJbJbJbIaFaiamaiaiaiaiamamamamamamamamamamamamamamamamckcoamcpcqckamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamam
+aiaiaFbKbPbPbPcybJbJbJbJbJbJbJbJbJbJcCcDcDcwbJbJbJbJbJbJbJbJbJbJcybPbPbPbKaFaiaiaiaiaiamamamamamamamamamamamamamamamamamckctamamcuckamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamam
+aiaiaFbIcEbJbJbJbJbJbJbJbJcFbJbJbJbJcGbPbPcwbJbJbJbJbJbJbJbJbJbJbJbJbJbXbIaFaiamaiamaiaiamaiaiaiaiaiaiaiaiaiaiaiaiaiaiaickcocxamcuckaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiai
+aiaiaicgbJbJbJbJbJbJbJbJbJbJbJbJbJbJbJcHcHcrbJbJbJbJbJbJbJbJbJbJbJbJbJbJcjaiaiaiaiaiamaiaiaiamaiaiaiaiaiaiajajajaiaiaiaickczczczcAckaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiazaiaiaiaiaiaiaiaiaiazai
+aiaiaiccbJbJbJbJbJbJbJbPbPbJbJbJbJbJbJbJbJbJbJbJbJbJbJbPbPbJbJbJbJbJbJbJcjaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiajajacajaiaiaiaiaiamamamamaiaiaiaiaiaiaiaiaiazaiaiaiaiaiaiaiaiaiaiaiaiaicBaiaiaiaiaiaiaiaiaiaiai
+aiaiaicgbJbJbJbJbJbJbJbPbPbJbJbJbJbJbJbJbJbJbJbJbJbJbJbPbPbJbJbJbJbJbJbJcsaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiajacacajaiaiaiaiaiamamamamaiaiaiaiajajajaiaicBcBaiaiaiajajajajajaiaiaicBcBaiajajajajaiaiaiaiaiai
+aiaiaibIbJbJbJbJbJbJbJbPbPfDbJbJfDgYbJbJbJbJgZfDbJbJfDbPbPbJbJbJbJbJbJbJbIaiaiaiaiaaazaiaiaiaiaiaiaaaaazajajajajaiaiaiaiaiamamamamaiaiaiaiajacajaiaiaicBaiaiaiajacacacajaiaiaicBaiaiajacacajaiaiaiaiaiai
+aiaiaubIbJbJbJbJbJbJbJbPbPbJbJbJbJgYbJbJbJbJgZbJbJbJbJbPbPbJbJbJbJbJbJbJbIauaiaiaaaaaiaiaiaiazaaaaaaaiaiaiaiaiaiaiaiaiaiaiamamamamaiaiaiaiajajajaiaiaicBcBaiaiajacajajajaiaiaiazaiaiajacajajaiaiaiaiaiai
+aiaiaFbIbJbJbJbJbJbJbJbPbPbJbJbJbJgYbJbJbJbJgZbJbJbJbJbPbPbJbJbJbJbJbJbJbIaFaiaiaaaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiamamamamaiaiaiaiaiaiaiaiaiaiaicBcBaiajajajaiaiaiaiaiaiaiaiajacajaiaiaiaiaiaiai
+aiaiaFbIbIbIbKhahbhbbIbIbIbIhbhchbbIbIbIbIbIbIhbhchbbIbIbIbIhbhahbbKbIbIbIaFaiaiazaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiazaiaiaiamamamamaiaiaiaiaiaiaiaiaiaiaiaicBaiaiaiaiaiaiaiaiaiaiaiaiajajajaiaiaiaiaiaiai
+aiaiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiamamamamaiaiaiaiaiaiaaaaaaaaaaaaaaazaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiai
+aiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiajajajaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiamamamamaiazaaaaaaaaaaaiaiaiajaiaiaiaiaiaiaiaiajajajajaiaiaiaiaiaiaaaaaaaaazai
+aiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiazaiaiaiaiaiaiaiaiaiaiaiaiaiajacajaiazaiaiaiaiaiaiaiaiaiaaaaazaiaiaiaiaiaiaiaiaiaiaiamamamamaiaiaiaiaiaiaiaiajajajajaiaiaiaiaiaiaiajacacajaiaiaiaiaiazaaaiaiaiaiai
+aiaiaiazaiaiaiaiaiaiaiaiazaiaiaiaiaiaiaiaiaiaiaiaiaiaaaaazaiaiaiaiajajajaiaaaiaiaiaiaiaaaaaaaaaaaiaiaiaiaiaiaiajajajaiaiaiamamamamaiaiaiaiaiaiaiajajacacajaiaiaiaiaiaiaiajacajajaiaiaiaiaiaiaiaiaiaiaiai
+aiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiajajajaiaiaiazaaaaaaaiaiaiaiaiaiaiaiaiaiaaaaaaaiaiazaaaiaiaiaiaiaiaiaiaiaiajajacajajajaiamamamamaiaiaiaiaiaiaiajacacacajaiaiaiaiaiaiaiajajajaiaiaiaiaiaiaiajajajaiaiai
+aiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiajacajaiaiaiaiaiaiaiaiaiaiaiaiazaiaiaiaiaiaiaaaiaiaiaiaiaiaiaiaiaiaiaiaiaiajacacacajajaiamamamamaiaiaiaiaiaiaiajajajajajaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiajajacajaiaiai
+aiaiaiaiazaaaaaaaaaaaaaaazaaaaaiaiajajajaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaaazaiaiaiaiaiaiaiazaiaiaiaiaiaiajajajajajaiaiamamamamajajajajaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiajacacajajaiai
+aiajajajaiaiaiaiaiaiaiaiaiaiaaaaaaaiaiaiaiaiaiaiaiaaaaazaiaiaiaiaiaiaiaiaiaaaaaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiamamamamajacacajaiaiaiaiaiaiaiaiaiaiaiaiaiaiazaaaaaiaiaiaiaiaiaiajajacacajaiai
+aiajacajaiaicIaiaiaiaiaiaiaiaiaiaaazaiaiaiaiaiazaaaaaiaiaiaiaiaiaiaiaiaiazaaaiaiaiaiaiaiazaiaiaiaiaiaiaiaiaiazaiaiaiaiaiaiamamamamajacajajaiaiaiaiazaiaiaiaiaiaiaiaiaiaiaiaaaaaaaaaaaiaiaiaiajajajajaiai
+aiajajajcIcIcJcIaicIcIaiaiaicIaiaicIaiaicIaicIcIaiaicIcIcIaicIcIaiaicIcIcIcIaiaicIcIaiaiaicIcIcIcIaiaiaicIcIcIcIcIaiaiaicIamamamamcKcKajcIaiaicIaicIcIcIcIaiaicIcIaiaicIcIcIaicIcIaaaaazaicIaicIcIaiaicI
+aicLcJcMcJcJcNcJcMcJcJcIcIcLcJcOcLcJcIcIcJcPcJcJcQcIcJcJcJcIcJcJaicLcJcJcJcJcQcLcJcJcIcIcIcJcJcJcJaicIcLcJcJcJcJcJaicJcIcJamamamamcJcJcRcJcOcScJcTcJcJcJcJcIcIcJcJcOcIcJcJcJcScJcJcJcOaicScJcTcJcJcQcScJ
+cIcUcJcVcWcWcIcIcScJcJcJcJcTcJcJcVcXcJcJcYcScJcJcOcJcJcJcJcJcJcJcIcLcJcJcJcZaiaicXcJcJcJcJdacJdbcJcScJcIdcddcJcIcIcIcJcJcIamamamamcJcJcJcJcJcJdecJcJcJcJcJcJcJdfdgcJcJdhcJdecJdecJcJcJcTcJdicJdjcWcScJdj
+cJcJcJdkdkcJcJcJcJcJdlcJdmcJdmcJcJcJdkcJcJcJcJcJcJcJdjdncJcJcJdhcJcVdododocIcIcScJdicJcJcJdkcWcScJcJcJdkcIcLcJcJcJcJdkdkcJamamamamdecJdecJcJdkcJcJcJdecJcJcJcJcOcJcJcJdkdkcJcJcJcJcJcJcJcJdkcJcJcJcJdkcJ
+cJcJcJcJcJcJcJcJcJcJcJcJcJdkcJcJcJcJcJcJcJcJcJcJcJcJdkdkcJcJcJcJcJcJcJcJcJcJcJdkdkcJcJcJcJcJdkcJcJcJcJdkcJcPcJcJcZdpcJcJdqamamamamdqcJcJdkdkcJcJcJcJcJcZdpcJcJcJcJcJcJcJdkcJcJcJcJcJcJcJdkdkcJcJcJcJdkcJ
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacamamamamacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacbEamamamambEacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
+drdrdsacacacdtdrdrdrdrdudvacacdwdrdrdrdrduacacacdtdrdxdrdrdudvacacdwdrdrdrdrduacacacdtdrdxdrdrduacacgodtdrdrdrdrdsacbFacdtamamamamdyacbFacdwdrdrdrdrduacacacdtdrdxdrdrdudvacacdtdrdrdrdrdsacacacdzdrdrdr
+cJcJcJdrcJdrcJcJcJcJcJcJdrdrdxcJcJcJcJcJcJdrcJdrcJcJcJcJcJcJdrdxdrcJcJcJcJcJcJdrcJdrcJcJcJcJcJcJdrdxdrcJcJcJcJcJcJdrcJdrcJamamamamcJdrcJdrcJcJcJcJcJcJdrdrdrcJcJcJcJcJcJdrcJdrcJcJcJcJcJcJdrdrdrcJcJcJcJ
+cJcJdAdBdBdBdBdBdBdBdBdAcJcJcJcJdAdBcJcJcJcJcJcJdAdBdBdBcJcJcJcJcJcJcJdAcJcJcJcJcJcJcJcJcJcJdAdBdBcJcJcJcJcJcJcJcJcJcJcJcJamamamamcJcJcJcJdCcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdAcJcJcJcJdCcJcJcJcJcJcJ
+cJdDcJcJcJdBcJcJcJcJcJcJcJcJcJcJcJdBdBcJcJcJcJcJcJcJcJdBdAcJcJcJcJcJcJcJcJcJcJcJcJcJdEcJcJcJcJcJdBdBdBdBdAdEcJcJcJcJcJdAcJamamamamcJamcJcJcJcJcJdBdBdAcJcJcJdEcJcJdDcJcJcJcJcJdEcJcJdFcJcJcJcJcJcJcJcJcJ
+cJcJdkdkdkdBdBdFcJcJcJcJdCcJcJcJcJdkdBdBdAcJdEcJcJcJcJdEcJcJcJcJcJcJdDcJcJcJcJcJcJcJcJcJcJcJdCcJcJcJcJcJcJcJcJcJcJcJcJcJamamamamamamcJcJcJcJdBdBcJcJcJcJcJcJcJcJcJcJcJdCcJdBdBdAcJcJcJcJcJcJcJcJcJdGcJcJ
+cJcJcJcJcJcJdBdAcJcJcJcJcJcJcJcJdkdkcJcJdCcJcJcJcJcJdCcJcJcJcJdAdBdBdBdBdBdGcJcJcJcJcJdAcJcJcJcJcJcJcJcJcJcJcJdGcJcJcJdDamamamcJamamcJcJcJdAcJcJcJcJcJcJcJcJcJcJdAdBdBdBdBdBcJcJdkcJcJcJcJcJcJcJcJcJdEcJ
+cJcJcJcJcJcJcJcJcJcJdkcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdBdBcJcJcJcJcJcJdkdkcJcJcJcJcJcJcJcJcJdAcJcJcJcJamamcJamamcJcJamcJcJcJcJdGcJcJcJcJcJcJdkdkcJcJcJcJcJcJcJdkdkcJcJcJcJcJcJcJdAcJcJ
+cJdCcJcJcJcJcJcJdkdkcJcJcJcJcJdFcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdkcJcJdBdAcJcJcJdEcJdkcJcJcJcJcJdGcJcJcJcJcJcJcJcJcJamcJamamamamcJcJcJcJcJcJcJcJcJcJcJcJdCcJdkdkcJcJcJcJcJcJdkdkcJcJcJcJcJcJcJcJcJcJ
+cJcJcJcJdGcJcJcJcJcJcJdCcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdGcJcJcJcJdkcJcJcJcJcJcJcJcJcJcJcJcJcJdAcJcJcJcJcJcJcJcJcJcJcJcJcJcJamamcJcJdAcJdkdkcJcJcJcJdEcJcJcJcJcJcJcJcJdGcJcJcJcJcJcJcJcJdGcJcJcJcJcJdC
+cJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdCcJdEcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdFcJcJcJcJdCcJcJamamcJamcJcJcJcJcJdkcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdAdBcJcJcJcJcJcJ
+cJdEcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdEcJcJcJcJcJcJdGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJamcJcJamamcJcJamcJcJcJcJdFcJcJcJdAdBdBdBdBdBcJcJcJcJcJcJcJcJdDcJcJdBdBdBdAcJcJcJ
+cJcJcJcJcJcJcJdCcJcJcJcJcJcJdDcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdEcJcJdDcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdkcJcJcJcJamamamamcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdBdBdAcJcJcJcJcJcJcJcJcJdCcJcJcJcJcJcJ
+cJcJcJcJcJcJcJcJcJcJdGcJcJcJcJcJcJdCdGcJcJcJcJcJcJcJcJcJcJcJdCcJcJcJcJcJcJcJdkcJcJdCcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdkcJcJcJcJamcJamcJcJcJcJcJcJcJcJdEcJcJdDcJdGcJcJcJcJcJcJdEcJdFcJcJcJcJcJcJcJcJcJcJcJcJ
+cJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdCcJcJcJcJdkdkcJcJcJcJcJcJcJcJcJcJcJcJcJcJdkdkcJcJcJcJcJcJcJcJcJcJcJdGcJcJcJcJcJcJcJcJamcJcJamcJamcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdCcJcJcJcJcJcJcJcJdkdkcJcJcJdEcJcJcJ
+cJdGcJcJcJcJcJcJcJdkcJcJdkcJcJcJcJcJcJcJcJcJdkcJcJcJcJcJcJcJcJcJcJcJdGcJcJcJdkdkcJcJcJcJcJcJcJcJcJdEcJcJcJcJcJcJcJcJcJcJcJamamcJcJamcJcJcJcJcJcJdCcJcJcJcJcJcJcJcJcJcJcJcJcJcJdkdkcJcJcJcJcJcJcJcJcJcJdC
+cJcJcJcJcJcJcJcJcJcJcJcJdkcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdDcJcJdGcJcJamamcJamamcJcJcJcJcJcJcJcJcJcJcJdkcJcJcJcJcJcJcJcJcJcJcJcJcJcJdCcJcJcJcJcJcJcJcJ
+cJdkcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdGcJcJcJcJcJcJcJcJdGcJcJcJcJcJcJcJcJcJcJcJcJcJdGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJamamamamamamcJamcJcJcJcJcJcJcJdkdkcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
+cJdkdkcJcJcJdGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdCcJcJcJcJcJcJdFcJcJcJcJcJcJcJcJcJcJcJcJcJcJdGcJcJcJcJcJdCcJcJcJcJdkcJcJcJcJcJamamcJcJcJcJcJcJcJcJcJdkdkcJcJcJcJdEcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
+cJcJdCcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdEajajdHajcJcJcJcJcJcJcJcJdCcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJamcJdkdkamcJamamamcJcJamdIcJcJdGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdGcJcJcJcJcJcJcJcJcJcJdGcJcJ
+cJcJcJcJcJcJcJcJcJajajcJcJcJcJajajajcJcJcJcJajcJajajajajajajajajcJcJdEcJcJcJcJcJdEcJcJcJcJcJcJcJcJcJcJcJdEcJcJamcJcJamcJcJamcJcqdrdJdKdKdKdKdKdKcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
+cJajcJcJcJajdHajajajcJdFcJcJajajdHajajajdLcJdMajajajajacacajajajajcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJamcJcJcJcJamcJamamdNamcJcJdKdOgrdOdOdPcJcJcJcJdkcJcJcJdFcJcJcJcJdDcJcJcJcJcJcJdEcJdFcJcJcJcJcJ
+ajdHajcJajajajdLajajajajajajajajajajajajajajajajajdLajajajajajajajajajajcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdKdKdKdKdQdKdKdJdxamamamdQdOdOdOdOdKcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
+ajdLajajajajajajdMajajajdMajajajdLajajajajajajajajajajajajdLajajajdHajajajcJcJcJcJcJcJcJcJdFcJcJcJcJcJcJcJcJdKdOdOdOdOdOdKamamamcJamdKdOdRdSdOdKcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdFcJcJ
+ajajajajajdLajajajajdHajajacajajajajajajacacajdHajajajajajajajdMajajacacajajcJcJdGcJcJcJcJcJcJcJcJcJdFcJcJcJdPdOdOdOdOdRdKamcpdTamcJdKdOdOdOdOdPcJcJdFcJamamamcJcJamcJamcJdEcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
+acajdHajajajajajdHajajajajacajdLajajajajacacajajajajacajajdHajajajajacacajajcJcJajajcJcJcJcJcJdkcJcJcJcJcJcJdPdOdOdOdOdRdKcJamgsamamdKdKdKdKdKdKcJamcJamamamamcJcJamcJcJcJcJcJcJcJcJcJcJcJcJcJcJdkdkdkcJ
+ajajajdLajajdLajajajajajajajajajajajdHajajajajajajajdLajajajajajajajdLajajajajajajajajcJcJcJdkdkcJcJdDcJcJcJdPdOdOdOdOgvdKcJamamcJamamcJcJcJamamamamcJcJcJcJcJamcJcJcJcJamcJcJcJcJcJdGcJcJcJcJcJdkcJdkcJ
+ajdHajajdHajajajajajajajajajajajajajajajajajdLajajajajajajajajajajajajajajajajdHajdLajcJcJcJdkcJcJcJcJcJcJcJdKdOdOdOdOdOdKcldUdVdWdWdWdXdWdWdWdVdKdKdQdKdKdKdYdYdKdKdKdKcJcJdFcJcJcJcJcJcJcJcJcJcJdEcJcJ
+ajajajajajajajajajdLajajajdHajajajajajajajajajajajajajajajajdLajajajdHajajajajajajajajajcJcJcJcJcJcJcJcJcJcJdKdKdPdPdPdKdKagagagdWdZdZdZdZdZdWdBdKdOdOdOdOdOdOdOdOdOdOdKcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
+ajdLajacajdHajajajajajacacajajajajdLajajajajajajdHajajajdMajajajajajajajajajajajajajajajamcJcJcJdGcJcJcJcJcJcJcJcJcJcJcJamamamamdWdZdZdZdZdZeacJdKebdOdRdRdRdOdOdOdOdRdKcJcJcJcJcJcJcJcJdEcJcJcJcJcJcJcJ
+ajajacacajajajajajajacacacajajajajajajajajajajdMajacacajajajajajajajajajajdLajdHajamajamcJajajcJcJcJcJajajamcJcJcJcJajamajamamamecedeegwdZdZeacJdKebdOdRdRdRdOdOdOdOdRdKcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
+ajacacacacajajajajajdMajajdHajajacajajdHajajajajajacajajajajajajajajacdMajajajajamajdHamamajcJdFcJcJamajdHajajamdLcJdMajamamamacacacefeedZdZeacJdKebdOdOdOdOdOdOdOdOdRdKcJcJcJcJcJcJcJdFcJcJcJcJcJdGcJcJ
+ajdHajacajdMajajajdHajajajajajajajajajajajajajajajajdLajajajdHajacacacajajamamamamamamamamamajajamajamajamajamajajamajamamdLamajacacacegdZdZdWajdKdOdOdOdOdOdOdOdOdOdOdKcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
+ajajajajajajdLajajajajajajajajdLajajajajajajajajajajajajajajajajajacajamajajdLajamajamajamamajamamajamajdLajajamacajamajamamajajacacacacecdWdWahdKdKdYdYdKdKdKdKdYdYdKdKcJcJcJdGcJcJcJcJcJcJcJcJcJdkcJcJ
+ehehajdLajajajajajajamamajajajajajajajajajacajajajajajajajajajajajajdLajamamajdHajamajamajajamajajacajamajamajacacamamamajajajajajajacdMajajajajajajcJcJcJcJcJcJcJcJcJcJcJcJdkcJcJcJcJcJdFcJcJcJdkdkcJcJ
+eiehajajajehajajdCamamamamacajamajdLamamajajdHajajdLajajajajajajajajamamamamajamajamajajajamajajajajajdLajajajajdMajajamamamajamajdHajajajajajajajajcJcJdFcJcJcJcJdEcJcJcJdkdkcJcJcJdEcJdkcJcJcJcJdkcJcJ
+eiehajajehehehajgsamamamamamamamamamamamamajajajajajajajajajajamajdHajamamajamajajajdLajajajajajajajajajajajdHajajajajajamajdLamajajamajajajdLajcJdHajajcJcJcJcJcJcJamamdkdkcJcJcJcJcJdkdkcJcJcJcJdkcJcJ
+eiehehehehehehehehejekehehajcJcJamamajamdLcJdCajajajcJcJajdMajajamajamamajamajajacajajajajajajajajajajajajajajajajajdLamamamajajamamajamamamamajamajajdCamcJdGcJcJamamcJamcJcJcJcJaicJcJdkcJcJcJcJdFcJcJ
+eieieieieleieieiejejejeiehehehehajajajdHamamajamdHajajajamajamajajajamamajamajdHajajajajajdLajajajdHajajajajajajajajajajamamamamamamdLajamajdHamamdHamajajamamcJamcJdFcJcJamcJaigxcJcJcJcJcJdGcJcJcJcJcJ
+eieieiejejemeieiejejejejejeieiehehehehajajamamamamajamajacacajajamamamajdHajajajajdHajajajajajajajajajajajdLajajajajajajdHajajajdMajajamamamamajdCajajdLamajcJamdkamcJdBdBdBdBcJaiaidBdBdBeieieieieieiei
+eieigyejejeneieieoeoepejejejeieieieiehehamajajdLamamdHamajacacamamajajajajajdLajajajajajajajajacacajajajajajajajajajajdMeqajajajajajajeqacacajamamajeqajajdHajdDdkdkcJehehehehejejejeieieieieieieieieiei
+eierejejejejeieieiejejesejejejejeteieiehehehajajajamajajdLamdHamajajajajajajajcJajajajajajajdMacacdHajajajajajdHajacajajajajajajajajajacacacajdMajajajajajajajcJcJeuehehevevejejejeweieieieieieieieieiei
+eierejejejejejexeyejejejejejezejejejeieiehehdDajamamajamajamajajehehehehehajajehehdMajajajdHajajajajajajajajajajajacacacajajdLajajajdHajacacajajcJdHdDajajajdLajdEeheheievevejejejeveveveveveveieieieiei
+eierejejejejejgzeAejejejejgzeieieieBeiehehajajdHajamamamajajajajehehehehehehehehehajdLehehajajajajajajdLeqajajajajajacacajeCajajajajajajajajajajajajdLajajdHeheheheheieievejejejeveveveveveveveieieieiei
+eieiejejejetejejejejejejejeieieheheDehehdLajajajajajajehdLehajeheheieieieieieieiehehehehehehehehehehehehehajajajajajajajajajajajajajajajajajdLajajajcJajajeEeEetevevevevevejejgzeveveveveveveveieieieiei
+eieieieieieieBeieieigAgBeieieieheFeFeFdCajajajajamajeheheheheheheieieieieieieieieieieieieieieieieieieieieheGajeCajajdHajajdLajajajajajajajeCajajajajdCajajeEejejevevevevevejejeveveveveveveveveieieieiei
+eieieieieieheAeheheheheieieiehehcJdLajajajajamamdLameheheheheheheieieieieieieieieieieieieieieieieieieieieiehcJcJajajajajajajeCajacajajajajdHajajcJajajajdLeHejejejevevgCevejejeveveveveveveveveieieieiei
+eheheieheheheFeIeIeFeheheheiehdCajajajajajajdMamajajajajeheheheheieieieieieieieieieieieieieieieieieieieieiehehajajajajajajajacacacajajajajdkdkcJajcJcJajajeEejejejejejejejejejeveveveveveveveveieieieiei
+ehehehehajdCajajajajajajehehehajdHajajajacajamamamajajajeheheheheieieieieieieieieieieieieieieieieieieieieieiehehajajajajajajajajajajajajdkajajajajcJajeCeheEevevevewejejejejejeveveveveveveveveieieieiei
+ajajajajajajajajajajajajehehajajajajajajajamamamajamajajaceheheheieieieieieieieieieieieieieieieieieieieieJehehehajeCajajdLajajeCajajajajajajajdHajajajdHehevevevevejejejevejejeveveveveveveveveieieieiei
+ajdLajajdLajajajajajajajdLehajajajajajamamamamajdHajacacaceheheheieieieieieieieieieieieieieieieieieieieiehehajajajajajajajajajajajdHajdLajajajajdCajajajehevevevevejejejevevejejejeveveveveveveieieieiei
+ajajdHajajajajajajajajajajajajajajdHajdLamamajamajajajaceheheheheieieieieieieieieieieieieieieieieiehehehehajajajdLajajajdHajajajajajajajajajajajajajajehehevevevevejejevevevevejejeveveveveveveieieieiei
+ajajajajajajajajdLajajajdHajajajajajamajamacajajajamajajeGeheheheieieieieieieieieieieieieieieieieiehehehajajdMajajajajajajajajajajajeCajajajdkajajcJajehehevevevevejejevevevevevgzejeveveveveveieieieiei
+ajajajajajajdMajajajajajajajajajajajamamamajamajdLajajajajeheheheieieieieieieieieieieieieieieieieiehehajacajajajajajajajajajeqdLajdHajajajcJajajajajdCeheievevevevejejevevevevevevejejejeveveveieieieiei
+dLajajacacajajajajajajajajajajdLajdHamamamdLajajajajajdHeheheheheieieieieieieieieieieieieieieieieiehehajajajeCajajajajajacdMajajajajajajdHajajajcJajcJeheievevejejejejejejevevevevewejeoeveveveieieieiei
+ajajdHajajajajajajajajacacdMajajajajamamdHajajdMajajajajeheheheheieieieieieieieieieieieieieieieieiehehajdLajajajdHajacacacajajajajajajajajajajdkdLdCajeheievejejejejevejejejevevevejejejejeKeveieieieiei
+ajajajajdLajajajdHajacacacajajamajajajamajamajajajajajajeheheheheieieieieieieieieieieieieieieieieiehehdHajajajajajajajacajajajajdLajajajajdDcJajajajcJehehevejejejejevevejejevevevejeLeMejeNeveieieieiei
+ajdLajajajajehehajajajacacajajajdLajamajajajacacajajajdLeheheheheieieieieieieieieieieieieieieieieiehehajajajajajajajajajdLajajeCajdHajajajajajcJajajajajehevejejevejejevejejeOePejejeQejejeleveieieieiei
+ajajdCajeRehehehehajajajamajamamamamamajamajajacacajajajeheheheheieieieieieieieieieieieieieieieiehehehajajajajajajajajajajajajajajajajajajcJeCajdHajajajehevevevevevejejejejeOeQejejePejejeneveieieieiei
+ajajajeFeFdHeheheheheSeTeTeUamamamamamgDajgEajajdHajajajeheheheheieieieieieieieieieieieieieieieiehehajajeCajajajajajajdHajajajajajajajajdLajajdkdkajajajehevevevevevejejejejeveveVejejejejeWeveieieieiei
+ajajeFeFajajajajehajajdHajcuamamdWdWdXdWdWdWeReFeFajajajeheheheheieieieieieieieieieieieieieieieiehehajajdkajajdMajajeCajajajajdLajajaceCajcJajcJajajajajehetejevevejejejejevevevemejejejejeveveieieieiei
+eReFeFajajcJajdMajajajajajamamdWdZdZdZdZdZdWajajeFeFeReheheheheheieieieieieieieieieieieieieieieiehehajdLajajajajajajajajajajajajajdHajajajajajajajajajdLeHejejewgzejejejejevevevevererereseveveieieieiei
+acajajajajajajajajajajamamamajdWdZdZgwdZgFeaajajcJajajeheieheheheieieieieieieieieieieieieieieieiehehajajajajacacajajajdLajajdHajajajajdHajdkcJajeqajcJcJeEejejejejejejeveveveveveveveveveveveveieieieiei
+ajajajajajdLacacajajajeXajamdHecedeedZdZdZeaajajajajajeheieheheheieieieieieieieieieieieieieieieiehehajajajajajacacajajajajajajajdLajajajajcJajajajdLajeheEejejevejejeveveveveveieieieieieieieieieieieiei
+ajajajajajgGacacacajajamamamamacacefeedZdZeadkajajajdLeheieheheheieieieieieieieieieieieieieieieiehehehajeCajdLajdHajajeCajajajajajeYajajajajcJcJajajajehevevevevevejeveveveveveieieieieieieieieieieieiei
+ajdHajajajajdLajdHajamajamamamamacacegdZdZdWajajajdkajeheheheheheieieieieieieieieieieieieieieieiehehehehajeqajajajajajajajajajajajajajdMajeCajajdHajajehevevevevejejeveveveveveieieieieieieieieieieieiei
+ajcJajajajajajajajajajamamamamamajacacecdWdWajajajeZeZeheheheheheieieieieieieieieieieieieieieieieieiehehajajajajajajajajajajacdMajajajajajajdHajajcJajeheEevevevejejevejejeveveieieieieieieieieieieieiei
+ajajdCajdWdWfafafadWdWdJeTfbamamajajajajajajajdkeZeZeZeZeieheheheieieieieieieieieieieieieieieieieieiehajajajajajajajdHajacacacajajajajajajajajdDajajajcJeEevevevejejejejejeveveieieieieieieieieieieieiei
+cJcJajajdWgHdZdZajdZdWamamamamamamajamajdDcJajeZeZeZeZeheheheheheieieieieieieieieieieieieieieieieiehehdHajdLajajajajajajajacajajajajdLajajdLajajajajajeheEetevevejejevejejeveveieieieieieieieieieieieiei
+ajajajajfaajajajajfcdWajamamamajamajajajajajajeZeZeZeZeZaceheheheieieieieieieieieieieieieieieieieiehehajajajajacajajajajajajdLajajajajdHajeCajajajajajehejejejevejejejejgzeveveieieieieieieieieieieieiei
+ajdLajajfaajacacajfcdWamamamamamajajajajajajajeZeZeZacacaceheheheieieieieieieieieieieieieieieieieiehehajajajajajajajdLajajajajeCajajajajajajajajajdLajeHejejejejejejejejeveveveieieieieieieieieieieieiei
+ajajdHajfaajacacajfcdWamamamajamajdHajdLajajajeZeZeZajacajeheheheieieieieieieieieieieieieieieieiehehehdHajeCajdLajajeCajajdHajajajajajajajajajdMajajajehejejevejejejejejeveveveieieieieieieieieieieieiei
+ajajajajdWajajajajajdXamamamajamajajajajajaceZeZeZeZajajdLeheheheieieieieieieieieieieiehehehehehehehehajajajdHajajdMajajajajajajajdLajajacacajajajajehehevevevevejejeveveveveveieieieieieieieieieieieiei
+ajajajajdWdWfafafadWdWajamamamamajamajajajeZeZeZeZajajajajeheheheheheheheheieieieieiehehacacacehehehehajajajajajajajajajajajajajajajajdHajajajajeCajeheieieveveveveveveveveveveieieieieieieieieieieieiei
+dLajajacacajajajajajajajajajajdLajdHajajeZeZeZeZajajajdHehehehehehehehehehehehehehehehajajacacajajajdLajajajajajacacajajajdLajajdHajajajajdLajajajeheheieieieieieieieieieieieieieieieieieieieieieieieiei
+ajajdHajajajajajajajajacacdMajajajajajajeZeZeZdMajajajajehehehehehehehehdCajajajajajajeRahajdLajajajajdHajeCajajajacacajajajajajajajdLajajajajajeheheieieieieieieieieieieieieieieieieieieieieieieieieiei
+ajajajajdLajajajdHajacacacajamajamajajeZeZeZeZajajajajajajeheheheidHajajajajajdHajajajajahahahajeCajajajajajajdDdLajdHajajajeqeCajajajcJajajajajeCeheheieieieieieieieieieieieieieieieieieieieieieieieiei
+ajdLajajajajajajajajajacacajajajdLeZeZeZeZajacacajajajdLajajdHajajajajajajajajajajajajajajdHaheRajajajajajajdLajajajajajajajajajajajajajajajdHajajajeheieieieieieieieieieieieieieieieieieieieieieieieiei
+ajajdCajajajajajajajajajdLamdZdZeeeZeZeZajajdWdWdWfdajajajajajajdLajajajajajajdkajdMajajajajajajajdLajajacajajajajajajajajajajdHajajajajajajajajajajeheheieieieieieieieieieieieieieieieieieieieieieieiei
+ajajajajajdHajajajajajajajajeedZeeeZeZeZajdkdWdZgIajacgJdWajajajajdkacajajajajajajajajajajajeqajajajajdHajajajajajajdkeCajajajajajajajajeCajcJajdMajajeheheieieieieieieieieieieieieieieieieieieieieieiei
+ajajajajajajajajajajajdHajeZeeeeeeeZeZajdLajdWdZajacacajdWajajajajajajajajajajdLacacajajajdLajajdHajeRahahdHajajajamajajajajajajacacajajajajajajajajajcJeheheieieieieieieieieieieieieieieieieieieieieiei
+ajajajajajdkajdMajajajajeZeZdZdZeeajacajajajdWdZajacajajdWdHajajajajajajajajajacacacacajajajajajajajdLajahahaheRdCajamajdLajajacacajajajajajdLacacajajajajeheheheieieieieieieieieieieieieieieieieieieiei
+acajajajajajajajajajajeZeZeZeedZdZdHajajajajdWdZajacajdZdWajajajajajajdHajajajajdLajdHajajajajajajajajdkajeCajajajajamameRahdBahahaheRahajajacacacacajeCajcJeheheieieieieieieieieieieieieieieieieieieiei
+ajajajajajdLacacajajajeZeZeZdHamamajajdHajajdWdZajajajgHdWajacacajajajcJajajajajajajajajajajdHajajajajajajdMajajajamamajajajajcJajajdHahahajajdLajdHajajajcJeheheieieieieieieieieieieieieieieieieieieiei
+ajajajajajacacacacajeZeZeZeZajajdLajajajajajdWfedWfddWfedWacacajajajajajcJajajajajajajajajajajajajajajajajajajajamcJajeCajajajajeCajcJajaheRahahahahaheRcJeheheieieieieieieieieieieieieieieieieieieieiei
+ajdHajajajajdLajeZeZeZeZeZajamamamcJajajajajajajajcJajajcJajajajajajcJcJajajcJcJajajajcJcJajajajajajajajajajcJcJajajamajajajajajajajajcJcJcJcJcJcJcJcJajcJeheieieieieieieieieieieieieieieieieieieieieiei
+ajcJajajajajajeZeZeZeZeZdHajajamajajajdMajajajajajajajajajcJajajdHajcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJeuajcJamamcJcJeucJcJcJcJcJcJeucJcJdEcJdkcJeucJcJeheieieieieieieieieieieieieieieieieieieieieiei
+ajajcJajajajeZeZeZeZeZajajajamamamajajajajamajcJajajajajajajajajcJajajajajajajajajcJcJcJcJcJcJcJcJcJcJcJcJcJamamcJcJamamcJamamcJcJcJcJdCcJcJcJcJdkcJcJdFcJeheheieieieieieieieieieieieieieieieieieieieiei
+cJcJajajeZeZeZeZeZeZcJajamamamamamajamajamdkajamajajajajajajajajajcJcJcJcJcJdGcJcJcJcJcJcJcJcJcJdFcJcJcJcJcJdEamffcJcJcJcJamamcJdGcJcJcJcJcJcJcJdkdkcJcJcJcJeheieieieieieieieieieieieieieieieieieieieiei
+cJcJcJeZeZeZeZeZcJdkcJamcJamamamamamamcJajajajajajajajajajajcJcJcJcJcJcJdkcJcJcJdkcJcJcJcJcJcJcJcJcJcJcJcJdCcJamcJdCcJcJcJcJamcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJeheieieieieieieieieieieieieieieieieieieieiei
+cJcJcJeZeZeZdCcJdkamdkcJamamamamcJamcJamcJamamcJamcJcJcJcJcJcJcJcJcJcJcJdkdkcJcJdEcJcJcJcJdGcJcJcJcJdGcJcJcJcJamcJcJcJdGcJcJamcJcJcJcJcJcJdkcJcJcJcJcJcJcJcJeheheieieieieieieieieieieieieieieieieieieiei
+cJdGcJeZeZeZcJcJcJdKdKdQdKdKdKdYdYdKdKdKdKcJdCamamamamcJdFcJcJcJcJcJcJcJcJdkcJcJcJcJcJdCcJcJcJcJcJcJcJcJcJcJcJcJamdkcJcJamamcJdFcJcJcJcJcJdEcJcJcJdGcJcJdkcJcJeheieieieieieieieieieieieieieieieieieieiei
+cJeZeZeZeZcJcJcJcJdKdOdOdOdOdOdOdOdOdOdOdKcJamamdkcJamamcJcJdCcJcJdGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdkdkcJcJcJamcJcJamcJcJdEcJcJcJdCcJcJcJcJcJcJcJcJcJdkcJeheheieieieieieieieieieieieieieieieieieieiei
+eZeZeZeZeZdEcJcJcJdKebdOdRdRdRdOdOdOdOdRdKcJcJcJcJcJcJamamcJcJdkcJcJcJdkcJcJcJcJcJcJcJdkcJcJcJcJcJcJcJcJcJcJcJamcJamamcJamcJcJdkcJcJcJcJcJcJcJcJcJcJcJdkdkcJcJeheieieieieieieieieieieieieieieieieieieiei
+eZeZeZeZeZeZcJcJcJdKebdOdRdRdRdOdOdOdOdRdKcJcJcJcJcJcJamdCcJcJdkdkcJcJdEcJcJcJcJcJcJcJcJcJcJcJcJdEcJcJcJdCcJcJcJdEcJcJamamcJdkdkcJcJcJcJcJcJcJcJcJcJcJcJcJcJeheheheheieieieieieieieieieieieieieieieieiei
+eZeZeZeZeZeZdkcJcJdKebdOdOdOdOdOdOdOdOdRdKcJdCcJcJdGcJamamcJamcJdkcJcJcJcJcJdGcJdCcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJamamcJcJcJcJcJdCcJcJcJcJcJcJcJcJcJcJcJcJdCcJcJeheheheheheheieieieieieieieieieieieieiei
+cJcJcJcJeZeZdkdkcJdKdOdOdOdOdOdOdOdOdOdOdKcJdCcJcJcJcJcJamcJdEcJcJamcJcJcJcJcJcJcJcJdEcJcJdFcJcJcJcJcJcJcJcJcJcJamcJamcJdCcJcJcJcJcJcJcJcJdCcJcJcJdGcJcJcJcJcJcJcJcJdEcJcJeheieieieieieieieieieieieieiei
+cJcJdGcJeZeZdkdkcJdKdKdYdYdKdKdKdKdYdYdKdKcJcJcJcJcJamcJamamcJamamcJcJcJdkdkcJcJcJcJcJcJcJcJcJcJcJcJdCcJcJcJcJcJcJcJamcJcJcJcJdkcJcJcJcJcJcJcJdEcJcJcJdkcJcJcJcJcJcJcJcJcJeheheieieieieieieieieieieieiei
+cJcJcJcJeZeZeZeZcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJamamamcJamcJcJcJcJdkdkcJcJcJcJcJcJcJdCcJcJcJcJcJcJcJcJdFcJamcJdkamcJcJdkcJcJdGcJcJcJcJcJcJcJcJcJcJcJcJdGcJcJcJcJcJcJeheheieieieieieieieieieieiei
+cJcJcJcJeZeZeZeZdGcJcJcJcJcJcJcJcJdGcJcJcJcJcJdEcJcJcJdCcJcJcJamamdGcJdCamcJcJcJamcJamcJcJcJcJcJcJdkcJcJcJcJcJcJcJcJcJdCcJcJcJcJcJcJdkdkcJcJcJcJcJcJcJcJcJcJdkdkdkcJcJcJcJcJeheheheheieieieieieieieieiei
+cJdFcJcJcJeZeZeZeZeZcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJamcJcJcJamcJamcJcJcJcJcJcJcJcJcJdkcJcJcJdkcJcJdGcJcJdCcJamcJcJcJcJcJcJcJcJcJcJcJdFcJcJcJcJcJcJcJcJcJcJcJcJcJdGcJcJcJcJcJeheheieieieieieieieiei
+cJcJcJcJcJcJdCeZeZeZdCdGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJamdkdkcJcJamcJamcJamcJamcJamcJdCcJamcJcJcJamdkdkcJcJcJamdkcJcJcJcJcJcJcJdCcJcJcJcJcJcJcJcJcJcJcJcJdEcJcJcJcJcJcJcJcJdAcJeheheheieieieieieiei
+cJcJdEcJcJcJcJcJeZeZeZeZeZcJcJcJcJcJcJcJcJdFcJcJcJdCcJcJcJcJamcJdkdkcJcJcJcJamcJamcJamamcJamamamamcJamcJcJcJcJcJamamdkcJcJdGcJcJcJcJcJcJcJcJcJcJcJcJdGcJcJcJcJdkdkcJcJdAcJdFcJcJcJdkcJcJeheheheieieieiei
+cJcJcJcJcJcJcJcJeZeZeZeZeZeZeZcJcJcJcJdkdkcJcJcJcJcJcJcJcJcJcJcJcJcJamdFcJcJcJamcJcJamcJdkcJamcJcJcJamamcJcJamcJcJcJcJcJcJcJcJcJcJcJcJcJcJamcJdEcJcJcJcJcJdCcJdkcJcJamcJcJcJdEcJcJdkdkcJcJeheheheieieiei
+cJcJcJcJcJcJcJcJeZeZeZeZeZeZeZcJcJcJdkdkcJcJcJcJdkcJcJcJcJcJcJamdCcJcJcJcJcJcJcJdkcJcJcJdkcJcJdGcJcJcJamamcJcJcJcJcJdEcJcJcJcJcJcJcJdEcJcJcJcJcJcJcJdkcJcJcJcJcJcJcJcJcJcJcJcJcJdBdBdBdAcJdEeheheheieiei
+cJcJcJcJcJcJcJdCcJdEdGcJeZeZeZcJcJcJcJcJcJcJcJcJdkcJcJdGcJamcJcJcJcJcJcJcJcJcJdkdkcJcJcJcJcJcJcJcJamcJcJamamamcJcJcJcJcJcJdkdkcJcJcJcJamamcJamcJcJdkdkcJcJcJamcJcJdFcJcJcJdAdBdBdBacacacdCcJcJcJeheheiei
+amamcJamamcJamcJcJcJdZdZdZdZdZdZfgamamcJamcJamcJcJcJcJcJamcJamcJcJcJcJcJcJdEcJcJcJcJcJcJdEcJcJcJcJcJcJcJcJcJamamcJcJcJcJcJcJdkcJdCcJcJcJcJcJamamcJdkcJcJamdEcJcJcJcJcJamcJacacacacaccJfhdrdxdrdJdJeheheh
+cJamcJcJcJamamamamamdZdZdZdZdZdZamcJcJamamamamcJdEamamamcJamamamdEcJcJcJcJcJcJcJcJcJdCcJcJcJcJdkdkcJcJcJamcJcJcJamcJcJcJcJamdkcJcJcJamcJcJcJcJamcJamamcJcJcJcJcJcJcJdkdkdkcJcJdCgKcJamamcJamcJfuamfifjeh
+cJdCdGcJamamcJcJamcJdZdZdZdZdZdZamcJcJamamdkamamamcJcJdkdkamcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdkdCdCcJcJcJcJcJamamamamcJcJcJcJcJamamcJdGcJcJcJcJcJcJcJcJcJcJdCcJamamcJamcJamamdAcJcJamcJcJdkamamcJcJcJ
+amdCamamamcJdkdkcJdFcJeZeZeZdkdkcJdGcJcJcJdkdkcJcJcJamcJdkdCdCamcJcJcJcJcJcJcJcJdkcJcJdkcJcJcJcJdkcJcJcJcJcJcJcJcJcJamamcJamamcJcJamcJcJdkcJdBdAcJamcJcJcJcJamcJcJcJcJdEcJcJcJamcJamcJfhcJamamdkamfkfkam
+cJcJcJcJcJcJdkcJcJcJcJcJeZeZeZdkdkcJcJcJcJcJdkdkcJcJcJamdkcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdGcJcJamcJcJcJamcJcJcJcJcJamcJdBdBaccJcJcJcJcJcJcJcJcJamcJcJamcJcJamcJcJflfmfnamamfnamamfnam
+cJcJcJcJcJcJcJcJcJcJcJcJcJeZeZeZdkcJcJcJcJcJcJcJcJcJcJamcJcJamamcJcJdGcJcJcJehehcJcJcJcJehcJcJehehcJcJehcJehehcJcJcJcJdEcJcJcJcJcJcJcJdBdBdBacacamcJcJcJcJcJcJcJcJcJcJdAacamcJamamamfldNfoamamfnamamfnam
+cJdGcJcJdEcJcJcJcJcJdGcJdGcJeZeZcJcJcJcJcJcJcJcJcJcJcJcJdFcJamcJcJcJcJcJcJeheiehehehehehehehehehehehehehehehehehcJcJcJcJcJcJcJcJcJcJdAdBacacaccJamcJcJcJamamcJcJcJdBdBdBacamcJamcJcJflfmfnamamfnamamfnam
+cJcJcJcJcJcJcJcJdCcJcJcJcJcJcJeZeZcJcJcJcJcJdFcJcJdEcJamamamehehcJcJeheheheheieieieieieieieieheheieheheheheiehehehehehcJcJcJcJdGcJcJacacaccJcJcJcJcJcJcJcJcJcJdAdBdBacacacdkcJcJcJcJfpfmfoamamamamamfnam
+cJcJcJcJcJcJdkcJcJdCcJcJcJcJcJeZeZeZeZcJcJcJcJcJcJcJcJameoeoeheheheheheieieieieieieieieieieieieieieieieieieieieieiehehehehehehcJcJcJcJcJcJcJdFcJcJdkdkamcJdEgLacacacaccJdkcJcJamcJcJflfqdVfhamamamfrclcl
+cJcJcJcJcJcJdkdkcJcJcJcJcJdFcJeZeZeZeZdGcJdCcJcJcJcJcJejejejeveieieieieieieieieieieieieieieieieieieieieieieieieieieieieieieiehehehcJdAdBdBdEcJcJcJdkdkcJcJcJamcJamamcJcJcJamcJcJcJamamamdkdkamamamamamam
+cJcJdGcJcJcJdkdkcJcJcJcJcJcJcJcJcJeZeZeZcJcJcJcJcJehehevejejeveveveveveveveveveveveveveveveieieieieieieieieieieieieieieieieieieiehehehcJdBdBdAdCcJamcJamcJamcJcJcJamcJamdCamamamcJamamamamcJamamamamamam
+cJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdCeZeZeZcJcJcJcJeheheieiejejejejeveveveveveveveveveveveveveieieieieieieieieieieieieieieieieieieieieiehehcJcJdBdBdBfsamamamfsdBdBdBdBfsamamamcJfscJcJamamamcJamamamamamam
+cJcJdCcJcJcJcJcJdGcJcJcJcJcJcJcJcJeZeZeZcJcJcJeheheieieievejejejeveveveveveveveveveveveveveieieieieieieieieieieieieieieieieieieieieieiehehehdrdJfbdrcJamcJdrdJfbdJdrdxcJcJamcJdrfbftdrdrcJcJcJamamamamam
+cJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJeZeZeZdCcJcJeheieieieievevejejejeveveveveveveveveveveveveieieieieieieieieieieieieieieieieieieieieieieiehehfvgMcJamamamamcJamcJamcJamamamcJamcJamamamamgNamcJamamamamam
+cJcJcJcJcJcJdCcJcJcJdCdGcJcJcJcJcJeZeZeZcJcJcJeheieieieievevevejejeveveveveveveveveveveveveieieieieieieieieieieieieieieieieieieieieieiehehfwcJamcJcJcJamcJcJfxfxfxamamcJcJamamcJcJcJfIfYcJdkamamamamamam
+cJcJdEcJcJcJcJcJdEcJdCcJcJcJcJdkdkeZeZeZdEcJeheheieieieievevevejejejeveveveveveveveveveveveieieieieieieieieieieieieieieieieieieieieiehehfyfzcJcJcJamamcJcJamcJcJcJamghamamamamamcJamdkcJdkdkcJamamamamam
+cJcJcJcJcJcJcJcJcJcJcJcJcJcJcJdkcJeZeZeZcJeheheieieieieievevevevejejejejeveveveveveveveveveieieieieieieieieieieieieieieieieieiehehehcJfAcJcJfBcJamfCfCamamcJcJamcJamamamamamamamamdkdkcJamcJamamgOamamam
+cJcJcJcJcJcJcJcJcJcJcJcJcJcJcJeZeZeZeheheheheieieieieieievevevevevejejejejeveveveveveveveveieieieieieieieieieieieieieieieieiehehehdkcJgPamamamamamfEfEamfFfGamfHgkfJamamamamamamamamamanfKfKcJamamamamam
+dCcJcJcJcJdFcJdCcJdEdGcJcJcJcJeZeZeZeheheheieieieieieieievevevevevevevejejejejeveveveveveveieieieieieieieieieieieieieieieiehehgQcJcJcJcJamamamgMamfEfEamfLfMamfNgkfJamamamamamdkamamamanananamamamamamam
+cJcJcJcJcJcJcJcJcJcJcJcJcJeZeZeZeZeheheheieieieieieieieievevevevevevevevejejejejejejeveveveveveveveveveveveveveveveieieiehehfOamfsamcJcJcJfBcJfNamfPfPamfLfMamfHgkfQdkamamamamamamamamanananamamamamamam
+cJcJcJcJcJcJcJcJcJcJcJcJeZeZeZeZeZeheieieieieieieieieieievevevevevevevevevejejejejejejejeveveveveveveveveveveveveveieiehehfRcJcJcJcJamcJamfScJcJamamamamamamamamamamamamamamamcJamcJcJamamamamcJamamcJam
+cJdCdGcJcJcJcJcJcJcJcJeZeZeZeZeheheheieieieieieieieieieievevevevevevevevevevevevejejejejejeveveveveveveveveveveveveieiehfTcJcJamdkdkdkcJcJfSfScJcJamfUamamfVfWamamamamamamamamcJamfJcJamamfJamamamamamam
+cJdCcJcJcJcJdkdkcJcJeZeZeZeheheheieieieieieieieieieieieievevevevevevevevevevevevevevejejejejejeveveveveveveveveveveiehehfXcJamamamamcJamcJcJfScJamamfUamamfVfWamamamamamamamamamamamfJglamamamamamamamam
+cJcJcJcJcJcJdkcJcJcJeZeZeheheheieieieieieieieieieieieieievevevevevevevevevevevevevevevevejejejejejejejejejejejejejeiehcJcJamcJgRamamamamamamfBcJdkamfUamamfVfWamamamgmamamgnamamgSamamamamamamamamamcJam
+cJcJcJcJcJcJcJcJcJcJeZeZeheieieieieieieieieieieieieieieievevevevevevevevevevevevevevevevevevejejejejejejejejejejejejehfZfZcJcJcJamfbdJgaamamamamamamfUamamgbamamdkamgpamamgqamcJgTcJcJamamamamamamamamcJ
+cJdGcJcJcJcJcJcJeZeZeZeZeheieieieieieieieieieieieieieieieieieieieieieieieieieieievevevevevevevevevevevevevevevevejejamamcJamcJgcgdgegfggamamamamamamfUamamgbcJamdkcJgUamamgtcJamgVamdkamamcJcJamamamamam
+cJcJcJdFcJcJeZeZeZeZeZeZeheieieieieieieieieieieieieieieieieieieieieieieieieieieieveveveveveveveveveveveveveveveveEehamamdkcJcJgigcgfgfggamamamamamamgjamamgbamcJdkamguamcJgWamamgXcJdkamamamamamamamcJam
+cJcJcJcJcJeZeZeZeZeZeheheheieieieieieieieieieieieieieieieieieieieieieieieieieieieieieieieieieieieieieieieieieieiehfTcJcJdkamcJcJcJcJamggamfBamamcJcJcJcJcJcJcJamcJcJcJcJcJcJamamcJcJcJamamcJcJamcJamamam
+"}

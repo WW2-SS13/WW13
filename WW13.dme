@@ -332,6 +332,7 @@
 #include "code\game\objects\map_metadata\occupation.dm"
 #include "code\game\objects\map_metadata\omaha.dm"
 #include "code\game\objects\map_metadata\partisan.dm"
+#include "code\game\objects\map_metadata\peleliu.dm"
 #include "code\game\objects\map_metadata\reichstag.dm"
 #include "code\game\objects\map_metadata\river_kwai.dm"
 #include "code\game\objects\map_metadata\saipan.dm"
@@ -962,5 +963,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\island\island.dmm"
+#include "maps\peleliu.dmm"
 // END_INCLUDE
