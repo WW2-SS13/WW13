@@ -383,7 +383,7 @@ OTHER
 	caliber = "a762x25"
 	max_ammo = 71
 	multiple_sprites = TRUE
-	weight = 20
+	weight = 2
 
 /obj/item/ammo_magazine/a556/empty
 	initial_ammo = FALSE
