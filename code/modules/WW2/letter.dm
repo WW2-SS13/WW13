@@ -140,6 +140,7 @@ var/list/obj/effect/landmark/recieve/drop_points = list()
 		else
 			usr << "<span class='notice'>[usr.y - recieve_landmark.y] tiles south.</span>"
 
+		usr << "<span class='notice'> You memorize the drop location. </span>"
 		usr.mind.store_memory("<b>Drop location</b>: \"[recieve_landmark.x]\", \"[recieve_landmark.y]\"")
 	else
 		recieve_landmark = safepick(drop_points)

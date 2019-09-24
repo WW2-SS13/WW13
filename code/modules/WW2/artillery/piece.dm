@@ -624,6 +624,8 @@
 							new/obj/effect/effect/smoke/chem/payload/white_phosphorus_gas(t)
 						if ("xylyl_bromide")
 							new/obj/effect/effect/smoke/chem/payload/xylyl_bromide(t)
+						if ("flare")
+							new/obj/effect/effect/smoke/illumination/ww2(t)
 
 /obj/structure/artillery/tube/proc/use_slot()
 

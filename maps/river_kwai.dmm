@@ -450,7 +450,7 @@
 "iH" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/turf/floor/plating/dirt,/area/prishtina/soviet/small_map{capturable = 0; name = "Outside Soviet Area"})
 "iI" = (/turf/floor/plating/dirt,/area/prishtina/soviet/small_map{capturable = 0; name = "Outside Soviet Area"})
 "iJ" = (/obj/structure/simple_door/key_door/japan{name = "Guard's Barracks"},/turf/floor/wood,/area/prishtina/german/resting_area_1{base_turf = /turf/floor/dirt; capturable = 0})
-"iK" = (/obj/structure/barbwire{dir = 4; icon_state = "barbwire"; pixel_y = 0; tag = "icon-barbwire (EAST)"},/obj/structure/anti_tank,/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
+"iK" = (/turf/wall/wood,/area/prishtina/no_mans_land/invisible_wall)
 "iL" = (/obj/structure/table/marble,/obj/item/weapon/material/kitchen/rollingpin,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
 "iM" = (/obj/structure/table/marble,/obj/item/clothing/suit/chef,/obj/item/weapon/book/manual/chef_recipes,/obj/item/clothing/head/chefhat,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
 "iN" = (/obj/structure/oven,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
@@ -464,11 +464,11 @@
 "iV" = (/obj/structure/underground{alpha = 135; density = 0; desc = "Rocks. Break them. Such is life."; icon_state = "rock_Archaeo"; name = "Rocks"},/turf/floor/dirt,/area/prishtina/soviet/small_map{capturable = 0; name = "Outside Soviet Area"})
 "iW" = (/obj/item/radio/feldfu/felfu2,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/bunker{capturable = 0; location = 1; name = "Outside Guard's Area"})
 "iX" = (/obj/structure/underground{alpha = 135; density = 0; desc = "Rocks. Break them. Such is life."; icon_state = "rock_Archaeo"; name = "Rocks"},/mob/living/simple_animal/mouse/brown,/turf/floor/plating/dirt,/area/prishtina/soviet/small_map{capturable = 0; name = "Outside Soviet Area"})
-"iY" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/barbwire{dir = 4; icon_state = "barbwire"; pixel_y = 0; tag = "icon-barbwire (EAST)"},/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
+"iY" = (/obj/structure/window_frame,/obj/structure/barricade,/obj/structure/curtain/black,/turf/floor/wood,/area/prishtina/no_mans_land/invisible_wall)
 "iZ" = (/obj/structure/light/small,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/bunker{capturable = 0; location = 1; name = "Outside Guard's Area"})
-"ja" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/structure/barbwire{dir = 4; icon_state = "barbwire"; pixel_y = 0; tag = "icon-barbwire (EAST)"},/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
+"ja" = (/turf/floor/wood,/area/prishtina/no_mans_land/invisible_wall)
 "jb" = (/obj/structure/multiz/ladder/ww2{alpha = 0; area_id = "tunnel4"; desc = "That's a wild grass."; icon = 'icons/turf/floors.dmi'; icon_state = "grass_dark"; name = "wild grass"},/turf/floor/plating/grass/wild,/area/prishtina/farm2{capturable = 0; icon_state = "red1"; name = "Forest"})
-"jc" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/barbwire{dir = 4; icon_state = "barbwire"; pixel_y = 0; tag = "icon-barbwire (EAST)"},/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
+"jc" = (/obj/structure/simple_door/key_door/japan{name = "Mines"},/turf/floor/wood_broken,/area/prishtina/soviet/small_map{capturable = 0; name = "Outside Soviet Area"})
 "jd" = (/obj/structure/light/small{dir = 4},/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
 "je" = (/turf/wall/brick,/area/prishtina/german/command{base_turf = /turf/floor/wood_broken; capturable = 0; name = "Commander's Office"})
 "jf" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/structure/wild/tallgrass,/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
@@ -634,7 +634,7 @@
 "mj" = (/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (EAST)"; icon_state = "spline_plain"; dir = 4},/obj/effect/floor_decal/spline/plain,/turf/floor/dirt,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
 "mk" = (/obj/structure/table/wood{desc = "Place the bets on left fighter here."; name = "Bets on LEFT"},/turf/floor/dirt,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
 "ml" = (/obj/structure/table/wood{desc = "Place the bets on right fighter here."; name = "Bets on RIGHT"},/turf/floor/dirt,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
-"mm" = (/obj/structure/simple_door/key_door/japan{name = "Camp"},/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
+"mm" = (/obj/structure/table/wood,/obj/item/ammo_magazine/mosinbox,/obj/item/ammo_magazine/mosinbox,/turf/floor/wood,/area/prishtina/no_mans_land/invisible_wall)
 "mn" = (/obj/item/bodybag,/obj/item/bodybag,/turf/floor/dirt,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
 "mo" = (/obj/item/weapon/paper{name = "scoresheet"},/obj/item/weapon/paper{name = "scoresheet"},/obj/item/weapon/paper{name = "scoresheet"},/obj/item/weapon/pen,/obj/structure/table/wood,/turf/floor/dirt,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
 "mp" = (/obj/item/weapon/flame/lighter,/turf/floor/dirt,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
@@ -685,27 +685,19 @@
 "ni" = (/obj/structure/wild/palm,/obj/structure/wild/tallgrass,/turf/floor/plating/grass/wild,/area/prishtina/farm1{name = "Escape Area 3"})
 "nj" = (/obj/structure/railing,/obj/structure/railing{dir = 4},/turf/floor/dirt,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; capturable = 0; name = "Underground"})
 "nk" = (/obj/structure/wild/palm,/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
-"nl" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
-"nm" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
-"nn" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/light/small,/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
-"no" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
+"nl" = (/obj/structure/table/wood,/obj/item/ammo_magazine/mosinbox,/turf/floor/wood,/area/prishtina/no_mans_land/invisible_wall)
+"nm" = (/obj/structure/table/wood,/obj/item/ammo_magazine/mosin,/obj/item/ammo_magazine/mosin,/obj/item/ammo_magazine/mosin,/obj/item/ammo_magazine/mosin,/obj/item/ammo_magazine/mosin,/obj/item/ammo_magazine/mosin,/turf/floor/wood,/area/prishtina/no_mans_land/invisible_wall)
 "np" = (/obj/effect/floor_decal/industrial/warning/dust,/turf/floor/dirt/dust,/area/prishtina/no_mans_land/invisible_wall)
 "nq" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
-"nr" = (/obj/structure/bed/chair/wood{dir = 4},/obj/structure/light/small{dir = 4},/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
-"ns" = (/obj/structure/table/iron,/obj/item/weapon/attachment/scope/adjustable/binoculars,/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
-"nt" = (/obj/structure/bed/chair/wood{dir = 8},/obj/structure/light/small{dir = 8},/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
 "nu" = (/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
 "nv" = (/obj/effect/floor_decal/industrial/warning/dust,/obj/structure/wild/palm,/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
 "nw" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/turf/floor/dirt/dust,/area/prishtina/no_mans_land/invisible_wall)
 "nx" = (/turf/floor/dirt/dust,/area/prishtina/soviet/small_map{capturable = 0; name = "Outside Soviet Area"})
 "ny" = (/obj/structure/wild/palm,/turf/floor/dirt,/area/prishtina/soviet/small_map{capturable = 0; name = "Outside Soviet Area"})
-"nz" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
 "nA" = (/turf/wall/wood,/area/prishtina/soviet/small_map{capturable = 0; name = "Outside Soviet Area"})
 "nB" = (/turf/floor/wood,/area/prishtina/soviet/small_map{capturable = 0; name = "Outside Soviet Area"})
 "nC" = (/obj/structure/wild/tallgrass2,/turf/floor/dirt/dust,/area/prishtina/soviet/small_map{capturable = 0; name = "Outside Soviet Area"})
 "nD" = (/obj/structure/window/sandbag,/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
-"nE" = (/obj/structure/window/sandbag,/obj/structure/light/small{icon_state = "bulb1"; dir = 1},/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
-"nF" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/obj/structure/window/sandbag,/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
 "nG" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/barricade/steel,/turf/floor/wood,/area/prishtina/soviet/small_map{capturable = 0; name = "Outside Soviet Area"})
 "nH" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (EAST)"; icon_state = "spline_fancy"; dir = 4},/obj/structure/safe{name = "money safe"},/obj/item/stack/money{amount = 500},/turf/floor/carpet,/area/prishtina/german/command{base_turf = /turf/floor/wood_broken; capturable = 0; name = "Commander's Office"})
 "nI" = (/obj/structure/closet/crate/gauze,/turf/floor/wood,/area/prishtina/soviet/small_map{capturable = 0; name = "Outside Soviet Area"})
@@ -837,11 +829,11 @@ abababacacabababacaiababaGaiabbbbebbbsdYfhgifAgjfhdYbHbHfFgkfOfFfQfQglfQfQglfTfT
 ababababababababaiababacalalabbbbebbbsdYfhfDfAgwfhdYbHbHfFgxgyfFgzgAglgBgBgBgBgBglgCgCfFbHbHdYbbbebbkzkEnuaynyecfJgDgbgbfYfYgFjWgbgbgHfJecazfLgIgcgdgKgLgJgJgdgggMfLazaCnunubbbobxbiaDkyabababalalabababababaiaiababababawabababaiabaialalababababababacac
 aiaiababababababababababalababbbbebbbsdYfhfDfAgwfhdYbHbHfFglgyfFgOglgPgQjZkhgTkjkUglgWfFbHbHdYbbbebbkznRnuayeYazfJfJfJfJfJgXgXfJfJfJfJfJazazfLfLfLfLfLgqgqfLfLfLfLfLaznOnunubbbbbxbiaDkyabaiaiabacaiabababababaiabababaiaiabababaiabaiabababababaiabaiabab
 ababaiaiababacabaiabalalabababbbbebbbsdYfhgYfAfAjgbHbHbHfFgZfFfFfFkVfFfGfFfFfGfFfFkVfFfFbHbHiGaDaDaDfdfrfrfrfCiHazazazazazazazazazazazazkWazaznxazazazazazazazazazazcknOnunubbbobxbiaDkyabaiababababababababababacacababababababababaiabababacabababaiabab
-ababababacababababababacabaiabbbbebbbsdYfhhdhefAfhiqbHbHbHbHbHbHbHbHdGbHbHbHbHbHbHbHdGbHbHbHbHbzdLbznunununuayiHiIiInMiIiIiIioiIioazazazazcncnaziKcococococoiKazcnazazaCnunubbbbbxbiaDkyaiabababababababababababacabababababababababababacabababababaiabab
-aiababaiababaiaiabalabababababbbbebbbsdYhjhjhjkYhjdYbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbzdLbznunukEnuayiHiSiIiIiViIioioiXioaziVdNazazazaziYnlnmnnnmnojaazcnazazaCnunubbbobxbiaDkybrabababababacabababababacababababalacababaiababaiabacabababababab
-abababababaiabababababaiaiacabbbbebbbsdYhjhuhvhIhjdYbHbHhxhxhxhxhxhxlahzhxhxhzhxlahzhxhxbHbHiGaDaDaDhcavnpavhffEazazazaznyiViVnxaziVazaznxhJazaziYnqnrnsntnummazaznyazaChynubbbbbxbiaDkyalaualabawabjbababajababababababababacababababababababababababaiab
-abaiabaiacabaiababaiabababababbbbebbbsdYhjhGhHhImDbHbHbHhxhKhLhxhMhNhOhPhNhOhPhNhOhPhNhxbHbHdYbbbebbkzkDnuayhlazazazetazazazazazazazazaziIazazaziYnznDnEnDnFjaazazazazaCnukDbbbbbxbiaDkyalababaiababababababababababaiaiaialababababababababababababababab
-abababababababacabaiabacabaiabbbbebbbsdYhjhQhHhRhjiqbHbHhxhShThxhUhVhWhXhVhWhYhVhWhXhZhxbHbHdYbbbebbkzkEnuayazechihihihihihihihihihihihiecaznxaziKjcjcjcjcjciKazazcnazaCnujdaDaDaDjVaDkyabalalaiabababababababababababababalababababababalawauabaiaiababab
+ababababacababababababacabaiabbbbebbbsdYfhhdhefAfhiqbHbHbHbHbHbHbHbHdGbHbHbHbHbHbHbHdGbHbHbHbHbzdLbznunununuayiHiIiInMiIiIiIioiIioazazazazcncnnAiKiKiYiYiKiKiKnAcnazazaCnunubbbbbxbiaDkyaiabababababababababababacabababababababababababacabababababaiabab
+aiababaiababaiaiabalabababababbbbebbbsdYhjhjhjkYhjdYbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbHbzdLbznunukEnuayiHiSiIiIiViIioioiXioaziVdNazazaznAjajajajajajajanAcnazazaCnunubbbobxbiaDkybrabababababacabababababacababababalacababaiababaiabacabababababab
+abababababaiabababababaiaiacabbbbebbbsdYhjhuhvhIhjdYbHbHhxhxhxhxhxhxlahzhxhxhzhxlahzhxhxbHbHiGaDaDaDhcavnpavhffEazazazaznyiViVnxaziVazaznxhJazjcjammmmmmmmnlnmnAaznyazaChynubbbbbxbiaDkyalaualabawabjbababajababababababababacababababababababababababaiab
+abaiabaiacabaiababaiabababababbbbebbbsdYhjhGhHhImDbHbHbHhxhKhLhxhMhNhOhPhNhOhPhNhOhPhNhxbHbHdYbbbebbkzkDnuayhlazazazetazazazazazazazazaziIazaznAjajajajajajajanAazazazaCnukDbbbbbxbiaDkyalababaiababababababababababaiaiaialababababababababababababababab
+abababababababacabaiabacabaiabbbbebbbsdYhjhQhHhRhjiqbHbHhxhShThxhUhVhWhXhVhWhYhVhWhXhZhxbHbHdYbbbebbkzkEnuayazechihihihihihihihihihihihiecaznxnAiKiKiYiYiKiKiKnAazcnazaCnujdaDaDaDjVaDkyabalalaiabababababababababababababalababababababalawauabaiaiababab
 abacabababaiabababababaiabababbbbebbbsdYhjhQhHhIhjdYbHbHhxicidhxiehWhWhWhWhWhWhWhWhWifhxbHbHdYbbbebbkznknuayazazhphqhrhqhqhqhqhshrhrhthiazazazazazazazazazazazazazazazaCnunubzdLbzbiaDkyababalababacababababababaiaiabababalalabaiababaiababauacababababab
 ababababababababababababalaiabbbbebbbsdYhjirhIhIisdYbHbHhxitiuhxiviwiwixiymFiAiBiwiwiDhxbHbHdYbbbebbnZnunuayazazhpghgmgmgngmgpgrghgrhthiaznyjxjFjFjFjFjFjFjFjFjFjUazmGmHnunubzdLbzbiaDkyacabababalabaiabababababaiabacacababalalabababababababacababababac
 abababababaiabababaiabaiauababbbbebbbsdYhjiLiMiNhjdYbHbHhxiOhxhxhxmMhxhzhxhxhzhxhxmMhxhxbHbHdYbbbebbnZnunuayazazhpfkflflfmflflflflflflhiazazmNkikikikikikikikikikuazazaCnujdaDaDaDjVaDkyabacababalalalabababalalabababacababaialababacababababalababababab
