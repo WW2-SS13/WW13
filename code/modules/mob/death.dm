@@ -104,6 +104,7 @@
 
 	dizziness = FALSE
 	jitteriness = FALSE
+	canmove = 1
 
 	layer = MOB_LAYER
 

@@ -150,6 +150,11 @@
 
 	..()
 
+	if (grab_list.len)
+		if (grab_list[1] == null)
+			grab_list = list()
+	..()
+
 	// recover stamina
 	stats["stamina"][1] = min(stats["stamina"][1] + round(stats["stamina"][2] * 0.02), stats["stamina"][2])
 
