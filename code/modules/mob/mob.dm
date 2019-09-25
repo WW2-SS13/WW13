@@ -758,24 +758,14 @@
 /mob/proc/update_canmove()
 
 	var/noose = FALSE
-	var/gallows = FALSE
 	for (var/obj/structure/noose/N in get_turf(src))
 		if (N.hanging == src)
 			lying = FALSE
 			canmove = FALSE
 			anchored = TRUE
 			noose = TRUE
-			prone = FALSE
-			update_icons()
-	for (var/obj/structure/gallows/G in get_turf(src))
-		if (G.hanging == src)
-			lying = FALSE
-			canmove = FALSE
-			anchored = TRUE
-			gallows = TRUE
-			prone = FALSE
-			update_icons()
-	if (!noose && !gallows)
+
+	if (!noose)
 		if (buckled)
 			anchored = TRUE
 			canmove = FALSE
@@ -798,10 +788,9 @@
 		else
 			lying = FALSE
 			canmove = TRUE
-			anchored = FALSE
-	if (lying || prone)
+
+	if (lying)
 		density = FALSE
-		anchored = FALSE
 	//	if (l_hand) unEquip(l_hand)
 	//	if (r_hand) unEquip(r_hand)
 	else
