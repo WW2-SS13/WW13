@@ -814,6 +814,7 @@ var/first_guard = FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/ppsh(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/cn42(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/weapon/material/hatchet/tacknife(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>, an elite infantry soldier. Your job is assist normal <b>Soldat</b>i in front line combat.")
 	H.give_radio()
 

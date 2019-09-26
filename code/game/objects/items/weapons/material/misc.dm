@@ -35,6 +35,7 @@
 	desc = "You'd be killing loads of people if this was Medal of Valor: Heroes of Space."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "tacknife"
+	force_divisor = 0.5
 	item_state = "knife"
 	attack_verb = list("stabbed", "chopped", "cut")
 	applies_material_colour = TRUE

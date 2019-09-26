@@ -42,33 +42,33 @@
 		// medium body parts: limbs
 		"medium" = list(
 			SHORT_RANGE_STILL = 100,
-			SHORT_RANGE_MOVING = 50,
+			SHORT_RANGE_MOVING = 52,
 
-			MEDIUM_RANGE_STILL = 50,
-			MEDIUM_RANGE_MOVING = 25,
+			MEDIUM_RANGE_STILL = 52,
+			MEDIUM_RANGE_MOVING = 27,
 
-			LONG_RANGE_STILL = 25,
-			LONG_RANGE_MOVING = 12,
+			LONG_RANGE_STILL = 27,
+			LONG_RANGE_MOVING = 14,
 
-			VERY_LONG_RANGE_STILL = 12,
-			VERY_LONG_RANGE_MOVING = 6),
+			VERY_LONG_RANGE_STILL = 14,
+			VERY_LONG_RANGE_MOVING = 8),
 
 		// large body parts: chest, groin
 		"large" = list(
 			SHORT_RANGE_STILL = 100,
-			SHORT_RANGE_MOVING = 50,
+			SHORT_RANGE_MOVING = 52,
 
-			MEDIUM_RANGE_STILL = 50,
-			MEDIUM_RANGE_MOVING = 25,
+			MEDIUM_RANGE_STILL = 52,
+			MEDIUM_RANGE_MOVING = 27,
 
-			LONG_RANGE_STILL = 25,
-			LONG_RANGE_MOVING = 12,
+			LONG_RANGE_STILL = 27,
+			LONG_RANGE_MOVING = 14,
 
-			VERY_LONG_RANGE_STILL = 12,
-			VERY_LONG_RANGE_MOVING = 6)
+			VERY_LONG_RANGE_STILL = 14,
+			VERY_LONG_RANGE_MOVING = 8)
 	)
 
-	var/accuracy_increase_mod = 1.00
+	var/accuracy_increase_mod = 1.50
 	var/accuracy_decrease_mod = 1.00
 	var/effectiveness_mod = 1.00
 	var/KD_chance = 5
