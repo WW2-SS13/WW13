@@ -10,7 +10,7 @@
 	if (locate(src) in get_step(user, user.dir))
 		if (WWinput(user, "Dismantle this dirt wall?", "Dismantle dirt wall", "Yes", list("Yes", "No")) == "Yes")
 			visible_message("<span class='danger'>[user] starts dismantling the dirt wall.</span>", "<span class='danger'>You start dismantling the dirt wall.</span>")
-			if (do_after(user, 200, src))
+			if (do_after(user, 50, src))
 				visible_message("<span class='danger'>[user] finishes dismantling the dirt wall.</span>", "<span class='danger'>You finish dismantling the dirt wall.</span>")
 				var/turf = get_turf(src)
 				/* it takes 6 dirt_walls to make a full dirt_wall.

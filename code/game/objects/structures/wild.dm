@@ -158,10 +158,12 @@
 
 /obj/structure/wild/bush/tame
 	name = "cultivated bush"
+	health = 25
 
 /obj/structure/wild/bush/tame/big
 	name = "large cultivated bush"
 	icon_state = "big_bush"
+	health = 25
 
 /obj/structure/wild/burnedbush
 	name = "burned bush"
@@ -187,6 +189,7 @@
 	name = "jungle vegetation"
 	icon = 'icons/obj/flora/jungleflora.dmi'
 	icon_state = "1"
+	health = 25
 	opacity = FALSE
 	density = FALSE
 	var/healthamount = 1

@@ -72,7 +72,6 @@
 /obj/item/weapon/material/knife/ritual
 	name = "ritual knife"
 	desc = "The unearthly energies that once powered this blade are now dormant."
-	icon = 'icons/obj/wizard.dmi'
 	icon_state = "render"
 	applies_material_colour = FALSE
 	drawsound = 'sound/items/unholster_knife.ogg'

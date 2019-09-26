@@ -1,7 +1,7 @@
 /obj/effect/decal/cleanable/crayon
 	name = "rune"
 	desc = "A rune drawn in crayon."
-	icon = 'icons/obj/rune.dmi'
+	icon = 'icons/obj/decals.dmi'
 	layer = 2.1
 	anchored = TRUE
 
