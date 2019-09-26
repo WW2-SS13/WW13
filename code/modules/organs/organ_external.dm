@@ -1165,6 +1165,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	amputation_point = "lumbar"
 	joint = "hip"
 	dislocated = -1
+	cannot_amputate = TRUE
+	//fuck groin memes
 //	gendered_icon = TRUE
 
 /obj/item/organ/external/arm

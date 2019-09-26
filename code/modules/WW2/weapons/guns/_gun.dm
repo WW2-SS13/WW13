@@ -68,7 +68,7 @@
 			VERY_LONG_RANGE_MOVING = 8)
 	)
 
-	var/accuracy_increase_mod = 1.50
+	var/accuracy_increase_mod = 1.20
 	var/accuracy_decrease_mod = 1.00
 	var/effectiveness_mod = 1.00
 	var/KD_chance = 5
