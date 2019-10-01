@@ -41,6 +41,8 @@
 	// General information
 	var/religion = ""
 
+	var/hitcount = 0
+
 	//Equipment slots
 	var/obj/item/wear_suit = null
 	var/obj/item/w_uniform = null
