@@ -585,7 +585,6 @@
 #include "code\modules\mob\living\carbon\resist.dm"
 #include "code\modules\mob\living\carbon\shock.dm"
 #include "code\modules\mob\living\carbon\taste.dm"
-#include "code\modules\mob\living\carbon\viruses.dm"
 #include "code\modules\mob\living\carbon\human\announcer.dm"
 #include "code\modules\mob\living\carbon\human\appearance.dm"
 #include "code\modules\mob\living\carbon\human\body_build.dm"
