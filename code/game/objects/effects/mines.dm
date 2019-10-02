@@ -35,7 +35,7 @@
 	domutcheck(obj,null)
 	spawn(0)
 		qdel(src)
-
+/*
 /obj/effect/mine/proc/triggerstun(obj)
 	if (ismob(obj))
 		var/mob/M = obj
@@ -99,7 +99,7 @@
 	name = "N2O Mine"
 	icon_state = "uglymine"
 	triggerproc = "triggern2o"
-
+*/
 /obj/effect/mine/stun
 	name = "Stun Mine"
 	icon_state = "uglymine"

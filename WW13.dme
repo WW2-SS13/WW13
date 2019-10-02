@@ -100,7 +100,6 @@
 #include "code\datums\getrev.dm"
 #include "code\datums\hud.dm"
 #include "code\datums\mind.dm"
-#include "code\datums\organs.dm"
 #include "code\datums\progressbar.dm"
 #include "code\datums\reinforcements.dm"
 #include "code\datums\vote.dm"
