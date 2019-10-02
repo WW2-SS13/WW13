@@ -221,7 +221,6 @@
 #include "code\game\objects\items\clothing\masks\voice.dm"
 #include "code\game\objects\items\clothing\shoes\colour.dm"
 #include "code\game\objects\items\clothing\shoes\jobs.dm"
-#include "code\game\objects\items\clothing\shoes\magboots.dm"
 #include "code\game\objects\items\clothing\shoes\miscellaneous.dm"
 #include "code\game\objects\items\clothing\suits\labcoat.dm"
 #include "code\game\objects\items\clothing\suits\misc.dm"
