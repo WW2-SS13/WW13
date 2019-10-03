@@ -57,7 +57,7 @@
 
 	//Handle species-specific deaths.
 	species.handle_death(src)
-	world << lastattacker
+	//world << lastattacker
 
 
 	animate_tail_stop()
