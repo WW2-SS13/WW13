@@ -400,6 +400,8 @@
 			var/attacker_message = "shot with \a [type]"
 			var/victim_message = "shot with \a [type]"
 			var/admin_message = "shot (\a [type])"
+			//target_mob.lastattacker = firer (eh fuck it)
+			//prob a terrible lag causing addition but lmao -harcourt
 
 			admin_attack_log(firer, target_mob, attacker_message, victim_message, admin_message)
 		else
