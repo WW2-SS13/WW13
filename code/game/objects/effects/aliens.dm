@@ -14,7 +14,7 @@
 	var/atom/target
 	var/ticks = FALSE
 	var/target_strength = FALSE
-
+/*
 /obj/effect/acid/New(loc, supplied_target)
 	..(loc)
 	target = supplied_target
@@ -50,3 +50,4 @@
 		if (0 to TRUE)
 			visible_message("<span class='alium'>\The [target] begins to crumble under the acid!</span>")
 	spawn(rand(150, 200)) tick()
+*/

@@ -832,6 +832,9 @@
 		/obj/item/weapon/gauze_pack,
 		/obj/item/weapon/grenade,
 		/obj/item/weapon/attachment,
+		/obj/item/weapon/material/knife,
+		/obj/item/weapon/wrench,
+
 		/obj/item/weapon/gun/projectile/pistol,
 		/obj/item/weapon/gun/projectile/revolver,
 		/obj/item/weapon/melee/classic_baton,

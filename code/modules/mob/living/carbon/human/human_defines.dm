@@ -41,6 +41,8 @@
 	// General information
 	var/religion = ""
 
+	var/hitcount = 0
+
 	//Equipment slots
 	var/obj/item/wear_suit = null
 	var/obj/item/w_uniform = null
@@ -119,6 +121,8 @@
 
 	var/shoveling_snow = FALSE
 	var/shoveling_dirt = FALSE
+
+	var/lastshot = null
 
 	/* These are stats. They affect how fast and how well you can do certain
 	 * actions. All stats have a min (stats[stat][1]) and a max (stats[stat][2]),

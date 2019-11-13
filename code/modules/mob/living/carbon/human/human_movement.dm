@@ -116,6 +116,4 @@
 /mob/living/carbon/human/Check_Shoegrip()
 	if (species.flags & NO_SLIP)
 		return TRUE
-	if (shoes && (shoes.item_flags & NOSLIP) && istype(shoes, /obj/item/clothing/shoes/magboots))  //magboots + dense_object = no floating
-		return TRUE
 	return FALSE

@@ -42,3 +42,9 @@
 /obj/structure/sign/portrait/propaganda/ger2
 	name = "German Propaganda Poster"
 	icon_state = "ger_prop_2"
+/obj/structure/sign/portrait/propaganda/ger3
+	name = "German Propaganda Poster"
+	icon_state = "collaboration_prop"
+/obj/structure/sign/portrait/propaganda/ger4
+	name = "German Propaganda Poster"
+	icon_state = "collaboration_prop2"

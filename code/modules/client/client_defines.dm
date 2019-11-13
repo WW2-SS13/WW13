@@ -12,6 +12,10 @@
 	var/last_message_count = FALSE //contins a number of how many times a message identical to last_message was sent.
 
 		/////////
+		//EXPER//
+		/////////
+	var/experience_points_client
+		/////////
 		//OTHER//
 		/////////
 	var/datum/preferences/prefs = null
