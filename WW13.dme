@@ -471,6 +471,7 @@
 #include "code\modules\admin\verbs\mentorhelp.dm"
 #include "code\modules\admin\verbs\modifyvariables.dm"
 #include "code\modules\admin\verbs\OOC.dm"
+#include "code\modules\admin\verbs\patreon.dm"
 #include "code\modules\admin\verbs\performance.dm"
 #include "code\modules\admin\verbs\playsound.dm"
 #include "code\modules\admin\verbs\possess.dm"
@@ -786,7 +787,6 @@
 #include "code\modules\WW2\barbwire.dm"
 #include "code\modules\WW2\battlereport_variables.dm"
 #include "code\modules\WW2\book.dm"
-#include "code\modules\WW2\books.dm"
 #include "code\modules\WW2\cane.dm"
 #include "code\modules\WW2\closets.dm"
 #include "code\modules\WW2\clothing.dm"
@@ -963,5 +963,4 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\peleliu.dmm"
 // END_INCLUDE

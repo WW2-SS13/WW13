@@ -199,6 +199,7 @@
 		if (prob(5))
 			owner.emote("cough")		//respitory tract infection
 
+
 	#ifndef NO_INTERNAL_BLEEDING
 	if (is_bruised())
 		if (prob(2))

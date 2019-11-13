@@ -448,7 +448,7 @@
 "iJ" = (/obj/structure/wild/bush/tame/big,/turf/floor/plating/dirt,/area/prishtina/soviet/small_map{capturable = 0; name = "Outside Soviet Area"})
 "iK" = (/obj/structure/barbwire{dir = 4; icon_state = "barbwire"; pixel_y = 0; tag = "icon-barbwire (EAST)"},/obj/structure/anti_tank,/turf/floor/dirt,/area/prishtina/no_mans_land/invisible_wall)
 "iL" = (/obj/structure/table/marble,/obj/item/weapon/material/kitchen/rollingpin,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
-"iM" = (/obj/structure/table/marble,/obj/item/clothing/suit/chef,/obj/item/clothing/head/chefhat,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
+"iM" = (/obj/structure/table/marble,/obj/item/clothing/suit/chef,/obj/item/weapon/book/manual/chef_recipes,/obj/item/clothing/head/chefhat,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
 "iN" = (/obj/structure/oven,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/kitchen{base_turf = /turf/floor/dirt; capturable = 0})
 "iO" = (/obj/structure/simple_door/key_door/anyone{name = "Latrine"},/turf/floor/wood,/area/prishtina/german/command{base_turf = /turf/floor/dirt; capturable = 0; name = "Officer's Barracks"})
 "iP" = (/obj/structure/simple_door/key_door/german/command_intermediate{name = "Officer's Barracks"},/turf/floor/wood,/area/prishtina/german/command{base_turf = /turf/floor/dirt; capturable = 0; name = "Officer's Barracks"})

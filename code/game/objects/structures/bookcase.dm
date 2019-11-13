@@ -84,19 +84,9 @@
 /obj/structure/bookcase/manuals/medical
 	name = "Medical Manuals bookcase"
 
-	New()
-		..()
-		new /obj/item/weapon/book/manual/medical_diagnostics_manual(src)
-		new /obj/item/weapon/book/manual/medical_diagnostics_manual(src)
-		new /obj/item/weapon/book/manual/medical_diagnostics_manual(src)
-		update_icon()
+
 
 
 /obj/structure/bookcase/manuals/engineering
 	name = "Engineering Manuals bookcase"
 
-	New()
-		..()
-		new /obj/item/weapon/book/manual/engineering_construction(src)
-		new /obj/item/weapon/book/manual/engineering_guide(src)
-		update_icon()

@@ -162,12 +162,12 @@ obj/aiming_overlay/proc/update_aiming_deferred()
 			return
 		cancel_aiming(1)
 		owner.visible_message("<span class='danger'>\The [owner] starts to turn \the [thing] on \the [target]!</span>")
-		if (do_after(owner, 9, target))
+		if (do_after(owner, 4, target))
 			owner.visible_message("<span class='danger'>\The [owner] turns \the [thing] on \the [target]!</span>")
 			success = TRUE
 	else
 		owner.visible_message("<span class='danger'>\The [owner] starts to aim \the [thing] at \the [target]!</span>")
-		if (do_after(owner, 9, target))
+		if (do_after(owner, 4, target))
 			owner.visible_message("<span class='danger'>\The [owner] aims \the [thing] at \the [target]!</span>")
 			success = TRUE
 
