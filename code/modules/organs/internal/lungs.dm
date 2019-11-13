@@ -199,15 +199,14 @@
 		if (prob(5))
 			owner.emote("cough")		//respitory tract infection
 
-
-	#ifndef NO_INTERNAL_BLEEDING
 	if (is_bruised())
 		if (prob(2))
 			spawn owner.emote("me", TRUE, "coughs up blood!")
-			playsound(get_turf(src), pick("woundedcough1", "woundedcough2", "woundedcough3"), 100)
+			playsound(get_turf(src), pick("sound/voice/woundedcough1.ogg", "sound/voice/woundedcough2.ogg", "sound/voice/woundedcough3.ogg"), 100)
 			owner.drip(10)
+			owner.adjustOxyLoss(5)
 		if (prob(4))
 			spawn owner.emote("me", TRUE, "gasps for air!")
-			playsound(get_turf(src), "gasp_male2", 100)
-			owner.losebreath += 15
-	#endif
+			playsound(get_turf(src), "sound/voice/gasp_male2.ogg", 50)
+			owner.losebreath += 35
+			owner.adjustOxyLoss(5)
