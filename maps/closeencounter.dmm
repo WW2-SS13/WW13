@@ -1,0 +1,214 @@
+"aa" = (/obj/effect/floor_decal/borderfloor{dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
+"ab" = (/turf/floor/plating/road,/area/prishtina/no_mans_land)
+"ac" = (/turf/floor/plating/road,/area/prishtina)
+"ad" = (/obj/effect/floor_decal/borderfloor{dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
+"ae" = (/turf/floor/plating/grass/wild,/area/prishtina/no_mans_land)
+"af" = (/turf/floor/dirt/darksand,/area/prishtina/no_mans_land)
+"ag" = (/turf/floor/trench,/area/prishtina/no_mans_land)
+"ah" = (/obj/structure/wild/rock,/turf/floor/dirt/darksand,/area/prishtina/no_mans_land)
+"ai" = (/obj/structure/wild/burnedtree,/turf/floor/dirt/darksand,/area/prishtina/no_mans_land)
+"aj" = (/obj/structure/grille/fence{icon_state = "iron"; dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
+"ak" = (/turf/floor/plating/beach/water,/area/prishtina/no_mans_land)
+"al" = (/obj/structure/grille/fence{icon_state = "iron"; dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
+"am" = (/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
+"an" = (/obj/structure/wild/burnedbush,/turf/floor/dirt/darksand,/area/prishtina/no_mans_land)
+"ao" = (/obj/structure/wild/tree/live_tree,/turf/floor/plating/grass/wild,/area/prishtina/no_mans_land)
+"ap" = (/obj/structure/wild/tree/live_tree,/turf/floor/plating/beach/water,/area/prishtina/no_mans_land)
+"aq" = (/turf/floor/dirt,/area/prishtina/no_mans_land)
+"ar" = (/turf/wall/wood,/area/prishtina/no_mans_land)
+"as" = (/obj/structure/window/classic,/obj/structure/barricade/steel,/turf/floor/wood,/area/prishtina/no_mans_land)
+"at" = (/obj/item/stack/material/rope,/turf/floor/wood,/area/prishtina/no_mans_land)
+"au" = (/turf/floor/wood,/area/prishtina/no_mans_land)
+"av" = (/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/no_mans_land)
+"aw" = (/turf/floor/plating/grass,/area/prishtina/no_mans_land)
+"ax" = (/obj/structure/wild/tree/live_tree,/turf/floor/plating/grass,/area/prishtina/no_mans_land)
+"ay" = (/obj/structure/simple_door/wood,/turf/floor/wood,/area/prishtina/no_mans_land)
+"az" = (/turf/floor/plating/beach/water/deep,/area/prishtina/no_mans_land)
+"aA" = (/turf/floor/plating/beach/water/sewage,/area/prishtina/no_mans_land)
+"aB" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 1},/turf/floor/plating/beach/water/sewage,/area/prishtina/no_mans_land)
+"aC" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 6},/turf/floor/plating/beach/water/sewage,/area/prishtina/no_mans_land)
+"aD" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 10},/turf/floor/plating/beach/water/sewage,/area/prishtina/no_mans_land)
+"aE" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 4},/turf/floor/plating/beach/water/sewage,/area/prishtina/no_mans_land)
+"aF" = (/turf/wall/iron,/area/prishtina/houses)
+"aG" = (/obj/item/weapon/gun/projectile/submachinegun/ppsh,/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"aH" = (/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/effect/floor_decal/industrial/outline,/obj/item/ammo_magazine/a556/ppsh,/obj/item/ammo_magazine/a556/ppsh,/obj/item/ammo_magazine/a556/ppsh,/obj/item/ammo_magazine/a556/ppsh,/obj/item/ammo_magazine/a556/ppsh,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"aI" = (/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/effect/floor_decal/industrial/outline,/obj/item/ammo_magazine/a556/ppsh,/obj/item/ammo_magazine/a556/ppsh,/obj/item/ammo_magazine/a556/ppsh,/obj/item/ammo_magazine/a556/ppsh,/obj/item/ammo_magazine/a556/ppsh,/obj/structure/light/small{dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"aJ" = (/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"aK" = (/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"aL" = (/obj/structure/light/small{dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"aM" = (/obj/structure/conveyor{dir = 1; icon_state = "conveyor0"; id = "factory"},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"aN" = (/obj/structure/closet/firecloset,/obj/item/ammo_magazine/c762x38mmR,/obj/structure/light/small{dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"aO" = (/obj/structure/conveyor{dir = 1; icon_state = "conveyor0"; id = "factory"},/obj/structure/light/small{dir = 8},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"aP" = (/obj/structure/table/iron,/obj/item/ammo_casing/a762x39,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"aQ" = (/obj/structure/table/iron,/obj/item/weapon/gun/projectile/revolver/nagant_revolver,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"aR" = (/obj/structure/table/iron,/obj/item/weapon/gun/projectile/semiautomatic/svt,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"aS" = (/obj/structure/table/iron,/obj/item/ammo_casing/a762x54,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"aT" = (/obj/structure/closet/welding,/obj/item/weapon/wirecutters/boltcutters,/obj/item/weapon/crowbar/prybar,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"aU" = (/obj/structure/rustpipe{icon_state = "trubas"; dir = 8},/turf/floor/plating/beach/water/sewage,/area/prishtina/no_mans_land)
+"aV" = (/obj/effect/floor_decal/corner/grey/border,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
+"aW" = (/obj/structure/closet/toolcloset,/obj/item/weapon/wirecutters/boltcutters,/obj/item/weapon/crowbar/prybar,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"aX" = (/obj/structure/table/iron,/obj/item/ammo_casing/a762x54,/obj/item/ammo_casing/a762x54,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"aY" = (/obj/structure/table/iron,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"aZ" = (/obj/structure/closet,/obj/item/clothing/suit/storage/hazardvest,/obj/item/clothing/under/civ3,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"ba" = (/obj/effect/floor_decal/corner/grey/border,/turf/floor/plating/road,/area/prishtina/no_mans_land)
+"bb" = (/obj/structure/conveyor{dir = 6; icon_state = "conveyor0"; id = "factory"},/obj/structure/light/small{dir = 8},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bc" = (/obj/structure/conveyor{dir = 8; icon_state = "conveyor0"; id = "factory"},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bd" = (/obj/structure/closet,/obj/item/clothing/suit/storage/hazardvest,/obj/item/clothing/under/common2,/obj/structure/light/small{dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"be" = (/obj/structure/light/small,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bf" = (/obj/structure/conveyor_switch/oneway{id = "factory"},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bg" = (/obj/structure/closet,/obj/item/clothing/suit/storage/hazardvest,/obj/item/clothing/under/common1,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bh" = (/obj/structure/simple_door/key_door/anyone,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bi" = (/obj/structure/light/small/red{icon_state = "bulb1"; dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bj" = (/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/item/ammo_magazine/c762mm_tokarev,/obj/item/ammo_magazine/c762mm_tokarev,/obj/item/ammo_magazine/c762mm_tokarev,/obj/item/ammo_magazine/c762mm_tokarev,/obj/item/ammo_magazine/c762mm_tokarev,/obj/item/ammo_magazine/c762mm_tokarev,/obj/item/ammo_magazine/c762mm_tokarev,/obj/item/ammo_magazine/c762mm_tokarev,/obj/item/ammo_magazine/c762mm_tokarev,/obj/item/ammo_magazine/c762mm_tokarev,/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bk" = (/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/item/ammo_magazine/mosin,/obj/item/ammo_magazine/mosin,/obj/item/ammo_magazine/mosin,/obj/item/ammo_magazine/mosin,/obj/item/ammo_magazine/mosin,/obj/item/ammo_magazine/mosin,/obj/item/ammo_magazine/mosin,/obj/item/ammo_magazine/mosin,/obj/item/ammo_magazine/mosin,/obj/item/ammo_magazine/mosin,/obj/item/ammo_magazine/mosinbox,/obj/item/ammo_magazine/mosinbox,/obj/item/ammo_magazine/mosinbox,/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bl" = (/obj/structure/closet/crate/bettymines,/obj/effect/floor_decal/industrial/outline,/obj/structure/light/small/red{icon_state = "bulb1"; dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bm" = (/obj/structure/reagent_dispensers/fueltank,/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bn" = (/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/item/stack/material/steel{amount = 50},/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bo" = (/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/item/stack/material/steel{amount = 50},/obj/effect/floor_decal/industrial/outline,/obj/structure/light/small/red{icon_state = "bulb1"; dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bp" = (/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/item/weapon/grenade/explosive/f1,/obj/item/weapon/grenade/explosive/f1,/obj/item/weapon/grenade/explosive/f1,/obj/item/weapon/grenade/explosive/f1,/obj/item/weapon/grenade/explosive/f1,/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bq" = (/obj/structure/closet/crate/barbwire,/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"br" = (/obj/structure/closet/crate/svtammo,/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bs" = (/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/item/stack/material/iron{amount = 50},/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bt" = (/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/item/weapon/grenade/smokebomb/soviet,/obj/item/weapon/grenade/smokebomb/soviet,/obj/item/weapon/grenade/smokebomb/soviet,/obj/item/weapon/grenade/smokebomb/soviet,/obj/item/weapon/grenade/smokebomb/soviet,/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bu" = (/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/item/stack/material/iron{amount = 50},/obj/effect/floor_decal/industrial/outline,/obj/structure/light/small/red{icon_state = "bulb1"; dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bv" = (/obj/item/weapon/crowbar/prybar,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bw" = (/obj/structure/light/small/red,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bx" = (/obj/item/weapon/vehicle_fueltank,/obj/item/weapon/vehicle_fueltank,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"by" = (/obj/structure/reagent_dispensers/fueltank,/obj/structure/light/small/red,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bz" = (/obj/structure/reagent_dispensers/fueltank,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bA" = (/obj/structure/light/small/red{icon_state = "bulb1"; dir = 8},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bB" = (/obj/effect/floor_decal/industrial/outline,/obj/structure/light/small/red{icon_state = "bulb1"; dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bC" = (/obj/structure/closet/cabinet,/obj/item/clothing/under/sovuni,/obj/item/clothing/suit/armor/cn42,/turf/floor/wood,/area/prishtina/houses)
+"bD" = (/turf/floor/wood,/area/prishtina/houses)
+"bE" = (/obj/structure/table/wood,/obj/item/weapon/paper_bin,/obj/structure/light/small{dir = 1},/turf/floor/wood,/area/prishtina/houses)
+"bF" = (/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/item/weapon/grenade/explosive/rgd,/obj/item/weapon/grenade/explosive/rgd,/obj/item/weapon/grenade/explosive/rgd,/obj/item/weapon/grenade/explosive/rgd,/obj/item/weapon/grenade/explosive/rgd,/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bG" = (/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/item/weapon/flammenwerfer_fueltank,/obj/item/weapon/flammenwerfer_fueltank,/obj/item/weapon/flammenwerfer_fueltank,/obj/item/weapon/flammenwerfer_fueltank,/obj/item/weapon/flammenwerfer_fueltank,/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bH" = (/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/item/weapon/vehicle_fueltank,/obj/item/weapon/vehicle_fueltank,/obj/item/weapon/vehicle_fueltank,/obj/item/weapon/vehicle_fueltank,/obj/item/weapon/vehicle_fueltank,/obj/item/weapon/vehicle_fueltank,/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bI" = (/obj/structure/closet/cabinet,/obj/item/clothing/under/civ1,/obj/item/clothing/suit/storage/coat/civilian,/obj/item/weapon/gun/projectile/shotgun/pump/combat/ithaca37,/obj/item/ammo_magazine/shotgun_ammobox/shell,/obj/item/ammo_magazine/shotgun_ammobox,/obj/structure/light/small{dir = 8},/turf/floor/wood,/area/prishtina/houses)
+"bJ" = (/obj/structure/bed/chair/wood{dir = 4},/turf/floor/wood,/area/prishtina/houses)
+"bK" = (/obj/structure/table/wood,/obj/item/weapon/paper,/obj/item/weapon/pen,/turf/floor/wood,/area/prishtina/houses)
+"bL" = (/obj/structure/simple_door/key_door/anyone,/turf/floor/wood,/area/prishtina/houses)
+"bM" = (/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/item/stack/material/iron{amount = 50},/obj/item/stack/material/iron{amount = 50},/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bN" = (/obj/structure/anti_tank,/turf/floor/plating/road,/area/prishtina)
+"bO" = (/obj/structure/light/small,/turf/floor/wood,/area/prishtina/houses)
+"bP" = (/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bQ" = (/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/item/stack/material/iron{amount = 50},/obj/effect/floor_decal/industrial/outline,/obj/structure/light/small/red,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bR" = (/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/item/weapon/gun/projectile/pistol/tokarev,/obj/item/weapon/gun/projectile/pistol/tokarev,/obj/item/weapon/gun/projectile/pistol/tokarev,/obj/item/weapon/gun/projectile/pistol/tokarev,/obj/item/weapon/gun/projectile/pistol/tokarev,/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bS" = (/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/item/weapon/gun/launcher/rocket/panzerfaust,/obj/item/weapon/gun/launcher/rocket/panzerfaust,/obj/item/weapon/gun/launcher/rocket/panzerfaust,/obj/item/weapon/gun/launcher/rocket/panzerfaust,/obj/item/weapon/gun/launcher/rocket/panzerfaust,/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bT" = (/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/item/weapon/gun/launcher/rocket/panzerfaust/tank,/obj/item/weapon/gun/launcher/rocket/panzerfaust/tank,/obj/item/weapon/gun/launcher/rocket/panzerfaust/tank,/obj/item/weapon/gun/launcher/rocket/panzerfaust/tank,/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bU" = (/obj/structure/closet/crate/steel,/obj/effect/floor_decal/industrial/outline,/obj/structure/light/small/red,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bV" = (/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/item/weapon/plastique/russian,/obj/item/weapon/plastique/russian,/obj/item/weapon/plastique/russian,/obj/item/weapon/plastique/russian,/obj/item/weapon/plastique/russian,/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bW" = (/obj/structure/closet/crate/large{icon_state = "mulecrate"},/obj/item/weapon/storage/belt/soviet,/obj/item/weapon/storage/belt/soviet,/obj/item/weapon/storage/belt/soviet,/obj/item/weapon/storage/belt/soviet,/obj/item/weapon/storage/belt/soviet,/obj/effect/floor_decal/industrial/outline,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bX" = (/obj/structure/wild/burnedbush,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
+"bY" = (/obj/effect/floor_decal/borderfloor,/turf/floor/plating/cobblestone/vertical,/area/prishtina)
+"bZ" = (/obj/effect/floor_decal/borderfloor,/obj/structure/barbwire,/turf/floor/plating/cobblestone/vertical,/area/prishtina)
+"ca" = (/obj/effect/floor_decal/borderfloor,/obj/structure/barricade,/obj/structure/barbwire,/turf/floor/plating/cobblestone/vertical,/area/prishtina)
+"cb" = (/obj/structure/barbwire,/turf/floor/plating/road,/area/prishtina)
+"cc" = (/obj/structure/barricade,/obj/structure/barbwire,/turf/floor/plating/road,/area/prishtina)
+"cd" = (/obj/structure/anti_tank,/turf/floor/dirt/darksand,/area/prishtina/no_mans_land)
+"ce" = (/obj/effect/floor_decal/borderfloor{dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina)
+"cf" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/barbwire,/turf/floor/plating/cobblestone/vertical,/area/prishtina)
+"cg" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/barricade,/obj/structure/barbwire,/turf/floor/plating/cobblestone/vertical,/area/prishtina)
+"ch" = (/turf/wall/wood,/area/prishtina/houses)
+"ci" = (/obj/structure/light_construct/small{icon_state = "bulb-construct-stage1"; dir = 1},/turf/floor/wood,/area/prishtina/houses)
+"cj" = (/obj/structure/barricade,/obj/structure/window_frame,/turf/floor/wood,/area/prishtina/houses)
+"ck" = (/obj/item/weapon/material/shard{material = "glass"},/turf/floor/wood,/area/prishtina/houses)
+"cl" = (/obj/structure/barricade,/obj/structure/window_frame,/obj/item/weapon/material/shard{material = "glass"},/turf/floor/wood,/area/prishtina/houses)
+"cm" = (/turf/floor/wood_broken,/area/prishtina/houses)
+"cn" = (/obj/structure/barricade,/turf/floor/wood,/area/prishtina/houses)
+"co" = (/obj/structure/barricade,/obj/item/stack/material/wood,/turf/floor/wood,/area/prishtina/houses)
+"cp" = (/obj/structure/light_construct/small,/turf/floor/wood,/area/prishtina/houses)
+"cq" = (/obj/structure/anti_tank,/turf/floor/plating/road,/area/prishtina/no_mans_land)
+"cr" = (/obj/structure/closet/crate/glass,/turf/floor/wood,/area/prishtina/houses)
+"cs" = (/obj/structure/closet/crate/wood,/turf/floor/wood,/area/prishtina/houses)
+"ct" = (/obj/structure/closet/crate/soviet_grenade,/turf/floor/wood,/area/prishtina/houses)
+"cu" = (/obj/structure/closet/crate/rations/soviet_liquids,/obj/structure/light/small{dir = 1},/turf/floor/wood,/area/prishtina/houses)
+"cv" = (/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/houses)
+"cw" = (/obj/structure/closet/crate/sandbags,/turf/floor/wood,/area/prishtina/houses)
+"cx" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/borderfloor/full,/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
+"cy" = (/obj/structure/closet/crate/soviet_grenade2,/turf/floor/wood,/area/prishtina/houses)
+"cz" = (/obj/structure/closet/crate/rations/soviet_alcohol,/turf/floor/wood,/area/prishtina/houses)
+"cA" = (/obj/structure/barricade,/obj/structure/simple_door/key_door/anyone/wood,/turf/floor/wood,/area/prishtina/houses)
+"cB" = (/obj/effect/floor_decal/borderfloor,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
+"cC" = (/obj/structure/closet/crate/gauze,/turf/floor/wood,/area/prishtina/houses)
+"cD" = (/obj/structure/closet/crate/soviet_smoke_grenade,/turf/floor/wood,/area/prishtina/houses)
+"cE" = (/obj/structure/closet/crate/rations/soviet_meat,/turf/floor/wood,/area/prishtina/houses)
+"cF" = (/obj/structure/simple_door/key_door/anyone/wood,/obj/structure/barricade,/turf/floor/wood,/area/prishtina/houses)
+"cG" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/effect/floor_decal/borderfloor{dir = 1},/obj/effect/floor_decal/borderfloor/full,/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
+"cH" = (/obj/structure/closet/crate/steel,/turf/floor/wood,/area/prishtina/houses)
+"cI" = (/obj/structure/closet/crate/rations/soviet_solids,/obj/structure/light/small,/turf/floor/wood,/area/prishtina/houses)
+"cJ" = (/obj/effect/floor_decal/borderfloor{dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
+"cK" = (/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/borderfloor{dir = 8},/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
+"cL" = (/obj/map_metadata/forest_new,/turf/floor/plating/grass/wild,/area/prishtina/no_mans_land)
+"cM" = (/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/borderfloor{dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
+"cN" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/effect/floor_decal/borderfloor{dir = 4},/obj/structure/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
+"cO" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/effect/floor_decal/borderfloor{dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
+"cP" = (/turf/floor/dirt/dust,/area/prishtina/no_mans_land)
+"cQ" = (/obj/effect/landmark{name = "JoinLateHeer"},/turf/floor/plating/road,/area/prishtina/no_mans_land)
+"cR" = (/obj/structure/wild/burnedbush,/turf/floor/dirt/dust,/area/prishtina/no_mans_land)
+"cS" = (/obj/structure/wild/burnedtree,/turf/floor/dirt/dust,/area/prishtina/no_mans_land)
+"cT" = (/obj/structure/wild/rock,/turf/floor/dirt/dust,/area/prishtina/no_mans_land)
+"cU" = (/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/dirt/dust,/area/prishtina/no_mans_land)
+
+(1,1,1) = {"
+aaabababababadaeaeaeaeaeaeaeaeaeaeaeaeaeaeababafagagafafafafafafahafafaiafafagafafaiafafafafafagafafafafafafafafagahafaf
+aaabababababadajaeaeaeaeaeakakakakakakakaeaeaeaeaealamahafafafaiafafafafafafafafafafafafafafafafanafafafaiafagagagafafaf
+aaabababababadajaeaeaeaeaoaeaeakakakapaeaoaeaeaeaealamafanafafafafafafafafanafafafafafafafafafafafafafafafafafagafaqafaq
+aaabababababadajaeaoaeaeaeaeaoaeakakaeaeaeaeaeaeaealamafafafafafaqaqafafafafafafafafafagafafafafafafafafafafafafanafaqae
+aaabababababadamamaeaeaeamamamamamamamamamamamaeamamamafafafanafafararasasasararafafafafafafafafanafafafafafafafafafafae
+aaabababababadamamamamamamamamamamamamamamamamamamamamafafafafahafaratauauafauarafafafafafafafafafafafafanafafafaiafafaf
+aaabababababadamamamamamamamaeaeakakaeaeaeamamamamamamamanafafafafasafafafafavarafafafagagafaiafafafafafafafahafafagagaf
+aaabababababadamamawawawaeaeaeaeakakaoaeaeaeaeaeamamamamafafafaiafasafagagafavarafafafagagafafafafagafafaiafafafafagagaf
+aaabababababadajaxawawaxaeaoaeakakakaeaeaeaeaeaoaealamafafanafafafasafagagafavarafaiafafafafafafafanafafafafafafafanafaf
+aaabababababadajawawawawaeaeakakakakakaoaeaeaeaeaealamafanafafafafarafafafafafayafafafafafafanafafafafafafafafafafaeafaf
+aaabababababadajawaxawawaeakakazazazakakaeaeaeaeaealamafafafafahafararasasasararafafafafafafafafafafafafanafafafaiafafaf
+aaabababababadajawawawawakakazazaAazakakakaoaeaoaealamamanafafafafaiafafagafafafafafafagagafaiafafafafafafafahafafagagaf
+aaabababababadajawawaeakakazaAazazazazazakakaeaeaealamamafafafaiafafafafagafanafafafafagagafafafafagafafaiafafafafagagaf
+aaabababababadajaxawakakazazaAaAaAaAazaAazakakaeaealamamafanafafafafafafafafafafafaiafafafafafafafanafafafafafafafanafaf
+aaabababababadajawawakazazaAaBaCaDaBaAazazakakaeaealamamanafafafafafafafafafafafafafafafafafanafafafafafafafafafafaeafaf
+aaabababababadajawawakazaAaAaAaEaUaAaAazazakakaeaealamamanafafafafafafafafanafafafafafafafafafafafafafafafafafagafaqafaf
+aaabababababadajaxawakazazaAaAaEaUaAaAazakakakaoaealamababababababababababababababababababababababababababababababababab
+aaabababababadaFaFaFaFaFaFaFaFaFaFaFaFaFaFaFaFaFaFaFamabamababababababababababababababababababababababababababababababab
+aaabababababadaFaGaHaIaJaJaJaKaKaLaKaKaKaKaKaLaKaKaFamababababababababababababababababababababababababababababababababab
+aaabababababadaFaMaKaKaKaKaKaKaKaKaKaKaKaKaKaKaKaNaFamababababababababababababababababababababababababababababababababab
+aaabababababadaFaOaKaPaKaKaQaKaKaRaKaKaSaKaKaKaKaTaFaVaVbabababababababababababababababababababababababababababababababa
+aaabababababadaFaMaKaPaKaKaSaKaKaSaKaKaSaKaKaKaKaWaFamafaiafafafafagafanafafafafagagafafafafagafafaiafafafafcPcPafagagaf
+aaabababababadaFaMaKaXaKaKaYaKaKaSaKaKaSaKaKaKaKaZaFbXafafafafafafafafafafafaiafafafafafafafanafafafafafafafcRcPafagagaf
+aaabababababadaFbbbcbcbcbcbcbcbcbcbcbcbcaKaKaKaKbdaFamafafafafafafafafafafafafafafafanafafafafafafafafafafafcPcPafanafaf
+aaabababababadaFaKaKbeaKaKaKaKaKbeaKaKbfaKaKbeaKbgaFamafafanafafafaiafafafafafafafafafafafafafafafafanafafafcScPafafafaf
+aaabababababadaFaFaFaFaFaFaFaFaFaFaFaFaFbhaFaFaFaFaFamafafafafagagafafafafanafafafafafafaiafafafahafafafafafafcPafaiafaf
+aaabababababadbhaKbiaKaKbiaKaFbjbkblbmaKaKbnbobpbpaFafafafafafafafafafafafafafafafafafahafagagafafafafafafafafcPafafafaf
+aaabababababadbhaKaKaKaKaKaKaFbqbqbrbmaKaKbnbnbsbtaFanafafafafafafaiafafagafafaiafafafafafagafafafafafafafafagcTafafafaf
+aaabababababadbhaKaKaKaKaKaKbhaKaKaKaKaKaKbnbnbsbuaFafafafafafafahafafafafafafafafafafafafafanafafafafafafafafcPafagahaf
+aaabababababadbhaKaKaKaKaKaKaFaKaKaKaKaKbvaKaKaKaKbhafafaiafafafafafafanafafafafafafafafafafafafafafafafafafafcPafafafaf
+aaabababababadaFaKbwaKbxbybzaFbAaKaKaKaKaKaKaKaKaKbhafafafafafafafafafafafafafafafafafafafanafafafafafafaiafcPcPcPafafai
+aaabababababadaFaFaFaFaFaFaFaFaKbsbnaJbnaJaJaJaJbBaFafafafafafafafafaiafafafafaiafafafafafafafafafafafahafafcPcPcPafahaf
+aaabababababadaFbCbDbDbEbDbDaFaKbsbnaJbsbsbFbFbGbHaFanafafafafafafafafafafafahafafafafafahafafaiafafafafafafcScPcPafafaf
+aaabababababadaFbIbDbJbKbDbDbLaKbsbMaJaJaJaJaJaJaJaFafafafcdafafafafaiafafafafafaiafafafafafafafafafafafafafcPcPcPafafaf
+aaababcqabcqadaFbDbDbDbObDbDaFaKbPbQaJbRbSbTbUbVbWaFanafafafafafcdaiafafafafafafafafanafafafafafafafafafafafcPcPcPafafaf
+aaabababababadaFaFaFaFaFaFaFaFaFaFaFaFaFaFaFaFaFaFaFafafafafafafahafcdafafafafafafafafafafafafafahafafafafafcPcPcPafafaf
+aacqababababcxbYbYbYbZcacacacacacacabZbYbYbYbYbYbYbYcBcBcBcBcBafcBcBcBcBcBcBafcdafafafafaiafafafafafafafafafcPafafafafaf
+aaababababcqabacacbNaccbcccccccccccbacacacacacacacacababababababababababababababafabababafcPcPcRcPafafafafcPcPafafafafaf
+aaababababababacacacaccbcbcccccccbcbacacacacacacacacabababababababababababababcqabababcPcPcPcPafafcPcPcPcPcTcPafafafafai
+aacqabababababbNacacaccbcccccccccccbacacacacacacacacababababababababababababababababafafafafafafcPcScPcPcPcPcPcPcPafahaf
+aaabababababcGcecececfcgcgcgcgcgcgcgcfcecececececececJcJcJcJafcJcJcJcJafafcJcJafafafahafafcPcTcPcPcPcPafafafcPcPcPafafaf
+aaabababababadchchchchchchchchchchchchchchchchchchchafafaiafafafafafafafafafaiafafafafafafafafafafafafafafafcPcPcPafafaf
+aaabababababadchbDbDbDbDcibDbDbDchbDbDbDcibDbDbDbDchafafafafafafcdafafafafcdafafafafafafafafafafafafafafafafcPcPcPafafaf
+aaabababababadcjbDbDbDbDckbDbDchchbDbDbDbDbDbDbDbDcjafafafafafafafafafafafafafafafafafafafafafafafafafafafafcPcPafafafaf
+aaabababababadclbDbDbDbDcmbDbDchchbDbDbDbDbDbDbDbDclanafafafcdafafaiafanafafafafafafaiaianafafafafafafaianafcPcPafafafai
+aaabababababadchbDbDbDbDbDbDbDchchbDbDbDbDbDbDbDbDchafafafafafafahafafafafafafafafahafafafafafafafafahafafafcPcPafafahaf
+aaabababababadchbDbDbDbDbDbDbDchchchbDcmbDbDbDbDbDchafafaiafafafafafafafafaiafafafafafafafafaiafafafafafcPcPcScPcPafafaf
+aaabababababadcnbDbDbDbDbDbDbDbDbDchcmckbDbDbDbDbDcnafafafafafafafafafafafafafafafafafafafafafafafafafafcPcUcPcUcPcUafaf
+aaabababababadcnbDbDbDbDbDbDbDbDbDchbDbDbDbDbDbDbDcnafanafafafafafafaiafafafafafafafafafafafafafafafafafcPcPcPcPcPcPcPaf
+aaabababababadchbDbDbDbDbDbDbDcmbDchbDbDbDbDbDbDbDchafafafafafafafafafafafafafafafafafafafafafafafafafafcPcPcUcPcUcPcPaf
+aaabababababadchbDbDbDcmbDbDbDbDchchbDbDbDbDbDbDbDchanafafafafafafaianafafafafafafaianafafafafafafaianafcUcPcPcPcPcUcPai
+aaabababababadclbDbDbDbDbDbDbDbDchbDbDbDbDbDbDbDbDcoafafafafafafahafafafafafafafahafafafafafafafahafafafcPcPcPcUafafahaf
+aaabababababadclbDbDbDbDbDckbDbDchbDbDbDbDbDbDbDckcjafafafafafafahafafafafafafafahafafafafafafafahafafafafafafafafafahaf
+aaabcQabcQabadchbDbDbDbDcpbDbDbDchbDbDbDbDcpcmbDbDchafafaiafafafafafafafaiafafafafafafafaiafafafafafafafafafaiafafafafaf
+aaabababababadchchchchchchchchchchchchchchchchchchchafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
+aacQabcQabcQcKamaecLaeaechcrcsctcubDcvbDcwchbDcibDchafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
+aaababababababcMamaeaoaechcrcscyczbDcvbDbDcAbDbDbDchafafafafafafahafafafafafafafahafafafafafafafahafafafafafafafafafahaf
+amcNcQabcQabababcMamaeaechcCcscDcEbDcvbDcwchbDbDbDcFafafaiafafafafafafafaiafafafafafafafaiafafafafafafafafafaiafafafafaf
+aeamcOababababababcMamaechcCcscHcIbDbDbDcwchbDcpbDchafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
+aeaeamcOababababababcMamchchchchchchchchchchchchchchafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
+"}

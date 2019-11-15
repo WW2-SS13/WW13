@@ -83,7 +83,7 @@
 
 /proc/change_weather_somehow()
 
-	var/list/possibilities = list(WEATHER_NONE)
+	var/list/possibilities = list(WEATHER_RAIN)
 	var/list/non_possibilities = list(weather)
 
 	switch (season)

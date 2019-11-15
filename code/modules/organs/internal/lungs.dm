@@ -200,13 +200,14 @@
 			owner.emote("cough")		//respitory tract infection
 
 	if (is_bruised())
+		owner.adjustOxyLoss(5)
 		if (prob(2))
 			spawn owner.emote("me", TRUE, "coughs up blood!")
 			playsound(get_turf(src), pick("sound/voice/woundedcough1.ogg", "sound/voice/woundedcough2.ogg", "sound/voice/woundedcough3.ogg"), 100)
 			owner.drip(10)
-			owner.adjustOxyLoss(5)
+			owner.adjustOxyLoss(15)
 		if (prob(4))
 			spawn owner.emote("me", TRUE, "gasps for air!")
 			playsound(get_turf(src), "sound/voice/gasp_male2.ogg", 50)
 			owner.losebreath += 35
-			owner.adjustOxyLoss(5)
+			owner.adjustOxyLoss(15)

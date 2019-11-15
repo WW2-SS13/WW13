@@ -141,7 +141,7 @@ var/list/global_whitelists[50]
 	if (isclient(client_or_ckey))
 		client_or_ckey = client_or_ckey:ckey
 	if (serverswap && serverswap.Find("masterdir"))
-		var/path = "[serverswap["masterdir"]]whitelist.txt"
+		var/path = "config/whitelist.txt"
 		for (var/ckey2discord_id in file2list(path))
 			var/_ckey = splittext(ckey2discord_id, "=")[1]
 			if (_ckey == client_or_ckey)
@@ -169,7 +169,7 @@ var/list/global_whitelists[50]
 	if (isclient(client_or_ckey))
 		client_or_ckey = client_or_ckey:ckey
 	if (serverswap && serverswap.Find("masterdir"))
-		var/path = "[serverswap["masterdir"]]whitelist.txt"
+		var/path = "config/whitelist.txt"
 		for (var/ckey2discord_id in file2list(path))
 			var/_ckey = splittext(ckey2discord_id, "=")[1]
 			if (_ckey == client_or_ckey)
