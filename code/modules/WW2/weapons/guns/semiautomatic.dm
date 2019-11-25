@@ -87,7 +87,7 @@
 	max_shells = 10
 	caliber = "a762x54"
 	ammo_type = /obj/item/ammo_casing/a762x54
-	slot_flags = SLOT_BACK
+	slot_flags = SLOT_BACK|SLOT_OCLOTHING
 	magazine_type = /obj/item/ammo_magazine/mosin
 	weight = 3.85
 	firemodes = list(
@@ -119,7 +119,7 @@
 	max_shells = 10
 	caliber = "a792x57"
 //	origin_tech = "combat=4;materials=2"
-	slot_flags = SLOT_BACK
+	slot_flags = SLOT_BACK|SLOT_OCLOTHING
 	ammo_type = /obj/item/ammo_casing/a792x57
 	magazine_type = /obj/item/ammo_magazine/kar98k
 	weight = 4.9
@@ -152,7 +152,7 @@
 	max_shells = 10
 	caliber = "a792x57"
 //	origin_tech = "combat=4;materials=2"
-	slot_flags = SLOT_BACK
+	slot_flags = SLOT_BACK|SLOT_OCLOTHING
 	ammo_type = /obj/item/ammo_casing/a792x57
 	magazine_type = /obj/item/ammo_magazine/kar98k
 	weight = 4.9
@@ -183,7 +183,7 @@
 	load_method = MAGAZINE
 	caliber = "c762x63"
 //	origin_tech = "combat=4;materials=2"
-	slot_flags = SLOT_BACK
+	slot_flags = SLOT_BACK|SLOT_OCLOTHING
 	magazine_type = /obj/item/ammo_magazine/c762x63
 	ammo_type = /obj/item/ammo_casing/c762x63
 	auto_eject = TRUE
@@ -213,7 +213,7 @@
 	icon_state = "fg42"
 	item_state = "fg42"
 	load_method = MAGAZINE
-	slot_flags = SLOT_BACK
+	slot_flags = SLOT_BACK|SLOT_OCLOTHING
 	w_class = 4
 	caliber = "7.92x57mm"
 	magazine_type = /obj/item/ammo_magazine/c792x57_fg42
@@ -243,7 +243,7 @@
 	icon_state = "bar"
 	item_state = "dp0"
 	load_method = MAGAZINE
-	slot_flags = SLOT_BACK
+	slot_flags = SLOT_BACK|SLOT_OCLOTHING
 	w_class = 4
 	caliber = "c762x63_smg"
 	magazine_type = /obj/item/ammo_magazine/c762x63_smg
@@ -273,7 +273,7 @@
 	icon_state = "type99"
 	item_state = "type99"
 	load_method = MAGAZINE
-	slot_flags = SLOT_BACK
+	slot_flags = SLOT_BACK|SLOT_OCLOTHING
 	w_class = 4
 	caliber = "c77x58_smg"
 	magazine_type = /obj/item/ammo_magazine/c77x58_smg

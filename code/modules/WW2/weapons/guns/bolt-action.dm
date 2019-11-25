@@ -9,7 +9,7 @@
 	force = 10
 	throwforce = 20
 	max_shells = 5
-	slot_flags = SLOT_BACK
+	slot_flags = SLOT_BACK|SLOT_OCLOTHING
 	caliber = "a792x54"
 	recoil = 2 //extra kickback
 	//fire_sound = 'sound/weapons/sniper.ogg'

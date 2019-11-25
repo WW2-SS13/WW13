@@ -51,6 +51,22 @@
 		if (3.0)
 			return
 
+/obj/structure/campfire
+	icon = 'icons/obj/campfire.dmi'
+	icon_state = "campfire20"
+	layer = MOB_LAYER - 0.01
+	density = FALSE
+	anchored = TRUE
+
+/obj/structure/campfire/attackby(obj/item/W as obj, mob/user as mob)
+	if (istype(W, /obj/item/weapon/flame))
+		user.visible_message("<span class = 'notice'>\The [user] lights \the [src] with [W].</span>")
+		icon_state = "campfire21"
+		set_light(4)
+	else
+		user.visible_message("<span class = 'notice'>\The [user] puts out \the [src] with [W].</span>")
+		icon_state = "campfire20"
+		set_light(0)
 /obj/structure/flag
 	icon = 'icons/obj/flags.dmi'
 	layer = MOB_LAYER + 0.01

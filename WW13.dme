@@ -198,7 +198,6 @@
 #include "code\game\objects\items\glassjar.dm"
 #include "code\game\objects\items\pen.dm"
 #include "code\game\objects\items\shooting_range.dm"
-#include "code\game\objects\items\soap.dm"
 #include "code\game\objects\items\stamp.dm"
 #include "code\game\objects\items\toys.dm"
 #include "code\game\objects\items\trash.dm"
@@ -963,5 +962,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\city\city_level1.dmm"
+#include "maps\factory\factory.dmm"
 // END_INCLUDE

@@ -3,7 +3,7 @@
 	desc = "A device that launches things."
 	w_class = 5.0
 	flags =  CONDUCT
-	slot_flags = SLOT_BACK
+	slot_flags = SLOT_BACK|SLOT_OCLOTHING
 
 	var/release_force = 0
 	var/throw_distance = 10

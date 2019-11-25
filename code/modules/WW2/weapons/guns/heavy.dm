@@ -58,7 +58,7 @@
 	item_state = "l6closednomag" //placeholder
 	w_class = 4
 	force = 10
-	slot_flags = SLOT_BACK
+	slot_flags = SLOT_BACK|SLOT_OCLOTHING
 	caliber = "14.5mm"
 	recoil = 3 //extra kickback
 	fire_sound = 'sound/weapons/WW2/ptrd_fire.ogg'
@@ -88,7 +88,7 @@
 	icon_state = "mk12_loaded"
 	item_state = "mk12_loaded"
 	load_method = MAGAZINE
-	slot_flags = SLOT_BACK
+	slot_flags = SLOT_BACK|SLOT_OCLOTHING
 	w_class = 5
 	caliber = "a556x45"
 	magazine_type = /obj/item/ammo_magazine/a556x45
