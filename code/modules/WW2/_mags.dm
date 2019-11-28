@@ -167,7 +167,6 @@ WW 2 WEAPONS MAGS N AMMO
 /obj/item/ammo_magazine/maxim
 	name = "Maxim ammo belt"
 	icon_state = "maximbelt"
-	item_state = "maxim"
 //	origin_tech = "combat=2"
 	mag_type = MAGAZINE
 	caliber = "a762x54"
@@ -176,7 +175,6 @@ WW 2 WEAPONS MAGS N AMMO
 	ammo_type = /obj/item/ammo_casing/a127x108
 	max_ammo = 250
 	multiple_sprites = TRUE
-	slot_flags = SLOT_BELT|SLOT_OCLOTHING
 	var/slot = "decor"
 	var/obj/item/clothing/under/has_suit = null		//the suit the tie may be attached to
 	var/image/inv_overlay = null	//overlay used when attached to clothing.
