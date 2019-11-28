@@ -2,6 +2,7 @@
 	icon = 'icons/obj/wild.dmi'
 	icon_state = "tree"
 	anchored = TRUE
+	layer = MOB_LAYER + 0.01
 	var/sways = FALSE
 	var/amount = 0 //how much wood to drop. 0 = none
 	var/health = 100
@@ -147,6 +148,7 @@
 	icon_state = "small_bush"
 	opacity = FALSE
 	density = FALSE
+	layer = MOB_LAYER - 0.01
 
 /* todo: bush sounds
 /obj/structure/wild/bush/Crossed(var/atom/movable/am)
@@ -289,7 +291,7 @@
 	icon_state = "tall_grass_1"
 	opacity = FALSE
 	density = FALSE
-	layer = 5.1
+	layer = MOB_LAYER - 0.01
 
 /obj/structure/wild/tallgrass2
 	name = "tall grass"
@@ -297,6 +299,7 @@
 	icon_state = "tall_grass_5"
 	opacity = FALSE
 	density = FALSE
+	layer = MOB_LAYER - 0.01
 
 /obj/structure/wild/tallgrass/New()
 	..()

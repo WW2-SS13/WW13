@@ -3,6 +3,7 @@
 	title = "River (150x150x1)"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall)
 	respawn_delay = 2400
+	reinforcements = FALSE
 	squad_spawn_locations = FALSE
 	supply_points_per_tick = list(
 		GERMAN = 1.00,
