@@ -50,6 +50,7 @@
 	if (back)
 		tally += back.slowdown
 
+	tally += 1
 
 	if (buckled && istype(buckled, /obj/structure/bed/chair/wheelchair))
 		for (var/organ_name in list("l_hand","r_hand","l_arm","r_arm"))

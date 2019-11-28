@@ -255,6 +255,48 @@
 	    new/obj/item/weapon/key/soviet/bunker_doors, new/obj/item/weapon/key/soviet/medic,
 	      new/obj/item/weapon/key/soviet/engineer, new/obj/item/weapon/key/soviet/QM)
 
+/datum/job/soviet/messenger
+	title = "Radist"
+	en_meaning = "Messenger"
+	rank_abbreviation = "Srg"
+	head_position = FALSE
+	selection_color = "#770e0e"
+	spawn_location = "JoinLateRASL"
+	additional_languages = list( "German" = 33 )
+	is_officer = FALSE
+	is_squad_leader = FALSE
+	SL_check_independent = TRUE
+
+
+	// AUTOBALANCE
+	min_positions = 2
+	max_positions = 2
+
+/datum/job/soviet/messenger/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovofficercap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/officer(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/ppsh(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
+	H.add_note("Role", "You are a <b>[title]</b>. Your job is to assist command in communication.")
+	H.give_radio()
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_LOW)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_MEDIUM_LOW)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+
+/datum/job/soviet/messenger/get_keys()
+	return new/obj/item/weapon/key/soviet
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -29,12 +29,52 @@
 	. = TRUE
 	if (istype(J, /datum/job/german))
 		if (istype(J, /datum/job/german/soldier))
-			J.total_positions = 20
+			J.total_positions = 12
+		else if (istype(J, /datum/job/german/commander))
+			J.total_positions = 1
+		else if (istype(J, /datum/job/german/staff_officer))
+			J.total_positions = 1
+		else if (istype(J, /datum/job/german/QM))
+			J.total_positions = 1
+		else if (istype(J, /datum/job/german/squad_leader))
+			J.total_positions = 3
+		else if (istype(J, /datum/job/german/medic))
+			J.total_positions = 3
+		else if (istype(J, /datum/job/german/doctor))
+			J.total_positions = 1
+		else if (istype(J, /datum/job/german/sniper))
+			J.total_positions = 2
+		else if (istype(J, /datum/job/german/messenger))
+			J.total_positions = 2
+		else if (istype(J, /datum/job/german/heavy_weapon))
+			J.total_positions = 6
+		else if (istype(J, /datum/job/german/engineer))
+			J.total_positions = 3
 		else
 			. = FALSE
 	else if (istype(J, /datum/job/soviet))
 		if (istype(J, /datum/job/soviet/soldier))
-			J.total_positions = 20
+			J.total_positions = 15
+		else if (istype(J, /datum/job/soviet/commander))
+			J.total_positions = 1
+		else if (istype(J, /datum/job/soviet/staff_officer))
+			J.total_positions = 1
+		else if (istype(J, /datum/job/soviet/QM))
+			J.total_positions = 1
+		else if (istype(J, /datum/job/soviet/squad_leader))
+			J.total_positions = 3
+		else if (istype(J, /datum/job/soviet/medic))
+			J.total_positions = 3
+		else if (istype(J, /datum/job/soviet/doctor))
+			J.total_positions = 1
+		else if (istype(J, /datum/job/soviet/sniper))
+			J.total_positions = 2
+		else if (istype(J, /datum/job/soviet/messenger))
+			J.total_positions = 1
+		else if (istype(J, /datum/job/soviet/heavy_weapon))
+			J.total_positions = 6
+		else if (istype(J, /datum/job/soviet/engineer))
+			J.total_positions = 1
 		else
 			. = FALSE
 	else
