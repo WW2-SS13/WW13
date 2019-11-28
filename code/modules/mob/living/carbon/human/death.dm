@@ -66,6 +66,7 @@
 
 	if (l_hand) unEquip(l_hand)
 	if (r_hand) unEquip(r_hand)
+	client.next_normal_respawn = world.realtime + (900000000)
 /*
 	if (ticker && ticker.mode)
 

@@ -1,6 +1,6 @@
 /mob/living/carbon/human/dummy
 	real_name = "Test Dummy"
-	status_flags = CANPUSH
+	status_flags = CANPUSH|GODMODE
 /*
 /mob/living/carbon/human/monkey
 	icon_state = "monkey"

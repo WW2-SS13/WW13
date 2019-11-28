@@ -65,7 +65,7 @@ var/list/engineer_exclusive_recipe_types = list(/obj/structure/girder, /obj/stru
 //	recipes += new/datum/stack_recipe("sandals", /obj/item/clothing/shoes/sandal, TRUE)
 	recipes += new/datum/stack_recipe("floor tile", /obj/item/stack/tile/wood, TRUE, 4, 20)
 	recipes += new/datum/stack_recipe("chair", /obj/structure/bed/chair/wood, 3, _time = 7, _one_per_turf = TRUE, _on_floor = TRUE)
-	recipes += new/datum/stack_recipe("chair", /obj/structure/campfire, 2, _time = 3, _one_per_turf = TRUE, _on_floor = TRUE)
+	recipes += new/datum/stack_recipe("campfire", /obj/structure/campfire, 2, _time = 3, _one_per_turf = TRUE, _on_floor = TRUE)
 	recipes += new/datum/stack_recipe("coffin", /obj/structure/closet/coffin, 4, _time = 10, _one_per_turf = TRUE, _on_floor = TRUE)
 //	recipes += new/datum/stack_recipe("book shelf", /obj/structure/bookcase, 4, _time = 10, _one_per_turf = TRUE, _on_floor = TRUE)
 	recipes += new/datum/stack_recipe("door", /obj/structure/simple_door/key_door/anyone/wood, 5, _time = 30, _one_per_turf = TRUE, _on_floor = TRUE)

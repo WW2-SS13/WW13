@@ -1123,7 +1123,7 @@
 "vE" = (/obj/structure/bed/chair/wood{dir = 4},/turf/floor/wood,/area/prishtina/houses/sov_two)
 "vF" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/glass/rag,/turf/floor/wood,/area/prishtina/houses/sov_two)
 "vG" = (/obj/structure/bed/chair/wood{dir = 8},/turf/floor/wood,/area/prishtina/houses/sov_two)
-"vH" = (/obj/structure/curtain/open/shower,/obj/structure/shower{tag = "icon-shower (EAST)"; icon_state = "shower"; dir = 4; step_x = 0; step_y = 0},/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/command/office)
+"vH" = (/obj/structure/curtain/open/shower,/obj/structure/shower{tag = "icon-shower (EAST)"; icon_state = "shower"; dir = 4; step_x = 0; step_y = 0},/obj/item/weapon/soap,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/command/office)
 "vI" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTHWEST)"; icon_state = "spline_fancy"; dir = 9},/obj/structure/bed,/obj/item/weapon/bedsheet/brown,/turf/floor/carpet,/area/prishtina/houses/sov_two)
 "vJ" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTHEAST)"; icon_state = "spline_fancy"; dir = 5},/obj/skybox{icon_state = "x2-notastate"; ID = "house-1&2-z1"},/obj/structure/light/small{dir = 1},/turf/floor/carpet,/area/prishtina/houses/sov_three)
 "vK" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTHEAST)"; icon_state = "spline_fancy"; dir = 5},/obj/structure/bookcase,/turf/floor/carpet,/area/prishtina/houses/sov_two)

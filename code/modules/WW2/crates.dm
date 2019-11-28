@@ -495,6 +495,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/weapon/attachment/bayonet/german = 15)
 
 /obj/structure/closet/crate/bayonets/soviet
 	paths = list(/obj/item/weapon/attachment/bayonet/soviet = 15)

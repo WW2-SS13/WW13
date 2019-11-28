@@ -701,10 +701,8 @@
 "ny" = (/turf/wall/indestructable/black,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "nz" = (/turf/wall/brick,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "nA" = (/obj/item/stack/material/wood,/obj/effect/decal/cleanable/cobweb,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
-"nB" = (/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "nC" = (/obj/structure/bookcase,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "nD" = (/turf/floor/wood_broken,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
-"nE" = (/obj/item/weapon/book/manual/detective,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "nF" = (/obj/item/stack/material/wood,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "nG" = (/obj/structure/bookcase{name = "bookcase (Fiction)"},/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "nH" = (/obj/item/weapon/book,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
@@ -715,8 +713,6 @@
 "nM" = (/obj/item/stack/material/wood,/obj/effect/decal/cleanable/ash,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "nN" = (/obj/item/weapon/paper,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "nO" = (/obj/item/weapon/paper/crumpled/bloody,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
-"nP" = (/obj/item/weapon/book/convention,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
-"nQ" = (/obj/item/weapon/book/manual/chef_recipes,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "nR" = (/obj/structure/multiz/ladder/ww2{area_id = "floor_u"},/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "nS" = (/obj/item/weapon/doctor_handbook,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "nT" = (/obj/effect/decal/cleanable/ash,/obj/item/flashlight/flare/nighttime,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
@@ -729,9 +725,8 @@
 "oa" = (/obj/item/flashlight/flare/nighttime,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "ob" = (/obj/item/weapon/paper,/obj/structure/bookcase,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "oc" = (/obj/item/weapon/paper,/obj/item/weapon/paper,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
-"od" = (/obj/item/weapon/book/manual/barman_recipes,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "oe" = (/obj/item/weapon/paper_bundle,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
-"of" = (/obj/item/weapon/book/manual/medical_diagnostics_manual,/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
+"of" = (/turf/floor/wood,/area/prishtina/void/civilian_basements{base_turf = /turf/floor/dirt; name = "Basement"})
 "og" = (/obj/structure/light/small{dir = 8},/obj/structure/sink{dir = 8; pixel_x = -12},/turf/floor/tiled/white,/area/prishtina/houses/nml_six{base_turf = /turf/floor/wood; name = "4th - Hospital"})
 "oh" = (/turf/floor/wood,/area/prishtina/soviet/forward_defenses{base_turf = /turf/floor/wood; location = 0; name = "Sov base defenses"; weather = 0})
 "oi" = (/turf/floor/wood_broken,/area/prishtina/german/base_defenses{base_turf = /turf/floor/wood_broken; location = 0})
@@ -896,17 +891,17 @@ abababababababababababababababababababababababababababababababababababababababab
 abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab
 aaaaaaaanynynynynynynynynynynynynynynynynynynynynynynyabababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaanynznznznznznznznznznznznznznznznznznznznznznyabababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaanynznAnBnCnBnCnBnDnBnEnFnFnBnGnGnBnBnHnBnInznyababababababababababababababababababababababababababababababababab
-aaaaaaaanynznBnBnJnBnBnBnKnBnLnLnGnBnJnBnMnLnBnBnBnznyababababababababaaabababababababababababababababababababababababab
-aaaaaaaanynznBnBnBnBnGnBnBnNnBnBnBnHnDnOnJnBnDnCnBnznyababababababababaaabababababababababababababababababababababababab
-aaaaaaaanynznBnCnBnHnBnFnPnGnQnLnBnBnLnBnBnGnBnBnBnznyabababababaeababababababababababababababababababababababababababab
-aaaaaaaanynznRnBnBnBnGnBnDnGnSnGnBnTnGnDnBnLnUnBnVnznyababababaeaeababababababababababababababababababababababababababab
-aaaaaaaanynznRnBnDnWnLnKnJnGnBnGnDnJnLnXnBnGnBnFnVnznyabaeaeababaeababababababababababababababababababababababababababab
-aaaaaaaanynznRnBnDnBnGnBnDnGnDnLnBnHnLnBnDnLnBnBnVnznyabababababaeababababababababababababababababababababababababababab
-aaaaaaaanynznBnXnBnYnGnHnZoanOnCnCnBnBnHnDnBnBnHnBnznyababababaeaeaeabababababababababababababababababababababababababab
-aaaaaaaanynznBnBnCnBnCnBnGnGnBnGnBnBnLnFnZnLnOnDnBnznyabababababababababababaaaaabababababababababababababababababababab
-aaaaaaaanynzobnBnCnBnBnCnBnGnBnLnDnNnBnBocnCnJnCnDnznyabababababababababababaaaaabababababababababababababababababababab
-aaaaaaaanynznAodnFnKnBoenBnDnHnFnHnBnGnGnSnCnZofnHnznyabababababababababababaaaaabababababababababababababababababababab
+aaaaaaaanynznAofnCofnCofnDofofnFnFofnGnGofofnHofnInznyababababababababababababababababababababababababababababababababab
+aaaaaaaanynzofofnJofofofnKofnLnLnGofnJofnMnLofofofnznyababababababababaaabababababababababababababababababababababababab
+aaaaaaaanynzofofofofnGofofnNofofofnHnDnOnJofnDnCofnznyababababababababaaabababababababababababababababababababababababab
+aaaaaaaanynzofnCofnHofnFofnGofnLofofnLofofnGofofofnznyabababababaeababababababababababababababababababababababababababab
+aaaaaaaanynznRofofofnGofnDnGnSnGofnTnGnDofnLnUofnVnznyababababaeaeababababababababababababababababababababababababababab
+aaaaaaaanynznRofnDnWnLnKnJnGofnGnDnJnLnXofnGofnFnVnznyabaeaeababaeababababababababababababababababababababababababababab
+aaaaaaaanynznRofnDofnGofnDnGnDnLofnHnLofnDnLofofnVnznyabababababaeababababababababababababababababababababababababababab
+aaaaaaaanynzofnXofnYnGnHnZoanOnCnCofofnHnDofofnHofnznyababababaeaeaeabababababababababababababababababababababababababab
+aaaaaaaanynzofofnCofnCofnGnGofnGofofnLnFnZnLnOnDofnznyabababababababababababaaaaabababababababababababababababababababab
+aaaaaaaanynzobofnCofofnCofnGofnLnDnNofofocnCnJnCnDnznyabababababababababababaaaaabababababababababababababababababababab
+aaaaaaaanynznAofnFnKofoeofnDnHnFnHofnGnGnSnCnZofnHnznyabababababababababababaaaaabababababababababababababababababababab
 aaaaaaaanynznznznznznznznznznznznznznznznznznznznznznyababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababababababab
 aaaaaaaanynynynynynynynynynynynynynynynynynynynynynynyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababababababab
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababababababababababababababababababababababababababababab

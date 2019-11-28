@@ -382,7 +382,6 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
 	H.add_note("Role", "You are a <b>[title]</b>, a medic. Your job is to keep the army healthy and in good condition.")
-	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_LOW)
 	H.setStat("engineering", STAT_LOW)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
@@ -469,7 +468,6 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/flammenwerfer(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/mauser(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>, a flamethrower unit. Your job is incinerate the enemy!")
-	H.give_radio()
 	H.setStat("strength", STAT_NORMAL)
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_NORMAL)
@@ -512,7 +510,6 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/sniper_scope(H), slot_r_store)
 	H.add_note("Role", "You are a <b>[title]</b>, a sniper. Your job is to assist normal <b>Soldat</b> from behind defenses.")
-	H.give_radio()
 	H.setStat("strength", STAT_NORMAL)
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_VERY_HIGH)
@@ -557,7 +554,6 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/mp40(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>, an engineer. Your job is to build forward defenses.")
-	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_HIGH)
 	H.setStat("engineering", STAT_VERY_HIGH)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
@@ -602,7 +598,6 @@
 	// sidearm
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/mauser(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>, a heavy weapons unit. Your job is to assist normal <b>Soldat</b>en in front line combat.")
-	H.give_radio()
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
@@ -644,7 +639,6 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german_basic/soldier(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.")
-	H.give_radio()
 	H.setStat("strength", STAT_NORMAL)
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_NORMAL)
@@ -792,7 +786,6 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german/anti_tank_crew, slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/mauser(H), slot_r_store)
 	H.add_note("Role", "You are a <b>[title]</b>, an anti-tank infantry unit. Your job is to destroy enemy tanks.")
-	H.give_radio()
 	H.setStat("strength", STAT_NORMAL)
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_NORMAL)
@@ -1186,7 +1179,6 @@ var/first_fallschirm = TRUE
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
 	H.add_note("Role", "You are a <b>[title]</b>, a soldier for an elite SS unit. Your job is to follow the orders of the <b>SS-Untersharffuhrer</b>.")
-	H.give_radio()
 
 	// glorious SS stats
 	H.setStat("strength", STAT_VERY_HIGH)
@@ -1237,7 +1229,6 @@ var/first_fallschirm = TRUE
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
 	H.add_note("Role", "You are a <b>[title]</b>, a soldier for an elite SS unit. Your job is to follow the orders of the <b>SS-Untersharffuhrer</b>.")
-	H.give_radio()
 
 	// glorious SS stats
 	H.setStat("strength", STAT_VERY_HIGH)
@@ -1286,7 +1277,6 @@ var/first_fallschirm = TRUE
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/material/knife/butcher(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>, a front chef. Your job is to keep the Wehrmacht well fed.")
-	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_LOW)
 	H.setStat("engineering", STAT_MEDIUM_LOW)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
