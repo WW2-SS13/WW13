@@ -329,10 +329,14 @@ Parts of code courtesy of Super3222
 	if (client && actions.len)
 		if (client.pixel_x || client.pixel_y) //Cancel currently scoped weapons
 			for (var/datum/action/toggle_scope/T in actions)
-				if (M.last_user == src)
-					if (T.scope.zoomed)
-						M.stopped_using(src)
-						M.last_user = null
+				var/success = FALSE
+				if (T.scope.zoomed)
+					T.scope.zoom(src, FALSE)
+					success = TRUE
+				if (success && client)
+					client.pixel_x = 0
+					client.pixel_y = 0
+					client.view = world.view
 
 	for (var/obj/item/weapon/gun/projectile/automatic/stationary/M in range(2, src))
 		if (M.last_user == src && loc != get_turf(M))
