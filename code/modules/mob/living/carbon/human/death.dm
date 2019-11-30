@@ -66,15 +66,11 @@
 
 	if (l_hand) unEquip(l_hand)
 	if (r_hand) unEquip(r_hand)
-	client.next_normal_respawn = world.realtime + (900000000)
-/*
-	if (ticker && ticker.mode)
+	//client.next_normal_respawn = world.realtime + (900000000)
 
-		ticker.mode.check_win()*/
-
-	//if (client)
-		//client.next_normal_respawn = world.realtime + (map ? map.respawn_delay : 3000)
-		//client << RESPAWN_MESSAGE
+	if (client)
+		client.next_normal_respawn = world.realtime + (map ? map.respawn_delay : 3000)
+		client << RESPAWN_MESSAGE
 
 	. = ..(gibbed)//,species.death_message)
 	if (!gibbed)
