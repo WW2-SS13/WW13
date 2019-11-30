@@ -142,7 +142,7 @@ var/list/global_whitelists[50]
 		client_or_ckey = client_or_ckey:ckey
 
 	var/path = "config/whitelist.txt"
-	for (var/ckey2discord_id in file2list(path))
+	for (var/ckey2discord_id in file2list(path,"&"))
 		var/_ckey = ckey2discord_id
 		if (_ckey == client_or_ckey)
 			return TRUE
@@ -170,7 +170,7 @@ var/list/global_whitelists[50]
 		client_or_ckey = client_or_ckey:ckey
 
 	var/path = "config/whitelist.txt"
-	for (var/ckey2discord_id in file2list(path))
+	for (var/ckey2discord_id in file2list(path,"&"))
 		var/_ckey = ckey2discord_id
 		if (_ckey == client_or_ckey)
 			return TRUE
