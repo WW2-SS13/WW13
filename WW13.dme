@@ -962,5 +962,7 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\rooftops.dmm"
+#include "maps\forest\flevel1.dmm"
+#include "maps\forest\flevel2.dmm"
+#include "maps\forest\flevel3.dmm"
 // END_INCLUDE
