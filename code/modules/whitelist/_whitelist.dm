@@ -136,21 +136,15 @@ var/list/global_whitelists[50]
 	name = "server"
 
 /datum/whitelist/server/validate(client_or_ckey, return_real_val_even_if_whitelist_disabled)
-	if (!enabled && !return_real_val_even_if_whitelist_disabled)
-		return TRUE
-	if (isclient(client_or_ckey))
-		client_or_ckey = client_or_ckey:ckey
-	if (serverswap && serverswap.Find("masterdir"))
-		var/path = "config/whitelist.txt"
-		for (var/ckey2discord_id in file2list(path))
-			var/_ckey = splittext(ckey2discord_id, "=")[1]
-			if (_ckey == client_or_ckey)
+	for (var/_name in global_whitelists)
+		if (_name == name)
+			var/datum/whitelist/W = global_whitelists[_name]
+			if (W.validate(src, return_real_val_even_if_whitelist_disabled))
 				return TRUE
-			if (ckey(_ckey) == client_or_ckey)
-				return TRUE
-			if (lowertext(_ckey) == client_or_ckey)
-				return TRUE
-	return FALSE
+			else
+				return FALSE
+
+	return TRUE // didn't find the whitelist? validate them anyway
 
 /datum/whitelist/server/New()
 	..()
@@ -164,22 +158,15 @@ var/list/global_whitelists[50]
 	name = "super"
 
 /datum/whitelist/super/validate(client_or_ckey, return_real_val_even_if_whitelist_disabled)
-	if (!enabled && !return_real_val_even_if_whitelist_disabled)
-		return TRUE
-	if (isclient(client_or_ckey))
-		client_or_ckey = client_or_ckey:ckey
-	if (serverswap && serverswap.Find("masterdir"))
-		var/path = "config/whitelist.txt"
-		for (var/ckey2discord_id in file2list(path))
-			var/_ckey = splittext(ckey2discord_id, "=")[1]
-			if (_ckey == client_or_ckey)
+	for (var/_name in global_whitelists)
+		if (_name == name)
+			var/datum/whitelist/W = global_whitelists[_name]
+			if (W.validate(src, return_real_val_even_if_whitelist_disabled))
 				return TRUE
-			if (ckey(_ckey) == client_or_ckey)
-				return TRUE
-			if (lowertext(_ckey) == client_or_ckey)
-				return TRUE
-	return FALSE
+			else
+				return FALSE
 
+	return TRUE // didn't find the whitelist? validate them anyway
 /datum/whitelist/super/New()
 	..()
 	if (config.usewhitelist)
