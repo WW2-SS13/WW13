@@ -141,15 +141,15 @@ var/list/global_whitelists[50]
 	if (isclient(client_or_ckey))
 		client_or_ckey = client_or_ckey:ckey
 
-	var/path = "config/whitelist.txt"
-	for (var/ckey2discord_id in file2list(path,"&"))
-		var/_ckey = ckey2discord_id
-		if (_ckey == client_or_ckey)
-			return TRUE
-		if (ckey(_ckey) == client_or_ckey)
-			return TRUE
-		if (lowertext(_ckey) == client_or_ckey)
-			return TRUE
+		var/path = "config/whitelist.txt"
+		for (var/ckey2discord_id in file2list(path))
+			var/_ckey = splittext(ckey2discord_id, "=")[1]
+			if (_ckey == client_or_ckey)
+				return TRUE
+			if (ckey(_ckey) == client_or_ckey)
+				return TRUE
+			if (lowertext(_ckey) == client_or_ckey)
+				return TRUE
 	return FALSE
 
 /datum/whitelist/server/New()
@@ -168,17 +168,18 @@ var/list/global_whitelists[50]
 		return TRUE
 	if (isclient(client_or_ckey))
 		client_or_ckey = client_or_ckey:ckey
-
-	var/path = "config/whitelist.txt"
-	for (var/ckey2discord_id in file2list(path,"&"))
-		var/_ckey = ckey2discord_id
-		if (_ckey == client_or_ckey)
-			return TRUE
-		if (ckey(_ckey) == client_or_ckey)
-			return TRUE
-		if (lowertext(_ckey) == client_or_ckey)
-			return TRUE
+	if (serverswap && serverswap.Find("masterdir"))
+		var/path = "config/whitelist.txt"
+		for (var/ckey2discord_id in file2list(path))
+			var/_ckey = splittext(ckey2discord_id, "=")[1]
+			if (_ckey == client_or_ckey)
+				return TRUE
+			if (ckey(_ckey) == client_or_ckey)
+				return TRUE
+			if (lowertext(_ckey) == client_or_ckey)
+				return TRUE
 	return FALSE
+
 /datum/whitelist/super/New()
 	..()
 	if (config.usewhitelist)
