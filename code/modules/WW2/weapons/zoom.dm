@@ -99,7 +99,7 @@ Parts of code courtesy of Super3222
 			if (input > zoom_amt)
 				dial_check = TRUE
 			zoom_amt = input
-
+		playsound(loc, pick("sound/items/War_UI_Class_Specific_Recon_Set_Scope_Zoom_Level_1.ogg","sound/items/War_UI_Class_Specific_Recon_Set_Scope_Zoom_Level_2.ogg"), 25, TRUE, -5)
 		user << "<span class='notice'>You twist the dial on [src] [dial_check ? "clockwise, increasing" : "counterclockwise, decreasing"] the zoom range to [zoom_amt].</span>"
 
 // An ugly hack called a boolean proc, made it like this to allow special
@@ -198,6 +198,7 @@ Parts of code courtesy of Super3222
 					user.client.pixel_x = world.icon_size*_x
 					user.client.pixel_y = world.icon_size*_y
 				user.visible_message("[user] peers through the [zoomdevicename ? "[zoomdevicename] of \the [name]" : "[name]"].")
+				playsound(loc, "sound/items/War_UI_Class_Specific_Recon_Adjust_Scope_Clicks_1.ogg", 25, TRUE, -5)
 			else
 				zoomed = FALSE
 	else //Resets everything
@@ -205,6 +206,7 @@ Parts of code courtesy of Super3222
 		user.client.pixel_y = 0
 		user.client.view = world.view
 		user.visible_message("[zoomdevicename ? "[user] looks up from \the [name]" : "[user] lowers \the [name]"].")
+		playsound(loc, "sound/items/War_UI_Class_Specific_Recon_Adjust_Scope_Clicks_2.ogg", 25, TRUE, -5)
 
 	if (zoomed)
 		// prevent scopes from bugging out opened storage objs in mob process

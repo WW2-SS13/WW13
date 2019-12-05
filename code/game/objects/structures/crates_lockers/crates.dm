@@ -8,6 +8,8 @@
 	icon_opened = "crateopen"
 	icon_closed = "crate"
 	climbable = TRUE
+	open_sound = "sound/items/War_UI_Inventory_Loot_Open_Lockbox_1.ogg"
+	close_sound = "sound/items/War_UI_Inventory_Loot_Open_Lockbox_2.ogg"
 //	mouse_drag_pointer = MOUSE_ACTIVE_POINTER	//???
 	var/rigged = FALSE
 

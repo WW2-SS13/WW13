@@ -108,6 +108,10 @@
 	drawsound = 'sound/items/unholster_knife.ogg'
 	force_divisor = 0.3
 
+/obj/item/weapon/material/knife/boot/New()
+	..()
+	drawsound = pick("sound/items/War_UI_Inventory_Equip_Knife_1.ogg","sound/items/War_UI_Inventory_Equip_Knife_2.ogg","sound/items/War_UI_Inventory_Equip_Knife_3.ogg","sound/items/War_UI_Inventory_Equip_Knife_4.ogg","sound/items/War_UI_Inventory_Equip_Knife_5.ogg","sound/items/War_UI_Inventory_Equip_Knife_6.ogg")
+
 /obj/item/weapon/material/knife/boot/makeshift_knife
 	name = "boot knife"
 	desc = "A small self made knife used a lot in jail."
@@ -116,7 +120,6 @@
 	item_state = "knife"
 	applies_material_colour = FALSE
 	unbreakable = TRUE
-	drawsound = 'sound/items/unholster_knife.ogg'
 	force_divisor = 0.3
 
 /obj/item/weapon/material/knife/boot/trench_knife
@@ -127,7 +130,6 @@
 	item_state = "knife"
 	applies_material_colour = FALSE
 	unbreakable = TRUE
-	drawsound = 'sound/items/unholster_knife.ogg'
 	force_divisor = 0.3
 
 /obj/item/weapon/material/knife/boot/nr40_knife
@@ -138,7 +140,6 @@
 	item_state = "knife"
 	applies_material_colour = FALSE
 	unbreakable = TRUE
-	drawsound = 'sound/items/unholster_knife.ogg'
 	force_divisor = 0.3
 
 /obj/item/weapon/material/knife/boot/bowie_knife
@@ -149,7 +150,6 @@
 	item_state = "knife"
 	applies_material_colour = FALSE
 	unbreakable = TRUE
-	drawsound = 'sound/items/unholster_knife.ogg'
 	force_divisor = 0.3
 
 /obj/item/weapon/material/knife/boot/nr40_knife_SS
@@ -160,7 +160,6 @@
 	item_state = "knife"
 	applies_material_colour = FALSE
 	unbreakable = TRUE
-	drawsound = 'sound/items/unholster_knife.ogg'
 	force_divisor = 0.3
 
 /obj/item/weapon/material/knife/boot/tacknife_US
@@ -171,7 +170,6 @@
 	item_state = "knife"
 	applies_material_colour = FALSE
 	unbreakable = TRUE
-	drawsound = 'sound/items/unholster_knife.ogg'
 	force_divisor = 0.3
 
 /obj/item/weapon/material/knife/attack(target as mob, mob/living/user as mob)

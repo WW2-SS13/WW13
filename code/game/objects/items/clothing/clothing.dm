@@ -13,6 +13,10 @@
 
 	dropsound = 'sound/effects/drop_clothing.ogg'
 
+/obj/item/clothing/New()
+	..()
+	dropsound = pick("War_UI_Inventory_Organic_Inventory_Discard_1.ogg, War_UI_Inventory_Organic_Inventory_Discard_2.ogg,War_UI_Inventory_Organic_Inventory_Discard_3.ogg,War_UI_Inventory_Organic_Inventory_Discard_4.ogg")
+
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
 	return
@@ -269,7 +273,7 @@ BLIND     // can't see anything
 	slot_flags = SLOT_FEET
 
 	var/can_hold_knife = TRUE
-	var/obj/item/holding
+	var/obj/item/weapon/holding
 
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
@@ -297,9 +301,10 @@ BLIND     // can't see anything
 
 	if (usr.put_in_hands(holding))
 		usr.visible_message("<span class='danger'>\The [usr] pulls a knife out of their boot!</span>")
+		playsound(loc, holding.drawsound, 25, TRUE, -5)
 		holding = null
 	else
-		usr << "<span class='warning'>Your need an empty, unbroken hand to do that.</span>"
+		usr << "<span class='warning'>You need an empty, unbroken hand to do that.</span>"
 		holding.forceMove(src)
 
 	if (!holding)
