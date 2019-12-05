@@ -17,9 +17,8 @@
 /obj/item/weapon/grenade/explosive/kamikaze
 	name = "Kamikaze Charge"
 	icon_state = "kamikaze"
-	explosion_size = 6
+	explosion_size = 4
 	num_fragments = 80
-	big_bomb = TRUE
 	throw_speed = 1
 	throw_range = FALSE
 	nothrow = TRUE

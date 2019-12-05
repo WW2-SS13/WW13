@@ -47,6 +47,7 @@ Current Defines (_defines/attachment.dm)
     A_attached = FALSE
     loc = get_turf(src)
     user << "You remove [src] from the [G]."
+
   else
     return
 
@@ -187,10 +188,12 @@ Current Defines (_defines/attachment.dm)
 
 /obj/item/weapon/attachment/bayonet/attached(mob/user, obj/item/weapon/gun/G)
   ..()
+  playsound(loc, pick("sound/items/War_UI_Class_Specific_Infantry_Attach_Bayonet_1.ogg","sound/items/War_UI_Class_Specific_Infantry_Attach_Bayonet_1.ogg"), 50, TRUE, -5)
   G.bayonet = src
 
 /obj/item/weapon/attachment/bayonet/removed(mob/user, obj/item/weapon/gun/G)
   ..()
+  playsound(loc, pick("sound/items/War_UI_Inventory_Organic_Gun_Parts_1.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_2.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_3.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_4.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_5.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_6.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_7.ogg"), 50, TRUE, -5)
   G.bayonet = null
 
 /obj/item/weapon/attachment/bayonet/german
@@ -219,6 +222,7 @@ Current Defines (_defines/attachment.dm)
   //This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
   G.icon_state = initial(G.icon_state)
   G.item_state = initial(G.item_state)
+  playsound(loc, pick("sound/items/War_UI_Inventory_Organic_Gun_Parts_1.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_2.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_3.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_4.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_5.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_6.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_7.ogg"), 50, TRUE, -5)
   if (istype(G, /obj/item/weapon/gun/projectile/boltaction))
     var/obj/item/weapon/gun/projectile/boltaction/W = G
     if (W.bolt_open)
@@ -226,12 +230,14 @@ Current Defines (_defines/attachment.dm)
 
 /obj/item/weapon/attachment/scope/adjustable/sniper_scope/attached(mob/user, obj/item/weapon/gun/G)
   ..()
+  playsound(loc, pick("sound/items/War_UI_Inventory_Organic_Gun_Parts_1.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_2.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_3.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_4.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_5.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_6.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_7.ogg"), 50, TRUE, -5)
   if (istype(G, /obj/item/weapon/gun/projectile/boltaction))
     var/obj/item/weapon/gun/projectile/boltaction/W = G
     W.update_icon(1)
 
 /obj/item/weapon/attachment/scope/removed(mob/user, obj/item/weapon/gun/G)
   ..()
+  playsound(loc, pick("sound/items/War_UI_Inventory_Organic_Gun_Parts_1.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_2.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_3.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_4.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_5.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_6.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_7.ogg"), 50, TRUE, -5)
   G.accuracy = initial(G.accuracy)
   G.recoil = initial(G.recoil)
 

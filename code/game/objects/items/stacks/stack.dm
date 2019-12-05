@@ -219,7 +219,7 @@
 				return
 
 	if (recipe.time)
-		var/buildtime = recipe.time
+		var/buildtime = recipe.time * 2
 		if (H)
 			buildtime /= H.getStatCoeff("strength")
 			buildtime /= (H.getStatCoeff("engineering") * H.getStatCoeff("engineering"))

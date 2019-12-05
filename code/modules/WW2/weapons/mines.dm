@@ -60,14 +60,14 @@
 		return
 
 //Disarming
-/obj/item/mine/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/mine/attackby(obj/item/W as obj, mob/user as mob,mob/living/carbon/human/H as mob)
 	if (anchored)
 		if (istype(W, /obj/item/weapon/wirecutters))
 			user.visible_message("<span class = 'notice'>\The [user] starts to disarm the \the [src] with the [W].</span>")
-			if (!do_after(user,60))
+			if (!do_after(user,60/(H.getStatCoeff("engineering"))))
 				user.visible_message("<span class = 'notice'>\The [user] decides not to disarm the \the [src].</span>")
 				return
-			if (prob(95))
+			if (prob(95*H.getStatCoeff("engineering")))
 				user.visible_message("<span class = 'notice'>\The [user] finishes disarming the \the [src]!</span>")
 				anchored = FALSE
 				icon_state = "betty"
@@ -77,10 +77,10 @@
 				Bumped(user)
 		else if (istype(W, /obj/item/weapon/material/knife))
 			user.visible_message("<span class = 'notice'>\The [user] starts to disarm the \the [src] with the [W].</span>")
-			if (!do_after(user,80))
+			if (!do_after(user,80/H.getStatCoeff("engineering")))
 				user.visible_message("<span class = 'notice'>\The [user] decides not to disarm the \the [src].</span>")
 				return
-			if (prob(50))
+			if (prob(50*H.getStatCoeff("engineering")))
 				user.visible_message("<span class = 'notice'>\The [user] finishes disarming the \the [src]!</span>")
 				anchored = FALSE
 				icon_state = "betty"
@@ -91,13 +91,13 @@
 		else
 			Bumped(user)
 
-/obj/item/mine/attack_hand(mob/user as mob)
+/obj/item/mine/attack_hand(mob/user as mob,mob/living/carbon/human/H as mob)
 	if (anchored)
 		user.visible_message("<span class = 'notice'>\The [user] starts to dig around the \the [src] with their bare hands!</span>")
-		if (!do_after(user,100))
+		if (!do_after(user,100/H.getStatCoeff("engineering")))
 			user.visible_message("<span class = 'notice'>\The [user] decides not to dig up the \the [src].</span>")
 			return
-		if (prob(15))
+		if (prob(15*H.getStatCoeff("engineering")))
 			user.visible_message("<span class = 'notice'>\The [user] finishes digging up the \the [src], disarming it!</span>")
 			anchored = FALSE
 			icon_state = "betty"
@@ -138,6 +138,15 @@
 		visible_message("<span class = 'red'><b>Click!</b></span>")
 		if (atmine == FALSE)
 			explosion(get_turf(src),-1,1,3)
+			var/turf/T = get_turf(src)
+			var/list/target_turfs = getcircle(T, 3)
+			for (var/turf/TT in target_turfs)
+				var/obj/item/projectile/bullet/pellet/fragment/P = new /obj/item/projectile/bullet/pellet/fragment(T)
+				P.damage = 8
+				P.pellets = 10
+				P.range_step = 3
+				P.shot_from = name
+				P.launch_fragment(TT)
 		else
 			explosion(get_turf(src),2,2,6)
 			spawn(3)
@@ -152,6 +161,16 @@
 //Explosive
 /obj/item/mine/proc/explosive(obj)
 	explosion(loc,2,2,4)
+	var/turf/T = get_turf(src)
+	var/list/target_turfs = getcircle(T, 10)
+	for (var/turf/TT in target_turfs)
+		var/obj/item/projectile/bullet/pellet/fragment/P = new /obj/item/projectile/bullet/pellet/fragment(T)
+		P.damage = 18
+		P.pellets = 37
+		P.range_step = 10
+		P.shot_from = name
+		P.launch_fragment(TT)
+
 	spawn(0)
 		qdel(src)
 
