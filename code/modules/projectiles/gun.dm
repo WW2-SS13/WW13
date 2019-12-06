@@ -126,7 +126,7 @@
 		else
 			handle_click_empty(user)
 		return FALSE
-	if (istype(src, /obj/item/weapon/gun/projectile/boltaction) || istype(src, /obj/item/weapon/gun/projectile/semiautomatic))
+	if (istype(src, /obj/item/weapon/gun/projectile/boltaction) || istype(src, /obj/item/weapon/gun/projectile/semiautomatic) || istype(src, /obj/item/weapon/gun/projectile/pistol))
 		var/obj/item/weapon/gun/projectile/boltaction/B = src // this is hackey
 		if (B.jammed_until > world.time)
 			user << "<span class = 'danger'>The [B] has jammed! You can't fire it until it has unjammed.</span>"

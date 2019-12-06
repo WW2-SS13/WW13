@@ -132,11 +132,10 @@
 		p_y = between(0, p_y + rand(-radius, radius), world.icon_size)
 
 //called to launch a projectile from a gun
-/obj/item/projectile/proc/launch(atom/target, mob/user, obj/item/weapon/gun/launcher, var/target_zone, var/x_offset=0, var/y_offset=0,mob/living/carbon/human/H as mob)
+/obj/item/projectile/proc/launch(atom/target, mob/user, obj/item/weapon/gun/launcher, var/target_zone, var/x_offset=0, var/y_offset=0)
 
 	var/turf/curloc = get_turf(launcher)
 	var/turf/targloc = get_turf(target)
-	riflestat = H.getStatCoeff("rifle")
 
 	if (!istype(targloc) || !istype(curloc))
 		qdel(src)
@@ -430,7 +429,7 @@
 	if(can_hit_in_trench == 1)
 		if(kill_count < (initial(kill_count) - 1))
 			if(!istype(T, /turf/floor/trench))
-				if(prob(50/riflestat))
+				if(prob(20))
 					can_hit_in_trench = 0
 			else
 				can_hit_in_trench = -1

@@ -656,6 +656,253 @@
 
 /datum/job/german/soldier/get_keys()
 	return list(new/obj/item/weapon/key/german)
+
+
+///HONEYGAY SHIT
+
+/datum/job/german/honeyrittmeister
+	title = "Terek Rittmeister"
+	en_meaning = "Terek Squad Lead"
+	rank_abbreviation = "schtz"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateHeer"
+	allow_spies = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+
+/datum/job/german/honeyrittmeister/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german_basic/soldier(H), slot_belt)
+	H.add_note("Role", "You are a <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.")
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	if (prob(8))
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_back)
+	else
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
+	return TRUE
+
+/datum/job/german/honeyrittmeister/get_keys()
+	return list(new/obj/item/weapon/key/german)
+
+/datum/job/german/honeyreconlead
+	title = "Terek Oberluetnant"
+	en_meaning = "Terek Recon Lead"
+	rank_abbreviation = "schtz"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateHeer"
+	allow_spies = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+
+/datum/job/german/honeyreconlead/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german_basic/soldier(H), slot_belt)
+	H.add_note("Role", "You are a <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.")
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	if (prob(8))
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_back)
+	else
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
+	return TRUE
+
+/datum/job/german/honeyreconlead/get_keys()
+	return list(new/obj/item/weapon/key/german)
+
+/datum/job/german/honeyreconassist
+	title = "Terek Gefreiter"
+	en_meaning = "Terek Recon Lead Assistant"
+	rank_abbreviation = "schtz"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateHeer"
+	allow_spies = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+
+/datum/job/german/honeyreconassist/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german_basic/soldier(H), slot_belt)
+	H.add_note("Role", "You are a <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.")
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	if (prob(8))
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_back)
+	else
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
+	return TRUE
+
+/datum/job/german/honeyreconassist/get_keys()
+	return list(new/obj/item/weapon/key/german)
+
+
+/datum/job/german/honeymachinegunner
+	title = "Terek MG Gefreiter"
+	en_meaning = "Terek Machinegunner"
+	rank_abbreviation = "schtz"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateHeer"
+	allow_spies = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 2
+	max_positions = 2
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+
+/datum/job/german/honeymachinegunner/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german_basic/soldier(H), slot_belt)
+	H.add_note("Role", "You are a <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.")
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	if (prob(8))
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_back)
+	else
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
+	return TRUE
+
+/datum/job/german/honeymachinegunner/get_keys()
+	return list(new/obj/item/weapon/key/german)
+
+/datum/job/german/honeysapper
+	title = "Terek Pionier"
+	en_meaning = "Terek Engineer"
+	rank_abbreviation = "schtz"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateHeer"
+	allow_spies = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+
+/datum/job/german/honeysapper/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german_basic/soldier(H), slot_belt)
+	H.add_note("Role", "You are a <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.")
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	if (prob(8))
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_back)
+	else
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
+	return TRUE
+
+/datum/job/german/honeysapper/get_keys()
+	return list(new/obj/item/weapon/key/german)
+
+
+/datum/job/german/honeyschutze
+	title = "Terek Gefreiter Schutze"
+	en_meaning = "Terek Rifleman"
+	rank_abbreviation = "schtz"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateHeer"
+	allow_spies = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 2
+	max_positions = 2
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+
+/datum/job/german/honeyschutze/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german_basic/soldier(H), slot_belt)
+	H.add_note("Role", "You are a <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.")
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	if (prob(8))
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_back)
+	else
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
+	return TRUE
+
+/datum/job/german/honeyschutze/get_keys()
+	return list(new/obj/item/weapon/key/german)
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

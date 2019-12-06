@@ -15,7 +15,7 @@
 
 /obj/item/clothing/New()
 	..()
-	dropsound = pick("War_UI_Inventory_Organic_Inventory_Discard_1.ogg, War_UI_Inventory_Organic_Inventory_Discard_2.ogg,War_UI_Inventory_Organic_Inventory_Discard_3.ogg,War_UI_Inventory_Organic_Inventory_Discard_4.ogg")
+	dropsound = pick("sound/items/War_UI_Inventory_Organic_Inventory_Discard_1.ogg", "sound/items/War_UI_Inventory_Organic_Inventory_Discard_2.ogg","sound/items/War_UI_Inventory_Organic_Inventory_Discard_3.ogg","sound/items/War_UI_Inventory_Organic_Inventory_Discard_4.ogg")
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()

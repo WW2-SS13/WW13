@@ -7,6 +7,8 @@
 	// less accurate than semiautos but with the same ratios
 	move_delay = 1
 	fire_delay = 3
+	var/jamcheck
+	var/jammed_until
 	accuracy_list = list(
 
 		// small body parts: head, hand, feet
@@ -57,6 +59,17 @@
 	KD_chance = KD_CHANCE_LOW
 	stat = "pistol"
 	aim_miss_chance_divider = 2.00
+
+/obj/item/weapon/gun/projectile/pistol/handle_post_fire()
+	..()
+
+	jamcheck = pick(0,5,10,15,25)
+
+	if (prob(jamcheck))
+		jammed_until = max(world.time + 50, 50)
+		jamcheck = 0
+
+	last_fire = world.time
 
 /obj/item/weapon/gun/projectile/pistol/attackby(obj/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/attachment/bayonet))
