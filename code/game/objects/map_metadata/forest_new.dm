@@ -51,24 +51,6 @@
 			J.total_positions = 6
 		else if (istype(J, /datum/job/german/engineer))
 			J.total_positions = 3
-		else if (istype(J, /datum/job/german/honeyitleader))
-			J.total_positions = 1
-		else if (istype(J, /datum/job/german/honeyitmedic))
-			J.total_positions = 3
-		else if (istype(J, /datum/job/german/honeyitengie))
-			J.total_positions = 4
-		else if (istype(J, /datum/job/german/honeyrittmeister))
-			J.total_positions = 1
-		else if (istype(J, /datum/job/german/honeyreconlead))
-			J.total_positions = 1
-		else if (istype(J, /datum/job/german/honeyreconassist))
-			J.total_positions = 1
-		else if (istype(J, /datum/job/german/honeymachinegunner))
-			J.total_positions = 2
-		else if (istype(J, /datum/job/german/honeysapper))
-			J.total_positions = 1
-		else if (istype(J, /datum/job/german/honeyschutze))
-			J.total_positions = 2
 		else
 			. = FALSE
 	else if (istype(J, /datum/job/soviet))

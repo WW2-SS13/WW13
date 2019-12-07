@@ -74,7 +74,7 @@
 "bv" = (/obj/structure/closet/crate/flares_ammo,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
 "bw" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/lugers,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
 "bx" = (/obj/item/weapon/gun/projectile/pistol/luger/flaregun,/obj/item/weapon/gun/projectile/pistol/luger/flaregun,/obj/item/weapon/gun/projectile/pistol/luger/flaregun,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/storage/fancy/cigarettes,/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
-"by" = (/obj/item/clothing/suit/radio_harness,/obj/item/clothing/suit/radio_harness,/obj/item/clothing/suit/radio_harness,/obj/structure/table/wood,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"by" = (/obj/item/clothing/suit/radio_harness,/obj/item/clothing/suit/radio_harness,/obj/item/clothing/suit/radio_harness,/obj/structure/table/wood,/obj/item/radio/intercom/a7b,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
 "bz" = (/obj/structure/bed/chair/wood,/obj/effect/landmark{name = "JoinLateRAQM"},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
 "bA" = (/obj/structure/window/sandbag,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
 "bB" = (/obj/effect/floor_decal/borderfloor,/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
