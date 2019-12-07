@@ -1,9 +1,9 @@
 /obj/map_metadata/forest_new
 	ID = MAP_FOREST
-	title = "River (150x150x1)"
+	title = "Soviet Defense (100x250x1)"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall)
 	respawn_delay = 2400
-	reinforcements = FALSE
+	reinforcements = TRUE
 	squad_spawn_locations = FALSE
 	supply_points_per_tick = list(
 		GERMAN = 1.00,
@@ -12,7 +12,7 @@
 		GERMAN,
 		SOVIET)
 	faction_distribution_coeffs = list(GERMAN = 0.42, SOVIET = 0.58)
-	battle_name = "Battle of the River"
+	battle_name = "Battle of the Town"
 
 /obj/map_metadata/forest_new/germans_can_cross_blocks()
 	return (processes.ticker.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)
@@ -51,11 +51,29 @@
 			J.total_positions = 6
 		else if (istype(J, /datum/job/german/engineer))
 			J.total_positions = 3
+		else if (istype(J, /datum/job/german/honeyitleader))
+			J.total_positions = 1
+		else if (istype(J, /datum/job/german/honeyitmedic))
+			J.total_positions = 3
+		else if (istype(J, /datum/job/german/honeyitengie))
+			J.total_positions = 4
+		else if (istype(J, /datum/job/german/honeyrittmeister))
+			J.total_positions = 1
+		else if (istype(J, /datum/job/german/honeyreconlead))
+			J.total_positions = 1
+		else if (istype(J, /datum/job/german/honeyreconassist))
+			J.total_positions = 1
+		else if (istype(J, /datum/job/german/honeymachinegunner))
+			J.total_positions = 2
+		else if (istype(J, /datum/job/german/honeysapper))
+			J.total_positions = 1
+		else if (istype(J, /datum/job/german/honeyschutze))
+			J.total_positions = 2
 		else
 			. = FALSE
 	else if (istype(J, /datum/job/soviet))
 		if (istype(J, /datum/job/soviet/soldier))
-			J.total_positions = 15
+			J.total_positions = 33
 		else if (istype(J, /datum/job/soviet/commander))
 			J.total_positions = 1
 		else if (istype(J, /datum/job/soviet/staff_officer))
@@ -69,13 +87,13 @@
 		else if (istype(J, /datum/job/soviet/doctor))
 			J.total_positions = 1
 		else if (istype(J, /datum/job/soviet/sniper))
-			J.total_positions = 2
+			J.total_positions = 4
 		else if (istype(J, /datum/job/soviet/messenger))
 			J.total_positions = 1
 		else if (istype(J, /datum/job/soviet/heavy_weapon))
 			J.total_positions = 6
 		else if (istype(J, /datum/job/soviet/engineer))
-			J.total_positions = 1
+			J.total_positions = 4
 		else
 			. = FALSE
 	else

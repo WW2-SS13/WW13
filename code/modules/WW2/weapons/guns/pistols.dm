@@ -69,7 +69,6 @@
 		jammed_until = max(world.time + 50, 50)
 		jamcheck = 0
 
-	last_fire = world.time
 
 /obj/item/weapon/gun/projectile/pistol/attackby(obj/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/attachment/bayonet))
