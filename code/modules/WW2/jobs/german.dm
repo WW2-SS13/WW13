@@ -668,6 +668,7 @@
 	spawn_location = "JoinLateHeer"
 	allow_spies = TRUE
 	SL_check_independent = TRUE
+	is_officer = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -708,6 +709,7 @@
 	spawn_location = "JoinLateHeer"
 	allow_spies = TRUE
 	SL_check_independent = TRUE
+	is_officer = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -748,6 +750,7 @@
 	spawn_location = "JoinLateHeer"
 	allow_spies = TRUE
 	SL_check_independent = TRUE
+	is_officer = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -789,6 +792,7 @@
 	spawn_location = "JoinLateHeer"
 	allow_spies = TRUE
 	SL_check_independent = TRUE
+	is_officer = TRUE
 
 	// AUTOBALANCE
 	min_positions = 2
@@ -825,6 +829,7 @@
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
 	allow_spies = TRUE
+	is_officer = TRUE
 	SL_check_independent = TRUE
 
 	// AUTOBALANCE
@@ -863,6 +868,7 @@
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
 	allow_spies = TRUE
+	is_officer = TRUE
 	SL_check_independent = TRUE
 
 	// AUTOBALANCE
@@ -903,6 +909,7 @@
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
 	allow_spies = TRUE
+	is_officer = TRUE
 	SL_check_independent = TRUE
 
 	// AUTOBALANCE
@@ -996,7 +1003,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/italianboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/itauni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/itahelm(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/modello38(H), slot_back)
 	H.add_note("Role", "You are a <b>[title]</b>, an Italian infantry unit assisting the Wehrmacht. Your job is to participate in front line combat.")
 	H.give_radio()

@@ -15,13 +15,13 @@
 	battle_name = "Battle of the Town"
 
 /obj/map_metadata/forest_new/germans_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 12000 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/forest_new/soviets_can_cross_blocks()
-	return (processes.ticker.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)
+	return (processes.ticker.playtime_elapsed >= 12000 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/forest_new/announce_mission_start(var/preparation_time)
-	world << "<font size=4>All factions have <b>15 minutes</b> to prepare before combat will begin!</font>"
+	world << "<font size=4>All factions have <b>20 minutes</b> to prepare before combat will begin!</font>"
 
 /obj/map_metadata/forest_new/reinforcements_ready()
 	return (germans_can_cross_blocks() && soviets_can_cross_blocks())
