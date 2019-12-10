@@ -51,6 +51,7 @@
 	accuracy_decrease_mod = 6.00
 	KD_chance = KD_CHANCE_VERY_LOW
 	stat = "MG"
+	handle_casings = EJECT_CASINGS
 
 /obj/item/weapon/gun/projectile/automatic/dp
 	name = "DP-28"

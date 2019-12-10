@@ -55,6 +55,7 @@
 
 	headshot_kill_chance = 35
 	KO_chance = 30
+	handle_casings = EJECT_CASINGS
 
 	var/jammed_until = -1
 	var/jamcheck = 0

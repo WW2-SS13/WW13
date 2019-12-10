@@ -75,6 +75,7 @@
 	var/stat = "rifle"
 	var/load_delay = 0
 
+
 	var/headshot_kill_chance = 40 // if we have enough damage. See projectile.dm if you want to know why this needs to be set to 40 for all guns - Kachnov
 	var/KO_chance = 33 // even if we fail to kill with a headshot, chance to make the target go unconscious
 
@@ -106,6 +107,10 @@
 
 	var/aim_miss_chance_divider = 1.50
 	var/mob/living/carbon/human/firer = null
+
+/obj/item/weapon/gun/projectile/New()
+	..()
+	drawsound = pick("sound/items/gunequip1.ogg","sound/items/gunequip2.ogg","sound/items/gunequip3.ogg")
 
 /obj/item/weapon/gun/projectile/proc/calculate_miss_chance(zone, var/mob/target)
 

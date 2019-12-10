@@ -65,8 +65,7 @@
 	var/wielded_icon = null
 	var/worn_state = null
 
-	var/dropsound = 'sound/effects/drop_default.ogg'
-
+	var/dropsound = "sound/items/War_UI_Inventory_Organic_Inventory_Discard_1.ogg"
 	// Weight variable
 	var/weight = 0
 	var/heavy = FALSE

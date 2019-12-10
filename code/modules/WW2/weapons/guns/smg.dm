@@ -50,6 +50,7 @@
 
 	accuracy_increase_mod = 2.00
 	accuracy_decrease_mod = 6.00
+	handle_casings = EJECT_CASINGS
 	KD_chance = KD_CHANCE_LOW
 	stat = "SMG"
 
