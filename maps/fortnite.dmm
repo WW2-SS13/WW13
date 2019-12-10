@@ -1,139 +1,139 @@
 "aa" = (/turf/floor/plating/grass/wild,/area/prishtina)
 "ab" = (/turf/floor/dirt{icon_state = "greenerdirt"},/area/prishtina)
-"ac" = (/turf/floor/dirt{icon_state = "road_vc1"},/area/prishtina)
+"ac" = (/turf/floor/plating/dirt,/area/prishtina)
 "ad" = (/turf/wall/rockwall,/area/prishtina)
-"ae" = (/obj/structure/wild/tree,/turf/floor/plating/grass/wild,/area/prishtina)
-"af" = (/turf/floor/dirt,/area/prishtina)
-"ag" = (/turf/wall/wood,/area/prishtina)
-"ah" = (/obj/item/weapon/grenade/explosive/rgd,/turf/floor/plating/grass/wild,/area/prishtina)
-"ai" = (/obj/item/ammo_magazine/kar98k,/turf/floor/plating/grass/wild,/area/prishtina)
-"aj" = (/obj/effect/decal/cleanable/dirt,/turf/wall/wood,/area/prishtina)
-"ak" = (/obj/effect/landmark{name = "JoinLateIT-Officer"},/turf/floor/plating/grass/wild,/area/prishtina)
-"al" = (/obj/structure/barricade/steel,/obj/structure/window/classic,/turf/floor/wood,/area/prishtina)
-"am" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/wood,/area/prishtina)
-"an" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/turf/floor/wood,/area/prishtina)
-"ao" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/snacks/spaghetti,/turf/floor/wood,/area/prishtina)
-"ap" = (/obj/item/weapon/gun/projectile/pistol/luger,/turf/floor/wood,/area/prishtina)
-"aq" = (/turf/floor/wood_broken,/area/prishtina)
-"ar" = (/obj/structure/pot,/turf/floor/wood,/area/prishtina)
-"as" = (/obj/structure/oven,/turf/floor/wood,/area/prishtina)
-"at" = (/obj/effect/decal/cleanable/dirt,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/german,/turf/floor/wood,/area/prishtina)
-"au" = (/turf/floor/wood,/area/prishtina)
-"av" = (/obj/item/weapon/gun/projectile/boltaction/kar98k,/turf/floor/wood,/area/prishtina)
-"aw" = (/obj/item/ammo_magazine/kar98k,/turf/floor/wood,/area/prishtina)
-"ax" = (/obj/effect/decal/cleanable/dirt,/obj/item/weapon/crowbar,/turf/floor/wood,/area/prishtina)
-"ay" = (/obj/structure/bed/chair/wood/red,/turf/floor/wood,/area/prishtina)
-"az" = (/obj/item/weapon/grenade/explosive/l2a2,/turf/floor/plating/grass/wild,/area/prishtina)
-"aA" = (/obj/structure/closet/crate/gauze,/turf/floor/wood,/area/prishtina)
-"aB" = (/obj/structure/closet/crate/medical,/turf/floor/wood,/area/prishtina)
-"aC" = (/obj/item/ammo_magazine/kar98k,/obj/item/weapon/gun/projectile/boltaction/kar98k,/turf/floor/dirt,/area/prishtina)
-"aD" = (/obj/item/weapon/grenade/explosive/rgd,/turf/floor/wood,/area/prishtina)
-"aE" = (/obj/structure/flag/italian,/turf/floor/plating/grass/wild,/area/prishtina)
-"aF" = (/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina)
-"aG" = (/obj/item/ammo_magazine/luger,/turf/floor/wood,/area/prishtina)
-"aH" = (/obj/effect/decal/cleanable/dirt,/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/turf/floor/wood,/area/prishtina)
-"aI" = (/obj/effect/decal/cleanable/dirt,/obj/item/weapon/material/kitchen/utensil/knife,/turf/floor/wood,/area/prishtina)
-"aJ" = (/obj/item/trash/snack_bowl,/obj/item/weapon/material/kitchen/utensil/spoon,/turf/floor/wood,/area/prishtina)
-"aK" = (/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/german,/turf/floor/wood,/area/prishtina)
-"aL" = (/obj/effect/decal/cleanable/dirt,/turf/floor/wood_broken,/area/prishtina)
-"aM" = (/obj/effect/decal/cleanable/dirt,/turf/floor/dirt,/area/prishtina)
-"aN" = (/obj/item/ammo_magazine/kar98k,/turf/floor/dirt,/area/prishtina)
-"aO" = (/obj/item/weapon/beartrap{deployed = 1},/turf/floor/wood,/area/prishtina)
-"aP" = (/obj/structure/simple_door/key_door/anyone/wood,/turf/floor/wood,/area/prishtina)
-"aQ" = (/obj/effect/decal/cleanable/dirt,/obj/item/stack/material/wood{amount = 20},/turf/floor/wood,/area/prishtina)
-"aR" = (/obj/item/trash/snack_bowl,/turf/floor/wood,/area/prishtina)
-"aS" = (/obj/item/weapon/material/kitchen/utensil/spoon,/turf/floor/wood_broken,/area/prishtina)
-"aT" = (/obj/item/weapon/beartrap{deployed = 1},/turf/floor/plating/grass/wild,/area/prishtina)
-"aU" = (/obj/item/flashlight/lantern,/turf/floor/wood_broken,/area/prishtina)
-"aV" = (/obj/item/weapon/storage/backpack/german,/turf/floor/wood,/area/prishtina)
-"aW" = (/obj/effect/decal/cleanable/dirt,/obj/item/weapon/gun/projectile/boltaction/kar98k,/turf/floor/wood,/area/prishtina)
-"aX" = (/obj/effect/landmark{name = "JoinLateIT-Medic"},/turf/floor/plating/grass/wild,/area/prishtina)
-"aY" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina)
-"aZ" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/item/weapon/grenade/explosive/rgd,/obj/item/weapon/storage/backpack/german,/turf/floor/wood,/area/prishtina)
-"ba" = (/obj/structure/window/sandbag,/turf/floor/wood,/area/prishtina)
-"bb" = (/obj/effect/decal/cleanable/dirt,/obj/structure/window/sandbag,/turf/floor/wood,/area/prishtina)
-"bc" = (/obj/item/flashlight/lantern,/turf/floor/wood,/area/prishtina)
-"bd" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/floor/wood_broken,/area/prishtina)
-"be" = (/obj/item/weapon/material/kitchen/utensil/spoon,/turf/floor/wood,/area/prishtina)
-"bf" = (/obj/item/flashlight/lantern,/obj/item/weapon/material/kitchen/utensil/spoon,/turf/floor/wood,/area/prishtina)
-"bg" = (/obj/item/weapon/reagent_containers/food/condiment/flour,/turf/floor/wood_broken,/area/prishtina)
-"bh" = (/obj/map_metadata/survival,/turf/floor/plating/grass/wild,/area/prishtina)
-"bi" = (/obj/structure/closet/crate/webbing,/turf/floor/wood,/area/prishtina)
-"bj" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/floor/dirt,/area/prishtina)
-"bk" = (/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/turf/floor/wood,/area/prishtina)
-"bl" = (/obj/effect/decal/cleanable/dirt,/obj/item/trash/snack_bowl,/turf/floor/wood,/area/prishtina)
-"bm" = (/obj/item/flashlight/lantern,/obj/item/weapon/material/kitchen/utensil/knife,/turf/floor/wood,/area/prishtina)
-"bn" = (/obj/effect/decal/cleanable/dirt,/obj/item/weapon/storage/backpack/german,/turf/floor/wood,/area/prishtina)
-"bo" = (/obj/effect/landmark{name = "JoinLateIT"},/turf/floor/plating/grass/wild,/area/prishtina)
-"bp" = (/obj/effect/decal/cleanable/dirt,/obj/item/trash/snack_bowl,/obj/item/weapon/material/kitchen/utensil/spoon,/turf/floor/wood_broken,/area/prishtina)
-"bq" = (/obj/item/weapon/reagent_containers/food/condiment/flour,/turf/floor/wood,/area/prishtina)
-"br" = (/obj/structure/closet/crate/wood,/turf/floor/wood,/area/prishtina)
-"bs" = (/obj/structure/wild/tree,/turf/floor/dirt,/area/prishtina)
-"bt" = (/obj/structure/closet/crate/sandbags,/turf/floor/wood,/area/prishtina)
-"bu" = (/obj/structure/barricade/steel,/turf/floor/plating/grass/wild,/area/prishtina)
-"bv" = (/obj/structure/closet/crate/barbwire,/turf/floor/wood,/area/prishtina)
-"bw" = (/obj/structure/closet/crate/rations/german_meat,/turf/floor/wood,/area/prishtina)
-"bx" = (/obj/structure/closet/crate/rations/german_solids,/turf/floor/wood,/area/prishtina)
-"by" = (/obj/structure/closet/crate/rations/german_liquids,/turf/floor/wood,/area/prishtina)
-"bz" = (/obj/structure/closet/crate/rations/water,/turf/floor/wood_broken,/area/prishtina)
-"bA" = (/obj/item/flashlight/lantern,/turf/floor/plating/grass/wild,/area/prishtina)
-"bB" = (/obj/item/weapon/crowbar,/turf/floor/plating/grass/wild,/area/prishtina)
-"bC" = (/obj/effect/landmark{name = "Observer-Start"},/turf/floor/plating/grass/wild,/area/prishtina)
-"bD" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/german,/turf/floor/wood,/area/prishtina)
-"bE" = (/obj/item/ammo_magazine/luger,/turf/floor/plating/grass/wild,/area/prishtina)
-"bF" = (/obj/item/weapon/gun/projectile/pistol/luger,/turf/floor/plating/grass/wild,/area/prishtina)
-"bG" = (/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/turf/floor/plating/grass/wild,/area/prishtina)
-"bH" = (/obj/item/weapon/flammenwerfer_fueltank,/turf/floor/plating/grass/wild,/area/prishtina)
-"bI" = (/obj/item/weapon/storage/backpack/flammenwerfer,/turf/floor/plating/grass/wild,/area/prishtina)
-"bJ" = (/obj/item/weapon/gun/projectile/boltaction/kar98k,/turf/floor/plating/grass/wild,/area/prishtina)
-"bK" = (/obj/item/clothing/accessory/holster/hip,/turf/floor/plating/grass/wild,/area/prishtina)
-"bL" = (/obj/structure/multiz/ladder/ww2/manhole{area_id = "sewers2"},/turf/floor/plating/beach/water/sewage,/area/prishtina)
-"bM" = (/turf/floor/plating/beach/water/sewage,/area/prishtina)
-"bN" = (/obj/item/flashlight/flare/nighttime,/turf/floor/plating/grass/wild,/area/prishtina)
-"bO" = (/obj/structure/wild/tree,/obj/structure/barricade/steel,/turf/floor/plating/grass/wild,/area/prishtina)
-"bP" = (/obj/structure/barbwire,/turf/floor/plating/grass/wild,/area/prishtina)
-"bQ" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/german,/turf/floor/wood_broken,/area/prishtina)
-"bR" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/german,/turf/floor/wood,/area/prishtina)
-"bS" = (/obj/structure/barricade/steel,/obj/structure/window/classic,/obj/structure/barbwire,/turf/floor/wood,/area/prishtina)
-"bT" = (/obj/item/weapon/reagent_containers/food/snacks/spaghetti,/obj/item/weapon/material/kitchen/utensil/spoon,/turf/floor/wood_broken,/area/prishtina)
-"bU" = (/obj/structure/wild/tree,/obj/structure/barbwire,/turf/floor/plating/grass/wild,/area/prishtina)
-"bV" = (/obj/item/weapon/reagent_containers/food/condiment/flour,/obj/item/weapon/material/kitchen/utensil/spoon,/turf/floor/wood,/area/prishtina)
-"bW" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/turf/floor/wood,/area/prishtina)
-"bX" = (/obj/structure/barbwire,/obj/structure/barbwire,/turf/floor/dirt,/area/prishtina)
-"bY" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/effect/decal/cleanable/dirt,/turf/floor/wood_broken,/area/prishtina)
-"bZ" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/item/flashlight/lantern,/turf/floor/wood,/area/prishtina)
-"ca" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/turf/floor/wood,/area/prishtina)
-"cb" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina)
-"cc" = (/obj/item/weapon/material/kitchen/utensil/knife,/turf/floor/wood,/area/prishtina)
-"cd" = (/obj/effect/decal/cleanable/dirt,/obj/item/weapon/material/kitchen/utensil/spoon,/turf/floor/wood_broken,/area/prishtina)
-"ce" = (/obj/item/weapon/reagent_containers/food/snacks/spaghetti,/turf/floor/wood,/area/prishtina)
-"cf" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina)
-"cg" = (/obj/structure/barbwire,/turf/floor/dirt,/area/prishtina)
-"ch" = (/obj/effect/decal/cleanable/dirt,/obj/item/flashlight/lantern,/turf/floor/wood_broken,/area/prishtina)
-"ci" = (/obj/structure/wild/tree,/obj/structure/wild/tree,/turf/floor/plating/grass/wild,/area/prishtina)
-"cj" = (/obj/effect/decal/cleanable/dirt,/obj/item/weapon/storage/backpack/german,/obj/item/flashlight/lantern,/turf/floor/wood,/area/prishtina)
-"ck" = (/obj/structure/table/wood,/obj/item/weapon/gun/projectile/boltaction/kar98k,/turf/floor/wood,/area/prishtina)
-"cl" = (/obj/effect/decal/cleanable/dirt,/obj/structure/simple_door/key_door/anyone/wood,/turf/floor/wood,/area/prishtina)
-"cm" = (/obj/structure/closet/crate/sandbags,/turf/floor/plating/grass/wild,/area/prishtina)
-"cn" = (/obj/effect/decal/cleanable/dirt,/obj/item/flashlight/lantern,/turf/floor/wood,/area/prishtina)
-"co" = (/obj/structure/table/wood,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/turf/floor/wood_broken,/area/prishtina)
-"cp" = (/obj/structure/table/wood,/obj/item/weapon/grenade/explosive/l2a2,/obj/item/weapon/grenade/explosive/l2a2,/obj/item/weapon/grenade/explosive/l2a2,/turf/floor/wood,/area/prishtina)
-"cq" = (/obj/structure/table/wood,/obj/item/weapon/storage/backpack/flammenwerfer,/turf/floor/wood,/area/prishtina)
-"cr" = (/obj/item/flashlight/flare/nighttime,/turf/floor/wood,/area/prishtina)
-"cs" = (/obj/structure/table/wood,/obj/item/weapon/flammenwerfer_fueltank,/turf/floor/wood,/area/prishtina)
-"ct" = (/turf/floor/plating/dirt,/area/prishtina)
-"cu" = (/obj/effect/decal/cleanable/dirt,/turf/floor/plating/beach/water/sewage,/area/prishtina)
-"cv" = (/obj/effect/decal/cleanable/dirt,/obj/structure/multiz/ladder/ww2/manhole{area_id = "sewers1"},/turf/floor/wood,/area/prishtina)
-"cw" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/beach/water/sewage,/area/prishtina)
-"cx" = (/obj/structure/wild/tree,/turf/floor/plating/dirt,/area/prishtina)
-"cy" = (/obj/structure/closet/crate/wood,/turf/floor/plating/grass/wild,/area/prishtina)
-"cz" = (/obj/structure/flag/soviet,/turf/floor/plating/grass/wild,/area/prishtina)
-"cA" = (/obj/effect/landmark{name = "JoinLateRAMedic"},/turf/floor/wood,/area/prishtina)
-"cB" = (/obj/effect/landmark{name = "JoinLateRASL"},/turf/floor/wood,/area/prishtina)
-"cC" = (/obj/effect/landmark{name = "JoinLateRAMedic"},/turf/floor/plating/grass/wild,/area/prishtina)
-"cD" = (/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/wood,/area/prishtina)
-"cE" = (/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/dirt,/area/prishtina)
-"cF" = (/obj/effect/landmark{name = "JoinLateRASL"},/turf/floor/plating/grass/wild,/area/prishtina)
+"ae" = (/obj/structure/barbwire,/obj/snow_maker,/turf/floor/plating/dirt,/area/prishtina)
+"af" = (/obj/structure/barbwire,/obj/snow_maker,/obj/snow_maker,/turf/floor/plating/dirt,/area/prishtina)
+"ag" = (/obj/structure/barbwire,/obj/effect/decal/cleanable/dirt,/obj/snow_maker,/turf/floor/plating/dirt,/area/prishtina)
+"ah" = (/obj/snow_maker,/turf/floor/plating/dirt,/area/prishtina)
+"ai" = (/obj/effect/decal/cleanable/dirt,/obj/snow_maker,/turf/floor/plating/dirt,/area/prishtina)
+"aj" = (/obj/structure/wild/tallgrass,/turf/floor/plating/grass/wild,/area/prishtina)
+"ak" = (/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/obj/structure/barbwire,/turf/floor/plating/road,/area/prishtina)
+"al" = (/obj/structure/barricade,/obj/structure/barbwire,/turf/floor/plating/road,/area/prishtina)
+"am" = (/obj/structure/barricade,/obj/structure/barbwire,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/road,/area/prishtina)
+"an" = (/obj/structure/barricade,/turf/floor/plating/road,/area/prishtina)
+"ao" = (/obj/structure/barricade,/turf/floor/plating/grass/wild,/area/prishtina)
+"ap" = (/obj/snow_maker,/turf/floor/plating/grass/wild,/area/prishtina)
+"aq" = (/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"ar" = (/turf/wall/rockwall{density = 1; name = "cliff"; opacity = 1},/area/prishtina)
+"as" = (/obj/effect/floor_decal/borderfloor{dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"at" = (/obj/structure/wild/tallgrass,/turf/wall/rockwall,/area/prishtina)
+"au" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/barricade,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"av" = (/obj/structure/closet/toolcloset,/obj/effect/floor_decal/borderfloor{dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"aw" = (/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/obj/effect/floor_decal/borderfloor{dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"ax" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/reagent_dispensers/fueltank,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"ay" = (/obj/structure/table/reinforced,/obj/item/stack/material/barbwire,/obj/item/stack/material/barbwire,/obj/effect/floor_decal/borderfloor{dir = 1},/obj/item/weapon/flame/lighter,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"az" = (/obj/structure/table/iron,/obj/item/stack/material/glass{amount = 30},/obj/item/stack/material/glass/reinforced{amount = 10},/obj/item/stack/material/steel{amount = 30},/obj/structure/table/reinforced,/obj/effect/floor_decal/borderfloor{dir = 1},/obj/item/stack/material/steel{amount = 30},/obj/item/stack/material/wood{amount = 30},/obj/item/stack/material/wood{amount = 30},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"aA" = (/obj/effect/floor_decal/industrial/warning/dust,/obj/effect/floor_decal/borderfloor{dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"aB" = (/obj/structure/barricade,/obj/effect/floor_decal/borderfloor/full,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"aC" = (/obj/structure/barricade,/turf/wall/rockwall,/area/prishtina)
+"aD" = (/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"aE" = (/obj/structure/barricade,/obj/structure/barbwire,/turf/wall/rockwall,/area/prishtina)
+"aF" = (/obj/structure/barricade,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"aG" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/rations/soviet_solids,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"aH" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/rations/water,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"aI" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/wood,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"aJ" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/dpammo,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"aK" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/maximbelt,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"aL" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/soviet_grenade,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"aM" = (/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"aN" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"aO" = (/obj/structure/largecrate,/obj/effect/landmark{name = "soviet_supplydrop_spot"},/turf/floor/plating{tag = "icon-asteroidplating"; icon_state = "asteroidplating"},/area/prishtina)
+"aP" = (/obj/effect/landmark{name = "soviet_supplydrop_spot"},/turf/floor/plating{tag = "icon-asteroidplating"; icon_state = "asteroidplating"},/area/prishtina)
+"aQ" = (/obj/effect/decal/cleanable/dirt,/obj/effect/landmark{name = "soviet_supplydrop_spot"},/turf/floor/plating{tag = "icon-asteroidplating"; icon_state = "asteroidplating"},/area/prishtina)
+"aR" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"aS" = (/obj/effect/floor_decal/borderfloor{dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"aT" = (/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/obj/snow_maker,/turf/floor/plating/dirt,/area/prishtina)
+"aU" = (/obj/structure/simple_door/key_door/anyone/wood,/turf/floor/plating/dirt,/area/prishtina)
+"aV" = (/obj/structure/barbwire,/obj/snow_maker,/turf/wall/rockwall,/area/prishtina)
+"aW" = (/obj/structure/barricade,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"aX" = (/obj/structure/wild/tallgrass,/turf/floor/plating/dirt,/area/prishtina)
+"aY" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/mosinammo,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"aZ" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/c45ammo,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"ba" = (/obj/structure/closet/crate/steel,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bb" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/bint,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bc" = (/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bd" = (/turf/floor/carpet,/area/prishtina)
+"be" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/bayonets,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bf" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/mosinammo,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bg" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/iron,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bh" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/ppshammo,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bi" = (/obj/structure/closet/crate/bettymines,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bj" = (/obj/structure/table/rack,/obj/item/weapon/storage/toolbox/mechanical,/obj/item/weapon/storage/toolbox/electrical,/obj/item/clothing/glasses/welding,/obj/item/weapon/storage/belt/utility/full,/obj/item/weapon/storage/belt/utility/full,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bk" = (/obj/structure/table/reinforced,/obj/item/weapon/storage/box/lights/mixed,/obj/item/weapon/storage/fancy/crayons,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bl" = (/obj/structure/table/reinforced,/obj/item/weapon/plastique,/obj/item/weapon/plastique,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bm" = (/obj/effect/decal/cleanable/dirt,/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bn" = (/obj/item/weapon/material/shard,/turf/floor/carpet,/area/prishtina)
+"bo" = (/obj/structure/simple_door/key_door/soviet/engineer,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bp" = (/obj/structure/largecrate,/obj/effect/decal/cleanable/dirt,/obj/effect/landmark{name = "soviet_supplydrop_spot"},/turf/floor/plating{tag = "icon-asteroidplating"; icon_state = "asteroidplating"},/area/prishtina)
+"bq" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"br" = (/obj/item/weapon/material/shard,/turf/floor/wood,/area/prishtina)
+"bs" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bt" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bu" = (/obj/structure/closet/crate/vehicle_fueltanks,/obj/effect/floor_decal/industrial/outline/grey,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bv" = (/obj/structure/closet/crate/flares_ammo,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bw" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/lugers,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bx" = (/obj/item/weapon/gun/projectile/pistol/luger/flaregun,/obj/item/weapon/gun/projectile/pistol/luger/flaregun,/obj/item/weapon/gun/projectile/pistol/luger/flaregun,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/storage/fancy/cigarettes,/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"by" = (/obj/item/clothing/suit/radio_harness,/obj/item/clothing/suit/radio_harness,/obj/item/clothing/suit/radio_harness,/obj/structure/table/wood,/obj/item/radio/intercom/a7b,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bz" = (/obj/structure/bed/chair/wood,/obj/effect/landmark{name = "JoinLateRAQM"},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bA" = (/obj/structure/window/sandbag,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bB" = (/obj/effect/floor_decal/borderfloor,/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"bC" = (/obj/effect/floor_decal/borderfloor,/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bD" = (/obj/structure/simple_door/key_door/soviet/QM,/obj/structure/table/wood,/turf/floor/wood,/area/prishtina)
+"bE" = (/obj/structure/simple_door/key_door/soviet/QM,/turf/floor/wood,/area/prishtina)
+"bF" = (/obj/effect/floor_decal/borderfloor,/obj/structure/plasticflaps,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bG" = (/obj/effect/floor_decal/borderfloor,/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/obj/structure/sign/flag/soviet,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bH" = (/obj/effect/floor_decal/borderfloor,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bI" = (/obj/effect/floor_decal/borderfloor/full,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bJ" = (/obj/effect/floor_decal/borderfloor,/obj/structure/window/sandbag,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bK" = (/obj/effect/floor_decal/borderfloor/full,/obj/structure/window/sandbag,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bL" = (/obj/structure/barricade,/obj/structure/sign/flag/soviet,/turf/floor/plating/road,/area/prishtina)
+"bM" = (/obj/snow_maker,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bN" = (/obj/effect/landmark{name = "JoinLateRA-S1"},/obj/snow_maker,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bO" = (/obj/effect/landmark{name = "JoinLateRA-S1-Leader"},/obj/snow_maker,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bP" = (/obj/effect/decal/cleanable/dirt,/obj/snow_maker,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bQ" = (/obj/effect/landmark{name = "JoinLateRA-S2"},/obj/snow_maker,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bR" = (/obj/item/trash/plate,/turf/floor/wood,/area/prishtina)
+"bS" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/sandbags,/obj/snow_maker,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bT" = (/obj/effect/landmark{name = "JoinLateRA-S3"},/obj/snow_maker,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bU" = (/obj/effect/landmark{name = "JoinLateRA-S3-Leader"},/obj/snow_maker,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bV" = (/obj/effect/landmark{name = "JoinLateRA-S4"},/obj/snow_maker,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bW" = (/obj/effect/landmark{name = "JoinLateRA-S4-Leader"},/obj/snow_maker,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bX" = (/obj/structure/multiz/stairs{dir = 8},/obj/effect/decal/cleanable/dirt,/obj/snow_maker,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"bY" = (/obj/snow_maker,/obj/snow_maker,/turf/floor/plating/dirt,/area/prishtina)
+"bZ" = (/obj/effect/decal/cleanable/dirt,/obj/effect/landmark{name = "JoinLateRA-S3"},/obj/snow_maker,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"ca" = (/obj/effect/landmark{name = "JoinLatePartisanLeader"},/obj/snow_maker,/obj/snow_maker,/turf/floor/plating/dirt,/area/prishtina)
+"cb" = (/obj/effect/decal/cleanable/dirt,/obj/effect/landmark{name = "JoinLateRA-S2"},/obj/snow_maker,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"cc" = (/obj/structure/multiz/stairs{dir = 8},/obj/snow_maker,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"cd" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"ce" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"cf" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"cg" = (/obj/effect/floor_decal/borderfloor/full,/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"ch" = (/obj/structure/barricade,/obj/structure/sign/flag/soviet,/turf/floor/plating/dirt,/area/prishtina)
+"ci" = (/turf/wall/brick,/area/prishtina)
+"cj" = (/obj/structure/barricade,/obj/structure/window/classic,/turf/floor/wood,/area/prishtina)
+"ck" = (/obj/structure/sign/flag/soviet,/turf/wall/brick,/area/prishtina)
+"cl" = (/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"cm" = (/obj/structure/simple_door/key_door/soviet,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"cn" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/structure/grille{icon_state = "fence4-8"; name = "fence"},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
+"co" = (/obj/item/weapon/reagent_containers/glass/rag,/turf/floor/wood,/area/prishtina)
+"cp" = (/turf/floor/wood_broken,/area/prishtina)
+"cq" = (/obj/structure/table/wood,/turf/floor/wood,/area/prishtina)
+"cr" = (/turf/wall/brick,/area/prishtina/houses)
+"cs" = (/obj/structure/multiz/stairs{dir = 1},/obj/structure/simple_door/key_door/soviet,/turf/floor/plating/grass/wild,/area/prishtina/houses)
+"ct" = (/obj/structure/vending/sovietapparel,/turf/floor/wood,/area/prishtina/houses)
+"cu" = (/obj/structure/closet/crate/gasmasks,/obj/effect/floor_decal/industrial/outline/grey,/turf/floor/wood,/area/prishtina/houses)
+"cv" = (/obj/structure/table/wood,/obj/item/weapon/gun/projectile/boltaction/mosin,/obj/item/weapon/gun/projectile/boltaction/mosin,/obj/item/ammo_magazine/mosin,/obj/item/ammo_magazine/mosin,/obj/item/ammo_magazine/mosinbox,/obj/item/ammo_magazine/mosin,/obj/item/ammo_magazine/mosin,/turf/floor/wood,/area/prishtina/houses)
+"cw" = (/obj/structure/barricade,/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/houses)
+"cx" = (/obj/structure/table/wood,/obj/item/ammo_magazine/maxim,/obj/item/ammo_magazine/maxim,/turf/floor/wood,/area/prishtina/houses)
+"cy" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/wood,/area/prishtina/houses)
+"cz" = (/obj/structure/sink{pixel_x = 0; pixel_y = 18},/obj/item/weapon/reagent_containers/glass/bucket,/obj/item/weapon/mop,/turf/floor/wood,/area/prishtina/houses)
+"cA" = (/turf/floor/wood,/area/prishtina)
+"cB" = (/obj/structure/bed/chair/wood,/obj/effect/landmark{name = "JoinLateRASO"},/turf/floor/wood,/area/prishtina/houses)
+"cC" = (/turf/wall/wood,/area/prishtina/houses)
+"cD" = (/obj/effect/floor_decal/industrial/outline/grey,/turf/floor/wood,/area/prishtina/houses)
+"cE" = (/obj/structure/barricade,/obj/structure/sign/flag/soviet,/turf/floor/wood,/area/prishtina/houses)
+"cF" = (/obj/effect/landmark{name = "JoinLateRASL"},/turf/floor/wood,/area/prishtina/houses)
 "cG" = (/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
 "cH" = (/turf/floor/plating/dirt{icon_state = "oldsmoothdarkdirt"},/area/prishtina)
 "cI" = (/obj/structure/wild/tallgrass2,/turf/floor/plating/beach/water/swamp,/area/prishtina)
@@ -143,106 +143,397 @@
 "cM" = (/obj/structure/wild/rock,/turf/floor/plating/dirt{icon_state = "oldsmoothdarkdirt"},/area/prishtina)
 "cN" = (/obj/structure/wild/rock,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
 "cO" = (/obj/structure/wild/tallgrass2,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"cP" = (/obj/structure/bed/chair/wood{dir = 4},/turf/floor/wood,/area/prishtina/houses)
+"cQ" = (/obj/structure/table/wood,/obj/item/weapon/flame/lighter,/turf/floor/wood,/area/prishtina/houses)
+"cR" = (/obj/structure/bed/chair/wood{dir = 8},/turf/floor/wood,/area/prishtina/houses)
+"cS" = (/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/houses)
+"cT" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/wood,/area/prishtina/houses)
+"cU" = (/obj/structure/barricade,/obj/structure/window/classic,/turf/floor/wood,/area/prishtina/houses)
+"cV" = (/obj/structure/barricade,/obj/structure/window/classic/reinforced,/turf/floor/plating/dirt,/area/prishtina)
+"cW" = (/obj/structure/wild/tallgrass2,/turf/wall/rockwall,/area/prishtina)
+"cX" = (/obj/structure/anti_tank,/turf/wall/rockwall,/area/prishtina)
+"cY" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/trench,/area/prishtina)
+"cZ" = (/turf/floor/wood,/area/prishtina/houses)
+"da" = (/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"db" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/flares,/turf/floor/wood,/area/prishtina/houses)
+"dc" = (/obj/structure/curtain/black,/turf/floor/wood,/area/prishtina/houses)
+"dd" = (/obj/structure/bed/chair/wood{dir = 1},/turf/floor/wood,/area/prishtina/houses)
+"de" = (/obj/structure/bed/chair/wood{dir = 1},/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/houses)
+"df" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/wood,/area/prishtina/houses)
+"dg" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/table/wood,/obj/item/weapon/shovel/spade/russia,/obj/item/weapon/shovel/spade/russia,/obj/item/weapon/shovel/spade/russia,/turf/floor/wood,/area/prishtina/houses)
+"dh" = (/obj/structure/barricade,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"di" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/structure/barricade,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"dj" = (/obj/structure/simple_door/key_door/soviet/command_high{name = "Commander Bedroom"},/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/houses)
+"dk" = (/obj/structure/curtain,/turf/floor/wood,/area/prishtina/houses)
+"dl" = (/obj/structure/closet/chemical,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"dm" = (/obj/structure/table/reinforced,/obj/item/weapon/storage/box/beakers,/obj/item/weapon/storage/box/beakers_large,/obj/item/clothing/glasses/monocle,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"dn" = (/obj/structure/table/reinforced,/obj/item/weapon/reagent_containers/dropper,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"do" = (/obj/structure/chemical_dispenser,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"dp" = (/obj/structure/chem_master,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"dq" = (/obj/structure/barricade,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"dr" = (/obj/structure/optable,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"ds" = (/obj/structure/table/reinforced,/obj/item/weapon/hemostat,/obj/item/weapon/reagent_containers/glass/rag,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"dt" = (/obj/structure/table/reinforced,/obj/item/weapon/FixOVein,/obj/item/weapon/bonesetter,/obj/item/weapon/retractor,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"du" = (/obj/structure/table/reinforced,/obj/item/weapon/scalpel,/obj/item/weapon/surgicaldrill,/obj/item/weapon/reagent_containers/spray/sterilizine,/obj/effect/floor_decal/borderfloor{dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"dv" = (/obj/structure/barricade,/obj/structure/curtain/black,/turf/floor/wood,/area/prishtina/houses)
+"dw" = (/obj/structure/bed/chair/wood,/turf/floor/wood,/area/prishtina/houses)
+"dx" = (/obj/effect/decal/cleanable/dirt,/turf/wall/brick,/area/prishtina/houses)
+"dy" = (/obj/structure/table/wood,/obj/item/weapon/flame/lighter/zippo,/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/turf/floor/wood,/area/prishtina/houses)
+"dz" = (/obj/structure/bed,/obj/item/weapon/bedsheet/medical,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"dA" = (/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"dB" = (/obj/structure/barricade,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"dC" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_33%"; dir = 1},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_33%"; dir = 4},/turf/floor/trench,/area/prishtina)
+"dD" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_33%"; dir = 4},/turf/floor/trench,/area/prishtina)
+"dE" = (/obj/item/weapon/stool,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"dF" = (/obj/structure/table/reinforced,/obj/item/weapon/bonegel,/obj/item/weapon/cautery,/obj/item/weapon/reagent_containers/glass/bottle/stoxin,/obj/item/weapon/reagent_containers/syringe,/obj/effect/floor_decal/borderfloor{dir = 4},/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"dG" = (/obj/structure/bed,/obj/item/weapon/bedsheet/brown,/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/wood,/area/prishtina/houses)
+"dH" = (/obj/structure/table/wood,/obj/item/weapon/storage/box/cups,/turf/floor/wood,/area/prishtina/houses)
+"dI" = (/obj/structure/table/wood,/obj/item/weapon/storage/box/matches,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/storage/fancy/cigarettes,/turf/floor/wood,/area/prishtina/houses)
+"dJ" = (/obj/structure/table/wood,/obj/item/weapon/flame/candle,/obj/item/weapon/flame/lighter,/turf/floor/wood,/area/prishtina/houses)
+"dK" = (/obj/effect/decal/cleanable/dirt,/obj/structure/closet/crate/rations/soviet_alcohol,/obj/effect/floor_decal/industrial/outline/grey,/turf/floor/wood,/area/prishtina/houses)
+"dL" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag_66%"; icon_state = "sandbag_66%"; dir = 2},/turf/floor/trench,/area/prishtina)
+"dM" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/trench,/area/prishtina)
+"dN" = (/obj/structure/closet/crate/freezer,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"dO" = (/obj/effect/landmark{name = "JoinLateRADr"},/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"dP" = (/obj/effect/floor_decal/borderfloor{dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"dQ" = (/obj/effect/landmark{name = "JoinLateRAChef"},/turf/floor/wood,/area/prishtina/houses)
+"dR" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/rations/water,/turf/floor/wood,/area/prishtina/houses)
+"dS" = (/obj/effect/landmark{name = "JoinLateRACO"},/turf/floor/wood,/area/prishtina/houses)
+"dT" = (/obj/structure/bed,/obj/item/weapon/bedsheet/hop,/turf/floor/wood,/area/prishtina/houses)
+"dU" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_33%"; dir = 1},/turf/floor/trench,/area/prishtina)
+"dV" = (/obj/structure/simple_door/key_door/soviet/medic{name = "Medical Storage"},/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"dW" = (/obj/structure/sink{step_y = 0; pixel_y = 27},/obj/structure/bed/chair/wheelchair,/obj/effect/floor_decal/industrial/outline/grey,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"dX" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/structure/table/reinforced,/obj/item/weapon/storage/box/bodybags,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses)
+"dY" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/rations/soviet_meat,/turf/floor/wood,/area/prishtina/houses)
+"dZ" = (/obj/effect/landmark{name = "JoinLateRACO"},/obj/structure/bed/chair/wood{dir = 8},/turf/floor/wood,/area/prishtina/houses)
+"ea" = (/obj/structure/closet,/obj/item/weapon/pill_pack/tramadol,/obj/item/weapon/pill_pack/inaprovaline,/obj/item/weapon/pill_pack/inaprovaline,/obj/item/weapon/pill_pack/dexalin,/obj/item/weapon/pill_pack/bicaridine,/obj/item/weapon/pill_pack/antitox,/obj/item/weapon/storage/firstaid/combat,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"eb" = (/obj/structure/bed,/obj/item/weapon/bedsheet/brown,/turf/floor/wood,/area/prishtina/houses)
+"ec" = (/obj/structure/closet/cabinet,/obj/item/clothing/under/sovuni,/obj/item/clothing/under/sovuni,/obj/item/clothing/under/sovuni,/obj/item/weapon/storage/belt/soviet,/obj/item/weapon/storage/belt/soviet,/obj/item/weapon/storage/backpack/soviet,/obj/item/weapon/storage/backpack/soviet,/turf/floor/wood,/area/prishtina/houses)
+"ed" = (/obj/structure/oven,/turf/floor/wood,/area/prishtina/houses)
+"ee" = (/obj/structure/table/wood,/obj/item/weapon/material/knife,/obj/item/weapon/reagent_containers/food/condiment/peppermill,/obj/item/weapon/reagent_containers/food/condiment/saltshaker,/turf/floor/wood,/area/prishtina/houses)
+"ef" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/rations/soviet_solids,/turf/floor/wood,/area/prishtina/houses)
+"eg" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/rations/soviet_liquids,/turf/floor/wood,/area/prishtina/houses)
+"eh" = (/obj/structure/closet,/obj/item/weapon/storage/box/cups,/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka,/obj/item/weapon/storage/backpack/soviet,/turf/floor/wood,/area/prishtina/houses)
+"ei" = (/obj/structure/table/glass,/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/obj/item/weapon/storage/box/cups,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"ej" = (/obj/structure/closet/crate,/obj/item/stack/medical/splint,/obj/item/stack/medical/splint,/obj/item/stack/medical/splint,/obj/item/roller,/obj/item/roller,/obj/item/roller,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"ek" = (/obj/item/clothing/gloves/latex,/obj/item/clothing/mask/surgical,/obj/item/weapon/storage/box/syringes,/obj/structure/closet,/obj/item/weapon/storage/belt/medical,/obj/item/weapon/storage/backpack/satchel_med,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"el" = (/obj/structure/table/reinforced,/obj/item/weapon/storage/firstaid/regular,/obj/item/weapon/storage/firstaid/injectorpack,/obj/item/weapon/storage/firstaid/injectorpack,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"em" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/trench,/area/prishtina)
+"en" = (/turf/wall/wood,/area/prishtina)
+"eo" = (/obj/structure/pot,/turf/floor/wood,/area/prishtina)
+"ep" = (/obj/structure/toilet,/obj/structure/light/small{dir = 1},/turf/floor/wood,/area/prishtina)
+"eq" = (/obj/structure/barricade,/obj/structure/window/classic/reinforced,/turf/floor/wood,/area/prishtina)
+"er" = (/obj/structure/light/small{dir = 4},/turf/floor/wood,/area/prishtina)
+"es" = (/obj/structure/simple_door/key_door/anyone/wood,/turf/floor/wood,/area/prishtina)
+"et" = (/obj/structure/light/small{dir = 8},/turf/floor/wood,/area/prishtina)
+"eu" = (/obj/structure/bookcase,/turf/floor/wood,/area/prishtina)
+"ev" = (/turf/floor/plating/beach/water/swamp,/area/prishtina/no_mans_land/invisible_wall)
+"ew" = (/obj/structure/bookcase,/turf/floor/wood,/area/prishtina/houses)
+"ex" = (/obj/structure/pot,/turf/floor/wood,/area/prishtina/houses)
+"ey" = (/obj/structure/toilet,/obj/structure/light/small{dir = 1},/turf/floor/wood,/area/prishtina/houses)
+"ez" = (/obj/structure/barricade,/obj/structure/window/classic/reinforced,/turf/floor/wood,/area/prishtina/houses)
+"eA" = (/turf/floor/wood_broken,/area/prishtina/houses)
+"eB" = (/obj/structure/barbwire,/turf/floor/wood,/area/prishtina)
+"eC" = (/obj/structure/light/small{dir = 4},/turf/floor/wood,/area/prishtina/houses)
+"eD" = (/obj/effect/decal/cleanable/blood/tracks/footprints,/turf/floor/wood,/area/prishtina/houses)
+"eE" = (/obj/structure/light/small{dir = 1},/turf/floor/wood,/area/prishtina)
+"eF" = (/obj/structure/barbwire,/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/obj/effect/decal/cleanable/blood/tracks/footprints,/turf/floor/wood,/area/prishtina/houses)
+"eG" = (/obj/effect/decal/cleanable/blood/tracks/footprints,/turf/floor/wood_broken,/area/prishtina/houses)
+"eH" = (/obj/effect/decal/cleanable/blood/drip,/turf/floor/wood,/area/prishtina/houses)
+"eI" = (/obj/structure/simple_door/key_door/anyone/wood,/turf/floor/wood,/area/prishtina/houses)
+"eJ" = (/obj/item/stack/material/wood,/obj/effect/decal/cleanable/blood/tracks/footprints,/turf/floor/wood,/area/prishtina/houses)
+"eK" = (/obj/structure/barbwire,/turf/floor/wood,/area/prishtina/houses)
+"eL" = (/obj/effect/decal/cleanable/blood/splatter,/turf/floor/wood,/area/prishtina/houses)
+"eM" = (/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/wood_broken,/area/prishtina/houses)
+"eN" = (/obj/structure/light/small{dir = 8},/turf/floor/wood,/area/prishtina/houses)
+"eO" = (/obj/item/mine/betty{anchored = 1; icon_state = "mine_armed"},/turf/floor/wood,/area/prishtina/houses)
+"eP" = (/obj/item/stack/material/wood,/turf/floor/wood,/area/prishtina/houses)
+"eQ" = (/turf/floor/plating/dirt,/area/prishtina/houses)
+"eR" = (/obj/structure/toilet{icon_state = "toilet00"; dir = 1},/turf/floor/wood,/area/prishtina)
+"eS" = (/obj/structure/barbwire,/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/wood,/area/prishtina/houses)
+"eT" = (/obj/structure/closet/cabinet,/turf/floor/wood,/area/prishtina)
+"eU" = (/obj/structure/light/small,/turf/floor/wood,/area/prishtina/houses)
+"eV" = (/obj/structure/barbwire,/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/turf/floor/wood,/area/prishtina/houses)
+"eW" = (/obj/structure/light/small{dir = 1},/turf/floor/wood,/area/prishtina/houses)
+"eX" = (/obj/structure/barbwire,/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_33%"; dir = 8},/turf/floor/wood,/area/prishtina/houses)
+"eY" = (/obj/structure/toilet{icon_state = "toilet00"; dir = 1},/turf/floor/wood,/area/prishtina/houses)
+"eZ" = (/obj/structure/bed/padded,/turf/floor/wood,/area/prishtina/houses)
+"fa" = (/obj/structure/closet/cabinet,/turf/floor/wood,/area/prishtina/houses)
+"fb" = (/obj/structure/filingcabinet,/turf/floor/wood,/area/prishtina/houses)
+"fc" = (/obj/structure/girder,/turf/floor/plating/grass/wild,/area/prishtina/houses)
+"fd" = (/obj/effect/landmark{name = "RandomGunOrAmmo"},/turf/floor/wood,/area/prishtina)
+"fe" = (/obj/structure/barricade,/turf/floor/plating/dirt,/area/prishtina)
+"ff" = (/obj/structure/girder,/turf/floor/wood,/area/prishtina/houses)
+"fg" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/turf/floor/wood,/area/prishtina/houses)
+"fh" = (/obj/effect/decal/cleanable/blood/oil,/obj/effect/decal/cleanable/blood/tracks/footprints,/obj/effect/decal/cleanable/blood/tracks/footprints,/turf/floor/wood,/area/prishtina/houses)
+"fi" = (/obj/structure/filingcabinet/filingcabinet,/turf/floor/wood,/area/prishtina/houses)
+"fj" = (/obj/effect/decal/cleanable/blood/oil,/turf/floor/wood,/area/prishtina/houses)
+"fk" = (/obj/effect/decal/cleanable/blood/splatter,/turf/floor/wood_broken,/area/prishtina/houses)
+"fl" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_33%"; dir = 1},/turf/floor/wood,/area/prishtina/houses)
+"fm" = (/obj/effect/decal/cleanable/blood,/turf/floor/wood,/area/prishtina/houses)
+"fn" = (/obj/item/weapon/flame/lighter,/turf/floor/wood_broken,/area/prishtina/houses)
+"fo" = (/obj/structure/filingcabinet/filingcabinet,/turf/floor/wood_broken,/area/prishtina/houses)
+"fp" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag_66%"; icon_state = "sandbag_66%"; dir = 2},/turf/floor/wood,/area/prishtina/houses)
+"fq" = (/obj/structure/wild/tree/live_tree,/turf/floor/plating/grass/wild,/area/prishtina)
+"fr" = (/obj/structure/wild/rock,/turf/floor/plating/grass/wild,/area/prishtina)
+"fs" = (/obj/structure/wild/bush{icon_state = "grassybush_1"},/turf/floor/plating/grass/wild,/area/prishtina)
+"ft" = (/obj/structure/barricade,/obj/structure/barbwire,/turf/floor/plating/grass/wild,/area/prishtina)
+"fu" = (/obj/structure/anti_tank,/turf/floor/plating/beach/water/swamp,/area/prishtina)
+"fv" = (/obj/structure/barricade,/obj/structure/barbwire,/turf/floor/plating/beach/water/swamp,/area/prishtina)
+"fw" = (/obj/structure/barricade,/obj/structure/barbwire,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"fx" = (/obj/structure/anti_tank,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"fy" = (/obj/structure/wild/junglebush,/turf/floor/plating/beach/water/swamp,/area/prishtina)
+"fz" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_33%"; dir = 1},/turf/floor/trench,/area/prishtina)
+"fA" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag_66%"; dir = 4},/turf/floor/trench,/area/prishtina)
+"fB" = (/obj/structure/window/sandbag{icon_state = "sandbag"; dir = 1},/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/trench,/area/prishtina)
+"fC" = (/obj/structure/window/sandbag{tag = "icon-sandbag_33%"; icon_state = "sandbag_33%"; dir = 2},/turf/floor/trench,/area/prishtina)
+"fD" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/trench,/area/prishtina)
+"fE" = (/obj/structure/window/sandbag,/turf/floor/trench,/area/prishtina)
+"fF" = (/obj/structure/barricade,/obj/structure/barbwire,/turf/floor/plating/dirt,/area/prishtina)
+"fG" = (/obj/structure/anti_tank,/turf/floor/plating/dirt{icon_state = "oldsmoothdarkdirt"},/area/prishtina)
+"fH" = (/obj/structure/barbwire,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"fI" = (/obj/structure/barbwire,/turf/floor/plating/dirt{icon_state = "oldsmoothdarkdirt"},/area/prishtina)
+"fJ" = (/obj/structure/barbwire,/turf/floor/plating/dirt,/area/prishtina)
+"fK" = (/obj/structure/anti_tank,/turf/floor/plating/dirt,/area/prishtina)
+"fL" = (/obj/structure/anti_tank,/turf/floor/plating/grass/wild,/area/prishtina)
+"fM" = (/obj/structure/barbwire,/turf/floor/plating/grass/wild,/area/prishtina)
+"fN" = (/obj/structure/campfire,/turf/floor/plating/dirt,/area/prishtina)
+"fO" = (/obj/effect/landmark{name = "JoinLateHeer-S3-Leader"},/turf/floor/dirt/dust,/area/prishtina)
+"fP" = (/obj/effect/landmark{name = "JoinLateHeer-S4"},/obj/structure/wild/burnedbush,/turf/floor/dirt/dust,/area/prishtina)
+"fQ" = (/obj/effect/landmark{name = "JoinLateHeer-S4"},/turf/floor/dirt/dust,/area/prishtina)
+"fR" = (/obj/effect/landmark{name = "JoinLateHeer-S4-Leader"},/turf/floor/dirt/dust,/area/prishtina)
+"fS" = (/obj/effect/landmark{name = "JoinLateHeerQM"},/turf/floor/dirt,/area/prishtina)
+"fT" = (/obj/structure/wild/burnedtree,/turf/floor/dirt,/area/prishtina)
+"fU" = (/obj/structure/wild/burnedtree,/turf/floor/dirt/darksand,/area/prishtina)
+"fV" = (/obj/effect/landmark{name = "JoinLateHeerQM"},/turf/floor/dirt/darksand,/area/prishtina)
+"fW" = (/obj/effect/landmark{name = "JoinLateHeerSL"},/turf/floor/dirt,/area/prishtina)
+"fX" = (/obj/effect/landmark{name = "JoinLateHeer"},/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"fY" = (/obj/effect/landmark{name = "JoinLateHeer"},/obj/structure/wild/tallgrass2,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"fZ" = (/obj/effect/landmark{name = "JoinLateHeer-S2-Leader"},/obj/structure/wild/burnedbush,/turf/floor/dirt,/area/prishtina)
+"ga" = (/obj/effect/landmark{name = "JoinLateHeer-S2-Leader"},/obj/structure/wild/burnedbush,/turf/floor/dirt/darksand,/area/prishtina)
+"gb" = (/obj/effect/landmark{name = "JoinLateHeer-S3"},/turf/floor/dirt,/area/prishtina)
+"gc" = (/obj/effect/landmark{name = "JoinLateHeer-S3-Leader"},/obj/structure/wild/tallgrass2,/turf/floor/dirt/darksand,/area/prishtina)
+"gd" = (/obj/effect/landmark{name = "JoinLateHeerSO"},/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"ge" = (/obj/effect/landmark{name = "JoinLateHeer"},/turf/floor/dirt,/area/prishtina)
+"gf" = (/obj/effect/landmark{name = "JoinLateHeer"},/turf/floor/dirt/dust,/area/prishtina)
+"gg" = (/obj/effect/landmark{name = "JoinLateHeer"},/turf/floor/dirt/darksand,/area/prishtina)
+"gh" = (/obj/effect/landmark{name = "JoinLateHeer-S2-Leader"},/turf/floor/dirt/dust,/area/prishtina)
+"gi" = (/obj/effect/landmark{name = "JoinLateHeer-S2-Leader"},/turf/floor/dirt,/area/prishtina)
+"gj" = (/obj/effect/landmark{name = "JoinLateHeer-S3-Leader"},/turf/floor/dirt/darksand,/area/prishtina)
+"gk" = (/obj/effect/landmark{name = "JoinLateHeerXO"},/turf/floor/dirt/darksand,/area/prishtina)
+"gl" = (/obj/effect/landmark{name = "JoinLateHeerMP"},/turf/floor/dirt/darksand,/area/prishtina)
+"gm" = (/obj/effect/landmark{name = "JoinLateHeerDr"},/turf/floor/dirt/darksand,/area/prishtina)
+"gn" = (/obj/effect/landmark{name = "JoinLateHeerCO"},/turf/floor/dirt/darksand,/area/prishtina)
+"go" = (/obj/effect/landmark{name = "JoinLateHeerChef"},/turf/floor/dirt,/area/prishtina)
+"gp" = (/obj/effect/landmark{name = "JoinLateHeerChef"},/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gq" = (/obj/effect/landmark{name = "JoinLateHeer-S2"},/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gr" = (/obj/effect/landmark{name = "JoinLateHeer-S1-Leader"},/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gs" = (/obj/effect/landmark{name = "JoinLateHeer-S1-Leader"},/turf/floor/dirt/darksand,/area/prishtina)
+"gt" = (/obj/effect/landmark{name = "JoinLateHeer-S1"},/obj/structure/wild/burnedbush,/turf/floor/dirt/darksand,/area/prishtina)
+"gu" = (/obj/effect/landmark{name = "JoinLateHeerXO"},/turf/floor/dirt/dust,/area/prishtina)
+"gv" = (/obj/effect/landmark{name = "JoinLateHeerMP"},/turf/floor/dirt/dust,/area/prishtina)
+"gw" = (/obj/effect/landmark{name = "JoinLateHeerDr"},/turf/floor/dirt/dust,/area/prishtina)
+"gx" = (/obj/effect/landmark{name = "JoinLateHeerCO"},/obj/structure/wild/tallgrass2,/turf/floor/dirt/dust,/area/prishtina)
+"gy" = (/obj/effect/landmark{name = "JoinLateHeer-S2"},/obj/structure/wild/burnedbush,/turf/floor/dirt/dust,/area/prishtina)
+"gz" = (/obj/effect/landmark{name = "JoinLateHeer-S2"},/turf/floor/dirt/dust,/area/prishtina)
+"gA" = (/obj/effect/landmark{name = "JoinLateHeer-S1-Leader"},/turf/floor/dirt/dust,/area/prishtina)
+"gB" = (/obj/effect/landmark{name = "JoinLateHeer-S1-Leader"},/obj/structure/wild/tallgrass2,/turf/floor/dirt/dust,/area/prishtina)
+"gC" = (/obj/effect/landmark{name = "JoinLateHeer-S1"},/turf/floor/dirt/dust,/area/prishtina)
+"gD" = (/obj/structure/closet/crate/mg34ammo,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gE" = (/obj/structure/closet/crate/lugers,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gF" = (/obj/structure/closet/crate/lugerammo,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gG" = (/obj/structure/closet/crate/kar98kammo,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gH" = (/obj/structure/closet/crate/mortar_shells,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gI" = (/obj/structure/closet/crate/sandbags,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gJ" = (/obj/structure/closet/crate/german_smoke_grenade,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gK" = (/obj/structure/closet/crate/gauze,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gL" = (/obj/structure/closet/crate/german_grenade,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gM" = (/obj/structure/closet/crate/german_grenade2,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gN" = (/obj/structure/closet/crate/iron,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gO" = (/obj/structure/closet/crate/panzerfaust,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gP" = (/obj/structure/closet/crate/wood,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gQ" = (/obj/structure/closet/crate/rations/german_solids,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gR" = (/obj/structure/closet/crate/rations/german_meat,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gS" = (/obj/structure/closet/crate/rations/german_alcohol,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gT" = (/obj/structure/closet/crate/rations/water,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gU" = (/obj/structure/closet/crate/webbing,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gV" = (/obj/structure/closet/crate/flares,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gW" = (/obj/structure/closet/crate/mp40kammo,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gX" = (/obj/structure/closet/crate/barbwire,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gY" = (/obj/structure/closet/crate/bayonets/german,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"gZ" = (/obj/structure/table/wood,/obj/item/ammo_magazine/kar98kbox,/obj/item/ammo_magazine/kar98kbox,/obj/item/ammo_magazine/kar98kbox,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"ha" = (/obj/structure/table/wood,/obj/item/ammo_magazine/kar98kbox,/obj/item/ammo_magazine/kar98kbox,/obj/item/ammo_magazine/kar98kbox,/obj/item/ammo_magazine/kar98kbox,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"hb" = (/obj/structure/table/wood,/obj/item/ammo_magazine/kar98kbox,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"hc" = (/turf/floor/dirt,/area/prishtina)
+"hd" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/barricade/steel,/obj/structure/barbwire{dir = 4},/turf/floor/dirt,/area/prishtina)
+"he" = (/obj/structure/light/small,/obj/structure/barricade,/obj/structure/window/sandbag{icon_state = "sandbag"; dir = 1},/turf/floor/dirt,/area/prishtina)
+"hf" = (/obj/structure/barricade,/obj/structure/window/sandbag{icon_state = "sandbag"; dir = 1},/turf/floor/dirt,/area/prishtina)
+"hg" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/dirt,/area/prishtina)
+"hh" = (/obj/structure/window/dirt_wall{icon_state = "dirt_wall"; dir = 8},/obj/structure/table/wood,/turf/floor/dirt,/area/prishtina)
+"hi" = (/obj/structure/closet/crate/medical,/turf/floor/dirt,/area/prishtina)
+"hj" = (/obj/structure/bed/roller,/turf/floor/dirt,/area/prishtina)
+"hk" = (/obj/structure/window/dirt_wall{icon_state = "dirt_wall"; dir = 4},/turf/floor/dirt,/area/prishtina)
+"hl" = (/obj/structure/window/dirt_wall{icon_state = "dirt_wall"; dir = 8},/obj/structure/table/wood,/obj/item/weapon/storage/firstaid/surgery,/turf/floor/dirt,/area/prishtina)
+"hm" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/barricade/steel,/obj/structure/barbwire{dir = 4},/obj/structure/barbwire{dir = 4},/turf/floor/dirt,/area/prishtina)
+"hn" = (/obj/structure/window/dirt_wall{icon_state = "dirt_wall"; dir = 8},/turf/floor/dirt,/area/prishtina)
+"ho" = (/obj/item/weapon/handheld_flags,/turf/floor/dirt,/area/prishtina)
+"hp" = (/obj/structure/wild/burnedtree,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/dirt,/area/prishtina)
+"hq" = (/obj/structure/barricade,/obj/structure/window/sandbag,/turf/floor/dirt,/area/prishtina)
+"hr" = (/obj/structure/sign/flag/medical,/obj/structure/barricade,/turf/floor/dirt,/area/prishtina)
+"hs" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/dirt/dust,/area/prishtina)
+"ht" = (/obj/structure/barricade,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"hu" = (/obj/structure/barricade,/turf/floor/dirt,/area/prishtina)
+"hv" = (/obj/effect/floor_decal/industrial/warning/dust,/turf/floor/dirt,/area/prishtina)
+"hw" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/turf/floor/dirt,/area/prishtina)
+"hx" = (/obj/effect/landmark{name = "german_supplydrop_spot"},/obj/effect/floor_decal/industrial/outline/yellow,/turf/floor/dirt,/area/prishtina)
+"hy" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/item/weapon/tool/engine,/turf/floor/dirt,/area/prishtina)
+"hz" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/turf/floor/dirt,/area/prishtina)
+"hA" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/item/weapon/crowbar/prybar,/turf/floor/dirt,/area/prishtina)
+"hB" = (/obj/structure/table/wood,/obj/effect/floor_decal/borderfloor{dir = 1},/obj/item/radio/intercom/fu2,/turf/floor/dirt,/area/prishtina)
+"hC" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/turf/floor/dirt,/area/prishtina)
+"hD" = (/obj/structure/closet/crate/fg42_ammo,/turf/floor/dirt,/area/prishtina)
+"hE" = (/obj/structure/wild/tallgrass2,/turf/floor/dirt,/area/prishtina)
+"hF" = (/obj/effect/decal/cleanable/ash,/turf/floor/wood,/area/prishtina/houses)
+"hG" = (/obj/item/weapon/cigbutt,/turf/floor/wood,/area/prishtina/houses)
+"hH" = (/obj/structure/barricade,/turf/floor/wood,/area/prishtina/houses)
+"hI" = (/obj/structure/sign/flag/soviet,/turf/wall/wood,/area/prishtina/houses)
+"hJ" = (/obj/effect/decal/cleanable/blood/tracks/footprints,/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/wood,/area/prishtina/houses)
+"hK" = (/obj/effect/decal/cleanable/vomit,/obj/effect/decal/cleanable/blood/tracks/footprints,/turf/floor/wood,/area/prishtina/houses)
+"hL" = (/obj/effect/decal/cleanable/cobweb,/turf/floor/wood,/area/prishtina/houses)
+"hM" = (/obj/structure/bookcase,/turf/floor/wood_broken,/area/prishtina/houses)
+"hN" = (/obj/structure/closet/crate/sandbags,/turf/floor/wood_broken,/area/prishtina/houses)
+"hO" = (/obj/item/weapon/sandbag,/turf/floor/wood,/area/prishtina/houses)
+"hP" = (/obj/structure/barricade,/turf/floor/plating/dirt,/area/prishtina/houses)
+"hQ" = (/obj/effect/landmark{name = "RandomGunOrAmmo"},/turf/floor/wood,/area/prishtina/houses)
+"hR" = (/obj/effect/decal/cleanable/blood/writing,/turf/floor/wood,/area/prishtina/houses)
+"hS" = (/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/drip,/obj/item/remains/human,/turf/floor/wood_broken,/area/prishtina/houses)
+"hT" = (/obj/item/weapon/book,/obj/effect/decal/cleanable/blood/tracks/footprints,/turf/floor/wood,/area/prishtina/houses)
+"hU" = (/obj/effect/decal/cleanable/vomit,/obj/effect/decal/cleanable/blood/drip,/turf/floor/wood_broken,/area/prishtina/houses)
+"hV" = (/obj/item/weapon/wrench,/obj/effect/decal/cleanable/blood/tracks/footprints,/turf/floor/wood,/area/prishtina/houses)
+"hW" = (/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/houses)
+"hX" = (/obj/effect/decal/cleanable/blood/gibs/body,/turf/floor/wood_broken,/area/prishtina/houses)
+"hY" = (/obj/item/weapon/material/shard{material = "glass"},/turf/floor/wood,/area/prishtina/houses)
+"hZ" = (/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina/no_mans_land/invisible_wall)
+"ia" = (/obj/structure/wild/tallgrass2,/turf/floor/plating/beach/water/swamp,/area/prishtina/no_mans_land/invisible_wall)
+"ib" = (/obj/structure/wild/tallgrass2,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina/no_mans_land/invisible_wall)
+"ic" = (/turf/wall/rockwall,/area/prishtina/no_mans_land/invisible_wall)
+"id" = (/obj/structure/table/reinforced,/obj/item/weapon/storage/firstaid/o2,/obj/item/weapon/storage/firstaid/fire,/obj/item/weapon/storage/firstaid/toxin,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"ie" = (/obj/structure/closet/crate/freezer,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/item/weapon/reagent_containers/blood/OMinus,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"if" = (/obj/structure/iv_drip,/obj/effect/floor_decal/industrial/outline/grey,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses)
+"ig" = (/obj/structure/barricade,/turf/floor/wood_broken,/area/prishtina/houses)
+"ih" = (/turf/floor/plating/grass/wild,/area/prishtina/no_mans_land/invisible_wall)
+"ii" = (/obj/structure/wild/tallgrass,/turf/floor/plating/grass/wild,/area/prishtina/no_mans_land/invisible_wall)
+"ij" = (/obj/structure/wild/tree/live_tree,/turf/floor/plating/grass/wild,/area/prishtina/no_mans_land/invisible_wall)
+"ik" = (/obj/map_metadata/forest_new,/turf/floor/plating/grass/wild,/area/prishtina)
+"il" = (/obj/item/weapon/shovel/spade/mortar,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"im" = (/obj/structure/sink/puddle,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"in" = (/obj/structure/oven,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"io" = (/obj/structure/pot,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"ip" = (/obj/structure/vending/germanapparel,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"iq" = (/obj/structure/vending/germanequipment,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"ir" = (/obj/structure/vending/italian/apparel,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina)
+"is" = (/obj/structure/vending/italian/equipment,/turf/floor/plating/beach/water/swamp,/area/prishtina)
+"it" = (/obj/structure/vending/sovietequipment,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcHcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcHcHcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcHcHcIcJcJcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcGcHcHcHcIcJcJcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcHcHcIcJcJcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcHcHcIcJcIcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcHcHcIcIcIcIcIcJcJcJcHcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcJcJcIcIcJcIcIcJcJcGcHcHcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcJcIcIcIcJcIcJcJcGcGcHcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcJcIcIcIcJcIcJcJcGcHcHcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcJcIcIcJcJcIcJcJcJcHcHcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcJcIcIcJcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcJcJcJcJcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcHcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcHcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcHcIcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcKcIcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcGcHcHcIcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcJcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcJcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcGcHcHcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcGcHcHcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcGcHcHcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcHcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaeafafaaaeaaaaaeaaagagagagagagagagagahaiaeagagagagagagagagagagaeaaaaaaaaaaagajagafafakafafagagagagagagaaaaaaaaaaaaaaaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aeaeaeafafafaeaaaeaeaaalamanaoapaqarasagaaaiaeagatauavauawaxayaragaeazaaaaaaaaagaAaBafawafaCaDawauawauauagaEaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aeaeafafaaaaaeaaaeaaaaagaqauaFaGaHaIaJagaaaeaealaKauawauawauaLasalaeaaaaaaaaaaalauaFaMauauafaNauaqauaFaOaPaaafaaafafaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaeafafafaaaeaeaeaaaaagauaQaGaqaRaSauagaTaeaeagauaUauaVauaWauanagaeaaaaaaaaaaagauaXaYaZafaqauauaFaFauaOaPaaafaaaaafaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaeaaaaafaeaeaeaaaaaaagaqbaauaubbaubcagaaaaaeagaFbdbebfbgauaqanagaeaebhaaaaaaagbiauaubjaYafauaLakauauauagaaafaaaaaaaaafafaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaeaeafafaeaeaeaaaaaaagagalagagalagaPagaaaTaealbkaRblblaqbmaFanalaaaeaaaaaaaaagauaqauaLaXaMaFbnauboauaualaEaaaaaaaaafafafaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaeafaaaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeagbkaLbpaQauaqaFbqagaaaaaaaeaaaaagbrboaFaFaFaLaFaYafauauauagaabsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcKcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaeafafafafaaaaaaafaaaaafaaaaaaaaafaaaeaeaaagbkbkbkaubababaauagaaaaaaaeaaaaagbtaFaMaFaLauaLaXaMauauaualaaaaaaaaaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcKcIcIcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaeaeafafaaaaafaaafaaaaafaaaaafaaafaaaaaeaaaaagagagaPagalalalagagaaaaaeaeaaaaalauaLaFauauauaFauauaFaFauagaaaaaaaaaaaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcGcHcIcIcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aabsafafaaaeaaaeaeaeaaaaaaaaaaaaaaaaaaaeaeaaaaaaaaaabuaaafaaaaaaaaaaaaaeaaaaaaagbvaubwbxbybzauboauauaFaualaaaaaaaeaeaeaaafaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcJcIcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aabsafafaaaeaaaaaaaeaeaeaeaeaeaeaeaeaeaeaaaaaaaaaaaaaaafaaaaaaaaaaaaaaaaaeaaaaagagalagalagagalagalagalagagaaaaaeaeaaafafafaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcJcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaeafafaeaeaaaaaaagagalagagagagagalagagaaaaaaaaaaaabAaaaaaaaaaabBaaaaaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeafafafaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaeafafaaaeaaaaaaagaubcaFaFauauauauauagaaaaaaaaaaafafaaaaaaaaaaaaaaaaaaaeaeaaaaaaaaaaaaaaaaaaaaaeaaaaaeaeaeaaafaaaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcIcJcLcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaeafafaaaaaeaaaaaaagauauaubdaHaFaLaVaualaaaaaabCafafaaaaaaaaaaaaaaaaaaaaaaaeaeaeaaaaaaaaaaaaaaaaaaaaaeaeaaaaafaaaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaeafaaaaaaaaaeaaaaagaLauauauaFbDaFaqauagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabuaebEaaaeaeaeaeaeaeaeaeaeaeaaafafaaaaaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaeafafafaaaaaeaaaaagapaGbkaFaqaFbkauauaPaaaaaaaaaaaaaaaaafafaeaeaeaeaaaaaabuaebFaaaeaaaaaaaaaaaaaaaaaaafafaaaaaeaeaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcMcHcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaeaaaaafafaaaeaaaaagagalagagagagagalagagaaaaaaaaaaaaaeaeaaaaafafafaeaeaebuaaaeaeaaaeaaaEafafafafafafafbsaeaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaeaaafafafaeaeaaaaaeaeaeaeaeaeaaaaaaaaaeaeaeaeaeaeaaaaaeaeaeaeaaafafaebGaaaaaeaeaeaeafafafaaaaaeaeaeaeaeaaaaaaaaaaaaaaaaaaaaaeaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaeaeafaaaaaeaeaaaeaeaaaeaeaaaeaeaeaeaeaeaaaaafaaaeaeaeaeaaaaaeaeaaafaeaeaeaeaeaaafafafaaaaaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaeaeafaaaaaaaeaeaeaaaaaaafafaaafaaaaaaafafaaaaaaaaaaafaeaeaeaeafafaaaeaeaaafafafafaaaaaaaeaeaaaaaaagagalagagagagagalagagaaaaaaaeaeaaaaaaaaaaaaaaaaaaaaaacGcGcHcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaeaeafafafafafafafafaaafafaaafafafaaafaaafaaaaafaaafafafafafafafafafafafafafaeaeaeaeaeaeaeaaaaaaaaagaubcaFaFauauauauauagaaaaaaaaaeaaaaaaaaaaaaaaaaaaaaaacGcGcHcIcIcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aabHaeaaaaaaaaaaaaaaafafaaafafafaaafafafaaaaaaaaaaaaaaaaafaaaaaaaaaaaaaaaeaeafafaeaeaaaaaaaaaaaaaaaaagauauaubdaFaFaLaVaualaaaaaaaaaeaeaaaaaaaaaaaaaaaaaaaacGcGcHcKcIcIcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aabIbHaeaeaeaaaaaaaaaaaaaaaaafaaaaaaafaaaaaaaaaeaeaeaeaeaeaeaeaeaeaeaeaeaaaeaeafaaaeaeaeaeaaaaaaaaaaagaLauaubkaFbDaFaqauagaaaaaaaaaaaeaaaaaaaaaaaaaaaaaaaacGcGcHcKcIcIcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaeaeaeaeaeaaaaaaaaaaaaaaaaaaaeaeaeaeaeaaaaaaaaaaaaaaaaaaaaaaazbJaeaeafaaaaaaaaaeaeaeaaaaaaagapaGauaFaqaFauauauaPaaaaaaaaaaaaaeaaaaaaaaaaaaaaaaaacGcGcHcHcIcIcJcIcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaeaeaeaeaeaeaaaaaaaaaeaaaaaaaaaaaeaaaaaaaaaaaeaaaaaaaaaeaaaeaaafafafafafaaaeaeaaaaagagalagagagagagalagagaaaaaaaaaaaaaeaeaaaaaaaaaaaaaaaaaacGcHcHcIcIcJcIcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaeaaaaaaaeaaaaaaaaaaaaaaaaaeaeaeaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaaaeaeaeaeaeaeaeafaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaaaaaaaaaaaaaaaaaacGcHcHcIcIcJcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaeaaaaaaaaaabKaebLbMbKaaaaaaaaaaaaaaaaaaaeaaaaaaaaaeaeaaaaaaaaaaaaaaaaaaaeafafafaaaaaaafafafafafafaaaaaaaaaaaaaaaaaaaaaeaeaaaaaaaaaaaaaaaaaacGcMcHcIcIcIcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaeaaaaaaaaaaaaaaaaaaaaaaaaaabNaaaaaaaeaaaaaaaaaaaeaeaeaeaebOaeaaaaaaaaaaaaaaaaaaaaaeafafafaaaaagagalagagagagagalagagaaaaaaaaaaaeaeaaaaaaaaaaaaaaaaaaaacGcHcHcIcJcIcJcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaeaeaeaeaaaaaaaeaeaeaeaeaeaeaeaeaeaaaaaaaeaeaeaeaeaeaeaaaeaebububuaaaaaaaaaaaaaaaaaaaaaeaeafaaaaaaagaubcaFaFbkauauauauagaaaaaaaaaeaeaaaaaaaaaaaaaaaaaaaacGcGcHcHcIcJcIcJcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aeaeaabPaaaaaaaabPaeaaaaaaaeaeaaaaaeaeaeaeaaaaaaaeaaaaaeaeaebubuagagagagagagagagagagaaaaaeaeafaaaaaaagauauaubdaFaFaLaubkalaaafaaaaaeaaaaaaaaaaaaaaaaaaaacGcGcGcHcHcIcJcIcJcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aeaaaabPaaaaaaaaaaaeaeaaaaaaaeaeaaaaaaaeaeaaaeaeaeaaaeaeaaaeaeaaagamaFaFaFbQbRasaragaaaaaeaaafaaaaaaagaLauauauaFaYaFaqauagaaaaaaaaaeaaaaaaaaaaaaaaaaaaaacGcHcHcHcHcIcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aeaaaaaaaaaabubuaaaaaeaeaaaaaaaeaaaeaeaeaeaaaeaaaeaeaeaaaaaaaeaabSambaaRaubTaRauauagaaaaaeaaaaaaaaaaagauaGauaFaqaFauauauaPaaaaaaaaaeaaaaaaaaaaaaaaaaaaaaaacGcHcHcHcJcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aeaaaabububuaaaaaaaaaabUaeaeaaaeaeaeaaaaaeaeaaaeaeaeaeaeaeaeaeaaagamaqamauauaubVbWagaaaaaeafaaaaaaaaagagalagagagagagalagagaaaaaaaaaeaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcJcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aeaaaabuaaafafafafafafbXafaeaeaeaaaaaaaaaaaeaeaeaaafafafafafafaaaPauaubYaSblbZaLcaagaaaeaeafaaaeaeaeaeaaaaaeaeaeaeaeaaaaaaaaaaaaaaaeaeaaaaaaaaaaaaaaaaaaaacGcMcHcIcJcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aeaabPaaaaaaaaaaaaaaaabPaaafafaeaeaaaaaaaeaeaaaaafaaaaaaaeaeaaaaagamaucbcccdblbqauagaaaeafafaeaeaeaaaeaeaeaeaaaaaaaeaeaeaaaaaeaeaeaeaeaeaeaaaaaaaaaaaaaaaacGcHcHcIcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aeaabPaaaaaaaaaaaaaaaaaaaaaaafaaaeaeaaaeaeaaafafaaaeaeaeaeaaaabPbSamaucbaRcdceaFauagaeaeafaaaaaaaaaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaaaaaaaaaaeaeaaaaaaaaaaaaaacGcGcHcIcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aeaaaaaaaabububuaaaaaaaaaaaaaaafbPaeaeaeaaafaaaeaeaebubuaaaaaabPagamcfaFaubeauauauagaeafaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeaeaeaeaaaaaaaaaaaaaaaacGcGcHcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aeaabubububuaaaaaaaaaabubuaaaaaacgaaaaafafaeaeaaaaaabububuaaaabPagamaFaFauauauauaVagaeafafaaaaaaaaaaaaaaaaaaaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcGcHcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aeaaaaaaaaaaaabPaabububuaaaabPaaafafafafaeaeaaaaaabubububuaaaaagagauauchauauaqauauagaeaeafafaaaaaaaaaeciaaaaaaaeaeaaaaaaaeaeaaaeaeaaaaaaaaaaaaaaaaaaaaaacGcGcGcHcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcGcGcGcGcJcGcGcGcGcGcGcGcGcGcGcGcJcJcJcJcGcGcGcGcJcJcGcGcGcGcGcJcGcGcGcGcGcGcGcGcGcGcGcJcJ
-aeaaaabPaaaaaabPaabuaaaaaaaabPaaaaafafaaaeaaaaagagagagagagagagagauaqauaqcjaFaFauauagaaaeaeafafafaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcJcJcJcGcGcGcGcGcGcGcJcGcGcGcGcGcJcJcJcJcJcJcJcJcJcJcJcJcJcGcGcJcGcGcGcGcGcJcGcGcGcGcGcJcJcJcJcJcJcJcJcJcJcJcJcJcG
-aeaaaabPaaaaaaaeaeaeaeaaaeaeaeaeaeaaafaaaeaeaaagckauauauagauauaubcauauauaLaLauaubcagaaaaaeaeaaafafafaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcGcGcGcGcGcGcGcGcGcGcGcGcJcJcJcJcJcJcJcJcJcJcGcGcGcGcGcJcJcJcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcJcJcGcJcJcJcGcGcGcJcJcJcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcJcJ
-aeaeaabPaaaaaaaeaaaeaeaeaeaaaaaaaeaeaaafaaaeaaagckaqaFaFclbdaFaFaFaFbnauaFaFaYauauagaaaaaaaeaeaeaaafaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacmaaaaaaaaaaaacGcGcGcGcGcGcGcGcJcJcJcJcJcGcGcGcGcGcGcGcGcGcJcJcJcJcJcJcGcGcGcGcGcGcGcGcGcGcGcGcJcJcJcJcJcJcJcJcJcGcGcGcGcGcJcGcGcGcGcGcGcGcGcGcGcGcGcJcJcJcJcJcJcJcJ
-aaaebububuaaaaaeaaaeaaaaaaaaaeaaaeaeaaafafaeaaagckauaLauaPaFauaqaucnaFauaqauaFauauagaaaaaaaaaeaeaeafafafaaaaaeafafafafafaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcGcNcHcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaeaaaabububuaeaaaeaaaaaaaaaeaeaeaaaaaaafaeaaagcoaqaFauagauauauauauauauauauauauauagaaaaaeaeaeafafaaaaaaafafafaaaaaaaaaaafbsafaaaaaaaeaaaaaaaaaaaaaaaaaaaacGcGcHcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaeaaaaaaaaaaaeaaaeaaaaaaaeaeaaaeaeaaafafaeaaagcpauaFauagagagagagagagagagagagagagagaaaeaeaaafafaeaaaaaaaaaeaaaaaaaaaeaaaaaaaaaaaaaaaeaaaeaaaaaaaaaaaaaaaacGcGcHcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaeaeaaaaaaaeaeaaaaaaagagagagagaaaeafafaaaeaaagcqaLauauagaaazaaaaaaaaaaaaaaaaaaaaaaaaaeaaafafaaaaaeaeaeaaaaaaaaaeaaaaaaaaaaaaaaaaaaaaaaaeaaaaaaaaaaaaaaaacGcGcHcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aeaeaaaaaaaaaeaaaaaaaaaPaFaFcragaaaeafaaaaaeaaagcsaFauauagaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeafafafaaaaaaaaaeaeaeaaaaaaaaaeaaaaaaaeaeaaaaaaaaaactaaaaaaaaaaaaaacGcHcHcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaeaeaaaaaeaeaaaeaaaaagcucvbMagaaaeafafaaaeaaagagagagagagaaaaaaaaaaaaaeaeaeaeaeaeaeaeafafaaafafaaaaaaaaaaaeaeaeaeaeaaaaaaaaaaaeaeaaaeaeaactaaaaaaaaaaaaaacGcHcHcIcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aeaaaeaaaeaeaaaaaaaaaaagaucwaFagaaaeaaafaaaeaaaaaaaaaaaaaaaaaaaaaeaeaeaaaaafafafafafaaafaaaeaaaaafafaaaaaaaaaaaaaaaeaeaeaeaeaeaeaaaaaaaeaacxaaaaaaaaaaaaaacGcGcHcIcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaeaeaeaeaaaaaaaaaaaaagagagagagaaaeaaafaaaeaaaaaaaaaaaaaaaeaeaeaeaaafafafafaeaeaeaeaaafaaaeaeaaaaaaafafaaaaaaaaaaaaaaaaaaaaaaaeaeaeaacyaaaaaaaaaaaaaaaaaaaacGcMcIcJcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaabuaaaaaaaaaaaaaaaaaaaaaaaaaaaeaaaaaaaaaeaeaeaeaeaeaeaeaeaaaaaaafafaeafafaeaaaeaaaaafaaaaaeaaaaaaaaafafaaaaaaaaaaaaaaaaaeaeaeaeaeaeaeaaaaaaaaaaaaaaaaaaaacNcHcJcJcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aabubuaaaaaaaabubuaaaaaaaaaaaaaeaeaaaaafaaaaafafafafafafaaaaafafafaeaeaeafafaaaaaeaaaaaaafaaaeaeaaaaaaaaafaaaaaeaeaeaeaeaeaeaaaeaeaaaaaeaeaeaaaaaaaaaaaaaacGcHcIcJcIcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaeaeaaaaaabubuaaaaaaaeaeaeaaaaafafafafaaaaaeaeaeafafafafaaaeaeaaaaafafaaaeaeaaaaaaafaaaaaeaaaaaaaaafafaeaeaaaaaaaaaeaeaeaeaaaaaeaaaaaaaaaaaaaaaaaaaacGcHcIcJcIcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaeaaaaaaaaaaaaaaaeaeaeaaaaafafafaeaeafczaaaeaaaeaeaeaeaeaeaeaaaaczafafczaeaaaaaaafaaaaaaaeaaaaaaaaaeafaeaeaeaeaeaeaaaaaaaaaaafaeaaaaaaaaaaaaaaaaaaaacGcHcIcJcIcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaeaaaaaaaaaaaeaeaeaeaaaaafafafaaaaaeaeaeafaaaeaaagagagagagagagagbSagafafagaeaaafafafaaaaaaaaaeaaaaaeaeafafaaaaaeaeaeaeaeaaaaaaaaaeaaaaaaaaaaaaaaaaaaaacOcHcIcIcIcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaeaeaaaaaaaaaeaeaaaaaaafafafaaaaaaaaaeaaaabsaaaeaaagauauauauauauauauaqaqauagaeaaafaaaaaaaaaaaaaeaaaeaeaaaebsaaafaaaaaaaaaaaaaaaaaaaeaaaaaaaaaaaaaaaaaacGcOcKcIcIcIcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaeaaaaaaaaaeaeaaafafafafaaaaaaaaaaaeaeaaaabsafaeaaagauaFaFaFaFauauauauauauagaeaaafaaaaaaaaaaaaaeaeaeaeaeaeaaaaaaaaaaaaaaaeaeaeaaaeaeafaaaaaaaaaaaaaacGcHcHcHcIcIcJcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaeaaafaaaaaaaaaaaaaaaaaeaeaaaaaaaeafaeaeagauaFcAaFaFaucAaqauauaubSaeaaafaaaaaaaeaaaaaaaeaeaaaaaaaaafaaaaaaaaaeaeaaaaafaeaaafaaaaaaaaaaaacGcGcHcMcKcIcJcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aabuaaaaaaaeaeafafaaaaaaaaaaaaaaaaaeaeaaaaaaaeafaaaeagauaFaLaLaFaqaFauauaFauagaeaaafaaaeaaaaaaaaaaaeaeaaaaaaaeaaaaaaaeaeaaaaaaaaaeaeaaafaaaeaaaaaaaacGcHcHcHcKcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aabubuaaaaaeaaafaaaeaaaaaaaaaaaaaaaaaeaaaaaaaeafczaeagaFaFauauauauauauauauauagaeaaafaaaaaaaaaaaaaaaaaeaeaaaaaeaaaaaeaeaaaaafafafbsaaaaaaaeaeaaaaaaaacGcHcHcKcHcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaabuaaaeaeafafaaaeaeaaaaaaaaaaaaaaaeagagagagafbSagagagagagagauauauauauauaubSaeaaafaaaaaaaaaeaeaaaaaaaeaaaaaeafaaaeaaaaafaaafaaaaaaaaaeaeaaaaaaaaaacGcHcKcJcKcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaabubuaeafafaaaaaaaeaaaaaaaaaaaaaeaeagauauauauauauagcBauaqauauauauauaubVbWagaeaaafaaaeaaaaaaaaaaaaaaaeaaaabsbsafaeaaaaaaaaaaaaaaaaaeaeaaaaaaaaaacGcGcMcIcIcJcIcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaeaeafaaaaaaaaaaaeaaaaaaaaaaaeaaagaqcCauaucDaqagaqauauccaLaFaSblbZaLcaagaeaaafafaaaaaaaeaaaaaaaaaeaeafaaaeaaaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaacGcHcHcIcIcJcJcJcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaeafaaaaaaaaaaaaaeaeaaaaaaaaaeaabSauaFcEaLaLaLajaFaFaFaraLaFaucdblbqaubSaeaaaaafafaaaaaaaaaeaaaaaaaeafafaeaaaaaaaaaaafaaaaaeaaaaaaaaaaaaaacGcGcHcIcIcJcIcIcIcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaafafaaaaaaaabuaaaaaeaeaaaaaaaeaaagauaFauaLaLaLajaFaFcDaFajajajajajauauagaeaeaaaaafaaaaaaaaaaaaaaaaaeaaafafaeaaaaaaaaafaaaeaaafafaeaaaaaaaacGcHcKcIcIcIcIcJcJcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaafaaaaaaaaaabuaaaaaaaeaaaaaaaeaaagauauaFaFaFaFaFaLaFaFaFajaFaFaFauauauagaaaeaeaaagaqagagagagagaaaaaeaaafafaeafaaafafaaaeaeaaaaaaaaaaaaaaaacGcHcIcIcIcIcIcIcIcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaabubuaaaaaeaeaaaaaeaaagauauaFaLcBaFaqaqaucBauagauauaFcAauauagaaaeaaaaagaLauauaYauagaaaaaeaeaaafaabsafafaaafaeaaaaaaaaaaaaaaaacGcGcKcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaabubuaaaaaaaaaaaeaabSauauauaFaLaFauaqauauauajaFauauauaFaubSaaaeaaaaagaubdaUaFaLagaaaaaaaeaaaaafbsafaabsbsaaaaaaaaaeaaaaaaaacGcHcKcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-aaaaaaaaaaaaaaaaaaaaaabubuaaaaaaaaaeaaagauauauaFaFaFcFauauaFaFagauauauauauauagaaaeaeaaagaFaLaFaFaqagaaaaaaaeaaaaaaafafaaaaaaaeaeaeaeaeaaaaaaaacGcHcIcJcIcIcIcIcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
-bhaaaaaaaaaaaaaaaaaaaaaaaabububuaaaeaaagagagagbSagagagagbSagagagbSagagbSagagagaaaaaeaaagagagagagagagaaaaaaaeaaaaaaaeaeaeaeaeaeaaaaaaaaaaaaaaaacGcHcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJ
+arararararararararararararararararararararararararadadadadadadadadatadadatadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadaCaEaCadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadcWcWadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
+arararararararararararararararararararararararararajajajajajajajajaaajajajajajajaaacadadadadadadadaaaaadadadadadadadadadadaaaaaaaaaaaaaaaoftaoajajajajaaajaaaaaaaaaaaaadadadadadadadadadadadadadadadaaajaaaaajajaaaaaaadadadadadadadadadadadadaaaaaaadaaaaaaaaadaaaaaaaaaaadaaadihaaaaaaaaaaaaadcHadcHcHcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJad
+arararararararararararararararararararararararararajajajajfqajaaajajajajajajajfqaaacacacaaaaaaaaaaaaadadadadaaaaajaaaaaaabaaaaaaaaaaaaaaaoftaoaaajajajajaaaaajajajaaaaaaaaaaaaaaaaaoftaoaaaaaaaaaaaaaaaaajajfrajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaajaaajajaaaaajajihaaaaaaaaaaaacGcHcHcHcHcIcJcJcJcJfucJcJcJcJcJcJcJcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcGcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcGcJcJad
+arararararararararararararararararararararararararfqaaaaaaaaaaajajaaajajajajajajaaacacacaaajaaaaajaaaaaaaaaaaaajajajajaafqaaaaaacCcCcCcCcCcCcCcCcCcCcCcCcCaaajaaajaaaaaaajaaajajaaaoftaoaaaaaaaaaaajaaajajaaaaajajaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaajaaajajajajajihaaajajaaaaaacGcGcHcHcHcIcJcJcJcJfvcJcGcGcGcGcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcGcJcGcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcGcJcGcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJad
+arararararararararararararararararararararararararajaaaaaaaaaaaaaaaaajaaaaaaaaajajacacacaaajajaaaaaaaafqaaaaaaaaajajajaaaaaaaaaacCcZcZcZcCcZcZcZcCcZcZcZcCaaajaaaaaaaaaaaaajaaajajaoftaoaaaaaaaaaaaaajaaajajajajajaaacajajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafqaaaaajajajajajaaiiaaaaaaaaaaaacGcHcHfGcHcIcJcJcJcJfvcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcGcJcJcJcJcJcJcGcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcGcJcJcJcJcJcJcGcJcJcGcJcJcJcJcJcJcJcJcJcJad
+arararararararararararararararararararararararararajaacCcCcCcCcCcCcCcCcCcCcCcCfqaaacacacaaajajaacCcCcCcCcCcCcCcCcCcCcCcCcCaafqaacCewcZewcCcZcZcZcCcZcZcZcCaaaaaafqaaaafqaaaaajajajaoftaoajaaaaaafqaaaaajajajajajaaaaacaaaaaaaaaaaaaaaaaaaaajajaaajajaaajaaaaaaaaajajaaajaafqajaaiiajaaajaaaaaacGcHcHcHcHcIcJcIcJcJfvcGcJcJcJcJcJcJcJcJcJcIcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJad
+arararararararararararararararararararararararararajaacCcZexexcZcCcZeycCcZcZcCaaaaacacacaaajajaacCcZcZcZcCcZcZcZcCcZcZcZcCajaaaacCcZcZewcCcZcZcZcCcZcZcZcCaaajaaaaaaaaaaajajaaajaaaoftaoajajaaaaaaajajaaajaafqajaaaaacaaajaaaaaaaaajaaajaaajajajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaihajajaaaaajajcGcHcHcHcHcIcIcIcIcJfvcJcJcJcJcJcJcJcJcGcJcGcJcJcJcJcJcGcJcGcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcGcJcJcGcJcGcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcGcJcGcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcGcJcJcGcJcGcJcJcJcJcJad
+arararararararararararararararararararararararararajaaezcZcZeAcZcCcZcZcCcZeCcCaaaaacacacaaajajaacCewcZewcCcZcZcZcCcZcZcZcCajajajcCcZcZewcCeAeDeDeFeGeHcZcCaaaaajajaaaaaaaaaaaaaaaaaoftaoaaajaaaaaaaaaaaaaaaaaaaaaaacacajaaaaajajaaaaaaajajaaaaajajaaaaaaaaaaaaaaajajfrajaaaaaaajihajajaaaaaaajcGcHcHcJcJcIcIcJcIcJfwcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcGcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcGcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJad
+arararararararararararararararararararararararararajaaezcZeAcZeAcCcCeIcCcZcZcCfqaaacacacfqaaaaaacCcZcZewcCcZcZcZcCcZcZcZcCaaajajcCcZcZewcCeJcZeweKeLeMcZcCaaajaaajaaaaaaajajfrajaaaoftaoaaajaaaaaaajajfrajaaaaaaajacacajaaaaaaaaaaaaaaajajaaaaajajaaaaaaaafsaaaaaaaaajaaajaaaaaaihaaaaaaaaajajcGfGcHcIcJcIcIcIcJcJfxcJcJcJcJcJcGcGcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJad
+arararararararararararararararararararararararararajajcCeNcZcZcZcZcZcZcCcCeIcCaaaaacacacacaaaaaacCcZcZewcCeAcZcZcZcZcZcZcCaaajaacCeIcCcCcCeDcZcZcZcZcZeAcZaafrajajfsaaaaaaaaajaaajaoftaoaaaafsaaaaaaaaaaaaajaaaaaaacaaaaaaaaaaaaaaaaajaaaaaaajaaajaaajajaaaaajajaaaaajajaaajaaajihfqaaaaaaaaaacGcHcHcIcJcIcIcIcJcJcGcJcGcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcGcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcGcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcGcJcJcJcJcJcJcJcJad
+arararararararararararararararararararararararararajajeIcZcZcZcZcZcZcZcZeAcZcCajajacacacacfqaaaacCcZcZewcCeJeLeOcZcZePcZcCfqaaaacCcZcZcZeHeAcZcZeHcZcZcZeLaaajajajaaajajaaaaajajaaaoftaoaafqaaajajaaaaaaaaaaajaaajacaaaaaaajajaaaaaaajajajajajajajaaaafqaaaaajaaaaaaajfsaafsaaajihajajaaaaaaaacGcHcHcIcJcIcIcJcJcJcJcGcGcJcGcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcGcJcGcGcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcIcIcJcJcGcGcGcGcOcGcJcJcOcGcJcGcOcOcGcGcJcGcJcJcJcJcJcJcJcIcJcJcJcJcJcJcJcIcJcIcIcGad
+ararararararararararararararararararararararararaaajajcCcZcZcZcZeAcZcZeAcZeAcCajaaacacacacaaaaaacCeIcCcCcCeDcZePcZcZcZeAcZacacaccZeQeAcZcZeAcZcZeDcZcZeAeSaaajaaajaaajaaaaaaaaaaaaaoftaoaaajaaajaaaaaaaaaaaafsaaajacacajaaajaaajaaaaajaaaaaaajaaaaajajaaaaaaaaajaaajaaajaaajaaaaiiaaaaajaaaaaacGcHcHcIcJcIcIcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcGcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcGcJcIcJcJcJcGcGcGcGcGcGcOcJcGcGcGcJcIcJcGcOcIcOcJcJcJcJcIcJcJcJcJcJcIcJcJcIcJcJcIcIcJcGad
+ararararararararararararararararararararararararfqajajcCcZcZcZeAcZeAcZeUcZcZcCaaaaacacacacfqaaaccCcZcZcZePePcZcZeAcZcZcZeQacacaceQeAcZewcZewcZcZcZcZeAcZeSaaaaaaaaaaaaajaaaaaafqaaaoftaoaaaaaaaaaaaaaaaaaaaaaaaaaaacacaaajaaajaaaaajaaajaaaaajaaaaaaaaajaaaaaaaaaaaaaaaaaaaaaaaaihaaaaaaaaaaaacGcHcHcIcJcJcJcJcJcJcJcJcJcJcJcJcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcGcJcGcJcJcJcJcGcJcGcJcIcJcIcJcJcOcOcGcJcJcGcGcGcOcGcIcIcJcJcOcOcOcJcJcIcIcIcIcIcIcIcIcJcJcJcJcIcJcJcIcJad
+ararararararararararararararararararararararaaaaaaajajcCcCcCcCcCcCcCcCcCcCcCcCaaaaacacacacacacaccZcZeAcZcZcZePcZcZcZePcZeQacacaceQeQcCcZcZcZcZcZcZcZeHeAeVaaajajajaaaaaaaaaaaaaaaaaoftaoaaaaaaaaaaaaaaaaaaaaaaaaaaacacaaaaaaajaafqajaaaaaaaaaaaaaaaaaaajaaaaaaaaaaaaaaajajaaajajihaaaaajaaaaajcGcHcHcIcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcIcJcJcJcJcJcGcJcIcIcJcOcJcIcOcIcOcOcJcIcJcJcJcJcJcOcIcIcJcJcJcGcIcIcIcIcJcJcJcIcJad
+ararararararararararararararararararararararfqaaaaajaacCcZexeWcZcZcZcZeWcZcZcCfqaaacacacacacacaceQeAcZcZcZeAcZcZcZeAcZcZeAacacaaeQcZcZcZcZcZcZcZcZcZcZeAeXacaaaaaaaaacacacacacacacfefFfeacaaaaacacacacacaaaaaaaaaaacacaaajaaajaaaaaaajaaaaaaaaaaaaaaaaaaaaaafqaaajaaaaaaaaajaaaaiiaaajaaaaaaaacGfGcHcJcIcJcJcJcJcJcJcJcJcGcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcGcJcJcJcJcJcJcGcGcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcGcGcGcJcJcGcOcGcJcGcOcGcGcJcGcGcJcGcGcJcOcGcGcOcGcGcGcJcGcIcOcIcJcJcJcJcJcJad
+ararararararararararararararararararararararaaaaaaajajcCeNcZcZcZcZcZcZcZeAcZcCaaaaacacacacaaaaaceQcCcCeLcZcZcZcZcZcZcZcZezaaacaacCcZcZcZeAcZeAcZcZcZcZeweQacacacacacacacacacacacacfefFfeacacacacacacacacacacacacaaacacajaaaaaaaaaaajaaajajaaaaajaaaaajaaaaaaaaajaaajajaaaaajajaaihaaaaaaaaaaaacGcHcHcHcIcJcJfucJcJcJcJcJcJcJcJcJcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcGcGcGcJcGcGcGcJcJcGcGcGcGcOcGcGcIcJcJcGcOcOcJcGcGcIcGcJcJcGcGcJcJcJcGcGcGcGcOcGcGcGcJad
+ararararararararararararararararararararararaafqaaajaaezcZcZcZcZcZcZcZeAcZeAcCajaaacacacacacaaaacCcZcZcZePcZcZePcZcZcZcZezaaacaacCcZewewcZcZcZcZcZcZcZcZeQacacacenenenenenenenenenenenenenenenenenenenenenenacacacacacaaajajaaaaaaaaajajaaajaaaaajaaajaaaaaaaaaaajaaajajajajajaaihajajaaaaaaaacGcHcHcHcIcJcJfvcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcGcGcOcGcGcJcJcJcGcJcGcGcGcJcJcIcJcJcJcOcJcGcJcGcGcGcOcGcOcOcGcGcGcGcJcJcJad
+ararararararararararararararararararararararaaaaaaajajcCcZcZcZcZcZcZcZcZcZcZcCajaaacacacacacaaaacCcZcZcZeAcZeAcZcZcZcZcZezajacaacCcZcZcZcZcZcZcZcZcZcZcZcZacacaccAeoeocAenenenenenaccAcAcAcAcAcAcAcAcAaccAenacfNacacacajfrajaaaaajaaaaaaaaajaaajajfqaaaaaaaafqaaaaajajajajajaaajihaaaaaaaaajaacGcHcHcHcIcIcIfvcJcJcJcJcGcJcGcJcGcJcIcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcGcJcGcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcGcGcGcGcGcGcGcOcGcGcGcGcGcOcGcGcGcGcGcIcOcJcJcJcGcJcGcGcJcJcJcJcGcGcGcOcJcJcGcGcGad
+ararararararararararararararararararararararfqaaaaajajeIcZcZcZcZcZeAcZeUcZcZcCajaaacacacacacfqaacCcZewewcZcZcZcZcZcZcZcZezajacaacCcZcZcZcZcZcCcZcZcZcZcZcCaaacacaccAcpcAencAeoeocAaccAcAcpaccAcAcpaccAacerenacacacacacajajajajajaaaaaaajajajajaaaaajajajaaaaaaajajaaajaafqajaaajiiaaajaaaaaaaacGcHcHcKcIcJcIfvcJcJcJcJcJcJcJcJcJcIcJcGcJcJcJcJcJcJcGcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcGcJcJcJcJcJcJcJcJcGcJcJcJcGcJcJcJcJcJcJcJcIcGcJcIcGcGcIcGcJcJcGcGcJcJcJcJcJcJcJcIcJcJcJcGcJcIcJcJcJcJcJcGcJcJad
+ararararararararararararararararararararaaaaaaaaaaajaacCcZcZeAcZeAcZeAcCcCeIcCaaaaajacacacacaaajcCcZcZcZcZcZcZcZcZcZcZcZezaaacaacCcCcCcCcCcCcCcCcCcCcCcCcCaaacacaccpcAcpeqcAcAcpcAencAaccAaccAaccAacaccAcAacacacfxacacajajaaajaaaaaaaaajajaaaaaaaaajajaaaaaaaaaaaaaaaaaaaaaaaaaaiiajaaaaaaaaaacGcGcHcHcIcJcIfvcJcJcJcJcJcJcJcJcJcIcJcJcJcJcGcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcIcJcJcJcJcJcJcJcJcJcIcJcJcJcOcIcJcJcIcJcJcJcJcJcIcJcJcJcJcJcJcJcJcJcJad
+arararararararararararararararararaaaaarfqaaaaaaaaajajezcZeAcZeAcCcCeIcCcZcZcCfqaaajacacacacajajcCcZcZcZcZcZcCcZcZcZcZcZcCaaacajaaajajaaaoftaoaaaaajajaaaaajacenetcAcAcAeqcAcpcAcpcAcAcAcAcAaccAcAcAenenesacacdCfHcGacaaajajaaaaaaajaaaaaaaaaaaaaaaaajaaaaaaaaajajfrajaaaaaaajaaiiajaaaaaaajaaaacGcHcHcIcJcIfucJcJcJcJcJcJcJcJcJcIcIcJcJcIcJcJcJcJcGcJcJcGcJcJcJcJcJcJcJcGcJcGcJcGcJcJcJcJcJcJcJcGcJcJcJcJcJcGcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcOcJcJcJcJcJcGcGcJcIcJcJcJcJcJcJcJcJcJcJad
+arararararararararararararararararaaaaaaaaaafqaaaaajaaezcZcZcZeCcCcZcZcCcZcZcCajaaajacacacacajajcCcCcCcCcCcCcCcCcCcCcCcCcCaaacajajajaaaaaoftaoaaajajajajaaajacescAcAcAcAaccAcAcAcAcAcAcpaccAaccAcAcAcAcpcAaccGdDfIcGacajfrajaaaaaaaaaaaaaaajaaaaaaaaajajfsaaaaaaaaajaaajaaaaaaaaihaaaaaaaaaaaaaacGcHcHcIcJcIcIcJcJcGcJcJcGcJcGcJcJcJcIcIcJcJcJcJcGcIcJcJcJcJcJcJcJcJcGcJcGcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJeveviaeveveveveveveveveveviaevevevevevibiaeviaiaevevevevhZeveveveveviaiaevevhZiaeviaevic
+ararararararararararararararaaaaaaaafqajaaaaajajfqaaajcCcZcZcZcZcCcZeYcCcZcZcCajaaaaacacacacaaajaaaaaaaaaaaaajajaaaaaaaaaaacacajajajacacaoftaoajajajajajajaaacencAcAcAcAaUaccAcAencAaccAacaccAcAcAacaccAcpaccGdDfIcGacajajajajajajajaaajaaaaaaaaaaajaaaaaaajajaaaaajajaaajaaajaaijaaaaaaaaaaajaacGfGcHcIcIcIcJcJcJcJcGcGcJcGcJcJcJcIcIcJcJcJcJcJcJcJcJcIcJcJcJcJcGcGcJcJcJcJcJcJcGcJcJcJcGcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcGcJevcJcJcJcJcJcJcJcJcJcJcJcJcIcIcGcOcJcJcJcJcIcOcIcIcJcJcJcJcJcJcGcGcJcJcOcJcGcJcJcJcJcJad
+arararararararararararararararfqaaaaaaaaajajfrajaaaaajcCcCcCcCcCcCcCcCcCcCcCcCajajajacacacacaaacacacacacacacacacacacacacaaacacacacacacacaoftaoaaaaajaaaaajaaacencAcAcAcpacaccAcAencpaccAcAcAcpaccAacepcAcAencGcYfIcGacajajaaajaaajajaaaaaaaaaaajaaajaaaaaaajaaaaaaajfsaafsaaajaaiiajaaaaaaaaaaaacGcHcHcIcIcJcJcJcGcJcJcJcJcJcJcJcJcJcIcIcJcJcJcJcIcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcGcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJevcJcJcJcJcGcJcJcJcGcIcIcGcJcIcIcJcJcGcJcOcJcOcOcJcJcIcJcGcIcGcIcGcGcIcJcJcJcJcGcJcJcJad
+ararararararararararararararararajaaaaajaaajajajajajaacCeNcZcZcZcZcZcZcZeAcZcCaaaaajacacacacacaccCcCcCcCcCcCcCcCcCaccpacacacaccCcCcCcCcCenenenenenenenenaaajacenenenenenencAcAcAaccAacaccAaccAacaccAcAenenenaccYfHcGacajaaajaaajajajaaaaajaaaaajaaajaaaaaaaaajaaajaaajaaajaaaaajihaaajaaaaaaaaaacGcHcHcIcIcJcJcJcJcJcJcJcJcJcJcJcOcJcIcJcIcJcJcJcJcJcGcJcJcGcJcJcJcJcJcJcJcJcGcJcJcGcGcJcGcJcJcJcJcJcJcGcJcGcJcJcJcGcJcJcGcJevcJcJcJcJcGcGcGcGcJcJcJcJcJcJcJcGcJcIcJcGcJcJcJcJcJcOcJcGcOcGcJcJcIcJcJcJcJcJcJcJcJcJad
+ararararararararararararaaaaaaaaaaajajfrajajajaaajaaaaezcZcZcZcZcZcZcZeAcZeAcCaaajajacacacacacaccCcZexexcZcCcZeycCcAacacacacaccCcZcZcZencAcAcAencAcAcAenaaaaacencAeoencAencAcAcAcAcAacaccAcpcAcpenenescAcAenacdLfJacacajajajaaajfqaaaaajajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaihaaaaaaaaaaaacGcGcHcHcIcIcJcJfycJcGcJcJcJcJcJcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJevcJcJcJcJcJcGcGcJcGcJcGcJcJcJcJcJcJcGcGcGcGcJcJcJcJcIcGcOcJcJcJcIcJcJcGcJcJcGcJcJcJcJad
+arararararararararararararaaaaaaajaaajajajajaaajaaajaacCcZcZcZcZcZcZcZcZcZcZcCfqajajacacacacacacezcZcZeAcZcCcZcZcCcAcpacacacaccCewcZcZencAcAcAencAcAcAenaaajacenetcAeqcAcAcAcAcpaccAcAcAcAcAcAaccAcAcAcpcAenacacfKacacacajajaaajaaaaaaaaaaaaaaajaaaaaaaaaaaaaaaaaaaaajajaaajajaaihaaajaaaaajaacGfxcHcHcJcIcJcJcJcJcJcJcJcJcJcJcJcJcGcIcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJevcJcJcJcJcJcJcGcGcJcGcJcJcJcGcGcGcIcGcGcJcOcGcGcOcJcJcGcJcGcGcJcJcJcJcJcGcJcJcJcJcJcJad
+arararararararararaaaaaaaaaaaaaafrajajajaaajajajaaajaaeIcZcZcZcZcZeAcZeUcZcZcCaaaaajacacacacaaacezcZeAcZeAcCcCeIcCcpcAcpacacaccCcZcZcZencAcAcAencAcAcAenaaajaceqcAcAeqcAcpcAaccAacaccAcAcpencAaccAcAcAcAcpenacacacacacacaaaaaaaaajaaajajajaaajajaaaaajaaaafqaaajaaaaaaaaajaaaaajihajaaaaaaaafLcGcGcHcHcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJevcJcJcJcJcGcGcGcJcJcGcJcGcJcGcGcJcGcGcGcJcGcJcJcJcGcGcJcGcJcJcJcIcJcJcJcJcJcJcJcJcJcJad
+ararararararararaaaaaaaaaafqaaaaajajajaaaaaaajajaaajajcCcZcZeAcZeAcZeAcCcCeIcCajajajacacacacaaaccCeNcZcZcZcZcZcZcCcCeIcCacacaccCcZcZcZencAacencAacaccAenajaaacencAcAaccAcAcAcAeqcAcAcAaccAenaccAcpaccAcAcAacacacacacacacacaaaaaaajaaajaaajajajaaajaaajaaaaaaajaaajajaaaaajajaaaaihaaaaaaaaaaaacGcHcHcHcIcIcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJevcJcJcJcJcGcJcGcGcGcJcJcGcJcJcJcJcJcGcJcIcJcJcJcJcGcJcJcJcJcJcJcJcJcJcGcGcJcGcJcJcJcJad
+ararararararararaafqaaaaaaaaaaaaajaaajajajaaajaaaaajaaezcZeAcZeAcCcCeIcCcZcZcCaaaaaaacacacacacaceIcZcZcZcZcZcZcZcZeAcZcCacacaccCcZcZacencAacacaccAcAcAenajaaacescAcAaUcAcAcAcAeqcAcAcAcAcAcAcAcAcAacaccAcAacacfKcGcGacacacajajaaaaaaaaaaaaaaajaaaaaaaaaaaaaaaaajaaajajajajajaaaaiiajaaaaaaaaaacGcHcHcIcIcIcJcJcJcJcJcJcJcJcJcJcGcJcIcJcJcJcJcJcJcGcJcJcGcJcJcJcJcJcJcJcGcJcJcJcJcJcGcJcJcJcJcJcJcGcJcJcGcJcJcJcJcJcJcJcJcJcJevcJcJcJcJcGcJcGcJcGcGcJcJcJcJcGcJcJcJcJcGcJcJcGcJcIcGcGcJcOcJcGcJcJcGcJcGcJcJcJcJcJcJad
+ararararararararararaaaaaaaaaaaaaaaaaaajajaaajajaaajajezcZcZcZeCcCcZcZcCcZcZcCaaaaacacacacacacaccCcZcZcZcZeAcZcZeAcZeAcCaaacaccCeIcCacacaccAcAcAcpaccpcAajaaacencAcAacaccAcAcAaccAcAcpacenenenenencAacenesacdMfHcHcGacacacacaaaaaaaaaaajaaaaaaaaaaajaaaaaafqaaaaajajajajajaaajaaihaaaaaaaaaaaacGcHcHcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJevcJcJcJcJcGcJcJcJcJcJcJcJcJcJcGcJcJcGcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJad
+arararararaaaaaaaaaaaaaafqaaaaaaaafrajajajaaajaaaaajajcCcZcZcZcZcCcZeYcCcZcZcCfqaaacacacacacaaaccCcZcZcZeAcZeAcZeUcZcZcCajacacencAcAcAcAcAencAcAacaccAcpajajaceqcAcpcAcAcAcAcAencAcAacaccAeoencAencAencAcAaccYfHcHcGacacacacaaajajaaaaajaaaaajajaaajaaaaaaaaajajaaajaafqajaaajajihajaaaaaaaaaacGcHcHcIcIcIcJcJcJcJcJcJcJcJcJcJcJcJcIcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJevcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcGcGcJcJcJcJcJcIcJcJcOcIcJcJcOcJcJcJcJcGcGcGcGcGcGad
+arararararaaaaaaaaaaaaaaaaaaaaaaaaajajajaaajaaajaaajajcCcCcCcCcCcCcCcCcCcCcCcCaaaaacacacacacaaaccCcCcCcCcCcCcCcCcCcCcCcCaaacaccAcAcpcAacencAacacencAcpcAaaajaceqcAcAcAcAcpacesencAcAencAcAcpcAcAcAcAcAaccAaccYfHcHcGacacacacajajaaaaaaaaaaaaajajaaajaaaaaaaaaaaaaaaaaaaaaaaaaaajiiaaaaaaaaaaaacGcHcHcIcJcIcJfucJcJcJcJcJcGcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJevcJcJcJcJcJcJcJcJcJcJcJcJcGcGcGcJcJcJcJcIcJcIcIcJcJcJcJcIcJcJcJcIcIcJcJcIcOcGcGcGcGcGad
+adararararaafqaaaaajajaaajajajaaajajaaajajajaaajajajajajajaaaaaaaaajaaaaaaaaaaaaaaacacacacacacacacaaaaacacacacacacacaaaaaaacaccAcpcAcAacacaccAcAenencAcpaaaaacencAcAcAaccAcAcAencAcpenenaccAcAcAcpaccAaccAacdLfHcHcGacacacajaaaaajajaaajaaaaaaaaaaajaaaaaaaaajajfrajaaaaaaajaaajiiaaaaaaaaaaaacGcHcHcIcJcIcJfvcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcGcJcJcJcJcJcJcJcJcGcJcJcJevcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcIcIcOcIcJcJcJcJcJcJcJcJcJcIcJcIcGcGcGcGcGcGad
+adarararaaaaaaaaajajaaaaaaikajajajaaaaaaajajaaajaaajajajajajajajajajajaaaaaafqaaaaacacacacaaaaaaacacacacaaaaaaaaaaaaaafqaaacacenenencAaccAcAcpacaccAcAeqfqaaacenenencAcAcAcAcAacencAaccAcAaccAaccAacaccAenaccGfxcHcGcGacacaaajaaajaaajajajaaaaaaajaaajfsaaaaaaaaajaaajaaaaaaaaaaihaaaaaaaaaaaacGcHcHcIcIcIcJfvcJcJcJcJcJcJcJcJcJcJcIcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcGcJevcJcJcJcJcGcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcIcIcJcIcIcJcJcGcIcJcGcJcJcGcGcGcGcGcGcGcGad
+adarararaaacacaaaaaaacacacacacacacacacacacacacaaaaaaaaaaajajaaaaaaaaaafqaaaaaaaaaaacacacacfqaaaaajaaaaaaaafqaafqaaaafqaaaaacajencAcAcAencAcAacaccAcAcAcpaaaaacencAencAcAcpaccAacacaccAaccAcAcAcAcAcAcAcAacencGcGcHcGcGacacaaajaaajaaaaajaaaaaaaaaaaaajaaajajaaaaajajaaajaaajaafqihaaaaaaaaaaaacGcHcHcIcIcJcJfvcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJevcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcGcGcJcJcJcJcIcJcJcJcIcIcIcIcGcGcGcGcGcGcGcGad
+adacacacacacacacacacacacacacacacaaacacaaaaacacacacacacacacacajaaajenenenenenacacacacacacacacaaacacajfqaafqaaaaaafqaaaaaaaaacajencAcAesencAcAencAcAcAcAenajaaaceneneqcAaccAaccAcAcAcAcAaccAcAcpcAcAcpaccAacencGcGcHcGcGacacaaajaaajajajaaajajaaajaaaaajaaajaaaaaaajfsaafsaaajaaajiiaaaaaaaaajaacGcHcKcIcJcJcJfvcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJevcJcJcJcJcJcJcGcGcJcJcJcJcJcJcJcJcGcJcOcJcGcIcIcJcIcJcJcJcJcJcJcIcJcJcGcGcGcGcGcGcGcGad
+aVafafafaeaeaeaeaeaeaeaeaeaeagagaeaeaeaeaeaeagagaeaeaeaeahaiajajajencAeoeocAaccAepacacacacacacacacacacacacacacacacacacacacacacaccAeucAencAcpenencAcAcAcpajaaacencAeqcAcpcAcpcAenenencAaccAaccAcAaccAacaccAencGcGcGcGcGacacaaaaaaajaaajajacaaacajajaaajaaaaajaaajaaajaaajaaaaajaaihajaaaaaaaaaacGcHfGcIcIcIcIfvcJcJcJcJcJcJcJcJcJcJcJcGcGcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcGcJcJcJcJcJevcJcJcJcJcJcJcJcJcJcJcGcGcGcGcJcJcGcJcJcIcJcGcGcGcOcOcGcGcGcGcOcGcGcOcGcGcGcGcGcGcGcGad
+akalalalalalalalalalalamanananananananananananananananaoaeahapaaaaeqaccAcpcAencAcAacacacacacacacacacacacacacacacacacacacacacaaencAcAcAacencAaccAcAcZcZeqajaaacencAcAcAcAcAcAcAaccAacaccAcAaccAcpcAcpenenesenacaccGcGcGacacaaaaajaafqaaajacacacacajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaihaaaaaaaaajaacGcGcHcIcIcJcIfvcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJevcJcJcJcJcGcJcJcJcJcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcOcGcOcGcGcGcOcOcGcGcGcGcGcGcGcGcGcGad
+aqasasasasasasasasasavawasauaxasayazavauasasaAaAaAaAaAasaBaeahaaajeqacaccAcpenenesacacacacaaaaaaaaaaaaaaaaaaaaacacaaaaaaaaacaaencAcAcAcAacaccAcAcZcZcZcCaaaaaceqcAaUaccAcAcAcAcAcAcAcpaccAcAcAcAcAcAcAcAcAacacaccHcGacacajajaaaaaaaaaaaaacacacacaaaaaaaaaaaaaaaaaaajajaaajajaaaaihajajajaaaaaacGcHcHcJcIcIcIfvcJcGcJcJcJcJcJcJcJcGcJcJcGcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJevcJcJcJcJcJcJcJcJcJcGcGcGcGcGcGhththththththththththththththththththththththththththtad
+aqaHaDaIaDaJaDaKaDaLaDaqaDaFaMaDaDaDaDaFaDaNaOaPaQaPaQaRaSanaTacacacaccAcAcAcAcAcAacacacacaafqaaaafqaaaaacfqaaaaaaaaaaajajacaaenenenenacacacaccCcCcCcCcCaaajacencAacacenenencpaccAaccAacaccAaccAcAcAcAcAcAacacaccGcGfKacfrajenenenenenacacacacacacaaaaaafqaaajaaaaaaaaajaaaaajaaiiaaaaaaaaaaaacGcHcHcJcIcIcJfvcJcJcJcJcJcJcJcJcJcGcGcJcGcGcJcJcGcGcJcGcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJhZcGcJcJcJcJcJcGcGcJcGcGcGcGcGcGhtcGcGcGcGhccGcGhchchchchccGcGcGcGcGcGcGcGcGcGcGcGcGcGad
+aqaGaMaYaMaZaMbaaMbbaMbcaMaWaMaMaDaDaDaFaDaNaPaPaPaPaPaRaSanaTacaXacacaccAcAcAcAcAacacacacaaaaajajaaaaaaacaaaaajaafqaaajajacajajaaaaaaacacacacacaaajaaaaaaajacescAencAcAcAaccAacaccAencAcAacaccAcAcAcpaccAacacacacdUfJacajajencAeoeocAacacacacacacaaajajaaaaaaajaaajajaaaaajajaaihaaaaajaaaaaacGcHcHcJcIcJcJfxcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJevcJcGcJcGcGcJcJcGcGcGcGcGcGcGcGhtcGcGhchchchchchchchchchccGcGcGcGcGcGcGcGcGcGcGcGcGcGad
+aqbeaDbfaDbgaDbhaDbbaMbcaMaWbiaDbjbkblaFaDbmaQaPaPaPaPaRaSanaTacajacaccAcAcAcpaccAacacacacfqaaajajajaafqaaajajajaaaaaaaaajacajaaaaajacacacacacaaajaaaaajajajacencAenenenenacacacacesencAcAencAcAcAaccAacacenacacaccYfJajajaaeqcAcAcpcAenacacfKacacaaajaaaaaaaaaaajaaajajajajajaaihajajaaaaaaaacGcHcHcIcIcJcLcJcJcGcGcJcJcJcJcJcJcJcJcJcJcGcGcJcJcJcJcJcJcJcJcGcGcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJevcJcGcGcJcJcJcJcGcGcGcGcGcGcGcGhtcGhchdhehfhfhfhfhfhfhehghthththththththththththththtad
+aqaDaDaMaDaMaDaDaDaDaDaqaDaFaFboaWaFaFaFaDaNaPaPaPaPbpbqaSanaTacajenaccAcAaccAacacacacacacaaaaaaajajaaaaaaaaaaajajajajaaajacaacCcCcCcCeQeQeQeQeQcCcCcCcCaaaaaceqcAcpcAcpenenesencAcAencAcpenenenenacacacacenacfNacemfJajaaajeqcAcpcAcpenenesfJacacaaaaaaaaaafqaaaaajajajajajaaajihaaaaaaaaaaaacGcHfGcIcIcJcGcJcJcJcGcJcJcGcJcGcJcJcGcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcIcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJevcJcJcGcJcJcJcJcGcGcGcGcGcGcGcGhthchchdhhhihihjhjhjhjhkhghtgDgEgFgGgGcGgWcGgHgHgXcGhtad
+aqaMaMaDaDaDaDaDaDaDaDaqaDaDaDaMaDaDaDaDaDaMbsbtbtbtbsaMaSanaTacaaenenenenacfNacacacacacacaaaacCcCcCcCcCcCcCcCcCcCcCcCcCaaacajcCcZcZcZeQcZeQcZcCcZcZcZcCaaaaaceqcAcAcAerencAcAencAcAencAcAcAerencAcAencAcAenacacacacfKajajajacetcAcAcAcAcAcAfJacacajajaaaaaaaaajajaaajaafqajaaajiiaaajaaaaaaaacGcHcHcIcIcJcGcJcJcJcGcJcJcJcJcJcJcGcGcGcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJevcGcJcJcJcJcJcJcGcGcGcGcGcGcGcGhthchchdhlhchchjhjhjhjhkhghtcGcGcGcGcGcGgIgIililcGcGhtad
+aqbibibubvbwbxbybzaDaDaqaDaDaDaDaDaDaDaDaDaDaDbAbAbAaDaDaSanaTacaaajaaaaacacacacacacacacacajajcCeZfacZcZcCfbfbcCcZexcZcCaaacaacCcZcZcZcZcZcZcZcCcZcZcZcCajaaacencAcAcAcAencAeRencAcAencAcAcAcAencAeRencAcAenacacaccGacaaaaajaUaccAcAcAcAcAcAfJacacaafqaaaaaaaaaaaaaaaaaaaaaaaaaaiiajaaaaaaaaaacGcMcHcIcOcJcGcJcJcGcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcGcJcJcGcJcJcIcIcJcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJhZcGcJcGcJcGcGcGcGcGcGcGcGcGcGcGhthchchmhnhchchchchchohkhghtgJgKgLgMgNcGgOcGcGgPgUgYhtad
+aqbCbCbCbCbCbCbCbDbEbFbGbHbHbHbHbIbHbHbHbJbJbJbHbHbHbJbJbKbLahacaaajfqaaaaacacacacacacacacajajcCcZcZcZcZcZcZcZcZcZcZcZcCaaacaacCcZcZcZcZcZcZcZcCcZcZcZeAaaaaacenenenenenenenenenenenenenenenenenenenenenenenacacaccHacajajfracaccAcAcAcpaccAfJacaaaaaaaaaaaaaaajajfrajaaaaaaajaaiiajaaaaaaajaacGcHcHcIcIcJcGcGcGcGcJcJcJcJcJcJcJcJcJcJcGcGcJcJcGcJcJcGcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcIcJcJcJcIcJcJcJcJcJcJcJcJcJcJcJevcJcJcJcGcGcGcGcGcGcGcGcGcGcGcGhtcGhchphqhchrhqhqhqhqhqhshtcGcGcGcGcGcGcGcGcGhccGgVhtad
+aqbQitbSbSbSbSbMbNbObNbMbTbUbTbPbVbWbVbMbMbMbMbMbMbMbMbPbXaibYacacacacacacacacacacacacacacajaacCcZcZcZcZfcffcZcZcZcZcZeIacacaccCcZcZcZcCePcZeAfgcZcZcZcCfqaaacacacacacacacacacacacacacacacacacacacacacacacacacacacfxacaaajajencAcAcAaccAacacfKacaaajaaaafsaaaaaaaaajaaajaaaaaaaaihaaaaajaaaaaacGcHcHcIcIcJcJcJcJcJcJcGcJcJcJcJcJcJcGcGcJcJcJcJcGcJcJcJcJcJcJcJcGcGcJcJcJcGcJcJcOcJcGcJcJcJcJcGcIcJcOcIcIcIcJcJcJcJcJcJcJcJcJevcJcGcJcJcGcGcGcGcGcGcGcGcGcGcGcGcGcGhchchchchchchchchccGhtcGgZhahbcGcGcGcGhchchccGhtad
+aqbQbMbMbMbMbMbMbNbNbNbMbTbTbZbMbVbVbVbMbMbMbMbMbMbMbMbMbXahcaacacacacacacacacacacacacacacaaaaezcZeLeOePcCffcZcCcZcZcZcCacacaacCcZcZcZcCfhfieGeDcZcZcZeQacacacaaaaacacacacaaaaacacacacaaaaaaaaacacacacaaaaaaacacaccGacajajajenenenenacacacacacaaaaaaaaaaaaajajaaaaajajaaajaaajaaijaaaaaaaaajaacGcHcHcIcIcJcJcJcJcJcJcJcJcGcJcGcJcJcGcJcJcJcGcJcJcGcJcJcJcJcGcJcJcJcJcGcJcJcJcJcJcJcJcJcIcIcIcJcIcIcJcJcJcJcGcJcJcJcJcJcJcGcJhZcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGhccGhccGcGhththththththtcGcGhthuhuhuhtad
+aqcbbMbMbMbPbMbMbNbNbNbMbTbTbTbMbVbVbVbMbMbPbPbMbMbMbMbMccahbYacacacacacacacacacacacacacacaaaaezcZcZePcZcCcZcZffffcZcZcCajacajcCeIcCcCcCfjeDfkflcZcZeAeQacacacacacaaacacacacacacacacacacacacacacacacacacacacacacaccGacacajaaajaaajaaaaaaaaaaaaaaaaaafraaaaajaaaaaaajfsaafsaaajaaiiajaaajaaaaaacGcGcHcIcIcJcJcJcJcJcJcJcJcGcJcGcGcJcJcGcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcGcGcJcJcJcJcJcIcJcJcOcIcJcJcOcJcJcJcJcJcJcJcJcJcJcJcJcJhZcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGipiqiriscGcGcGcGcGcJhchccGcGad
+aqcdasasascdcdasbIasasasasasasascdcdcdcdcecfceasasascececgchahacacacacacacacacacacacacacacfqaacCcCcCcZfmcCcCcCcCcCcCcCcCacacaacCcZcZcZcZfneAfofpcZcZeQeQacacacacacacacacacacacacacacacacacacacacacacacacacacacacaccHacacacajajaaajaaaafqaaaaajaaaaajaaajaaaaajaaajaaajaaajaaaaajihaaajaaaaaaaafxcGcHcIcIcJcIcJcJcJcJcJcJcJcJcJcJcJcGcJcGcGcJcJcJcJcJcJcJcJcGcGcGcJcJcJcJcIcJcIcIcJcJcJcJcIcJcJcJcIcIcJcJcIcIcJcJcJcJcJcJcIcJhZcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGad
+aqaDaDaDaDaMaDaDaDaDaDaDaDaDaDaDaDaDaDaMaDaDaDaDaDaDaDaDaSanaTacaaaaaaaaaaaaaaaaaaacacaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacaccZcZeAcZcZcZcZhFeDcZhGeQeQacacacacacacaaaaaaaaaaaaaaacacacacacaaaaaaaaaaacacacacacaccHacacacajajaaajaaaaaaajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaihaaaaaaaaaaaacGcGcHcKcIcIcIcIcJcJcGcJcJcJcJcJcJcJcGcJcJcGcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcIcIcOcIcJcJcJcJcJcJcJcJcJcIcJcIcJcJcJcJcJcJcJcJcJhZcGcGcGcGcGcGcOcGcGcGcGcGcGcGcGcGcGcGhchccGcGcGcGcGcGcGcGcGcGcGcGfOfPfQfRfRfSfTfUcGcGad
+bBclcrcicjcjcicicjcjcicicjcjcicicjcjcicicjcjcickcscscrcmcnanaTacaafqaaaaaaaafqaaaaacacacacaafqaacCcChHhHcCcCcCcCcChIhHcCacacaccZeAcZewewcZcZfghJhKcZcZeQacacacenenencjcjenenenencjcjenenacaaaaaaaaaaaaaaaaaaaaaaacacacacacaaaaaaaaaaajaaaaajaafraaajaaaaaaaaaaaaaaaaajajaaajajaaihaaajaaaaaaaacGcGcHcKcIcIcJcIcJcJfxcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcIcIcJcIcIcJcJcGcIcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJhZcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGhthchchchchchccGcGgGcGcGcGcGcGcGcGfOfQfQfRfRfVfWfWcGimad
+crhWhHctcucvcwcxcycyczhHcycycBcBcycyhHcZcycycZcZcZcZcraDaSanaTacaaenenenenenenacacacacacacajajaacChLcZcZcZcZcZcZcZcZcZcCacacaccCcCcCcZhMcZcZcZewewcZcZeQacacacencAcAcAcAcAfdeTcAbdbdbdenaccCcCcCcCcCcCcCcCcCcCcCcCacacacaaaaaaaaajaaajajaaaaajajaaaaaaaaaafqaaajaaaaaaaaajaaaaajihajaaaaaaaaaacGcGcHcHcIcIcJcIcJcGfwcJcJcJcJcJcJcJcGcJcGcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcGcGcJcJcJcJcIcJcJcJcIcIcIcIcJcJcJcJcJcJcJcJcJcJcJevcJcJcJcJcGcGcGcGcGcGcGcGcGcGcGhthchvhvhvhvhvhccGcGcGcGfXfXfYfXfXfZgagbgbgcgdgdgdcGinad
+crcZcZcZcZcZhHcZcDcDcZcEcFcPhWcQcRcZcwcScScZcScZcycTcUaDaSanaTacaaencAeoeocAenacepacacacacajajajcCcZeAcZcZhNcZeAcZcZcZcCacacaccCcZcZcZcZePeLeLcZewhOcZcCajajaccjcAcAcAcpcAcAcpcAbnbdbdcjaacCcZexexcZcCcZeycCcZcZcCacacaaaaaaaaaaaaajaaajajajajajaaaaajajaaaaaaaaajaaajajajajajaaihajajaaaaaaaaaacGcHcHcIcIcJcIcIcGfvcJcGcJcGcJcGcGcGcGcGcGcJcJcGcGcJcJcJcJcJcJcJcJcGcJcOcJcGcIcIcJcIcJcJcJcJcJcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJevcJcJcJcJcJcJcJcGcGcGcGcGcGcGcJhthwhxhxhxhxhxhyhccGcGcGgefXgfgfggghgigbgbgjgdgdgdcGioad
+dacZcZcZdbcZdccZcZcZcZdccZcZdddecZcZcZcZcScZcZcZcZdfcUaDaSanaTacaaeqcAcAcpcAencAcAacacacacajacachHcZcZeAcZcZcZcZcZeAcZhHaaacaccCcZcZcZeAcZeAcZcZcZcZcZcZajaaaccjcAcAcpcAcAcpcAcAbdbdbdcjacezcZcZeAcZcCcZcZcCcZeCcCacacfKaaaaaafqaaaaajajajajajaaajaaaaaaaaaafqaaaaajajajajajaaajihaaaaaaaaaaaaaacGcHcHcIcIcJcIcIcJfvcJcGcJcGcJcJcJcGcGcGcJcJcJcJcJcJcJcGcJcJcGcJcJcGcJcJcIcJcJcJcJcIcIcJcJcJcJcIcJcJcIcJcJcJcJcJcJcJcJcJcJcJevcJcJcJcJcJcIcGcGcJcGcGcGcGcGcGhthwhxhxhxhxhxhzhchccGcGgkglgmgngogpgqgqgrgsgtgtggcGgQad
+creAcZcZdgcZdccZcZcZcZdccZcZcScScZcZhHhHhHcwcwhHhHhHcrdhdianaTacaaeqcAcpcAcpenenesacacacacacacachPcZcZcZcZeAcZcZcZeAcZhHaaacaccCcZewewcZcZcZcZcZcZcZcZeAaaajacencAcpcAcpcAcAcAcAcpcAcAacacezcZeAcZeAcCcCeIcCcZcZeQacfzfJacaaaaaaajajaaajaafqajaaajajaaajaaaaaaajajaaajaafqajaaajiiaaajaaaaaaaaaafxcMcHcIcIcIcIcIcJfvcGcJcJcJcJcJcJcJcGcJcJcGcJcJcJcJcGcJcJcGcJcJcGcJcJcJcJcJcJcJcJcIcGcOcJcGcJcIcOcGcJcJcJcJcJcJcJcJcJcJcJcJevcJcJcJcJcJcJcJcGcGcGcOcGcGcGcOhthwhxhxhxhxhxhzhchccOcGgugvgwgxgogpgygzgAgBgCgCgfcGgRad
+dacZcZcZcZcShHdchHhHhHhHcrdjcUcrhHdkhHdldmdndodpdqdrdsdtduanaTacaaenetcAcAcAcAcAcAacacacacacaaaceQcZhQcZcZcZcZcZcZcZcZeQaaacaccCcZcZcZcZcZcZcZcZcZcZcZcCaaaaaccpcpcqcAcAcAbrcAcpcpcAcAcpajcCeNcZcZcZcZcZcZcCcCeIcCaccYfJacaaaaaaaaaaaaaaaaaaaaaaaaajajaaaaaaaaaaaaaaaaaaaaaaaaaaiiajaaaaaaaaaaaacGcHcHcIcJcIcJcIcJfvcJcJcGcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcGcJcJcGcJcJcJcJcJcJcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJevcJcJcJcJcGcGcGcGcGcOcGcOcOcJcJhthwhxhxhxhxhxhAhchchchchchchchEhchchchchEhEhchchchcgSad
+dacZdvdvcZdvdvcZdwdwdwcZdxcSdycrdzdAdBdAdAdEdAdAdqdAdAcldFanaTacaaescAcAacacaccAcAacacacacacaaaceQcZcZcZcZcZcZcZcZcZcZeQacacaccCcZcZcZcZcZeQeQcZcZcZcZcCacacaccAcAcAcAcAbRcpcAcAcAcocAcAaceIcZcZcZcZcZcZcZcZeAcZeQacdDfJacacaaaaajajfrajaaaaaafLaaajajaaaaaaaaajajfrajaaaaaaajaaiiajaaaaaaaaaacGcGcHcHcIcJcIcJcJcJfvcJcJcJcJcJcGcJcGcJcGcJcJcJcGcJcJcJcGcJcJcGcGcJcJcJcGcGcJcJcJcJcGcJcJcJcJcJcJcJcJcGcGcJcJcJcGcGcJcJcJcJcJiacJcJcJcJcJcJcGcGcGcGcJcGcGcGcGhthBhChChChChChDhEhchchEhEhEhchchEhchEhchchchchEcGcGgTad
+dacZdvdGcZdGdvcZdHdIdJdKcrcZhWcUdzdAdBdNdAdAdOdAdqdAdAdAdPanaTacacacacacaccAacacacacacacacacacachPcZcZcZcZeAcZcZcZcZeAhHacacaacCcCcCcCcCeQeQeQcCcCcCcCcCacajaccAcAcpcAcpcAcAcpcAcAcAcAacaacCcZcZcZcZeAcZcZeAcZeAeQacdDfJacacaaaaaaaaajaaajaaaaaaaaaaaaaafsaaaaaaaaajaaajaaaaaaaaihaaaaaaaaaacGcGcGcHfGcIcJcIcJcJcJfucJcJcJcJcJcJcGcGcGcJcGcGcJcJcJcGcJcJcGcJcJcGcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcGcJcGcJcJiacJcJcJcJcGcGcGcGcGcGcGcGcGcGcJhththththththththththththththththththththththththththtad
+dacZdvdGcZdGdvcScZdQcZdRcrdSdTcUdzdAdVdAdAdOdAdAdWdAdAdAdXanaTacacenacacacacacacacacacacacacacachHcZeAcZcZcZcZcZcZeAcZhHaaacaaaaaaaaaaaaacacacacaaaaacacacacaccAcpcAcpcAcpcAcAcAcpcAcAcjaccCcZcZcZeAcZeAcZeUcZcZeQacdDfJacacajajaaaaajajaaajaaajaafqaaaaaaajajaaaaajajaaajaaajaaijaaaaaaaaaacGcHcHcHcHcIcIcIcJcJcJcJcJcGcGcGcGcJcGcJcGcJcGcJcJcJcJcJcJcJcJcJcGcGcJcGcGcJcGcJcJcJcJcJcGcJcJcJcGcJcGcJcJcJcJcJcJcJcJcGcGcJcJcJevcIcIcJcJcGcGcGcGcOcGcJcJcOcGcJcGcOcOcGcGcJcGcJcJcJcJcJcJcJcIcJcJcJcJcJcJcJcIcJcIcIcGad
+dacZdvdGcZdGdvcScZcZcZdYcrcZdZcUdzdAdBeadAdAdAdAdAcldAcldXanaTacaaacacacacacacenacacacacacacaaaacCcZcZeAcZcZcZcZeAeAcZcCaaacaaaaaafqaaacacacacacacacacacajaaaccjcAbrcAcAcAcAcqcqcqcAcAcjaccCcCcCcCcCcCcCcCcCcCcCcCacfAfJacaaajaaaaaaajfsaafsaaajaaajajaaaaajaaaaaaajfsaafsaaajaaiiajaaaaaaaaaacGcHcHcHcJcIcIcJfycJcJcJcGcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcGcGcGcJcGcJcJcGcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJiacIcJcJcJcGcGcGcGcGcGcOcJcGcGcGcJcIcJcGcOcIcOcJcJcJcJcIcJcJcJcJcJcIcJcJcIcJcJcIcIcJcGad
+dahWdvebecebdvedeeefegdRcrcZehcreidAdBejdAekelidiedAifcldPanaTacaaaaacaaaaaaaaaaacacacacacacaaaacCcZcZcZcZcZcZcZcZcZcZcCaaacaacCcCcCcCcCeQeQeQeQcCcCcCcCaaacacencpcAcpcAcAcAcpacacacacacacacacacacaccAcAcAeEcAacacacfAfJaaaaaaajaaajaaajaaajaaaaajaaaaajaaaaajaaajaaajaaajaaaaajihaaajaaaaaaaacGcHcHcIcJcIcIcJcJcJcJcJcJcOcJcOcJcJcGcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcGcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJevcJcIcJcIcJcJcOcOcGcJcJcGcGcGcOcGcIcIcJcJcOcOcOcJcJcIcIcIcIcIcIcIcIcJcJcJcJcIcJcJcIcJad
+dacrigcrcrcrcrcrcrcrcrcrcrcrcrcrcrcrcrcrcrcrcrcrcrcrcrdhdianaTacaaaaaaaaaaaaaaaaaaacacacacacaaaacChHcCcCcChHhHhHhIcChHcCaaacaacCcZcZcZcCcZcZeQeQcZcZcZcCaaaaacenenencjcjenenacacacacaaacacacacacaccAcAcAcAcAcpacenaccYfIacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaihaaaaaaaaaaaacGcMcHcIcJcIcIcJcJcJcJcGcGcGcGcGcJcJcJcGcJcJcGcJcGcJcJcGcJcJcJcGcGcGcGcGcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcGcJcGcJcJcJevcJcIcJcJcJcJcJcGcJcIcIcJcOcJcIcOcIcOcOcJcIcJcJcJcJcJcOcIcIcJcJcJcGcIcIcIcIcJcJcJcIcJad
+akalalalalalalalalalalamakalalalalalalalalalalalalalalalalamaaaaaaaaaafqaaaaaaaaaaacacacacacfqaaaaaaaaaaajajajaaaaajajajaaacaacCewcZewcCcZcZeQcCcZcZcZcCajacacacacacacacacacacacacaaaaaaaaeqcAcAcAcAcAcAcAcpcAacenaccYfJacaaaaaaaaaaaaajajaaajajaaaaaaajaaaaaaaaaaaaajajaaajajaaihaaajaaaaaaaacGcHcHcIcJcIcJcJcJcJcJcIcJcJcJcJcJcJcJcJcGcJcJcGcGcGcJcJcJcJcJcJcJcJcJcJcJcGcGcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJevcJcJcJcJcGcGcGcJcJcGcOcGcJcGcOcGcGcJcGcGcJcGcGcJcOcGcGcOcGcGcGcJcGcIcOcIcJcJcJcJcJcJad
+aeafafafaeaeaeaeaeaeaeaeaeaeagagaeaeaeaeaeaeagagaeaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacajaacCcCcCcCcCcCcCcCcCcCcCcCaaacaacCcZcZewcCcZcZcZcCcZcZcZcCajaaacacacacacaaaaaaajaaaaaaaaajajencAcAcAcAcAcAcAcAcAcAacacemfIacaafqaaajaaaaaaaaajaaaaajaaajaaaafqaaaaaaajaaajajaaaaajiiaaaaaaaaaaaacGcGcHcIcJcIcJcJcJcJcJcIcJcJcJcJcIcJcJcJcGcJcJcJcJcJcJcJcJcGcJcJcGcJcJcJcJcGcGcJcGcJcGcJcJcJcJcJcJcGcGcJcJcJcJcJcJcJcGcJcJcJcJhZcGcGcJcGcGcGcJcJcGcGcGcGcOcGcGcIcJcJcGcOcOcJcGcGcIcGcJcJcGcGcJcJcJcGcGcGcGcOcGcGcGcJad
+acacacacacacacacacacacacacacacacacacacacacacaaacacaaaaacacacacacaaajaaaaajajaaaaaaacacacacacaaaacCcZexexcZcCcZeycCcZcZcCajacaacCcZcZewcCeAeDeDeFeGeHcZcCaaajaccCcCcCcCcCcCcCcCcCcCcCcCajaaenenenenenenenenenenenenacacfKacaaaaaaaaaaajaaaafraaaaajaafsaaaaaaaaaaaaaaajaaajajajajiiaaaaajajaaaacGcGcHcIcJcJcJcJcJcJcJcIcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcGcGcJcJcJcJcJcJcJcGcJcJcGcJcJcJcJcJcGcJcJcJcJcGcGcJcJcJcJcGcJcJcJcJcJhZcJcJcJcJcGcGcGcOcGcGcJcJcJcGcJcGcGcGcJcJcIcJcJcJcOcJcGcJcGcGcGcOcGcOcOcGcGcGcGcJcJcJad
+arararararararaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaajajfrajaafqaaacacacacacaaajezcZcZeAcZcCcZcZcCcZeCcCajacaacCcZcZewcCeJcZeweKeLeMcZcCaaacaccCcZexexcZcCcZeycCcZcZcCaaajencAeoeocAcAcpcpcAcAcAenacacacacfKajaaaafsacacaXacaXaXaXaaajaaaaaaaaaafqaaaaajajajajajihajaaaaaaaaaacGcGcHcIcJcJcJcJcJcJcJcJcJcJcJcJcIcGcJcJcJcJcJcJcGcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJevcGcGcGcGcGcGcGcGcOcGcGcGcGcGcOcGcGcGcGcGcIcOcJcJcJcGcJcGcGcJcJcJcJcGcGcGcOcJcJcGcGcGad
+arararararararaaaaaaaaaafqaaaaaaaaaaaafqaaaaaaaaaaaaaaaaaaaafqaaaaajaaajajajajajaaaaaaacacacaaajezcZeAcZeAcCcCeIcCcZcZcCaaacaacCeIcCcCcCeDcZcZcZeSeMeAcZajacacezcZcZeAcZcCcZcZcCcZeCcCajajeqcAcAcpcAaccAcAcpcpcAenaccHacfBfJacaaaaaXaXcAcAcpaccAacenaaaaaaaaaaaaaaajajaaajaafqajihajajaaajaacGcGfxcHcJcJcJcJcJcJcJcJcIcIcJcIcJcGcGcGcGcJcGcGcGcGcGcGcGcGcGcGcGcJcJcJcJcGcGcGcGcJcJcGcGcGcGcGcJcGcGcGcGcGcGcGcGcGcGcGcJcJcGcGevcGcJcJcJcJcJcJcJcIcGcJcIcGcGcIcGcJcJcGcGcJcJcJcJcJcJcJcIcJcJcJcGcJcIcJcJcJcJcJcGcJcJad
+arararararararararararararaaaaaaaaaaaaaaaaaaaaaaaaaaaafqaaajaaaaajfrajajajaaajaaaaaaaaacacacajaacCeNcZcZcZcZcZcZcCcCeIcCaaacaacCcZcZcZcZhRhGeweHeShScZeAajacacezcZeAcZeAcCcCeIcCcZcZcCajaaeqcAcpcAcpcAcAaccAcAacacacacaccYfJacacaaacaccAaccAacaccAenajaaaaaaaaaaaaaaaaaaaaaaaaaaihaaajajaaaacGcGcGcGcGcGcGcGcGcGcGcGcGcGcJcGcJcGcGcGcGcJcGcJcJcIcJcJcJcGcJcJcJcJcGcGcJcGcGcGcGcGcJcGcGcGcGcGcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJevcJcJcJcJcJcJcJcIcJcJcJcJcJcJcJcJcJcIcJcJcJcOcIcJcJcIcJcJcJcJcJcIcJcJcJcJcJcJcJcJcJcJad
+ararararararararararararararaaaafqaaaaaafqaaaaaafqaaaaaaaaaaajajfrajajajaaajaaajaafqaaacacacacaceIcZcZcZcZcZcZcZcZeAcZcCaaacaccZcZeAcZcZeDhTcZeDhUhVeAcZacacaccCeNcZcZcZcZcZcZcCcCeIcCaaajenetcAcAcAcAcpcpcAcpacenacfNacdDfJacacaaaXaXcpcAcpenenesenaaaaaaaaaaaaaaajajfrajaaaaaaiiaaajajaaaacGcGcGcGcGcGcGcGcGcGcJcJcJcGcJcGcJcJcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcJcJcGcJcJcJcGcGcGcJcJcJcGcGcGcGcGcGcGcGcGcGcGcGcGcGcGcJcJcGcGevcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcOcJcJcJcJcJcGcGcJcIcJcJcJcJcJcJcJcJcJcJad
+ararararararararararararararaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaajaaajajajaaajajajaaajaaaaacacacacaaaacCcZcZcZcZeAcZcZeAcZeAcCaaacaccZeAcZewewcZhWeHeAeVeAcZeAacacaceIcZcZcZcZcZcZcZcZeAcZcCaaajescAcAcAcAaccAcAeQcAcAacacaccHfAfJacacaaaaaXcAcAcAcAcAcAacajaaaaaafsaaaaaaaaajaaajaaaaihaaaaaaaaaacGcGcGcGcGcGcGcJcJcJcGcGcJcGcGcGcGcGcGcGcGcGcGcGcGcGcGcJcGcGcGcJcGcGcJcGcGcGcGcGcGcJcGcGcGcGcGcGcGcGcGcGcGcGcJcJcJcJcJcJcJcJcJcJiacJcIcJcJcJcJcJcJcJcJcJcJcIcJcJcJcJcJcOcIcJcIcIcJcJcJcJcGcJcJcJcJcJcIcIcJcJcGcIcJcIcJad
+ararararararararararararararaaaaarfqaafqaaaaaafqaaaafqaaaafrajajajaaaaaaajajaaajaaaaaaacacacfqaacCcZcZcZeAcZeAcZeUcZcZcCaaacaacCcCcCcZhMhGhOcZeAeXhXcZezacacaccCcZcZcZcZeAcZcZeAcZeAcCaaaaencAcAcAcpcAcpeAeQcAcpaccHacacfCfJacaaaaaaaccAcAcAcAcAcAacacaaaaaaaaajajaaaaajajaaajaaiiaafqaaaaaacGcGcNcHcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcGcJcJcJcJcJcGcJcJcGcJcGcGcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJevcJcJcJcJcJcJcJcJcJcJcJcJcIcIcGcOcJcJcJcJcIcOcIcIcJcJcJcJcJcJcGcGcJcJcOcJcGcJcJcJcJcJad
+arararararararararararararararaaararararaaaaaaaaaaaaaaaaaaajajaaaaajajaaaaajajajaaaaaaacacaaaaaacCcCcCcCcCcCcCcCcCcCcCcCaaacaacCcZcZcZcZeAcZcZewcZcZcZezajacaccCcZcZcZeAcZeAcZeUcZcZcCajaaencAcAcAcAcAcZcZcZcZcAencGacacacfKaaaafqaaaccAcAcAcpaccAacacacaaaaaaajaaaaaaajfsaafsaaiiaaajajaaacaacGcGcHcIcJcJcJcJcJcJcJcJcGcGcGcGcGcJcJcJcJcJcJcIcGcGcJcJcJcGcJcJcJcIcOcGcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJhZcJcJcJcJcGcJcJcJcGcIcIcGcJcIcIcJcJcGcJcOcJcOcOcJcJcIcJcGcIcGcIcGcGcIcJcJcJcJcGcJcJcJad
+ararararararararararararararararararararaaaaaaaaaaaaaaaaaaajaaajajfrajaaaaaaajaaaafqaaacacaaaaaacCcZexeWcZcZcZcZeWcZcZcCaaacaacCcZcZcZeAcZeAcZcZcZcZcZezajaaaccCcCcCcCcCcCcCcCcCcCcCcCaafrenenenenenencCcCcCcCcCaccHcGacfKaaaaaaaaaaaccAcAaccAacacenfJacaaaaaaaaajaaajajaaaaajajihaaaaaaajaaaacGcGcHcIcJcJcJcJcJcJcJcGcGcGcGcGcGcGcJcJcJcIcJcJcJcGcGcGcOcJcJcJcOcGcOcGcGcJcJcIcIcJcJcIcJcJcIcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJevcJcJcJcJcGcGcGcGcJcJcJcJcJcJcJcGcJcIcJcGcJcJcJcJcJcOcJcGcOcGcJcJcIcJcJcJcJcJcJcJcJcJad
+ararararararararararararararararararararaaaaaafqaaaaaaaaaaaaajaaajajajajajajaaajaaaaaaacacaafqaacCeNcZcZcZcZcZcZcZeAcZcCaaacaacCcZewewcZcZcZcZcZcZcZcZezacajaccCcZcZeAeAcZcZcZeAeAcZcCajajencAcAcpcpcZcZcZeWcZcAaccGacfBfMajaaaaaaaaacenenacacacacenfMaaaaaaaaaaaaajaaajajajajajihaaajajaaaaaacGfxcHcIcJcJcJcJfucJcJcGcJcGcJcGcJcJcGcJcGcGcGcGcGcGcGcOcGcOcOcJcJcOcJcGcJcJcJcJcJcJcJcJcJcJcJcJcIcJcJcJcJcIcIcJcJcJcJcJcJcIcJevcJcJcJcJcJcGcGcJcGcJcGcJcJcJcJcJcJcGcGcGcGcJcJcJcJcIcGcOcJcJcJcIcJcJcGcJcJcGcJcJcJcJad
+ararararararararararararararararararararararaaaaaaaaaaaaaaaafrajajajaaajaaajaaajaaaaaaacacaaaaaaezcZcZcZcZcZcZcZeAcZeAcCaaacaacCcZcZcZcZcZcZcZcZcZcZcZezacajaccCcZeQcZcZeQcZeQcZcZeQcCacaacAcAcpcpcAaccAeAeAcAcAaccGcGfDfMaaaaaaaaajacencAcAencAcAenfMaaaaaaaafqaaaaajajajajajaaiiaaaaaaajaaaacGcHcHcIcJcJcJcJfvcJcJcGcGcGcGcGcJcGcJcJcGcGcJcJcGcGcGcGcJcGcGcGcGcGcOcGcIcIcGcGcIcIcJcJcIcIcIcJcJcIcJcIcJcJcJcJcIcJcJcJcJcJcJevcJcJcJcJcJcJcGcGcJcGcJcJcJcGcGcGcIcGcGcJcOcGcGcOcJcJcGcJcGcGcJcJcJcJcJcGcJcJcJcJcJcJad
+ararararararararararararararararararararararaaaaaaaafqaaaaaaajajajaaajaaajajacajfqaaaaacacfqaaaacCcZcZcZcZcZcZcZcZcZcZcCaaacaacCcZcZcZcZcZcCcZcZcZcZcZcCacajacezeAcZeAeAeQeAcZcZcZeAeAacaccAaccAcAacacaccAcAaccpacacaccYfMajaaaaajaaacencAeRencAcAenfMaaaaaaaaaaajajaaajaafqajaaiiajaaajaaaaaacGcHcHcIcJcIcJcJfvcJcJcGcGcGcGcGcGcGcJcJcJcJcGcGcGcGcGcGcGcGcGcGcJcGcGcOcGcGcOcGcJcJcJcJcIcJcJcJcJcJcJcIcIcJcJcJcIcJcJcJcJcJcJeviaiaevevhZhZhZhZibhZevevibhZevhZibibhZhZevhZeveveveveveveviaeveveveveveveviaeviaiahZad
+ararararararararararararararararararararararararararaaaaaaaaajaaajajajaaajajaaaaaaaaacacacacacaceIcZcZcZcZcZeAcZeUcZcZcCaaacaacCcCcCcCcCcCcCcCcCcCcCcCcCacacaccCcZcZcZcZeAeAcZcZeQcZcZacaccAeAcpcAaccAcAcpcpaccAenacaccYfJaaaafqaaajacacenenenenenenajfqaaaaaaaaaaaaaaaaaaaaaaaaihajajaaaaaaaafxcGcHcIcJcIcJcJfvcJcJcGcGcGcGcGcGcJcJcJcJcGcGcGcGcGcOcGcJcJcOcGcJcGcOcOcGcGcJcGcJcJcJcJcJcJcJcIcJcJcJcJcJcJcJcIcJcIcIcJcJcJcIcIcIcJcJcGcGcGcGcOcGcJcJcOcGcJcGcOcOcGcGcJcGcJcJcJcJcJcJcJcIcJcJcJcJcJcJcJcIcJcIcIcGcGad
+ararararararararararararararararararararararararararaaaaaaaaaaaaaaajajaaajajaaaaaaaaacacacacacaccCcZcZeAcZeAcZeAcCcCeIcCaaacaaaaaaaaaaaaaoftaoaaaaaaaaacacacaceIcZcZcZeQcZcZcZcZeAeAcZacacaccZcZaccAcAcAcAcAcAcAacacaccYfJacaaaaajajaaacaaacacacajajaaaaaaaaaaaaajajfrajaaaaaaajihajajaaaaaaaaaacGcMcIcJcIcIcJfvcJcJcJcJcJcJcJcGcGcJcJcJcJcGcGcGcGcGcGcOcJcGcGcGcJcIcJcGcOcIcOcJcJcJcJcIcJcJcJcJcJcIcJcJcIcJcJcIcIcJcJcJcJcJcIcJcJcJcGcGcGcGcGcGcOcJcGcGcGcJcIcJcGcOcIcOcJcJcJcJcIcJcJcJcJcJcIcJcJcIcJcJcIcIcJcGcJad
+ararararararararararararararararararararararararararararararaaaaaaajaaajajajajajaaaaacacacaaaaaaezcZeAcZeAcCcCeIcCcZcZcCaaacaaaaaaaafqaaaoftaofqaaaaaaaaacacaccCcZcZeAcZeAeAcZeQcZcZeQacaccZeAeAacaccAcAaccpcAesacacaccYfMacaaajaaaaajaaaaaaaaaaaaajaaaaaafsaaaaaaaaajaaajaaaaaaihaaaaaaaaaaaaaacNcHcJcJcJcIcJfvfycJcGcJcJcJcJcJcJcJcJcJcIcJcJcOcOcGcJcJcGcGcGcOcGcIcIcJcJcOcOcOcJcJcIcIcIcIcIcIcIcIcJcJcJcJcIcJcJcIcJcIcJcIcJcIcJcIcJcJcOcOcGcJcJcGcGcGcOcGcIcIcJcJcOcOcOcJcJcIcIcIcIcIcIcIcIcJcJcJcJcIcJcJcIcJcJad
+ararararararararararararararararararararararararararararararaaaaaafrajajajaaajfqaaaaacacacaaaaaaezcZcZcZeCcCcZcZcCcZcZcCaaacaaaafqaaaaaaaoftaoaaaaaafqaafsacacezcZeAcZcZcZcZeAcZeAeAeQajaccZcZcZcZcZcpcpaccAaccAenfNaccYfJacajajajajaafraafqaaajajaaajaaaaaaajajaaaaajajaaajaaajihfqaaaaaaaaaacGcHcIcJcIcIcIcJfvcJcJcGcJcGcJcGcGcJcJcJcJcJcJcJcJcGcJcIcIcJcOcJcIcOcIcOcOcJcIcJcJcJcJcJcOcIcIcJcJcJcGcIcIcIcIcJcJcJcIcJcJcIcJcJcIcJcJcJcJcJcGcJcIcIcJcOcJcIcOcIcOcOcJcIcJcJcJcJcJcOcIcIcJcJcJcGcIcIcIcIcJcJcJcIcJcJad
+arararararararararararararararararararararararararararararararararajajajaaajaaajaaaaacacacaaaaaacCcZcZcZcZcCcZeYcCcZcZcCaaacaacCcCcCcCcCcCcCcCcCcCcCcCcCacacacezcZcZcZeAcZeAcZcZcZcZcZajaaezcZcZcZcZcZcZcZcpaccAacacaccYfJajaaajajajajajaafsaaajajajaaaaaaaaajaaaaaaajfsaafsaaajihajajaaaaaaaacGcHcIcJcIcIcIcJfvcGcJcGcGcJcGcJcGcJcJcJcJcJcGcGcGcJcJcGcOcGcJcGcOcGcGcJcGcGcJcGcGcJcOcGcGcOcGcGcGcJcGcIcOcIcJcJcJcJcJcJcJcJcJcJcJcJcJcGcGcGcJcJcGcOcGcJcGcOcGcGcJcGcGcJcGcGcJcOcGcGcOcGcGcGcJcGcIcOcIcJcJcJcJcJcJcJad
+arararararararararararararararararararararararararararararararararajaaajajajaaajaaacacacacaaaaaacCcCcCcCcCcCcCcCcCcCcCcCaaacaacCcZcZcZcCcZcZcZcCcZcZcZcCaaaaaccCcZcZcZcZcZcZcZcZcZcZcCaaaacCcZcZcZcZcZcZcZcZcAcAenacacemfJaaaaajajajajaaaaaaaaaaajajajajaaaaaaajaaajaaajaaajaaaaiiaaaaajaaaaaacGcHcIcJcIcJcIcJfxcJcJcJcJcJcJcJcGcGcJcGcJcJcGcGcJcJcGcGcGcGcOcGcGcIcJcJcGcOcOcJcGcGcIcGcJcJcGcGcJcJcJcGcGcGcGcOcGcGcGcJcGcGcOcGcGcJcGcGcGcJcJcGcGcGcGcOcGcGcIcJcJcGcOcOcJcGcGcIcGcJcJcGcGcJcJcJcGcGcGcGcOcGcGcGcJcJad
+arararararararararararararararararararararararararararararararararaaaaaaajajaaajaaacacacacaafqaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaacCewcZcZeAcZcZcZcCcZcZcZcCajacaccCcCcCcCcCcCcCcCcCcCcCcCaaaacCcCcCcCcCcCcCcCcCeQenencGcHcHfGajfrajajajajajaaaaaaajaaajajaaaaajajaaaaaaaaaaaaaaaaaaihaaaaaaaaaaaacOcHcIcIcIcJcOcJcJcGcGcGcGcGcGcGcJcJcGcGcGcGcGcGcGcOcGcGcJcJcJcGcJcGcGcGcJcJcIcJcJcJcOcJcGcJcGcGcGcOcGcOcOcGcGcGcGcJcJcJcJcGcGcJcJcJcJcGcGcGcOcGcGcJcJcJcGcJcGcGcGcJcJcIcJcJcJcOcJcGcJcGcGcGcOcGcOcOcGcGcGcGcJcJcJcGad
+ararararararararararararararararararararararararararararararararararaaaaaaaaaaaaaaacacacacaaaaajajajajaaajajajaaaaajaaaaaaacaacCcZcZeAhYcZcZcZcCcZcZcZcCajaaacacacacfefFfeacacacaaajajaaaaajajaaajajaaajajaaacacacaccGcHcGaaajajajajaaaaaaaaaaaaajaaajajajajajaaaaajajajajaaajajihaaaaajaaaacGcOcKcIcIcIcJcIcGcGcGcGcGcGcGcGcGcGcJcJcJcJcGcGcGcGcGcOcGcGcGcGcGcOcGcGcGcGcGcIcOcJcJcJcGcJcGcGcJcJcJcJcGcGcGcOcJcJcGcGcGcGcOcJcGcGcGcGcGcGcGcGcOcGcGcGcGcGcOcGcGcGcGcGcIcOcJcJcJcGcJcGcGcJcJcJcJcGcGcGcOcJcJcGcGcGcJad
+ararararararararararararararararararararararararararararararararararaaaaaaaaaafqaaacacacacaaaaajajajaaaaajajaaaaaaaaaaaaaaacaacCcZcZeAcCeAeDcZeAeGeHcZcCaaajaaaaaaacfefFfeacacacaaajaaaaaaajaaaaajaaaaajaaaaaaacacacacfKacajaaaaaaajaaajajaaaaajajaaaaaaaaaaajajaaaaajajaaaaaaaaiiaaajaaajcGcHfGcHcIcIcJcIcIcJcJcJcJcGcJcJcJcJcGcGcJcJcJcJcJcJcJcJcIcGcJcIcGcGcIcGcJcJcGcGcJcJcJcJcJcJcJcIcJcJcJcGcJcIcJcJcJcJcJcGcJcJcJcJcJcGcJcJcJcJcJcJcJcIcGcJcIcGcGcIcGcJcJcGcGcJcJcJcJcJcJcJcIcJcJcJcGcJcIcJcJcJcJcJcGcJcJcJad
+ararararararararararararararararararararararararararararararararararaaaaaaaaaaaaaaaaaaacacaaaaajajaaajajfrajaaaaaaaaaaajaaacaacCcZeAcZeAeJcZeAhYcZeAcZcCajajajajacacfefFfeacacacaaaaajaaacacaXacacaXaaaaaXacacacajacfzfJacacaaaaaaaaajaaajajajajajaaaaajajajaaajajajajajaaaaajajiiaaajaacGcGcHcMcKcIcJcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcIcJcJcJcJcJcJcJcJcJcIcJcJcJcOcIcJcJcIcJcJcJcJcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcIcJcJcJcJcJcJcJcJcJcIcJcJcJcOcIcJcJcIcJcJcJcJcJcIcJcJcJcJcJcJcJcJcJcJcJad
+ararararararararararararararararararararararararararararararararararararararaaaaaaaaaaacacaaaaaaajajaaajajajajajajaaaaaaaaacaacCeAhYeAhYcZeAeAcZeAhYeAcZajaaaaacenenenenenacacacacajajaaacenenenenacacacacenenajaXacfAfJacacacaafqaaaaajajajajajaaajaaaaaaaaajajajajajaaajaaaaaaihajaaaacGcHcHcHcKcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcOcJcJcJcJcJcGcGcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcOcJcJcJcJcJcGcGcJcIcJcJcJcJcJcJcJcJcJcJcJad
+ararararararararararararararararararararararararararararararararararararararaaaaaafqaaacacaaaaaaaafrajajajaaajaaaaaaajajaaacaacCcZcZcZcZeAhYhYcZeAcZeAeAaaajajaXencAeoeocAaccAepacajaaacaccAeoeocAaccAepcAeoeoajacaccYfIacacacaaaaajajaaajaafqajaaajajaaajajaaajaafqajaaajajaaajihajaaaacGfGcHcKcHcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcGcJcJcJcJcJcJcJcJcJcJcJcIcJcJcJcJcJcOcIcJcIcIcJcJcJcJcGcJcJcJcJcJcIcIcJcJcGcIcJcIcJcJcJcGcJcIcJcJcJcJcJcJcJcJcJcJcIcJcJcJcJcJcOcIcJcIcIcJcJcJcJcGcJcJcJcJcJcIcIcJcJcGcIcJcIcJcJad
+arararararararararararararararararararararararararararararararararararararararaaaaaaacacacaaaaaaaaajajajaaajaaajaaaaajajajacaccZcZeAcZcZcZeAcZeAhYeAhYcZaaaaaaaceqcAcAcpcAencAcAacaaajaXcVcAcAcpcAenacacacacacacaXaccYfJacacacaaaaaaaaaaaaaaaaaaaaaaajajaaaaaaaaaaaaaaaaaaajajaaiiaaaaaacGcHcKcJcKcIcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcIcIcGcOcJcJcJcJcIcOcIcIcJcJcJcJcJcJcGcGcJcJcOcJcGcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcIcIcGcOcJcJcJcJcIcOcIcIcJcJcJcJcJcJcGcGcJcJcOcJcGcJcJcJcJcJcJad
+arararararararararararararararararararararararararararararararararararararararaaaaaaacacacaaajajaaajaaajajajaaajajajajaaaaacaccZeAcZewcZeAhYeHeAcZeAcZeAaaajajaceqcAcpcAcpenenesacacacaceqcAcpcAcpenacaUacacacacaccHcYeBacacaaaaaaajajfrajaaaaaaajaaajajaaajfrajaaaaaaajaaajajaaihaaaacGcGcMcIcIcJcIcIcIcJcJcJcIcJcJcJcJcGcJcGcJcJcGcJcJcJcGcJcJcJcGcIcIcGcJcIcIcJcJcGcJcOcJcOcOcJcJcIcJcGcIcGcIcGcGcIcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcGcJcJcJcGcIcIcGcJcIcIcJcJcGcJcOcJcOcOcJcJcIcJcGcIcGcIcGcGcIcJcJcJcJcGcJcJcJcJad
+arararararararararararararararararararararararararararararararararararararararararaaacacacaaajaaajaaaaaaajajaaajajajfraaaaajaacCcCcCcZeAhYhOcZeAeAhYcZezaaajaaaccAcAcAcAcAcAcAcAacacacacacetcAcAcAcAcAcpcpcAcpaccGcGfAfJacajfsaaaaaaaaajaaajaaaaaaaaaaaaaaaaajaaajaaaaaaaaaaaaaaihaaaacGcHcHcIcIcJcJcJcIcIcJcIcJcJcIcGcJcJcJcJcJcJcJcGcGcJcGcGcGcGcJcJcJcJcJcJcJcGcJcIcJcGcJcJcJcJcJcOcJcGcOcGcJcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcGcGcGcJcJcJcJcJcJcJcGcJcIcJcGcJcJcJcJcJcOcJcGcOcGcJcJcIcJcJcJcJcJcJcJcJcJcJad
+arararararararararararararararararararararararararararararararararararararararararaaacacacacaaaaajaaaaaaajajajajajaaaaaaaaajaacCcZcZcZcZeAcZeAhYcZcZcZezaaaaajacaUaccAcAcAcAcAcAacacacacaUaccAcAcAcAaccAcAaccAcAcAcHdDfJacajaaajajaaaaajajaaajaaajaafqaaaaaaajajaaajaaajaafqaaaaiiaacGfxcHcIcIcJcIcIcIcIcIcJcJcIcJcIcJcJcGcJcGcGcGcJcJcJcJcJcGcGcJcGcJcGcJcJcJcJcJcJcGcGcGcGcJcJcJcJcIcGcOcJcJcJcIcJcJcGcJcJcGcJcJcJcJcJcJcGcJcJcJcJcJcGcGcJcGcJcGcJcJcJcJcJcJcGcGcGcGcJcJcJcJcIcGcOcJcJcJcIcJcJcGcJcJcGcJcJcJcJcJad
+arararararararararararararararararararararararararararararararararararararararararaaaaacacacaafqaaajaafraaajajaaaaajajaaajaaaacCcZcZcZeAcZeAcZcZcZcZcZezaaajajacacaccAcAcAcpaccAacaaajacacaccAcAcAcpcAcpcpaccAcAcpcGfAfJaaaaaaajaaaaaaajfsaafsaaajaaajajaaaaajfsaafsaaajaaajajaaihaacGcHcKcIcIcIcIcJcJcIcIcJcJfucGcIcGcJcGcJcGcGcGcJcJcGcJcJcJcGcGcJcGcJcJcJcGcGcGcIcGcGcJcOcGcGcOcJcJcGcJcGcGcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcGcJcGcJcJcJcGcGcGcIcGcGcJcOcGcGcOcJcJcGcJcGcGcJcJcJcJcJcGcJcJcJcJcJcJcJad
+arararararararararararararararararararararararararararararararararararararararararaaaaacacacaaajajajajajaaaaajaaajajajajaaaaaacCcZewewcZcZcZcZcZcZcZcZezaaajacacencAcAcAaccAacacacaaaaaXencAcAcAaccAcAcAcAcAcAcpcpaccYfJacaaaaaaajaaajaaajaaajaaaaajaaaaajajaaajaaajaaaaajaaaaajihaacGcHcIcIcIcIcIcIcIcOcIcGcGfvcJcGcJcGcGcGcGcGcJcJcGcGcJcGcGcGcJcJcGcJcGcJcGcGcJcGcGcGcJcGcJcJcJcGcGcJcGcJcJcJcIcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcGcGcJcJcGcJcGcJcGcGcJcGcGcGcJcGcJcJcJcGcGcJcGcJcJcJcIcJcJcJcJcJcJcJcJcJcJcJad
+arararararararararararararararararararararararararararararararararararararararararfqaaaaaaacaafraaaaajajajajajaaajajaaajajaaaacCcZcZcZcZcZcZcZcZcZcZcZezaaaaaXaXenenenenacacacacacaaajaXenenenenacacenenenenaccAcAfNcYfJacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaihcGcGcKcIcJcJcJcJcJcJcJcJcJcJfvcJcJcJcJcGcJcGcJcGcGcJcGcJcGcJcGcGcGcJcJcGcJcJcJcJcJcGcJcIcJcJcJcJcGcJcJcJcJcJcJcJcJcJcGcGcJcGcJcJcJcJcJcJcGcJcJcJcJcGcJcGcGcGcJcJcGcJcJcJcJcJcGcJcIcJcJcJcJcGcJcJcJcJcJcJcJcJcJcGcGcJcGcJcJcJcJcJad
+arararararararararararararararararararararararararararararararararararararararararararaaacacaaaaaaajaaaaajajaaaaajajajajaaaaaacCcZcZcZcZcZcCcZcZcZcZcZcCaaaaajacacacacaXaXacacaXajaaajaafefFfeacacaccAcAcpcpaccAcAacfEfJacacaaaaaaaaaaaaajajaaajajaaaaaaajaaaaajajaaajajaaaaaaajihcGcHcKcIcIcJcJcJcJcJcJcJcJcJfvcJcJcJcJcJcJcJcJcGcJcGcJcJcGcJcGcJcGcGcJcJcJcJcGcJcJcJcJcGcJcJcGcJcIcGcGcJcOcJcGcJcJcGcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcGcJcGcGcJcJcJcJcGcJcJcJcJcGcJcJcGcJcIcGcGcJcOcJcGcJcJcGcJcGcJcJcJcJcJcJcJad
+ararararararararararararararararararararararararararararararararararararararararararararacacaaajajajajajacajajfrajajajajaaaaaacCcCcCcCcCcCcCcCcCcCcCcCcCaaaaaaajaaaaaaajaaaaaaajaaaaaaajfefFfeaaaaacacacacacacacacacacfKacacaafqaaajaaaaaaaaajaaaaajaaajaaaaaaaaaaajaaaaajaaajaaihcGcHcIcJcIcIcIcIcIcIcJcJcJcJfvcJcJcJcJcGcJcGcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcGcJcJcGcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcGcJcJcGcJcJcJcJcJcJcJcJcGcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJcJad
+ararararararararararararararararararararararadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadatatatatatadadadadadadadadaCaEaCadadadadadadadadadadadadadatadadadatadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadcWadadadadadadadadadadadadadicadadadadadadadadadadadadadadcXadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad
 "}

@@ -494,6 +494,12 @@
 	icon_state = "polhelm"
 	item_state = "polhelm"
 
+/obj/item/clothing/head/helmet/ukihelm
+	name = "Torek Stahlhelm"
+	desc = "A converted German stahlhelm, with the blue and yellow bands of the torek."
+	icon_state = "ukihelm"
+	item_state = "ukihelm"
+
 /obj/item/clothing/head/helmet/polhelm2
 	name = "Polish Soviet helmet"
 	desc = "A captured Soviet helmet, with the red and wite bands of the polish partisans."

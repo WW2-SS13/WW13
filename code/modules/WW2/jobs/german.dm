@@ -658,7 +658,7 @@
 	return list(new/obj/item/weapon/key/german)
 
 
-///HONEYGAY SHIT
+/*
 
 /datum/job/german/honeyrittmeister
 	title = "Terek Rittmeister"
@@ -668,6 +668,7 @@
 	spawn_location = "JoinLateHeer"
 	allow_spies = TRUE
 	SL_check_independent = TRUE
+	is_officer = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -679,18 +680,18 @@
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german_basic/soldier(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ukihelm(H), slot_head)
 	H.add_note("Role", "You are a <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.")
-	H.setStat("strength", STAT_NORMAL)
+	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_NORMAL)
-	H.setStat("rifle", STAT_NORMAL)
-	H.setStat("mg", STAT_MEDIUM_LOW)
-	H.setStat("smg", STAT_NORMAL)
-	H.setStat("pistol", STAT_NORMAL)
-	H.setStat("heavyweapon", STAT_NORMAL)
-	H.setStat("medical", STAT_NORMAL)
-	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("rifle", STAT_MEDIUM_HIGH)
+	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_MEDIUM_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_MEDIUM_HIGH)
+	H.setStat("shotgun", STAT_MEDIUM_HIGH)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/waltherp38(H), slot_belt)
 	if (prob(8))
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_back)
 	else
@@ -708,6 +709,7 @@
 	spawn_location = "JoinLateHeer"
 	allow_spies = TRUE
 	SL_check_independent = TRUE
+	is_officer = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -719,18 +721,18 @@
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german_basic/soldier(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ukihelm(H), slot_head)
 	H.add_note("Role", "You are a <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.")
-	H.setStat("strength", STAT_NORMAL)
+	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_NORMAL)
-	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("rifle", STAT_MEDIUM_HIGH)
 	H.setStat("mg", STAT_MEDIUM_LOW)
-	H.setStat("smg", STAT_NORMAL)
-	H.setStat("pistol", STAT_NORMAL)
-	H.setStat("heavyweapon", STAT_NORMAL)
-	H.setStat("medical", STAT_NORMAL)
-	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_MEDIUM_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_MEDIUM_HIGH)
+	H.setStat("shotgun", STAT_MEDIUM_HIGH)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/waltherp38(H), slot_belt)
 	if (prob(8))
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_back)
 	else
@@ -748,6 +750,7 @@
 	spawn_location = "JoinLateHeer"
 	allow_spies = TRUE
 	SL_check_independent = TRUE
+	is_officer = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -759,18 +762,18 @@
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german_basic/soldier(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ukihelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/waltherp38(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.")
-	H.setStat("strength", STAT_NORMAL)
+	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_NORMAL)
-	H.setStat("rifle", STAT_NORMAL)
-	H.setStat("mg", STAT_MEDIUM_LOW)
-	H.setStat("smg", STAT_NORMAL)
-	H.setStat("pistol", STAT_NORMAL)
-	H.setStat("heavyweapon", STAT_NORMAL)
-	H.setStat("medical", STAT_NORMAL)
-	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("rifle", STAT_MEDIUM_HIGH)
+	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_MEDIUM_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_MEDIUM_HIGH)
+	H.setStat("shotgun", STAT_MEDIUM_HIGH)
 	if (prob(8))
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_back)
 	else
@@ -789,6 +792,7 @@
 	spawn_location = "JoinLateHeer"
 	allow_spies = TRUE
 	SL_check_independent = TRUE
+	is_officer = TRUE
 
 	// AUTOBALANCE
 	min_positions = 2
@@ -800,22 +804,19 @@
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german_basic/soldier(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ukihelm(H), slot_head)
 	H.add_note("Role", "You are a <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.")
-	H.setStat("strength", STAT_NORMAL)
+	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_NORMAL)
-	H.setStat("rifle", STAT_NORMAL)
-	H.setStat("mg", STAT_MEDIUM_LOW)
-	H.setStat("smg", STAT_NORMAL)
-	H.setStat("pistol", STAT_NORMAL)
-	H.setStat("heavyweapon", STAT_NORMAL)
-	H.setStat("medical", STAT_NORMAL)
-	H.setStat("shotgun", STAT_NORMAL)
-	if (prob(8))
-		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_back)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
+	H.setStat("rifle", STAT_MEDIUM_HIGH)
+	H.setStat("mg", STAT_VERY_HIGH)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_MEDIUM_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_MEDIUM_HIGH)
+	H.setStat("shotgun", STAT_MEDIUM_HIGH)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/dp(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/waltherp38(H), slot_belt)
 	return TRUE
 
 /datum/job/german/honeymachinegunner/get_keys()
@@ -828,6 +829,7 @@
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
 	allow_spies = TRUE
+	is_officer = TRUE
 	SL_check_independent = TRUE
 
 	// AUTOBALANCE
@@ -840,22 +842,19 @@
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german_basic/soldier(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ukihelm(H), slot_head)
 	H.add_note("Role", "You are a <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.")
-	H.setStat("strength", STAT_NORMAL)
-	H.setStat("engineering", STAT_NORMAL)
-	H.setStat("rifle", STAT_NORMAL)
-	H.setStat("mg", STAT_MEDIUM_LOW)
-	H.setStat("smg", STAT_NORMAL)
-	H.setStat("pistol", STAT_NORMAL)
-	H.setStat("heavyweapon", STAT_NORMAL)
-	H.setStat("medical", STAT_NORMAL)
-	H.setStat("shotgun", STAT_NORMAL)
-	if (prob(8))
-		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_back)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_VERY_HIGH)
+	H.setStat("rifle", STAT_MEDIUM_HIGH)
+	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_MEDIUM_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_MEDIUM_HIGH)
+	H.setStat("shotgun", STAT_MEDIUM_HIGH)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/waltherp38(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/mp40(H), slot_r_hand)
 	return TRUE
 
 /datum/job/german/honeysapper/get_keys()
@@ -869,6 +868,7 @@
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
 	allow_spies = TRUE
+	is_officer = TRUE
 	SL_check_independent = TRUE
 
 	// AUTOBALANCE
@@ -881,18 +881,18 @@
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german_basic/soldier(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ukihelm(H), slot_head)
 	H.add_note("Role", "You are a <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.")
-	H.setStat("strength", STAT_NORMAL)
+	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_NORMAL)
-	H.setStat("rifle", STAT_NORMAL)
-	H.setStat("mg", STAT_MEDIUM_LOW)
-	H.setStat("smg", STAT_NORMAL)
-	H.setStat("pistol", STAT_NORMAL)
-	H.setStat("heavyweapon", STAT_NORMAL)
-	H.setStat("medical", STAT_NORMAL)
-	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("rifle", STAT_MEDIUM_HIGH)
+	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_MEDIUM_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_MEDIUM_HIGH)
+	H.setStat("shotgun", STAT_MEDIUM_HIGH)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/waltherp38(H), slot_belt)
 	if (prob(8))
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_back)
 	else
@@ -902,6 +902,125 @@
 /datum/job/german/honeyschutze/get_keys()
 	return list(new/obj/item/weapon/key/german)
 
+/datum/job/german/honeyitleader
+	title = "Italian Support Gruppenfuhrer"
+	en_meaning = "Italian Squadleader"
+	rank_abbreviation = "schtz"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateHeer"
+	allow_spies = TRUE
+	is_officer = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+
+/datum/job/german/honeyitleader/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/italianboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/itauni/officer(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/modello38(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_belt)
+	H.add_note("Role", "You are a <b>[title]</b>, an Italian squad leader assisting the Wehrmacht. Your job is to participate in front line combat.")
+	H.give_radio()
+	if (secret_ladder_message)
+		H << "<br>[secret_ladder_message]"
+
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_LOW)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_MEDIUM_LOW)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+
+/datum/job/german/honeyitleader/get_keys()
+	return list(new/obj/item/weapon/key/german)
+
+/datum/job/german/honeyitmedic
+	title = "Italian Support Medic"
+	en_meaning = "Italian Medic"
+	rank_abbreviation = "schtz"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateHeer"
+	allow_spies = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 3
+	max_positions = 3
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+
+/datum/job/german/honeyitmedic/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/italianboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/itauni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/itahelm/medic(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/modello38(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/german(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
+	H.add_note("Role", "You are a <b>[title]</b>, a medic. Your job is to keep your squad healthy and in good condition.")
+	H.give_radio()
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_LOW)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
+	H.setStat("medical", STAT_VERY_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+
+/datum/job/german/honeyitmedic/get_keys()
+	return list(new/obj/item/weapon/key/german)
+
+/datum/job/german/honeyitengie
+	title = "Italian Support Pionier"
+	en_meaning = "Italian Engineer"
+	rank_abbreviation = "schtz"
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateHeer"
+	allow_spies = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 4
+	max_positions = 4
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+
+/datum/job/german/honeyitengie/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/italianboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/itauni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/itahelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/modello38(H), slot_back)
+	H.add_note("Role", "You are a <b>[title]</b>, an Italian infantry unit assisting the Wehrmacht. Your job is to participate in front line combat.")
+	H.give_radio()
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_VERY_HIGH)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+
+/datum/job/german/honeyitengie/get_keys()
+	return list(new/obj/item/weapon/key/german)
+*/
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

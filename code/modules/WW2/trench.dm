@@ -124,7 +124,7 @@ var/list/global/floor_cache = list()
 	if (istype(C, /obj/item/weapon/shovel))
 		var/obj/item/weapon/shovel/S = C
 		visible_message("<span class = 'notice'>[user] starts to dig a trench.</span>")
-		if (!do_after(user, ((10 - S.dig_speed)/((H.getStatCoeff("strength")/2)+(H.getStatCoeff("engineering")/2)))*10, src))
+		if (!do_after(user, (10 - S.dig_speed)*10, src))
 			return
 		trench_stage++
 		switch(trench_stage)
