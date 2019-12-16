@@ -661,3 +661,15 @@
 				return
 		if (3.0)
 			return
+
+/obj/structure/fldkanone
+	name = "Artillery"
+	icon = 'icons/WW2/Feldkanone_18.dmi'
+	icon_state = "fk18"
+	layer = MOB_LAYER + 1 //just above mobs
+
+/obj/structure/aa
+	name = "Anti Aircraft"
+	icon = 'icons/WW2/Feldkanone_18.dmi'
+	icon_state = "type96"
+	layer = MOB_LAYER + 1 //just above mobs

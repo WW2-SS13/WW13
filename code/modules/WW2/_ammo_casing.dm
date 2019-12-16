@@ -80,7 +80,7 @@ WW 2 WEAPONS MAGS N AMMO
 /obj/item/ammo_casing/a792x57_weaker
 	desc = "A 7.92x57mm bullet casing."
 	icon_state = "kclip-bullet"
-	spent_icon = "kclip-casing"
+	spent_icon = "pistol_bullet_casing"
 	caliber = "a792x57"
 	weight = 0.011
 	projectile_type = /obj/item/projectile/bullet/rifle/a792x57_weaker

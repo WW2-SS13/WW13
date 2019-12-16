@@ -125,7 +125,7 @@ bullet_act
 				if (lastMovedRecently(accuracy_check = TRUE))
 					if (prob(graze_chance_multiplier * max(distcheck - 7, 0)))
 						visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
-						adjustBruteLoss(pick(14,15))
+						adjustBruteLoss(pick(20,35))
 						P.useless = TRUE
 						qdel(P)
 						return

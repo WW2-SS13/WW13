@@ -23,7 +23,7 @@ var/list/soviet_traitors = list()
 	name = "phone"
 	desc = "A private line that goes directly to High Command."
 	attack_verb = list()
-	var/list/options = list(REQUEST_BATTLE_REPORT)
+	var/list/options = list(REQUEST_BATTLE_REPORT, RAID)
 	var/faction = null
 
 /obj/item/weapon/phone/tohighcommand/german
@@ -58,7 +58,8 @@ var/list/soviet_traitors = list()
 
 	if (map && !map.katyushas)
 		options -= RAID
-
+	if (faction == GERMAN)
+		options -= RAID
 	if (istype(H))
 		var/dowhat = input(H, "What would you like to do?") in options + "Cancel"
 		if (dowhat != "Cancel")

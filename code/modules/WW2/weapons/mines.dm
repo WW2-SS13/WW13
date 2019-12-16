@@ -47,10 +47,16 @@
 
 
 	if (!anchored)
+		var/mob/living/carbon/human/H = user
 		user.visible_message("<span class = 'notice'>\The [user] starts to deploy the \the [src].</span>")
 		if (!do_after(user,rand(30,40)))
 			user.visible_message("<span class = 'notice'>\The [user] decides not to deploy the \the [src].</span>")
 			return
+
+		if(!prob(H.getStatCoeff("engineering")))
+			Bumped(user)
+			return
+
 		nextCanExplode = world.time + 5
 		user.visible_message("<span class = 'notice'>\The [user] finishes deploying the \the [src].</span>")
 		anchored = TRUE
@@ -60,7 +66,8 @@
 		return
 
 //Disarming
-/obj/item/mine/attackby(obj/item/W as obj, mob/user as mob,mob/living/carbon/human/H as mob)
+/obj/item/mine/attackby(obj/item/W as obj, mob/user as mob)
+	var/mob/living/carbon/human/H = user
 	if (anchored)
 		if (istype(W, /obj/item/weapon/wirecutters))
 			user.visible_message("<span class = 'notice'>\The [user] starts to disarm the \the [src] with the [W].</span>")
@@ -91,7 +98,8 @@
 		else
 			Bumped(user)
 
-/obj/item/mine/attack_hand(mob/user as mob,mob/living/carbon/human/H as mob)
+/obj/item/mine/attack_hand(mob/user as mob)
+	var/mob/living/carbon/human/H = user
 	if (anchored)
 		user.visible_message("<span class = 'notice'>\The [user] starts to dig around the \the [src] with their bare hands!</span>")
 		if (!do_after(user,100/H.getStatCoeff("engineering")))
@@ -136,23 +144,24 @@
 			O << "<font color='red'>[AM] triggered the [src]!</font>"
 		triggered = TRUE
 		visible_message("<span class = 'red'><b>Click!</b></span>")
-		if (atmine == FALSE)
-			explosion(get_turf(src),-1,1,3)
-			var/turf/T = get_turf(src)
-			var/list/target_turfs = getcircle(T, 3)
-			for (var/turf/TT in target_turfs)
-				var/obj/item/projectile/bullet/pellet/fragment/P = new /obj/item/projectile/bullet/pellet/fragment(T)
-				P.damage = 8
-				P.pellets = 10
-				P.range_step = 3
-				P.shot_from = name
-				P.launch_fragment(TT)
-		else
-			explosion(get_turf(src),2,2,6)
-			spawn(3)
+		spawn(3)
+			if (atmine == FALSE)
+				explosion(get_turf(src),-1,1,3)
+				var/turf/T = get_turf(src)
+				var/list/target_turfs = getcircle(T, 3)
+				for (var/turf/TT in target_turfs)
+					var/obj/item/projectile/bullet/pellet/fragment/P = new /obj/item/projectile/bullet/pellet/fragment(T)
+					P.damage = 8
+					P.pellets = 10
+					P.range_step = 3
+					P.shot_from = name
+					P.launch_fragment(TT)
+			else
 				explosion(get_turf(src),2,2,6)
-			spawn(6)
-				explosion(get_turf(src),2,2,6)
+				spawn(3)
+					explosion(get_turf(src),2,2,6)
+				spawn(6)
+					explosion(get_turf(src),2,2,6)
 		spawn(9)
 			if (src)
 				qdel(src)
