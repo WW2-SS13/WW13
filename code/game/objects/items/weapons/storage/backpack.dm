@@ -12,25 +12,18 @@
 		)
 	icon_state = "backpack"
 	item_state = null
-	use_sound = null
 	//most backpacks use the default backpack state for inhand overlays
 	item_state_slots = list(
 		slot_l_hand_str = "backpack",
 		slot_r_hand_str = "backpack",
 		)
 	w_class = 4
-	storage_slots = 1
 	slot_flags = SLOT_BACK
 	max_w_class = 4
 	max_storage_space = 22 // can hold 2 w_class 4 items. 28 let it hold 3
 
 /obj/item/weapon/storage/backpack/New()
 	use_sound = pick("sounds/items/backpackpick1","sounds/items/backpackpick2","sounds/items/backpackpick3","sounds/items/backpackpick4")
-
-/obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (use_sound)
-		playsound(loc, use_sound, 50, TRUE, -5)
-	..()
 
 /obj/item/weapon/storage/backpack/equipped(var/mob/user, var/slot)
 	if (slot == slot_back && use_sound)

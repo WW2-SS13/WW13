@@ -446,7 +446,8 @@
 //This proc is called when you want to place an item into the storage item.
 /obj/item/weapon/storage/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-
+	if (use_sound)
+		playsound(loc, use_sound, 50, TRUE, -5)
 	if (!can_be_inserted(W))
 		return
 
