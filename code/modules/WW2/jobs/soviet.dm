@@ -1262,13 +1262,13 @@ var/first_guard = FALSE
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/soviet/penal
 	title = "Shtrafbat Soldat"
-	en_meaning = "Penal Unit Soldier <b>*</b>"
+	en_meaning = "Conscript Unit Soldier <b>*</b>"
 	rank_abbreviation = "Shtr"
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
 	allow_spies = TRUE
 	SL_check_independent = TRUE
-	blacklisted = TRUE
+	//blacklisted = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1

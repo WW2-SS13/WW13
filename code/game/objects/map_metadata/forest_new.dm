@@ -1,9 +1,9 @@
 /obj/map_metadata/forest_new
 	ID = MAP_FOREST
-	title = "Soviet Defense (100x250x1)"
+	title = "Soviet Factory (100x250x1)"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall)
 	respawn_delay = 2400
-	reinforcements = TRUE
+	reinforcements = FALSE
 	squad_spawn_locations = FALSE
 	supply_points_per_tick = list(
 		GERMAN = 1.00,
@@ -76,6 +76,8 @@
 			J.total_positions = 6
 		else if (istype(J, /datum/job/soviet/engineer))
 			J.total_positions = 4
+		else if (istype(J, /datum/job/soviet/penal))
+			J.total_positions = 20
 		else
 			. = FALSE
 	else
