@@ -54,7 +54,7 @@
 			return
 
 		if(!prob(H.getStatCoeff("engineering")))
-			Bumped(user)
+			trigger(user)
 			return
 
 		nextCanExplode = world.time + 5
@@ -156,6 +156,8 @@
 					P.range_step = 3
 					P.shot_from = name
 					P.launch_fragment(TT)
+				for (T in getcircle(4, T))
+					new/obj/effect/decal/cleanable/dirt(T)
 			else
 				explosion(get_turf(src),2,2,6)
 				spawn(3)

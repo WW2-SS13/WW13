@@ -165,8 +165,6 @@
 		return TRUE
 	if (ispath(MP, /mob/living/simple_animal/crab))
 		return TRUE
-	if (ispath(MP, /mob/living/simple_animal/hostile/carp))
-		return TRUE
 	if (ispath(MP, /mob/living/simple_animal/tomato))
 		return TRUE
 	if (ispath(MP, /mob/living/simple_animal/mouse))

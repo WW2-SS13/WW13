@@ -13,11 +13,14 @@
 	var/projectile_type					//The bullet type to create when New() is called
 	var/obj/item/projectile/BB = null	//The loaded bullet - make it so that the projectiles are created only when needed?
 	var/spent_icon = null
+	var/defective = FALSE
 
 /obj/item/ammo_casing/New()
 	..()
 	if (ispath(projectile_type))
 		BB = new projectile_type(src)
+	if (prob(1))
+		defective = TRUE
 	pixel_x = rand(-10, 10)
 	pixel_y = rand(-10, 10)
 	bullet_casings += src
@@ -166,6 +169,8 @@
 		for (var/obj/item/ammo_casing/C in stored_ammo)
 			C.loc = user.loc
 			C.set_dir(pick(cardinal))
+			playsound(loc, pick("sound/items/drop.ogg", "sound/items/drop2.ogg","sound/items/drop3.ogg","sound/items/drop4.ogg"), 10, TRUE, -5)
+
 		stored_ammo.Cut()
 		update_icon()
 

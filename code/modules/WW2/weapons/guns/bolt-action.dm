@@ -95,18 +95,22 @@
 			check_bolt--
 			return
 	else return
-	if (check_bolt_lock)
-		user << "<span class='notice'>The bolt won't move, the gun is empty!</span>"
+	if (check_bolt_lock || feedfailure)
+		user << "<span class='notice'>The bolt won't move!</span>"
 		check_bolt--
 		return
 	bolt_open = !bolt_open
 	if (bolt_open)
 		if (chambered)
 			playsound(loc, 'sound/weapons/bolt_open.ogg', 50, TRUE)
+			if (chambered && chambered.defective)
+				user << "<span class='notice'>You notice the round is defective.</span>"
 			user << "<span class='notice'>You work the bolt open, ejecting [chambered]!</span>"
 			chambered.loc = get_turf(src)
 			loaded -= chambered
 			chambered = null
+
+			playsound(loc, pick("sound/items/drop.ogg", "sound/items/drop2.ogg","sound/items/drop3.ogg","sound/items/drop4.ogg"), 10, TRUE, -5)
 			if (bolt_safety)
 				if (!loaded.len)
 					check_bolt_lock++
@@ -114,6 +118,7 @@
 		else
 			playsound(loc, 'sound/weapons/bolt_open.ogg', 50, TRUE)
 			user << "<span class='notice'>You work the bolt open.</span>"
+
 	else
 		playsound(loc, 'sound/weapons/bolt_close.ogg', 50, TRUE)
 		user << "<span class='notice'>You work the bolt closed.</span>"

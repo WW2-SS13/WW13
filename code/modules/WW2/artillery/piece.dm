@@ -273,6 +273,7 @@
 		else
 			valid_coords_check = TRUE
 
+
 		if (!valid_coords_check)
 			user << "<span class='danger'>You have no knowledge of this location.</span>"
 			return

@@ -16,5 +16,5 @@
 /obj/item/projectile/bullet/rifle/missile/proc/missile_effect(atom/hit_atom)
 	if (explosive)
 		var/e = explosion_ranges
-		explosion(get_turf(hit_atom), e[3], e[4], e[6], e[8])
+		explosion(get_turf(hit_atom), e[0], e[1], e[2], e[3])
 		if (src) qdel(src)

@@ -74,6 +74,7 @@
 	var/KD_chance = 5
 	var/stat = "rifle"
 	var/load_delay = 0
+	var/feedfailure = FALSE
 
 
 	var/headshot_kill_chance = 40 // if we have enough damage. See projectile.dm if you want to know why this needs to be set to 40 for all guns - Kachnov

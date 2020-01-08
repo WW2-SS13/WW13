@@ -128,6 +128,7 @@
 		return FALSE
 	if (istype(src, /obj/item/weapon/gun/projectile/boltaction) || istype(src, /obj/item/weapon/gun/projectile/semiautomatic) || istype(src, /obj/item/weapon/gun/projectile/pistol))
 		var/obj/item/weapon/gun/projectile/boltaction/B = src // this is hackey
+
 		if (B.jammed_until > world.time)
 			user << "<span class = 'danger'>The [B] has jammed! You can't fire it until it has unjammed.</span>"
 			return FALSE
@@ -266,12 +267,21 @@
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
 
+	 // this is hackey fuck me
+
+
+
 	for (var/i in 1 to _burst)
 		var/obj/projectile = consume_next_projectile(user)
-
+		var/obj/item/weapon/gun/projectile/B = src
+		if(B.chambered)
+			if(B.chambered.defective)
+				handle_defective_projectile(user)
+				return
 		if (!projectile)
 			handle_click_empty(user)
 			break
+
 
 		var/acc = 0 // calculated in projectile code
 		var/disp = firemode.dispersion[min(i, firemode.dispersion.len)]
@@ -331,6 +341,14 @@
 /obj/item/weapon/gun/proc/handle_click_empty(mob/user)
 	if (user)
 		user.visible_message("*click click*", "<span class='danger'>*click*</span>")
+	else
+		visible_message("*click click*")
+
+	playsound(loc, 'sound/weapons/empty.ogg', 100, TRUE)
+
+/obj/item/weapon/gun/proc/handle_defective_projectile(mob/user)
+	if (user)
+		user.visible_message("*click*", "<span class='danger'>*click*</span>")
 	else
 		visible_message("*click click*")
 

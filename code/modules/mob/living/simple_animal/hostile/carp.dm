@@ -1,12 +1,13 @@
 
 
-/mob/living/simple_animal/hostile/carp
-	name = "space carp"
-	desc = "A ferocious, fang-bearing creature that resembles a fish."
-	icon_state = "carp"
-	icon_living = "carp"
-	icon_dead = "carp_dead"
-	icon_gib = "carp_gib"
+/mob/living/simple_animal/hostile/trainingbot
+	name = "training bot"
+	desc = "."
+	icon = "robots.dmi"
+	icon_state = "robot_old"
+	icon_living = "robot_old"
+	icon_dead = "gib1"
+	icon_gib = "gib1"
 	speak_chance = FALSE
 	turns_per_move = 5
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat
@@ -36,17 +37,14 @@
 
 	break_stuff_probability = 15
 
-	faction = "carp"
+	faction = "trainingbot"
 
-/mob/living/simple_animal/hostile/carp/Process_Spacemove(var/check_drift = FALSE)
-	return TRUE	//No drifting in space for space carp!	//original comments do not steal
-
-/mob/living/simple_animal/hostile/carp/FindTarget()
+/mob/living/simple_animal/hostile/trainingbot/FindTarget()
 	. = ..()
 	if (.)
 		custom_emote(1,"nashes at [.]")
 
-/mob/living/simple_animal/hostile/carp/AttackingTarget()
+/mob/living/simple_animal/hostile/trainingbot/AttackingTarget()
 	. =..()
 	var/mob/living/L = .
 	if (istype(L))
