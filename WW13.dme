@@ -259,7 +259,6 @@
 #include "code\game\objects\items\stacks\sheets\light.dm"
 #include "code\game\objects\items\stacks\tiles\light.dm"
 #include "code\game\objects\items\stacks\tiles\tile_types.dm"
-#include "code\game\objects\items\weapons\autopsy.dm"
 #include "code\game\objects\items\weapons\candle.dm"
 #include "code\game\objects\items\weapons\cell.dm"
 #include "code\game\objects\items\weapons\cigs_lighters.dm"
@@ -961,5 +960,4 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\moscow.dmm"
 // END_INCLUDE
