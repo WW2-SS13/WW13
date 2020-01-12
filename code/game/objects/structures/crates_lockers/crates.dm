@@ -36,7 +36,7 @@
 	if (!can_open())
 		return FALSE
 
-	playsound(loc, 'sound/machines/click.ogg', 15, TRUE, -3)
+	playsound(loc, open_sound, 15, TRUE, -3)
 	for (var/obj/O in src)
 		O.forceMove(get_turf(src))
 	icon_state = icon_opened
@@ -52,7 +52,7 @@
 	if (!can_close())
 		return FALSE
 
-	playsound(loc, 'sound/machines/click.ogg', 15, TRUE, -3)
+	playsound(loc, close_sound, 15, TRUE, -3)
 	var/itemcount = FALSE
 	for (var/obj/O in get_turf(src))
 		if (itemcount >= storage_capacity)
