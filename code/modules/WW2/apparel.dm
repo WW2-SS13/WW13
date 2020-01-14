@@ -262,6 +262,15 @@
 	item_state = "gertankeruni"
 	worn_state = "gertankeruni"
 
+/obj/item/clothing/under/terek
+	name = "Terek Artillery Uniform"
+	desc = "A dark gray jumpsuit with a brown belt. It has an insignia indicating that the wearer is a Terek Artillery-man."
+	icon_state = "UkrainianFatigues"
+	item_state = "UkrainianFatigues"
+	worn_state = "UkrainianFatigues"
+
+
+
 ///polish
 
 /obj/item/clothing/under/poluni1
@@ -511,6 +520,12 @@
 	desc = "A simple steel helmet worn by American GIs."
 	icon_state = "UShelm"
 	item_state = "UShelm"
+
+/obj/item/clothing/head/helmet/terek
+	name = "Terek helmet"
+	desc = "A hat worn by Terek Artillery-men."
+	icon_state = "ukrainehat"
+	item_state = "ukrainehat"
 
 /obj/item/clothing/head/helmet/ushelm/med
 	name = "US Medical helmet"
@@ -1275,6 +1290,13 @@
 	icon_state = "winter_coat"
 	item_state = "winter_coat"
 	worn_state = "winter_coat"
+
+/obj/item/clothing/suit/storage/coat/terek
+	name = "Terek Soldier's Coat"
+	desc = "An ordinary winter coat issued to Terek soldiers."
+	icon_state = "UkraineCoat"
+	item_state = "UkraineCoat"
+	worn_state = "UkraineCoat"
 
 /obj/item/clothing/suit/storage/coat/german
 	name = "German Soldier's Coat"

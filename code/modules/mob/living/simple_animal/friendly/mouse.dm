@@ -12,7 +12,7 @@
 	emote_see = list("runs in a circle", "shakes", "scritches at something")
 	pass_flags = PASSTABLE
 	speak_chance = TRUE
-	turns_per_move = 5
+	turns_per_move = 2
 	see_in_dark = 6
 	maxHealth = 5
 	health = 5
@@ -41,7 +41,14 @@
 	if (!stat && prob(speak_chance))
 		for (var/mob/M in view())
 			M << 'sound/effects/mousesqueek.ogg'
-
+	if (!pulledby)
+		var/mob/living/carbon/human
+		human = locate(/mob/living/carbon/human) in oview(5,loc)
+		var/mob/living/carbon/human/deadhuman = pick(locate(/mob/living/carbon/human) in oview(5,loc))
+		if (deadhuman)
+			if (deadhuman.ded && human)
+				var/step = get_step_to(src, human, FALSE)
+				Move(step)
 	if (!ckey && stat == CONSCIOUS && prob(1))
 		stat = UNCONSCIOUS
 		icon_state = "mouse_[body_color]_sleep"

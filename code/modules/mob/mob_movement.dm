@@ -669,6 +669,9 @@
 						for (var/mob/living/L in mob.loc)
 							if (L.lying && L != H)
 								H.visible_message("<span class = 'warning'>[H] steps over [L].</span>")
+								if (prob(20))
+									H.visible_message("<span class = 'warning'>You trip over [L]. </span>")
+									H.Weaken(20)
 
 			#undef STOMP_TIME
 

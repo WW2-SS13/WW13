@@ -45,7 +45,7 @@
 /mob/living/carbon/human/death(gibbed = FALSE)
 
 	if (stat == DEAD) return
-
+	ded = TRUE
 	src << browse(null, "window=memory")
 
 	if (original_job)

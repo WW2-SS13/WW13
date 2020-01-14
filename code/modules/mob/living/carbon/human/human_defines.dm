@@ -9,6 +9,7 @@
 	//Facial hair colour and style
 	var/r_facial = FALSE
 	var/g_facial = FALSE
+	var/ded = FALSE
 	var/b_facial = FALSE
 	var/f_style = "Shaved"
 

@@ -11,6 +11,7 @@
 	var/datum/wires/explosive/c4/wires = null
 	var/timer = 10
 	var/atom/target = null
+	var/large = FALSE
 	var/open_panel = FALSE
 	var/image_overlay = null
 
@@ -75,7 +76,10 @@
 	var/original_objs = list()
 
 	if (location)
-		explosion(location, 0, 0, 2, 3)
+		if (large)
+			explosion(location, 2, 3, 4, 4)
+		else
+			explosion(location, 0, 0, 2, 3)
 		for (var/mob/living/L in location.contents)
 			original_mobs += L
 			if (L.client)
@@ -121,4 +125,14 @@
 
 /obj/item/weapon/plastique/russian/New()
 	image_overlay = image('icons/obj/assemblies.dmi', "russian_charge_placed")
+	..()
+
+/obj/item/weapon/plastique/largerussian
+	name = "Large Satchel Charge"
+	desc = "Placed to bust through walls."
+	icon_state = "russian_charge_large"
+	large = TRUE
+
+/obj/item/weapon/plastique/russian/New()
+	image_overlay = image('icons/obj/assemblies.dmi', "russian_charge_large_placed")
 	..()

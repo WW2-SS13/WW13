@@ -61,6 +61,12 @@
 	explosion_size = 3
 	num_fragments = 75
 
+/obj/item/weapon/grenade/explosive/gasbomb
+	name = "fuel bomb"
+	icon_state = "canister"
+	explosion_size = 6
+	num_fragments = 0
+
 /obj/item/weapon/grenade/smokebomb
 	slot_flags = SLOT_BELT|SLOT_MASK
 

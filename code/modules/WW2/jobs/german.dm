@@ -679,8 +679,9 @@
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ukihelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/terek(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/terek(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/coat/terek(H), slot_wear_suit)
 	H.add_note("Role", "You are a <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.")
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_NORMAL)
@@ -720,8 +721,9 @@
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ukihelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/terek(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/terek(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/coat/terek(H), slot_wear_suit)
 	H.add_note("Role", "You are a <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.")
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_NORMAL)
@@ -761,8 +763,8 @@
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ukihelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/terek(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/terek(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/waltherp38(H), slot_belt)
 	H.add_note("Role", "You are a <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.")
 	H.setStat("strength", STAT_VERY_HIGH)
@@ -803,7 +805,7 @@
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/terek(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ukihelm(H), slot_head)
 	H.add_note("Role", "You are a <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.")
 	H.setStat("strength", STAT_VERY_HIGH)
@@ -841,7 +843,7 @@
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/terek(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ukihelm(H), slot_head)
 	H.add_note("Role", "You are a <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.")
 	H.setStat("strength", STAT_VERY_HIGH)
@@ -880,7 +882,7 @@
 	if (!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/terek(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/ukihelm(H), slot_head)
 	H.add_note("Role", "You are a <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.")
 	H.setStat("strength", STAT_VERY_HIGH)
