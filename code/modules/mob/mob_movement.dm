@@ -670,8 +670,8 @@
 							if (L.lying && L != H)
 								H.visible_message("<span class = 'warning'>[H] steps over [L].</span>")
 								if (prob(20))
-									H.visible_message("<span class = 'warning'>You trip over [L]. </span>")
-									H.Weaken(20)
+									H.visible_message("<span class = 'warning'>[H] trips over [L]. </span>")
+									H.Weaken(5)
 
 			#undef STOMP_TIME
 

@@ -53,7 +53,7 @@
 			user.visible_message("<span class = 'notice'>\The [user] decides not to deploy the \the [src].</span>")
 			return
 
-		if(!prob(H.getStatCoeff("engineering")))
+		if(!prob(80*H.getStatCoeff("engineering")))
 			trigger(user)
 			return
 

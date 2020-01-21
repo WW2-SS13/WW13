@@ -6,16 +6,16 @@
 	name = "flamthrower"
 	desc = "You are a firestarter!"
 	icon = 'icons/obj/flamethrower.dmi'
-	icon_state = "fw_off"
-	item_state = "fw_off"
-	var/pressure_1 = 100
+	icon_state = "fw_on"
+	item_state = "fw_on"
+	var/pressure_1 = 1000
 	status = TRUE
 	nothrow = TRUE
 	var/fueltank = 1.00
 	var/obj/item/weapon/storage/backpack/flammenwerfer/backpack = null
-	var/rwidth = 5
-	var/rheight = 3
-	var/max_total_range = 8
+	var/rwidth = 7
+	var/rheight = 5
+	var/max_total_range = 12
 
 /obj/item/weapon/flamethrower/flammenwerfer/New()
 	..()
@@ -174,75 +174,22 @@
 
 /obj/item/weapon/flamethrower/flammenwerfer/attack_self(mob/user as mob)
 	if (user.stat || user.restrained() || user.lying)	return
-	user.set_using_object(src)
-	if (!ptank)
-		user << "<span class='notice'>Attach a fuel tank first!</span>"
-		return
-	var/dat = text({"<TT><b>Flamethrower (<a href='?src=\ref[src];light=1'>[lit ? "<font color='red'>Lit</font>" : "Unlit"]</a>)</b><BR>\n
-	Fullness: [fullness_percentage()]%<BR>\n
-	Amount to throw: <A HREF='?src=\ref[src];amount=-100'>-</A> <A HREF='?src=\ref[src];amount=-10'>-</A> <A HREF='?src=\ref[src];amount=-1'>-</A> [throw_amount] <A HREF='?src=\ref[src];amount=1'>+</A> <A HREF='?src=\ref[src];amount=10'>+</A> <A HREF='?src=\ref[src];amount=100'>+</A><BR>\n
-	Fire Width ([rwidth]): <A HREF='?src=\ref[src];rwidth=-1'>-</A> <A HREF='?src=\ref[src];rwidth=+1'>+</A>
-	Fire Height ([rheight]): <A HREF='?src=\ref[src];rheight=-1'>-</A> <A HREF='?src=\ref[src];rheight=+1'>+</A>
-	<br>
-	<A HREF='?src=\ref[src];close=1'>Close</A></TT>"})
-	user << browse(dat, "window=flammenwerfer;size=600x300")
-	onclose(user, "flamethrower")
 	return
 
 /obj/item/weapon/flamethrower/flammenwerfer/proc/fullness_percentage()
 	return round(fueltank * 100)
 
-/obj/item/weapon/flamethrower/flammenwerfer/Topic(href,href_list[])
-	if (href_list["close"])
-		usr.unset_using_object()
-		usr << browse(null, "window=flammenwerfer")
-		return
-	if (usr.stat || usr.restrained() || usr.lying)	return
-	usr.set_using_object(src)
-	if (href_list["light"])
-		if (fueltank <= 0) return
-		if (!status)	return
-		lit = !lit
-		if (lit)
-			processing_objects.Add(src)
-	if (href_list["amount"])
-		throw_amount = throw_amount + text2num(href_list["amount"])
-		throw_amount = max(50, min(5000, throw_amount))
-	if (href_list["rwidth"])
-		var/mod = text2num(href_list["rwidth"])
-		if (rwidth + mod + rheight > max_total_range)
-			usr << "<span class = 'danger'>To increase the width of the fire any more, you have to decrease the height of the fire.</span>"
-			return
-		rwidth = rwidth + mod
-		rwidth = Clamp(rwidth, 1, 7)
-	if (href_list["rheight"])
-		var/mod = text2num(href_list["rheight"])
-		if (rheight + mod + rwidth > max_total_range)
-			usr << "<span class = 'danger'>To increase the height of the fire any more, you have to decrease the width of the fire.</span>"
-			return
-		rheight = rheight + mod
-		rheight = Clamp(rheight, 1, 3)
-
-	// refresh
-	for (var/mob/M in viewers(1, loc))
-		if ((M.client && M.using_object == src))
-			attack_self(M)
-
-	update_icon()
-	return
-
-// how much fuel do we use based on throw_amount
 /obj/item/weapon/flamethrower/flammenwerfer/proc/get_temperature_coeff()
-	return 1.0 + (throw_amount-100)/100
+	return 1.0 + (throw_amount+400)/100
 
 // what is the multiplier put on our fire's heat based on throw_amount
 // you will notice that the most efficient throw_amount is the default one,
 // and at throw amounts > 700 its downright inefficient as the fire barely gets hotter
 /obj/item/weapon/flamethrower/flammenwerfer/proc/get_heat_coeff()
 	. = 1.0
-	. += ((throw_amount-100)/100)/3
+	. += ((throw_amount+400)/100)/3
 	. = min(., 3.0) // don't get too hot
-	. += ((throw_amount-100)/100)/20 // give us a bit of extra heat if we're super high
+	. += ((throw_amount+400)/100)/20 // give us a bit of extra heat if we're super high
 	// for example, 200 throw amount = 1.38x
 	// 500 = 2.53x
 	// 700 = 3.3x

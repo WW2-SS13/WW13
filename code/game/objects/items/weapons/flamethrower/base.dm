@@ -13,8 +13,8 @@
 //	origin_tech = list(TECH_COMBAT = TRUE, TECH_PLASMA = TRUE)
 	matter = list(DEFAULT_WALL_MATERIAL = 500)
 	var/status = FALSE
-	var/throw_amount = 100
-	var/lit = FALSE	//on or off
+	var/throw_amount = 1000
+	var/lit = TRUE	//on or off
 	var/operating = FALSE//cooldown
 	var/turf/previousturf = null
 	var/obj/item/weapon/weldingtool/weldtool = null
@@ -122,45 +122,8 @@
 
 /obj/item/weapon/flamethrower/attack_self(mob/user as mob)
 	if (user.stat || user.restrained() || user.lying)	return
-	user.set_using_object(src)
-	if (!ptank)
-		user << "<span class='notice'>Attach a plasma tank first!</span>"
-		return
-	var/dat = text("<TT><b>Flamethrower (<A HREF='?src=\ref[src];light=1'>[lit ? "<font color='red'>Lit</font>" : "Unlit"]</a>)</b><BR>\n Tank Pressure: [ptank.air_contents.return_pressure()]<BR>\nAmount to throw: <A HREF='?src=\ref[src];amount=-100'>-</A> <A HREF='?src=\ref[src];amount=-10'>-</A> <A HREF='?src=\ref[src];amount=-1'>-</A> [throw_amount] <A HREF='?src=\ref[src];amount=1'>+</A> <A HREF='?src=\ref[src];amount=10'>+</A> <A HREF='?src=\ref[src];amount=100'>+</A><BR>\n<A HREF='?src=\ref[src];remove=1'>Remove plasmatank</A> - <A HREF='?src=\ref[src];close=1'>Close</A></TT>")
-	user << browse(dat, "window=flamethrower;size=600x300")
-	onclose(user, "flamethrower")
 	return
 
-
-/obj/item/weapon/flamethrower/Topic(href,href_list[])
-	if (href_list["close"])
-		usr.unset_using_object()
-		usr << browse(null, "window=flamethrower")
-		return
-	if (usr.stat || usr.restrained() || usr.lying)	return
-	usr.set_using_object(src)
-	if (href_list["light"])
-		if (!ptank)	return
-		if (ptank.air_contents.gas["plasma"] < 1)	return
-		if (!status)	return
-		lit = !lit
-		if (lit)
-			processing_objects.Add(src)
-	if (href_list["amount"])
-		throw_amount = throw_amount + text2num(href_list["amount"])
-		throw_amount = max(50, min(5000, throw_amount))
-	if (href_list["remove"])
-		if (!ptank)	return
-		usr.put_in_hands(ptank)
-		ptank = null
-		lit = FALSE
-		usr.unset_using_object()
-		usr << browse(null, "window=flamethrower")
-	for (var/mob/M in viewers(1, loc))
-		if ((M.client && M.using_object == src))
-			attack_self(M)
-	update_icon()
-	return
 
 //Called from turf.dm turf/dblclick
 /obj/item/weapon/flamethrower/proc/flame_turfs(turflist)

@@ -10,3 +10,13 @@
 	name = "Sword"
 	desc = "A sword."
 	force_divisor = 0.25
+
+/obj/item/weapon/material/knife/combat/officersword
+	name = "Sword"
+	desc = "A sword."
+	force_divisor = 0.25
+	icon = 'icons/WW2/sword.dmi'
+	icon_state = "sword"
+	item_state = "sword_inhand"
+	slot_flags = SLOT_HOLSTER
+

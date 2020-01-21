@@ -125,3 +125,11 @@
 	name = "hip holster"
 	desc = "A handgun holster slung low on the hip, draw pardner!"
 	icon_state = "holster_hip"
+
+/obj/item/clothing/accessory/holster/sword
+	name = "sword sheath"
+	desc = "A sword sheath."
+	icon_state = "holster"
+	slot = "sword"
+	icon = 'icons/WW2/sword.dmi'
+	icon_state = "hidden"

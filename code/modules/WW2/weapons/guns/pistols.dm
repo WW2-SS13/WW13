@@ -10,6 +10,7 @@
 	handle_casings = EJECT_CASINGS
 	var/jamcheck
 	var/jammed_until
+	drawsound = "sound/items/pistol.ogg"
 	accuracy_list = list(
 
 		// small body parts: head, hand, feet
