@@ -106,6 +106,11 @@
 	icon_state = "uia_cap"
 	item_state = "uia_cap"
 
+/obj/item/clothing/head/caphat/cora_cap
+	name = "Croation cap"
+	icon_state = "cro_cap"
+	item_state = "cro_cap"
+
 /obj/item/clothing/head/glorioushat
 	name = "Glorious Holy Hand Hat"
 	icon_state = "glorioushat"

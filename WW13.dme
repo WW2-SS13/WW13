@@ -842,6 +842,7 @@
 #include "code\modules\WW2\jobs\polish.dm"
 #include "code\modules\WW2\jobs\soviet.dm"
 #include "code\modules\WW2\jobs\superiors.dm"
+#include "code\modules\WW2\jobs\ukranian.dm"
 #include "code\modules\WW2\jobs\usa.dm"
 #include "code\modules\WW2\jobs\whitelist.dm"
 #include "code\modules\WW2\lift\__defines.dm"

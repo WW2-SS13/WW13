@@ -22,7 +22,7 @@
 	sleep(5)
 	if (backpack && backpack.flam_type == "usa")
 		icon_state = "m2_flamethrower"
-		item_state = "m2_flamethrower"
+		item_state = "m2_flamerthrower"
 /obj/item/weapon/flamethrower/flammenwerfer/nothrow_special_check()
 	return nodrop_special_check()
 
@@ -37,17 +37,17 @@
 	else
 		if (lit)
 			icon_state = "m2_flamethrower_on"
-			item_state = "m2_flamethrower_on"
+			item_state = "m2_flamerthrower_on"
 		else
 			icon_state = "m2_flamethrower"
-			item_state = "m2_flamethrower"
+			item_state = "m2_flamerthrower"
 	update_held_icon()
 
 /obj/item/weapon/flamethrower/flammenwerfer/m2
 	name = "M2 flamethrower"
 	icon = 'icons/obj/flamethrower.dmi'
 	icon_state = "m2_flamethrower"
-	item_state = "m2_flamethrower"
+	item_state = "m2_flamerthrower"
 
 /obj/item/weapon/flamethrower/flammenwerfer/nothrow_special_check()
 	return nodrop_special_check()
@@ -55,10 +55,10 @@
 /obj/item/weapon/flamethrower/flammenwerfer/m2/update_icon()
 	if (lit)
 		icon_state = "m2_flamethrower_on"
-		item_state = "m2_flamethrower_on"
+		item_state = "m2_flamerthrower_on"
 	else
 		icon_state = "m2_flamethrower"
-		item_state = "m2_flamethrower"
+		item_state = "m2_flamerthrower"
 	update_held_icon()
 
 /obj/item/weapon/flamethrower/flammenwerfer/Destroy()

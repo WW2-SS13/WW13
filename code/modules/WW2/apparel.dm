@@ -470,6 +470,27 @@
 	item_state = "sovtankeruni"
 	worn_state = "sovtankeruni"
 
+/obj/item/clothing/under/geruni/croation
+	name = "Croation Uniform"
+	desc = "A dark jumpsuit with a brown belt and bandolier."
+	icon_state = "cro_uni"
+	item_state = "cro_uni"
+	worn_state = "cro_uni"
+
+/obj/item/clothing/under/geruni/uia
+	name = "UIA Uniform"
+	desc = "A dark jumpsuit with a brown belt and bandolier."
+	icon_state = "uias_uniform"
+	item_state = "uias_uniform"
+	worn_state = "uias_uniform"
+
+/obj/item/clothing/under/geruni/uia
+	name = "UIA Officer Uniform"
+	desc = "A dark jumpsuit with a brown belt and bandolier."
+	icon_state = "uiao_uniform"
+	item_state = "uiao_uniform"
+	worn_state = "uiao_uniform"
+
 /obj/item/clothing/under/itauni
 	name = ITALIAN_UNIFORM_NAME
 	desc = ITALIAN_UNIFORM_DESC
@@ -526,6 +547,13 @@
 	desc = "A hat worn by Terek Artillery-men."
 	icon_state = "ukrainehat"
 	item_state = "ukrainehat"
+
+/obj/item/clothing/head/helmet/croation
+	name = "Croation helmet"
+	desc = "A helm worn by Croation men."
+	icon_state = "cro_helm"
+	item_state = "cro_helm"
+
 
 /obj/item/clothing/head/helmet/ushelm/med
 	name = "US Medical helmet"
@@ -1297,6 +1325,20 @@
 	icon_state = "UkraineCoat"
 	item_state = "UkraineCoat"
 	worn_state = "UkraineCoat"
+
+/obj/item/clothing/suit/storage/coat/croation
+	name = "Croation Soldier's Coat"
+	desc = "An ordinary coat issued to Croation soldiers."
+	icon_state = "cro_coat"
+	item_state = "cro_coat"
+	worn_state = "cro_coat"
+
+/obj/item/clothing/suit/storage/coat/croationwinter
+	name = "Croation Soldier's Coat"
+	desc = "An ordinary winter coat issued to Croation soldiers."
+	icon_state = "cro_coat_winter"
+	item_state = "cro_coat_winter"
+	worn_state = "cro_coat_winter"
 
 /obj/item/clothing/suit/storage/coat/german
 	name = "German Soldier's Coat"

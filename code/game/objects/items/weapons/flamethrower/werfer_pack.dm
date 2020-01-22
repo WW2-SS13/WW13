@@ -11,6 +11,7 @@
 /obj/item/weapon/storage/backpack/flammenwerfer/m2
 	name = "M2 flamethrower backpack"
 	icon_state = "m2_flamethrower"
+	item_state = "m2_flamerthrower"
 	flam_type = "usa"
 
 /obj/item/weapon/storage/backpack/flammenwerfer/nothrow_special_check()
