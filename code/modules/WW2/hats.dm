@@ -105,6 +105,10 @@
 	name = "Partisan cap"
 	icon_state = "uia_cap"
 	item_state = "uia_cap"
+/obj/item/clothing/head/caphat/pilotka
+	name = "Partisan pilotka"
+	icon_state = "uia_pilotka"
+	item_state = "uia_pilotka"
 
 /obj/item/clothing/head/caphat/cora_cap
 	name = "Croation cap"

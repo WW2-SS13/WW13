@@ -484,7 +484,7 @@
 	item_state = "uias_uniform"
 	worn_state = "uias_uniform"
 
-/obj/item/clothing/under/geruni/uia
+/obj/item/clothing/under/geruni/uiaoff
 	name = "UIA Officer Uniform"
 	desc = "A dark jumpsuit with a brown belt and bandolier."
 	icon_state = "uiao_uniform"
@@ -1332,6 +1332,13 @@
 	icon_state = "cro_coat"
 	item_state = "cro_coat"
 	worn_state = "cro_coat"
+
+/obj/item/clothing/suit/storage/coat/croationofficer
+	name = "Croation Officer's Coat"
+	desc = "An ordinary coat issued to Croation officers."
+	icon_state = "cro_officercoat"
+	item_state = "cro_officercoat"
+	worn_state = "cro_officercoat"
 
 /obj/item/clothing/suit/storage/coat/croationwinter
 	name = "Croation Soldier's Coat"

@@ -1,12 +1,12 @@
-/datum/job/ukranian
+/datum/job/croation
 	faction = "Station"
 
-/datum/job/ukranian/give_random_name(var/mob/living/carbon/human/H)
+/datum/job/croation/give_random_name(var/mob/living/carbon/human/H)
 	H.name = H.species.get_random_ukrainian_name(H.gender)
 	H.real_name = H.name
 
-/datum/job/ukranian/soldier
-	title = "UIA Soldier"
+/datum/job/croation/soldier
+	title = "Croation Soldier"
 	selection_color = "#530909"
 	spawn_location = "JoinLatePartisan"
 
@@ -16,18 +16,19 @@
 	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
 
-/datum/job/ukranian/soldier/equip(var/mob/living/carbon/human/H)
+/datum/job/croation/soldier/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/uia(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/pilotka(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/croation(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/croation(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/coat/croation(H), slot_wear_suit)
 	if (prob(40))
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/material/knife/combat(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/flashlight(H), slot_l_hand)
 	H.give_radio()
-	H.add_note("Role", "You are a <b>[title]</b>, a UIA soldier. You take orders from the <b>UIA Leader</b> alone.")
+	H.add_note("Role", "You are a <b>[title]</b>, a Croation soldier. You take orders from the <b>Croation Leader</b> alone.")
 	if (partisan_stockpile)
 		H << "<br><span class = 'warning'>You have a stockpile of weapons at [partisan_stockpile.name]. Also, there are some stockpiles of medical items and tools around the town.</span>"
 	H.setStat("strength", civ_stat())
@@ -42,8 +43,8 @@
 	H.setStat("shotgun", pick(STAT_MEDIUM_HIGH, STAT_HIGH, STAT_VERY_HIGH))
 	return TRUE
 
-/datum/job/ukranian/commander
-	title = "UIA Commander"
+/datum/job/croation/commander
+	title = "Croation Commander"
 	is_officer = TRUE
 	is_commander = TRUE
 	head_position = TRUE
@@ -56,11 +57,12 @@
 	max_positions = 1
 	player_threshold = PLAYER_THRESHOLD_HIGHEST
 
-/datum/job/ukranian/commander/equip(var/mob/living/carbon/human/H)
+/datum/job/croation/commander/equip(var/mob/living/carbon/human/H)
 	if (!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/uia_cap(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/uiaoff(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/croation(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/croation(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/coat/croationofficer(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/flashlight(H), slot_r_hand)
 	if (map && map.ID == "FOREST")
@@ -74,7 +76,7 @@
 
 	H.give_radio()
 
-	H.add_note("Role", "You are a <b>[title]</b>, the leader of the UIA forces in the town. Protect your men and the civilians!")
+	H.add_note("Role", "You are a <b>[title]</b>, the leader of the Croation forces in the town. Protect your men and the civilians!")
 	if (partisan_stockpile)
 		H << "<br><span class = 'warning'>You have a stockpile of weapons at [partisan_stockpile.name]. Also, there are some stockpiles of medical items and tools around the town.</span>"
 	H.setStat("strength", civ_stat())

@@ -832,6 +832,7 @@
 #include "code\modules\WW2\jobs\_languages.dm"
 #include "code\modules\WW2\jobs\_special.dm"
 #include "code\modules\WW2\jobs\civilian.dm"
+#include "code\modules\WW2\jobs\croation.dm"
 #include "code\modules\WW2\jobs\faction.dm"
 #include "code\modules\WW2\jobs\german.dm"
 #include "code\modules\WW2\jobs\helpers.dm"
