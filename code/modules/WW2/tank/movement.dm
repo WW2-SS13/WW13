@@ -67,9 +67,10 @@
 			driver << "<span class = 'warning'>You cannot pass the invisible wall until the Grace Period has ended.</span>"
 			return
 
-		if (istype(target, /turf/floor/plating/beach/water) || !istype(target, /turf/floor/plating/beach/water/ice))
+		if (istype(target, /turf/floor/plating/beach/water))
 			play_movement_sound()
-			return
+			if (!istype(target, /turf/floor/plating/beach/water/ice))
+				return
 
 		if (hascall(target, "has_snow") && target:has_snow())
 			if (!truck)

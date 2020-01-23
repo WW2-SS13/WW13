@@ -36,7 +36,7 @@ var/global/obj/map_metadata/map = null
 	var/list/faction_distribution_coeffs = list(INFINITY) // list(INFINITY) = no hard locks on factions
 	var/list/available_subfactions = list()
 	var/list/roundend_condition_sides = list(
-		list(GERMAN, ITALIAN, JAPAN) = /area/prishtina/german,
+		list(GERMAN, ITALIAN, JAPAN, TEREK, CROATION) = /area/prishtina/german,
 		list(SOVIET, USA) = /area/prishtina/soviet)
 	var/list/ambience = list('sound/ambience/0Background1.wav','sound/ambience/0Background2.wav','sound/ambience/0Background3.wav','sound/ambience/0Background4.wav','sound/ambience/0Background5.wav','sound/ambience/0Background6.wav')
 	var/list/songs = list(
@@ -164,7 +164,7 @@ var/global/obj/map_metadata/map = null
 			switch (H.original_job.base_type_flag())
 				if (SOVIET, USA, POLISH_INSURGENTS)
 					return !soviets_can_cross_blocks()
-				if (GERMAN, ITALIAN, PARTISAN, CIVILIAN, JAPAN)
+				if (GERMAN, ITALIAN, PARTISAN, CIVILIAN, JAPAN, TEREK, CROATION)
 					return !germans_can_cross_blocks()
 				if (PILLARMEN)
 					return !specialfaction_can_cross_blocks()

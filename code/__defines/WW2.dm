@@ -12,6 +12,8 @@
 // this is only used for a few circumstances right now, like faction bans
 #define SCHUTZSTAFFEL "SS"
 #define SS_TV "SS_TV"
+#define CROATION "CROATION"
+#define TEREK "TEREK"
 #define SOVIET_PRISONER "SOVIET_PRISONER"
 #define GERMAN_REICHSTAG "GERMAN_REICHSTAG"
 #define SOVIET_PARTISAN "SOVIET_PARTISAN"

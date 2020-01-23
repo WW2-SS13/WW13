@@ -40,6 +40,9 @@
 /datum/job/var/is_tankuser = FALSE
 /datum/job/var/blacklisted = FALSE
 /datum/job/var/is_redcross = FALSE
+/datum/job/var/is_terek = FALSE
+/datum/job/var/is_uia = FALSE
+/datum/job/var/is_croation = FALSE
 /datum/job/var/is_prisoner_unique = FALSE
 /datum/job/var/is_escort = FALSE
 /datum/job/var/is_target = FALSE //for VIP modes
@@ -82,6 +85,10 @@
 		if (!most_specific)
 			. = GERMAN
 		else
+			if (is_croation)
+				. = CROATION
+			if (is_terek)
+				. = TEREK
 			if (!is_SS)
 				. = GERMAN
 			else

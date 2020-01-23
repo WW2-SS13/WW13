@@ -77,6 +77,9 @@ var/global/datum/controller/occupations/job_master
 	var/SS_was_enabled = FALSE
 	var/civilians_were_enabled = FALSE
 	var/partisans_were_enabled = FALSE
+	var/croation_was_enabled = FALSE
+	var/terek_was_enabled = FALSE
+
 
 	var/admin_expected_clients = 0
 
@@ -99,7 +102,8 @@ var/global/datum/controller/occupations/job_master
 
 	var/italiano = FALSE
 	var/warcrimes = FALSE
-
+	var/morwarcrimes = FALSE
+	var/evenmorwarcrimes = FALSE
 	for (var/datum/job/J in occupations)
 		if (map)
 			if (J.is_SS)
@@ -134,6 +138,14 @@ var/global/datum/controller/occupations/job_master
 				if (!map.available_subfactions.Find(ITALIAN))
 					J.total_positions = 0
 					continue
+			else if (J.is_terek)
+				if (!map.available_subfactions.Find(TEREK))
+					J.total_positions = 0
+					continue
+			else if (J.is_croation)
+				if (!map.available_subfactions.Find(CROATION))
+					J.total_positions = 0
+					continue
 
 		if (autobalance_for_players >= J.player_threshold && J.title != "N/A" && J.title != "generic job")
 			var/positions = round((autobalance_for_players/J.scale_to_players) * J.max_positions)
@@ -146,6 +158,12 @@ var/global/datum/controller/occupations/job_master
 			if (!warcrimes)
 				if (istype(J, /datum/job/german/soldier_ss))
 					warcrimes = TRUE
+			if (!morwarcrimes)
+				if (istype(J, /datum/job/german/honey))
+					morwarcrimes = TRUE
+			if (!evenmorwarcrimes)
+				if (istype(J, /datum/job/german/croation))
+					evenmorwarcrimes = TRUE
 		else
 			J.total_positions = 0
 
@@ -176,7 +194,14 @@ var/global/datum/controller/occupations/job_master
 		if (announce)
 			world << "<font size = 3><span class = 'notice'>The Wehrmacht has the assistance of the Waffen-SS for this battle.</span></font>"
 		SS_was_enabled = TRUE
-
+	if (morwarcrimes)
+		if (announce)
+			world << "<font size = 3><span class = 'notice'>The Wehrmacht has the assistance of the Terek Division for this battle.</span></font>"
+		terek_was_enabled = TRUE
+	if (evenmorwarcrimes)
+		if (announce)
+			world << "<font size = 3><span class = 'notice'>The Wehrmacht has the assistance of the Croation Division for this battle.</span></font>"
+		croation_was_enabled = TRUE
 	if (!is_side_locked(CIVILIAN) && map && map.faction_organization.Find(CIVILIAN) && map.faction_organization.Find(PARTISAN))
 		if (italiano || warcrimes || autobalance_for_players >= PLAYER_THRESHOLD_HIGHEST-10)
 			if (announce)

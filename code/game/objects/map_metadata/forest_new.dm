@@ -1,18 +1,27 @@
 /obj/map_metadata/forest_new
 	ID = MAP_FOREST
-	title = "Soviet Factory (100x250x1)"
+	title = "River Don (100x250x1)"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall)
 	respawn_delay = 2400
 	reinforcements = FALSE
+	valid_weather_types = WEATHER_SNOW
 	squad_spawn_locations = FALSE
 	supply_points_per_tick = list(
 		GERMAN = 1.00,
 		SOVIET = 1.00)
 	faction_organization = list(
 		GERMAN,
-		SOVIET)
-	faction_distribution_coeffs = list(GERMAN = 0.42, SOVIET = 0.58)
-	battle_name = "Battle of the Town"
+		SOVIET,
+		ITALIAN,
+		TEREK,
+		CROATION)
+	available_subfactions = list(
+		ITALIAN = 100,
+		TEREK = 100,
+		CROATION = 100
+		)
+	faction_distribution_coeffs = list(GERMAN = 0.50, SOVIET = 0.50)
+	battle_name = "Battle of the River Don"
 
 /obj/map_metadata/forest_new/germans_can_cross_blocks()
 	return (processes.ticker.playtime_elapsed >= 12000 || admin_ended_all_grace_periods)
@@ -33,6 +42,10 @@
 			J.total_positions = 12
 		else if (istype(J, /datum/job/german/commander))
 			J.total_positions = 1
+		else if (istype(J, /datum/job/german/honey))
+			. = TRUE
+		else if (istype(J, /datum/job/german/croation))
+			. = TRUE
 		else if (istype(J, /datum/job/german/staff_officer))
 			J.total_positions = 1
 		else if (istype(J, /datum/job/german/QM))

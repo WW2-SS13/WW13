@@ -16,6 +16,7 @@
 #define TEAM_US 5
 #define TEAM_PO 6
 
+
 var/global/spies[6]
 var/global/officers[6]
 var/global/commanders[6]
@@ -111,6 +112,22 @@ var/global/squad_members[6]
 /datum/faction/german/commander/italian
 	icon_state = "italian_commander"
 	title = "Italian Commander"
+	team = TEAM_GE
+/datum/faction/german/terek
+	icon_state = "terek_soldier"
+	title = "Terek Soldier"
+	team = TEAM_GE
+/datum/faction/german/commander/terek
+	icon_state = "terek_soldier"
+	title = "Terek Soldier"
+	team = TEAM_GE
+/datum/faction/german/croation
+	icon_state = "terek_soldier"
+	title = "Croation Soldier"
+	team = TEAM_GE
+/datum/faction/german/commander/croation
+	icon_state = "terek_soldier"
+	title = "Croation Soldier"
 	team = TEAM_GE
 // you appear to be a soviet soldier to all other sovivets
 /datum/faction/soviet
