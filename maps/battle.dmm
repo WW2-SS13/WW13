@@ -333,7 +333,7 @@
 "gu" = (/obj/effect/landmark{name = "JoinLateRA-S4"},/obj/snow_maker,/turf/floor/dirt,/area/prishtina/forest)
 "gv" = (/obj/effect/landmark{name = "JoinLateRA-S4-Leader"},/obj/snow_maker,/turf/floor/dirt,/area/prishtina/forest)
 "gw" = (/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/snow,/area/prishtina/forest)
-"gx" = (/obj/effect/landmark{name = "german_supplydrop_spot"},/obj/effect/floor_decal/industrial/outline/yellow,/turf/floor/dirt,/area/prishtina/forest)
+"gx" = (/obj/effect/landmark{name = "soviet_supplydrop_spot"},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/forest)
 "gy" = (/obj/structure/closet/crate/german_smoke_grenade,/turf/floor/dirt,/area/prishtina/forest)
 "gz" = (/obj/effect/landmark{name = "JoinLateHeerSO"},/turf/floor/dirt,/area/prishtina/forest)
 "gA" = (/obj/structure/wild/tallgrass2,/turf/floor/plating/dirt{icon_state = "darkydirt2"},/area/prishtina/forest)

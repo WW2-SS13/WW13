@@ -45,6 +45,48 @@
 /datum/job/italian/soldier/get_keys()
 	return list(new/obj/item/weapon/key/italian)
 
+/* Engineer */
+
+/datum/job/italian/engineer
+	title = "Pionier"
+	en_meaning = "Combat Engineer"
+	rank_abbreviation = "sdo"
+	total_positions = 5
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateIT" // WIP
+
+	// AUTOBALANCE
+	min_positions = 3
+	max_positions = 10
+	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
+
+/datum/job/italian/engineer/equip(var/mob/living/carbon/human/H)
+	if (!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/italianboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/itauni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/itahelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/modello38(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/material/hatchet/tacknife(H), slot_belt)
+	H.add_note("Role", "You are a <b>[title]</b>, an Italian combat engineer unit assisting the Wehrmacht. Your job is to participate in front line combat.")
+	H.give_radio()
+	H.setStat("strength", STAT_HIGH)
+	H.setStat("engineering", STAT_HIGH)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+
+/datum/job/italian/soldier/get_keys()
+	return list(new/obj/item/weapon/key/italian)
+
+
 /* Medic */
 
 /datum/job/italian/medic

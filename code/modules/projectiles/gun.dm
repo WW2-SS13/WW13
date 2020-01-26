@@ -44,6 +44,7 @@
 	var/fire_sound_text = "gunshot"
 	var/recoil = 0		//screen shake
 	var/silenced = FALSE
+	var/full_auto = FALSE
 	var/muzzle_flash = 3
 	var/accuracy = 0   //accuracy is measured in tiles. +1 accuracy means that everything is effectively one tile closer for the purpose of miss chance, -1 means the opposite. launchers are not supported, at the moment.
 //	var/scoped_accuracy = null
@@ -261,7 +262,8 @@
 
 	var/shoot_time = (_burst - 1)*_burst_delay
 	user.next_move = world.time + shoot_time  //no clicking on things while shooting
-	if (user.client) user.client.move_delay = world.time + shoot_time //no moving while shooting either
+	//this could go horribly wrong :)
+	//if (user.client) user.client.move_delay = world.time + shoot_time //no moving while shooting either
 	next_fire_time = world.time + shoot_time
 
 	//actually attempt to shoot
@@ -564,6 +566,10 @@
 	if (sel_mode > firemodes.len)
 		sel_mode = TRUE
 	var/datum/firemode/new_mode = firemodes[sel_mode]
+	if (new_mode.name == "full auto")
+		full_auto = TRUE
+	else
+		full_auto = FALSE
 	user << "<span class='notice'>\The [src] is now set to [new_mode.name].</span>"
 
 /obj/item/weapon/gun/attack_self(mob/user)

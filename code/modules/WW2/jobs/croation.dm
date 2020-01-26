@@ -19,7 +19,7 @@ datum/job/german/croation/soldier/equip(var/mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/croation(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/coat/croation(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/stenmk2(H), slot_back)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/tz45(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/material/knife/combat(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/flashlight(H), slot_l_hand)
 	H.give_radio()
@@ -29,7 +29,6 @@ datum/job/german/croation/soldier/equip(var/mob/living/carbon/human/H)
 	H.setStat("strength", civ_stat())
 	H.setStat("engineering", civ_stat())
 	H.setStat("medical", civ_stat())
-
 	H.setStat("rifle", pick(STAT_MEDIUM_LOW, STAT_NORMAL, STAT_MEDIUM_HIGH))
 	H.setStat("mg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
 	H.setStat("smg", pick(STAT_MEDIUM_LOW, STAT_NORMAL, STAT_MEDIUM_HIGH))
@@ -44,7 +43,7 @@ datum/job/german/croation/commander
 	is_commander = TRUE
 	head_position = TRUE
 	selection_color = "#2d2d63"
-	spawn_location = "JoinLatePartisanLeader"
+	spawn_location = "JoinLatePartisan"
 	additional_languages = list( "Russian" = 100, "German" = 100)
 	is_croation = TRUE
 
@@ -62,9 +61,7 @@ datum/job/german/croation/commander/equip(var/mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/flashlight(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/stenmk2(H), slot_back)
-		// equipping the luger second means we get ammo for the PPSH instead
-		// this works because the PPSH is added to our contents list first
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/tokarev(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/tz45(H), slot_belt)
 
 	H.give_radio()
 

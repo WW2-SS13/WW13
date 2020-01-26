@@ -49,6 +49,7 @@
 	)
 
 	accuracy_increase_mod = 2.00
+	full_auto = TRUE
 	accuracy_decrease_mod = 6.00
 	handle_casings = EJECT_CASINGS
 	KD_chance = KD_CHANCE_LOW
@@ -68,12 +69,10 @@
 	magazine_type = /obj/item/ammo_magazine/mp40
 
 	firemodes = list(
-		list(name="single shot",	burst=1, burst_delay=1.0, recoil=0.4, move_delay=2, dispersion = list(0.2, 0.3, 0.4, 0.5, 0.6)),
-		list(name="short bursts",	burst=3, burst_delay=1.2, recoil=0.7, move_delay=3, dispersion = list(0.6, 0.8, 1.0, 1.2, 1.4)),
-		list(name="long bursts",	burst=6, burst_delay=1.4, recoil=0.9, move_delay=4, dispersion = list(1.2, 1.4, 1.6, 1.4, 1.6)),
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=0.4, move_delay=2, dispersion = list(0.6, 0.8, 1.0, 1.2, 1.4)),
 		)
 
-	sel_mode = 2
+	sel_mode = 1
 	effectiveness_mod = 1.05
 
 /obj/item/weapon/gun/projectile/submachinegun/mp40/update_icon()
@@ -105,11 +104,10 @@
 	magazine_type = /obj/item/ammo_magazine/bly
 
 	firemodes = list(
-		list(name="short bursts",	burst=3, burst_delay=1.2, recoil=0.7, move_delay=3, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
-		list(name="long bursts",	burst=6, burst_delay=1.4, recoil=0.9, move_delay=4, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=0.7, move_delay=2, dispersion = list(0.6, 0.8, 1.2, 1.4, 1.6)),
 		)
 
-	sel_mode = 2
+	sel_mode = 1
 	effectiveness_mod = 1.05
 
 /obj/item/weapon/gun/projectile/submachinegun/bly/update_icon()
@@ -141,14 +139,13 @@
 	magazine_type = /obj/item/ammo_magazine/a556/ppsh
 	weight = 4.63
 	firemodes = list(
-		list(name="single shot",	burst=1, burst_delay=0.8, recoil=0.4, move_delay=2, dispersion = list(0.2, 0.3, 0.4, 0.6, 0.8)),
-		list(name="short bursts",	burst=4, burst_delay=1.0, recoil=0.6, move_delay=3, dispersion = list(0.8, 1.0, 1.2, 1.4, 1.6)),
-		list(name="long bursts",	burst=8, burst_delay=1.2, recoil=0.8, move_delay=4, dispersion = list(1.4, 1.4, 1.6, 1.6, 1.8)),
+		list(name="single shot", burst=1, burst_delay=0.8, recoil=0.4, move_delay=2, dispersion = list(0.2, 0.3, 0.4, 0.6, 0.8)),
+		list(name="full auto",	burst=1, burst_delay=1.0, recoil=0.6, move_delay=2, dispersion = list(0.8, 1.0, 1.2, 1.4, 1.6)),
 		)
 
 //	can_wield = TRUE
 
-	sel_mode = 2
+	sel_mode = 1
 
 /obj/item/weapon/gun/projectile/submachinegun/ppsh/update_icon()
 	if (ammo_magazine)
@@ -179,8 +176,7 @@
 	magazine_type = /obj/item/ammo_magazine/c762x25mm_pps
 	weight = 3.34
 	firemodes = list(
-		list(name="short bursts",	burst=3, burst_delay=1.0, recoil=0.6, move_delay=3, dispersion = list(0.9, 1.3, 1.3, 1.3, 1.5)),
-		list(name="long bursts",	burst=6, burst_delay=1.2, recoil=0.8, move_delay=4, dispersion = list(1.4, 1.6, 1.6, 1.6, 1.8)),
+		list(name="full auto",	burst=1, burst_delay=1.0, recoil=0.6, move_delay=2, dispersion = list(0.9, 1.3, 1.3, 1.3, 1.5)),
 		)
 
 //	can_wield = TRUE
@@ -207,8 +203,7 @@
 	magazine_type = /obj/item/ammo_magazine/c762x25mm_pps
 	weight = 3.04
 	firemodes = list(
-		list(name="short bursts",	burst=3, burst_delay=1.0, recoil=0.6, move_delay=3, dispersion = list(0.9, 1.3, 1.3, 1.3, 1.5)),
-		list(name="long bursts",	burst=6, burst_delay=1.2, recoil=0.8, move_delay=4, dispersion = list(1.4, 1.6, 1.6, 1.6, 1.8)),
+		list(name="full auto",	burst=1, burst_delay=1.0, recoil=0.9, move_delay=2, dispersion = list(0.9, 1.3, 1.3, 1.3, 1.5)),
 		)
 
 //	can_wield = TRUE
@@ -235,9 +230,7 @@
 	magazine_type = /obj/item/ammo_magazine/mp40/c9x19mm_stenmk2
 	weight = 3.2
 	firemodes = list(
-//		list(name="single shot",	burst=1, burst_delay=0.8, recoil=0.4, move_delay=2, dispersion = list(0.6, 0.8, 0.8, 0.8, 1.0)),
-		list(name="short burst",	burst=3, burst_delay=1.2, recoil=0.4, move_delay=3, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
-		list(name="long burst", 	burst=6, burst_delay=1.6, recoil=0.8, move_delay=4, dispersion = list(1.5, 1.7, 1.7, 1.7, 1.9)),
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=0.4, move_delay=2, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
 		)
 
 //	can_wield = TRUE
@@ -264,9 +257,7 @@
 	magazine_type = /obj/item/ammo_magazine/mp40/c9x19mm_stenmk2
 	weight = 3.2
 	firemodes = list(
-//		list(name="single shot",	burst=1, burst_delay=0.8, recoil=0.4, move_delay=2, dispersion = list(0.6, 0.8, 0.8, 0.8, 1.0)),
-		list(name="short burst",	burst=3, burst_delay=1.2, recoil=0.4, move_delay=3, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
-		list(name="long burst", 	burst=6, burst_delay=1.6, recoil=0.8, move_delay=4, dispersion = list(1.5, 1.7, 1.7, 1.7, 1.9)),
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=0.4, move_delay=2, dispersion = list(0.6,0.8, 1.0, 1.2, 1.4, 1.6)),
 		)
 
 //	can_wield = TRUE
@@ -293,8 +284,7 @@
 	magazine_type = /obj/item/ammo_magazine/s9x19mm
 	weight = 4.2
 	firemodes = list(
-		list(name="short burst",	burst=3, burst_delay=1.0, recoil=0.6, move_delay=3, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
-		list(name="long burst", 	burst=6, burst_delay=1.4, recoil=1.2, move_delay=4, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
+			list(name="full auto",	burst=1, burst_delay=1.2, recoil=0.6, move_delay=2, dispersion = list(0.8, 1.0, 1.2, 1.4)),
 		)
 	sel_mode = 1
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
@@ -321,8 +311,7 @@
 	magazine_type = /obj/item/ammo_magazine/s9x19mm
 	weight = 4
 	firemodes = list(
-		list(name="short burst",	burst=3, burst_delay=1.0, recoil=0.6, move_delay=3, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
-		list(name="long burst", 	burst=6, burst_delay=1.4, recoil=1.2, move_delay=4, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=0.8, move_delay=2, dispersion = list(0.8, 1.0, 1.2, 1.4)),
 		)
 	sel_mode = 1
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
@@ -350,8 +339,7 @@
 	magazine_type = /obj/item/ammo_magazine/c8mmnambu_smg
 	weight = 4.2
 	firemodes = list(
-		list(name="short burst",	burst=3, burst_delay=1.0, recoil=0.6, move_delay=3, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
-		list(name="long burst", 	burst=6, burst_delay=1.4, recoil=1.2, move_delay=4, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=1.2, move_delay=2, dispersion = list(0.8, 1.0, 1.2, 1.6)),
 		)
 	sel_mode = 1
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
@@ -378,8 +366,7 @@
 	magazine_type = /obj/item/ammo_magazine/thompson_ammo
 	weight = 3.7
 	firemodes = list(
-		list(name="short burst",	burst=3, burst_delay=1.0, recoil=0.6, move_delay=3, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
-		list(name="long burst", 	burst=6, burst_delay=1.4, recoil=1.2, move_delay=4, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=0.4, move_delay=2, dispersion = list(0.4, 0.6, 0.8, 1.0, 1.2)),
 		)
 	sel_mode = 1
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
@@ -406,8 +393,7 @@
 	magazine_type = /obj/item/ammo_magazine/thompson_ammo
 	weight = 4.5
 	firemodes = list(
-		list(name="short burst",	burst=3, burst_delay=1.0, recoil=0.9, move_delay=3, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
-		list(name="long burst", 	burst=6, burst_delay=1.4, recoil=1.8, move_delay=4, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=1.8, move_delay=2, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
 		)
 	sel_mode = 1
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
@@ -434,8 +420,7 @@
 	magazine_type = /obj/item/ammo_magazine/thompson_ammo/tommy_ammo
 	weight = 4.2
 	firemodes = list(
-		list(name="short burst",	burst=3, burst_delay=1.0, recoil=0.9, move_delay=3, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
-		list(name="long burst", 	burst=6, burst_delay=1.4, recoil=1.8, move_delay=4, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=1.8, move_delay=2, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
 		)
 	sel_mode = 1
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
@@ -447,5 +432,32 @@
 	else
 		icon_state = "tommygun0"
 		item_state = "tommygun0"
+	update_held_icon()
+	return
+
+/obj/item/weapon/gun/projectile/submachinegun/tz45
+	name = "TZ-45"
+	desc = "Used by croation units assisting the Herr."
+	icon_state = "tz45"
+	item_state = "tz45"
+	load_method = MAGAZINE
+	slot_flags = SLOT_BACK|SLOT_BELT
+	w_class = 3
+	caliber = "9x19mm"
+	magazine_type = /obj/item/ammo_magazine/mp40/c9x19mm_stenmk2
+	weight = 4.2
+	firemodes = list(
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=1, move_delay=2, dispersion = list(0.6, 0.8, 1.0, 1.2, 1.4)),
+		)
+	sel_mode = 1
+	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
+
+/obj/item/weapon/gun/projectile/submachinegun/tz45/update_icon()
+	if (ammo_magazine)
+		icon_state = "tz45"
+		item_state = "tz45"
+	else
+		icon_state = "tz450"
+		item_state = "tz45"
 	update_held_icon()
 	return

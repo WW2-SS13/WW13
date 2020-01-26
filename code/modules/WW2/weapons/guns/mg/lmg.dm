@@ -51,6 +51,7 @@
 	accuracy_decrease_mod = 6.00
 	KD_chance = KD_CHANCE_VERY_LOW
 	stat = "MG"
+	full_auto = TRUE
 	handle_casings = EJECT_CASINGS
 
 /obj/item/weapon/gun/projectile/automatic/dp
@@ -67,11 +68,10 @@
 	slot_flags = SLOT_BACK
 
 	firemodes = list(
-		list(name="short bursts",	burst=4, burst_delay=0.8, move_delay=8, dispersion = list(0.9, 1, 1.2), recoil = 1.0),
-		list(name="long bursts",	burst=8, burst_delay=1.5, move_delay=11, dispersion = list(0.9, 1.3, 1.3, 1.3, 1.5), recoil = 1.5)
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=1.5, move_delay=8, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
 		)
 
-	sel_mode = 2
+	sel_mode = 1
 	force = 20
 	throwforce = 30
 
@@ -105,11 +105,10 @@
 	slot_flags = SLOT_BACK
 
 	firemodes = list(
-		list(name="short bursts",	burst=4, burst_delay=0.8, move_delay=8, dispersion = list(0.7, 0.9, 1.1), recoil = 1.0),
-		list(name="long bursts",	burst=8, burst_delay=1.5, move_delay=11, dispersion = list(0.9, 1.3, 1.3, 1.3, 1.5), recoil = 1.5)
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=1.3, move_delay=6, dispersion = list(1.1, 1.2, 1.3, 1.4, 1.5)),
 		)
 
-	sel_mode = 2
+	sel_mode = 1
 	force = 20
 	throwforce = 30
 
@@ -142,11 +141,10 @@
 	slot_flags = SLOT_BACK
 
 	firemodes = list(
-		list(name="short bursts",	burst=4, burst_delay=0.8, move_delay=8, dispersion = list(0.7, 0.9, 1.1), recoil = 1.0),
-		list(name="long bursts",	burst=8, burst_delay=1.5, move_delay=11, dispersion = list(0.9, 1.3, 1.3, 1.3, 1.5), recoil = 1.5)
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=6, move_delay=2, dispersion = list(0.8, 1.0, 1.2, 1.4, 1.6)),
 		)
 
-	sel_mode = 2
+	sel_mode = 1
 	force = 20
 	throwforce = 30
 
@@ -189,9 +187,8 @@
 	wielded_icon = "assault-wielded"
 
 	firemodes = list(
-		list(name="short bursts", burst=8, move_delay=10, dispersion = list(0.8, 1, 1.2), burst_delay = 1.0, recoil = 1.4),
-		list(name="long bursts", burst=16, move_delay=12, dispersion = list(1.0, 1.4, 1.4, 1.2, 1.4), burst_delay = 1.4, recoil = 2.8)
-		)
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=1.5, move_delay=8, dispersion = list(1.2, 1.4, 1.5, 1.6, 1.7)),
+	)
 
 	fire_delay = 3
 	force = 20
