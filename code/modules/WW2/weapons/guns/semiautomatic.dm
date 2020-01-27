@@ -222,9 +222,8 @@
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL|ATTACH_SCOPE
 
 	firemodes = list(
-		list(name="semi automatic",	burst=1, burst_delay=0.8, move_delay=2, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6)),
-		list(name="short bursts",	burst=3, burst_delay=1.0, move_delay=3, dispersion = list(0.4, 0.8, 0.8, 0.8, 1.0)),
-		list(name="long bursts",	burst=5, burst_delay=1.2, move_delay=4, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
+		list(name="semi automatic",	burst=1, burst_delay=0.8, recoil=0.4, move_delay=0, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6)),
+		list(name="full auto",	burst=1, burst_delay=1, recoil=0.6, move_delay=0, dispersion = list(0.4, 0.6, 0.8, 1.0, 1.1)),
 		)
 
 
@@ -253,8 +252,7 @@
 	effectiveness_mod = 1.00
 	firemodes = list(
 		list(name="semi automatic",	burst=1, burst_delay=0.8, move_delay=2, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6)),
-		list(name="short bursts",	burst=3, burst_delay=1.0, move_delay=3, dispersion = list(0.4, 0.8, 0.8, 0.8, 1.0)),
-		list(name="long bursts",	burst=4, burst_delay=1.2, move_delay=4, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
+		list(name="full auto",	burst=1, burst_delay=1, recoil=1.5, move_delay=2, dispersion = list(0.4, 0.6, 0.8, 1.0, 1.1)),
 		)
 
 
@@ -283,9 +281,8 @@
 	effectiveness_mod = 0.95
 
 	firemodes = list(
-		list(name="semi automatic",	burst=1, burst_delay=0.8, move_delay=2, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6)),
-		list(name="short bursts",	burst=3, burst_delay=1.0, move_delay=3, dispersion = list(0.4, 0.8, 0.8, 0.8, 1.0)),
-		list(name="long bursts",	burst=4, burst_delay=1.2, move_delay=4, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
+		list(name="semi automatic",	burst=1, burst_delay=0.8, move_delay=2, dispersion = list(0.4, 0.6, 0.8, 1.2, 1.4)),
+		list(name="full auto",	burst=1, burst_delay=1, recoil=2.5, move_delay=2, dispersion = list(0.8, 1.2, 1.4, 1.6, 1.8)),
 		)
 
 
@@ -314,10 +311,9 @@
 	weight = 4.6
 
 	firemodes = list(
-		list(name="semi automatic",	burst=1, burst_delay=0.8, move_delay=2, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6)),
-		list(name="short bursts",	burst=3, burst_delay=1.0, move_delay=3, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
-		list(name="long bursts",	burst=5, burst_delay=1.2, move_delay=4, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
-		)
+		list(name="semi automatic",	burst=1, burst_delay=0.8, recoil=0.6, move_delay=0, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6)),
+		list(name="full auto",	burst=1, burst_delay=1, recoil=0.8, move_delay=0, dispersion = list(0.4, 0.6, 0.8, 1.0, 1.1)),
+			)
 
 	sel_mode = 2
 

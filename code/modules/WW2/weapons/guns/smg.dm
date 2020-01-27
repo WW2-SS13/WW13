@@ -69,7 +69,7 @@
 	magazine_type = /obj/item/ammo_magazine/mp40
 
 	firemodes = list(
-		list(name="full auto",	burst=1, burst_delay=1.2, recoil=0.4, move_delay=2, dispersion = list(0.6, 0.8, 1.0, 1.2, 1.4)),
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=0.4, move_delay=0, dispersion = list(0.6, 0.8, 1.0, 1.2, 1.4)),
 		)
 
 	sel_mode = 1
@@ -104,7 +104,7 @@
 	magazine_type = /obj/item/ammo_magazine/bly
 
 	firemodes = list(
-		list(name="full auto",	burst=1, burst_delay=1.2, recoil=0.7, move_delay=2, dispersion = list(0.6, 0.8, 1.2, 1.4, 1.6)),
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=0.7, move_delay=0, dispersion = list(0.6, 0.8, 1.2, 1.4, 1.6)),
 		)
 
 	sel_mode = 1
@@ -139,8 +139,8 @@
 	magazine_type = /obj/item/ammo_magazine/a556/ppsh
 	weight = 4.63
 	firemodes = list(
-		list(name="single shot", burst=1, burst_delay=0.8, recoil=0.4, move_delay=2, dispersion = list(0.2, 0.3, 0.4, 0.6, 0.8)),
-		list(name="full auto",	burst=1, burst_delay=1.0, recoil=0.6, move_delay=2, dispersion = list(0.8, 1.0, 1.2, 1.4, 1.6)),
+		list(name="single shot", burst=1, burst_delay=0.8, recoil=0.4, move_delay=0, dispersion = list(0.2, 0.3, 0.4, 0.6, 0.8)),
+		list(name="full auto",	burst=1, burst_delay=1.0, recoil=0.6, move_delay=0, dispersion = list(0.8, 1.0, 1.2, 1.4, 1.6)),
 		)
 
 //	can_wield = TRUE
@@ -176,7 +176,7 @@
 	magazine_type = /obj/item/ammo_magazine/c762x25mm_pps
 	weight = 3.34
 	firemodes = list(
-		list(name="full auto",	burst=1, burst_delay=1.0, recoil=0.6, move_delay=2, dispersion = list(0.9, 1.3, 1.3, 1.3, 1.5)),
+		list(name="full auto",	burst=1, burst_delay=1.0, recoil=0.6, move_delay=0, dispersion = list(0.9, 1.3, 1.3, 1.3, 1.5)),
 		)
 
 //	can_wield = TRUE
@@ -203,7 +203,7 @@
 	magazine_type = /obj/item/ammo_magazine/c762x25mm_pps
 	weight = 3.04
 	firemodes = list(
-		list(name="full auto",	burst=1, burst_delay=1.0, recoil=0.9, move_delay=2, dispersion = list(0.9, 1.3, 1.3, 1.3, 1.5)),
+		list(name="full auto",	burst=1, burst_delay=1.0, recoil=0.9, move_delay=0, dispersion = list(0.9, 1.3, 1.3, 1.3, 1.5)),
 		)
 
 //	can_wield = TRUE
@@ -230,7 +230,7 @@
 	magazine_type = /obj/item/ammo_magazine/mp40/c9x19mm_stenmk2
 	weight = 3.2
 	firemodes = list(
-		list(name="full auto",	burst=1, burst_delay=1.2, recoil=0.4, move_delay=2, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=0.4, move_delay=0, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
 		)
 
 //	can_wield = TRUE
@@ -257,7 +257,7 @@
 	magazine_type = /obj/item/ammo_magazine/mp40/c9x19mm_stenmk2
 	weight = 3.2
 	firemodes = list(
-		list(name="full auto",	burst=1, burst_delay=1.2, recoil=0.4, move_delay=2, dispersion = list(0.6,0.8, 1.0, 1.2, 1.4, 1.6)),
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=0.4, move_delay=0, dispersion = list(0.6,0.8, 1.0, 1.2, 1.4, 1.6)),
 		)
 
 //	can_wield = TRUE
@@ -284,7 +284,7 @@
 	magazine_type = /obj/item/ammo_magazine/s9x19mm
 	weight = 4.2
 	firemodes = list(
-			list(name="full auto",	burst=1, burst_delay=1.2, recoil=0.6, move_delay=2, dispersion = list(0.8, 1.0, 1.2, 1.4)),
+			list(name="full auto",	burst=1, burst_delay=1.2, recoil=0.6, move_delay=0, dispersion = list(0.8, 1.0, 1.2, 1.4)),
 		)
 	sel_mode = 1
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
@@ -311,7 +311,7 @@
 	magazine_type = /obj/item/ammo_magazine/s9x19mm
 	weight = 4
 	firemodes = list(
-		list(name="full auto",	burst=1, burst_delay=1.2, recoil=0.8, move_delay=2, dispersion = list(0.8, 1.0, 1.2, 1.4)),
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=0.8, move_delay=0, dispersion = list(0.8, 1.0, 1.2, 1.4)),
 		)
 	sel_mode = 1
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
@@ -339,7 +339,7 @@
 	magazine_type = /obj/item/ammo_magazine/c8mmnambu_smg
 	weight = 4.2
 	firemodes = list(
-		list(name="full auto",	burst=1, burst_delay=1.2, recoil=1.2, move_delay=2, dispersion = list(0.8, 1.0, 1.2, 1.6)),
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=1.2, move_delay=0, dispersion = list(0.8, 1.0, 1.2, 1.6)),
 		)
 	sel_mode = 1
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
@@ -366,7 +366,7 @@
 	magazine_type = /obj/item/ammo_magazine/thompson_ammo
 	weight = 3.7
 	firemodes = list(
-		list(name="full auto",	burst=1, burst_delay=1.2, recoil=0.4, move_delay=2, dispersion = list(0.4, 0.6, 0.8, 1.0, 1.2)),
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=0.4, move_delay=0, dispersion = list(0.4, 0.6, 0.8, 1.0, 1.2)),
 		)
 	sel_mode = 1
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
@@ -393,7 +393,7 @@
 	magazine_type = /obj/item/ammo_magazine/thompson_ammo
 	weight = 4.5
 	firemodes = list(
-		list(name="full auto",	burst=1, burst_delay=1.2, recoil=1.8, move_delay=2, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=1.8, move_delay=0, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
 		)
 	sel_mode = 1
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
@@ -447,7 +447,7 @@
 	magazine_type = /obj/item/ammo_magazine/mp40/c9x19mm_stenmk2
 	weight = 4.2
 	firemodes = list(
-		list(name="full auto",	burst=1, burst_delay=1.2, recoil=1, move_delay=2, dispersion = list(0.6, 0.8, 1.0, 1.2, 1.4)),
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=1, move_delay=0, dispersion = list(0.6, 0.8, 1.0, 1.2, 1.4)),
 		)
 	sel_mode = 1
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL

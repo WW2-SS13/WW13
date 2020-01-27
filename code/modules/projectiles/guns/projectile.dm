@@ -140,7 +140,8 @@
 			//#ifndef DISABLE_CASINGS
 			var/area/src_area = get_area(src)
 			if (!src_area.lift_master())
-				chambered.loc = get_turf(src)
+				if(prob(10))
+					chambered.loc = get_turf(src)
 				playsound(loc, pick("sound/items/drop.ogg", "sound/items/drop2.ogg","sound/items/drop3.ogg","sound/items/drop4.ogg"), 10, TRUE, -5)
 			//#endif
 			playsound(loc, casing_sound, 50, TRUE)
