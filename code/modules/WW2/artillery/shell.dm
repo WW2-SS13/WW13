@@ -19,6 +19,11 @@
 	casing_state = "casing"
 	icon_state = "shell"
 
+/obj/item/artillery_shell/gaseous/fire
+	reagent_payload = "fire"
+	casing_state = "casing"
+	icon_state = "shell"
+
 /obj/item/artillery_shell/gaseous/green_cross/chlorine
 	reagent_payload = "chlorine_gas"
 	name = "Chlorine Shell"

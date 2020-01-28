@@ -620,6 +620,36 @@
 	icon_state = "cobble_vertical_dark"
 	interior = FALSE
 
+/turf/floor/plating/wooddeckvert
+	name = "wooden deck"
+	icon = 'icons/turf/flooring/naval.dmi'
+	icon_state = "Wood_deck_vert"
+	interior = FALSE
+
+/turf/floor/plating/wooddeckhz
+	name = "wooden deck"
+	icon = 'icons/turf/flooring/naval.dmi'
+	icon_state = "Wood_deck_HorizS"
+	interior = FALSE
+
+/turf/floor/plating/metald1
+	name = "metal deck"
+	icon = 'icons/turf/flooring/naval.dmi'
+	icon_state = "Metal_deck1"
+	interior = FALSE
+
+/turf/floor/plating/metald2
+	name = "metal deck"
+	icon = 'icons/turf/flooring/naval.dmi'
+	icon_state = "Metal_deck2"
+	interior = FALSE
+
+/turf/floor/plating/metald3
+	name = "metal deck"
+	icon = 'icons/turf/flooring/naval.dmi'
+	icon_state = "Metal_deck3"
+	interior = FALSE
+
 turf/air
 	icon_state = "air"
 	name = "air"

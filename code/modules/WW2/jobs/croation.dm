@@ -4,7 +4,7 @@ datum/job/german/croation
 datum/job/german/croation/soldier
 	title = "Croation Soldier"
 	selection_color = "#530909"
-	spawn_location = "JoinLatePartisan"
+	spawn_location = "JoinLateHeer"
 	is_croation = TRUE
 	// AUTOBALANCE
 	min_positions = 1
@@ -43,7 +43,7 @@ datum/job/german/croation/commander
 	is_commander = TRUE
 	head_position = TRUE
 	selection_color = "#2d2d63"
-	spawn_location = "JoinLatePartisan"
+	spawn_location = "JoinLateHeer"
 	additional_languages = list( "Russian" = 100, "German" = 100)
 	is_croation = TRUE
 

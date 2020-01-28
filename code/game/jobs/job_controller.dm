@@ -79,6 +79,7 @@ var/global/datum/controller/occupations/job_master
 	var/partisans_were_enabled = FALSE
 	var/croation_was_enabled = FALSE
 	var/terek_was_enabled = FALSE
+	var/ukraine_was_enabled = FALSE
 
 
 	var/admin_expected_clients = 0
@@ -144,6 +145,10 @@ var/global/datum/controller/occupations/job_master
 					continue
 			else if (J.is_croation)
 				if (!map.available_subfactions.Find(CROATION))
+					J.total_positions = 0
+					continue
+			else if (J.is_uia)
+				if (!map.available_subfactions.Find(UKRAINE))
 					J.total_positions = 0
 					continue
 

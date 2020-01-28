@@ -5,7 +5,7 @@
 /datum/job/german/uia/soldier
 	title = "UIA Soldier"
 	selection_color = "#530909"
-	spawn_location = "JoinLatePartisan"
+	spawn_location = "JoinLateHeer"
 	is_uia = TRUE
 
 	// AUTOBALANCE
@@ -46,7 +46,7 @@
 	is_commander = TRUE
 	head_position = TRUE
 	selection_color = "#2d2d63"
-	spawn_location = "JoinLatePartisanLeader"
+	spawn_location = "JoinLateHeer"
 	additional_languages = list( "Russian" = 100, "German" = 100)
 	is_uia = TRUE
 	// AUTOBALANCE

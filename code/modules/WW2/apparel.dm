@@ -1319,6 +1319,15 @@
 	item_state = "winter_coat"
 	worn_state = "winter_coat"
 
+
+/obj/item/clothing/suit/storage/lifevest
+	name = "Life Vest"
+	desc = "An ordinary life vest."
+	icon_state = "lifevest"
+	item_state = "lifevest"
+	worn_state = "lifevest"
+
+
 /obj/item/clothing/suit/storage/coat/terek
 	name = "Terek Soldier's Coat"
 	desc = "An ordinary winter coat issued to Terek soldiers."

@@ -164,7 +164,7 @@ var/global/obj/map_metadata/map = null
 			switch (H.original_job.base_type_flag())
 				if (SOVIET, USA, POLISH_INSURGENTS)
 					return !soviets_can_cross_blocks()
-				if (GERMAN, ITALIAN, PARTISAN, CIVILIAN, JAPAN, TEREK, CROATION)
+				if (GERMAN, ITALIAN, PARTISAN, CIVILIAN, JAPAN, TEREK, CROATION, UKRAINE)
 					return !germans_can_cross_blocks()
 				if (PILLARMEN)
 					return !specialfaction_can_cross_blocks()
