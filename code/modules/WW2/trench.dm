@@ -5,7 +5,7 @@ var/list/global/floor_cache = list()
 	icon = 'icons/WW2/trench.dmi'
 	icon_state = "trench"
 	base_icon_state = "trench"
-	move_delay = 2
+	move_delay = 0.2
 	//var/image/over_OS_darkness = null
 	plane = UNDERFLOOR_PLANE
 	initial_flooring = /decl/flooring/trench
@@ -37,14 +37,15 @@ var/list/global/floor_cache = list()
 /turf/floor/trench/attackby(obj/item/C as obj, mob/user as mob,mob/living/carbon/human/H as mob)
 	if (istype(C, /obj/item/stack/material/wood))
 		if (H)
-			if (H.getStatCoeff("engineering") < GET_MIN_STAT_COEFF(STAT_VERY_HIGH))
+			if (H.getStatCoeff("engineering") < GET_MIN_STAT_COEFF(STAT_MEDIUM_LOW))
 				H << "<span class = 'notice'>You have no idea of how to build this.</span>"
 				return
 			visible_message("<span class = 'notice'>[H] starts to reinforce a trench.</span>")
 			if (!do_after(H, 100, src))
 				return
 			icon_state = "trench_reinforced"
-			move_delay = 0.5
+			base_icon_state = "trench_reinforced"
+			move_delay = 0
 
 /turf/floor/plating/dirt
 	var/trench_stage = 0
