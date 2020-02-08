@@ -192,6 +192,7 @@
 		/obj/item/clothing/accessory/storage/webbing = 20,
 
 		/obj/item/clothing/head/helmet/gerhelm/sshelm = 10,
+		/obj/item/clothing/head/helmet/gerhelm/sshelm/dark = 20,
 		/obj/item/clothing/mask/gas/german = 10,
 		/obj/item/clothing/shoes/swat = 10,
 

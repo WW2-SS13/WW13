@@ -727,6 +727,12 @@
 	icon_state = "sshelm"
 	item_state = "sshelm"
 
+/obj/item/clothing/head/helmet/gerhelm/sshelm/dark
+	name = "SS helmet"
+	desc =  "A metal helmet issued to SS soldiers, blackened to strike fear into the untermensch!."
+	icon_state = "ss_darkhelm"
+	item_state = "ss_darkhelm"
+
 /obj/item/clothing/head/helmet/gerhelm/MP
 	name = "German MP helmet"
 	desc =  "A fancy metal helmet issued to German military police."
