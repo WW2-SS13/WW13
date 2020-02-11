@@ -40,6 +40,7 @@
 		qdel(M)
 		return
 
+
 	if ( istext(new_name) )
 		M.name = new_name
 		M.real_name = new_name

@@ -1767,7 +1767,7 @@
 "HY" = (/obj/structure/closet/crate/medical,/obj/structure/light/small{dir = 4},/turf/floor/wood,/area/prishtina/no_mans_land/sector4)
 "HZ" = (/obj/structure/closet/crate/steel,/obj/structure/light/small{dir = 8},/turf/floor/wood,/area/prishtina/no_mans_land/sector4)
 "Ia" = (/obj/structure/table/wood,/obj/structure/light/small,/turf/floor/wood,/area/prishtina/no_mans_land/sector4)
-"Ib" = (/obj/tank/ambulance,/turf/floor/plating/road,/area/prishtina/no_mans_land/sector4)
+"Ib" = (/turf/floor/plating/road,/area/prishtina/no_mans_land/sector4)
 "Ic" = (/obj/snow_maker,/obj/tank/sdkfz251,/turf/floor/plating/road,/area/prishtina/german/main_area)
 "Id" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector3)
 "Ie" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/item/mine/tm46,/obj/item/mine/tm46,/obj/item/mine/tm46,/obj/item/mine/tm46,/obj/item/mine/tm46,/obj/structure/closet/crate/empty{name = "AT Mines Crate"},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/armory)
