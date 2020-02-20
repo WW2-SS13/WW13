@@ -449,7 +449,7 @@
 					else if (isitem(O)) // any item
 						var/obj/item/I = O
 						hitchance = 25 * I.w_class // a pistol would be 50%
-					if (prob(hitchance))
+					if (1 == 1) //No more misses.
 						do_bullet_act(O)
 						bumped = TRUE
 						loc = null
