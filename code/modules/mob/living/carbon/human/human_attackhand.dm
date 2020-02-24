@@ -287,7 +287,7 @@
 					visible_message("<span class='warning'>[M] attempted to push [src]!</span>")
 				return
 
-			if (randn <= 60)
+			if (prob(80*H.getStatCoeff("strength")))
 				//See about breaking grips or pulls
 				if (break_all_grabs(M))
 					playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)

@@ -379,6 +379,17 @@ var/list/rank_prefix = list(\
 	return ..(shock_damage, source, siemens_coeff, def_zone)
 
 
+/mob/living/carbon/human/MouseDrop_T(var/atom/dropping, var/mob/user as mob)
+	var/dat
+
+	dat += "<A href='?src=\ref[src];choice=order'><b>*the* menu.</b></A><br>"
+	dat += "<b>Points left</b>: <br>"
+
+	//var/popup = new /datum/browser(user, "letter", "Letter", 450, 700)
+	//popup.set_content(dat)
+	//popup.open()
+
+
 /mob/living/carbon/human/Topic(href, href_list)
 
 	if (href_list["refresh"])

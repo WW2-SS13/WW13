@@ -644,7 +644,7 @@ default behaviour is:
 			if (GRAB_PASSIVE)
 				qdel(G)
 			if (GRAB_AGGRESSIVE)
-				if (prob(60)) //same chance of breaking the grab as disarm
+				if (prob(60-10*(G.assailant.getStatCoeff("strength")))) //same chance of breaking the grab as disarm
 					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s grip!</span>")
 					qdel(G)
 			if (GRAB_NECK)

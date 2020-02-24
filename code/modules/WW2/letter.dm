@@ -14,7 +14,7 @@
 		new /datum/data/agent_equipment("Sniper Scope", /obj/item/weapon/attachment/scope/adjustable/sniper_scope, 10, 1),
 		new /datum/data/agent_equipment("Plastiqe Explosives", /obj/item/weapon/plastique/russian, 15, 1),
 		new /datum/data/agent_equipment("Shotgun", /obj/item/weapon/gun/projectile/shotgun/pump, 40, 1),
-		new /datum/data/agent_equipment("Blyskawica", /obj/item/weapon/gun/projectile/submachinegun/bly, 50, 1),
+		new /datum/data/agent_equipment("Blyskawica", /obj/item/weapon/gun/projectile/submachinegun/bly, 40, 1),
 		new /datum/data/agent_equipment("Knife", /obj/item/weapon/material/knife/combat, 10, 1),
 		new /datum/data/agent_equipment("Black Paint (great for night time stealth) ", /obj/item/weapon/reagent_containers/glass/paint/black, 10, 1),
 		new /datum/data/agent_equipment("Kamikaze Charge", /obj/item/weapon/grenade/explosive/kamikaze, 50, 1)
