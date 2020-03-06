@@ -993,7 +993,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	implants += W
 	owner.embedded_flag = TRUE
 	owner.verbs += /mob/proc/yank_out_object
-	adjustBruteLoss(pick(25,30))
+	owner.adjustBruteLoss(pick(25,30))
 	W.add_blood(owner)
 	if (ismob(W.loc))
 		var/mob/living/H = W.loc
