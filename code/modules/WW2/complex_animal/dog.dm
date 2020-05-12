@@ -150,7 +150,7 @@
 		return
 	if (!dd_hassuffix(message, "!"))
 		return
-	message = copytext(message, TRUE, lentext(message))
+	message = copytext(message, TRUE, length(message))
 //	world << "1. [message]"
 	// parse message into a command
 	var/rank = H.original_job ? lowertext(H.original_job.title) : null

@@ -9,7 +9,7 @@
 	if (!bugname)
 		return
 
-	if (lentext(bugname) > 100)
+	if (length(bugname) > 100)
 		bugname = copytext(bugname, TRUE, 101)
 		src << "<span class = 'warning'>Your bug's name was clamped to 100 characters.</span>"
 
@@ -23,7 +23,7 @@
 	redesc
 
 	var/bugdesc = input("What is the bug's description?") as text
-	if (lentext(bugdesc) > 500)
+	if (length(bugdesc) > 500)
 		bugdesc = copytext(bugdesc, TRUE, 501)
 		src << "<span class = 'warning'>Your bug's description was clamped to 500 characters.</span>"
 
@@ -40,7 +40,7 @@
 		while ((input("Add another step? (#[stepnum])") in list ("Yes", "No")) == "Yes")
 			var/step = input("What is a description of step number #[stepnum]?") as text
 			step = sanitizeSQL(step)
-			if (lentext(step) > 200)
+			if (length(step) > 200)
 				step = copytext(step, TRUE, 201)
 				src << "<span class = 'warning'>[step] #[stepnum] was clamped to 200 characters.</span>"
 			steps += step
@@ -62,7 +62,7 @@
 			steps2string += "&"
 
 	var/anything_else = input("Anything else?") as text
-	if (lentext(anything_else) > 1000)
+	if (length(anything_else) > 1000)
 		bugdesc = copytext(anything_else, 1, 1001)
 		src << "<span class = 'warning'>Your bug's 'anything else' value was clamped to 1000 characters.</span>"
 
@@ -97,7 +97,7 @@
 		var/tip = input("What is this tip?") as null|text
 		if (!tip)
 			return
-		if (lentext(tip) > 500)
+		if (length(tip) > 500)
 			tip = copytext(tip, TRUE, 501)
 			src << "<span class = 'warning'>Your tip's name was clamped to 500 characters.</span>"
 		tip = sanitizeSQL(tip, 500)
@@ -115,7 +115,7 @@
 		if (!suggname)
 			return
 
-		if (lentext(suggname) > 100)
+		if (length(suggname) > 100)
 			suggname = copytext(suggname, TRUE, 101)
 			src << "<span class = 'warning'>Your suggestion's name was clamped to 50 characters.</span>"
 
@@ -129,7 +129,7 @@
 		redesc
 
 		var/suggdesc = input("What is the suggestions's description?") as text
-		if (lentext(suggdesc) > 500)
+		if (length(suggdesc) > 500)
 			suggdesc = copytext(suggdesc, TRUE, 501)
 			src << "<span class = 'warning'>Your suggestion's description was clamped to 500 characters.</span>"
 

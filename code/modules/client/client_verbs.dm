@@ -242,7 +242,7 @@
 	var/msg_prefix = ""
 
 	if (dd_hasprefix(msg, ">>") && (isPatron("$3+") || holder.rights))
-		msg = copytext(msg, 3, lentext(msg)+1)
+		msg = copytext(msg, 3, length(msg)+1)
 		msg_prefix = "<span style = 'color:green'>></span>"
 
 	msg = sanitize(msg)
