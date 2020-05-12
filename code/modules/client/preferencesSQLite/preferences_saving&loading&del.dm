@@ -165,7 +165,7 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 			params += ";"*/
 
 	if (dd_hassuffix(params, ";"))
-		params = copytext(params, 1, lentext(params))
+		params = copytext(params, 1, length(params))
 /*
 	if (preferences_disabled.len)
 		if (params)
@@ -177,7 +177,7 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 			params += ";"*/
 
 	if (dd_hassuffix(params, ";"))
-		params = copytext(params, 1, lentext(params))
+		params = copytext(params, 1, length(params))
 
 	var/list/prefs_exist_check = database.execute("SELECT * FROM preferences WHERE ckey = '[client_ckey]' AND slot = '[slot]';")
 	if (islist(prefs_exist_check) && !isemptylist(prefs_exist_check))

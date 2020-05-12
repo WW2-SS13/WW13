@@ -22,7 +22,7 @@
 	var/atom/original = null // the target clicked (not necessarily where the projectile is headed). Should probably be renamed to 'target' or something.
 	var/turf/starting = null // the projectile's starting turf
 	var/list/permutated = list() // we've passed through these atoms, don't try to hit them again
-
+	var/hitchance = 60
 	var/p_x = 16
 	var/p_y = 16 // the pixel location of the tile that the player clicked. Default is the center
 
@@ -441,7 +441,7 @@
 			// needs to be its own loop for reasons
 			for (var/obj/O in T.contents)
 				if (O == original)
-					var/hitchance = 60 // a light, for example. This was 66%, but that was unusually accurate, thanks BYOND
+					hitchance = 60 // a light, for example. This was 66%, but that was unusually accurate, thanks BYOND
 					if (isstructure(O) && !istype(O, /obj/structure/light))
 						hitchance = 100
 					else if (!isitem(O) && isnonstructureobj(O)) // a tank, for example.
