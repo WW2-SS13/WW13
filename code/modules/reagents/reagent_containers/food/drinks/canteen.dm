@@ -38,6 +38,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/soviet
 	icon_state = "canteen_soviet"
 	name = "Soviet Soldier's Canteen"
+	isGlass = FALSE
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/soviet/officer
 	icon_state = "canteen_soviet_officer"
