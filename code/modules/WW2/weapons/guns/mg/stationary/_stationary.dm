@@ -47,6 +47,10 @@
 	KD_chance = KD_CHANCE_VERY_LOW
 	stat = "MG"
 
+/obj/item/weapon/gun/projectile/automatic/stationary/AltClick(mob/usr)
+	if (locate(usr) in range(1, src))
+		try_remove_mag(usr)
+
 /obj/item/weapon/gun/projectile/automatic/stationary/attack_hand(var/mob/user)
 
 	if (last_user && last_user != user)

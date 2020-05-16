@@ -170,9 +170,9 @@
 					if (SOUTH, SOUTHEAST, SOUTHWEST)
 						special_MG.loc = locate(T.x, T.y-1, T.z)
 					if (EAST)
-						special_MG.loc = locate(T.x+3, T.y+1, T.z)
+						special_MG.loc = locate(T.x+4, T.y+1, T.z)
 					if (WEST)
-						special_MG.loc = locate(T.x-2, T.y+1, T.z)
+						special_MG.loc = locate(T.x-1, T.y+1, T.z)
 				tankcheck = TRUE
 
 		if (special_MG && special_MG.loc)
