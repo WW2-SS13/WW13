@@ -430,14 +430,14 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
-	paths = list(/obj/item/weapon/plastique/german = 4)
+	paths = list(/obj/item/weapon/plastique/german = 3)
 
 /obj/structure/closet/crate/soviet_satchels
 	name = "Satchel charges crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
-	paths = list(/obj/item/weapon/plastique/russian = 4)
+	paths = list(/obj/item/weapon/plastique/russian = 3)
 
 /obj/structure/closet/crate/soviet_grenade
 	name = "RGD-33 crate"
