@@ -84,17 +84,25 @@
 	var/check_bolt_lock = FALSE //For locking the bolt. Didn't put this in with check_bolt to avoid issues
 	var/bolt_safety = FALSE //If true, locks the bolt when gun is empty
 	var/next_reload = -1
-	var/jammed_until = -1
+	//var/jammed_until = -1
 	var/jamcheck = 0
 	var/last_fire = -1
 
 /obj/item/weapon/gun/projectile/boltaction/attack_self(mob/user)
+	var/mob/living/carbon/human/H = user //Yes its shitcode fuck you.
 	if (!check_bolt)//Keeps people from spamming the bolt
 		check_bolt++
 		if (!do_after(user, 2, src, FALSE, TRUE, INCAPACITATION_DEFAULT, TRUE))//Delays the bolt
 			check_bolt--
 			return
 	else return
+
+	if (jammed)
+		user.visible_message("<span class = 'notice'>\The [user] starts to unjam the \the [src].</span>")
+		if (do_after(user,60/(H.getStatCoeff("rifle"))))
+			user << "<span class = 'danger'>With a click, the gun becomes unjammed.</span>"
+			jammed = FALSE
+
 	if (check_bolt_lock || feedfailure)
 		user << "<span class='notice'>The bolt won't move!</span>"
 		check_bolt--
@@ -167,7 +175,7 @@
 		++jamcheck
 
 	if (prob(jamcheck))
-		jammed_until = max(world.time + (jamcheck * 5), 50)
+		jammed = TRUE
 		jamcheck = 0
 
 	last_fire = world.time

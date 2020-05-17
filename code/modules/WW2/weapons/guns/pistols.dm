@@ -9,7 +9,6 @@
 	fire_delay = 3
 	handle_casings = EJECT_CASINGS
 	var/jamcheck
-	var/jammed_until
 	drawsound = "sound/items/pistol.ogg"
 	accuracy_list = list(
 
@@ -62,16 +61,29 @@
 	stat = "pistol"
 	aim_miss_chance_divider = 2.00
 
+/obj/item/weapon/gun/projectile/pistol/attack_self(mob/user)
+	var/mob/living/carbon/human/H = user //Yes its shitcode fuck you.
+	if (jammed)
+		user.visible_message("<span class = 'notice'>\The [user] starts to unjam the \the [src].</span>")
+		if (do_after(user,60/(H.getStatCoeff("pistol"))))
+			user << "<span class = 'danger'>With a click, the gun becomes unjammed.</span>"
+			jammed = FALSE
+		return
+	if (firemodes.len > 1)
+		..()
+	else
+		unload_ammo(user)
+
 /obj/item/weapon/gun/projectile/pistol/handle_post_fire()
 	..()
 
 	jamcheck = pick(0,5,10,15,25)
 
 	if (prob(jamcheck))
-		jammed_until = max(world.time + 50, 50)
+		jammed = TRUE
 		jamcheck = 0
 
-	//last_fire = world.time
+	//WHY DOESNT THIS USE THE SAME CODE? I DONT KNOW
 
 /obj/item/weapon/gun/projectile/pistol/attackby(obj/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/attachment/bayonet))

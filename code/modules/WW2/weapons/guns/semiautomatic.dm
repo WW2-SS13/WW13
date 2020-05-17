@@ -56,10 +56,21 @@
 	headshot_kill_chance = 35
 	KO_chance = 30
 	handle_casings = EJECT_CASINGS
-
-	var/jammed_until = -1
 	var/jamcheck = 0
 	var/last_fire = -1
+
+/obj/item/weapon/gun/projectile/semiautomatic/attack_self(mob/user)
+	var/mob/living/carbon/human/H = user //Yes its shitcode fuck you.
+	if (jammed)
+		user.visible_message("<span class = 'notice'>\The [user] starts to unjam the \the [src].</span>")
+		if (do_after(user,60/(H.getStatCoeff("rifle"))))
+			user << "<span class = 'danger'>With a click, the gun becomes unjammed.</span>"
+			jammed = FALSE
+		return
+	if (firemodes.len > 1)
+		..()
+	else
+		unload_ammo(user)
 
 /obj/item/weapon/gun/projectile/semiautomatic/handle_post_fire()
 	..()
@@ -73,8 +84,9 @@
 		++jamcheck
 
 	if (prob(jamcheck*2))
-		jammed_until = max(world.time + (jamcheck * 5), 50)
+		jammed = TRUE
 		jamcheck = 0
+		//Again its different code for calculating this, fucking why
 
 	last_fire = world.time
 

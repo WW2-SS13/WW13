@@ -127,10 +127,11 @@
 		else
 			handle_click_empty(user)
 		return FALSE
-	if (istype(src, /obj/item/weapon/gun/projectile/boltaction) || istype(src, /obj/item/weapon/gun/projectile/semiautomatic) || istype(src, /obj/item/weapon/gun/projectile/pistol))
-		var/obj/item/weapon/gun/projectile/boltaction/B = src // this is hackey
-
-		if (B.jammed_until > world.time)
+	if (istype(src, /obj/item/weapon/gun/projectile/boltaction) || istype(src, /obj/item/weapon/gun/projectile/semiautomatic) || istype(src, /obj/item/weapon/gun/projectile/pistol)|| istype(src, /obj/item/weapon/gun/projectile/submachinegun))
+		//I hate myself for this fix, fuck my life. Jams should be handled on the fucking gun/projectile level not on each different weapon type but fuck me right?
+		var/obj/item/weapon/gun/projectile/B = src
+		//if (B.jammed_until > world.time)
+		if (B.jammed)
 			user << "<span class = 'danger'>The [B] has jammed! You can't fire it until it has unjammed.</span>"
 			return FALSE
 	return TRUE

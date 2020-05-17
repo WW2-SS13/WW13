@@ -1,6 +1,10 @@
+
 /obj/item/weapon/gun/projectile/submachinegun
 	force = 10
 	throwforce = 20
+	var/jamcheck = 0
+	var/last_fire = -1
+
 
 	// more accuracy than MGs, less than everything else
 	accuracy_list = list(
@@ -90,6 +94,38 @@
 			item_state = "mp400"*/
 	update_held_icon()
 	return
+
+/obj/item/weapon/gun/projectile/submachinegun/handle_post_fire()
+	..()
+
+	if (istype(src, /obj/item/weapon/gun/projectile/semiautomatic/stg) || istype(src, /obj/item/weapon/gun/projectile/semiautomatic/fg42))
+		return
+
+	if (world.time - last_fire > 50)
+		jamcheck = 0
+	else
+		++jamcheck
+
+	if (prob(jamcheck*0.2))
+		jammed = TRUE
+		jamcheck = 0
+		//Again its different code for calculating this, fucking why
+		//Only way to check the users skill to test for a jam is to handle this as the user fires, not after. but fuck me right?
+
+	last_fire = world.time
+
+/obj/item/weapon/gun/projectile/submachinegun/attack_self(mob/user)
+	var/mob/living/carbon/human/H = user //Yes its shitcode fuck you.
+	if (jammed)
+		user.visible_message("<span class = 'notice'>\The [user] starts to unjam the \the [src].</span>")
+		if (do_after(user,60/(H.getStatCoeff("smg"))))
+			user << "<span class = 'danger'>With a click, the gun becomes unjammed.</span>"
+			jammed = FALSE
+		return
+	if (firemodes.len > 1)
+		..()
+	else
+		unload_ammo(user)
 
 /obj/item/weapon/gun/projectile/submachinegun/bly
 	name = "blyskawica"
