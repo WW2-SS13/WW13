@@ -12,7 +12,7 @@
 	if (name != rank_prefix_name(GetVoice()))
 		alt_name = "(as [rank_prefix_name(get_id_name())])"
 
-	message = capitalize_cp1251(sanitize(message))
+//	message = capitalize_cp1251(sanitize(message))
 	var/message_without_html = message
 
 	if (!dd_hasprefix(message, ";") && !dd_hasprefix(message, ":b") && !dd_hasprefix(message, ":r") && !dd_hasprefix(message, ":l") && !dd_hasprefix(message, ":f"))
@@ -24,12 +24,12 @@
 	var/normal_message = message
 	for (var/rp in radio_prefixes)
 		if (dd_hasprefix(normal_message, rp))
-			normal_message = copytext(normal_message, lentext(rp)+1, lentext(normal_message)+1)
+			normal_message = copytext(normal_message, length(rp)+1, length(normal_message)+1)
 
 	var/normal_message_without_html = message_without_html
 	for (var/rp in radio_prefixes)
 		if (dd_hasprefix(normal_message_without_html, rp))
-			normal_message_without_html = copytext(normal_message_without_html, lentext(rp)+1, lentext(normal_message_without_html)+1)
+			normal_message_without_html = copytext(normal_message_without_html, length(rp)+1, length(normal_message_without_html)+1)
 
 	..(normal_message, alt_name = alt_name, alt_message = normal_message_without_html)
 

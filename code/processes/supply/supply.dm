@@ -62,6 +62,8 @@
 		"7,5 cm FK 18 Artillery Piece" = /obj/structure/artillery,
 		"Luger Crate" = /obj/structure/closet/crate/lugers,
 		"Movable MG34" = /obj/item/weapon/gun/projectile/automatic/stationary/kord/mg34,
+		"Satchel Charges x4" = /obj/structure/closet/crate/german_satchels,
+		"Large Satchel Charge" = /obj/item/weapon/plastique/largerussian,
 
 		// ARTILLERY AMMO
 		"Artillery Ballistic Shells Crate" = /obj/structure/closet/crate/artillery,
@@ -136,6 +138,8 @@
 		"PTRD" = /obj/item/weapon/gun/projectile/heavy/ptrd,
 		"37mm Spade Mortar" = /obj/structure/mortar/spade,
 		"Maxim" = /obj/item/weapon/gun/projectile/automatic/stationary/kord/maxim,
+		"Satchel Charges x4" = /obj/structure/closet/crate/soviet_satchels,
+		"Large Satchel Charge" = /obj/item/weapon/plastique/largerussian,
 
 		// CLOSETS
 		"Tool Closet" = /obj/structure/closet/toolcloset,
@@ -228,6 +232,8 @@
 		"Colt Crate" = 400,
 		"Maxim" = 300,
 		"Movable MG34" = 300,
+		"Satchel Charges x4" = 200,
+		"Large Satchel Charge" = 200,
 
 		// ARTILLERY AMMO
 		"Artillery Ballistic Shells Crate" = 150,

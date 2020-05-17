@@ -1110,6 +1110,12 @@
 	icon_state = "ba_suit"
 	item_state = "ba_suit"
 
+/obj/item/clothing/under/gerdoctor
+	name = "German doctor's uniform"
+	desc = "A sterile, nicely pressed suit for german doctors."
+	icon_state = "gerdoc_suit"
+	item_state = "gerdoc_suit"
+
 // soviets and partisans
 
 /obj/item/clothing/shoes/swat/wrappedboots
@@ -1119,6 +1125,12 @@
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = FALSE)
 	item_flags = NOSLIP
 	siemens_coefficient = 0.6
+
+/obj/item/clothing/under/sovdoctor
+	name = "Soviet doctor's uniform"
+	desc = "A sterile, nicely pressed suit for soviet doctors."
+	icon_state = "sovdoc_suit"
+	item_state = "sovdoc_suit"
 
 // italians
 

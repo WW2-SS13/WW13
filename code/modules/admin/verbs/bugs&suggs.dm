@@ -45,7 +45,7 @@ var/sepstring = ""
 						var/value = bugreports[key]
 						src << "<span class = 'notice'>[key] = [value]</span>"
 					var/steps = bugreports["steps"]
-					if (lentext(steps))
+					if (length(steps))
 						var/list/stepslist = splittext(steps, "&")
 						var/stepnum = FALSE
 						src << "<br><br>***TO REPRODUCE ERROR***<br><br>"
