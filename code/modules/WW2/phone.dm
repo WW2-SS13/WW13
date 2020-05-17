@@ -35,10 +35,10 @@ var/list/soviet_traitors = list()
 
 // these new values assume an average round length of 70 minutes - Kachnov
 /obj/item/weapon/phone/tohighcommand/proc/may_bombard_base_outside()
-	return processes.ticker.playtime_elapsed >= 21000 // 35 minutes: about half an average round's length
+	return processes.ticker.playtime_elapsed >= 1 // 35 minutes: about half an average round's length
 
 /obj/item/weapon/phone/tohighcommand/proc/may_bombard_base_inside()
-	return processes.ticker.playtime_elapsed >= 31800 // 53 minutes: about 3/4 an average round's length
+	return processes.ticker.playtime_elapsed >= 1 // 53 minutes: about 3/4 an average round's length
 
 /obj/item/weapon/phone/tohighcommand/proc/may_bombard_base_message()
 	if (may_bombard_base_outside())
@@ -55,11 +55,7 @@ var/list/soviet_traitors = list()
 		if (passcheck != processes.supply.codes[faction])
 			H << "<span class = 'warning'>Nothing happens. Perhaps the password was incorrect.</span>"
 			return
-
-	if (map && !map.katyushas)
-		options -= RAID
-	if (faction == GERMAN)
-		options -= RAID
+s
 	if (istype(H))
 		var/dowhat = input(H, "What would you like to do?") in options + "Cancel"
 		if (dowhat != "Cancel")
