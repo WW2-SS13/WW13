@@ -83,7 +83,7 @@
 	else
 		++jamcheck
 
-	if (prob(jamcheck*2))
+	if (prob(jamcheck*0.5))
 		jammed = TRUE
 		jamcheck = 0
 		//Again its different code for calculating this, fucking why
