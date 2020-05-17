@@ -126,6 +126,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/maxim = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/mg34belt
@@ -133,6 +134,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/maxim/mg34_belt = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/type92belt
@@ -140,6 +142,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/maxim/type92_belt = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/bint
@@ -178,6 +181,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/mosin = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/ppshammo
@@ -185,6 +189,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/a556/ppsh = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/lugerammo
@@ -192,6 +197,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/luger = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/c45ammo
@@ -199,6 +205,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/c45m = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/kar98kammo
@@ -206,6 +213,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/kar98k = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/mp40kammo
@@ -213,6 +221,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/mp40 = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/mg34ammo
@@ -220,6 +229,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/a792 = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/mp43ammo
@@ -227,6 +237,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/a762/akm = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/ptrdammo
@@ -234,6 +245,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_casing/a145 = 12)
 
 /obj/structure/closet/crate/tokarevammo
@@ -241,6 +253,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/c762mm_tokarev = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/mauserammo
@@ -248,6 +261,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/c763x25mm_mauser = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/waltherammo
@@ -255,6 +269,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/p9x19mm = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/ppsammo
@@ -262,6 +277,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/c762x25mm_pps = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/stenammo
@@ -269,6 +285,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/mp40/c9x19mm_stenmk2 = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/nagantrevolverammo
@@ -276,6 +293,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/c762x38mmR = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/bettymines
@@ -283,6 +301,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/mine/betty = 12)
 
 /obj/structure/closet/crate/dpammo
@@ -290,6 +309,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/a762/dp = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/svtammo
@@ -297,6 +317,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/svt = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/type99ammo
@@ -304,6 +325,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/c77x58_smg = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/m1garand
@@ -311,6 +333,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/c762x63 = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/bar_ammo
@@ -318,6 +341,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/c762x63_smg = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/c45m
@@ -325,6 +349,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/c45m = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/c8mmnambu
@@ -332,6 +357,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/c8mmnambu = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/a77x58
@@ -339,6 +365,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/a77x58 = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/c8mmnambu_smg
@@ -346,6 +373,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/c8mmnambu_smg = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/fg42_ammo
@@ -353,6 +381,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/c792x57_fg42 = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/Thompson_ammo
@@ -360,6 +389,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/ammo_magazine/thompson_ammo = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/german_grenade
@@ -367,6 +397,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/weapon/grenade/explosive/stgnade = 7)
 
 /obj/structure/closet/crate/german_grenade2
@@ -374,6 +405,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/weapon/grenade/explosive/l2a2 = 7)
 
 /obj/structure/closet/crate/jap_type97
@@ -381,6 +413,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/weapon/grenade/explosive/type97 = 7)
 
 /obj/structure/closet/crate/jap_type91
@@ -388,6 +421,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/weapon/grenade/explosive/type91 = 7)
 
 /obj/structure/closet/crate/US_mk2
@@ -395,6 +429,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/weapon/grenade/explosive/mk2 = 7)
 
 /obj/structure/closet/crate/panzerfaust
@@ -402,6 +437,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/weapon/gun/launcher/rocket/panzerfaust = 5)
 
 /obj/structure/closet/crate/mortar_shells
@@ -409,6 +445,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/mortar_shell = 12)
 
 /obj/structure/closet/crate/german_smoke_grenade
@@ -416,6 +453,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/weapon/grenade/smokebomb/german = 7)
 
 /obj/structure/closet/crate/soviet_smoke_grenade
@@ -423,6 +461,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/weapon/grenade/smokebomb/soviet = 7)
 
 /obj/structure/closet/crate/german_satchels
@@ -430,6 +469,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/weapon/plastique/german = 3)
 
 /obj/structure/closet/crate/soviet_satchels
@@ -437,6 +477,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/weapon/plastique/russian = 3)
 
 /obj/structure/closet/crate/soviet_grenade
@@ -444,6 +485,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/weapon/grenade/explosive/rgd = 7)
 
 /obj/structure/closet/crate/soviet_grenade2
@@ -451,6 +493,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/weapon/grenade/explosive/f1 = 7)
 
 /obj/structure/closet/crate/US_smokegernade
@@ -458,6 +501,7 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	ammo = TRUE
 	paths = list(/obj/item/weapon/grenade/smokebomb/usa = 7)
 
 /obj/structure/closet/crate/sandbags

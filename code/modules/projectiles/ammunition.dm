@@ -36,6 +36,19 @@
 	set_dir(pick(cardinal)) //spin spent casings
 	update_icon()
 
+/obj/item/ammo_casing/proc/cook()
+	var/turf/T = get_turf(src)
+	var/list/target_turfs = getcircle(T, 3)
+	for (var/turf/TT in target_turfs)
+		var/obj/item/projectile/bullet/pellet/fragment/P = new /obj/item/projectile/bullet/pellet/fragment(T)
+		P.damage = 8
+		P.pellets = 10
+		P.range_step = 3
+		P.shot_from = name
+		P.launch_fragment(TT)
+	for (T in getcircle(4, T))
+		new/obj/effect/decal/cleanable/dirt(T)
+
 /obj/item/ammo_casing/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/screwdriver))
 		if (!BB)

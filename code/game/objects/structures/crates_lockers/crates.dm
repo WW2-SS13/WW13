@@ -12,6 +12,7 @@
 	close_sound = "sound/items/War_UI_Inventory_Loot_Open_Lockbox_2.ogg"
 //	mouse_drag_pointer = MOUSE_ACTIVE_POINTER	//???
 	var/rigged = FALSE
+	var/ammo = FALSE
 
 // climbing crates - Kachnov
 /obj/structure/closet/crate/MouseDrop_T(mob/target, mob/user)
@@ -93,21 +94,42 @@
 			return
 	else return attack_hand(user)
 
+/obj/structure/closet/crate/proc/cook()
+	if(src.ammo)
+		var/turf/T = get_turf(src)
+		var/list/target_turfs = getcircle(T, 3)
+		for (var/turf/TT in target_turfs)
+			var/obj/item/projectile/bullet/pellet/fragment/P = new /obj/item/projectile/bullet/pellet/fragment(T)
+			P.damage = 15
+			P.pellets = 10
+			P.range_step = 3
+			P.shot_from = name
+			P.launch_fragment(TT)
+		for (T in getcircle(4, T))
+			new/obj/effect/decal/cleanable/dirt(T)
+		return
+	else
+		return
+
 /obj/structure/closet/crate/ex_act(severity)
+
 	switch(severity)
 		if (1.0)
 			for (var/obj/O in contents)
 				qdel(O)
+			src.cook()
 			qdel(src)
 			return
 		if (2.0)
 			for (var/obj/O in contents)
 				if (prob(50))
 					qdel(O)
+			src.cook()
 			qdel(src)
 			return
 		if (3.0)
 			if (prob(50))
+				src.cook()
 				qdel(src)
 			return
 		else
