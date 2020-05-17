@@ -14,7 +14,7 @@
 	anchored = FALSE
 	auto_eject = TRUE
 	firemodes = list(
-		list(name="default", burst=6, burst_delay=0.6, fire_delay=1.0, dispersion=list(0.9, 1.1, 1.1, 1.1, 1.3), accuracy=list(2))
+		list(name="full auto",	burst=1, burst_delay=1.2, recoil=1.0, dispersion=list(0.9, 1.1, 1.1, 1.1, 1.3),accuracy=list(2)),
 		)
 	fire_delay = 3
 

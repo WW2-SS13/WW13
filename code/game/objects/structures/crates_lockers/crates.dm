@@ -96,6 +96,7 @@
 
 /obj/structure/closet/crate/proc/cook()
 	if(src.ammo)
+		explosion(get_turf(src),0,1,3)
 		var/turf/T = get_turf(src)
 		var/list/target_turfs = getcircle(T, 3)
 		for (var/turf/TT in target_turfs)
