@@ -55,7 +55,6 @@ var/list/soviet_traitors = list()
 		if (passcheck != processes.supply.codes[faction])
 			H << "<span class = 'warning'>Nothing happens. Perhaps the password was incorrect.</span>"
 			return
-s
 	if (istype(H))
 		var/dowhat = input(H, "What would you like to do?") in options + "Cancel"
 		if (dowhat != "Cancel")
@@ -95,7 +94,7 @@ s
 
 /proc/air_raid(faction, var/obj/item/weapon/phone/tohighcommand/caller, var/cost)
 
-	spawn (rand(40,60))
+	spawn (rand(5,15))
 
 		var/list/raiding = list()
 		if (faction == GERMAN)

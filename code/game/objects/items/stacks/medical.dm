@@ -11,6 +11,7 @@
 	var/heal_burn = 0
 
 /obj/item/stack/medical/attack(mob/living/carbon/C as mob, mob/user as mob)
+
 	if (!istype(C) )
 		if (!istype(C, /mob/living/simple_animal))
 			user << "<span class='warning'>\The [src] cannot be applied to [C]!</span>"
@@ -52,6 +53,7 @@
 //	origin_tech = list(TECH_BIO = TRUE)
 
 /obj/item/stack/medical/bruise_pack/attack(mob/living/M as mob, mob/user as mob)
+	var/mob/living/carbon/human/H_user = user
 	if (..())
 		return TRUE
 
@@ -74,7 +76,7 @@
 						continue
 					if (used == amount)
 						break
-					if (!do_mob(user, M, W.damage/5))
+					if (!do_mob(user, M, W.damage/(5*H_user.getStatCoeff("medical"))))
 						user << "<span class='notice'>You must stand still to bandage wounds.</span>"
 						break
 
@@ -129,6 +131,7 @@
 //	origin_tech = list(TECH_BIO = TRUE)
 
 /obj/item/stack/medical/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
+	var/mob/living/carbon/human/H_user = user
 	if (..())
 		return TRUE
 
@@ -143,7 +146,7 @@
 			else
 				user.visible_message("<span class='notice'>\The [user] starts salving wounds on [M]'s [affecting.name].</span>", \
 						             "<span class='notice'>You start salving the wounds on [M]'s [affecting.name].</span>" )
-				if (!do_mob(user, M, 10))
+				if (!do_mob(user, M, (10/H_user.getStatCoeff("medical"))))
 					user << "<span class='notice'>You must stand still to salve wounds.</span>"
 					return TRUE
 				user.visible_message("<span class='notice'>[user] salved wounds on [M]'s [affecting.name].</span>", \
@@ -168,6 +171,7 @@
 //	origin_tech = list(TECH_BIO = TRUE)
 
 /obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
+	var/mob/living/carbon/human/H_user = user
 	if (..())
 		return TRUE
 
@@ -190,7 +194,7 @@
 						continue
 					if (used == amount)
 						break
-					if (!do_mob(user, M, W.damage/5))
+					if (!do_mob(user, M, W.damage/(5*H_user.getStatCoeff("medical"))))
 						user << "<span class='notice'>You must stand still to bandage wounds.</span>"
 						break
 					if (W.current_stage <= W.max_bleeding_stage)
@@ -220,12 +224,6 @@
 			else
 				user << "<span class='notice'>The [affecting.name] is cut open, you'll need more than a bandage!</span>"
 
-		var/mob/living/carbon/human/H_user = user
-		if (istype(H_user) && H_user.getStatCoeff("medical") >= GET_MIN_STAT_COEFF(STAT_VERY_HIGH))
-			if (affecting.open == FALSE)
-				if (affecting.is_bandaged() && affecting.is_disinfected())
-					affecting.wounds.Cut()
-					H_user.bad_external_organs -= affecting
 
 /obj/item/stack/medical/advanced/ointment
 	name = "advanced burn kit"
@@ -239,6 +237,7 @@
 
 
 /obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
+	var/mob/living/carbon/human/H_user = user
 	if (..())
 		return TRUE
 
@@ -253,7 +252,7 @@
 			else
 				user.visible_message("<span class='notice'>\The [user] starts salving wounds on [M]'s [affecting.name].</span>", \
 						             "<span class='notice'>You start salving the wounds on [M]'s [affecting.name].</span>" )
-				if (!do_mob(user, M, 10))
+				if (!do_mob(user, M, (10/H_user.getStatCoeff("medical"))))
 					user << "<span class='notice'>You must stand still to salve wounds.</span>"
 					return TRUE
 				user.visible_message( 	"<span class='notice'>[user] covers wounds on [M]'s [affecting.name] with regenerative membrane.</span>", \
