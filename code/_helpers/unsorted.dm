@@ -485,7 +485,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/between(var/low, var/middle, var/high)
 	return max(min(middle, high), low)
 
-
 //returns random gauss number
 proc/Gaussrand(var/sigma)
   var/x,y,rsq

@@ -63,8 +63,10 @@
 	var/mob/living/carbon/human/H = user //Yes its shitcode fuck you.
 	if (jammed)
 		user.visible_message("<span class = 'notice'>\The [user] starts to unjam the \the [src].</span>")
+		playsound(loc, pick("sound/items/War_UI_Inventory_Organic_Gun_Parts_1.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_2.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_3.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_4.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_5.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_6.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_7.ogg"), 50, TRUE, -5)
 		if (do_after(user,60/(H.getStatCoeff("rifle"))))
 			user << "<span class = 'danger'>With a click, the gun becomes unjammed.</span>"
+			playsound(loc, "sound/items/War_UI_Inventory_Equip_Change_Weapon_Pack_4.ogg", 50, TRUE, -5)
 			jammed = FALSE
 		return
 	if (firemodes.len > 1)
@@ -95,6 +97,7 @@
 	desc = "Soviet semi-automatic rifle chambered in 7.62x54mmR. Used by some guard units and defense units."
 	icon_state = "svt"
 	item_state = "svt-mag"
+	fire_sound = 'sound/weapons/svt40_fire.ogg'
 	w_class = 4
 	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shells = 10
@@ -201,6 +204,7 @@
 	ammo_type = /obj/item/ammo_casing/c762x63
 	auto_eject = TRUE
 	auto_eject_sound = 'sound/weapons/garand-ping.ogg'
+	fire_sound = 'sound/weapons/m1garand_fire.ogg'
 	weight = 4.3
 	firemodes = list(
 		list(name="single shot",burst=1, move_delay=2, fire_delay=6)
@@ -229,6 +233,7 @@
 	slot_flags = SLOT_BACK|SLOT_OCLOTHING
 	w_class = 4
 	caliber = "7.92x57mm"
+	fire_sound = 'sound/weapons/fg42_fire.ogg'
 	magazine_type = /obj/item/ammo_magazine/c792x57_fg42
 	ammo_type = /obj/item/ammo_casing/c792x57_fg42
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL|ATTACH_SCOPE
@@ -283,6 +288,7 @@
 	desc = "A japanese Light Machine Gun. Uses 7.7x58mm arisaka rounds."
 	icon_state = "type99"
 	item_state = "type99"
+	fire_sound = 'sound/weapons/type99_fire.ogg'
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_OCLOTHING
 	w_class = 4
@@ -313,6 +319,7 @@
 	desc = "German assault rifle chambered in 7.92x33mm Kurz, 30 round magazine. Variant of the STG-44, issued to SS, usually."
 	icon_state = "stg"
 	item_state = "stg"
+	fire_sound = 'sound/weapons/stg44_fire.ogg'
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 4

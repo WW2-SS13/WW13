@@ -65,8 +65,10 @@
 	var/mob/living/carbon/human/H = user //Yes its shitcode fuck you.
 	if (jammed)
 		user.visible_message("<span class = 'notice'>\The [user] starts to unjam the \the [src].</span>")
+		playsound(loc, pick("sound/items/War_UI_Inventory_Organic_Gun_Parts_1.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_2.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_3.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_4.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_5.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_6.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_7.ogg"), 50, TRUE, -5)
 		if (do_after(user,60/(H.getStatCoeff("pistol"))))
 			user << "<span class = 'danger'>With a click, the gun becomes unjammed.</span>"
+			playsound(loc, "sound/items/War_UI_Inventory_Equip_Change_Weapon_Pack_4.ogg", 50, TRUE, -5)
 			jammed = FALSE
 		return
 	if (firemodes.len > 1)

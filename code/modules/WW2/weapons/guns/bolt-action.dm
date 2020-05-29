@@ -99,8 +99,10 @@
 
 	if (jammed)
 		user.visible_message("<span class = 'notice'>\The [user] starts to unjam the \the [src].</span>")
+		playsound(loc, pick("sound/items/War_UI_Inventory_Organic_Gun_Parts_1.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_2.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_3.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_4.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_5.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_6.ogg","sound/items/War_UI_Inventory_Organic_Gun_Parts_7.ogg"), 50, TRUE, -5)
 		if (do_after(user,60/(H.getStatCoeff("rifle"))))
 			user << "<span class = 'danger'>With a click, the gun becomes unjammed.</span>"
+			playsound(loc, "sound/items/War_UI_Inventory_Equip_Change_Weapon_Pack_4.ogg", 50, TRUE, -5)
 			jammed = FALSE
 
 	if (check_bolt_lock || feedfailure)
@@ -253,7 +255,7 @@
 	icon_state = "springfield"
 	item_state = "springfield"
 	caliber = "c762x63"
-	fire_sound = 'sound/weapons/kar_shot.ogg'
+	fire_sound = 'sound/weapons/springfield_fire.ogg'
 	ammo_type = /obj/item/ammo_casing/c762x63
 	magazine_type = /obj/item/ammo_magazine/c762x63_5
 	bolt_safety = TRUE
